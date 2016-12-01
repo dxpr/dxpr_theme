@@ -1,0 +1,37 @@
+//
+// Author: Jurriaan Roelofs for SooperThemes. Copyright SooperThemes.
+//
+
+// Putting carbide controls above navigation
+
+.az-left-sidebar, .az-right-sidebar {
+  z-index: 2000;
+}
+
+body.node-type-drag-drop-page.no-sidebars {
+  .page-title-full-width-container {
+    margin-bottom: 0;
+  }
+}
+
+.region-slider {
+  // div.carbide.az-container > .controls {
+  //   right: 40px;
+  // }
+  div.carbide.az-container > .controls,
+  div.az-section > .controls {
+    top: 0!important;
+  }
+  .carbide-editor.carbide.az-container {
+    margin-top: 0!important;
+  }
+  div.az-section {
+    margin-top: 0!important;
+  }
+}
+
+#az-editor-tabs .fa_icons,
+#az-editor-tabs .line_icons {
+  height: 350px;
+  overflow: scroll;
+}

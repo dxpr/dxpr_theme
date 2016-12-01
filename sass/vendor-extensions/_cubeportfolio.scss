@@ -1,0 +1,73 @@
+//
+// Author: Jurriaan Roelofs for SooperThemes. Copyright SooperThemes.
+//
+
+.cbp-filter-item:hover {
+  color: $primary !important;
+}
+
+.cbp-l-filters-button .cbp-filter-item-active,
+.cbp-l-filters-button .cbp-filter-item:hover,
+.cbp-l-filters-buttonCenter .cbp-filter-item-active,
+.cbp-l-filters-buttonCenter .cbp-filter-item:hover {
+  color: #ffffff !important;
+ }
+
+.js .html .block {
+  .cbp-filter-item {
+    color: $text;
+    opacity: 0.75;
+    transition: opacity 200ms, background-color 200ms, color 200ms;
+    &.cbp-filter-item-active,
+    &:hover,
+    &:active,
+    &:focus {
+      color: $primary;
+      opacity: 1;
+    }
+  }
+  .cbp-l-filters-button,
+  .cbp-l-filters-buttonCenter {
+    .cbp-filter-item {
+      border: none;
+      background: $well;
+      color: $well-text;
+      padding: 10px 20px;
+      &.cbp-filter-item-active,
+      &:hover,
+      &:active,
+      &:focus {
+        opacity: 1;
+        background: $primary;
+        color: #fff;
+      }
+    }
+  }
+}
+
+// disabling this because we now use .js layouts that work in modals too?
+// .cbp-popup-content {
+//   .field-portfolio-images {
+//     img {
+//       width:65%;
+//       float:left;
+//     }
+//     .image-field-caption {
+//       width: 33%;
+//       float:right;
+//     }
+//   }
+// }
+
+.cbp-caption {
+  .glazed-portfolio-title {
+    color: $white-broken;
+    a {
+      color: $white-broken;
+    }
+  }
+}
+
+.group-portfolio-extra {
+  padding-bottom: 30px;
+}
