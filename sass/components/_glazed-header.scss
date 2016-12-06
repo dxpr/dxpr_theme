@@ -1,3 +1,4 @@
+@charset "UTF-8";
 // Fix bootstrap basetheme overrides.css thingy
 // @see layout-theme-settings-css.inc
 .html .navbar.container {
@@ -162,17 +163,32 @@ body.body--glazed-header-fixed.body--glazed-header-not-overlay {
 }
 
 // MENU BORDER HOVER EFFECT
-#navbar.glazed-header--hover-background .menu a:hover, #navbar.glazed-header--hover-background .menu a:hover .menu a:focus {
-  color: #ffffff;
-  background-color: $primary;
+#navbar.glazed-header--hover-background .menu {
+  .active-trail > a,
+  a:hover,
+  a:hover .menu a:focus,
+  a.active {
+    color: #ffffff;
+    background-color: $primary;
+  }
 }
 
-#navbar.glazed-header--hover-text .menu a:hover, #navbar.glazed-header--hover-text .menu a:focus {
-  color: $primary;
+#navbar.glazed-header--hover-text .menu {
+  .active-trail > a,
+  a:hover,
+  a:focus,
+  a.active {
+    color: $primary;
+  }
 }
 
-#navbar.glazed-header--hover-opacity .menu a:hover, #navbar.glazed-header--hover-opacity .menu a:focus {
-  opacity: 0.8;
+#navbar.glazed-header--hover-opacity .menu {
+  .active-trail > a,
+  a:hover,
+  a:focus,
+  a.active {
+    opacity: 0.8;
+  }
 }
 
 .body--glazed-header-side .glazed-header--side.glazed-header--hover-border .menu a:before,
@@ -190,7 +206,11 @@ body.body--glazed-header-fixed.body--glazed-header-not-overlay {
   bottom: 0;
   background: $primary;
 }
+.body--glazed-header-side .glazed-header--side.glazed-header--hover-border .menu > li.active-trail > a:before,
 .body--glazed-header-side .glazed-header--side.glazed-header--hover-border .menu > li > a:hover:before,
-.glazed-header--top.glazed-header--hover-border .menu a:hover:before {
+.body--glazed-header-side .glazed-header--side.glazed-header--hover-border .menu > li > a.active:before,
+.glazed-header--top.glazed-header--hover-border .menu li.active-trail > a:before,
+.glazed-header--top.glazed-header--hover-border .menu a:hover:before,
+.glazed-header--top.glazed-header--hover-border .menu a.active:before {
   transform: scale(1, 1) translate(10px, 0);
 }
