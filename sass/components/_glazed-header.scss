@@ -47,6 +47,7 @@
   color: $header-text-color;
   a {
     color: $header-text-color;
+    &.active,
     &:hover,
     &:focus {
       color: $header-text-color;
@@ -56,6 +57,7 @@
     a {
       color: $header-text-color;
       text-decoration: none;
+      &.active,
       &:hover,
       &:focus {
         color: $header-text-color;
