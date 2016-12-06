@@ -27,7 +27,7 @@
         var themeName = Drupal.settings.glazedDefaultTheme || 'glazed';
         var glazedLogoPath = Drupal.settings.basePath + Drupal.settings.glazed.glazedPath + 'glazed-favicon.png';
         var $glazedButton = $('<div id="glazed-button-wrapper">').html($('<a>',{
-          text: Drupal.t('Glazed Settings'),
+          text: themeName == 'glazed' ? Drupal.t('Glazed Settings') : Drupal.t('Theme Settings'),
           title: 'Glazed Settings, Demo Import, and more',
           class: 'glazed-button',
           href: Drupal.settings.basePath + 'admin/appearance/settings/' + themeName
