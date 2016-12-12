@@ -1,134 +1,127 @@
-name                                              = Glazed
-description                                       = SooperThemes Premium Framework Theme.
-core                                              = 7.x
-version                                           = 7.x-2.5.4
-project                                           = glazed
-project status url                                = https://www.sooperthemes.com/release-history
+name                                                  = Glazed
+description                                           = SooperThemes Premium Framework Theme.
+core                                                  = 7.x
+version                                               = 7.x-2.5.4
+project                                               = glazed
+project status url                                    = https://www.sooperthemes.com/release-history
 
-base theme                                        = bootstrap
+base theme                                            = bootstrap
 
 ; Based on //www.drupal.org/sandbox/BrianDanin/2116345
 
 ; Regions
-regions[navigation]                               = 'Navigation'
-regions[secondary_header]                         = 'Secondary Header'
-regions[slider]                                   = 'Hero Region'
-regions[header]                                   = 'Page Title'
-regions[highlighted]                              = 'Highlighted'
-regions[help]                                     = 'Help'
-regions[content_top]                              = 'Content Top'
-regions[content]                                  = 'Content'
-regions[content_bottom]                           = 'Content Bottom'
-regions[sidebar_first]                            = 'Sidebar First'
-regions[sidebar_second]                           = 'Sidebar Second'
-regions[footer]                                   = 'Footer'
+regions[navigation]                                   = 'Navigation'
+regions[secondary_header]                             = 'Secondary Header'
+regions[slider]                                       = 'Hero Region'
+regions[header]                                       = 'Page Title'
+regions[highlighted]                                  = 'Highlighted'
+regions[help]                                         = 'Help'
+regions[content_top]                                  = 'Content Top'
+regions[content]                                      = 'Content'
+regions[content_bottom]                               = 'Content Bottom'
+regions[sidebar_first]                                = 'Sidebar First'
+regions[sidebar_second]                               = 'Sidebar Second'
+regions[footer]                                       = 'Footer'
 
 ; Stylesheets
-stylesheets[all][]                                = css/glazed.css
-scripts[]                                         = js/vendor/classie.js
-scripts[]                                         = js/vendor/modernizr-custom.js
-scripts[]                                         = js/glazed-mobile-nav.js
-scripts[]                                         = js/glazed.js
+stylesheets[all][]                                    = css/glazed.css
+scripts[]                                             = js/vendor/classie.js
+scripts[]                                             = js/vendor/modernizr-custom.js
+scripts[]                                             = js/glazed-mobile-nav.js
+scripts[]                                             = js/glazed.js
+
+; Carbide Builder Utility Classes
+carbide_classes[glazed-util-background-accent1]       = Background color: Glazed accent1
+carbide_classes[glazed-util-background-accent2]       = Background color: Glazed accent2
+carbide_classes[glazed-util-background-gray]          = Background color: Glazed gray
+carbide_classes[glazed-util-background-primary]       = Background color: Glazed primary
+carbide_classes[glazed-util-background-well-text]     = Background color: Glazed well-text
+carbide_classes[glazed-util-background-white]         = Background color: white
+carbide_classes[glazed-util-border-accent1]           = Border color: Glazed accent1
+carbide_classes[glazed-util-border-accent2]           = Border color: Glazed accent2
+carbide_classes[glazed-util-border-primary-gray]      = Border color: Glazed primary-gray
+carbide_classes[glazed-util-border-primary]           = Border color: Glazed primary
+carbide_classes[glazed-util-border-white]             = Border color: white
+carbide_classes[glazed-util-clear-both]               = Clear Both
+carbide_classes[glazed-util-clear-left]               = Clear left
+carbide_classes[glazed-util-clear-right]              = Clear Right
+carbide_classes[glazed-util-color-accent1]            = Font color: Glazed accent1
+carbide_classes[glazed-util-color-accent2]            = Font color: Glazed accent2
+carbide_classes[glazed-util-color-gray]               = Font color: Glazed gray
+carbide_classes[glazed-util-color-primary]            = Font color: Glazed primary
+carbide_classes[glazed-util-color-well-text]          = Font color: Glazed well-text
+carbide_classes[glazed-util-color-white]              = Font color: Glazed white
+carbide_classes[glazed-util-overlay-20]               = Overlay opacity 20%
+carbide_classes[glazed-util-overlay-40]               = Overlay opacity 40%
+carbide_classes[glazed-util-overlay-60]               = Overlay opacity 60%
+carbide_classes[glazed-util-overlay-80]               = Overlay opacity 80%
+carbide_classes[glazed-util-overlay-accent1]          = Color overlay: Glazed accent1
+carbide_classes[glazed-util-overlay-accent2]          = Color overlay: Glazed accent2
+carbide_classes[glazed-util-overlay-black]            = Color overlay black
+carbide_classes[glazed-util-overlay-primary]          = Color overlay: Glazed primary
+carbide_classes[glazed-util-overlay-white]            = Color overlay white
+carbide_classes[glazed-util-overlay-gray]             = Color overlay gray
+carbide_classes[glazed-util-single-line]              = Single Line Text with Ellipsis
+carbide_classes[glazed-util-text-shadow]              = Text Shadow
+carbide_classes[glazed-util-text-shadow-80]           = Text Shadow 80%
+carbide_classes[glazed-util-text-shadow-60]           = Text Shadow 60%
+carbide_classes[glazed-util-text-shadow-40]           = Text Shadow 40%
+carbide_classes[glazed-util-text-shadow-20]           = Text Shadow 20%
+carbide_classes[glazed-util-text-muted]               = Text Muted (opacity)
+carbide_classes[glazed-util-text-uppercase]           = Text Uppercase
+carbide_classes[glazed-util-text-bold]                = Text Bold
+carbide_classes[glazed-util-text-light]               = Text Light
+carbide_classes[glazed-util-text-italic]              = Text Italic
+
+; Settings
 
 settings[full_width_containers][cnt_secondary_header] = 0
-settings[full_width_containers][cnt_header_nav] = 0
-settings[full_width_containers][cnt_page_title] = 0
-settings[full_width_containers][cnt_content_top] = 0
-settings[full_width_containers][cnt_content_bottom] = 0
-settings[full_width_containers][cnt_footer] = 0
+settings[full_width_containers][cnt_header_nav]       = 0
+settings[full_width_containers][cnt_page_title]       = 0
+settings[full_width_containers][cnt_content_top]      = 0
+settings[full_width_containers][cnt_content_bottom]   = 0
+settings[full_width_containers][cnt_footer]           = 0
 settings[full_width_content_types][cb_drag_drop_page] = cb_drag_drop_page
-settings[full_width_content_types][drag_drop_page] = drag_drop_page
-settings[full_width_content_types][blog] = 0
-settings[full_width_content_types][page] = 0
-settings[full_width_content_types][event] = 0
-settings[full_width_content_types][news] = 0
-settings[full_width_content_types][portfolio] = 0
-settings[block_design_regions][sidebar_first] = sidebar_first
-settings[block_design_regions][sidebar_second] = sidebar_second
-settings[block_design_regions][content_top] = content_top
-settings[block_design_regions][content_bottom] = content_bottom
-settings[block_design_regions][secondary_header] = 0
-settings[block_design_regions][navigation] = 0
-settings[block_design_regions][slider] = 0
-settings[block_design_regions][header] = 0
-settings[block_design_regions][highlighted] = 0
-settings[block_design_regions][help] = 0
-settings[block_design_regions][content] = 0
-settings[block_design_regions][footer] = 0
-settings[gutter_horizontal]                       = 30
-settings[gutter_horizontal_mobile]                = 30
-settings[gutter_vertical]                         = 30
-settings[gutter_vertical_mobile]                  = 30
-settings[gutter_container]                        = 60
-settings[gutter_container_mobile]                 = 30
-settings[layout_max_width]                        = 1170
-settings[sticky_footer]                           = 1
+settings[full_width_content_types][drag_drop_page]    = drag_drop_page
+settings[full_width_content_types][blog]              = 0
+settings[full_width_content_types][page]              = 0
+settings[full_width_content_types][event]             = 0
+settings[full_width_content_types][news]              = 0
+settings[full_width_content_types][portfolio]         = 0
+settings[block_design_regions][sidebar_first]         = sidebar_first
+settings[block_design_regions][sidebar_second]        = sidebar_second
+settings[block_design_regions][content_top]           = content_top
+settings[block_design_regions][content_bottom]        = content_bottom
+settings[block_design_regions][secondary_header]      = 0
+settings[block_design_regions][navigation]            = 0
+settings[block_design_regions][slider]                = 0
+settings[block_design_regions][header]                = 0
+settings[block_design_regions][highlighted]           = 0
+settings[block_design_regions][help]                  = 0
+settings[block_design_regions][content]               = 0
+settings[block_design_regions][footer]                = 0
+settings[gutter_horizontal]                           = 30
+settings[gutter_horizontal_mobile]                    = 30
+settings[gutter_vertical]                             = 30
+settings[gutter_vertical_mobile]                      = 30
+settings[gutter_container]                            = 60
+settings[gutter_container_mobile]                     = 30
+settings[layout_max_width]                            = 1170
+settings[sticky_footer]                               = 1
 settings[portfolio_details]                           = top
 settings[portfolio_sidebar]                           = 4
-settings[portfolio_images]                           = sidecaption
+settings[portfolio_images]                            = sidecaption
 
 
-; Extend Carbide Builder Utility Classes
-carbide_classes[glazed-util-background-accent1]   = Background color: Glazed accent1
-carbide_classes[glazed-util-background-accent2]   = Background color: Glazed accent2
-carbide_classes[glazed-util-background-gray]      = Background color: Glazed gray
-carbide_classes[glazed-util-background-primary]   = Background color: Glazed primary
-carbide_classes[glazed-util-background-well-text] = Background color: Glazed well-text
-carbide_classes[glazed-util-background-white]     = Background color: white
-carbide_classes[glazed-util-background-black]     = Background color: black
-carbide_classes[glazed-util-border-accent1]       = Border color: Glazed accent1
-carbide_classes[glazed-util-border-accent2]       = Border color: Glazed accent2
-carbide_classes[glazed-util-border-primary-gray]  = Border color: Glazed primary-gray
-carbide_classes[glazed-util-border-primary]       = Border color: Glazed primary
-carbide_classes[glazed-util-border-white]         = Border color: white
-carbide_classes[glazed-util-border-black]         = Border color: black
-carbide_classes[glazed-util-clear-both]           = Clear Both
-carbide_classes[glazed-util-clear-left]           = Clear left
-carbide_classes[glazed-util-clear-right]          = Clear Right
-carbide_classes[glazed-util-color-accent1]        = Font color: Glazed accent1
-carbide_classes[glazed-util-color-accent2]        = Font color: Glazed accent2
-carbide_classes[glazed-util-color-gray]           = Font color: Glazed gray
-carbide_classes[glazed-util-color-primary]        = Font color: Glazed primary
-carbide_classes[glazed-util-color-well-text]      = Font color: Glazed well-text
-carbide_classes[glazed-util-color-white]          = Font color: Glazed white
-carbide_classes[glazed-util-color-black]          = Font color: Glazed black
-carbide_classes[glazed-util-overlay-20]           = Overlay opacity 20%
-carbide_classes[glazed-util-overlay-40]           = Overlay opacity 40%
-carbide_classes[glazed-util-overlay-60]           = Overlay opacity 60%
-carbide_classes[glazed-util-overlay-80]           = Overlay opacity 80%
-carbide_classes[glazed-util-overlay-accent1]      = Color overlay: Glazed accent1
-carbide_classes[glazed-util-overlay-accent2]      = Color overlay: Glazed accent2
-carbide_classes[glazed-util-overlay-black]        = Color overlay black
-carbide_classes[glazed-util-overlay-primary]      = Color overlay: Glazed primary
-carbide_classes[glazed-util-overlay-white]        = Color overlay white
-carbide_classes[glazed-util-overlay-gray]         = Color overlay gray
-carbide_classes[glazed-util-single-line]          = Single Line Text with Ellipsis
-carbide_classes[glazed-util-text-shadow]          = Text Shadow
-carbide_classes[glazed-util-text-shadow-80]       = Text Shadow 80%
-carbide_classes[glazed-util-text-shadow-60]       = Text Shadow 60%
-carbide_classes[glazed-util-text-shadow-40]       = Text Shadow 40%
-carbide_classes[glazed-util-text-shadow-20]       = Text Shadow 20%
-carbide_classes[glazed-util-text-muted]           = Text Muted (opacity)
-carbide_classes[glazed-util-text-uppercase]       = Text Uppercase
-carbide_classes[glazed-util-text-bold]            = Text Bold
-carbide_classes[glazed-util-text-light]           = Text Light
-carbide_classes[glazed-util-text-italic]          = Text Italic
+settings[bootstrap_tooltip_placement]                 = 'auto top'
+settings[bootstrap_forms_smart_descriptions]          = '1'
+settings[bootstrap_tooltip_placement]                 = '250'
 
-; Bootstap Settings
-; --------------
-
-
-settings[bootstrap_tooltip_placement]             = 'auto top'
-settings[bootstrap_forms_smart_descriptions]      = '1'
-settings[bootstrap_tooltip_placement]             = '250'
-
-settings[bootstrap_cdn_provider]                  = 'jsdelivr'
-; Removing https from urls to prevent mod_security problems
-; https://www.drupal.org/node/2642582
-settings[bootstrap_cdn_custom_css]                = '//cdn.jsdelivr.net/bootstrap/3.3.5/css/bootstrap.css'
-settings[bootstrap_cdn_custom_css_min]            = '//cdn.jsdelivr.net/bootstrap/3.3.5/css/bootstrap.min.css'
-settings[bootstrap_cdn_custom_js]                 = '//cdn.jsdelivr.net/bootstrap/3.3.5/js/bootstrap.js'
-settings[bootstrap_cdn_custom_js_min]             = '//cdn.jsdelivr.net/bootstrap/3.3.5/js/bootstrap.min.js'
-settings[bootstrap_cdn_jsdelivr_version]          = '3.3.5'
+settings[bootstrap_cdn_provider]                      = 'jsdelivr'
+settings[bootstrap_cdn_custom_css]                    = '//cdn.jsdelivr.net/bootstrap/3.3.5/css/bootstrap.css'
+settings[bootstrap_cdn_custom_css_min]                = '//cdn.jsdelivr.net/bootstrap/3.3.5/css/bootstrap.min.css'
+settings[bootstrap_cdn_custom_js]                     = '//cdn.jsdelivr.net/bootstrap/3.3.5/js/bootstrap.js'
+settings[bootstrap_cdn_custom_js_min]                 = '//cdn.jsdelivr.net/bootstrap/3.3.5/js/bootstrap.min.js'
+settings[bootstrap_cdn_jsdelivr_version]              = '3.3.5'
 
 settings[jquery_update_jquery_version]            = 2.1

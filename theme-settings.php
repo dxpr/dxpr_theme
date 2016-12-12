@@ -158,9 +158,14 @@ function _glazed_color_options($theme) {
   return $colors;
 }
 
-function glazed_settings_form_submit(&$form, $form_state) {
-  // Save Page Title Image
-  // @See glazed_config.module
+function glazed_settings_form_submit(&$form, &$form_state) {
+  if ($import = $form_state['values']['settings_import_box']) {
+    $import_settings = drupal_parse_info_format($import);
+    if (is_array($import_settings) && isset($import_settings['settings'])) {
+      $form_state['values'] = array_merge($form_state['values'], $import_settings['settings']);
+    }
+  }
+
   if (isset($form_state['values']['page_title_image'])) {
     $page_title_image = $form_state['values']['page_title_image'];
     if ($page_title_image && is_numeric($page_title_image) && ($page_title_image > 0)) {
@@ -194,7 +199,7 @@ function glazed_settings_form_submit(&$form, $form_state) {
         if (isset($module->info['features']) && isset($module->info['features']['uuid_node'])) {
           $node_sample = $module->info['features']['uuid_node'][0];
           if ($form_state['values'][$module->name] && !entity_get_id_by_uuid('node', array($node_sample))) {
-            drupal_set_message($module->name . ' is missing and selected for installation');
+            drupal_set_message($module->name . ' ' . t('installed'));
             module_enable(array($module->name));
             module_disable(array($module->name), FALSE);
           }
@@ -207,6 +212,16 @@ function glazed_settings_form_submit(&$form, $form_state) {
 
 function _glazed_is_demo_content ($feature) {
   return ((strpos($feature->name, '_content') OR (strpos($feature->name, '_theme_settings')))
+    && isset($feature->info['features']['uuid_node']));
+}
+
+function _glazed_is_demo_content_exclude_subtheme ($feature) {
+  return (strpos($feature->name, '_content')
+    && isset($feature->info['features']['uuid_node']));
+}
+
+function _glazed_is_subtheme ($feature) {
+  return (strpos($feature->name, '_theme_settings')
     && isset($feature->info['features']['uuid_node']));
 }
 
