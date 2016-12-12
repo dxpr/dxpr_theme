@@ -199,7 +199,7 @@ function glazed_settings_form_submit(&$form, &$form_state) {
         if (isset($module->info['features']) && isset($module->info['features']['uuid_node'])) {
           $node_sample = $module->info['features']['uuid_node'][0];
           if ($form_state['values'][$module->name] && !entity_get_id_by_uuid('node', array($node_sample))) {
-            drupal_set_message($module->name . ' installed');
+            drupal_set_message($module->name . ' ' . t('installed'));
             module_enable(array($module->name));
             module_disable(array($module->name), FALSE);
           }
