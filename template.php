@@ -19,7 +19,6 @@ if (is_file($files_path . '/glazed-themesettings-' . $theme . '.css')) {
   );
 }
 
-
 /**
  * Load template.php logic from theme features
  */
