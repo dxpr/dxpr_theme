@@ -11,13 +11,13 @@ function _glazed_settings_export($theme) {
   if (!$settings) {
     return false;
   }
-  // unset(
-  //   $settings['glazed_settings__active_tab'],
-  //   $settings['global__active_tab'],
-  //   $settings['info'],
-  //   $settings['jquery_update_jquery_version'],
-  //   $settings['theme']
-  // );
+  unset(
+    $settings['glazed_settings__active_tab'],
+    $settings['global__active_tab'],
+    $settings['info'],
+    $settings['jquery_update_jquery_version'],
+    $settings['theme']
+  );
   $info = array();
   $info['settings'] = !empty($info['settings']) ? $info['settings'] : array();
   $info['settings'] = $settings;
