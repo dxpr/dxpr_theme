@@ -7,3 +7,12 @@ deploy.sh
 # OS specific stuff
 .DS_Store
 Thumbs.db
+
+# CSS files.
+/css/glazed.admin.css
+/css/glazed.admin.css.map
+/css/glazed.admin.themesettings.css
+/css/glazed.admin.themesettings.css.map
+/css/glazed.css
+/css/glazed.css.map
+/css/style.css.map
