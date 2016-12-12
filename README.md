@@ -1,6 +1,8 @@
 # Glazed Theme
 
-Framework Theme that is central to SooperThemes products. All designs for sale on the site are using Glazed theme, with customized content and theme settings.
+Framework Theme that is central to SooperThemes products. All designs for sale on the site are using Glazed theme, with customized content and theme settings. For a quick live demo of the product visit http://www.trysooperthemes.com/
+
+For testing and development it is preferred that your installation is based on the Main Demo installation profile. You can download it here: https://www.sooperthemes.com/download
 
 ## Workflow
 
