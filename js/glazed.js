@@ -316,6 +316,23 @@ function glazedMenuGovernor(context) {
 
     glazedMenuState = 'side';
   }
+
+  setTimeout(function() {
+    var bodyWidth = $('body').innerWidth();
+    var margin = 75;
+    $('.nav > .expanded.dropdown').each(function () {
+      var $this = $(this);
+      // Do not process full-width items.
+      if ($this.css('position') != 'static') {
+        var $item = $(this).find('.dropdown-menu');
+        var delta = Math.round(bodyWidth - $this.position().left - $item.outerWidth() - margin);
+        if (delta < 0) {
+          $item.css('left', delta + 'px');
+        }
+      }
+    });
+  }, 0);
+
 }
 
 function glazedMenuGovernorBodyClass() {
