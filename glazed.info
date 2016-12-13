@@ -113,7 +113,7 @@ carbide_classes[glazed-util-text-uppercase]       = Text Uppercase
 carbide_classes[glazed-util-text-bold]            = Text Bold
 carbide_classes[glazed-util-text-light]           = Text Light
 carbide_classes[glazed-util-text-italic]          = Text Italic
-carbide_classes[glazed-util-vcenter]              = Vertical centring
+carbide_classes[glazed-util-vcenter]              = Vertical centering
 
 ; Bootstap Settings
 ; --------------
