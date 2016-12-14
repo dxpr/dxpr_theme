@@ -209,6 +209,9 @@ function glazedMenuGovernor(context) {
     $('.menu__item').removeClass('menu__item');
     $('[data-submenu]').removeAttr('data-submenu');
     $('[data-menu]').removeAttr('data-menu');
+
+    var bodyWidth = $('body').innerWidth();
+    var margin = 10;
     $('#glazed-main-menu .menu .dropdown-menu', context)
       .each(function() {
         var width = $(this).width();
@@ -228,12 +231,25 @@ function glazedMenuGovernor(context) {
               'width' : 100 / columns + '%',
           });
         }
-        else if (columns > 1) {
-          $(this).css({
-              'min-width' : width * columns + 2, // accounts for 1px border
-          }).find('>li').css({
-              'width' : width
-          })
+        else {
+          var $this = $(this);
+          if (columns > 1) {
+            // Accounts for 1px border.
+            $this
+              .css('min-width', width * columns + 2)
+              .find('>li').css('width', width)
+          }
+          // Workaround for drop down overlapping.
+          // See https://github.com/twbs/bootstrap/issues/13477.
+          var $topLevelItem = $this.parent();
+          // Set timeout to let the rendering threads catch up.
+          setTimeout(function() {
+            var delta = Math.round(bodyWidth - $topLevelItem.offset().left - $this.outerWidth() - margin);
+            // Only fix items that went out of screen.
+            if (delta < 0) {
+              $this.css('left', delta + 'px');
+            }
+          }, 0)
         }
       });
     glazedMenuState = 'top';
@@ -316,22 +332,6 @@ function glazedMenuGovernor(context) {
 
     glazedMenuState = 'side';
   }
-
-  setTimeout(function() {
-    var bodyWidth = $('body').innerWidth();
-    var margin = 75;
-    $('.nav > .expanded.dropdown').each(function () {
-      var $this = $(this);
-      // Do not process full-width items.
-      if ($this.css('position') != 'static') {
-        var $item = $(this).find('.dropdown-menu');
-        var delta = Math.round(bodyWidth - $this.position().left - $item.outerWidth() - margin);
-        if (delta < 0) {
-          $item.css('left', delta + 'px');
-        }
-      }
-    });
-  }, 0);
 
 }
 
