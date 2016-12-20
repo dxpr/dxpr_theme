@@ -65,26 +65,23 @@ $form['glazed_settings']['page_title']['background'] = array(
   '#collapsed' => TRUE,
 );
 
-// Does not work in subthemes: http://drupal.stackexchange.com/questions/157128/problem-with-function-from-theme-settings-php-in-sub-theme
-if ($subject_theme == 'glazed') {
-
-  $form['glazed_settings']['page_title']['background']['page_title_image'] = array(
-    '#type' => 'media',
-    '#theme' => 'media_widget', // required as of media 7.x-2.0-beta2
-    '#tree' => TRUE, // Required
-    '#title' => t('Default Background'),
-    '#description' => t('The default page title image can also be changed per node, using the Header image field in the node form.'),
-    '#default_value' => theme_get_setting('page_title_image'),
-    '#media_options' => array(
-      'global' => array(
-        'file_extensions' => 'gif png jpg jpeg', // File extensions
-        'max_filesize' => '100 MB',
-        'file_directory' => 'glazed-assets', // Will be a subdirectory of the files directory
-        'types' => array('image'), // Refers to a file_entity bundle (such as audio, video, image, etc.)
-      ),
+// @see glazed_config.module glazed_config_settings_form_submit()
+$form['glazed_settings']['page_title']['background']['page_title_image'] = array(
+  '#type' => 'media',
+  '#theme' => 'media_widget', // required as of media 7.x-2.0-beta2
+  '#tree' => TRUE, // Required
+  '#title' => t('Default Background'),
+  '#description' => t('The default page title image can also be changed per node, using the Header image field in the node form.'),
+  '#default_value' => theme_get_setting('page_title_image'),
+  '#media_options' => array(
+    'global' => array(
+      'file_extensions' => 'gif png jpg jpeg', // File extensions
+      'max_filesize' => '100 MB',
+      'file_directory' => 'glazed-assets', // Will be a subdirectory of the files directory
+      'types' => array('image'), // Refers to a file_entity bundle (such as audio, video, image, etc.)
     ),
-  );
-}
+  ),
+);
 
 $form['glazed_settings']['page_title']['background']['page_title_image_opacity'] = array(
   '#type' => 'textfield',

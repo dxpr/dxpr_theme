@@ -158,58 +158,6 @@ function _glazed_color_options($theme) {
   return $colors;
 }
 
-function glazed_settings_form_submit(&$form, &$form_state) {
-  if ($import = $form_state['values']['settings_import_box']) {
-    $import_settings = drupal_parse_info_format($import);
-    if (is_array($import_settings) && isset($import_settings['settings'])) {
-      $form_state['values'] = array_merge($form_state['values'], $import_settings['settings']);
-    }
-  }
-
-  if (isset($form_state['values']['page_title_image'])) {
-    $page_title_image = $form_state['values']['page_title_image'];
-    if ($page_title_image && is_numeric($page_title_image) && ($page_title_image > 0)) {
-      $image_fid = $page_title_image;
-      $image = file_load($image_fid);
-      if (is_object($image)) {
-        // Check to make sure that the file is set to be permanent.
-        if ($image->status == 0) {
-          // Update the status.
-          $image->status = FILE_STATUS_PERMANENT;
-          // Save the update.
-          file_save($image);
-          // Add a reference to prevent warnings.
-          file_usage_add($image, 'glazed', 'theme', 1);
-         }
-      }
-    }
-  }
-
-  // If requested import additional demo content
-  if (module_exists('uuid_features')) {
-    module_load_include('module', 'uuid');
-    module_load_include('inc', 'features', 'features.admin');
-    $demo_content_modules = array_filter(_features_get_features_list(), "_glazed_is_demo_content");
-    if (!empty($demo_content_modules)) {
-      usort($demo_content_modules, function($a, $b) {
-        $return = (count($a->info['features']['uuid_node']) < count($b->info['features']['uuid_node'])) ? 1 : -1;
-        return $return;
-      });
-      foreach ($demo_content_modules as $module) {
-        if (isset($module->info['features']) && isset($module->info['features']['uuid_node'])) {
-          $node_sample = $module->info['features']['uuid_node'][0];
-          if ($form_state['values'][$module->name] && !entity_get_id_by_uuid('node', array($node_sample))) {
-            drupal_set_message($module->name . ' ' . t('installed'));
-            module_enable(array($module->name));
-            module_disable(array($module->name), FALSE);
-          }
-        }
-      }
-    }
-  }
-
-}
-
 function _glazed_is_demo_content ($feature) {
   return ((strpos($feature->name, '_content') OR (strpos($feature->name, '_theme_settings')))
     && isset($feature->info['features']['uuid_node']));
