@@ -7,7 +7,7 @@
 .tagclouds-term {
   a {
     display: inline-block;
-    background: $white-broken;
+    background: $silver;
     color: $gray-light;
     line-height: 1em;
     letter-spacing: 1px;
@@ -18,7 +18,7 @@
     &:focus {
       text-decoration: none;
       background: $gray-light;
-      color: $white-broken;
+      color: $silver;
     }
   }
 }

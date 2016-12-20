@@ -11,7 +11,7 @@
     > span {
       color: $gray-light;
       background-color: transparent;
-      border-color: $white-broken;
+      border-color: $silver;
       opacity: 0.6;
       padding: 1em 1.4em;
     }
@@ -35,7 +35,7 @@
     &:focus {
       color: $gray-light;
       background-color: transparent;
-      border-color: $white-broken;
+      border-color: $silver;
       opacity: 1;
     }
   }
@@ -47,7 +47,7 @@
     &:focus {
       color: $gray-light;
       background-color: transparent;
-      border-color:  $white-broken;
+      border-color:  $silver;
       opacity: 1;
     }
   }

@@ -85,7 +85,7 @@ div.lead {
   border-left-width: 2px;
 }
 
-$btn-primary-color: $white-broken;
+$btn-primary-color: $silver;
 $btn-primary-hover-color: $accent1;
 $btn-primary-bg: $primary;
 $btn-primary-border: $primary;
@@ -164,10 +164,10 @@ a.text-primary:focus {
   .nav > li > a:hover,
   .nav > li > a:focus,
   .nav > li > a.active {
-    color: $white-broken;
+    color: $silver;
     background: $primary;
     .glyphicon {
-      color: $white-broken;
+      color: $silver;
     }
   }
 }
@@ -181,7 +181,7 @@ a.text-primary:focus {
 }
 
 blockquote {
-  border-color: $white-broken;
+  border-color: $silver;
 }
 blockquote footer, blockquote small, blockquote .small {
   color: inherit;
@@ -193,11 +193,11 @@ blockquote footer, blockquote small, blockquote .small {
   background: #000;
   background: rgba(0,0,0,0.6);
   border-radius: 0;
-  color: $white-broken;
+  color: $silver;
   padding:30px;
   border: none;
   h1, h2, h3, h4, h5, h6 {
-    color: $white-broken;
+    color: $silver;
   }
 }
 

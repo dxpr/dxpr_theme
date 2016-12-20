@@ -177,12 +177,14 @@
   .glazed-util-background-well-text { background-color: $well-text; }
   .glazed-util-background-white { background-color: white; }
   .glazed-util-background-black { background-color: #000; }
+  .glazed-util-background-silver { background-color: $silver; }
   .glazed-util-border-primary { border-color: $primary; }
   .glazed-util-border-accent1 { border-color: $accent1; }
   .glazed-util-border-accent2 { border-color: $accent2; }
   .glazed-util-border-primary-gray { border-color: $text; }
   .glazed-util-border-white { border-color: white; }
   .glazed-util-border-black { border-color: #000; }
+  .glazed-util-border-silver { border-color: $silver; }
   .glazed-util-color-gray { color: $text; }
   .glazed-util-color-primary,.text-primary { color: $primary; }
   .glazed-util-color-accent1 { color: $accent1; }
@@ -190,15 +192,18 @@
   .glazed-util-color-well-text { color: $well-text; }
   .glazed-util-color-white { color: white; }
   .glazed-util-color-black { color: #000; }
+  .glazed-util-color-silver { color: $silver; }
   .glazed-util-hover-background-primary:hover { background-color: $primary; }
   .glazed-util-hover-background-white:hover { background-color: white; }
   .glazed-util-hover-background-black:hover { background-color: #000; }
   .glazed-util-hover-border-primary:hover { border-color: $primary; }
   .glazed-util-hover-border-white:hover { border-color: white; }
   .glazed-util-hover-border-black:hover { border-color: #000; }
+  .glazed-util-hover-border-silver:hover { border-color: $silver; }
   .glazed-util-hover-color-primary:hover { color: $primary; }
   .glazed-util-hover-color-white:hover { color: white; }
   .glazed-util-hover-color-black:hover { color: #000; }
+  .glazed-util-hover-color-silver:hover { color: $silver; }
 
   // Form Helper Classes
   .glazed-form-inline {
