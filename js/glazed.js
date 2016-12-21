@@ -38,17 +38,17 @@ Drupal.behaviors.glazed = {
     var windowHeight = $(window).height();
     glazedMenuGovernor(context);
 
-    // Fix for conditions where Carbide Controls are hidden behind menu
-    if (($('#block-system-main .carbide-editor').length)
+    // Fix for conditions where Glazed Controls are hidden behind menu
+    if (($('#block-system-main .glazed-editor').length)
         && ($('#page-title').length == 0)
         && ($('.glazed-header--top.glazed-header--overlay,.glazed-header--top.glazed-header--fixed').length)) {
 
-        var controlsTop = $('#block-system-main .carbide-editor').scrollTop() - 35;
+        var controlsTop = $('#block-system-main .glazed-editor').scrollTop() - 35;
         var menuBottom = $('.glazed-header--overlay, .glazed-header--fixed').scrollTop() + $('.glazed-header--overlay, .glazed-header--fixed').height();
         var marginTop = menuBottom - controlsTop;
         if (controlsTop < menuBottom) {
-            $('#block-system-main .carbide-editor > .controls').css('margin-top', marginTop);
-            $('#block-system-main .carbide-editor > .az-section').first().find('> .controls').css('margin-top', marginTop);
+            $('#block-system-main .glazed-editor > .controls').css('margin-top', marginTop);
+            $('#block-system-main .glazed-editor > .az-section').first().find('> .controls').css('margin-top', marginTop);
         }
     }
 

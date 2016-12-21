@@ -241,7 +241,7 @@ blockquote footer, blockquote small, blockquote .small {
 
 // Disabling the background on Modal Windows
 // Backdrops only work well when modal content is attached to the end of the page
-// In practice carbide composer and custo html snippets will add modals to the body
+// In practice glazed composer and custo html snippets will add modals to the body
 // which has a lower z-index so the modal can appear behind the backdrop.
 .modal-backdrop {
     z-index: -1!important;

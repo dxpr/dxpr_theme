@@ -35,10 +35,10 @@ Branch naming examples:
 Installs like any other theme. Recommended: install glazed_config (Glazed Theme Tools) module.
 
 ```
-drush en carbide_builder -y
+drush en glazed_builder -y
 ```
 
-To enable the module on a field, set Carbide Builder formatter on any entity textfield. For example on Basic Page body field (example.com/admin/structure/types/manage/page/display). The builder should show when viewing a node of this type (not on de node/add or node/edit form).
+To enable the module on a field, set Glazed Builder formatter on any entity textfield. For example on Basic Page body field (example.com/admin/structure/types/manage/page/display). The builder should show when viewing a node of this type (not on de node/add or node/edit form).
 
 ### Developing
 

@@ -2,7 +2,7 @@
 // Author: Jurriaan Roelofs for SooperThemes. Copyright SooperThemes.
 //
 
-// Putting carbide controls above navigation
+// Putting glazed controls above navigation
 
 .az-left-sidebar, .az-right-sidebar {
   z-index: 2000;
@@ -15,14 +15,14 @@ body.node-type-drag-drop-page.no-sidebars {
 }
 
 .region-slider {
-  // div.carbide.az-container > .controls {
+  // div.glazed.az-container > .controls {
   //   right: 40px;
   // }
-  div.carbide.az-container > .controls,
+  div.glazed.az-container > .controls,
   div.az-section > .controls {
     top: 0!important;
   }
-  .carbide-editor.carbide.az-container {
+  .glazed-editor.glazed.az-container {
     margin-top: 0!important;
   }
   div.az-section {
