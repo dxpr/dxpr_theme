@@ -17,5 +17,5 @@ function glazed_attribution_link() {
   '<a href="http://www.sooperthemes.com">Drupal Premium Themes</a> by SooperThemes',
   '<a href="http://www.sooperthemes.com/">Premium Drupal themes</a>',
   );
-  return '<p class="clear-both sooperthemes-attribution-link glazed-util-text-muted text-right">' . $links[$key] . '</p>';
+  return '<p class="clear-both sooperthemes-attribution-link glazed-util-text-muted small text-center">' . $links[$key] . '</p>';
 }
