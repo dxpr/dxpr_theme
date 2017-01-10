@@ -86,7 +86,7 @@
         'graylight' => '#777777',
         'graylighter' => '#ededed',
         'silver' => '#f1f1f1',
-        'body' => '#fefffe',
+        'body' => '#efefef',
       ),
     ),
   ),
