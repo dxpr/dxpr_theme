@@ -42,9 +42,9 @@ $form['glazed_settings']['page_title']['page_title_height'] = array(
 $form['glazed_settings']['page_title']['page_title_animate'] = array(
   '#type' => 'radios',
   '#title' => t('Animation'),
-  '#default_value' => ((theme_get_setting('page_title_animate') !== null)) ? theme_get_setting('page_title_animate') : 0,
+  '#default_value' => ((theme_get_setting('page_title_animate') !== null)) ? theme_get_setting('page_title_animate') : '0',
   '#options' => array(
-    0 => t('No Animation'),
+    '0' => t('No Animation'),
     'bounce' => t('Bounce'),
     'flash' => t('Flash'),
     'pulse' => t('Pulse'),
@@ -65,7 +65,7 @@ $form['glazed_settings']['page_title']['background'] = array(
   '#collapsed' => TRUE,
 );
 
-// @see glazed_config.module glazed_config_settings_form_submit()
+// @see glazed_helper.module glazed_helper_settings_form_submit()
 $form['glazed_settings']['page_title']['background']['page_title_image'] = array(
   '#type' => 'media',
   '#theme' => 'media_widget', // required as of media 7.x-2.0-beta2
