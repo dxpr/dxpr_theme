@@ -32,7 +32,7 @@ Branch naming examples:
 
 ### Installing
 
-Installs like any other theme. Recommended: install glazed_config (Glazed Theme Tools) module.
+Installs like any other theme. Recommended: install glazed_helper (Glazed Theme Tools) module.
 
 ```
 drush en glazed_builder -y

@@ -137,7 +137,7 @@ else {
   height: {$header_top_height}px;
   line-height: {$header_top_height}px;
 }
-.body--glazed-nav-desktop .glazed-header--top #block-glazed-config-full-screen-search {
+.body--glazed-nav-desktop .glazed-header--top #block-glazed-helper-full-screen-search {
   height: {$header_top_height}px;
   line-height: {$header_top_height}px;
 }
@@ -146,7 +146,7 @@ else {
   height: {$header_top_height_scroll}px;
   line-height: {$header_top_height_scroll}px;
 }
-.body--glazed-nav-desktop .glazed-header--top.affix #block-glazed-config-full-screen-search {
+.body--glazed-nav-desktop .glazed-header--top.affix #block-glazed-helper-full-screen-search {
     height: {$header_top_height_scroll}px;
     line-height: {$header_top_height_scroll}px;
 }
@@ -185,7 +185,7 @@ $CSS .= <<<EOT
 .body--glazed-nav-mobile .glazed-header .navbar-toggle {
   height: {$header_mobile_height}px;
 }
-.body--glazed-nav-mobile .glazed-header #block-glazed-config-full-screen-search {
+.body--glazed-nav-mobile .glazed-header #block-glazed-helper-full-screen-search {
   height: {$header_mobile_height}px;
   line-height: {$header_mobile_height}px;
 }

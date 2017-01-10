@@ -155,7 +155,7 @@ function glazed_preprocess_node(&$vars) {
   height: {$header_top_height}px;
   line-height: {$header_top_height}px;
 }
-.body--glazed-nav-desktop #navbar.glazed-header--top #block-glazed-config-full-screen-search {
+.body--glazed-nav-desktop #navbar.glazed-header--top #block-glazed-helper-full-screen-search {
   height: {$header_top_height}px;
   line-height: {$header_top_height}px;
 }
@@ -164,7 +164,7 @@ function glazed_preprocess_node(&$vars) {
   height: {$header_top_height_scroll}px;
   line-height: {$header_top_height_scroll}px;
 }
-.body--glazed-nav-desktop #navbar.glazed-header--top.affix #block-glazed-config-full-screen-search {
+.body--glazed-nav-desktop #navbar.glazed-header--top.affix #block-glazed-helper-full-screen-search {
     height: {$header_top_height_scroll}px;
     line-height: {$header_top_height_scroll}px;
 }

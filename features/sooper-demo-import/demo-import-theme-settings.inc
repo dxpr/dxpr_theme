@@ -74,7 +74,7 @@ $form['glazed_settings']['import_export']['settings_export'] = array(
 
 $form['glazed_settings']['import_export']['settings_export']['settings_export_box'] = array(
   '#title' => t("Export for the theme's .info file", array('@theme' => $theme)),
-  '#prefix' => '<p>' . t("For import in Glazed Settings form or for your  subtheme's .info file") . '</p>',
+  '#prefix' => '<p>' . t("For import in Theme Settings form or for your  subtheme's .info file") . '</p>',
   '#markup' => '<textarea class="glazed-settings-export"  onClick="this.select();">' . _glazed_settings_export($subject_theme) . '</textarea>',
 );
 
@@ -119,7 +119,7 @@ $form['glazed_settings']['import_export']['subtheme_demo_import'] = array(
 if (module_exists('uuid_features')) {
   module_load_include('module', 'uuid');
   module_load_include('inc', 'features', 'features.admin');
-  $demo_content_modules = array_filter(_features_get_features_list(), "_glazed_is_demo_content_exclude_subtheme");
+  $demo_content_modules = array_filter(_features_get_features_list(), '_glazed_is_demo_content_exclude_subtheme');
 
   usort($demo_content_modules, function($a, $b) {
     return (count($a->info['features']['uuid_node']) < count($b->info['features']['uuid_node'])) ? 1 : -1;
@@ -159,7 +159,7 @@ $form['glazed_settings']['import_export']['subtheme_demo_import'] = array(
 if (module_exists('uuid_features')) {
   module_load_include('module', 'uuid');
   module_load_include('inc', 'features', 'features.admin');
-  $demo_content_modules = array_filter(_features_get_features_list(), "_glazed_is_subtheme");
+  $demo_content_modules = array_filter(_features_get_features_list(), '_glazed_is_subtheme');
 
   usort($demo_content_modules, function($a, $b) {
     return (count($a->info['features']['uuid_node']) < count($b->info['features']['uuid_node'])) ? 1 : -1;

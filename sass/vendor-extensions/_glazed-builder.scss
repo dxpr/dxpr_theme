@@ -4,10 +4,6 @@
 
 // Putting glazed controls above navigation
 
-.az-left-sidebar, .az-right-sidebar {
-  z-index: 2000;
-}
-
 body.node-type-drag-drop-page.no-sidebars {
   .page-title-full-width-container {
     margin-bottom: 0;

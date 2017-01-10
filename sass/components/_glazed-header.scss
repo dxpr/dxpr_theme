@@ -9,7 +9,7 @@
   // this should not be active in mobile mode due to owl carousel layout bugs
   .navbar-container > .row > .col-sm-12 {
     position: relative;
-    z-index: 4000;
+    z-index: 4050;
   }
 }
 .navbar.container, .navbar.container-fluid {
@@ -17,7 +17,7 @@
 }
   // Glazed Header Defaults across all layouts
 .glazed-header {
-  z-index: 1000;
+  z-index: 4050;
   border: none;
   border-radius: 0;
   min-height: 0;

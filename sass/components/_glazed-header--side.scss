@@ -3,6 +3,7 @@
 // Glazed Side Header
 .body--glazed-header-side.body--glazed-nav-desktop .glazed-header--side {
   padding: 40px 20px;
+  z-index: 1000;
   .navbar-container {
     padding-left: 0;
     padding-right: 0;
@@ -25,7 +26,7 @@
     color: $header-side-text-color;
     padding: 40px 20px;
     position: fixed;
-    z-index: 4000;
+    z-index: 4050;
     top: 0;
     left: 0;
     width: 300px;
@@ -50,7 +51,7 @@
     background: $header-side-color;
     position: fixed !important;
     display: block;
-    z-index: 4001;
+    z-index: 4051;
     top: 80px;
     height: 100%;
     height: calc(100vh - 80px);
@@ -144,7 +145,7 @@
   .menu__back {
     font-size: 1.05em;
     position: absolute;
-    z-index: 4001;
+    z-index: 4051;
     top: 0;
     right: 2.25em;
     margin: 0;
