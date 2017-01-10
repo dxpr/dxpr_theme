@@ -80,9 +80,10 @@ glazed_classes[glazed-util-vcenter]                   = Vertical centering
 
 ; Settings
 
-settings[toggle_secondary_menu] = 0
+settings[toggle_secondary_menu]                       = 0
+settings[toggle_main_menu]                            = 0
 
-settings[header_mobile_breakpoint] = "1200"
+settings[header_mobile_breakpoint]                    = "1200"
 
 settings[full_width_containers][cnt_secondary_header] = "cnt_secondary_header"
 settings[full_width_containers][cnt_footer]           = "cnt_footer"
