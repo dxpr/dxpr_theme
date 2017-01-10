@@ -80,7 +80,7 @@ div.lead {
 }
 
 .btn-sm {
-  padding: 1px 5px;
+  padding: 2px 8px;
   border-bottom-width: 2px;
   border-left-width: 2px;
 }
@@ -241,7 +241,7 @@ blockquote footer, blockquote small, blockquote .small {
 
 // Disabling the background on Modal Windows
 // Backdrops only work well when modal content is attached to the end of the page
-// In practice carbide composer and custo html snippets will add modals to the body
+// In practice glazed builder and custo html snippets will add modals to the body
 // which has a lower z-index so the modal can appear behind the backdrop.
 .modal-backdrop {
     z-index: -1!important;
@@ -269,7 +269,7 @@ blockquote footer, blockquote small, blockquote .small {
     }
     &:before {
         content: ' ';
-        z-index: 1610;
+        z-index: 4610;
         position: fixed;
         top: 0;
         right: 0;
@@ -316,7 +316,7 @@ blockquote footer, blockquote small, blockquote .small {
   &.tabs--primary {
     > li {
       position: relative;
-      z-index: 1100; // fix covered buttons under header when page title is hidden (e.g. landscaper demo homepage)
+      z-index: 4100; // fix covered buttons under header when page title is hidden (e.g. landscaper demo homepage)
       > a {
         background-color: white;
       }

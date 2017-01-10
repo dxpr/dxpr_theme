@@ -10,7 +10,7 @@ function glazed_preprocess_html(&$vars) {
   if (module_exists('admin_menu_toolbar') && user_access('access administration menu')) {
     $vars['classes_array'][] = 'admin-menu-toolbar';
   }
-  // Load Glazed Content Design Overrides
+  // Load Glazed Page Settings Overrides
   // We abort on finding arg(2) to avoid using fancy headers on /edit and /devel etc
   if ((arg(0) == 'node') && is_numeric(arg(1)) && !arg(2)) {
     $node = node_load(arg(1));

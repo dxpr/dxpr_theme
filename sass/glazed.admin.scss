@@ -7,8 +7,8 @@ body.admin-menu {
   }
 }
 
-#admin-menu, #admin-menu .dropdown, #admin-menu .dropdown li ul {
-  z-index: 9999;
+body #admin-menu {
+  z-index: 4500 !important;
 }
 
 #admin-menu .dropdown li li.expandable ul {

@@ -104,7 +104,7 @@ $form['glazed_settings']['layout']['background'] = array(
   '#collapsed' => TRUE,
 );
 
-// @see glazed_config.module glazed_config_settings_form_submit()
+// @see glazed_helper.module glazed_helper_settings_form_submit()
 $form['glazed_settings']['layout']['background']['background_image'] = array(
   '#type' => 'media',
   '#theme' => 'media_widget', // required as of media 7.x-2.0-beta2
