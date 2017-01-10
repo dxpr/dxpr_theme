@@ -212,7 +212,7 @@
 
 <!-- /#Sticky Footer -->
 <?php if (!empty($page['footer'])): ?>
-<footer class="glazed-footer">
+<footer class="glazed-footer clearfix">
   <div class="<?php print $cnt_footer ?> footer-container">
     <?php print $cnt_footer_squeeze_start; ?>
         <?php print render($page['footer']); ?>
