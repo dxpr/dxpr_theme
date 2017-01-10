@@ -94,7 +94,9 @@ function glazed_preprocess_page(&$vars) {
   $vars['content_row_class'] = ' class="row"';
   $vars['content_container_class'] = ' class="container main-container"';
   if ((isset($vars['node'])
-    && ((array_key_exists($vars['node']->type, $types)) && ($types[$vars['node']->type])))
+      && (((array_key_exists($vars['node']->type, $types))
+      && ($types[$vars['node']->type]))
+      OR (isset($content_design) && ($content_design['field_glazed_content_region']))))
     && (arg(2) != 'edit')
     && empty($vars['page']['sidebar_first'])
     && empty($vars['page']['sidebar_second'])) {
