@@ -96,7 +96,7 @@ function glazed_preprocess_page(&$vars) {
   if ((isset($vars['node'])
       && (((array_key_exists($vars['node']->type, $types))
       && ($types[$vars['node']->type]))
-      OR (isset($content_design) && ($content_design['field_glazed_content_region']))))
+      OR (isset($content_design) && ($content_design['field_glazed_content_region'] == 'glazed-util-full-width-content'))))
     && (arg(2) != 'edit')
     && empty($vars['page']['sidebar_first'])
     && empty($vars['page']['sidebar_second'])) {
@@ -107,6 +107,25 @@ function glazed_preprocess_page(&$vars) {
   }
   else {
     $vars['cnt_page_title_full_width'] = '';
+  }
+
+  // override any of the above conditions
+  if (isset($content_design) && ($content_design['field_glazed_content_region'] != 'glazed-util-full-width-content')) {
+    switch ($content_design['field_glazed_content_region']) {
+      case 'glazed-util-content-center-4-col':
+        $vars['content_column_class'] = ' class="col-md-4 col-md-offset-4"';
+        break;
+      case 'glazed-util-content-center-4-col':
+        $vars['content_column_class'] = ' class="col-md-6 col-md-offset-3"';
+        break;
+      case 'glazed-util-content-center-8-col':
+        $vars['content_column_class'] = ' class="col-md-8 col-md-offset-2"';
+        break;
+      case 'glazed-util-content-center-10-col':
+        $vars['content_column_class'] = ' class="col-md-10 col-md-offset-1"';
+        break;
+    }
+    $vars['content_row_class'] = ' class="row"';
   }
 
   // Page Title Hiding
