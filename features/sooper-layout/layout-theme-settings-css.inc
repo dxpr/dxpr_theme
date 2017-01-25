@@ -18,8 +18,8 @@ if (theme_get_setting('boxed_layout', $theme) && ($cnt_bg = theme_get_setting('b
   padding-right: {$gutter_container}px;
 }
 .container-fluid {
-  padding-left: {$gutter_horizontal}px;
-  padding-right: {$gutter_horizontal}px;
+  padding-left: {$gutter_container}px;
+  padding-right: {$gutter_container}px;
 }
 .glazed-boxed-container {
   max-width: {$box_width}px;
