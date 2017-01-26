@@ -267,7 +267,9 @@ EOT;
   $CSS .= "\n } \n\n";
 }
 
-if (($margin_sticky = theme_get_setting('menu_border_position_offset_sticky', $theme)) &&  (theme_get_setting('header_position', $theme) == FALSE)) {
+if (($position = theme_get_setting('menu_border_position', $theme))
+  && ($margin_sticky = theme_get_setting('menu_border_position_offset_sticky', $theme))
+  &&  (theme_get_setting('header_position', $theme) == FALSE)) {
   $CSS .= <<<EOT
 .glazed-header--top.glazed-header--hover-border.affix .menu > li > a::before {
   margin-{$position}: {$margin_sticky}px;
