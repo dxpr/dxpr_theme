@@ -61,8 +61,8 @@ EOT;
     padding-right: {$gutter_container}px;
   }
   .container-fluid {
-    padding-left: {$gutter_horizontal}px;
-    padding-right: {$gutter_horizontal}px;
+    padding-left: {$gutter_container}px;
+    padding-right: {$gutter_container}px;
   }
   .container .row {
     margin-left: -{$gutter_horizontal}px;

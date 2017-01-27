@@ -15,11 +15,9 @@ body {
   padding-right: 60px;
 }
 
-.navbar-container.glazed-fluid,
-.page-title-container.glazed-fluid,
 .container-fluid {
-  padding-left: 15px;
-  padding-right: 15px;
+  padding-left: 60px;
+  padding-right: 60px;
 }
 
 @media screen and (max-width: 1200px) {
@@ -28,8 +26,8 @@ body {
     padding-right: 30px;
   }
   .container-fluid {
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 30px;
+    padding-right: 30px;
   }
 }
 

@@ -72,7 +72,7 @@ function glazed_preprocess_page(&$vars) {
     $vars["{$key}_squeeze_start"] = '<div class="row container-row"><div class="col-sm-12 container-col">';
     $vars["{$key}_squeeze_end"] = '</div></div>';
     if ($checked) {
-      $vars[$key] = 'glazed-fluid';
+      $vars[$key] = 'container-fluid';
       $vars["{$key}_squeeze_start"] = '';
       $vars["{$key}_squeeze_end"] = '';
     }
