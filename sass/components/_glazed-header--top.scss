@@ -8,6 +8,10 @@
       right: 0;
       top: 0;
     }
+    &.glazed-header--fixed,
+    &.affix {
+      box-shadow: 0 3px 10px 0 rgba(50, 50, 50, 0.05);
+    }
     // &.affix {
     //   border-bottom: 1px solid rgba(0,0,0,0.04);
     // }
