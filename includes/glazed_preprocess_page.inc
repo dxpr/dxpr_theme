@@ -110,7 +110,9 @@ function glazed_preprocess_page(&$vars) {
   }
 
   // override any of the above conditions
-  if (isset($content_design) && ($content_design['field_glazed_content_region'] != 'glazed-util-full-width-content')) {
+  if (isset($content_design)
+    && isset($content_design['field_glazed_content_region'])
+    && ($content_design['field_glazed_content_region'] != 'glazed-util-full-width-content')) {
     switch ($content_design['field_glazed_content_region']) {
       case 'glazed-util-content-center-4-col':
         $vars['content_column_class'] = ' class="col-md-4 col-md-offset-4"';
