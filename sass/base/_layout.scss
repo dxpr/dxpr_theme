@@ -13,21 +13,15 @@ body {
 .container {
   padding-left: 60px;
   padding-right: 60px;
-  .container,
-  .container-fluid {
-    padding-left: 0;
-    padding-left: 0;
-  }
 }
 
+// navbar and page-title padding is not user-controlled and should be kept
+// away from viewport edge
+.navbar-container.glazed-fluid,
+.page-title-container.glazed-fluid,
 .container-fluid {
   padding-left: 60px;
   padding-right: 60px;
-  .container,
-  .container-fluid {
-    padding-left: 0;
-    padding-left: 0;
-  }
 }
 
 @media screen and (max-width: 1200px) {

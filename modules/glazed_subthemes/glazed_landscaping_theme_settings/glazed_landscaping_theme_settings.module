@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Glazed Landscaping Theme Settings feature.
+ */
+
+include_once 'glazed_landscaping_theme_settings.features.inc';

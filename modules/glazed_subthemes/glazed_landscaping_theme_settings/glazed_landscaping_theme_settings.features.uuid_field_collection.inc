@@ -1,0 +1,243 @@
+<?php
+/**
+ * @file
+ * glazed_landscaping_theme_settings.features.uuid_field_collection.inc
+ */
+
+/**
+ * Implements hook_uuid_features_default_field_collections().
+ */
+function glazed_landscaping_theme_settings_uuid_features_default_field_collections() {
+  $field_collections = array();
+
+  $field_collections[] = array(
+    'field_name' => 'field_glazed_content_design',
+    'default_revision' => 1,
+    'archived' => 0,
+    'uuid' => '1a160257-f387-4eb7-80c0-e03313990133',
+    'field_dropdown_background' => array(),
+    'field_dropdown_hover_background' => array(),
+    'field_dropdown_hover_text_color' => array(),
+    'field_dropdown_text_color' => array(),
+    'field_full_width_header' => array(),
+    'field_glazed_body_image' => array(),
+    'field_glazed_content_region' => array(),
+    'field_glazed_header_image' => array(),
+    'field_glazed_header_mode' => array(),
+    'field_glazed_header_position' => array(),
+    'field_glazed_header_style' => array(),
+    'field_glazed_hide_regions' => array(
+      'und' => array(
+        0 => array(
+          'value' => 'page_title',
+        ),
+        1 => array(
+          'value' => 'sidebar_first',
+        ),
+        2 => array(
+          'value' => 'sidebar_second',
+        ),
+      ),
+    ),
+    'field_header_background' => array(),
+    'field_header_block_background' => array(),
+    'field_header_block_text_color' => array(),
+    'field_header_height' => array(),
+    'field_header_layout' => array(),
+    'field_header_text' => array(),
+    'field_menu_background' => array(),
+    'field_menu_hover_background' => array(),
+    'field_menu_hover_effect' => array(),
+    'field_menu_hover_text_color' => array(),
+    'field_menu_text_color' => array(),
+    'field_navbar_background' => array(),
+    'field_page_layout' => array(),
+    'field_side_header_background' => array(),
+    'field_side_header_text_color' => array(),
+    'field_side_header_width' => array(),
+    'rdf_mapping' => array(),
+  );
+  $field_collections[] = array(
+    'field_name' => 'field_glazed_content_design',
+    'default_revision' => 1,
+    'archived' => 0,
+    'uuid' => '1a3b358c-2750-4e73-8731-0307b45b8e7b',
+    'field_dropdown_background' => array(),
+    'field_dropdown_hover_background' => array(),
+    'field_dropdown_hover_text_color' => array(),
+    'field_dropdown_text_color' => array(),
+    'field_full_width_header' => array(),
+    'field_glazed_body_image' => array(),
+    'field_glazed_content_region' => array(),
+    'field_glazed_header_image' => array(),
+    'field_glazed_header_mode' => array(),
+    'field_glazed_header_position' => array(),
+    'field_glazed_header_style' => array(),
+    'field_glazed_hide_regions' => array(
+      'und' => array(
+        0 => array(
+          'value' => 'sidebar_first',
+        ),
+        1 => array(
+          'value' => 'sidebar_second',
+        ),
+      ),
+    ),
+    'field_header_background' => array(),
+    'field_header_block_background' => array(),
+    'field_header_block_text_color' => array(),
+    'field_header_height' => array(),
+    'field_header_layout' => array(),
+    'field_header_text' => array(),
+    'field_menu_background' => array(),
+    'field_menu_hover_background' => array(),
+    'field_menu_hover_effect' => array(),
+    'field_menu_hover_text_color' => array(),
+    'field_menu_text_color' => array(),
+    'field_navbar_background' => array(),
+    'field_page_layout' => array(),
+    'field_side_header_background' => array(),
+    'field_side_header_text_color' => array(),
+    'field_side_header_width' => array(),
+    'rdf_mapping' => array(),
+  );
+  $field_collections[] = array(
+    'field_name' => 'field_glazed_content_design',
+    'default_revision' => 1,
+    'archived' => 0,
+    'uuid' => '1a5bb13b-b7ba-4099-bb5a-17e18e091c67',
+    'field_dropdown_background' => array(),
+    'field_dropdown_hover_background' => array(),
+    'field_dropdown_hover_text_color' => array(),
+    'field_dropdown_text_color' => array(),
+    'field_full_width_header' => array(),
+    'field_glazed_body_image' => array(),
+    'field_glazed_content_region' => array(),
+    'field_glazed_header_image' => array(),
+    'field_glazed_header_mode' => array(),
+    'field_glazed_header_position' => array(),
+    'field_glazed_header_style' => array(),
+    'field_glazed_hide_regions' => array(
+      'und' => array(
+        0 => array(
+          'value' => 'page_title',
+        ),
+        1 => array(
+          'value' => 'sidebar_first',
+        ),
+        2 => array(
+          'value' => 'sidebar_second',
+        ),
+      ),
+    ),
+    'field_header_background' => array(),
+    'field_header_block_background' => array(),
+    'field_header_block_text_color' => array(),
+    'field_header_height' => array(),
+    'field_header_layout' => array(),
+    'field_header_text' => array(),
+    'field_menu_background' => array(),
+    'field_menu_hover_background' => array(),
+    'field_menu_hover_effect' => array(),
+    'field_menu_hover_text_color' => array(),
+    'field_menu_text_color' => array(),
+    'field_navbar_background' => array(),
+    'field_page_layout' => array(),
+    'field_side_header_background' => array(),
+    'field_side_header_text_color' => array(),
+    'field_side_header_width' => array(),
+    'rdf_mapping' => array(),
+  );
+  $field_collections[] = array(
+    'field_name' => 'field_glazed_content_design',
+    'default_revision' => 1,
+    'archived' => 0,
+    'uuid' => '1a5e5252-b341-4de3-bc10-82ceb2ff7dc2',
+    'field_dropdown_background' => array(),
+    'field_dropdown_hover_background' => array(),
+    'field_dropdown_hover_text_color' => array(),
+    'field_dropdown_text_color' => array(),
+    'field_full_width_header' => array(),
+    'field_glazed_body_image' => array(),
+    'field_glazed_content_region' => array(),
+    'field_glazed_header_image' => array(),
+    'field_glazed_header_mode' => array(),
+    'field_glazed_header_position' => array(),
+    'field_glazed_header_style' => array(),
+    'field_glazed_hide_regions' => array(
+      'und' => array(
+        0 => array(
+          'value' => 'page_title',
+        ),
+        1 => array(
+          'value' => 'sidebar_first',
+        ),
+        2 => array(
+          'value' => 'sidebar_second',
+        ),
+      ),
+    ),
+    'field_header_background' => array(),
+    'field_header_block_background' => array(),
+    'field_header_block_text_color' => array(),
+    'field_header_height' => array(),
+    'field_header_layout' => array(),
+    'field_header_text' => array(),
+    'field_menu_background' => array(),
+    'field_menu_hover_background' => array(),
+    'field_menu_hover_effect' => array(),
+    'field_menu_hover_text_color' => array(),
+    'field_menu_text_color' => array(),
+    'field_navbar_background' => array(),
+    'field_page_layout' => array(),
+    'field_side_header_background' => array(),
+    'field_side_header_text_color' => array(),
+    'field_side_header_width' => array(),
+    'rdf_mapping' => array(),
+  );
+  $field_collections[] = array(
+    'field_name' => 'field_glazed_content_design',
+    'default_revision' => 1,
+    'archived' => 0,
+    'uuid' => '1aba9f6c-6c06-459e-b2b8-456400485e43',
+    'field_dropdown_background' => array(),
+    'field_dropdown_hover_background' => array(),
+    'field_dropdown_hover_text_color' => array(),
+    'field_dropdown_text_color' => array(),
+    'field_full_width_header' => array(),
+    'field_glazed_body_image' => array(),
+    'field_glazed_content_region' => array(),
+    'field_glazed_header_image' => array(),
+    'field_glazed_header_mode' => array(),
+    'field_glazed_header_position' => array(),
+    'field_glazed_header_style' => array(),
+    'field_glazed_hide_regions' => array(
+      'und' => array(
+        0 => array(
+          'value' => 'sidebar_first',
+        ),
+        1 => array(
+          'value' => 'sidebar_second',
+        ),
+      ),
+    ),
+    'field_header_background' => array(),
+    'field_header_block_background' => array(),
+    'field_header_block_text_color' => array(),
+    'field_header_height' => array(),
+    'field_header_layout' => array(),
+    'field_header_text' => array(),
+    'field_menu_background' => array(),
+    'field_menu_hover_background' => array(),
+    'field_menu_hover_effect' => array(),
+    'field_menu_hover_text_color' => array(),
+    'field_menu_text_color' => array(),
+    'field_navbar_background' => array(),
+    'field_page_layout' => array(),
+    'field_side_header_background' => array(),
+    'field_side_header_text_color' => array(),
+    'field_side_header_width' => array(),
+    'rdf_mapping' => array(),
+  );
+  return $field_collections;
+}

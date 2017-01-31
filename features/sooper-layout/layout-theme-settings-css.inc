@@ -17,18 +17,20 @@ if (theme_get_setting('boxed_layout', $theme) && ($cnt_bg = theme_get_setting('b
   padding-left: {$gutter_container}px;
   padding-right: {$gutter_container}px;
 }
+.navbar-container.glazed-fluid,
+.page-title-container.glazed-fluid,
 .container-fluid {
-  padding-left: {$gutter_container}px;
-  padding-right: {$gutter_container}px;
+  padding-left: {$gutter_horizontal}px;
+  padding-right: {$gutter_horizontal}px;
 }
 .glazed-boxed-container {
   max-width: {$box_width}px;
 }
-.container .row {
+.row {
   margin-left: -{$gutter_horizontal}px;
   margin-right: -{$gutter_horizontal}px;
 }
-.container .row .row {
+.row .row {
   margin-left: -{$gutter_horizontal}px;
   margin-right: -{$gutter_horizontal}px;
 }
@@ -57,14 +59,16 @@ EOT;
   $CSS .= <<<EOT
 @media screen and (max-width: 1200px) {
   .container {
-    padding-left: {$gutter_container}px;
-    padding-right: {$gutter_container}px;
+    padding-left: {$gutter_horizontal}px;
+    padding-right: {$gutter_horizontal}px;
   }
+  .navbar-container.glazed-fluid,
+  .page-title-container.glazed-fluid,
   .container-fluid {
-    padding-left: {$gutter_container}px;
-    padding-right: {$gutter_container}px;
+    padding-left: {$gutter_horizontal}px;
+    padding-right: {$gutter_horizontal}px;
   }
-  .container .row {
+  .row {
     margin-left: -{$gutter_horizontal}px;
     margin-right: -{$gutter_horizontal}px;
   }
