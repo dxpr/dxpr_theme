@@ -291,6 +291,7 @@ $font_3: 'sans-serif';
     }
     .form-select {
       width: 300px;
+      float: none; //override color.css
     }
     .form-type-select {
       width: 500px;

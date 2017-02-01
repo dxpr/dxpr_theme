@@ -21,7 +21,7 @@ select {
   }
 }
 
-.form-type-select {
+.glazed-select {
   position: relative;
   &::after {
     pointer-events: none;
@@ -30,7 +30,7 @@ select {
     font-size: 18px;
     position: absolute;
     bottom: 8px;
-    right: 12px;
+    right: 0.9em;
     transition: transform 0.2s ease 0s;
     transform: translateZ(0) rotate(-90deg) scaleY(1.8); //http://stackoverflow.com/questions/15464055/css-transition-effect-makes-image-blurry-moves-image-1px-in-chrome
     backface-visibility: hidden;
@@ -39,13 +39,16 @@ select {
     color: $primary;
     transform: translateY(.2em) rotate(-90deg) scaleY(1.5);
   }
+  select.form-select {
+    appearance: none;
+  }
 }
 
 .filter-wrapper .form-type-select:after {
   bottom: .2em;
 }
 
-.form-select {
+.select {
   padding: 12px;
   appearance: none;
   option {
