@@ -332,7 +332,13 @@ function glazedMenuGovernor(context) {
 
     glazedMenuState = 'side';
   }
-
+  // Navbar/Tabs Collision Detection
+  if (glazedCheckCollisions('#navbar', '.tabs--primary')) {
+    $('.tabs--primary li').css('z-index', '4100');
+  }
+  else {
+    $('.tabs--primary li').css('z-index', '1');
+  }
 }
 
 function glazedMenuGovernorBodyClass() {
@@ -345,6 +351,47 @@ function glazedMenuGovernorBodyClass() {
   }
   else {
     $('.body--glazed-nav-desktop').removeClass('body--glazed-nav-desktop').addClass('body--glazed-nav-mobile');
+  }
+}
+
+// Hit Detection Functions
+// From http://jsfiddle.net/dqa34ouu/
+function glazedGetPositions(box) {
+  var $box = $(box);
+  if ($box.length > 0) {
+    var pos = $box.position();
+    var width = $box.width();
+    var height = $box.height();
+    return [ [ pos.left, pos.left + width ], [ pos.top, pos.top + height ] ];
+  }
+  else {
+    return false;
+  }
+}
+function glazedComparePositions(p1, p2) {
+  var x1 = p1[0] < p2[0] ? p1 : p2;
+  var x2 = p1[0] < p2[0] ? p2 : p1;
+  return x1[1] > x2[0] || x1[0] === x2[0] ? true : false;
+}
+// Takes 2 selectors
+function glazedCheckCollisions(el, el2){
+  var pos = glazedGetPositions(el);
+  var pos2 = glazedGetPositions(el2);
+  if (pos && pos2) {
+    var horizontalMatch = glazedComparePositions(pos[0], pos2[0]);
+    var verticalMatch = glazedComparePositions(pos[1], pos2[1]);
+    if (horizontalMatch && verticalMatch) {
+      var match = new Object();
+      match.el1 = pos;
+      match.el2 = pos2;
+      return match;
+    }
+    else {
+      return false;
+    }
+  }
+  else {
+    return false;
   }
 }
 

@@ -34,12 +34,6 @@ p:last-child {
 
 .row {
   margin-bottom: 0;
-  // Prevent horizontal scrolling on small devices
-  // Also important for SEO, needed for mobile-friendly test
-  @media screen and (max-width: 768px) {
-    overflow: hidden;
-    overflow-y: visible;
-  }
 }
 
 .column {
@@ -316,7 +310,7 @@ blockquote footer, blockquote small, blockquote .small {
   &.tabs--primary {
     > li {
       position: relative;
-      z-index: 4100; // fix covered buttons under header when page title is hidden (e.g. landscaper demo homepage)
+      // z-index: 4100; // @see glazed.admin.js, applied when collision with headeris detected
       > a {
         background-color: white;
       }
