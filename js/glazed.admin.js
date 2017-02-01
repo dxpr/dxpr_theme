@@ -37,8 +37,6 @@
         })));
         $('.toolbar-menu, #admin-menu-wrapper', $toolbar).once('glazed_button').prepend($glazedButton);
       }
-
     }
   };
-
 })(jQuery, Drupal);
