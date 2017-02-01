@@ -1,3 +1,10 @@
+html {
+  // Prevent horizontal scrolling on small devices
+  // Also important for SEO, needed for mobile-friendly test
+  overflow-x: hidden;
+  overflow-y: visible;
+}
+
 body {
   background: $body-background;
   background-size: cover;
