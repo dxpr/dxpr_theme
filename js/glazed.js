@@ -338,7 +338,7 @@ function glazedMenuGovernor(context) {
   else {
     $('.tabs--primary li').css('z-index', '1');
   }
-  var navPos = glazedCheckCollisions('#secondary-header', '#navbar');
+  var navPos = glazedCheckCollisions('#secondary-header', '#navbar.glazed-header--top:not(.glazed-header--navbar-pull-down)');
   if (navPos) {
     $('#navbar').css('top', navPos.el1[1][1]);
   }
