@@ -98,9 +98,13 @@ $form['glazed_settings']['fonts']['font_preview'] = array(
   '#type' => 'fieldset',
   '#collapsible' => TRUE,
   '#collapsed' => TRUE,
-  '#description' => _glazed_font_previews(),
   '#prefix' => '<br style="clear: both;"><br style="clear: both;">',
   '#suffix' => _glazed_type_preview(),
+);
+
+$form['glazed_settings']['fonts']['font_preview']['preview'] = array(
+ '#type' => 'markup',
+ '#markup' => _glazed_font_previews(),
 );
 
 
@@ -199,7 +203,7 @@ function _glazed_font_previews() {
   $output .= '  <h3>Google fonts preview</h3>';
   $output .= '  <p>Check out <a href="http://www.google.com/webfonts">google.com/webfonts</a> for previews of google web fonts.</p>';
   $output .= '  <h3>Local fonts preview</h3>';
-  $output .= '  <p>Sooper Fontkit will automatically detect and parse any Fontsquirrel-generated @font-face package in the yourtheme/fonts folder. See <a href="https://www.fontsquirrel.com/tools/webfont-generator">Fontsquirrel.com</a></p>';
+  $output .= '  <p>Glazed will automatically detect and load any Fontsquirrel-generated @font-face package in the exmapletheme/fonts folder. See <a href="https://www.fontsquirrel.com/tools/webfont-generator">Fontsquirrel.com</a></p>';
   foreach (glazed_local_webfonts(TRUE) as $key => $font_name) {
     $font = explode('|', $key);
     $local_name = $font[2];
