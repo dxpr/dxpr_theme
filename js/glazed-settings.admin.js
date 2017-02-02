@@ -3,7 +3,7 @@
   /*global Drupal:false */
   "use strict";
 
-  $(window).load(function() {
+  $(window).on("load", function() {
     // Re-call attachBehaviors, without this the states.js api doens't work on radios
     Drupal.attachBehaviors('#system-theme-settings');
 
