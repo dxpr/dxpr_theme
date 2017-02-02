@@ -332,12 +332,15 @@ function glazedMenuGovernor(context) {
 
     glazedMenuState = 'side';
   }
-  // Navbar/Tabs Collision Detection
   if (glazedCheckCollisions('#navbar', '.tabs--primary')) {
     $('.tabs--primary li').css('z-index', '4100');
   }
   else {
     $('.tabs--primary li').css('z-index', '1');
+  }
+  var navPos = glazedCheckCollisions('#secondary-header', '#navbar');
+  if (navPos) {
+    $('#navbar').css('top', navPos.el1[1][1]);
   }
 }
 
@@ -360,8 +363,8 @@ function glazedGetPositions(box) {
   var $box = $(box);
   if ($box.length > 0) {
     var pos = $box.position();
-    var width = $box.width();
-    var height = $box.height();
+    var width = $box.outerWidth();
+    var height = $box.outerHeight();
     return [ [ pos.left, pos.left + width ], [ pos.top, pos.top + height ] ];
   }
   else {
