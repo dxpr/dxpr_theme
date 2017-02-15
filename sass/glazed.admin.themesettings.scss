@@ -135,15 +135,13 @@ $font_3: 'sans-serif';
     bottom: 20px;
   }
   .slider-track {
+    height: 6px;
     background: #dce2e5;
     box-shadow: none;
   }
   .slider-selection {
     box-shadow: none;
-    background: $color_curious_blue;
-  }
-  .slider-handle {
-    background-image: none;
+    background: #01b0ef;
   }
   .slider {
     position: relative;
@@ -158,7 +156,10 @@ $font_3: 'sans-serif';
     background: $color_curious_blue;
   }
   .slider-handle, {
-    background: #354051;
+    background: #000;
+    width: 17px;
+    height: 17px;
+    margin-top: -6px;
   }
   > div > h2 {
     margin-bottom: 0;
