@@ -56,7 +56,9 @@ div.lead {
 }
 
 // 3d effect
-.btn {
+// Fake submit is media browser button
+.btn,
+.fake-submit {
   border: none;
   border-bottom: 3px solid rgba(0, 0, 0, 0.12);
   border-left: 3px solid rgba(0,0,0,0.08);
@@ -87,7 +89,8 @@ $btn-primary-border: $primary;
 .btn-default,
 .btn-group > .btn-default,
 .btn-primary,
-.btn-group > .btn-primary {
+.btn-group > .btn-primary,
+.html .fake-submit {
   background: $primary;
   color: #fff;
   a {
@@ -277,25 +280,35 @@ blockquote footer, blockquote small, blockquote .small {
 // Tabs
 // -------------------------
 
-// Give the tabs something to sit on
-.html .main-container .nav-tabs {
+// Style Tabs as well as override jQuery ui tabs styling
+.html .nav-tabs, {
+  border: none;
+  border-radius: 0;
   border-bottom: 1px solid $gray-lighter;
+  margin: 0;
+  padding: 0;
   > li {
-    margin-bottom: 0;
+    border: none;
+    border-radius: 0;
+    margin: 0;
+    padding: 0;
     > a {
       border: 1px solid transparent;
       border-radius: 0;
+      margin: 0;
       padding: 10px 15px;
       background-color: transparent;
       &:hover {
         color: $gray-lighter;
       }
     }
-    &.active {
+    &.active,
+    &.ui-tabs-active {
       position: relative;
       bottom: -1px; // more reliable than margin-bbottom. e.g. in sooperthemes checkout form
       a {
         color: $primary;
+        cursor: pointer;
         border: 1px solid $gray-lighter;
         border-bottom-color: white;
         &:hover,
@@ -313,6 +326,37 @@ blockquote footer, blockquote small, blockquote .small {
       // z-index: 4100; // @see glazed.admin.js, applied when collision with headeris detected
       > a {
         background-color: white;
+      }
+    }
+  }
+}
+
+.html .glazed-mini-tabs-wrapper {
+  position: absolute;
+  margin-top: 6px;
+  left: 50%;
+  z-index: 2000;
+  .tabs--primary {
+    position: relative;
+    left: -50%;
+    border: none;
+    box-shadow: 0 3px 10px 0 rgba(50, 50, 50, 0.23);
+    li {
+      margin: 0;
+      padding: 0;
+      border: none;
+      a {
+        padding: 8px;
+        text-transform: uppercase;
+        font-size: 12px;
+        margin: 0;
+        border: none;
+      }
+      &.active {
+        bottom: auto;
+        a {
+          border: none;
+        }
       }
     }
   }

@@ -135,7 +135,10 @@
 
   <?php print render($page['slider']); ?>
 
-  <?php if ((!empty($title) OR !empty($breadcrumb) OR render($page['header'])) && (!isset($hide_page_title))): ?>
+  <?php if ((!empty($title)
+    OR !empty($breadcrumb)
+    OR render($page['header'])) && (!isset($hide_page_title))):
+  ?>
   <div class="page-title-full-width-container<?php print $cnt_page_title_full_width; ?>" id="page-title-full-width-container">
     <header role="banner" id="page-title" class="<?php print $cnt_page_title; ?> page-title-container">
       <?php print render($title_prefix); ?>
@@ -181,7 +184,9 @@
         <a id="main-content"></a>
         <?php print $messages; ?>
         <?php if (!empty($tabs)): ?>
-          <?php print render($tabs); ?>
+          <?php if (isset($hide_page_title) OR empty($title)): ?><div class="glazed-mini-tabs-wrapper"><?php endif; ?>
+            <?php print render($tabs); ?>
+          <?php if (isset($hide_page_title) OR empty($title)): ?></div><?php endif; ?>
         <?php endif; ?>
         <?php if (!empty($page['help'])): ?>
           <?php print render($page['help']); ?>

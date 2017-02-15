@@ -23,6 +23,7 @@
 
 // bootstrap TAILORING
 @import "vendor-extensions/bootstrap-3";
+@import "vendor-extensions/jquery-ui";
 
 // GLAZED BASE
 @import "base/footer-menu";
@@ -44,6 +45,7 @@
 @import "vendor-extensions/cubeportfolio";
 @import "vendor-extensions/drupal-breadcrumbs";
 @import "vendor-extensions/drupal-comments";
+@import "vendor-extensions/drupal-media";
 @import "vendor-extensions/drupal-pager";
 @import "vendor-extensions/cms-bootstrap-core";
 @import "vendor-extensions/cms-bootstrap-blog";
