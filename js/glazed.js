@@ -6,6 +6,7 @@
  */
 (function ($, Drupal, window, document, undefined) {
 var glazedMenuState = '';
+glazedMenuGovernorBodyClass();
 
 Drupal.behaviors.fullScreenSearch = {
     attach: function(context, settings) {
@@ -37,20 +38,6 @@ Drupal.behaviors.glazed = {
   attach: function(context, settings) {
     var windowHeight = $(window).height();
     glazedMenuGovernor(context);
-
-    // Fix for conditions where Glazed Controls are hidden behind menu
-    if (($('#block-system-main .glazed-editor').length)
-        && ($('#page-title').length == 0)
-        && ($('.glazed-header--top.glazed-header--overlay,.glazed-header--top.glazed-header--fixed').length)) {
-
-        var controlsTop = $('#block-system-main .glazed-editor').scrollTop() - 35;
-        var menuBottom = $('.glazed-header--overlay, .glazed-header--fixed').scrollTop() + $('.glazed-header--overlay, .glazed-header--fixed').height();
-        var marginTop = menuBottom - controlsTop;
-        if (controlsTop < menuBottom) {
-            $('#block-system-main .glazed-editor > .controls').css('margin-top', marginTop);
-            $('#block-system-main .glazed-editor > .az-section').first().find('> .controls').css('margin-top', marginTop);
-        }
-    }
 
     // Helper classes
     $('.glazed-util-full-height', context).css('min-height', windowHeight);
@@ -189,7 +176,7 @@ $(window).resize(_.debounce(function(){
     if ($('#glazed-main-menu .menu').length == 0) {
       return false;
     }
-    glazedMenuGovernorBodyClass(document);
+    glazedMenuGovernorBodyClass();
     glazedMenuGovernor(document);
 }, 250));
 
@@ -332,15 +319,28 @@ function glazedMenuGovernor(context) {
 
     glazedMenuState = 'side';
   }
-  if (glazedCheckCollisions('#navbar', '.tabs--primary')) {
-    $('.tabs--primary li').css('z-index', '4100');
+  // Hit Detection for Header
+  if (($('.tabs--primary').length > 0) && ($('#navbar').length > 0)) {
+    var tabsRect = $('.tabs--primary')[0].getBoundingClientRect();
+    if ($('.glazed-header--navbar-pull-down').length > 0) {
+      var pullDownRect = $('#navbar .container-col')[0].getBoundingClientRect();
+      if (glazedHit(pullDownRect, tabsRect)) {
+        $('.tabs--primary').css('margin-top', pullDownRect.bottom - tabsRect.top + 6);
+      }
+    }
+    else {
+      var navbarRect = $('#navbar')[0].getBoundingClientRect();
+      if (glazedHit(navbarRect, tabsRect)) {
+        $('.tabs--primary').css('margin-top', navbarRect.bottom - tabsRect.top + 6);
+      }
+
+    }
   }
-  else {
-    $('.tabs--primary li').css('z-index', '1');
-  }
-  var navPos = glazedCheckCollisions('#secondary-header', '#navbar.glazed-header--top:not(.glazed-header--navbar-pull-down)');
-  if (navPos) {
-    $('#navbar').css('top', navPos.el1[1][1]);
+  if (($('#secondary-header').length > 0) && ($('#navbar.glazed-header--overlay').length > 0)) {
+    var secHeaderRect = $('#secondary-header')[0].getBoundingClientRect();
+    if (glazedHit($('#navbar.glazed-header--overlay')[0].getBoundingClientRect(), secHeaderRect)) {
+      $('#navbar.glazed-header--overlay').css('top', secHeaderRect.bottom);
+    }
   }
 }
 
@@ -357,45 +357,12 @@ function glazedMenuGovernorBodyClass() {
   }
 }
 
-// Hit Detection Functions
-// From http://jsfiddle.net/dqa34ouu/
-function glazedGetPositions(box) {
-  var $box = $(box);
-  if ($box.length > 0) {
-    var pos = $box.position();
-    var width = $box.outerWidth();
-    var height = $box.outerHeight();
-    return [ [ pos.left, pos.left + width ], [ pos.top, pos.top + height ] ];
-  }
-  else {
-    return false;
-  }
-}
-function glazedComparePositions(p1, p2) {
-  var x1 = p1[0] < p2[0] ? p1 : p2;
-  var x2 = p1[0] < p2[0] ? p2 : p1;
-  return x1[1] > x2[0] || x1[0] === x2[0] ? true : false;
-}
-// Takes 2 selectors
-function glazedCheckCollisions(el, el2){
-  var pos = glazedGetPositions(el);
-  var pos2 = glazedGetPositions(el2);
-  if (pos && pos2) {
-    var horizontalMatch = glazedComparePositions(pos[0], pos2[0]);
-    var verticalMatch = glazedComparePositions(pos[1], pos2[1]);
-    if (horizontalMatch && verticalMatch) {
-      var match = new Object();
-      match.el1 = pos;
-      match.el2 = pos2;
-      return match;
-    }
-    else {
-      return false;
-    }
-  }
-  else {
-    return false;
-  }
+// Accepts 2 getBoundingClientRect objects
+function glazedHit(rect1, rect2) {
+  return !(rect1.right < rect2.left ||
+              rect1.left > rect2.right ||
+              rect1.bottom < rect2.top ||
+              rect1.top > rect2.bottom);
 }
 
 })(jQuery, Drupal, this, this.document);
