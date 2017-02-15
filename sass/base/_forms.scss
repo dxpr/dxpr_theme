@@ -1,23 +1,31 @@
 //
 // Author: Jurriaan Roelofs for SooperThemes. Copyright SooperThemes.
 //
-
-.form-control,
-input[type=text],
-input[type=file],
-input[type=password],
-textarea,
-select {
-  box-shadow: none;
-  border-radius: 3px;
-  background: transparent;
-  border: 1px solid $gray-lighter;
-  height: auto;
-  padding: 12px;
-  &:focus {
+.html {
+  .form-control,
+  input[type=text],
+  input[type=file],
+  input[type=password],
+  textarea,
+  select {
     box-shadow: none;
-    outline: none;
-    border-color: $primary;
+    border-radius: 3px;
+    background: transparent;
+    border: 1px solid $gray-lighter;
+    height: auto;
+    padding: 12px;
+    line-height: inherit;
+    &:focus {
+      box-shadow: none;
+      outline: none;
+      border-color: $primary;
+    }
+  }
+  .form-control.form-file {
+    padding: 8px;
+  }
+  .input-sm {
+    padding: 10px;
   }
 }
 
@@ -41,6 +49,7 @@ select {
   }
   select.form-select {
     appearance: none;
+    padding-right: 30px;
   }
 }
 
