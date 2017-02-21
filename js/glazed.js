@@ -6,7 +6,6 @@
  */
 (function ($, Drupal, window, document, undefined) {
 var glazedMenuState = '';
-glazedMenuGovernorBodyClass();
 
 Drupal.behaviors.fullScreenSearch = {
     attach: function(context, settings) {
@@ -37,7 +36,9 @@ Drupal.behaviors.fullScreenSearch = {
 Drupal.behaviors.glazed = {
   attach: function(context, settings) {
     var windowHeight = $(window).height();
-    glazedMenuGovernor(context);
+    if ($('#glazed-main-menu .menu').length > 0) {
+      glazedMenuGovernor(document);
+    }
 
     // Helper classes
     $('.glazed-util-full-height', context).css('min-height', windowHeight);
@@ -173,12 +174,11 @@ if(typeof _ != 'function'){
 }
 
 $(window).resize(_.debounce(function(){
-    if ($('#glazed-main-menu .menu').length == 0) {
-      return false;
+    if ($('#glazed-main-menu .menu').length > 0) {
+      glazedMenuGovernorBodyClass();
+      glazedMenuGovernor(document);
     }
-    glazedMenuGovernorBodyClass();
-    glazedMenuGovernor(document);
-}, 250));
+}, 50));
 
 function glazedMenuGovernor(context) {
   // Bootstrap dropdown multi-column smart menu
