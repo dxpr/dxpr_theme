@@ -6,6 +6,20 @@
 function glazed_preprocess_html(&$vars) {
   global $theme;
 
+  // Load Glazed Theme Settings CSS File
+  $files_path = variable_get('file_public_path', conf_path() . '/files');
+  if (is_file($files_path . '/glazed-themesettings-' . $theme . '.css')) {
+    drupal_add_css(
+      $files_path . '/glazed-themesettings-' . $theme . '.css', array(
+        'preprocess' => variable_get('preprocess_css', '') == 1 ? TRUE : FALSE,
+        'group' => CSS_THEME,
+        'media' => 'all',
+        'every_page' => TRUE,
+        'weight' => 100
+      )
+    );
+  }
+
   // Add body class for core toolbar to help with header spacing
   if (module_exists('admin_menu_toolbar') && user_access('access administration menu')) {
     $vars['classes_array'][] = 'admin-menu-toolbar';
