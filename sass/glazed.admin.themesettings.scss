@@ -114,10 +114,11 @@ $font_3: 'sans-serif';
     border: none;
     box-shadow: none;
   }
-  .description {
+  .description,
+  .help-block {
     float: left;
     clear: both;
-    margin: 12px 0 18px 0;
+    padding: 12px 0 18px 0;
   }
   //BOOTSTRAP SWITCH
   .bootstrap-switch {
@@ -274,9 +275,6 @@ $font_3: 'sans-serif';
     > label {
       font-weight: bold;
     }
-  }
-  .help-block {
-    clear: both;
   }
   .farbtastic {
     z-index: 10;
