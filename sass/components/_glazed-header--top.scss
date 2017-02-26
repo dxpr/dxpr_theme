@@ -2,6 +2,10 @@
   // Glazed Top Header
   .glazed-header--top {
     width: 100%;
+    .glazed-main-menu {
+      height: 100px;
+      position: relative;
+    }
     &.glazed-header--fixed {
       position: fixed;
       left: 0;
