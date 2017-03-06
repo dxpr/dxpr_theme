@@ -243,7 +243,7 @@ function glazedMenuGovernor(context) {
     // Hit Detection for Header
     if (($('.tabs--primary').length > 0) && ($('#navbar').length > 0)) {
       var tabsRect = $('.tabs--primary')[0].getBoundingClientRect();
-      if ($('.glazed-header--navbar-pull-down').length > 0) {
+      if (($('.glazed-header--navbar-pull-down').length > 0) && ($('#navbar .container-col').length > 0)) {
         var pullDownRect = $('#navbar .container-col')[0].getBoundingClientRect();
         if (glazedHit(pullDownRect, tabsRect)) {
           $('.tabs--primary').css('margin-top', pullDownRect.bottom - tabsRect.top + 6);
