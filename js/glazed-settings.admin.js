@@ -77,7 +77,7 @@
           min: 0,
           max: 3,
           tooltip: 'show',
-        formatter: function(value) {return value + 'em';},
+          formatter: function(value) {return value + 'em';},
           value: parseFloat(startValue)
         });
       });

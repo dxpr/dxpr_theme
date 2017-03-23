@@ -50,6 +50,7 @@ $form['glazed_settings']['typography']['scale_factor'] = array(
 
 $form['glazed_settings']['typography']['advanced_type'] = array(
   '#title' => t('Advanced Type Controls'),
+  '#description' => t('If you change the main contorls above these advanced controls are automatically generated and need might re-adjustment.'),
   '#type' => 'fieldset',
   '#collapsible' => TRUE,
   '#collapsed' => TRUE,
