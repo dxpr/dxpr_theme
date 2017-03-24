@@ -1,6 +1,7 @@
 html {
   // Prevent horizontal scrolling on small devices
   // Also important for SEO, needed for mobile-friendly test
+  overflow: hidden;
   overflow-x: hidden;
   overflow-y: visible;
 }
