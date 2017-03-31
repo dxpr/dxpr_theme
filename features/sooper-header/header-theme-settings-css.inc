@@ -52,7 +52,6 @@ function _glazed_hex2rgba($color, $opacity = null) {
 // Side Header
 $header_side_width = theme_get_setting('header_side_width', $theme);
 $align = theme_get_setting('header_side_align', $theme);
-if ($align !== 'left') {
 $CSS .= <<<EOT
   #glazed-main-menu,
   #glazed-main-menu .menu__breadcrumbs,
@@ -61,7 +60,6 @@ $CSS .= <<<EOT
   }
 
 EOT;
-}
 if ($align == 'right') {
   $CSS .= <<<EOT
   #glazed-main-menu .menu__link  {
