@@ -35,7 +35,8 @@ function glazed_preprocess_html(&$vars) {
       $field_array = array(
         'field_glazed_header_mode',
         'field_glazed_header_position',
-        'field_glazed_header_style'
+        'field_glazed_header_style',
+        'field_glazed_hide_regions',
       );
       // @see render_glazed_content_css.inc node_load
       if (isset($node->field_glazed_content_design['und']) && isset($node->field_glazed_content_design['und'][0])) {
@@ -52,49 +53,51 @@ function glazed_preprocess_html(&$vars) {
     $vars['html_attributes_array']['class'] = 'html--glazed-sticky-footer';
   }
 
-  if (isset($content_design['field_glazed_header_mode'])) {
-    $header_position = $content_design['field_glazed_header_mode'];
-  }
-  else {
-    if (theme_get_setting('header_position')) {
-      $header_position = 'side';
+  if (isset($content_design) && (!in_array('header', $content_design['field_glazed_hide_regions']))) {
+    if (isset($content_design['field_glazed_header_mode'])) {
+      $header_position = $content_design['field_glazed_header_mode'];
     }
     else {
-      $header_position = 'top';
-    }
-  }
-
-  if ($header_position == 'side') {
-    // Side Header
-    $vars['classes_array'][] = 'body--glazed-header-side';
-  }
-  else {
-    // Top Header
-    $vars['classes_array'][] = 'body--glazed-header-top';
-    if (isset($content_design['field_glazed_header_style'])) {
-      if ($content_design['field_glazed_header_style'] != 'overlay') {
-        $vars['classes_array'][] = 'body--glazed-header-not-overlay';
-        $vars['classes_array'][] = 'body--glazed-header-' . $content_design['field_glazed_header_style'];
+      if (theme_get_setting('header_position')) {
+        $header_position = 'side';
       }
       else {
-        $vars['classes_array'][] = 'body--glazed-header-' . $content_design['field_glazed_header_style'];
+        $header_position = 'top';
       }
     }
+
+    if ($header_position == 'side') {
+      // Side Header
+      $vars['classes_array'][] = 'body--glazed-header-side';
+    }
     else {
-      if (theme_get_setting('header_style') != 'overlay') {
-        $vars['classes_array'][] = 'body--glazed-header-not-overlay';
-        $vars['classes_array'][] = 'body--glazed-header-' . theme_get_setting('header_style');
+      // Top Header
+      $vars['classes_array'][] = 'body--glazed-header-top';
+      if (isset($content_design['field_glazed_header_style'])) {
+        if ($content_design['field_glazed_header_style'] != 'overlay') {
+          $vars['classes_array'][] = 'body--glazed-header-not-overlay';
+          $vars['classes_array'][] = 'body--glazed-header-' . $content_design['field_glazed_header_style'];
+        }
+        else {
+          $vars['classes_array'][] = 'body--glazed-header-' . $content_design['field_glazed_header_style'];
+        }
       }
       else {
-        $vars['classes_array'][] = 'body--glazed-header-' . theme_get_setting('header_style');
+        if (theme_get_setting('header_style') != 'overlay') {
+          $vars['classes_array'][] = 'body--glazed-header-not-overlay';
+          $vars['classes_array'][] = 'body--glazed-header-' . theme_get_setting('header_style');
+        }
+        else {
+          $vars['classes_array'][] = 'body--glazed-header-' . theme_get_setting('header_style');
+        }
       }
-    }
-    if (isset($content_design['field_glazed_header_position'])) {
+      if (isset($content_design['field_glazed_header_position'])) {
 
-    }
-    else {
-      if (theme_get_setting('header_top_fixed') && (!theme_get_setting('header_top_sticky'))) {
-        $vars['classes_array'][] = 'body--glazed-header-fixed';
+      }
+      else {
+        if (theme_get_setting('header_top_fixed') && (!theme_get_setting('header_top_sticky'))) {
+          $vars['classes_array'][] = 'body--glazed-header-fixed';
+        }
       }
     }
   }
