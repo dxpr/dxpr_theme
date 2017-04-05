@@ -11,6 +11,7 @@ Drupal.behaviors.fullScreenSearch = {
     attach: function(context, settings) {
         function clearSearchForm() {
             $searchForm.toggleClass("hidden"),
+            $('body').toggleClass("body--full-screen-search"),
             setTimeout(function() {
                 $searchFormInput.val("")
             }, 350)
@@ -22,6 +23,7 @@ Drupal.behaviors.fullScreenSearch = {
         $searchButton.on("touchstart click", function(event) {
             event.preventDefault(),
             $searchForm.toggleClass("hidden"),
+            $('body').toggleClass("body--full-screen-search"),
             $searchFormInput.focus()
         }),
         $searchForm.on("touchstart click", function($searchButton) {

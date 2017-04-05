@@ -195,6 +195,9 @@
       overflow: auto;
     }
   }
+  &.body--glazed-header-side.body--full-screen-search .glazed-header--side .navbar-header {
+    z-index: 4060;
+  }
 }
 
 // Mobile Only styles
