@@ -113,7 +113,7 @@ Glazed is designed as a tool to make Drupal theming both more productive and mor
 * Block Divider Spacing
 * Block Regions To Apply  Custom Style To
 
-[live preview HTML]
+live preview HTML
 
 ### Custom CSS/JS
 
@@ -141,9 +141,9 @@ Glazed is designed as a tool to make Drupal theming both more productive and mor
 * Blockquote Font
 * Blockquote Font CSS Selector
 
-[Font list including local and Google fonts]
+Font list including local and Google fonts
 
-[live preview HTML]
+live preview HTML
 
 ### Header Design
 
@@ -271,4 +271,15 @@ Glazed is designed as a tool to make Drupal theming both more productive and mor
 * Divider Length
 * Divider Position
 * Divider Color
+
+### Theme Settings Are Used In The Following Places
+
+* File Based Dynamic CSS Storage
+* Template.php/Glazed.theme
+* hook_preprocess_block
+* hook_preprocess_html
+* hook_preprocess_node
+* hook_preprocess_page
+* hook_process_html
+* page.tpl.php (breacrumbs show/hide)
 
