@@ -367,7 +367,7 @@ $form['glazed_settings']['block']['regions']['block_design_regions'] = array(
   '#type' => 'checkboxes',
   '#multiple' => TRUE,
   '#title' => t('Regions'),
-  '#default_value' => ((theme_get_setting('block_design_regions') !== null)) ? theme_get_setting('block_design_regions') : 0,
+  '#default_value' => ((theme_get_setting('block_design_regions') !== null)) ? theme_get_setting('block_design_regions') : array(),
   '#options' => array(
     'secondary_header' => t('Secondary Header'),
     'navigation' => t('Navigation'),

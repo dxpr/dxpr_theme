@@ -190,7 +190,7 @@ $form['glazed_settings']['layout']['granular_boxed']['full_width_containers'] = 
     '#multiple' => TRUE,
     '#title' => t('Full width regions'),
     '#description' => t('Full width content regions have 2 use cases: creating blocks that span across the whole browser and creating layouts with full screen backgrounds within your content. If you want all content to be full width, don\'t use these settings but instead set the "Layout Max-width" setting to the maximum value.'),
-    '#default_value' => ((theme_get_setting('full_width_containers') !== null)) ? theme_get_setting('full_width_containers') : 0,
+    '#default_value' => ((theme_get_setting('full_width_containers') !== null)) ? theme_get_setting('full_width_containers') : array(),
     '#options' => array(
       'cnt_secondary_header' => t('Secondary Header'),
       'cnt_header_nav' => t('Header / Navigation'),
