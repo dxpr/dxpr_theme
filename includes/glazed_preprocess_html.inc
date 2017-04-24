@@ -5,7 +5,6 @@
  */
 function glazed_preprocess_html(&$vars) {
   global $theme;
-
   // Load Glazed Theme Settings CSS File
   $files_path = variable_get('file_public_path', conf_path() . '/files');
   if (is_file($files_path . '/glazed-themesettings-' . $theme . '.css')) {
@@ -53,7 +52,7 @@ function glazed_preprocess_html(&$vars) {
     $vars['html_attributes_array']['class'] = 'html--glazed-sticky-footer';
   }
 
-  if (isset($content_design) && (!in_array('header', $content_design['field_glazed_hide_regions']))) {
+  if (!(isset($content_design) && (in_array('header', $content_design['field_glazed_hide_regions'])))) {
     if (isset($content_design['field_glazed_header_mode'])) {
       $header_position = $content_design['field_glazed_header_mode'];
     }
