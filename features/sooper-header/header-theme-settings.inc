@@ -30,9 +30,9 @@ $form['glazed_settings']['header']['header_top']['header_top_layout'] = array(
     '#type' => 'radios',
     '#title' => t('Layout'),
     '#description' => t('Different header layouts give a different view at your menu and logo.'),
-    '#default_value' => ((theme_get_setting('header_top_layout') !== null)) ? theme_get_setting('header_top_layout') : 0,
+    '#default_value' => ((theme_get_setting('header_top_layout') !== null)) ? theme_get_setting('header_top_layout') : '0',
     '#options' => array(
-      0 => t('Normal (Logo left, Menu Right)'),
+      '0' => t('Normal (Logo left, Menu Right)'),
       'centered' => t('Centered (stacked)'),
       'centered_inline' => t('Centered (inline)'),
       'logo_left_menu_left' => t('Logo Left, Menu Left'),
