@@ -160,7 +160,8 @@ function glazed_google_webfonts() {
  * Helper function to get list of locally hosted fonts
  */
 function glazed_local_webfonts($loadem = FALSE) {
-  global $base_path, $base_url, $theme_chain;
+  global $base_path, $base_url;
+  $theme_chain = array('glazed');
   $fonts = array();
   foreach ($theme_chain as $theme) {
     foreach (file_scan_directory(drupal_get_path('theme', $theme) . '/fonts', '/.css/i') as $file) {
@@ -186,7 +187,8 @@ function glazed_local_webfonts($loadem = FALSE) {
             'type' => 'text/css',
           ),
         );
-        drupal_add_html_head($element, $file->uri);
+        // @todo replace with hook_page_attachments
+        // drupal_add_html_head($element, $file->uri);
       }
     }
   }

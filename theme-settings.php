@@ -1,148 +1,57 @@
 <?php
 
-/**
- * Implements hook_form_system_theme_settings_alter().
- *
- * @param $form
- *   The form.
- * @param $form_state
- *   The form state.
- */
-
 function glazed_form_system_theme_settings_alter(&$form, &$form_state) {
-  /**
-   * @ code
-   * a bug in D7 causes the theme to load twice, if this file is loaded a
-   * second time we return immediately to prevent further complications.
-   */
-  global $glazed_altered, $base_path, $theme_chain;
-  if ($glazed_altered) return;
-  $glazed_altered = TRUE;
-
-  // Wrap global and jQuery setting fieldsets in vertical tabs.
-  $form['global'] = array(
-    '#type' => 'vertical_tabs',
-    '#prefix' => '<h2><small>' . t('Override Global Settings') . '</small></h2>',
-    '#weight' => -9,
-  );
-  $form['theme_settings']['#group'] = 'global';
-  $form['logo']['#group'] = 'global';
-  $form['favicon']['#group'] = 'global';
-  $form['favicon']['#group'] = 'global';
-
-  // $subject_theme = arg(count(arg()) - 1); old way
-  $subject_theme = $form_state['build_info']['args'][0];
+  global $base_path, $theme_chain;
+  $build_info = $form_state->getBuildInfo();
+  $subject_theme = $build_info['args'][0];
   $glazed_theme_path = drupal_get_path('theme', 'glazed') . '/';
   $theme_path = drupal_get_path('theme', $subject_theme) . '/';
-  $themes = list_themes();
+  $themes = \Drupal::service('theme_handler')->listInfo();
   $theme_chain = array($subject_theme);
   foreach ($themes[$subject_theme]->base_themes as $base_theme => $base_theme_name) {
     $theme_chain[] = $base_theme;
   }
 
-  /**
-   * Glazed cache builder
-   * Cannot run as submit function because  it will set outdated values by
-   * using theme_get_setting to retrieve settings from database before the db is
-   * updated. Cannot put cache builder in form scope and use $form_state because
-   * it also needs to initialize default settings by reading the .info file.
-   * By calling the cache builder here it will run twice: once before the
-   * settings are saved and once after the redirect with the updated settings.
-   * @todo come up with a less 'icky' solution
-   */
-
-  if (!isset($files_path)) { // in case admin theme is used
-    global $files_path;
-    $files_path = variable_get('file_public_path', conf_path() . '/files');
-  }
-  require_once(drupal_get_path('theme', 'glazed') . '/glazed_callbacks.inc');
-  glazed_css_cache_build(arg(count(arg()) - 1));
-
-  if ($GLOBALS['theme'] == 'seven') {
-    drupal_set_message(t('Install the Glazed Theme Tools helper module to have a better theme settings experience'), 'warning');
-    drupal_add_css('https://cdn.jsdelivr.net/bootstrap/3.3.6/css/bootstrap.min.css', 'external');
-    drupal_add_js('https://cdn.jsdelivr.net/bootstrap/3.3.6/js/bootstrap.min.js', 'external');
-    drupal_add_css('html body { font-size: 14px; }', 'inline');
-  }
-
-  // drupal_add_css('themes/seven/vertical-tabs.css');
-  drupal_add_library('system', 'ui.slider'); // If this isn't loaded the bootstrapSlider won't exist anymore
-  // drupal_add_library('system', 'ui.tabs');
-  drupal_add_css($glazed_theme_path . 'js/vendor/bootstrap-switch/bootstrap-switch.min.css');
-  drupal_add_css($glazed_theme_path . 'js/vendor/bootstrap-slider/bootstrap-slider.min.css');
-  drupal_add_css($glazed_theme_path . 'css/glazed.admin.themesettings.css');
-  drupal_add_js($glazed_theme_path . 'js/vendor/bootstrap-switch/bootstrap-switch.min.js', 'file');
-  drupal_add_js($glazed_theme_path . 'js/vendor/bootstrap-slider/bootstrap-slider.min.js', 'file');
-  drupal_add_js($glazed_theme_path . 'js/glazed-settings.admin.js', 'file');
-  drupal_add_js($glazed_theme_path . 'js/color.js', 'file');
-  drupal_add_js('jQuery(function () {Drupal.behaviors.formUpdated = null;});', 'inline');
-  // Decoy function to fix erros resulting from missing preview.js
-  drupal_add_js('Drupal.color = { callback: function() {} }', 'inline');
-
-  drupal_add_js(array('glazed' => array('palette' => theme_get_setting('palette', 'glazed'))), 'setting');
-
-  if (!isset($themes['bootstrap']->info['version'])) {
-    $themes['bootstrap']->info['version'] = 'dev';
-  }
-
-  // $header  = '<div class="settings-header">';
-  // $header .= '  <h2>' . ucfirst($subject_theme) . ' ' . $themes[$subject_theme]->info['version'] . ' <span class="lead">(Bootstrap ' . $themes['bootstrap']->info['version'] . ')</span></h2>';
-  // $header .= '</div>';
   $img = '<img style="width:35px;margin-right:5px;" src="' . $base_path . $glazed_theme_path . 'logo-white.png" />';
   $form['glazed_settings'] = array(
-    '#type' => 'vertical_tabs',
+    // '#type' => 'vertical_tabs',
     '#weight' => -20,
     '#prefix' => '<h2><small>' . $img . ' ' . ucfirst($subject_theme) . ' ' . $themes[$subject_theme]->info['version'] . ' <span class="lead">(Bootstrap ' . $themes['bootstrap']->info['version'] . ')</span>' . '</small></h2>',
   );
 
-  // Load Sooper Features
-  foreach ($theme_chain as $theme) {
-    foreach (file_scan_directory(drupal_get_path('theme', $theme) . '/features', '/settings.inc/i') as $file) {
-      include($file->uri);
-    }
+
+  foreach (file_scan_directory(drupal_get_path('theme', 'glazed') . '/features', '/settings.inc/i') as $file) {
+    $theme = 'glazed';
+    include($file->uri);
   }
 
-  // Adding submit handler requires some extra code due to buggy theme settings system
-  // http://ghosty.co.uk/2014/03/managed-file-upload-in-drupal-theme-settings/
-  $form['#submit'][] = 'glazed_settings_form_submit';
-  // Get all themes.
-  $themes = list_themes();
-  // Get the current theme
-  $active_theme = $GLOBALS['theme_key'];
-  $form_state['build_info']['files'][] = str_replace("/$active_theme.info", '', $themes[$active_theme]->filename) . '/theme-settings.php';
-
-    // $form['glazed_settings']['drupal']['theme_settings'] = $form['theme_settings'];
-    // $form['glazed_settings']['drupal']['logo'] = $form['logo'];
-    // $form['glazed_settings']['drupal']['favicon'] = $form['favicon'];
-    // unset($form['theme_settings']);
-    // unset($form['logo']);
-    // unset($form['favicon']);
-  // Return the additional form widgets
-  return $form;
 }
+
+
 
 /**
  * Retrieves the Color module information for a particular theme.
  */
 function _glazed_get_color_names($theme = NULL) {
-  static $theme_info = array();
-  if (!isset($theme)) {
-    $theme = variable_get('theme_default', NULL);
-  }
+  return FALSE;
+  // static $theme_info = array();
+  // if (!isset($theme)) {
+  //   $theme = \Drupal::config('system.theme'); ;
+  // }
 
-  if (isset($theme_info[$theme])) {
-    return $theme_info[$theme];
-  }
+  // if (isset($theme_info[$theme])) {
+  //   return $theme_info[$theme];
+  // }
 
-  $path = drupal_get_path('theme', $theme);
-  $file = DRUPAL_ROOT . '/' . $path . '/color/color.inc';
-  if ($path && file_exists($file)) {
-    include $file;
-    $theme_info[$theme] = $info['fields'];
-    return $info['fields'];
-  } else {
-    return array();
-  }
+  // $path = drupal_get_path('theme', $theme);
+  // $file = DRUPAL_ROOT . '/' . $path . '/color/color.inc';
+  // if ($path && file_exists($file)) {
+  //   include $file;
+  //   $theme_info[$theme] = $info['fields'];
+  //   return $info['fields'];
+  // } else {
+  //   return array();
+  // }
 }
 
 /**
@@ -154,7 +63,7 @@ function _glazed_color_options($theme) {
     'white' => t('White'),
     'custom' => t('Custom Color'),
   );
-  $colors = array_merge($colors, array(t('Glazed Colors') => _glazed_get_color_names()));
+  // $colors = array_merge($colors, array(t('Glazed Colors') => _glazed_get_color_names()));
   return $colors;
 }
 
@@ -175,28 +84,10 @@ function _glazed_is_subtheme ($feature) {
 
 function _glazed_node_types_options() {
   $types = array();
-  foreach (node_type_get_types() as $key => $value) {
-    $types[$key] = $value->name;
-  }
+  // foreach (node_type_get_types() as $key => $value) {
+  //   $types[$key] = $value->name;
+  // }
   return $types;
-}
-
-/**
- * Implements hook_form_FORM_ID_alter().
- * We hijack the function that is reserved for the user module in order
- * to get the full monty of $form stuff. The module cache is cleared to make sure
- * our hook implementation is known before this point. Yes this is a dirty hack.
- */
-if (module_exists('color')) {
-  registry_rebuild();
-  function user_form_system_theme_settings_alter(&$form, &$form_state) {
-    if (isset($form['color'])) {
-      $form['glazed_settings']['color'] = $form['color'];
-      unset($form['color']);
-      $form['glazed_settings']['color']['#title'] = 'Colors';
-      $form['glazed_settings']['color']['#weight'] = 1;
-    }
-  }
 }
 
 function _glazed_type_preview() {
@@ -232,41 +123,4 @@ function _glazed_type_preview() {
 </div>
 EOT;
   return $output;
-}
-
-/**
- * Submit callback for theme settings form
- * Import Demo content.
- */
-function glazed_settings_form_submit(&$form, &$form_state) {
-  if ($import = $form_state['values']['settings_import_box']) {
-    $import_settings = drupal_parse_info_format($import);
-    if (is_array($import_settings) && isset($import_settings['settings'])) {
-      $form_state['values'] = array_merge($form_state['values'], $import_settings['settings']);
-    }
-  }
-
-  // If requested import additional demo content
-  if (module_exists('uuid_features')) {
-    module_load_include('module', 'uuid');
-    module_load_include('inc', 'features', 'features.admin');
-    $demo_content_modules = array_filter(_features_get_features_list(), "_glazed_is_demo_content");
-    if (!empty($demo_content_modules)) {
-      usort($demo_content_modules, function($a, $b) {
-        $return = (count($a->info['features']['uuid_node']) < count($b->info['features']['uuid_node'])) ? 1 : -1;
-        return $return;
-      });
-      foreach ($demo_content_modules as $module) {
-        if (isset($module->info['features']) && isset($module->info['features']['uuid_node'])) {
-          $node_sample = $module->info['features']['uuid_node'][0];
-          if ($form_state['values'][$module->name] && !entity_get_id_by_uuid('node', array($node_sample))) {
-            drupal_set_message($module->name . ' ' . t('installed'));
-            module_enable(array($module->name));
-            module_disable(array($module->name), FALSE);
-          }
-        }
-      }
-    }
-  }
-
 }

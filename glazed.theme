@@ -1,0 +1,10 @@
+<?php
+/**
+ * @file
+ * Bootstrap sub-theme.
+ *
+ * Place your custom PHP code in this file.
+ */
+
+function glazed_preprocess_menu_local_task(&$vars) {
+}

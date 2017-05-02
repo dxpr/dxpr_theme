@@ -9,7 +9,7 @@ $form['glazed_settings']['layout'] = array(
 $form['glazed_settings']['layout']['boxed_layout'] = array(
   '#type' => 'checkbox',
   '#title' => t('Boxed Layout'),
-  '#default_value' => ((theme_get_setting('boxed_layout') !== null)) ? theme_get_setting('boxed_layout') : 0,
+  '#default_value' => ((theme_get_setting('boxed_layout') !== null)) ? theme_get_setting('boxed_layout') : 1,
   '#description' => t('By default containers and their backgrounds are full-width. Boxed containers will squeeze all container backgrounds into a centered column.'),
 );
 
@@ -89,6 +89,14 @@ $form['glazed_settings']['layout']['grid']['gutter_container'] = array(
   '#description' => t('Default is 60px.'),
 );
 
+$form['glazed_settings']['layout']['mobile_layout'] = array(
+  '#title' => t('Mobile view'),
+  '#type' => 'fieldset',
+  '#collapsible' => TRUE,
+  '#collapsed' => TRUE,
+);
+
+
 $form['glazed_settings']['layout']['background'] = array(
   '#title' => t('Background Image'),
   '#type' => 'fieldset',
@@ -142,13 +150,6 @@ $form['glazed_settings']['layout']['background']['background_image_position'] = 
   ),
 );
 
-
-$form['glazed_settings']['layout']['mobile_layout'] = array(
-  '#title' => t('Mobile view'),
-  '#type' => 'fieldset',
-  '#collapsible' => TRUE,
-  '#collapsed' => TRUE,
-);
 
 $form['glazed_settings']['layout']['mobile_layout']['gutter_horizontal_mobile'] = array(
   '#type' => 'textfield',

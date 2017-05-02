@@ -1,42 +1,13 @@
 <?php
-  //color schemes
-  $info = array(
 
-  // Images to copy over
-  'copy' => array(
-    'logo.png',
-    'glazed-favicon.png',
-  ),
+/**
+ * @file
+ * Lists available colors and color schemes for the Bartik theme.
+ */
 
-  // CSS files (excluding @import) to rewrite with new color scheme.
-  'css' => array(
-    'css/glazed.css',
-  ),
-
-  // Color areas to fill (x, y, width, height)
-  'fill' => array(
-  ),
-
-  // Gradient definitions.
-  'gradients' => array(
-  ),
-
-  // Coordinates of all the theme slices (x, y, width, height)
-  // with their filename as used in the stylesheet.
-  'slices' => array(
-  ),
-
-  // color preview css
-  'preview_css' => '',
-
-  // Base file for image generation
-  'base_image' => 'glazed-favicon-transparent.png',
-
-  //  blend target
-  'blend_target' => '#ffffff',
-
+$info = [
   // Available colors and color labels used in theme.
-  'fields' => array(
+  'fields' => [
     'base' => t('Base color'),
     'link' => t('Link color'),
     'accent1' => t('Accent color 1'),
@@ -59,12 +30,12 @@
     'graylighter' => t('Gray Lighter'),
     'silver' => t('Silver'),
     'body' => t('Body Background'),
-  ),
-
-  'schemes' => array(
-    'default' => array(
-      'title' => t('Glazed (Default)'),
-      'colors' => array(
+  ],
+  // Pre-defined color schemes.
+  'schemes' => [
+    'default' => [
+      'title' => t('Glazed Default'),
+      'colors' => [
         'base' => '#01b0ef',
         'link' => '#01b0ef',
         'accent1' => '#57e2b9',
@@ -87,8 +58,18 @@
         'graylighter' => '#ededed',
         'silver' => '#f1f1f1',
         'body' => '#efefef',
-      ),
-    ),
-  ),
-);
-?>
+      ],
+    ],
+  ],
+
+  // CSS files (excluding @import) to rewrite with new color scheme.
+  'css' => [
+    'css/glazed.css',
+  ],
+
+  // Files to copy.
+  'copy' => [
+    'logo.png',
+    'glazed-favicon.png',
+  ],
+];
