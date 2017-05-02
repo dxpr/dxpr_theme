@@ -130,7 +130,7 @@ else {
   opacity: $header_top_opacity_scroll;
 }
 
-.body--glazed-nav-desktop .glazed-header--top .menu > li > a,
+.body--glazed-nav-desktop .glazed-header--top .nav > li > a,
 .body--glazed-nav-desktop .glazed-header--top .wrap-branding,
 .body--glazed-nav-desktop .glazed-header--top #block-glazed-helper-full-screen-search {
   height: {$header_top_height}px;
@@ -139,7 +139,7 @@ else {
 .body--glazed-nav-desktop .glazed-header--top .glazed-main-menu {
   height: {$header_top_height}px;
 }
-.body--glazed-nav-desktop .glazed-header--top.affix .menu > li > a,
+.body--glazed-nav-desktop .glazed-header--top.affix .nav > li > a,
 .body--glazed-nav-desktop .glazed-header--top.affix .navbar-header .wrap-branding,
 .body--glazed-nav-desktop .glazed-header--top.affix #block-glazed-helper-full-screen-search  {
   height: {$header_top_height_scroll}px;
@@ -226,7 +226,7 @@ EOT;
 if (theme_get_setting('menu_hover', $theme) == 'border') {
   $CSS .= <<<EOT
 .body--glazed-header-side .glazed-header--side.glazed-header--hover-border .menu a::before,
-.glazed-header--top.glazed-header--hover-border .menu > li > a::before {
+.glazed-header--top.glazed-header--hover-border .nav > li > a::before {
 
 EOT;
   if ($height = theme_get_setting('menu_border_size', $theme)) {
@@ -269,7 +269,7 @@ if (($position = theme_get_setting('menu_border_position', $theme))
   && ($margin_sticky = theme_get_setting('menu_border_position_offset_sticky', $theme))
   &&  (theme_get_setting('header_position', $theme) == FALSE)) {
   $CSS .= <<<EOT
-.glazed-header--top.glazed-header--hover-border.affix .menu > li > a::before {
+.glazed-header--top.glazed-header--hover-border.affix .nav > li > a::before {
   margin-{$position}: {$margin_sticky}px;
 }
 EOT;

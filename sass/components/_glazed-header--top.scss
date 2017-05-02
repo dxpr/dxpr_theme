@@ -3,7 +3,7 @@
   .glazed-header--top {
     width: 100%;
     .glazed-main-menu {
-      height: 100px;
+      height: 90px;
       position: relative;
     }
     &.glazed-header--fixed {
@@ -59,7 +59,7 @@
     }
     .wrap-branding {
       display: table;
-      height: 100px;
+      height: 90px;
       .logo,
       .navbar-brand {
         display: table-cell;
@@ -141,20 +141,18 @@
       float: right;
       position:static;
     }
-    .menu {
+    .nav {
       float: right;
-      .nav > li > a {
-        font-size: $font-size-large;
-      }
       > li {
         display: table;
         height: 100%;
         float: left;
       }
       > li > a {
+        font-size: $font-size-large;
         display: table-cell;
         vertical-align: middle;
-        height: 100px;
+        height: 90px;
         padding-top: 0;
         padding-bottom: 0;
       }
@@ -181,11 +179,11 @@
       left: 0;
       right: 0;
       position: absolute;
-      top: 100px;
+      top: 90px;
     }
     #block-glazed-helper-full-screen-search {
-      height: 100px;
-      line-height: 100px;
+      height: 90px;
+      line-height: 90px;
     }
   }
 }

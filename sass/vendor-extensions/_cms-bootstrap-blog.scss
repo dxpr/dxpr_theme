@@ -3,7 +3,7 @@
 //
 
 
-.field-blog-tags,
+[class*='tags'],
 .tagclouds-term {
   a {
     display: inline-block;
@@ -23,7 +23,7 @@
   }
 }
 
-.field-blog-tags a {
+[class*='tags'] a {
   font-size: $font-size-small;
 }
 

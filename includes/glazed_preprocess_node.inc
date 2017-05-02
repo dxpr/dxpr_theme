@@ -150,7 +150,7 @@ function glazed_preprocess_node(&$vars) {
       if ($header_top_height = $content_design['field_header_height']) {
         $header_top_height_scroll = theme_get_setting('header_top_height_scroll');
         $CSS .= <<<EOT
-.body--glazed-nav-desktop #navbar.glazed-header--top .menu > li > a,
+.body--glazed-nav-desktop #navbar.glazed-header--top .nav > li > a,
 .body--glazed-nav-desktop #navbar.glazed-header--top .wrap-branding {
   height: {$header_top_height}px;
   line-height: {$header_top_height}px;
@@ -159,7 +159,7 @@ function glazed_preprocess_node(&$vars) {
   height: {$header_top_height}px;
   line-height: {$header_top_height}px;
 }
-.body--glazed-nav-desktop #navbar.glazed-header--top.affix .menu > li > a,
+.body--glazed-nav-desktop #navbar.glazed-header--top.affix .nav > li > a,
 .body--glazed-nav-desktop #navbar.glazed-header--top.affix .navbar-header .wrap-branding {
   height: {$header_top_height_scroll}px;
   line-height: {$header_top_height_scroll}px;

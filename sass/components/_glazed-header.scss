@@ -194,7 +194,7 @@ body.body--glazed-header-fixed.body--glazed-header-not-overlay {
 }
 
 .body--glazed-header-side .glazed-header--side.glazed-header--hover-border .menu a:before,
-.glazed-header--top.glazed-header--hover-border .menu > li > a:before {
+.glazed-header--top.glazed-header--hover-border .nav > li > a:before {
   content: ' ';
   display: block;
   width: 100%;
@@ -208,9 +208,9 @@ body.body--glazed-header-fixed.body--glazed-header-not-overlay {
   bottom: 0;
   background: $primary;
 }
-.body--glazed-header-side .glazed-header--side.glazed-header--hover-border .menu > li.active-trail > a:before,
-.body--glazed-header-side .glazed-header--side.glazed-header--hover-border .menu > li > a:hover:before,
-.body--glazed-header-side .glazed-header--side.glazed-header--hover-border .menu > li > a.active:before,
+.body--glazed-header-side .glazed-header--side.glazed-header--hover-border .nav > li.active-trail > a:before,
+.body--glazed-header-side .glazed-header--side.glazed-header--hover-border .nav > li > a:hover:before,
+.body--glazed-header-side .glazed-header--side.glazed-header--hover-border .nav > li > a.active:before,
 .glazed-header--top.glazed-header--hover-border .menu li.active-trail > a:before,
 .glazed-header--top.glazed-header--hover-border .menu a:hover:before,
 .glazed-header--top.glazed-header--hover-border .menu a.active:before {
