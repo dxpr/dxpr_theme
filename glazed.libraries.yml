@@ -2,10 +2,12 @@ global-styling:
   css:
     theme:
       css/glazed.css: {}
+      public://red.css: {}
   js:
     js/vendor/classie.js: {}
     js/glazed-mobile-nav.js: {}
     js/glazed.js: {}
   dependencies:
     - core/jquery
+    - core/jquery.once
     - core/modernizr

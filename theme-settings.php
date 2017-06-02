@@ -1,7 +1,15 @@
 <?php
 
 function glazed_form_system_theme_settings_alter(&$form, &$form_state) {
-  global $base_path, $theme_chain;
+  /**
+   * @ code
+   * a bug in D7 and D8 causes the theme to load twice, if this file is loaded a
+   * second time we return to prevent errors for redeclaring functions etc.
+   */
+  global $glazed_altered, $base_path, $theme_chain;
+  if ($glazed_altered) return;
+  $glazed_altered = TRUE;
+
   $build_info = $form_state->getBuildInfo();
   $subject_theme = $build_info['args'][0];
   $glazed_theme_path = drupal_get_path('theme', 'glazed') . '/';
