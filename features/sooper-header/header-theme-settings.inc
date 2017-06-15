@@ -561,7 +561,7 @@ $form['glazed_settings']['header']['header_mobile']['header_mobile_breakpoint'] 
   '#default_value' => ((theme_get_setting('header_mobile_breakpoint') !== null)) ? theme_get_setting('header_mobile_breakpoint') : '1200',
   '#size' => 9,
   '#maxlength' => 9,
-  '#description' => t('Point below where Glazed switches to mobile header and navigation. If you set this to the maximum value (4100) the desktop style will never show.'),
+  '#description' => t('Point below where Glazed switches to mobile header and navigation. If you set this to the maximum value (4100) the desktop style will never show. Default is 1200.'),
 );
 
 $form['glazed_settings']['header']['header_mobile']['header_mobile_height'] = array(
