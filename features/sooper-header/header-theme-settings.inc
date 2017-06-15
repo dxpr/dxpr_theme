@@ -3,7 +3,7 @@
 
 $form['glazed_settings']['header'] = array(
   '#title' => t('Header & Main Menu'),
-  '#type' => 'fieldset',
+  '#type' => 'details',
   '#weight' => 10,
 );
 
@@ -16,7 +16,7 @@ $form['glazed_settings']['header']['header_position'] = array(
 
 $form['glazed_settings']['header']['header_top'] = array(
   '#title' => t('Top Header Options'),
-  '#type' => 'fieldset',
+  '#type' => 'details',
   '#collapsible' => TRUE,
   '#collapsed' => TRUE,
   '#states' => array(
@@ -98,7 +98,7 @@ $form['glazed_settings']['header']['header_top']['header_top_sticky'] = array(
 
 $form['glazed_settings']['header']['header_top']['sticky'] = array(
   '#title' => t('Sticky Header Options'),
-  '#type' => 'fieldset',
+  '#type' => 'details',
   '#collapsible' => TRUE,
   '#collapsed' => TRUE,
   '#states' => array(
@@ -178,7 +178,7 @@ $form['glazed_settings']['header']['header_top']['sticky']['header_top_bg_opacit
 
 $form['glazed_settings']['header']['header_top']['navcolors'] = array(
   '#title' => t('Customize Navigation Colors'),
-  '#type' => 'fieldset',
+  '#type' => 'details',
   '#collapsible' => TRUE,
   '#collapsed' => TRUE,
 );
@@ -383,7 +383,7 @@ $form['glazed_settings']['header']['header_top']['navcolors']['dropdown_hover_te
 
 $form['glazed_settings']['header']['header_side'] = array(
   '#title' => t('Side Header & Mobile Menu Options'),
-  '#type' => 'fieldset',
+  '#type' => 'details',
   '#collapsible' => TRUE,
   '#collapsed' => TRUE,
 );
@@ -411,7 +411,7 @@ $form['glazed_settings']['header']['header_side']['header_side_width'] = array(
 
 $form['glazed_settings']['header']['menu'] = array(
   '#title' => t('Main Menu Design'),
-  '#type' => 'fieldset',
+  '#type' => 'details',
   '#collapsible' => TRUE,
   '#collapsed' => TRUE,
 );
@@ -464,7 +464,7 @@ $form['glazed_settings']['header']['menu']['menu_hover'] = array(
 // Would like to use FAPI states here but doesn't work: https://www.drupal.org/node/2751693
 $form['glazed_settings']['header']['menu']['menu_border'] = array(
   '#title' => t('Customize Menu Border'),
-  '#type' => 'fieldset',
+  '#type' => 'details',
   '#collapsible' => TRUE,
   '#collapsed' => TRUE,
 );
@@ -550,7 +550,7 @@ $form['glazed_settings']['header']['menu']['menu_border']['menu_border_color_cus
 // Header in mobile mode
 $form['glazed_settings']['header']['header_mobile'] = array(
   '#title' => t('Mobile Header'),
-  '#type' => 'fieldset',
+  '#type' => 'details',
   '#collapsible' => TRUE,
   '#collapsed' => FALSE,
 );
@@ -576,7 +576,7 @@ $form['glazed_settings']['header']['header_mobile']['header_mobile_height'] = ar
 // Secondary Header
 $form['glazed_settings']['header']['secondary_header'] = array(
   '#title' => t('Secondary Header'),
-  '#type' => 'fieldset',
+  '#type' => 'details',
   '#collapsible' => TRUE,
   '#collapsed' => FALSE,
 );

@@ -2,7 +2,7 @@
 
 $form['glazed_settings']['page_title'] = array(
   '#title' => t('Page Title'),
-  '#type' => 'fieldset',
+  '#type' => 'details',
   '#weight' => 10,
 );
 
@@ -60,7 +60,7 @@ $form['glazed_settings']['page_title']['page_title_animate'] = array(
 
 $form['glazed_settings']['page_title']['background'] = array(
   '#title' => t('Background Image'),
-  '#type' => 'fieldset',
+  '#type' => 'details',
   '#collapsible' => TRUE,
   '#collapsed' => TRUE,
 );

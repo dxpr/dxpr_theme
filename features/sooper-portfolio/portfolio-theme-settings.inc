@@ -2,7 +2,7 @@
 
 $form['glazed_settings']['portfolio'] = array(
   '#title' => t('Portfolio'),
-  '#type' => 'fieldset',
+  '#type' => 'details',
   '#weight' => 50,
 );
 

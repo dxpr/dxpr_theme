@@ -2,7 +2,7 @@
 
 $form['glazed_settings']['block'] = array(
   '#title' => t('Block Design'),
-  '#type' => 'fieldset',
+  '#type' => 'details',
   '#weight' => 25,
 );
 
@@ -29,7 +29,7 @@ $form['glazed_settings']['block']['block_preset'] = array(
 
 $form['glazed_settings']['block']['block_advanced'] = array(
   '#title' => t('Customize Design'),
-  '#type' => 'fieldset',
+  '#type' => 'details',
   '#collapsible' => TRUE,
   '#collapsed' => TRUE,
   '#prefix' => '<br>',
@@ -37,7 +37,7 @@ $form['glazed_settings']['block']['block_advanced'] = array(
 
 $form['glazed_settings']['block']['block_advanced']['block_el'] = array(
   '#title' => t('Block Element'),
-  '#type' => 'fieldset',
+  '#type' => 'details',
   '#collapsible' => TRUE,
   '#collapsed' => TRUE,
 );
@@ -132,7 +132,7 @@ $form['glazed_settings']['block']['block_advanced']['block_el']['block_border_co
 
 $form['glazed_settings']['block']['block_advanced']['title_el'] = array(
   '#title' => t('Block Title Element'),
-  '#type' => 'fieldset',
+  '#type' => 'details',
   '#collapsible' => TRUE,
   '#collapsed' => TRUE,
 );
@@ -263,7 +263,7 @@ $form['glazed_settings']['block']['block_advanced']['title_el']['title_sticker']
 
 $form['glazed_settings']['block']['block_advanced']['divider_el'] = array(
   '#title' => t('Divider Element'),
-  '#type' => 'fieldset',
+  '#type' => 'details',
   '#collapsible' => TRUE,
   '#collapsed' => TRUE,
 );
@@ -356,7 +356,7 @@ $form['glazed_settings']['block']['block_advanced']['divider_el']['block_divider
 
 $form['glazed_settings']['block']['regions'] = array(
   '#title' => t('Choose Regions'),
-  '#type' => 'fieldset',
+  '#type' => 'details',
   '#collapsible' => TRUE,
   '#collapsed' => TRUE,
   '#description' => t('The custom block design only applies to selected regions.'),
@@ -383,49 +383,4 @@ $form['glazed_settings']['block']['regions']['block_design_regions'] = array(
     'footer' => t('Footer'),
   ),
 );
-
-function _glazed_block_preview() {
-  $block_well = theme_get_setting('block_well');
-  $title_well = theme_get_setting('title_well');
-  $output = <<<EOT
-<div class="blocks-preview">
-  <div class="region region-sidebar-second">
-    <section class="block block-tagclouds clearfix {$block_well}" id="block-tagclouds-2">
-      <div class="wrap-block-title"><h2 class="block-title {$title_well}">Tags in Tags</h2></div>
-      <hr class="block-hr">
-      <span class=
-      "tagclouds-term"><a class="tagclouds level1" href="#" title=
-      "">Business</a></span> <span class="tagclouds-term"><a class=
-      "tagclouds level6" href="#" title="">Inspiration</a></span>
-      <span class="tagclouds-term"><a class="tagclouds level3" href=
-      "#" title="">Oppurtunities</a></span> <span class=
-      "tagclouds-term"><a class="tagclouds level3" href="#" title=
-      "">Secrets</a></span> <span class="tagclouds-term"><a class=
-      "tagclouds level5" href="#" title="">Travel</a></span>
-    </section>
-    <section class="block block-views clearfix {$block_well}" id=
-    "block-views-cms-blog-cat-blog-categories">
-      <div class="wrap-block-title"><h2 class="block-title {$title_well}">Categories</h2></div>
-      <hr class="block-hr">
-      <div class=
-      "view view-cms-blog-cat view-id-cms_blog_cat view-display-id-blog_categories view-dom-id-414e72d6e00d6259852916a789bc63e5 ">
-      <div class="view-content">
-          <ul class="glazed-processed nav">
-            <li class="">
-              <a href="#">Business <span class=
-              "glazed-util-text-muted">(12)</span></a>
-            </li>
-            <li class="">
-              <a href="#">Lifestyle <span class=
-              "glazed-util-text-muted">(3)</span></a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </section>
-  </div>
-</div>
-EOT;
-  return $output;
-}
 

@@ -1,7 +1,7 @@
 <?php
 $form['glazed_settings']['typography'] = array(
   '#title' => t('Typography'),
-  '#type' => 'fieldset',
+  '#type' => 'details',
   '#weight' => 4,
   '#weight' => 15,
 );
@@ -51,7 +51,7 @@ $form['glazed_settings']['typography']['scale_factor'] = array(
 $form['glazed_settings']['typography']['advanced_type'] = array(
   '#title' => t('Advanced Type Controls'),
   '#description' => t('If you change the main contorls above these advanced controls are automatically generated and need might re-adjustment.'),
-  '#type' => 'fieldset',
+  '#type' => 'details',
   '#collapsible' => TRUE,
   '#collapsed' => TRUE,
 );
@@ -129,7 +129,7 @@ $form['glazed_settings']['typography']['advanced_type']['headings_uppercase'] = 
 
 $form['glazed_settings']['typography']['advanced_type']['mobile_type'] = array(
   '#title' => t('Mobile Type Controls'),
-  '#type' => 'fieldset',
+  '#type' => 'details',
   '#collapsible' => TRUE,
   '#collapsed' => TRUE,
 );
@@ -188,7 +188,7 @@ $form['glazed_settings']['typography']['advanced_type']['mobile_type']['blockquo
 
 $form['glazed_settings']['typography']['divider'] = array(
   '#title' => t('Divider'),
-  '#type' => 'fieldset',
+  '#type' => 'details',
   '#collapsible' => TRUE,
   '#collapsed' => TRUE,
   '#suffix' => _glazed_type_preview(),

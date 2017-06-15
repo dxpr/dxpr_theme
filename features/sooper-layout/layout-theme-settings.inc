@@ -2,7 +2,7 @@
 
 $form['glazed_settings']['layout'] = array(
   '#title' => t('Layout'),
-  '#type' => 'fieldset',
+  '#type' => 'details',
   '#weight' => 5,
 );
 
@@ -34,7 +34,7 @@ $form['glazed_settings']['layout']['boxed_layout_boxbg'] = array(
 
 $form['glazed_settings']['layout']['grid'] = array(
   '#title' => t('Grid Settings'),
-  '#type' => 'fieldset',
+  '#type' => 'details',
   '#collapsible' => TRUE,
   '#collapsed' => TRUE,
 );
@@ -91,7 +91,7 @@ $form['glazed_settings']['layout']['grid']['gutter_container'] = array(
 
 $form['glazed_settings']['layout']['mobile_layout'] = array(
   '#title' => t('Mobile view'),
-  '#type' => 'fieldset',
+  '#type' => 'details',
   '#collapsible' => TRUE,
   '#collapsed' => TRUE,
 );
@@ -99,7 +99,7 @@ $form['glazed_settings']['layout']['mobile_layout'] = array(
 
 $form['glazed_settings']['layout']['background'] = array(
   '#title' => t('Background Image'),
-  '#type' => 'fieldset',
+  '#type' => 'details',
   '#collapsible' => TRUE,
   '#collapsed' => TRUE,
 );
@@ -180,7 +180,7 @@ $form['glazed_settings']['layout']['mobile_layout']['gutter_container_mobile'] =
 
 $form['glazed_settings']['layout']['granular_boxed'] = array(
   '#title' => t('Full Width Regions and Content Types'),
-  '#type' => 'fieldset',
+  '#type' => 'details',
   '#collapsible' => TRUE,
   '#collapsed' => TRUE,
 );
@@ -230,7 +230,7 @@ foreach ($default_options as $key => $value) {
 
 $form['glazed_settings']['layout']['pagers'] = array(
   '#title' => t('Pagers'),
-  '#type' => 'fieldset',
+  '#type' => 'details',
   '#collapsible' => TRUE,
   '#collapsed' => TRUE,
 );

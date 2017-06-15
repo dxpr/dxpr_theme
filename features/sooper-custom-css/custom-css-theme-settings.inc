@@ -1,7 +1,7 @@
 <?php
 $form['glazed_settings']['custom_css'] = array(
   '#title' => t('Custom CSS & Javascript'),
-  '#type' => 'fieldset',
+  '#type' => 'details',
   '#description' => t("This CSS will be attached after the theme and allows you to customize your site without needing the additional complexity of a subtheme."),
   '#collapsible' => TRUE,
   '#collapsed' => TRUE,

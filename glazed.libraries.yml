@@ -11,3 +11,16 @@ global-styling:
     - core/jquery
     - core/jquery.once
     - core/modernizr
+
+# Admin interface , styling theme settings form
+# Depends on Glazed Helper module being installed
+admin:
+  js:
+    js/glazed-settings.admin.js: {}
+  css:
+    component:
+      css/glazed.admin.themesettings.css: {}
+  dependencies:
+    - core/jquery
+    - core/jquery.once
+    - core/jquery.ui.slider

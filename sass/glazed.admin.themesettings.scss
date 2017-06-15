@@ -32,6 +32,7 @@ $font_2: 'Arial';
 $font_3: 'sans-serif';
 
 
+
 #system-theme-settings {
   // Header
   * { box-sizing: border-box; }
@@ -44,7 +45,7 @@ $font_3: 'sans-serif';
       color: #a0acbe;
     }
   }
-  fieldset,
+  .form-wrapper,
   .tabs-left > .tab-content,
   .tabs-right > .tab-content,
   .nav-tabs,
@@ -56,16 +57,20 @@ $font_3: 'sans-serif';
   .tabs-left > .tab-content, .tabs-right > .tab-content {
 
   }
-  fieldset {
+  .form-wrapper {
     background: transparent;
     clear: both;
     border-left: 4px solid #dce2e5;
     border-radius: 0;
-    legend {
+    .panel-heading {
+      background: transparent;
+      border: none;
+    }
+    .panel-title {
       border: none;
       background: transparent;
       font-size: inherit;
-      .fieldset-legend {
+      .panel-title {
         outline: none;
         text-decoration: none;
         background: none;
@@ -96,6 +101,16 @@ $font_3: 'sans-serif';
   }
   .form-type-select::after {
     color: rgba(1, 176, 239, 0.2);
+  }
+  // selects fix
+  .form-item-field-settings-granularity {
+    .option.checkbox.control-label { float: left; margin-right: 2em; }
+    .help-block { clear: both; }
+  }
+  // Checkboxes bootstrap fix
+  .radio input[type="radio"], .radio-inline input[type="radio"], .checkbox input[type="checkbox"], .checkbox-inline input[type="checkbox"] {
+    margin-left: 0;
+    position: static;
   }
   .form-text,
   .form-type-select,
@@ -162,7 +177,7 @@ $font_3: 'sans-serif';
     height: 17px;
     margin-top: -1px;
   }
-  > div > h2 {
+  h2 {
     margin-bottom: 0;
     margin-top: 0;
   }
@@ -366,7 +381,7 @@ $font_3: 'sans-serif';
       label {
         width: 100%;
       }
-      fieldset {
+      .form-wrapper {
         clear: both;
       }
     }
@@ -434,5 +449,23 @@ $font_3: 'sans-serif';
     height: 400px;
     // overflow: auto;
     white-space: pre;
+  }
+}
+
+.type-preview {
+  background: #fefffe;
+  color: #55555;
+  clear: both;
+  h1, h2, h3, h4, h5, h6, .navbar-brand, th, .nav-tabs > li > a {
+    color: #333333;
+  }
+  .type-container {
+    padding: 40px 80px;
+  }
+  .type-title-container {
+    background: #01b0ef;
+    h1 {
+      color: #fffeff;
+    }
   }
 }
