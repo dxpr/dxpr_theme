@@ -7,11 +7,6 @@ body.admin-menu {
   }
 }
 
-body #admin-menu {
+body.toolbar-fixed .toolbar-oriented .toolbar-bar {
   z-index: 4500 !important;
 }
-
-#admin-menu .dropdown li li.expandable ul {
-  margin-top: -29px;
-}
-
