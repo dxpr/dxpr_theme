@@ -98,27 +98,32 @@ function _color_module_css_write($theme) {
  * So we put it in a file for optimal performance
  */
 function glazed_css_cache_build($theme) {
-  global $base_path, $base_theme_info;
-  $files_path = variable_get('file_public_path', conf_path() . '/files');
+  $glazed_css_file = 'public://glazed/css/themesettings-' . $theme . '.css';
+  $dir = 'public://glazed/css/';
+  $dir_writable = file_prepare_directory($dir, FILE_CREATE_DIRECTORY);
 
-  $glazed_css_file = $files_path . '/glazed-themesettings-' . $theme . '.css';
+  if (\Drupal::moduleHandler()->moduleExists('color')) {
+    $palette = color_get_palette($theme);
+  }
   //Construct CSS file:
   $CSS = '';
   // Load Sooper Features CSS
   foreach (file_scan_directory(drupal_get_path('theme', 'glazed') . '/features', '/css.inc/i') as $file) {
     require_once($file->uri);
   }
-
-  $fh = fopen($glazed_css_file, 'w');
-  if ($fh) {
-    fwrite($fh, $CSS); // write css to file
-    watchdog('Glazed', 'Glazed CSS file cache built for %theme', array('%theme' => $theme));
+  $file_object = \file_save_data($CSS, $glazed_css_file, FILE_EXISTS_REPLACE);
+  if ($dir_writable && !empty($file_object)) {
+    $message = t('Glazed CSS file cache built for %theme', array('%theme' => $theme));
+    drupal_set_message($message);
+    \Drupal::logger('glazed')->notice($message);
+    // watchdog('Glazed', 'Glazed CSS file cache built for %theme', array('%theme' => $theme));
   }
   else {
-    drupal_set_message(t('Cannot write theme-settings file, please check your file system. (See status report page)'), 'error');
+    $message = t('Cannot write theme-settings file, please check your file system. (See status report page)');
+    drupal_set_message($message, 'error');
+    \Drupal::logger('glazed')->error($message);
   }
 
-  fclose($fh);
   // If the CSS & JS aggregation are enabled we need to clear the caches
   drupal_clear_css_cache();
   drupal_clear_js_cache();
