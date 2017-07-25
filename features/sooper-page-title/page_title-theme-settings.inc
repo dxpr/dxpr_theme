@@ -3,6 +3,7 @@
 $form['glazed_settings']['page_title'] = array(
   '#title' => t('Page Title'),
   '#type' => 'details',
+  '#group' => 'glazed_settings',
   '#weight' => 10,
 );
 
@@ -54,7 +55,7 @@ $form['glazed_settings']['page_title']['page_title_animate'] = array(
     'fadeInDown' => t('Fade in down'),
     'fadeInUp' => t('Fade in up'),
   ),
-'#prefix' => '<br style="clear: both;"><br style="clear: both;">',
+'#prefix' => '<br class="clear-both"><br class="clear-both">',
   '#description' => t('Choose <a target="_blank" href="@animatecss">animate.css</a> appear animation', array('@drupal-handbook' => 'https://daneden.github.io/animate.css/')),
 );
 
@@ -67,20 +68,14 @@ $form['glazed_settings']['page_title']['background'] = array(
 
 // @see glazed_helper.module glazed_helper_settings_form_submit()
 $form['glazed_settings']['page_title']['background']['page_title_image'] = array(
-  '#type' => 'media',
-  '#theme' => 'media_widget', // required as of media 7.x-2.0-beta2
-  '#tree' => TRUE, // Required
+  '#type' => 'managed_file',
   '#title' => t('Default Background'),
   '#description' => t('The default page title image can also be changed per node, using the Header image field in the node form.'),
   '#default_value' => theme_get_setting('page_title_image'),
-  '#media_options' => array(
-    'global' => array(
-      'file_extensions' => 'gif png jpg jpeg', // File extensions
-      'max_filesize' => '100 MB',
-      'file_directory' => 'glazed-assets', // Will be a subdirectory of the files directory
-      'types' => array('image'), // Refers to a file_entity bundle (such as audio, video, image, etc.)
-    ),
-  ),
+  '#upload_location' =>'public://glazed/page-title-backgrounds',
+  '#upload_validators' => [
+    'file_validate_extensions' => ['gif png jpg jpeg svg'],
+  ],
 );
 
 $form['glazed_settings']['page_title']['background']['page_title_image_opacity'] = array(
