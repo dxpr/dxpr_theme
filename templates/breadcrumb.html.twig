@@ -9,7 +9,7 @@
  * @ingroup templates
  */
 #}
-{% if breadcrumb %}
+{% if breadcrumb and theme.settings.page_title_breadcrumbs %}
   <ol class="breadcrumb">
     {% for item in breadcrumb %}
       <li {{ item.attributes }}>
