@@ -77,41 +77,10 @@ Drupal.behaviors.glazed = {
         .once('glazed')
         .after(' <span class="glazed-breadcrumb-spacer">/</span> ');
 
-    // Comments
-    $('#comments .links a', context)
-        .once('glazed')
-        .addClass('btn-sm');
-
-    $('#comments .links .comment-reply a', context)
-        .once('glazed')
-        .addClass('btn-primary');
-
     // Sidebar nav blocks
     $('.region-sidebar-first .block .view ul, .region-sidebar-second .block .view ul', context)
         .once('glazed')
         .addClass('nav');
-
-    // Portfolio content
-
-    // Blog styling
-
-    // Events styling
-    $('.node-event [class^="field-event-"]', context)
-        .once('glazed').each(function() {
-          $(this).prev().andSelf().wrapAll('<div class="row">');
-        });
-
-    $('.node-event .field-label', context)
-        .once('glazed')
-        .addClass('col-sm-3');
-
-    $('.node-event [class^="field-event-"]', context)
-        .once('glazed')
-        .addClass('col-sm-9');
-
-    $('.node-event .field-event-location', context)
-        .once('glazed')
-        .wrapInner('<a href="https://maps.google.com/?q=' + $('.node-event .field-event-location').text() + '">');
   }
 };
 
