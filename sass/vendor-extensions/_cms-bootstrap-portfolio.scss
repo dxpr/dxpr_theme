@@ -2,6 +2,29 @@
 // Author: Jurriaan Roelofs for SooperThemes. Copyright SooperThemes.
 //
 
+// PORTFOLIO NODES
+
+.cms-portfolio-extra span.field-label {
+  float: left;
+  width: 35%;
+  clear: both;
+}
+.cms-portfolio-extra .inline {
+  float: right;
+  width: 64%;
+}
+
+.field-comparison-images,
+.field-portfolio-images img,
+.field-portfolio-images .image-field-caption {
+  margin-bottom: 30px;
+}
+
+.cms-portfolio-images .row img,
+.cms-portfolio-images .row .image-field-caption {
+  margin-bottom: 0;
+}
+
 // PORTFOLIO VIEWS
 .cms-portfolio-excerpt {
   .field-content {
@@ -71,9 +94,9 @@
 }
 
 .ilightbox:after {
-  content: '\F00E';
-  // content: attr(data-hover); can be used later to make this an option
-  font-family: FontAwesome;
+  content: ' ';
+  background: url('../images/fa5-search-plus-white.svg') no-repeat center center;
+  fill: white;
   font-size: 2em;
   color: #fff;
   opacity: 0;
@@ -89,9 +112,6 @@
   text-align: center;
   transform: scale3d(.5,.5,1);
   transition: all 0.2s;
-}
-
-.ilightbox:after {
 }
 
 .ilightbox:hover:after {
