@@ -1,12 +1,13 @@
 <?php
 $form['glazed_settings']['custom_css'] = array(
-  '#title' => t('Custom CSS & Javascript'),
+  '#title' => t('Custom CSS & JS'),
   '#type' => 'details',
+  '#group' => 'glazed_settings',
   '#description' => t("This CSS will be attached after the theme and allows you to customize your site without needing the additional complexity of a subtheme."),
   '#collapsible' => TRUE,
   '#collapsed' => TRUE,
    '#weight' => 4,
-  '#weight' => 50,
+  '#weight' => 30,
 );
 
 $form['glazed_settings']['custom_css']['custom_css_site'] = array(
