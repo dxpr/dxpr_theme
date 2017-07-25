@@ -57,7 +57,7 @@ $font_3: 'sans-serif';
   .tabs-left > .tab-content, .tabs-right > .tab-content {
 
   }
-  .form-wrapper {
+  div.form-wrapper {
     background: transparent;
     clear: both;
     border-left: 4px solid #dce2e5;
@@ -82,12 +82,20 @@ $font_3: 'sans-serif';
       }
     }
   }
-  label {
+  label,
+  legend {
     width: 200px;
     float: left;
     display: block;
     padding: 0;
     font-weight: 300;
+    border: none;
+    outline: none;
+    font-size: inherit;
+  }
+  .form-wrapper > legend {
+    width: auto;
+    float: none;
   }
   .form-item {
     clear: both;
@@ -114,7 +122,7 @@ $font_3: 'sans-serif';
   }
   .form-text,
   .form-type-select,
-  .form-radios,
+  .fieldset-wrapper,
   .slider,
   .bootstrap-switch {
     float: left;
@@ -247,7 +255,7 @@ $font_3: 'sans-serif';
       color: #354051;
     }
   }
-  .form-radios {
+  .form-type-radio {
     padding: 0 0 20px 0;
     input {
       display: none;
@@ -255,8 +263,8 @@ $font_3: 'sans-serif';
     label {
       width: auto;
     }
-    label.option,
-    span {
+    // label.option,
+    .glazed-label {
       font-weight: 300;
       padding: 5px 0;
       width: 400px;
@@ -365,7 +373,7 @@ $font_3: 'sans-serif';
     }
   }
   #edit-fonts {
-    .form-item {
+    .form-item:not(.form-wrapper) {
       float: left;
       clear: none;
       padding-right: 10px;
@@ -387,7 +395,7 @@ $font_3: 'sans-serif';
     }
   }
   #edit-typography {
-    .form-item {
+    .form-item:not(.form-wrapper) {
       float: left;
       clear: none;
       width: 33%;
@@ -429,6 +437,20 @@ $font_3: 'sans-serif';
     .bootstrap-switch .bootstrap-switch-label {
       background: #f0f0f0;
     }
+  }
+  .block-design-wrapper {
+    background: #fff;
+  }
+  .block-design-settings {
+    width: 50%;
+    float:left;
+    padding: 60px;
+    padding-right: 0
+  }
+  .block-preview {
+    width:50%;
+    float:left;
+    padding: 60px;
   }
   .form-item[class$="invoke"] .form-text {
     max-width: none;
