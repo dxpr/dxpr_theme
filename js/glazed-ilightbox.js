@@ -1,10 +1,27 @@
 (function ($, Drupal, window, document, undefined) {
   Drupal.behaviors.glazedIlightbox = {
     attach: function(context, settings) {
+      $('.cms-portfolio-project.node-images-grid .field--name-field-cms-page-image img').each(function( index ) {
+        $(this).once('cmsPortfolio-gallery').wrap('<a class="ilightbox" data-type="image" href="' + this.src + '">');
+      });
+      $('.cms-portfolio-project.node-images-grid .cms-portfolio-images')
+        .once('cmsPortfolio-gallery')
+        .wrapInner('<div class="row">')
+        .find('.field-comparison-images')
+        .addClass('col-sm-12');
+      $('.cms-portfolio-project.node-images-grid.node-details-top, .cms-portfolio-project.node-images-grid.node-details-bottom')
+        .once('cmsPortfolio-gallery')
+        .find('.field--name-field-cms-page-image .field--item')
+        .addClass('col-sm-3');
+      $('.cms-portfolio-project.node-images-grid.node-details-left, .cms-portfolio-project.node-images-grid.node-details-right')
+        .once('cmsPortfolio-gallery')
+        .find('.field--name-field-cms-page-image .field--item')
+        .addClass('col-sm-6');
+
       var counter = $('.ilightbox').length;
       var thumbs = true;
       var arrows = true;
-      $('.ilightbox').iLightBox({
+      $('.ilightbox', context).iLightBox({
         skin: 'metro-black',
         path: 'horizontal',
         // linkId: deeplink,
