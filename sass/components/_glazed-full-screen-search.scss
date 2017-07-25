@@ -13,8 +13,7 @@
     height: 100%;
     z-index: 99999;
     background-color: rgba(255,255,255,0.925);
-    -webkit-transition: top 0.3s ease;
-    transition: top 0.3s ease;
+    transition: top 0.3s ease-in-out;
     .full-screen-search-form-input {
       padding-bottom: 2em;
       font-size: 10px;
