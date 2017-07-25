@@ -24,7 +24,7 @@ $form['glazed_settings']['block']['block_preset'] = array(
     'hairline_divider' => t('Hairline Divider'),
     'custom' => t('Custom'),
   ),
-  '#prefix' => '<div class="block-design-wrapper clearfix" style="background: #ffffff;"><div class="block-design-settings" style="width: 50%;float:left;padding: 60px;padding-right: 0">',
+  '#prefix' => '<div class="block-design-wrapper clearfix"><div class="block-design-settings">',
 );
 
 $form['glazed_settings']['block']['block_advanced'] = array(
@@ -360,7 +360,7 @@ $form['glazed_settings']['block']['regions'] = array(
   '#collapsible' => TRUE,
   '#collapsed' => TRUE,
   '#description' => t('The custom block design only applies to selected regions.'),
-  '#suffix' => '</div><div class="block-preview" style="width:50%;float:left;padding: 60px;">' . _glazed_block_preview() . '</div>',
+  '#suffix' => '</div><div class="block-preview">' . _glazed_block_preview() . '</div>',
 );
 
 $form['glazed_settings']['block']['regions']['block_design_regions'] = array(
