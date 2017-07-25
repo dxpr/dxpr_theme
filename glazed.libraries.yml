@@ -1,8 +1,7 @@
 global-styling:
   css:
     theme:
-      css/glazed.css: {}
-      public://red.css: {}
+      css/glazed.css: { minified: true }
   js:
     js/vendor/classie.js: {}
     js/glazed-mobile-nav.js: {}
@@ -15,12 +14,38 @@ global-styling:
 # Admin interface , styling theme settings form
 # Depends on Glazed Helper module being installed
 admin:
+  css:
+    component:
+      css/glazed.admin.css: {}
+
+admin.themesettings:
   js:
+    js/vendor/bootstrap-switch/bootstrap-switch.min.js: {}
+    js/vendor/bootstrap-slider/bootstrap-slider.min.js: {}
     js/glazed-settings.admin.js: {}
   css:
     component:
+      js/vendor/bootstrap-switch/bootstrap-switch.min.css: {}
+      js/vendor/bootstrap-slider/bootstrap-slider.min.css: {}
       css/glazed.admin.themesettings.css: {}
   dependencies:
     - core/jquery
     - core/jquery.once
     - core/jquery.ui.slider
+
+ilightbox:
+  js:
+    js/vendor/ilightbox/js/ilightbox.min.js: {}
+    js/glazed-ilightbox.js: {}
+  css:
+    component:
+      js/vendor/ilightbox/css/ilightbox.css: {}
+  dependencies:
+    - core/jquery
+    - core/jquery.mousewheel
+    - core/jquery.requestAnimationFrame
+
+glazed-animatecss-custom:
+  css:
+    component:
+      js/vendor/animate.css/animate.min.css: { minified: true }
