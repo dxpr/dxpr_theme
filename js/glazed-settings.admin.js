@@ -4,34 +4,33 @@
   "use strict";
 
   $(window).on("load", function() {
-    // Re-call attachBehaviors, without this the states.js api doens't work on radios
-    Drupal.attachBehaviors('#system-theme-settings');
+      // moved this back up here because it was brakign states API changes on checkboxes
+      jQuery("[type='checkbox']").bootstrapSwitch();
 
     // remove color module locks, they are broken when bootstrap theme loads
-    // $('.lock, .hook').remove();
+    $('.color-palette__lock, .color-palette__hook').remove();
   });
 
-  Drupal.attachBehaviors('#system-theme-settings');
+  // Drupal.attachBehaviors('#system-theme-settings');
 
   /**
    * Provide vertical tab summaries for Bootstrap settings.
    */
   Drupal.behaviors.glazedSettingsControls = {
     attach: function (context) {
-      var $context = $(context);
 
       $('#system-theme-settings h2 > small').addClass('well form-header');
       var $input = '';
-      $('#system-theme-settings .form-type-radio .control-label').each( function() {
-        $(this).once('myslider', function() {
-          $input = $(this).find('input').remove();
-          $(this).wrapInner('<span>').prepend($input);
-        });
+      // jQuery once is not working..
+      $('#system-theme-settings .form-type-radio .control-label').not('glazedProcessed').each( function() {
+        $(this).addClass('glazedProcessed');
+        $input = $(this).find('input').remove();
+        $(this).wrapInner('<span class="glazed-label">').prepend($input);
       });
 
       function glazed_map_color (color) {
-        if (color in Drupal.settings.glazed.palette) {
-          color = Drupal.settings.glazed.palette[color];
+        if (color in drupalSettings.glazed.palette) {
+          color = drupalSettings.glazed.palette[color];
         }
         return color;
       }
@@ -41,13 +40,12 @@
       $.fn.bootstrapSwitch.defaults.onText = "On";
       $.fn.bootstrapSwitch.defaults.offText = "Off";
       $.fn.bootstrapSwitch.defaults.size = "small";
-      $.fn.bootstrapSwitch.defaults.onSwitchChange = function(event, state) { setTimeout(function(){ $('.slider + input').bootstrapSlider('relayout'); }, 10); };
-      $("[type='checkbox']").bootstrapSwitch();
+      $.fn.bootstrapSwitch.defaults.onSwitchChange = function(event, state) {
       // This patched up incompatibility with $ <1.10
       // https://github.com/nostalgiaz/bootstrap-switch/issues/474
-      $("[type='checkbox']").on('switchChange.bootstrapSwitch', function(event, state) {
         $(this).trigger('change');
-      });
+        setTimeout(function(){ $('.slider + input').bootstrapSlider('relayout'); }, 10);
+      };
 
       // BOOTSTRAP SLIDER CONFIG
 
@@ -776,108 +774,111 @@
 
   /**
    * Provide vertical tab summaries for Bootstrap settings.
+   *
+   * Since the number of settings categories has grown I decided to remove
+   * summaries as to lighten this navigation and clear it up.
    */
-  Drupal.behaviors.glazedSettingSummaries = {
-    attach: function (context) {
-      var $context = $(context);
+  // Drupal.behaviors.glazedSettingSummaries = {
+  //   attach: function (context) {
+  //     var $context = $(context);
 
-      // Page Title.
-      $context.find('#edit-page-title').drupalSetSummary(function () {
-        var summary = [];
+  //     // Page Title.
+  //     $context.find('#edit-page-title').drupalSetSummary(function () {
+  //       var summary = [];
 
-        var align = $context.find('input[name="page_title_align"]:checked');
-        if (align.val()) {
-          summary.push(Drupal.t('Align @align', {
-            '@align': align.find('+label').text()
-          }));
-        }
+  //       var align = $context.find('input[name="page_title_align"]:checked');
+  //       if (align.val()) {
+  //         summary.push(Drupal.t('Align @align', {
+  //           '@align': align.find('+label').text()
+  //         }));
+  //       }
 
-        var animate = $context.find('input[name="page_title_animate"]:checked');
-        if (animate.val()) {
-          summary.push(Drupal.t('@animate', {
-            '@animate': animate.find('+label').text()
-          }));
-        }
+  //       var animate = $context.find('input[name="page_title_animate"]:checked');
+  //       if (animate.val()) {
+  //         summary.push(Drupal.t('@animate', {
+  //           '@animate': animate.find('+label').text()
+  //         }));
+  //       }
 
-        if ($context.find(':input[name="page_title_breadcrumbs"]').is(':checked')) {
-          summary.push(Drupal.t('Crumbs'));
-        } else {
-          summary.push(Drupal.t('No Crumbs'));
-        }
-        return summary.join(', ');
+  //       if ($context.find(':input[name="page_title_breadcrumbs"]').is(':checked')) {
+  //         summary.push(Drupal.t('Crumbs'));
+  //       } else {
+  //         summary.push(Drupal.t('No Crumbs'));
+  //       }
+  //       return summary.join(', ');
 
-      });
+  //     });
 
-      // Menu.
-      $context.find('#edit-menu').drupalSetSummary(function () {
-        var summary = [];
+  //     // Menu.
+  //     $context.find('#edit-menu').drupalSetSummary(function () {
+  //       var summary = [];
 
-        var menu = $context.find('input[name="menu_type"]:checked');
-        if (menu.val()) {
-          summary.push(Drupal.t('@menu', {
-            '@menu': menu.find('+label').text()
-          }));
-        }
-        return summary.join(', ');
+  //       var menu = $context.find('input[name="menu_type"]:checked');
+  //       if (menu.val()) {
+  //         summary.push(Drupal.t('@menu', {
+  //           '@menu': menu.find('+label').text()
+  //         }));
+  //       }
+  //       return summary.join(', ');
 
-      });
+  //     });
 
-      // Colors.
-      $context.find('#color_scheme_form').drupalSetSummary(function () {
-        var summary = [];
+  //     // Colors.
+  //     $context.find('#color_scheme_form').drupalSetSummary(function () {
+  //       var summary = [];
 
-        var scheme = $context.find('select[name="scheme"] :selected');
-        if (scheme.val()) {
-          summary.push(Drupal.t('@scheme', {
-            '@scheme': scheme.text()
-          }));
-        }
-        return summary.join(', ');
+  //       var scheme = $context.find('select[name="scheme"] :selected');
+  //       if (scheme.val()) {
+  //         summary.push(Drupal.t('@scheme', {
+  //           '@scheme': scheme.text()
+  //         }));
+  //       }
+  //       return summary.join(', ');
 
-      });
+  //     });
 
-      // Layout.
-      $context.find('#edit-layout').drupalSetSummary(function () {
-        var summary = [];
+  //     // Layout.
+  //     $context.find('#edit-layout').drupalSetSummary(function () {
+  //       var summary = [];
 
-        var layoutWidth = $context.find('input[name="layout_max_width"]');
-        if (layoutWidth.length) {
-          summary.push(Drupal.t('@layoutWidth', {
-            '@layoutWidth': layoutWidth.val() + 'px'
-          }));
-        }
+  //       var layoutWidth = $context.find('input[name="layout_max_width"]');
+  //       if (layoutWidth.length) {
+  //         summary.push(Drupal.t('@layoutWidth', {
+  //           '@layoutWidth': layoutWidth.val() + 'px'
+  //         }));
+  //       }
 
-        return summary.join(', ');
+  //       return summary.join(', ');
 
-      });
+  //     });
 
-      // Header.
-      $context.find('#edit-header').drupalSetSummary(function () {
-        var summary = [];
+  //     // Header.
+  //     $context.find('#edit-header').drupalSetSummary(function () {
+  //       var summary = [];
 
-        if ($context.find(':input[name="header_position"]').is(':checked')) {
-          summary.push(Drupal.t('Side Header'));
-        } else {
-          summary.push(Drupal.t('Top Header'));
-        }
-        return summary.join(', ');
+  //       if ($context.find(':input[name="header_position"]').is(':checked')) {
+  //         summary.push(Drupal.t('Side Header'));
+  //       } else {
+  //         summary.push(Drupal.t('Top Header'));
+  //       }
+  //       return summary.join(', ');
 
-      });
+  //     });
 
-      // Typography.
-      $context.find('#edit-fonts').drupalSetSummary(function () {
-        var summary = [];
+  //     // Typography.
+  //     $context.find('#edit-fonts').drupalSetSummary(function () {
+  //       var summary = [];
 
-        var typography = $context.find('select[name="body_font_face"] :selected');
-        if (typography.val()) {
-          summary.push(Drupal.t('Base: @typography', {
-            '@typography': typography.text()
-          }));
-        }
-        return summary.join(', ');
+  //       var typography = $context.find('select[name="body_font_face"] :selected');
+  //       if (typography.val()) {
+  //         summary.push(Drupal.t('Base: @typography', {
+  //           '@typography': typography.text()
+  //         }));
+  //       }
+  //       return summary.join(', ');
 
-      });
-    }
-  };
+  //     });
+  //   }
+  // };
 
 })(jQuery, Drupal);
