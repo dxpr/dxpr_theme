@@ -26,15 +26,18 @@
   }
 
   // Layout helper classes
-  .glazed-util-clear-both {
+  .glazed-util-clear-both,
+  .clear-both {
     clear: both;
   }
 
-  .glazed-util-clear-left {
+  .glazed-util-clear-left,
+  .clear-left {
     clear: left;
   }
 
-  .glazed-util-clear-right {
+  .glazed-util-clear-right,
+  .clear-right {
     clear: right;
   }
 
