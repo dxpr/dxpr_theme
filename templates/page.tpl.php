@@ -78,7 +78,7 @@
 <?php print $boxed_cnt; ?>
 
 <?php if (!empty($secondary_nav) || !empty($page['secondary_header'])): ?>
-<header id="secondary-header" role="banner" class="<?php print $glazed_secondary_header_classes; ?>">
+<header id="secondary-header" role="banner" class="<?php print $glazed_secondary_header_classes; ?> clearfix">
   <div class="<?php print $cnt_secondary_header ?> secondary-header-container">
     <?php print $cnt_secondary_header_squeeze_start; ?>
         <?php if (!empty($page['secondary_header'])): ?>
