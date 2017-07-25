@@ -54,7 +54,7 @@ $form['glazed_settings']['page_title']['page_title_animate'] = array(
     'fadeInDown' => t('Fade in down'),
     'fadeInUp' => t('Fade in up'),
   ),
-'#prefix' => '<br style="clear: both;"><br style="clear: both;">',
+'#prefix' => '<br class="clear-both"><br class="clear-both">',
   '#description' => t('Choose <a target="_blank" href="@animatecss">animate.css</a> appear animation', array('@drupal-handbook' => 'https://daneden.github.io/animate.css/')),
 );
 
