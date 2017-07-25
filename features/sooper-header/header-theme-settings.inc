@@ -1,9 +1,9 @@
 <?php
 
-
 $form['glazed_settings']['header'] = array(
   '#title' => t('Header & Main Menu'),
   '#type' => 'details',
+  '#group' => 'glazed_settings',
   '#weight' => 10,
 );
 

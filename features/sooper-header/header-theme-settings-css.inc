@@ -1,14 +1,5 @@
 <?php
 
-if (module_exists('color')) {
-  module_load_include('module', 'color');
-  $theme_colors = color_get_palette($theme);
-  $base_color = $theme_colors['base'];
-}
-else {
-  $base_color = "#1488cb";
-}
-
  /**
  * Convert hexdec color string to rgb(a) string
  * http://mekshq.com/how-to-convert-hexadecimal-color-code-to-rgb-or-rgba-using-php/
@@ -99,25 +90,27 @@ else {
   $header_top_height = theme_get_setting('header_top_height', $theme);
   $header_top_height_scroll = theme_get_setting('header_top_height_scroll', $theme);
   $header_top_opacity = $header_top_opacity_scroll = 1;
-  if (isset($theme_colors) && !empty($theme_colors['header'])) {
-    $headerbg = $theme_colors['header'];
+  if (isset($palette) && !empty($palette['header'])) {
+    $headerbg = $palette['header'];
   }
   else {
     $headerbg = '#ffffff';
   }
-  $header_top_rgba = $header_top_scroll_rgba = $header_top_scroll_rgba = $theme_colors['header'];
+  $header_top_rgba = $header_top_scroll_rgba = $header_top_scroll_rgba = $palette['header'];
   if (theme_get_setting('header_top_sticky', $theme) && theme_get_setting('header_top_sticky_show', $theme) == 'after_scroll') {
       $header_top_opacity = 0;
   }
   if (theme_get_setting('header_style', $theme) == 'overlay') {
-    if (module_exists('color')) {
-      $color = $theme_colors['header'];
-      $opacity = theme_get_setting('header_top_bg_opacity', $theme);
-      $header_top_rgba = _glazed_hex2rgba($color, $opacity);
-      $color = $theme_colors['header'];
-      $opacity = theme_get_setting('header_top_bg_opacity_scroll', $theme);
-      $header_top_scroll_rgba = _glazed_hex2rgba($color, $opacity);
+    if ($palette) {
+      $color = $palette['header'];
     }
+    else {
+      $color = '#ffffff';
+    }
+    $opacity = theme_get_setting('header_top_bg_opacity', $theme);
+    $opacity_scroll = theme_get_setting('header_top_bg_opacity_scroll', $theme);
+    $header_top_rgba = _glazed_hex2rgba($color, $opacity);
+    $header_top_scroll_rgba = _glazed_hex2rgba($color, $opacity_scroll);
   }
   $CSS .= <<<EOT
 
@@ -164,9 +157,8 @@ EOT;
   elseif (theme_get_setting('header_top_fixed', $theme)) {
     // For fixed headers create small padding to prevent fixed header from hiding toolbars
     $CSS .= ".body--glazed-nav-desktop.body--glazed-header-fixed.body--glazed-header-not-overlay { padding-top: " . $header_top_height . "px !important }\n\n";
-    $CSS .= "html.js .body--glazed-nav-desktop.admin-menu.body--glazed-header-fixed.body--glazed-header-not-overlay { padding-top: " . ($header_top_height + 28) . "px !important }\n\n";
-    $CSS .= "  html.js .body--glazed-nav-desktop.toolbar.body--glazed-header-fixed.body--glazed-header-not-overlay { padding-top: " . ($header_top_height + 30) . "px !important }\n\n";
-    $CSS .= "  html.js .body--glazed-nav-desktop.toolbar-drawer.body--glazed-header-fixed.body--glazed-header-not-overlay { padding-top: " . ($header_top_height + 64) . "px !important }\n\n";
+    $CSS .= "  html.js .body--glazed-nav-desktop.toolbar-fixed.toolbar-horizontal.body--glazed-header-fixed.body--glazed-header-not-overlay { padding-top: " . ($header_top_height + 69) . "px !important }\n\n";
+    $CSS .= "  html.js .body--glazed-nav-desktop.toolbar-fixed.toolbar-horizontal.toolbar-tray-open.toolbar-horizontal.body--glazed-header-fixed.body--glazed-header-not-overlay { padding-top: " . ($header_top_height + 80) . "px !important }\n\n";
   }
 
   if (theme_get_setting('header_style', $theme) == 'navbar_pull_down') {
