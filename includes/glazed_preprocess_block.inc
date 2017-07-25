@@ -16,8 +16,7 @@ function glazed_preprocess_block(&$vars) {
       $vars['title_prefix']['wrap_1']['#markup'] = '<div class="wrap-block-title">';
       $vars['title_suffix']['wrap_2']['#markup'] = '</div>';
     }
-    if ((theme_get_setting('block_preset'))
-      && (theme_get_setting('block_divider'))
+    if ((theme_get_setting('block_divider'))
       && (theme_get_setting('block_divider_thickness'))) {
       $vars['title_suffix']['hr']['#markup'] = '<hr class="block-hr">';
     }
