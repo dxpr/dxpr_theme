@@ -6,7 +6,7 @@ if (module_exists('color')) {
   $base_color = $theme_colors['base'];
 }
 else {
-  $base_color = "#1488cb";
+  $base_color = "#01b0ef";
 }
 
  /**
