@@ -60,6 +60,7 @@ function glazed_preprocess_page(&$vars) {
     'cnt_header_nav' => 0,
     'cnt_page_title' => 0,
     'cnt_content_top' => 0,
+    'cnt_content' => 0,
     'cnt_content_bottom' => 0,
   );
   if (isset($content_design) && ($content_design['field_full_width_header'] == 'fullwidth')) {
@@ -93,13 +94,11 @@ function glazed_preprocess_page(&$vars) {
 
   $vars['content_row_class'] = ' class="row"';
   $vars['content_container_class'] = ' class="container main-container"';
-  if ((isset($vars['node'])
+  if (($fwc['cnt_content'] == 1)
+      OR (isset($vars['node'])
       && (((array_key_exists($vars['node']->type, $types))
       && ($types[$vars['node']->type]))
-      OR (isset($content_design) && ($content_design['field_glazed_content_region'] == 'glazed-util-full-width-content'))))
-    && (arg(2) != 'edit')
-    && empty($vars['page']['sidebar_first'])
-    && empty($vars['page']['sidebar_second'])) {
+      OR (isset($content_design) && ($content_design['field_glazed_content_region'] == 'glazed-util-full-width-content'))))) {
     $vars['content_column_class'] = '';
     $vars['content_row_class'] = '';
     $vars['content_container_class'] = ' class="main-container"';
@@ -117,7 +116,7 @@ function glazed_preprocess_page(&$vars) {
       case 'glazed-util-content-center-4-col':
         $vars['content_column_class'] = ' class="col-md-4 col-md-offset-4"';
         break;
-      case 'glazed-util-content-center-4-col':
+      case 'glazed-util-content-center-6-col':
         $vars['content_column_class'] = ' class="col-md-6 col-md-offset-3"';
         break;
       case 'glazed-util-content-center-8-col':
@@ -147,7 +146,7 @@ function glazed_preprocess_page(&$vars) {
     $header_mode = $content_design['field_glazed_header_mode'];
   }
   else {
-    if (theme_get_setting('header_mode')) {
+    if (theme_get_setting('header_position')) {
       $header_mode = 'side';
     }
     else {
