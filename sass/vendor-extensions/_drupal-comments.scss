@@ -4,8 +4,11 @@
 
 // Using comment patch https: //www.drupal.org/files/bootstrap-use-media-object-as-comments-2109369-6.patch
 
-#comments {
+.comment {
   clear: both;
+  border: 3px solid $gray-lighter;
+  padding: 25px;
+  margin-bottom: 25px*1.618;
   .user-picture a {
     display: block;
     width: 64px;
@@ -33,6 +36,7 @@
     float: right;
     margin: 15px 0;
     clear: both;
+    font-size: $font-size-small;
   }
   .comment,
   #comment-form {
