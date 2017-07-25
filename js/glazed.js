@@ -77,14 +77,6 @@ Drupal.behaviors.glazed = {
         .once('glazed')
         .after(' <span class="glazed-breadcrumb-spacer">/</span> ');
 
-    // Comments
-    $('#comments .links a', context)
-        .once('glazed')
-        .addClass('btn-sm');
-
-    $('#comments .links .comment-reply a', context)
-        .once('glazed')
-        .addClass('btn-primary');
 
     // Sidebar nav blocks
     $('.region-sidebar-first .block .view ul, .region-sidebar-second .block .view ul', context)
