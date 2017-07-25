@@ -1,29 +1,19 @@
 //
 // Author: Jurriaan Roelofs for SooperThemes. Copyright SooperThemes.
 //
-.node-event {
+.cms-event {
 	.content > img {
 		margin-bottom: 30px;
 	}
 	.top-fields {
-		h3.field-label {
-			font-size: $font-size-base;
-			font-weight: bold;
-		}
 		.row {
 			margin-bottom: 0;
 			padding: 0;
 		}
-		h3, [class^="field-event-"] {
-			line-height: 1.6em;
+		.field--item, .field--label {
 			padding-top: 0.3em;
 			padding-bottom: 0.3em;
 			margin:0;
-		}
-		[class^="field-event-"] {
-			a {
-				color: $primary;
-			}
 		}
 	}
 }
