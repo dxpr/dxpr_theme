@@ -17,7 +17,14 @@
  */
 #}
 {{ title_prefix }}
-{% if title and not (theme.settings.page_title_home_hide and is_front) %}
-  <h1{{ title_attributes.addClass('page-title') }}>{{ title }}</h1>
+{% if title %}
+  {%
+    set page_title_classes = [
+      'page-title',
+      theme.settings.page_title_animate ? 'animated',
+      theme.settings.page_title_animate ? theme.settings.page_title_animate,
+    ]
+  %}
+  <h1{{ title_attributes.addClass(page_title_classes) }}>{{ title }}</h1>
 {% endif %}
 {{ title_suffix }}
