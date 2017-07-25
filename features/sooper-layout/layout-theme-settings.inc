@@ -195,6 +195,7 @@ $form['glazed_settings']['layout']['granular_boxed']['full_width_containers'] = 
       'cnt_header_nav' => t('Header / Navigation'),
       'cnt_page_title' => t('Page Title'),
       'cnt_content_top' => t('Content Top'),
+      'cnt_content' => t('Content'),
       'cnt_content_bottom' => t('Content Bottom'),
       'cnt_footer' => t('Footer'),
     ),
