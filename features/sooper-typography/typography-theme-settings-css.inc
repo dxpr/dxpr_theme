@@ -1,7 +1,5 @@
 <?php
 
-$palette = theme_get_setting('palette', $theme);
-
 $CSS .= "body, p, .lead { line-height:  " . theme_get_setting('body_line_height', $theme) . " } \n";
 $CSS .= "body { font-size:  " . theme_get_setting('body_font_size', $theme) . "px } \n";
 if (theme_get_setting('menu_type', $theme) != 'lead') {

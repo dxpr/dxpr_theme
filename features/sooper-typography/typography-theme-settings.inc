@@ -2,6 +2,7 @@
 $form['glazed_settings']['typography'] = array(
   '#title' => t('Typography'),
   '#type' => 'details',
+  '#group' => 'glazed_settings',
   '#weight' => 4,
   '#weight' => 15,
 );
@@ -241,3 +242,4 @@ $form['glazed_settings']['typography']['divider']['divider_color_custom'] = arra
     ),
   ),
 );
+
