@@ -3,6 +3,7 @@
 $form['glazed_settings']['layout'] = array(
   '#title' => t('Layout'),
   '#type' => 'details',
+  '#group' => 'glazed_settings',
   '#weight' => 5,
 );
 
@@ -89,13 +90,6 @@ $form['glazed_settings']['layout']['grid']['gutter_container'] = array(
   '#description' => t('Default is 60px.'),
 );
 
-$form['glazed_settings']['layout']['mobile_layout'] = array(
-  '#title' => t('Mobile view'),
-  '#type' => 'details',
-  '#collapsible' => TRUE,
-  '#collapsed' => TRUE,
-);
-
 
 $form['glazed_settings']['layout']['background'] = array(
   '#title' => t('Background Image'),
@@ -106,20 +100,14 @@ $form['glazed_settings']['layout']['background'] = array(
 
 // @see glazed_helper.module glazed_helper_settings_form_submit()
 $form['glazed_settings']['layout']['background']['background_image'] = array(
-  '#type' => 'media',
-  '#theme' => 'media_widget', // required as of media 7.x-2.0-beta2
-  '#tree' => TRUE, // Required
+  '#default_value' => theme_get_setting('background_image'),
+  '#type' => 'managed_file',
   '#title' => t('Body Background'),
   '#description' => t('The default page title image can also be changed per node, using the Body image field in the node form.'),
-  '#default_value' => theme_get_setting('background_image'),
-  '#media_options' => array(
-    'global' => array(
-      'file_extensions' => 'gif png jpg jpeg', // File extensions
-      'max_filesize' => '100 MB',
-      'file_directory' => 'glazed-assets', // Will be a subdirectory of the files directory
-      'types' => array('image'), // Refers to a file_entity bundle (such as audio, video, image, etc.)
-    ),
-  ),
+  '#upload_location' =>'public://glazed/body-backgrounds',
+  '#upload_validators' => [
+    'file_validate_extensions' => ['gif png jpg jpeg svg'],
+  ],
 );
 
 $form['glazed_settings']['layout']['background']['background_image_style'] = array(
@@ -150,6 +138,13 @@ $form['glazed_settings']['layout']['background']['background_image_position'] = 
   ),
 );
 
+
+$form['glazed_settings']['layout']['mobile_layout'] = array(
+  '#title' => t('Mobile view'),
+  '#type' => 'details',
+  '#collapsible' => TRUE,
+  '#collapsed' => TRUE,
+);
 
 $form['glazed_settings']['layout']['mobile_layout']['gutter_horizontal_mobile'] = array(
   '#type' => 'textfield',
@@ -196,6 +191,7 @@ $form['glazed_settings']['layout']['granular_boxed']['full_width_containers'] = 
       'cnt_header_nav' => t('Header / Navigation'),
       'cnt_page_title' => t('Page Title'),
       'cnt_content_top' => t('Content Top'),
+      'cnt_content' => t('Content'),
       'cnt_content_bottom' => t('Content Bottom'),
       'cnt_footer' => t('Footer'),
     ),
@@ -228,17 +224,32 @@ foreach ($default_options as $key => $value) {
   }
 }
 
-$form['glazed_settings']['layout']['pagers'] = array(
-  '#title' => t('Pagers'),
+$form['glazed_settings']['layout']['hide_regions'] = array(
+  '#title' => t('Hide Regions'),
   '#type' => 'details',
   '#collapsible' => TRUE,
   '#collapsed' => TRUE,
 );
 
-$form['glazed_settings']['layout']['pagers']['prevnext_content_types'] = array(
+$form['glazed_settings']['layout']['hide_regions']['hidden_regions'] = array(
     '#type' => 'checkboxes',
-    '#title' => t('Previous / Next pager'),
-    '#description' => t('Nodes in this content type will get previous/next links at the bottom.'),
-    '#default_value' => ((theme_get_setting('prevnext_content_types') !== null)) ? theme_get_setting('prevnext_content_types') : $default_options,
-    '#options' => _glazed_node_types_options(),
+    '#multiple' => TRUE,
+    '#title' => t('Hide Regions'),
+    '#description' => t('Globally disables regions.'),
+    '#default_value' => ((theme_get_setting('hidden_regions') !== null)) ? theme_get_setting('hidden_regions') : array(),
+    '#options' => array(
+      'navigation' => t('Navigation (branding)'),
+      'navigation_collapsible' => t('Navigation Collapsible (menu)'),
+      'secondary_header' => t('Secondary Header'),
+      'page_title' => t('Page Title'),
+      'highlighted' => t('Hero Region'),
+      'header' => t('Header'),
+      'content_top' => t('Content Top'),
+      'content' => t('Content'),
+      'content_bottom' => t('Content Bottom'),
+      'sidebar_first' => t('Primary'),
+      'sidebar_second' => t('Secondary'),
+      'footer' => t('Footer'),
+
+    ),
 );
