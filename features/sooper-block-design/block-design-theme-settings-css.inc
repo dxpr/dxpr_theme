@@ -1,7 +1,6 @@
 <?php
 
 if ((theme_get_setting('block_preset')) && ($regions = array_filter(theme_get_setting('block_design_regions')))) {
-  $palette = theme_get_setting('palette', $theme);
   // Block Styling
   $border_width = theme_get_setting('block_border', $theme);
   ($border_width) ? $border_style = 'solid' : $border_style = 'none';
@@ -15,7 +14,6 @@ $selector {
   border-radius: {$border_radius}px;
 
 EOT;
-
   if ($value = theme_get_setting('block_padding', $theme)) {
     $CSS .= "  padding:  {$value}px; \n";
   }
