@@ -60,8 +60,8 @@ function glazed_form_system_theme_settings_alter(&$form, &$form_state) {
 
   if ($GLOBALS['theme'] == 'seven') {
     drupal_set_message(t('Install the Glazed Theme Tools helper module to have a better theme settings experience'), 'warning');
-    drupal_add_css('https://cdn.jsdelivr.net/bootstrap/3.3.6/css/bootstrap.min.css', 'external');
-    drupal_add_js('https://cdn.jsdelivr.net/bootstrap/3.3.6/js/bootstrap.min.js', 'external');
+    drupal_add_css('https://cdn.jsdelivr.net/bootstrap/3.3.7/css/bootstrap.min.css', 'external');
+    drupal_add_js('https://cdn.jsdelivr.net/bootstrap/3.3.7/js/bootstrap.min.js', 'external');
     drupal_add_css('html body { font-size: 14px; }', 'inline');
   }
 
@@ -88,7 +88,7 @@ function glazed_form_system_theme_settings_alter(&$form, &$form_state) {
   // $header  = '<div class="settings-header">';
   // $header .= '  <h2>' . ucfirst($subject_theme) . ' ' . $themes[$subject_theme]->info['version'] . ' <span class="lead">(Bootstrap ' . $themes['bootstrap']->info['version'] . ')</span></h2>';
   // $header .= '</div>';
-  $img = '<img style="width:35px;margin-right:5px;" src="' . $base_path . $glazed_theme_path . 'logo-white.png" />';
+  $img = '<img  class="theme-settings-logo" src="' . $base_path . $glazed_theme_path . 'logo-white.png" />';
   $form['glazed_settings'] = array(
     '#type' => 'vertical_tabs',
     '#weight' => -20,
