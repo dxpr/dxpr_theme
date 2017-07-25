@@ -59,11 +59,15 @@
     theme.settings.navbar_position ? 'navbar-is-' ~ theme.settings.navbar_position,
     theme.has_glyphicons ? 'has-glyphicons',
     theme.settings.header_position ? 'body--glazed-header-side' : 'body--glazed-header-top',
-    not theme.settings.header_position and not theme.settings.header_style == 'overlay' ? 'body--glazed-header-not-overlay',
-    not theme.settings.header_position and not theme.settings.header_style == 'overlay' ? 'body--glazed-header-' ~ theme.settings.header_style,
+    not theme.settings.header_position and theme.settings.header_style != 'overlay' ? 'body--glazed-header-not-overlay',
+    not theme.settings.header_position ? 'body--glazed-header-' ~ theme.settings.header_style|clean_class,
     not theme.settings.header_position and not theme.settings.header_top_sticky and theme.settings.header_top_fixed ? 'body--glazed-header-fixed',
   ]
 %}
+{% if node.field_glazed_body_background %}
+  {% set style = 'background-image:url(' ~ file_url(node.field_glazed_body_background.entity.getFileUri) ~ ');' %}
+  {% set attributes = attributes.setAttribute('style', style) %}
+{% endif %}
 <!DOCTYPE html>
 <html {{ html_attributes.addClass(html_classes) }}>
   <head>

@@ -2,7 +2,7 @@
 // Fix bootstrap basetheme overrides.css thingy
 // @see layout-theme-settings-css.inc
 .html .navbar.container {
-  max-width: 1170px;
+  max-width: 1600px;
 }
 .body--glazed-nav-desktop {
   // extra z-indexing for pull-down header that needs to cover slider
@@ -150,19 +150,7 @@
     }
   }
 }
-.body--glazed-nav-desktop {
-  .tb-megamenu-column {
-    padding-left: 0;
-    padding-right: 0;
-    &:first-child {
-      border-left: none;
-    }
-  }
-}
 
-body.body--glazed-header-fixed.body--glazed-header-not-overlay {
-  padding-top: 100px;
-}
 
 // MENU BORDER HOVER EFFECT
 #navbar.glazed-header--hover-background .menu {

@@ -1,5 +1,8 @@
 .body--glazed-nav-desktop {
   // Glazed Top Header
+  &.body--glazed-header-fixed.body--glazed-header-not-overlay {
+    padding-top: 100px;
+  }
   .glazed-header--top {
     width: 100%;
     .glazed-main-menu {
@@ -190,54 +193,25 @@
 
 // Toolbar fixes
 html.js .body--glazed-nav-desktop {
-  &.admin-menu {
-    margin-top: 0!important;
-    padding-top: 20px!important;
+  &.toolbar-fixed.toolbar-horizontal .glazed-header--top.glazed-header--overlay {
+    top: 69px;
   }
-  &.admin-menu-toolbar {
-    margin-top: 0!important;
-    padding-top: 28px!important;
+  &.toolbar-fixed.toolbar-horizontal.toolbar-tray-open.toolbar-horizontal .glazed-header--top.glazed-header--overlay {
+    top: 110px;
   }
-  &.admin-menu .glazed-header--top.glazed-header--overlay {
-    top: 50px!important;
+  &.toolbar-fixed.toolbar-horizontal .glazed-header--top.glazed-header--fixed,
+  &.toolbar-fixed.toolbar-horizontal .glazed-header--top.affix {
+    top: 39px!important;
   }
-  &.admin-menu-toolbar .glazed-header--top.glazed-header--overlay {
-    top: 58px!important;
-  }
-  &.toolbar .glazed-header--top.glazed-header--overlay {
-    top: 60px!important;
-  }
-  &.toolbar-drawer .glazed-header--top.glazed-header--overlay {
-    top: 94px!important;
+  &.toolbar-fixed.toolbar-horizontal.toolbar-tray-open.toolbar-horizontal .glazed-header--top.glazed-header--fixed,
+  &.toolbar-fixed.toolbar-horizontal.toolbar-tray-open.toolbar-horizontal .glazed-header--top.affix {
+    top: 80px!important;
   }
 
-  &.admin-menu .glazed-header--top.glazed-header--fixed,
-  &.admin-menu .glazed-header--top.affix {
-    top: 20px!important;
+  &.body--glazed-header-fixed.toolbar-fixed.toolbar-horizontal.toolbar-tray-open.toolbar-horizontal.body--glazed-header-not-overlay {
+    padding-top: 180px!important;
   }
-  &.admin-menu-toolbar .glazed-header--top.glazed-header--fixed,
-  &.admin-menu-toolbar .glazed-header--top.affix {
-    top: 28px!important;
-  }
-  &.toolbar .glazed-header--top.glazed-header--fixed,
-  &.toolbar .glazed-header--top.affix {
-    top: 30px!important;
-  }
-  &.toolbar-drawer .glazed-header--top.glazed-header--fixed,
-  &.toolbar-drawer .glazed-header--top.affix {
-    top: 64px!important;
-  }
-
-  &.admin-menu.body--glazed-header-fixed.body--glazed-header-not-overlay {
-    padding-top: 120px!important;
-  }
-  &.admin-menu-toolbar.body--glazed-header-fixed.body--glazed-header-not-overlay {
-    padding-top: 128px!important;
-  }
-  &.toolbar.body--glazed-header-fixed.body--glazed-header-not-overlay {
-    padding-top: 130px!important;
-  }
-  &.toolbar-drawer.body--glazed-header-fixed.body--glazed-header-not-overlay {
-    padding-top: 164px!important;
+  &.body--glazed-header-fixed.toolbar-fixed.toolbar-horizontal.body--glazed-header-not-overlay {
+    padding-top: 139px!important;
   }
 }
