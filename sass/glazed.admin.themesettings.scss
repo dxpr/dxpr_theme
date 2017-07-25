@@ -35,6 +35,7 @@ $font_3: 'sans-serif';
 #system-theme-settings {
   // Header
   * { box-sizing: border-box; }
+
   .settings-header {
     padding: 30px;
     margin-bottom: 0;
@@ -43,6 +44,10 @@ $font_3: 'sans-serif';
     h2, h3, a {
       color: #a0acbe;
     }
+  }
+  .theme-settings-logo {
+    width:35px;
+    margin-right:5px;
   }
   fieldset,
   .tabs-left > .tab-content,
@@ -241,7 +246,7 @@ $font_3: 'sans-serif';
       width: auto;
     }
     label.option,
-    span {
+    span.glazed-label {
       font-weight: 300;
       padding: 5px 0;
       width: 400px;
@@ -414,6 +419,20 @@ $font_3: 'sans-serif';
     .bootstrap-switch .bootstrap-switch-label {
       background: #f0f0f0;
     }
+  }
+  .block-design-wrapper {
+    background: #fff;
+  }
+  .block-design-settings {
+    width: 50%;
+    float:left;
+    padding: 60px;
+    padding-right: 0
+  }
+  .block-preview {
+    width:50%;
+    float:left;
+    padding: 60px;
   }
   .form-item[class$="invoke"] .form-text {
     max-width: none;
