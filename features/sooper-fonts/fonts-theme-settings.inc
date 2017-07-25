@@ -20,6 +20,7 @@ $font_count = count($font_list, COUNT_RECURSIVE);
 $form['glazed_settings']['fonts'] = array(
   '#title' => t('Fonts'),
   '#type' => 'details',
+  '#group' => 'glazed_settings',
   '#collapsible' => TRUE,
   '#collapsed' => TRUE,
    '#weight' => 4,
@@ -32,7 +33,7 @@ $form['glazed_settings']['fonts']['body_font_face'] = array(
   '#title' => t('Base font'),
   '#default_value' =>  theme_get_setting('body_font_face'),
   '#options' => $font_list,
-  '#prefix'        => '<p>' . t('You can select web fonts, local fonts or google fonts. All fonts are functional in all commonly used browsers. Local fonts are included in the theme and loaded with @font-face CSS. Google fonts are hosted and delivered by Google using @font-face CSS via google\'s cdn.') . '</p>',
+  '#prefix'        => '<p>' . t('Choose from @count webfonts', ['@count' => $font_count]) . '</p>',
 );
 
 $form['glazed_settings']['fonts']['body_font_face_selector'] = array(
@@ -51,7 +52,7 @@ $form['glazed_settings']['fonts']['headings_font_face'] = array(
 $form['glazed_settings']['fonts']['headings_font_face_selector'] = array(
   '#type' => 'textfield',
   '#title' => '&nbsp;',
-  '#default_value' => ((theme_get_setting('headings_font_face_selector') !== null)) ? theme_get_setting('headings_font_face_selector') : 'h1,h2,h3,h4,h5,h6,label,.field-label,.page-title, .html .tp-caption',
+  '#default_value' => ((theme_get_setting('headings_font_face_selector') !== null)) ? theme_get_setting('headings_font_face_selector') : 'h1,h2,h3,h4,h5,h6,label,.field--label,.page-title, .html .tp-caption',
 );
 
 $form['glazed_settings']['fonts']['nav_font_face'] = array(
@@ -98,7 +99,7 @@ $form['glazed_settings']['fonts']['font_preview'] = array(
   '#type' => 'details',
   '#collapsible' => TRUE,
   '#collapsed' => TRUE,
-  '#prefix' => '<br style="clear: both;"><br style="clear: both;">',
+  '#prefix' => '<br class="clear-both"><br class="clear-both">',
   '#suffix' => _glazed_type_preview(),
 );
 
@@ -108,3 +109,93 @@ $form['glazed_settings']['fonts']['font_preview']['preview'] = array(
 );
 
 
+/**
+ * Helper function to get list of locally hosted fonts
+ */
+function glazed_local_webfonts() {
+  global $base_path, $base_url;
+  $theme_chain = array('glazed');
+  $fonts = array();
+  foreach ($theme_chain as $theme) {
+    foreach (file_scan_directory(drupal_get_path('theme', $theme) . '/fonts', '/.css/i') as $file) {
+      $font_path = str_replace(drupal_get_path('theme', $theme), '', $file->uri);
+      $css = file_get_contents($file->uri);
+      if ($css) {
+        preg_match_all('/\'(.*?).svg#(.*?)\'/i', $css, $matches);
+      }
+      else {
+        drupal_set_message(t('Cannot read font files, please check permissions on the fonts folder in the theme.'), 'error');
+      }
+      foreach ($matches[2] as $font) {
+        $key = '1' . $theme . '|' . $font_path . '|' . $font;
+        $fonts[$key] = preg_replace('/(?<!\ ) {A-Z]/', ' $0', $font);
+      }
+    }
+  }
+
+  asort($fonts, SORT_STRING);
+  return $fonts;
+}
+
+/**
+ * Helper function to provide a list of fonts for select list in theme settings.
+ */
+function glazed_font_list() {
+  $fonts = array(
+    'Sans-serif web-safe' => array(
+      'helvetica' => 'Helvetica/Arial',
+      'myriad' => 'Myriad/Calibri',
+      'verdana' => 'Verdana',
+      'lucida' => 'Lucida Sans',
+      'geneva' => 'Geneva',
+      'tahoma' => 'Tahoma',
+      'trebuchet' => 'Trebuchet',
+      'century' => 'Century Gothic',
+    ),
+    'Serif web-safe' => array(
+      'garamond' => 'Garamond',
+      'georgia' => 'Georgia',
+      'palatino' => 'Palatino Linotype',
+      'times' => 'Times New Roman',
+    ),
+  );
+  $fonts['Local webfonts'] = glazed_local_webfonts();
+  $fonts['Google webfonts'] = glazed_google_webfonts();
+
+  return $fonts;
+}
+
+/**
+ * Helper function to get list of google web fonts
+ *
+ * Source: https://raw.githubusercontent.com/jonathantneal/google-fonts-complete/master/api-response.json
+ */
+function glazed_google_webfonts() {
+  $json_webfonts = file_get_contents(dirname(__FILE__) . '/google-webfonts.json');
+  $webfonts = json_decode($json_webfonts);
+  $fonts = array();
+  foreach ($webfonts as $font_family) {
+    $fam_name = $font_family->family;
+    foreach ($font_family->variants as $font) {
+      if ($font == 'regular') $font = '';
+      $font_name = $fam_name . ' ' . $font;
+      $font_name_safe = str_replace(' ', '+', $fam_name) . ':' . $font;
+      $font_name_key = '0' . $font_name_safe;
+      $fonts[$font_name_key] = $font_name;
+    }
+  }
+  return $fonts;
+}
+
+/**
+ * Helper function to display font previews in the settings form
+ */
+function _glazed_font_previews() {
+  $output = '<div class="fonts-previews">';
+  $output .= '  <h3>Google fonts preview</h3>';
+  $output .= '  <p>Check out <a href="http://www.google.com/webfonts">google.com/webfonts</a> for previews of google web fonts.</p>';
+  $output .= '  <h3>Local fonts note</h3>';
+  $output .= '  <p>Glazed will automatically detect and load any Fontsquirrel-generated @font-face package in the exmapletheme/fonts folder. See <a href="https://www.fontsquirrel.com/tools/webfont-generator">Fontsquirrel.com</a></p>';
+  $output .= '</div>';
+  return $output;
+}

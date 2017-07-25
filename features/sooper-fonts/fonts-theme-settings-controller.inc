@@ -16,17 +16,17 @@ foreach ($glazed_fonts as $glazed_font) {
     if (substr($glazed_font, -1) == ':') {
       $glazed_font .= '400italic,700italic,400,700';
     }
-    _glazed_add_goog_font($glazed_font);
+    _glazed_add_goog_font($glazed_font, $variables);
   }
   elseif (isset($glazed_font[0]) && $glazed_font[0] === '1') {
-    _glazed_add_local_font($glazed_font);
+    _glazed_add_local_font($glazed_font, $variables);
   }
 }
 
 /**
  * Helper function to add google fonts to the page
  */
-function _glazed_add_goog_font($font) {
+function _glazed_add_goog_font($font, &$variables) {
   $font = substr($font, 1);
   $element = array(
     '#tag' => 'link',
@@ -36,26 +36,24 @@ function _glazed_add_goog_font($font) {
       'type' => 'text/css',
     ),
   );
-  drupal_add_html_head($element, $font);
-  return;
+  $variables['#attached']['html_head'][] = [$element, $font];
 }
 
 /**
  * Helper function to add local fonts to the page. Add query string to stylesheet to prevent
  * identically named files to overwrite eachother.
  */
-function _glazed_add_local_font($font) {
-  global $base_url, $base_path;
+function _glazed_add_local_font($font, &$variables) {
+  global $base_url;
 
   $font = explode('|', substr($font, 1));
   $element = array(
     '#tag' => 'link',
     '#attributes' => array(
-      'href' => $base_path . drupal_get_path('theme', $font[0]) . $font[1],
+      'href' => $base_url . '/' . drupal_get_path('theme', $font[0]) . $font[1],
       'rel' => 'stylesheet',
       'type' => 'text/css',
     ),
   );
-  drupal_add_html_head($element, $font[2]);
-  return;
+  $variables['#attached']['html_head'][] = [$element, $font[2]];
 }
