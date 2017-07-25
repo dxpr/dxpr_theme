@@ -32,7 +32,7 @@ $form['glazed_settings']['fonts']['body_font_face'] = array(
   '#title' => t('Base font'),
   '#default_value' =>  theme_get_setting('body_font_face'),
   '#options' => $font_list,
-  '#prefix'        => '<p>' . t('You can select web fonts, local fonts or google fonts. All fonts are functional in all commonly used browsers. Local fonts are included in the theme and loaded with @font-face CSS. Google fonts are hosted and delivered by Google using @font-face CSS via google\'s cdn.') . '</p>',
+  '#prefix'        => '<p>' . t('Choose from @count webfonts', ['@count' => $font_count]) . '</p>',
 );
 
 $form['glazed_settings']['fonts']['body_font_face_selector'] = array(
@@ -98,7 +98,7 @@ $form['glazed_settings']['fonts']['font_preview'] = array(
   '#type' => 'fieldset',
   '#collapsible' => TRUE,
   '#collapsed' => TRUE,
-  '#prefix' => '<br style="clear: both;"><br style="clear: both;">',
+  '#prefix' => '<br class="clear-both"><br class="clear-both">',
   '#suffix' => _glazed_type_preview(),
 );
 
@@ -144,7 +144,7 @@ function glazed_google_webfonts() {
   $json_webfonts = file_get_contents(dirname(__FILE__) . '/google-webfonts.json');
   $webfonts = json_decode($json_webfonts);
   $fonts = array();
-  foreach ($webfonts->items as $font_family) {
+  foreach ($webfonts as $font_family) {
     $fam_name = $font_family->family;
     foreach ($font_family->variants as $font) {
       if ($font == 'regular') $font = '';
@@ -167,7 +167,7 @@ function glazed_local_webfonts($loadem = FALSE) {
       $font_path = str_replace(drupal_get_path('theme', $theme), '', $file->uri);
       $css = file_get_contents($file->uri);
       if ($css) {
-        preg_match_all('/\'(.*?).svg#(.*?)\'/i', $css, $matches);
+        preg_match_all('/(\s*?)font-family: \'(.*?)\'/i', $css, $matches);
       }
       else {
         drupal_set_message(t('Cannot read font files, please check permissions on the fonts folder in the theme.'), 'error');
@@ -176,7 +176,7 @@ function glazed_local_webfonts($loadem = FALSE) {
         $key = '1' . $theme . '|' . $font_path . '|' . $font;
         $fonts[$key] = preg_replace('/(?<!\ ) {A-Z]/', ' $0', $font);
       }
-      // @code for theme-settings.php load all the fonts
+      // @code for theme-settings.php to load and preview all the fonts
       if ($loadem) {
         $element = array(
           '#tag' => 'link',
