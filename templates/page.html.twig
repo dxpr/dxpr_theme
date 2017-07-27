@@ -182,8 +182,8 @@
   {% set container = theme.settings.full_width_containers.cnt_content
   or node.field_glazed_main_content_width.getString() == 'glazed-util-full-width-content'
   or node and attribute(theme.settings.full_width_content_types, node.getType) ? '' : 'container' %}
-  <div role="main" class="main-container {{ container }} js-quickedit-main-content">
-    {% if not container %}
+  <div role="main" class="main-container {{ container }} js-quickedit-main-content clearfix">
+    {% if container != '' %}
     <div class="row">
     {% endif %}
       {# Sidebar First #}
@@ -202,7 +202,7 @@
             page.sidebar_first and page.sidebar_second ? 'col-sm-6',
             page.sidebar_first and page.sidebar_second is empty ? 'col-sm-9',
             page.sidebar_second and page.sidebar_first is empty ? 'col-sm-9',
-            page.sidebar_first is empty and page.sidebar_second is empty ? 'col-sm-12'
+            container != '' and page.sidebar_first is empty and page.sidebar_second is empty ? 'col-sm-12'
           ]
         %}
       {% else %}
@@ -248,13 +248,11 @@
           </aside>
         {% endblock %}
       {% endif %}
-    {% if not container %}
-    {# End Row #}
-    </div>
+    {% if container != '' %}
+    </div><!-- end .ow -->
     {% endif %}
-  </div>
+  </div><!-- end main-container -->
 {% endblock %}
-</div>
 
 {# Content Bottom #}
 {% if page.content_bottom %}
@@ -289,7 +287,8 @@
     </footer>
   {% endblock %}
 {% endif %}
+
 {% if not node.field_glazed_page_layout.getString() and theme.settings.boxed_layout
   or node.field_glazed_page_layout.getString() == 'boxed' %}
-</div>
+</div><!-- end glazed-boxed-container -->
 {% endif %}
