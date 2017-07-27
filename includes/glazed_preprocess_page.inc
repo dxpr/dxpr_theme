@@ -93,7 +93,7 @@ function glazed_preprocess_page(&$vars) {
   }
 
   $vars['content_row_class'] = ' class="row"';
-  $vars['content_container_class'] = ' class="container main-container"';
+  $vars['content_container_class'] = ' class="container main-container clearfix"';
   if (($fwc['cnt_content'] == 1)
       OR (isset($vars['node'])
       && (((array_key_exists($vars['node']->type, $types))
@@ -101,7 +101,7 @@ function glazed_preprocess_page(&$vars) {
       OR (isset($content_design) && ($content_design['field_glazed_content_region'] == 'glazed-util-full-width-content'))))) {
     $vars['content_column_class'] = '';
     $vars['content_row_class'] = '';
-    $vars['content_container_class'] = ' class="main-container"';
+    $vars['content_container_class'] = ' class="main-container clearfix"';
     $vars['cnt_page_title_full_width'] = ' glazed-no-margin';
   }
   else {
