@@ -5,8 +5,16 @@ full_width_containers:
   cnt_header_nav: 0
   cnt_page_title: 0
   cnt_content_top: 0
+  cnt_content: 0
   cnt_content_bottom: 0
-full_width_content_types: {  }
+full_width_content_types:
+  drag_and_drop_page: drag_and_drop_page
+  article: 0
+  cms_blog: 0
+  cms_event: 0
+  cms_news: 0
+  cms_page: 0
+  cms_portfolio_project: 0
 block_design_regions:
   sidebar_first: sidebar_first
   sidebar_second: sidebar_second
@@ -80,13 +88,13 @@ table: ''
 blockquote_mobile_font_size: '18'
 divider_thickness: '4'
 divider_length: '0'
-divider_position: '0'
+divider_position: '1'
 divider_color: ''
 divider_color_custom: '#eeeeee'
-page_title_breadcrumbs: 1
+page_title_breadcrumbs: 0
 page_title_home_hide: 1
 page_title_align: left
-page_title_height: '120'
+page_title_height: '180'
 page_title_animate: '0'
 page_title_image_opacity: '1'
 page_title_image_style: cover
@@ -94,7 +102,14 @@ page_title_image_mode: normal
 page_title_image_position: center_center
 background_image_style: cover
 background_image_position: center_center
-prevnext_content_types: {  }
+prevnext_content_types:
+  article: 0
+  cms_blog: 0
+  cms_event: 0
+  cms_news: 0
+  cms_page: 0
+  cms_portfolio_project: 0
+  drag_and_drop_page: 0
 header_position: 0
 header_top_layout: '0'
 header_style: normal
@@ -130,7 +145,7 @@ dropdown_hover_text_color: ''
 dropdown_hover_text_color_custom: ''
 header_side_align: left
 header_side_width: '300'
-menu_type: ''
+menu_type: uppercase
 menu_hover: opacity
 menu_border_position: bottom
 menu_border_animate: drop
@@ -171,3 +186,31 @@ block_divider_color_custom: '#eeeeee'
 block_divider_thickness: '4'
 block_divider_length: '10'
 block_divider_spacing: '20'
+features:
+  comment_user_picture: 1
+  comment_user_verification: 1
+  favicon: 1
+  node_user_picture: 1
+logo:
+  path: ''
+  url: ''
+  use_default: 1
+previous_label: Previous
+next_label: Next
+previous_svg: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512"><path d="M25.1 247.5l117.8-116c4.7-4.7 12.3-4.7 17 0l7.1 7.1c4.7 4.7 4.7 12.3 0 17L64.7 256l102.2 100.4c4.7 4.7 4.7 12.3 0 17l-7.1 7.1c-4.7 4.7-12.3 4.7-17 0L25 264.5c-4.6-4.7-4.6-12.3.1-17z"/></svg>'
+next_svg: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512"><path d="M25.1 247.5l117.8-116c4.7-4.7 12.3-4.7 17 0l7.1 7.1c4.7 4.7 4.7 12.3 0 17L64.7 256l102.2 100.4c4.7 4.7 4.7 12.3 0 17l-7.1 7.1c-4.7 4.7-12.3 4.7-17 0L25 264.5c-4.6-4.7-4.6-12.3.1-17z"/></svg>'
+page_title_image: {  }
+background_image: {  }
+hidden_regions:
+  navigation: 0
+  navigation_collapsible: 0
+  secondary_header: 0
+  page_title: 0
+  highlighted: 0
+  header: 0
+  content_top: 0
+  content: 0
+  content_bottom: 0
+  sidebar_first: 0
+  sidebar_second: 0
+  footer: 0
