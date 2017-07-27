@@ -124,9 +124,9 @@
 
         {# Navigation (collapsible) #}
         {% if page.navigation_collapsible %}
-          <div id="navbar-collapse" class="navbar-collapse collapse">
+            <nav role="navigation" id="glazed-main-menu" class="glazed-main-menu">
             {{ page.navigation_collapsible }}
-          </div>
+            </nav>
         {% endif %}
         {% if not theme.settings.full_width_containers.cnt_header_nav%}
           </div></div>

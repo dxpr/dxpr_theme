@@ -34,8 +34,6 @@
  */
 #}
 {% set heading_id = attributes.id ~ '-menu'|clean_id %}
-<nav role="navigation" id="glazed-main-menu" aria-labelledby="{{ heading_id }}"{{ attributes.addClass('glazed-main-menu').addClass('block').removeClass('clearfix')|without('role', 'aria-labelledby') }}>
   {% block content %}
     {{ content }}
   {% endblock %}
-</nav>
