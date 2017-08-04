@@ -157,7 +157,7 @@ EOT;
   elseif (theme_get_setting('header_top_fixed', $theme)) {
     // For fixed headers create small padding to prevent fixed header from hiding toolbars
     $CSS .= ".body--glazed-nav-desktop.body--glazed-header-fixed.body--glazed-header-not-overlay { padding-top: " . $header_top_height . "px !important }\n\n";
-    $CSS .= "  html.js .body--glazed-nav-desktop.toolbar-fixed.toolbar-horizontal.body--glazed-header-fixed.body--glazed-header-not-overlay { padding-top: " . ($header_top_height + 69) . "px !important }\n\n";
+    $CSS .= "  html.js .body--glazed-nav-desktop.toolbar-fixed.toolbar-horizontal.body--glazed-header-fixed.body--glazed-header-not-overlay { padding-top: " . ($header_top_height + 39) . "px !important }\n\n";
     $CSS .= "  html.js .body--glazed-nav-desktop.toolbar-fixed.toolbar-horizontal.toolbar-tray-open.toolbar-horizontal.body--glazed-header-fixed.body--glazed-header-not-overlay { padding-top: " . ($header_top_height + 80) . "px !important }\n\n";
   }
 
