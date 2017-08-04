@@ -69,7 +69,7 @@ $info = [
 
   // Files to copy.
   'copy' => [
-    'logo.png',
+    'logo.svg',
     'glazed-favicon.png',
   ],
 ];
