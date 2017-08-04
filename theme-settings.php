@@ -71,25 +71,24 @@ function glazed_settings_form_submit(&$form, &$form_state) {
  * Retrieves the Color module information for a particular theme.
  */
 function _glazed_get_color_names($theme = NULL) {
-  return FALSE;
-  // static $theme_info = array();
-  // if (!isset($theme)) {
-  //   $theme = \Drupal::config('system.theme'); ;
-  // }
+  static $theme_info = array();
+  if (!isset($theme)) {
+    $theme = \Drupal::config('system.theme');
+  }
 
-  // if (isset($theme_info[$theme])) {
-  //   return $theme_info[$theme];
-  // }
+  if (isset($theme_info[$theme])) {
+    return $theme_info[$theme];
+  }
 
-  // $path = drupal_get_path('theme', $theme);
-  // $file = DRUPAL_ROOT . '/' . $path . '/color/color.inc';
-  // if ($path && file_exists($file)) {
-  //   include $file;
-  //   $theme_info[$theme] = $info['fields'];
-  //   return $info['fields'];
-  // } else {
-  //   return array();
-  // }
+  $path = drupal_get_path('theme', $theme);
+  $file = DRUPAL_ROOT . '/' . $path . '/color/color.inc';
+  if ($path && file_exists($file)) {
+    include $file;
+    $theme_info[$theme] = $info['fields'];
+    return $info['fields'];
+  } else {
+    return array();
+  }
 }
 
 /**
@@ -101,7 +100,8 @@ function _glazed_color_options($theme) {
     'white' => t('White'),
     'custom' => t('Custom Color'),
   );
-  // $colors = array_merge($colors, array(t('Glazed Colors') => _glazed_get_color_names()));
+  $theme_colors = _glazed_get_color_names($theme);
+  $colors = array_merge($colors, $theme_colors);
   return $colors;
 }
 
