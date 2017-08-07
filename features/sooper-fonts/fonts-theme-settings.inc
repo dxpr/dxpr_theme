@@ -51,7 +51,7 @@ $form['glazed_settings']['fonts']['headings_font_face'] = array(
 $form['glazed_settings']['fonts']['headings_font_face_selector'] = array(
   '#type' => 'textfield',
   '#title' => '&nbsp;',
-  '#default_value' => ((theme_get_setting('headings_font_face_selector') !== null)) ? theme_get_setting('headings_font_face_selector') : 'h1,h2,h3,h4,h5,h6,label,.field-label,.page-title, .html .tp-caption',
+  '#default_value' => ((theme_get_setting('headings_font_face_selector') !== null)) ? theme_get_setting('headings_font_face_selector') : 'h1,h2,h3,h4,h5,h6,label,.field-label, .html .tp-caption',
 );
 
 $form['glazed_settings']['fonts']['nav_font_face'] = array(
