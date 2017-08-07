@@ -25,7 +25,7 @@
 
       function glazedButtonAdd($toolbar) {
         var themeName = Drupal.settings.glazedDefaultTheme || 'glazed';
-        var glazedLogoPath = Drupal.settings.basePath + Drupal.settings.glazed.glazedPath + 'glazed-favicon.png';
+        var glazedLogoPath = Drupal.settings.basePath + Drupal.settings.glazed.glazedPath + '/logo.svg';
         var $glazedButton = $('<div id="glazed-button-wrapper">').html($('<a>',{
           text: Drupal.t('Theme Settings'),
           title: 'Theme Settings, Demo Import, and more',
@@ -35,7 +35,7 @@
           src: glazedLogoPath,
           width: 15
         })));
-        $('.toolbar-menu, #admin-menu-wrapper', $toolbar).once('glazed_button').prepend($glazedButton);
+        $('.toolbar-menu, #admin-menu-wrapper', $toolbar).once('glazed_button').append($glazedButton);
       }
     }
   };
