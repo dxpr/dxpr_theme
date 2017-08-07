@@ -309,7 +309,6 @@ function glazedMenuGovernor(context) {
         var brandingBottom = 0;
       }
       var $lastBlock = $('#glazed-main-menu .block:not(.block-menu)').last();
-      $lastBlock.css('border', '2px dashed red');
 
       // Show menu after completing setup
       // See if blocks overlap menu and apply correction
