@@ -46,7 +46,8 @@ function glazed_preprocess_node(&$vars) {
   }
   // EVENT NODES
   if ($vars['type'] == 'event') {
-    if (isset($vars['field_event_registration']) && ($vars['field_event_registration']['und'][0]['registration_type']) && function_exists('registration_event_count')) {
+    if (!empty($vars['field_event_registration']['und'][0]['registration_type'])
+      && function_exists('registration_event_count')) {
       // @see registration.module ~ #646
       $entity_id = $vars['nid'];
       $entity_type = 'node';
