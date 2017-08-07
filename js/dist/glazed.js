@@ -258,7 +258,7 @@ function glazedMenuGovernor(context) {
     }
   }
   // Mobile Menu with sliding panels and breadcrumb
-  // @dsee glazed-mobile-nav.js
+  // @see glazed-mobile-nav.js
   else {
     if (glazedMenuState == 'side') {
       return false;
@@ -303,31 +303,27 @@ function glazedMenuGovernor(context) {
 
       // See if logo  or block content overlaps menu and apply correction
       if ($('.wrap-branding').length > 0) {
-        var brandingBottom = $('.wrap-branding').position().top + jQuery('.wrap-branding').height();
+        var brandingBottom = $('.wrap-branding')[0].getBoundingClientRect().bottom;
       }
       else {
         var brandingBottom = 0;
       }
       var $lastBlock = $('#glazed-main-menu .block:not(.block-menu)').last();
-      if ($lastBlock.length > 0) {
-        var lastBlockBottom = $lastBlock.position().top + $lastBlock.height();
-      }
-      else {
-        var lastBlockBottom = 0;
-      }
+      $lastBlock.css('border', '2px dashed red');
 
       // Show menu after completing setup
       // See if blocks overlap menu and apply correction
       if (($('.body--glazed-header-side').length > 0) && ($(window).width() > navBreak) && ($lastBlock.length > 0) && (brandingBottom > 0)) {
         $('#glazed-main-menu').css('padding-top', brandingBottom + 40);
       }
-      if (($lastBlock.length > 0) && (lastBlockBottom > 0)) {
-        $('.menu__breadcrumbs, .menu__level').css('margin-top', lastBlockBottom-40);
+      if (($lastBlock.length > 0)) {
+        var lastBlockBottom = $lastBlock[0].getBoundingClientRect().bottom;
+        $('.menu__breadcrumbs, .menu__level').css('top', lastBlockBottom);
         var offset = 40 + lastBlockBottom;
         $('.glazed-header--side .menu__level').css('height', 'calc(100vh - ' + offset + 'px)');
       }
       else if (($('.body--glazed-header-side').length > 0) && ($('.wrap-branding').length > 0) && (brandingBottom > 120)) {
-        $('.menu__breadcrumbs, .menu__level').css('margin-top', brandingBottom-40);
+        $('.menu__breadcrumbs, .menu__level').css('top', brandingBottom);
         var offset = 40 + brandingBottom;
         $('.glazed-header--side .menu__level').css('height', 'calc(100vh - ' + offset + 'px)');
       }
