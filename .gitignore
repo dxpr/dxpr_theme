@@ -16,3 +16,7 @@ Thumbs.db
 /css/glazed.css
 /css/glazed.css.map
 /css/style.css.map
+
+# JS files
+
+js/minified
