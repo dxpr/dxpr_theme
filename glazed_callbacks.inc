@@ -32,7 +32,7 @@ function _color_module_css_write($theme) {
 
   // Save palette and logo location.
   variable_set('color_' . $theme . '_palette', $palette);
-  variable_set('color_' . $theme . '_logo', $paths['target'] . 'logo.png');
+  variable_set('color_' . $theme . '_logo', $paths['target'] . 'logo.svg');
 
   // Copy over neutral images.
   foreach ($info['copy'] as $file) {
