@@ -281,31 +281,28 @@ function glazedMenuGovernor(context) {
 
       // See if logo  or block content overlaps menu and apply correction
       if ($('.wrap-branding').length > 0) {
-        var brandingBottom = $('.wrap-branding').position().top + jQuery('.wrap-branding').height();
+        var brandingBottom = $('.wrap-branding')[0].getBoundingClientRect().bottom;
       }
       else {
         var brandingBottom = 0;
       }
       var $lastBlock = $('#glazed-main-menu .block:not(.block-menu)').last();
-      if ($lastBlock.length > 0) {
-        var lastBlockBottom = $lastBlock.position().top + $lastBlock.height();
-      }
-      else {
-        var lastBlockBottom = 0;
-      }
 
       // Show menu after completing setup
       // See if blocks overlap menu and apply correction
       if (($('.body--glazed-header-side').length > 0) && ($(window).width() > navBreak) && ($lastBlock.length > 0) && (brandingBottom > 0)) {
         $('#glazed-main-menu').css('padding-top', brandingBottom + 40);
       }
-      if (($lastBlock.length > 0) && (lastBlockBottom > 0)) {
-        $('.menu__breadcrumbs, .menu__level').css('margin-top', lastBlockBottom-40);
+      if (($lastBlock.length > 0)) {
+        var lastBlockBottom = $lastBlock[0].getBoundingClientRect().bottom;
+        $('.menu__breadcrumbs').css('top', lastBlockBottom + 20);
+        $('.menu__level').css('top', lastBlockBottom + 40);
         var offset = 40 + lastBlockBottom;
         $('.glazed-header--side .menu__level').css('height', 'calc(100vh - ' + offset + 'px)');
       }
       else if (($('.body--glazed-header-side').length > 0) && ($('.wrap-branding').length > 0) && (brandingBottom > 120)) {
-        $('.menu__breadcrumbs, .menu__level').css('margin-top', brandingBottom-40);
+        $('.menu__breadcrumbs').css('top', brandingBottom + 20);
+        $('.menu__level').css('top', brandingBottom + 40);
         var offset = 40 + brandingBottom;
         $('.glazed-header--side .menu__level').css('height', 'calc(100vh - ' + offset + 'px)');
       }
