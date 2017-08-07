@@ -317,12 +317,14 @@ function glazedMenuGovernor(context) {
       }
       if (($lastBlock.length > 0)) {
         var lastBlockBottom = $lastBlock[0].getBoundingClientRect().bottom;
-        $('.menu__breadcrumbs, .menu__level').css('top', lastBlockBottom);
+        $('.menu__breadcrumbs').css('top', lastBlockBottom + 20);
+        $('.menu__level').css('top', lastBlockBottom + 40);
         var offset = 40 + lastBlockBottom;
         $('.glazed-header--side .menu__level').css('height', 'calc(100vh - ' + offset + 'px)');
       }
       else if (($('.body--glazed-header-side').length > 0) && ($('.wrap-branding').length > 0) && (brandingBottom > 120)) {
-        $('.menu__breadcrumbs, .menu__level').css('top', brandingBottom);
+        $('.menu__breadcrumbs').css('top', brandingBottom + 20);
+        $('.menu__level').css('top', brandingBottom + 40);
         var offset = 40 + brandingBottom;
         $('.glazed-header--side .menu__level').css('height', 'calc(100vh - ' + offset + 'px)');
       }
