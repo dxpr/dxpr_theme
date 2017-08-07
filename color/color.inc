@@ -5,6 +5,7 @@
   // Images to copy over
   'copy' => array(
     'logo.png',
+    'logo.svg',
     'glazed-favicon.png',
   ),
 
