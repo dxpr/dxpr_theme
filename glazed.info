@@ -25,8 +25,8 @@ regions[footer]                                       = 'Footer'
 stylesheets[all][]                                    = css/glazed.css
 scripts[]                                             = js/vendor/classie.js
 scripts[]                                             = js/vendor/modernizr-custom.js
-scripts[]                                             = js/glazed-mobile-nav.js
-scripts[]                                             = js/glazed.js
+scripts[]                                             = js/glazed-mobile-nav.min.js
+scripts[]                                             = js/minified/glazed.min.js
 
 ; Glazed Builder Utility Classes
 glazed_classes[glazed-util-background-accent1]        = Background color: Glazed accent1

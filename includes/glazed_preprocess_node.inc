@@ -92,7 +92,7 @@ function glazed_preprocess_node(&$vars) {
       drupal_add_js($path . '/js/vendor/ilightbox/js/jquery.requestAnimationFrame.js');
       drupal_add_js($path . '/js/vendor/ilightbox/js/jquery.mousewheel.js');
       drupal_add_js($path . '/js/vendor/ilightbox/js/ilightbox.min.js');
-      drupal_add_js($path . '/js/glazed-ilightbox.js');
+      drupal_add_js($path . '/js/minified/glazed-ilightbox.min.js');
       drupal_add_css($path . '/js/vendor/ilightbox/css/ilightbox.css');
     }
   }

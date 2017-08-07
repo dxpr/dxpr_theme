@@ -73,7 +73,7 @@ function glazed_form_system_theme_settings_alter(&$form, &$form_state) {
   drupal_add_css($glazed_theme_path . 'css/glazed.admin.themesettings.css');
   drupal_add_js($glazed_theme_path . 'js/vendor/bootstrap-switch/bootstrap-switch.min.js', 'file');
   drupal_add_js($glazed_theme_path . 'js/vendor/bootstrap-slider/bootstrap-slider.min.js', 'file');
-  drupal_add_js($glazed_theme_path . 'js/glazed-settings.admin.js', 'file');
+  drupal_add_js($glazed_theme_path . 'js/minified/glazed-settings.admin.min.js', 'file');
   drupal_add_js($glazed_theme_path . 'js/color.js', 'file');
   drupal_add_js('jQuery(function () {Drupal.behaviors.formUpdated = null;});', 'inline');
   // Decoy function to fix erros resulting from missing preview.js
