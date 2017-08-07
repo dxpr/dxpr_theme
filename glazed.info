@@ -25,7 +25,7 @@ regions[footer]                                       = 'Footer'
 stylesheets[all][]                                    = css/glazed.css
 scripts[]                                             = js/vendor/classie.js
 scripts[]                                             = js/vendor/modernizr-custom.js
-scripts[]                                             = js/glazed-mobile-nav.min.js
+scripts[]                                             = js/minified/glazed-mobile-nav.min.js
 scripts[]                                             = js/minified/glazed.min.js
 
 ; Glazed Builder Utility Classes
