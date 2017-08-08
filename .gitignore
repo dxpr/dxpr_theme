@@ -19,4 +19,4 @@ Thumbs.db
 
 # JS files
 
-js/minified
+js/minified/*
