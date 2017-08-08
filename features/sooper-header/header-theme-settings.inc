@@ -410,7 +410,7 @@ $form['glazed_settings']['header']['header_side']['header_side_width'] = array(
 );
 
 $form['glazed_settings']['header']['menu'] = array(
-  '#title' => t('Main Menu Design'),
+  '#title' => t('Main Menu Links'),
   '#type' => 'fieldset',
   '#collapsible' => TRUE,
   '#collapsed' => TRUE,
@@ -552,7 +552,7 @@ $form['glazed_settings']['header']['header_mobile'] = array(
   '#title' => t('Mobile Header'),
   '#type' => 'fieldset',
   '#collapsible' => TRUE,
-  '#collapsed' => FALSE,
+  '#collapsed' => TRUE,
 );
 
 $form['glazed_settings']['header']['header_mobile']['header_mobile_breakpoint'] = array(
@@ -578,7 +578,7 @@ $form['glazed_settings']['header']['secondary_header'] = array(
   '#title' => t('Secondary Header'),
   '#type' => 'fieldset',
   '#collapsible' => TRUE,
-  '#collapsed' => FALSE,
+  '#collapsed' => TRUE,
 );
 
 $form['glazed_settings']['header']['secondary_header']['secondary_header_hide'] = array(
