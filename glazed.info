@@ -23,8 +23,7 @@ regions[footer]                                       = 'Footer'
 
 ; Stylesheets
 stylesheets[all][]                                    = css/glazed.css
-scripts[]                                             = js/vendor/classie.js
-scripts[]                                             = js/vendor/modernizr-custom.js
+scripts[]                                             = js/minified/classie.min.js
 scripts[]                                             = js/minified/glazed-mobile-nav.min.js
 scripts[]                                             = js/minified/glazed.min.js
 

@@ -11,7 +11,8 @@ module.exports = function(grunt) {
           'js/minified/glazed.admin.min.js': ['js/dist/glazed.admin.js'],
           'js/minified/glazed-settings.admin.min.js': ['js/dist/glazed-settings.admin.js'],
           'js/minified/glazed-mobile-nav.min.js': ['js/dist/glazed-mobile-nav.js'],
-          'js/minified/glazed-ilightbox.min.js': ['js/dist/glazed-ilightbox.js']
+          'js/minified/glazed-ilightbox.min.js': ['js/dist/glazed-ilightbox.js'],
+          'js/minified/classie.min.js': ['js/vendor/classie.js']
         }
       }
     },
