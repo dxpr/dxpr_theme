@@ -98,7 +98,9 @@ function glazed_preprocess_page(&$vars) {
       OR (isset($vars['node'])
       && (((array_key_exists($vars['node']->type, $types))
       && ($types[$vars['node']->type]))
-      OR (isset($content_design) && ($content_design['field_glazed_content_region'] == 'glazed-util-full-width-content'))))) {
+      OR (isset($content_design) && ($content_design['field_glazed_content_region'] == 'glazed-util-full-width-content'))))
+      && empty($vars['page']['sidebar_first'])
+      && empty($vars['page']['sidebar_second'])) {
     $vars['content_column_class'] = '';
     $vars['content_row_class'] = '';
     $vars['content_container_class'] = ' class="main-container clearfix"';
