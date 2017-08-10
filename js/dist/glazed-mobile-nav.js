@@ -12,7 +12,8 @@
 
 	'use strict';
 
-	  var animEndEventName = 'animationend'
+	var support = { animations : Modernizr.cssanimations },
+		animEndEventName = 'animationend',
 		onEndAnimation = function( el, callback ) {
 			var onEndCallbackFn = function( ev ) {
 				if( support.animations ) {
