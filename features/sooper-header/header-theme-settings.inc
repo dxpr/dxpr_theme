@@ -572,23 +572,3 @@ $form['glazed_settings']['header']['header_mobile']['header_mobile_height'] = ar
   '#maxlength' => 9,
   '#description' => t('Height of header in mobile view. 10px - 200px. Default is 60.'),
 );
-
-// Secondary Header
-$form['glazed_settings']['header']['secondary_header'] = array(
-  '#title' => t('Secondary Header'),
-  '#type' => 'fieldset',
-  '#collapsible' => TRUE,
-  '#collapsed' => TRUE,
-);
-
-$form['glazed_settings']['header']['secondary_header']['secondary_header_hide'] = array(
-    '#type' => 'radios',
-    '#title' => t('Hide in small devices'),
-    '#default_value' => ((theme_get_setting('secondary_header_hide') !== null)) ? theme_get_setting('secondary_header_hide') : 'hidden_none',
-    '#options' => array(
-      'hidden_none' => t('Never hide'),
-      'hidden_xs' => t('Extra small devices (<768px)'),
-      'hidden_sm' => t('Small devices (768px)'),
-      'hidden_md' => t('Medium devices (992px)'),
-    ),
-);

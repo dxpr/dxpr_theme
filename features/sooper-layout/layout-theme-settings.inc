@@ -177,6 +177,26 @@ $form['glazed_settings']['layout']['mobile_layout']['gutter_container_mobile'] =
   '#description' => t('Default is 30px.'),
 );
 
+// Secondary Header
+$form['glazed_settings']['layout']['mobile_layout']['secondary_header'] = array(
+  '#title' => t('Hide Secondary Header'),
+  '#type' => 'fieldset',
+  '#collapsible' => TRUE,
+  '#collapsed' => TRUE,
+);
+
+$form['glazed_settings']['layout']['mobile_layout']['secondary_header']['secondary_header_hide'] = array(
+    '#type' => 'radios',
+    '#title' => t('Hide in small devices'),
+    '#default_value' => ((theme_get_setting('secondary_header_hide') !== null)) ? theme_get_setting('secondary_header_hide') : 'hidden_none',
+    '#options' => array(
+      'hidden_none' => t('Never hide'),
+      'hidden_xs' => t('Extra small devices (<768px)'),
+      'hidden_sm' => t('Small devices (768px)'),
+      'hidden_md' => t('Medium devices (992px)'),
+    ),
+);
+
 $form['glazed_settings']['layout']['granular_boxed'] = array(
   '#title' => t('Full Width Regions and Content Types'),
   '#type' => 'fieldset',
