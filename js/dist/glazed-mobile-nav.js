@@ -12,22 +12,13 @@
 
 	'use strict';
 
-	var support = { animations : Modernizr.cssanimations },
-		animEndEventName = 'animationend',
-		onEndAnimation = function( el, callback ) {
+	var onEndAnimation = function( el, callback ) {
 			var onEndCallbackFn = function( ev ) {
-				if( support.animations ) {
-					if( ev.target != this ) return;
-					this.removeEventListener( animEndEventName, onEndCallbackFn );
-				}
+				if( ev.target != this ) return;
+				this.removeEventListener( 'animationend', onEndCallbackFn );
 				if( callback && typeof callback === 'function' ) { callback.call(); }
 			};
-			if( support.animations ) {
-				el.addEventListener( animEndEventName, onEndCallbackFn );
-			}
-			else {
-				onEndCallbackFn();
-			}
+			el.addEventListener( 'animationend', onEndCallbackFn );
 		};
 
 	function extend( a, b ) {
