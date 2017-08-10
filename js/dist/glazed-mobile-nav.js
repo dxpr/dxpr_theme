@@ -12,7 +12,7 @@
 
 	'use strict';
 
-	  animEndEventName = 'animationend'
+	  var animEndEventName = 'animationend'
 		onEndAnimation = function( el, callback ) {
 			var onEndCallbackFn = function( ev ) {
 				if( support.animations ) {
