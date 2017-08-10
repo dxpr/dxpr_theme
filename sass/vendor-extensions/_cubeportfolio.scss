@@ -71,3 +71,38 @@
 .group-portfolio-extra {
   padding-bottom: 30px;
 }
+
+.cbp-l-loadMore-button-link {
+  border: none;
+  background: $well;
+  color: $well-text;
+  padding: 10px 20px;
+  margin: 30px 0;
+  clear: both;
+  display: inline-block;
+  &:hover,
+  &:focus {
+    text-decoration: none;
+  }
+  &.cbp-l-loadMore-button-stop {
+    color: $gray-light;
+    &:hover,
+    &:focus {
+      color: $gray-light;
+    }
+  }
+}
+
+.cbp-l-loadMore-text-link {
+  padding: 10px 20px;
+  margin: 30px 0;
+  clear: both;
+  display: inline-block;
+  &.cbp-l-loadMore-text-stop {
+    color: $gray-lighter;
+    &:hover,
+    &:focus {
+      color: $gray-lighter;
+    }
+  }
+}
