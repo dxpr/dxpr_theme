@@ -191,53 +191,53 @@
 // Toolbar fixes
 html.js .body--glazed-nav-desktop {
   &.admin-menu {
-    margin-top: 0!important;
-    padding-top: 20px!important;
+    margin-top: 0 !important;
+    padding-top: 20px;
   }
   &.admin-menu-toolbar {
-    margin-top: 0!important;
-    padding-top: 28px!important;
+    margin-top: 0 !important;
+    padding-top: 28px;
   }
   &.admin-menu .glazed-header--top.glazed-header--overlay {
-    top: 50px!important;
+    top: 50px;
   }
   &.admin-menu-toolbar .glazed-header--top.glazed-header--overlay {
-    top: 58px!important;
+    top: 58px;
   }
   &.toolbar .glazed-header--top.glazed-header--overlay {
-    top: 60px!important;
+    top: 60px;
   }
   &.toolbar-drawer .glazed-header--top.glazed-header--overlay {
-    top: 94px!important;
+    top: 94px;
   }
 
   &.admin-menu .glazed-header--top.glazed-header--fixed,
   &.admin-menu .glazed-header--top.affix {
-    top: 20px!important;
+    top: 20px;
   }
   &.admin-menu-toolbar .glazed-header--top.glazed-header--fixed,
   &.admin-menu-toolbar .glazed-header--top.affix {
-    top: 28px!important;
+    top: 28px;
   }
   &.toolbar .glazed-header--top.glazed-header--fixed,
   &.toolbar .glazed-header--top.affix {
-    top: 30px!important;
+    top: 30px;
   }
   &.toolbar-drawer .glazed-header--top.glazed-header--fixed,
   &.toolbar-drawer .glazed-header--top.affix {
-    top: 64px!important;
+    top: 64px;
   }
 
   &.admin-menu.body--glazed-header-fixed.body--glazed-header-not-overlay {
-    padding-top: 120px!important;
+    padding-top: 120px;
   }
   &.admin-menu-toolbar.body--glazed-header-fixed.body--glazed-header-not-overlay {
-    padding-top: 128px!important;
+    padding-top: 128px;
   }
   &.toolbar.body--glazed-header-fixed.body--glazed-header-not-overlay {
-    padding-top: 130px!important;
+    padding-top: 130px;
   }
   &.toolbar-drawer.body--glazed-header-fixed.body--glazed-header-not-overlay {
-    padding-top: 164px!important;
+    padding-top: 164px;
   }
 }
