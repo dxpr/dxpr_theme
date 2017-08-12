@@ -52,7 +52,8 @@ function glazed_preprocess_html(&$vars) {
     $vars['html_attributes_array']['class'] = 'html--glazed-sticky-footer';
   }
 
-  if (!(isset($content_design) && (in_array('header', $content_design['field_glazed_hide_regions'])))) {
+  if (!in_array('page-media-browser', $vars['classes_array'])
+    && !(isset($content_design) && (in_array('header', $content_design['field_glazed_hide_regions'])))) {
     if (isset($content_design['field_glazed_header_mode'])) {
       $header_position = $content_design['field_glazed_header_mode'];
     }

@@ -189,55 +189,55 @@
 }
 
 // Toolbar fixes
-html.js .body--glazed-nav-desktop {
+.body--glazed-nav-desktop {
   &.admin-menu {
-    margin-top: 0 !important;
-    padding-top: 20px;
+    margin-top: 0!important;
+    padding-top: 20px!important;
   }
   &.admin-menu-toolbar {
-    margin-top: 0 !important;
-    padding-top: 28px;
+    margin-top: 0!important;
+    padding-top: 28px!important;
   }
   &.admin-menu .glazed-header--top.glazed-header--overlay {
-    top: 50px;
+    top: 50px!important;
   }
   &.admin-menu-toolbar .glazed-header--top.glazed-header--overlay {
-    top: 58px;
+    top: 58px!important;
   }
   &.toolbar .glazed-header--top.glazed-header--overlay {
-    top: 60px;
+    top: 60px!important;
   }
   &.toolbar-drawer .glazed-header--top.glazed-header--overlay {
-    top: 94px;
+    top: 94px!important;
   }
 
   &.admin-menu .glazed-header--top.glazed-header--fixed,
   &.admin-menu .glazed-header--top.affix {
-    top: 20px;
+    top: 20px!important;
   }
   &.admin-menu-toolbar .glazed-header--top.glazed-header--fixed,
   &.admin-menu-toolbar .glazed-header--top.affix {
-    top: 28px;
+    top: 28px!important;
   }
   &.toolbar .glazed-header--top.glazed-header--fixed,
   &.toolbar .glazed-header--top.affix {
-    top: 30px;
+    top: 30px!important;
   }
   &.toolbar-drawer .glazed-header--top.glazed-header--fixed,
   &.toolbar-drawer .glazed-header--top.affix {
-    top: 64px;
+    top: 64px!important;
   }
 
   &.admin-menu.body--glazed-header-fixed.body--glazed-header-not-overlay {
-    padding-top: 120px;
+    padding-top: 120px!important;
   }
   &.admin-menu-toolbar.body--glazed-header-fixed.body--glazed-header-not-overlay {
-    padding-top: 128px;
+    padding-top: 128px!important;
   }
   &.toolbar.body--glazed-header-fixed.body--glazed-header-not-overlay {
-    padding-top: 130px;
+    padding-top: 130px!important;
   }
   &.toolbar-drawer.body--glazed-header-fixed.body--glazed-header-not-overlay {
-    padding-top: 164px;
+    padding-top: 164px!important;
   }
 }

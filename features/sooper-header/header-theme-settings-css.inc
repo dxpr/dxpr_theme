@@ -163,10 +163,10 @@ EOT;
   }
   elseif (theme_get_setting('header_top_fixed', $theme)) {
     // For fixed headers create small padding to prevent fixed header from hiding toolbars
-    $CSS .= ".body--glazed-nav-desktop.body--glazed-header-fixed.body--glazed-header-not-overlay { padding-top: " . $header_top_height . "px }\n\n";
-    $CSS .= "html.js .body--glazed-nav-desktop.admin-menu.body--glazed-header-fixed.body--glazed-header-not-overlay { padding-top: " . ($header_top_height + 28) . "px }\n\n";
-    $CSS .= "  html.js .body--glazed-nav-desktop.toolbar.body--glazed-header-fixed.body--glazed-header-not-overlay { padding-top: " . ($header_top_height + 30) . "px }\n\n";
-    $CSS .= "  html.js .body--glazed-nav-desktop.toolbar-drawer.body--glazed-header-fixed.body--glazed-header-not-overlay { padding-top: " . ($header_top_height + 64) . "px }\n\n";
+    $CSS .= ".body--glazed-nav-desktop.body--glazed-header-fixed.body--glazed-header-not-overlay { padding-top: " . $header_top_height . "px !important }\n\n";
+    $CSS .= ".body--glazed-nav-desktop.admin-menu.body--glazed-header-fixed.body--glazed-header-not-overlay { padding-top: " . ($header_top_height + 28) . "px !important }\n\n";
+    $CSS .= "  .body--glazed-nav-desktop.toolbar.body--glazed-header-fixed.body--glazed-header-not-overlay { padding-top: " . ($header_top_height + 30) . "px !important }\n\n";
+    $CSS .= "  .body--glazed-nav-desktop.toolbar-drawer.body--glazed-header-fixed.body--glazed-header-not-overlay { padding-top: " . ($header_top_height + 64) . "px !important }\n\n";
   }
 
   if (theme_get_setting('header_style', $theme) == 'navbar_pull_down') {
