@@ -5,6 +5,7 @@
  */
 function glazed_preprocess_page(&$vars) {
   global $theme;
+  $hidden_regions = array_filter(theme_get_setting('hidden_regions'));
 
   // Render field collection object into simple array structure
   // We abort on finding arg(2) to avoid using fancy headers on /edit and /devel etc
@@ -25,19 +26,22 @@ function glazed_preprocess_page(&$vars) {
     );
     $entity_id = $vars['node']->field_glazed_content_design['und'][0]['value'];
     $content_design = glazed_rows_from_field_collection($entity_id, $field_array);
-    if ($content_design) {
-      if (in_array('page_title', $content_design['field_glazed_hide_regions'])) {
-        $vars['hide_page_title'] = TRUE;
-      }
-      if (in_array('header', $content_design['field_glazed_hide_regions'])) {
-        $vars['hide_header'] = TRUE;
-      }
-      if (in_array('navigation', $content_design['field_glazed_hide_regions'])) {
-        $vars['hide_navigation'] = TRUE;
-      }
-      foreach ($content_design['field_glazed_hide_regions'] as $region) {
-        unset($vars['page'][$region]);
-      }
+    if (!empty($content_design['field_glazed_hide_regions'])) {
+      $hidden_regions = array_merge($hidden_regions, $content_design['field_glazed_hide_regions']);
+    }
+  }
+  if (!empty($hidden_regions)) {
+    if (in_array('page_title', $hidden_regions)) {
+      $vars['hide_page_title'] = TRUE;
+    }
+    if (in_array('header', $hidden_regions)) {
+      $vars['hide_header'] = TRUE;
+    }
+    if (in_array('navigation', $hidden_regions)) {
+      $vars['hide_navigation'] = TRUE;
+    }
+    foreach ($hidden_regions as $region) {
+      unset($vars['page'][$region]);
     }
   }
 

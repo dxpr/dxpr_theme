@@ -262,3 +262,32 @@ $form['glazed_settings']['layout']['pagers']['prevnext_content_types'] = array(
     '#default_value' => ((theme_get_setting('prevnext_content_types') !== null)) ? theme_get_setting('prevnext_content_types') : $default_options,
     '#options' => _glazed_node_types_options(),
 );
+
+$form['glazed_settings']['layout']['hide_regions'] = array(
+  '#title' => t('Hide Regions'),
+  '#type' => 'fieldset',
+  '#collapsible' => TRUE,
+  '#collapsed' => TRUE,
+);
+
+$form['glazed_settings']['layout']['hide_regions']['hidden_regions'] = array(
+    '#type' => 'checkboxes',
+    '#multiple' => TRUE,
+    '#title' => t('Hide Regions'),
+    '#description' => t('Globally disables regions.'),
+    '#default_value' => ((theme_get_setting('hidden_regions') !== null)) ? theme_get_setting('hidden_regions') : array(),
+    '#options' => array(
+      'navigation' => t('Navigation (branding)'),
+      'navigation_collapsible' => t('Navigation Collapsible (menu)'),
+      'secondary_header' => t('Secondary Header'),
+      'page_title' => t('Page Title'),
+      'highlighted' => t('Hero Region'),
+      'header' => t('Header'),
+      'content_top' => t('Content Top'),
+      'content' => t('Content'),
+      'content_bottom' => t('Content Bottom'),
+      'sidebar_first' => t('Primary'),
+      'sidebar_second' => t('Secondary'),
+      'footer' => t('Footer'),
+    ),
+);
