@@ -5,7 +5,12 @@
  */
 function glazed_preprocess_page(&$vars) {
   global $theme;
-  $hidden_regions = array_filter(theme_get_setting('hidden_regions'));
+  if ($hidden_regions = theme_get_setting('hidden_regions')) {
+    $hidden_regions = array_filter(theme_get_setting('hidden_regions'));
+  }
+  else {
+    $hidden_regions = array();
+  }
 
   // Render field collection object into simple array structure
   // We abort on finding arg(2) to avoid using fancy headers on /edit and /devel etc
