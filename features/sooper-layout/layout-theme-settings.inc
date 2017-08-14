@@ -18,6 +18,11 @@ $form['glazed_settings']['layout']['sticky_footer'] = array(
   '#title' => t('Sticky Footer'),
   '#default_value' => ((theme_get_setting('sticky_footer') !== null)) ? theme_get_setting('sticky_footer') : 1,
   '#description' => t('Makes footer stick to the bottom of the browser on short pages. (Does not work with boxed layout)'),
+  '#states' => array(
+    'visible' => array(
+      ':input[name="boxed_layout"]' => array('checked' => FALSE),
+    ),
+  ),
 );
 
 $form['glazed_settings']['layout']['boxed_layout_boxbg'] = array(
