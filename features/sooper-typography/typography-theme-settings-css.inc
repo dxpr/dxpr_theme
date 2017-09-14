@@ -53,7 +53,7 @@ $CSS .= "@media screen and (max-width: 768px) { \n";
   if (theme_get_setting('menu_type', $theme) != 'lead') {
     $CSS .= "  .glazed-header--top #glazed-main-menu .nav > li > a, .glazed-header--side #glazed-main-menu .nav a { font-size:  " . theme_get_setting('nav_mobile_font_size', $theme) . "px } \n";
   }
-  $CSS .= "  h1 { font-size:  " . theme_get_setting('h1_mobile_font_size', $theme) . "px; } \n";
+  $CSS .= "  h1, .html #page-title .page-title { font-size:  " . theme_get_setting('h1_mobile_font_size', $theme) . "px; } \n";
   $CSS .= "  h2 { font-size:  " . theme_get_setting('h2_mobile_font_size', $theme) . "px; } \n";
   $CSS .= "  h3 { font-size:  " . theme_get_setting('h3_mobile_font_size', $theme) . "px; } \n";
   $CSS .= "  blockquote, .blockquote p { font-size:  " . theme_get_setting('blockquote_mobile_font_size', $theme) . "px; } \n";
