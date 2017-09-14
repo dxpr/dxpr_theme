@@ -136,6 +136,7 @@ a.text-primary:focus {
   color: $primary;
   border: none;
   box-shadow: none;
+  text-decoration: underline;
 }
 
 .wrap-containers .nav > li > a.active {
@@ -345,7 +346,7 @@ blockquote footer, blockquote small, blockquote .small {
   position: absolute;
   margin-top: 2px;
   left: 50%;
-  z-index: 2000;
+  z-index: 5000;
   .tabs--primary {
     position: relative;
     left: -50%;
