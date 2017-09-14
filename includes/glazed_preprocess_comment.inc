@@ -7,7 +7,7 @@
 function glazed_preprocess_comment(&$vars) {
   $comment = $vars['elements']['#comment'];
   $node = $vars['elements']['#node'];
-  if ($vars['elements']['#comment']->depth > 0) {
+  if (isset($vars['elements']['#comment']->depth) && ($vars['elements']['#comment']->depth > 0)) {
     $vars['author'] .= ' ' . t('replied') . ':';
   }
   else {
