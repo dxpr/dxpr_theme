@@ -148,24 +148,22 @@ html.js .kenburnimg img {
   }
 }
 
-// STICKY FOOTER
-// http://galengidman.com/2014/03/25/responsive-flexible-height-sticky-footers-in-css/
+// STICKY FOOTER Flexbox method
+// https://css-tricks.com/couple-takes-sticky-footer/
 .html--glazed-sticky-footer {
   height: 100%;
   body {
     height: 100%;
-    display: table;
-    table-layout: fixed; //https://css-tricks.com/fixing-tables-long-strings/
-    width: 100%;
-  }
-  #navbar,
-  .wrap-containers,
-  .glazed-footer {
-    display: table-row;
-    // height: 1px;
-    min-height: 1px;
+    display: flex;
+    flex-direction: column;
   }
   .wrap-containers {
-    height: 100%;
+    flex: 1 0 auto;
+  }
+  .body--glazed-nav-desktop .glazed-header--top {
+    min-height: 90px;
+  }
+  .body--glazed-nav-desktop .glazed-header--top.affix {
+    min-height: 60px;
   }
 }

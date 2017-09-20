@@ -49,9 +49,12 @@ function _glazed_hex2rgba($color, $opacity = null) {
   return $output;
 }
 
-// Side Header
-$header_side_width = theme_get_setting('header_side_width', $theme);
+//  Header Vars
 $align = theme_get_setting('header_side_align', $theme);
+$header_side_width = theme_get_setting('header_side_width', $theme);
+$header_top_height = theme_get_setting('header_top_height', $theme);
+$header_top_height_scroll = theme_get_setting('header_top_height_scroll', $theme);
+$header_top_opacity = $header_top_opacity_scroll = 1;
 $CSS .= <<<EOT
   #glazed-main-menu,
   #glazed-main-menu .menu__breadcrumbs,
@@ -96,9 +99,6 @@ EOT;
 }
 else {
   // Top Header
-  $header_top_height = theme_get_setting('header_top_height', $theme);
-  $header_top_height_scroll = theme_get_setting('header_top_height_scroll', $theme);
-  $header_top_opacity = $header_top_opacity_scroll = 1;
   if (isset($theme_colors) && !empty($theme_colors['header'])) {
     $headerbg = $theme_colors['header'];
   }
@@ -189,6 +189,24 @@ $CSS .= <<<EOT
 }
 
 EOT;
+
+if (theme_get_setting('sticky_footer', $theme)) {
+  $CSS .= <<<EOT
+.html--glazed-sticky-footer .body--glazed-nav-desktop .glazed-header--top {
+  min-height: {$header_top_height}px;
+}
+.html--glazed-sticky-footer .body--glazed-nav-desktop .glazed-header--top.affix {
+  min-height: {$header_top_height_scroll}px;
+}
+.html--glazed-sticky-footer .body--glazed-nav-mobile .glazed-header {
+  min-height: {$header_mobile_height}px;
+}
+.html--glazed-sticky-footer .body--glazed-nav-mobile .glazed-header.affix {
+  min-height: {$header_mobile_height}px;
+}
+
+EOT;
+}
 
 /*
  * MENU OPTIONS
