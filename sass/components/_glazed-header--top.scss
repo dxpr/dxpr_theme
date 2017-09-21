@@ -110,6 +110,9 @@
     }
     &.glazed-header--centered {
       text-align: center;
+      .region-navigation {
+        text-align: center;
+      }
       .navbar-brand {
         margin: 0 auto;
         text-align: center;
