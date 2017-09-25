@@ -358,7 +358,8 @@ blockquote footer, blockquote small, blockquote .small {
   position: absolute;
   margin-top: 2px;
   left: 50%;
-  z-index: 5000;
+  z-index: 3000;
+  pointer-events: none;
   .tabs--primary {
     position: relative;
     left: -50%;
@@ -374,6 +375,7 @@ blockquote footer, blockquote small, blockquote .small {
         font-size: 12px;
         margin: 0;
         border: none;
+        pointer-events: auto;
       }
       &.active {
         bottom: auto;
