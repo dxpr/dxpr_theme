@@ -55,3 +55,12 @@ body #admin-menu {
     }
   }
 }
+
+body.page-node-add-portfolio,
+body.page-node-edit.node-type-portfolio {
+  .form-item-field-image-display-und-0-settings-views-field-formatter-multiple,
+  .form-item-field-image-display-und-0-settings-views-field-formatter-implode-character {
+    display: none;
+  }
+}
+
