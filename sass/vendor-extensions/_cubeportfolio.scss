@@ -107,6 +107,11 @@
   }
 }
 
+// Spinner color
+.cbp:after, .cbp-lazyload:after, .cbp-popup-loadingBox:after, .cbp-popup-singlePageInline:after {
+  border-top-color: $primary;
+}
+
 .cbp-popup-lightbox {
   background: rgba(0,0,0,0.95);
 }
