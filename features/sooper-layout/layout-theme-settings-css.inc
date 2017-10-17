@@ -36,7 +36,8 @@ if (theme_get_setting('boxed_layout', $theme) && ($cnt_bg = theme_get_setting('b
   margin-bottom: {$gutter_vertical}px;
 }
 .region-sidebar-first .block,
-.region-sidebar-second .block {
+.region-sidebar-second .block,
+.glazed-util-gutter-bottom {
   margin-bottom: {$gutter_vertical}px;
 }
 .page-title-full-width-container {
