@@ -163,6 +163,9 @@ html.js .kenburnimg img {
   .body--glazed-nav-desktop .glazed-header--top {
     min-height: 90px;
   }
+  .body--glazed-nav-desktop .glazed-header--top.glazed-header--navbar-pull-down {
+    min-height: 45px;
+  }
   .body--glazed-nav-desktop .glazed-header--top.affix {
     min-height: 60px;
   }
