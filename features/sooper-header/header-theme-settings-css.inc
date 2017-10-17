@@ -186,6 +186,9 @@ if (theme_get_setting('sticky_footer', $theme)) {
   if (theme_get_setting('header_top_layout', $theme) == 'centered') {
     $header_top_height = 2 * $header_top_height;
   }
+  if (theme_get_setting('header_style', $theme) == 'navbar_pull_down') {
+    $header_top_height = $header_top_height / 2;
+  }
   $CSS .= <<<EOT
 .html--glazed-sticky-footer .body--glazed-nav-desktop .glazed-header--top {
   min-height: {$header_top_height}px;
