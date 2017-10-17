@@ -82,6 +82,10 @@
     }
   }
 
+  .glazed-util-gutter-bottom {
+    margin-bottom: 30px;
+  }
+
   @media (max-width: 768px) {
     .glazed-util-columns-5 .col-lg-2,
     .glazed-util-columns-5 .col-md-2,
@@ -170,6 +174,7 @@
       color: #fff;
     }
   }
+  .YTPOverlay { opacity: 0.9; }
   .glazed-util-overlay-primary:after,.glazed-util-overlay-primary .YTPOverlay { background-color: $primary; }
   .glazed-util-overlay-accent1:after,.glazed-util-overlay-accent1 .YTPOverlay { background-color: $accent1; }
   .glazed-util-overlay-accent2:after,.glazed-util-overlay-accent2 .YTPOverlay { background-color: $accent2; }
