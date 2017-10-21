@@ -2,9 +2,9 @@
  * jQuery iLightBox - Revolutionary Lightbox Plugin
  * http://www.ilightbox.net/
  *
- * @version: 2.2.0 - September 23, 2014
+ * @version: 2.2.4 - October 14, 2017
  *
- * @author: Hemn Chawroka
+ * @author: iProDev (Hemn Chawroka)
  *          http://www.iprodev.com/
  *
  */
@@ -26,7 +26,9 @@
 		transform,
 		gpuAcceleration,
 		fullScreenApi = '',
-		supportTouch = !!('ontouchstart' in window) && (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)),
+		userAgent = navigator.userAgent || navigator.vendor || window.opera,
+		supportTouch = !!('ontouchstart' in window) && (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent)),
+		isMobile = /(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino/i.test(userAgent) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(userAgent.substr(0, 4)),
 
 		// Events
 		clickEvent = supportTouch ? "itap.iLightBox" : "click.iLightBox",
@@ -145,10 +147,10 @@
 		showLoader: function() {
 			var iL = this;
 			iL.vars.loadRequests += 1;
-			if (iL.options.path.toLowerCase() == "horizontal") iL.vars.loader.stop().animate({
+			if (iL.options.path.toLowerCase() == "horizontal") iL.vars.loader.addClass('ilightbox-show').stop().animate({
 				top: '-30px'
 			}, iL.options.show.speed, 'easeOutCirc');
-			else iL.vars.loader.stop().animate({
+			else iL.vars.loader.addClass('ilightbox-show').stop().animate({
 				left: '-30px'
 			}, iL.options.show.speed, 'easeOutCirc');
 		},
@@ -158,11 +160,11 @@
 			iL.vars.loadRequests -= 1;
 			iL.vars.loadRequests = (iL.vars.loadRequests < 0) ? 0 : iL.vars.loadRequests;
 			if (iL.options.path.toLowerCase() == "horizontal") {
-				if (iL.vars.loadRequests <= 0) iL.vars.loader.stop().animate({
+				if (iL.vars.loadRequests <= 0) iL.vars.loader.removeClass('ilightbox-show').stop().animate({
 					top: '-192px'
 				}, iL.options.show.speed, 'easeInCirc');
 			} else {
-				if (iL.vars.loadRequests <= 0) iL.vars.loader.stop().animate({
+				if (iL.vars.loadRequests <= 0) iL.vars.loader.removeClass('ilightbox-show').stop().animate({
 					left: '-192px'
 				}, iL.options.show.speed, 'easeInCirc');
 			}
@@ -368,6 +370,7 @@
 
 				$.each(recognizingItems, function(key, val) {
 					var resultFnc = function(result) {
+						console.log(result);
 							var key = -1,
 								filter = iL.items.filter(function(e, i, arr) {
 									if (e.URL == result.url)
@@ -513,6 +516,8 @@
 				holder.prepend(innerToolbar);
 			}
 
+			console.warn('loadContent', arguments);
+
 			iL.loadSwitcher(obj, holder, item, opt);
 		},
 
@@ -559,41 +564,51 @@
 						naturalHeight: obj.options.height
 					});
 
-					iL.addContent(holder, obj);
+					if (opt === 'current') {
+						iL.addContent(holder, obj);
 
-					//Trigger the onRender callback
-					if (typeof opts.callback.onRender == 'function') opts.callback.onRender.call(iL, iL.ui, item);
-					if (typeof obj.options.onRender == 'function') obj.options.onRender.call(iL, api);
+						//Trigger the onRender callback
+						if (typeof opts.callback.onRender == 'function') opts.callback.onRender.call(iL, iL.ui, item);
+						if (typeof obj.options.onRender == 'function') obj.options.onRender.call(iL, api);
+					} else {
+						$('div.ilightbox-container', holder).empty();
+					}
 
 					iL.configureHolder(obj, opt, holder);
 
 					break;
 
 				case 'iframe':
-					iL.showLoader();
+					//iL.showLoader();
 					holder.data({
 						naturalWidth: obj.options.width,
 						naturalHeight: obj.options.height
 					});
-					var el = iL.addContent(holder, obj);
 
-					//Trigger the onRender callback
-					if (typeof opts.callback.onRender == 'function') opts.callback.onRender.call(iL, iL.ui, item);
-					if (typeof obj.options.onRender == 'function') obj.options.onRender.call(iL, api);
+					iL.configureHolder(obj, opt, holder);
 
-					//Trigger the onBeforeLoad callback
-					if (typeof opts.callback.onBeforeLoad == 'function') opts.callback.onBeforeLoad.call(iL, iL.ui, item);
-					if (typeof obj.options.onBeforeLoad == 'function') obj.options.onBeforeLoad.call(iL, api);
+					if (opt === 'current') {
+						var el = iL.addContent(holder, obj);
 
-					el.bind('load', function() {
-						//Trigger the onAfterLoad callback
-						if (typeof opts.callback.onAfterLoad == 'function') opts.callback.onAfterLoad.call(iL, iL.ui, item);
-						if (typeof obj.options.onAfterLoad == 'function') obj.options.onAfterLoad.call(iL, api);
+						//Trigger the onRender callback
+						if (typeof opts.callback.onRender == 'function') opts.callback.onRender.call(iL, iL.ui, item);
+						if (typeof obj.options.onRender == 'function') obj.options.onRender.call(iL, api);
 
-						iL.hideLoader();
-						iL.configureHolder(obj, opt, holder);
-						el.unbind('load');
-					});
+						//Trigger the onBeforeLoad callback
+						if (typeof opts.callback.onBeforeLoad == 'function') opts.callback.onBeforeLoad.call(iL, iL.ui, item);
+						if (typeof obj.options.onBeforeLoad == 'function') obj.options.onBeforeLoad.call(iL, api);
+
+						el.bind('load', function() {
+							//Trigger the onAfterLoad callback
+							if (typeof opts.callback.onAfterLoad == 'function') opts.callback.onAfterLoad.call(iL, iL.ui, item);
+							if (typeof obj.options.onAfterLoad == 'function') obj.options.onAfterLoad.call(iL, api);
+
+							//iL.hideLoader();
+							el.unbind('load');
+						});
+					} else {
+						$('div.ilightbox-container', holder).empty();
+					}
 
 					break;
 
@@ -780,7 +795,7 @@
 			};
 
 			iL.items[item].options.width = iL.items[item].options.width || 0,
-				iL.items[item].options.height = iL.items[item].options.height || 0;
+			iL.items[item].options.height = iL.items[item].options.height || 0;
 
 			if (opt == "current") {
 				if (opts.show.effect) holder.css(transform, gpuAcceleration).fadeIn(obj.speed, function() {
@@ -1574,6 +1589,11 @@
 
 					vars.isSwipe = false;
 
+					// Remove iframe & video from previous slide
+					if (['iframe', 'video'].indexOf(iL.items[vars.current].type) !== -1) {
+						$('div.ilightbox-container', secondHolder).empty();
+					}
+
 					if (side == "next") {
 						vars.nextPhoto = lastHolder,
 							vars.prevPhoto = secondHolder,
@@ -1619,6 +1639,11 @@
 							vars.prevLock = false;
 						else
 							iL.loadContent(iL.items[vars.prev], 'prev');
+					}
+
+					// Add iframe & video content for current slide
+					if (['iframe', 'video'].indexOf(iL.items[vars.current].type) !== -1) {
+						iL.loadContent(iL.items[vars.current], 'current');
 					}
 
 					if (opts.linkId) setTimeout(function() {
@@ -1989,7 +2014,8 @@
 				if (typeof item.height == 'number' && item.height) heightAvail = (item.height > heightAvail) ? heightAvail : item.height;
 			}
 
-			heightAvail = parseInt(heightAvail - $('.ilightbox-inner-toolbar', holder).outerHeight());
+			if (opts.innerToolbar)
+				heightAvail = parseInt(heightAvail - $('.ilightbox-inner-toolbar', holder).outerHeight());
 
 			var width = (typeof item.width == 'string' && item.width.indexOf('%') != -1) ? percentToValue(parseInt(item.width.replace('%', '')), obj.width) : holder.data('naturalWidth'),
 				height = (typeof item.height == 'string' && item.height.indexOf('%') != -1) ? percentToValue(parseInt(item.height.replace('%', '')), obj.height) : holder.data('naturalHeight');
@@ -2008,7 +2034,7 @@
 				height = dims.height;
 
 			var widthDiff = parseInt((getPixel(holder, 'padding-left') + getPixel(holder, 'padding-right') + getPixel(holder, 'border-left-width') + getPixel(holder, 'border-right-width')) / 2),
-				heightDiff = parseInt((getPixel(holder, 'padding-top') + getPixel(holder, 'padding-bottom') + getPixel(holder, 'border-top-width') + getPixel(holder, 'border-bottom-width') + $('.ilightbox-inner-toolbar', holder).outerHeight()) / 2);
+				heightDiff = parseInt((getPixel(holder, 'padding-top') + getPixel(holder, 'padding-bottom') + getPixel(holder, 'border-top-width') + getPixel(holder, 'border-bottom-width') + ($('.ilightbox-inner-toolbar', holder).outerHeight() || 0)) / 2);
 
 			switch (obj.type) {
 				case 'current':
@@ -2154,7 +2180,7 @@
 				testEl = document.createElement("video");
 
 			iL.plugins = {
-				flash: (parseInt(PluginDetect.getVersion("Shockwave")) >= 0 || parseInt(PluginDetect.getVersion("Flash")) >= 0) ? true : false,
+				flash: !isMobile,
 				quicktime: (parseInt(PluginDetect.getVersion("QuickTime")) >= 0) ? true : false,
 				html5H264: !!(testEl.canPlayType && testEl.canPlayType('video/mp4').replace(/no/, '')),
 				html5WebM: !!(testEl.canPlayType && testEl.canPlayType('video/webm').replace(/no/, '')),
@@ -2326,7 +2352,6 @@
 			iL.showLoader();
 			doAjax(url, function(data) {
 				iL.hideLoader();
-				
 				if (data) {
 					var object = new Object();
 
@@ -2342,7 +2367,7 @@
 						object.width = source.width && parseInt(source.width) || 0,
 						object.height = source.height && parseInt(source.height) || 0,
 						object.type = type,
-						object.thumbnail = source.thumbnail || result.images[0],
+						object.thumbnail = source.thumbnail || result.images && result.images[0],
 						object.html5video = result.html5video || {},
 						object.length = true;
 
@@ -2456,7 +2481,7 @@
 	 * @return {Void}
 	 */
 	function doAjax(url, callback) {
-		var url = "http://ilightbox.net/getSource/jsonp.php?url=" + encodeURIComponent(url).replace(/!/g, '%21').replace(/'/g, '%27').replace(/\(/g, '%28').replace(/\)/g, '%29').replace(/\*/g, '%2A');
+		var url = "//ilightbox.net/getSource/jsonp.php?url=" + encodeURIComponent(url).replace(/!/g, '%21').replace(/'/g, '%27').replace(/\(/g, '%28').replace(/\)/g, '%29').replace(/\*/g, '%2A');
 		$.ajax({
 			url: url,
 			dataType: 'jsonp'

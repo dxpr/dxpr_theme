@@ -6,6 +6,7 @@
 @import url('../metro-white-skin/skin.css');
 @import url('../mac-skin/skin.css');
 @import url('../smooth-skin/skin.css');
+@import url('../flat-dark-skin/skin.css');
 
 /* Reset Styles */
 .ilightbox-overlay, .ilightbox-loader, .ilightbox-loader *, .ilightbox-holder, .ilightbox-holder .ilightbox-container, .ilightbox-holder .ilightbox-container img.ilightbox-image, .ilightbox-holder .ilightbox-container .ilightbox-caption, .ilightbox-toolbar, .ilightbox-toolbar *, .ilightbox-thumbnails, .ilightbox-thumbnails *, .ilightbox-holder .ilightbox-container .ilightbox-social, .ilightbox-holder .ilightbox-container .ilightbox-social * {
