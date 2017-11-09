@@ -104,6 +104,8 @@ function glazed_css_cache_build($theme) {
   $glazed_css_file = $files_path . '/glazed-themesettings-' . $theme . '.css';
   //Construct CSS file:
   $CSS = '';
+  // Load Glazed theme colors palette
+  $palette = theme_get_setting('palette', $theme);
   // Load Sooper Features CSS
   foreach (file_scan_directory(drupal_get_path('theme', 'glazed') . '/features', '/css.inc/i') as $file) {
     require_once($file->uri);
