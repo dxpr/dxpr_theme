@@ -157,7 +157,8 @@ html.js .kenburnimg img {
     display: flex;
     flex-direction: column;
   }
-  .wrap-containers {
+  .wrap-containers,
+  .glazed-secondary-header {
     flex: 1 0 auto;
   }
   .body--glazed-nav-desktop .glazed-header--top {
