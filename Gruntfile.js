@@ -8,17 +8,20 @@ module.exports = function(grunt) {
       dist: {
         files: {
           'js/minified/glazed.min.js': ['js/dist/glazed.js'],
+          'js/minified/glazed.admin.min.js': ['js/dist/glazed.admin.js'],
           'js/minified/glazed-settings.admin.min.js': ['js/dist/glazed-settings.admin.js'],
           'js/minified/glazed-mobile-nav.min.js': ['js/dist/glazed-mobile-nav.js'],
-          'js/minified/glazed-ilightbox.min.js': ['js/dist/glazed-ilightbox.js']
+          'js/minified/glazed-ilightbox.min.js': ['js/dist/glazed-ilightbox.js'],
+          'js/minified/classie.min.js': ['js/vendor/classie.js']
         }
       }
     },
     sass: {
+      options: {
+        sourceMap: true,
+        outputStyle:'compressed'
+      },
       dist: {
-        options:{
-          style:'compressed'
-        },
         files: {
           'css/glazed.css' : 'sass/glazed.scss',
           'css/glazed.admin.css' : 'sass/glazed.admin.scss',
@@ -46,7 +49,7 @@ module.exports = function(grunt) {
     }
   });
   grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-sass');
+  grunt.loadNpmTasks('grunt-sass');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-postcss');
   grunt.registerTask('default',['watch']);

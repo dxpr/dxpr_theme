@@ -4,8 +4,6 @@ import {
 
 import {
   noop,
-  nextId,
-  PROMISE_ID,
   initializePromise
 } from './-internal';
 
@@ -21,6 +19,7 @@ import Resolve from './promise/resolve';
 import Reject from './promise/reject';
 import then from './then';
 
+var counter = 0;
 
 function needsResolver() {
   throw new TypeError('You must pass a resolver function as the first argument to the promise constructor');
@@ -135,8 +134,9 @@ export default Promise;
   @constructor
 */
 function Promise(resolver) {
-  this[PROMISE_ID] = nextId();
-  this._result = this._state = undefined;
+  this._id = counter++;
+  this._state = undefined;
+  this._result = undefined;
   this._subscribers = [];
 
   if (noop !== resolver) {
