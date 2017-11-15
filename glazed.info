@@ -1,7 +1,7 @@
 name                                                  = Glazed
 description                                           = SooperThemes Premium Framework Theme.
 core                                                  = 7.x
-version                                               = 7.x-2.6.5
+version                                               = 7.x-2.6.6
 project                                               = glazed
 project status url                                    = https://www.sooperthemes.com/release-history
 
