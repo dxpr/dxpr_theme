@@ -41,9 +41,6 @@ function _color_module_css_write($theme) {
     $filepath = file_unmanaged_copy($source, $paths['target'] . $base);
     $paths['map'][$file] = $base;
     $paths['files'][] = $filepath;
-    drupal_set_message($file);
-    drupal_set_message($filepath);
-    drupal_set_message('<pre>' . print_r($paths, TRUE) . '</pre>');
   }
 
   // Render new images, if image has been provided.
