@@ -242,4 +242,26 @@
   &.toolbar-drawer.body--glazed-header-fixed.body--glazed-header-not-overlay {
     padding-top: 164px!important;
   }
+  // D8 Navbar backport
+  &.navbar-fixed.navbar-horizontal .glazed-header--top.glazed-header--overlay {
+    top: 69px;
+  }
+  &.navbar-fixed.navbar-horizontal.navbar-tray-open.navbar-horizontal .glazed-header--top.glazed-header--overlay {
+    top: 110px;
+  }
+  &.navbar-fixed.navbar-horizontal .glazed-header--top.glazed-header--fixed,
+  &.navbar-fixed.navbar-horizontal .glazed-header--top.affix {
+    top: 39px!important;
+  }
+  &.navbar-fixed.navbar-horizontal.navbar-tray-open.navbar-horizontal .glazed-header--top.glazed-header--fixed,
+  &.navbar-fixed.navbar-horizontal.navbar-tray-open.navbar-horizontal .glazed-header--top.affix {
+    top: 80px!important;
+  }
+
+  &.body--glazed-header-fixed.navbar-fixed.navbar-horizontal.navbar-tray-open.navbar-horizontal.body--glazed-header-not-overlay {
+    padding-top: 180px!important;
+  }
+  &.body--glazed-header-fixed.navbar-fixed.navbar-horizontal.body--glazed-header-not-overlay {
+    padding-top: 139px!important;
+  }
 }
