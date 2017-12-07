@@ -14,10 +14,12 @@
   width: 64%;
 }
 
-.field-comparison-images,
-.field-portfolio-images img,
-.field-portfolio-images .image-field-caption {
-  margin-bottom: 30px;
+.node-portfolio {
+  .field-comparison-images,
+  .field-portfolio-images img,
+  .field-portfolio-images .image-field-caption {
+    margin-bottom: 30px;
+  }
 }
 
 .cms-portfolio-images .row img,
