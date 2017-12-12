@@ -1,9 +1,8 @@
 // Glazed Header Mobile layout
 
-body.body--glazed-nav-mobile--open {
-  // this is disabled because it has nasty side effects on mobile in combination with owl carousel
-  // position: fixed; // prevent scrolling body when menu is open
+html.html--glazed-nav-mobile--open {
   overflow: hidden; // let's hope this new fix stop the body and menu toggle from scrolling without breaking stuff elsewehere
+  height: 100%;
 }
 
 .body--glazed-nav-mobile {
