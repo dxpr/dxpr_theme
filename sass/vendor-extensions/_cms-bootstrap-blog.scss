@@ -3,9 +3,9 @@
 //
 
 
-div[class*='tags'],
+[class*='tags'],
 .tagclouds-term {
-  a {
+  > a {
     display: inline-block;
     background: $silver;
     color: $gray-light;
@@ -23,7 +23,7 @@ div[class*='tags'],
   }
 }
 
-[class*='tags'] a {
+[class*='tags'] > a {
   font-size: $font-size-small;
 }
 
