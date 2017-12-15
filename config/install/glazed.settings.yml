@@ -103,20 +103,20 @@ page_title_image_position: center_center
 background_image_style: cover
 background_image_position: center_center
 prevnext_content_types:
+  cms_blog: cms_blog
+  cms_event: cms_event
+  cms_portfolio_project: cms_portfolio_project
   article: 0
-  cms_blog: 1
-  cms_event: 1
-  cms_news: 1
+  cms_news: 0
   cms_page: 0
-  cms_portfolio_project: 1
   drag_and_drop_page: 0
 header_position: 0
 header_top_layout: '0'
 header_style: normal
 header_top_bg_opacity: '1'
 header_top_height: '100'
-header_top_fixed: 0
-header_top_sticky: 0
+header_top_fixed: 1
+header_top_sticky: 1
 header_top_sticky_show: always
 header_top_height_sticky_offset: '60'
 header_top_height_scroll: '50'
