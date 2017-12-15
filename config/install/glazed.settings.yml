@@ -31,8 +31,8 @@ block_design_regions:
 boxed_layout: 1
 sticky_footer: 1
 boxed_layout_boxbg: '#ffffff'
-box_max_width: '1800'
-layout_max_width: '1260'
+box_max_width: '1580'
+layout_max_width: '1280'
 gutter_horizontal: '30'
 gutter_vertical: '30'
 gutter_container: '60'
@@ -94,7 +94,7 @@ divider_color_custom: '#eeeeee'
 page_title_breadcrumbs: 0
 page_title_home_hide: 1
 page_title_align: left
-page_title_height: '180'
+page_title_height: '120'
 page_title_animate: '0'
 page_title_image_opacity: '1'
 page_title_image_style: cover
