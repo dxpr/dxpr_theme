@@ -2,7 +2,7 @@ core: 8.x
 type: theme
 project: glazed
 # project status url: https://www.sooperthemes.com/release-history
-version: 8.x-1.0-alpha1
+version: 8.x-1.0-beta1
 base theme: bootstrap
 
 name: 'Glazed'
