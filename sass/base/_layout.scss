@@ -16,12 +16,13 @@ body {
 .glazed-boxed-container {
   background: #fff;
   margin: 0 auto;
-  max-width: 1800px;
+  max-width: 1580px;
 }
 
 .container {
   padding-left: 60px;
   padding-right: 60px;
+  max-width: 1500px;
 }
 
 // navbar and page-title padding is not user-controlled and should be kept
