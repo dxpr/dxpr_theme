@@ -93,10 +93,10 @@ $font_3: 'sans-serif';
     outline: none;
     font-size: inherit;
   }
-  .form-wrapper > legend {
-    width: auto;
-    float: none;
-  }
+  // .form-wrapper > legend {
+  //   width: auto;
+  //   float: none;
+  // }
   .form-item {
     clear: both;
     min-height: 3em;
@@ -121,10 +121,10 @@ $font_3: 'sans-serif';
     position: static;
   }
   .form-text,
-  .form-type-select,
   .fieldset-wrapper,
   .slider,
-  .bootstrap-switch {
+  .bootstrap-switch,
+  .select-wrapper {
     float: left;
     max-width: 100%;
     width: 400px;
@@ -255,7 +255,7 @@ $font_3: 'sans-serif';
       color: #354051;
     }
   }
-  .form-type-radio {
+  .form-composite {
     padding: 0 0 20px 0;
     input {
       display: none;
@@ -304,19 +304,20 @@ $font_3: 'sans-serif';
   }
   .color-form {
     max-width: 740px;
+    position: relative;
     .form-item {
       height: auto;
     }
     .form-text {
       padding: 3px;
-      width: 300px;
+      width: 250px;
     }
-    .form-select {
-      width: 300px;
-      float: none; //override color.css
-    }
-    .form-type-select {
-      width: 500px;
+    .select-wrapper {
+      width: 250px;
+      .form-select {
+        float: none;
+        width: 250px;
+      }
     }
     .form-item-scheme {
       height: 3.2em;
@@ -324,23 +325,29 @@ $font_3: 'sans-serif';
     h2 {
       visibility: hidden;
     }
-    #preview {
+    .color-preview {
       visibility: hidden;
     }
   }
   .form-item {
     padding-left: 0;
   }
-  #palette {
+  .color-placeholder {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .color-palette {
     margin-top: 2em;
     label {
-      line-height: 44px;
+      line-height: 42px;
       margin: 0;
     }
     .form-item {
       padding: 0;
-      margin: 0;
+      margin: 0 0 2px 0;
       width: auto;
+      min-height: 0;
     }
     .item-selected {
       background: none;
@@ -353,7 +360,7 @@ $font_3: 'sans-serif';
       top: -2em;
     }
     .form-text {
-      padding: 10px;
+      padding: 5px;
     }
   }
   .font-preview {
