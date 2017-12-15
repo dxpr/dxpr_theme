@@ -291,10 +291,10 @@ $font_3: 'sans-serif';
     }
     .form-text {
       padding: 3px;
-      width: 300px;
+      width: 250px;
     }
     .form-select {
-      width: 300px;
+      width: 250px;
       float: none; //override color.css
     }
     .form-type-select {
@@ -321,8 +321,9 @@ $font_3: 'sans-serif';
     }
     .form-item {
       padding: 0;
-      margin: 0;
+      margin: 0 0 3px 0;
       width: auto;
+      min-height: 0;
     }
     .item-selected {
       background: none;
@@ -335,7 +336,7 @@ $font_3: 'sans-serif';
       top: -2em;
     }
     .form-text {
-      padding: 10px;
+      padding: 5px;
     }
   }
   .font-preview {
