@@ -4,18 +4,30 @@
 //  Glazed Helper functions
 //
 
-function _color_module_css_write($theme) {
+use Drupal\Core\Asset\CssOptimizer;
+
+function glazed_color_module_css_write($theme) {
   // stuff copied from color module, because this code is not encapsulated in a function other than theme submit
   module_load_include('module', 'color');
   $info = color_get_info($theme);
   $palette = color_get_palette($theme);
+  $config = \Drupal::configFactory()->getEditable('color.theme.' . $theme);
 
   // Delete old files.
-  foreach (variable_get('color_' . $theme . '_files', array()) as $file) {
-    @drupal_unlink($file);
+  $files = $config->get('files');
+  if (isset($files)) {
+    foreach ($files as $file) {
+      @drupal_unlink($file);
+    }
   }
   if (isset($file) && $file = dirname($file)) {
     @drupal_rmdir($file);
+  }
+
+  // No change in color config, use the standard theme from color.inc.
+  if (implode(',', color_get_palette($theme, TRUE)) == implode(',', $palette)) {
+    $config->delete();
+    return;
   }
 
   // Prepare target locations for generated files.
@@ -28,11 +40,13 @@ function _color_module_css_write($theme) {
   $paths['target'] = $paths['target'] . '/';
   $paths['id'] = $id;
   $paths['source'] = drupal_get_path('theme', $theme) . '/';
-  $paths['files'] = $paths['map'] = array();
+  $paths['files'] = $paths['map'] = [];
 
   // Save palette and logo location.
-  variable_set('color_' . $theme . '_palette', $palette);
-  variable_set('color_' . $theme . '_logo', $paths['target'] . 'logo.svg');
+  $config
+    ->set('palette', $palette)
+    ->set('logo', $paths['target'] . 'logo.svg')
+    ->save();
 
   // Copy over neutral images.
   foreach ($info['copy'] as $file) {
@@ -41,43 +55,35 @@ function _color_module_css_write($theme) {
     $filepath = file_unmanaged_copy($source, $paths['target'] . $base);
     $paths['map'][$file] = $base;
     $paths['files'][] = $filepath;
-    drupal_set_message($file);
-    drupal_set_message($filepath);
-    drupal_set_message('<pre>' . print_r($paths, TRUE) . '</pre>');
   }
 
   // Render new images, if image has been provided.
-  if ($info['base_image']) {
+  if (isset($info['base_image'])) {
     _color_render_images($theme, $info, $paths, $palette);
   }
 
   // Rewrite theme stylesheets.
-  $css = array();
+  $css = [];
   foreach ($info['css'] as $stylesheet) {
-    // Build a temporary array with LTR and RTL files.
-    $files = array();
+    // Build a temporary array with CSS files.
+    $files = [];
     if (file_exists($paths['source'] . $stylesheet)) {
       $files[] = $stylesheet;
-
-      $rtl_file = str_replace('.css', '-rtl.css', $stylesheet);
-      if (file_exists($paths['source'] . $rtl_file)) {
-        $files[] = $rtl_file;
-      }
     }
 
     foreach ($files as $file) {
+      $css_optimizer = new CssOptimizer();
       // Aggregate @imports recursively for each configured top level CSS file
       // without optimization. Aggregation and optimization will be
       // handled by drupal_build_css_cache() only.
-      $style = drupal_load_stylesheet($paths['source'] . $file, FALSE);
+      $style = $css_optimizer->loadFile($paths['source'] . $file, FALSE);
 
       // Return the path to where this CSS file originated from, stripping
       // off the name of the file at the end of the path.
-      $base = base_path() . dirname($paths['source'] . $file) . '/';
-      _drupal_build_css_path(NULL, $base);
+      $css_optimizer->rewriteFileURIBasePath = base_path() . dirname($paths['source'] . $file) . '/';
 
       // Prefix all paths within this CSS file, ignoring absolute paths.
-      $style = preg_replace_callback('/url\([\'"]?(?![a-z]+:|\/+)([^\'")]+)[\'"]?\)/i', '_drupal_build_css_path', $style);
+      $style = preg_replace_callback('/url\([\'"]?(?![a-z]+:|\/+)([^\'")]+)[\'"]?\)/i', [$css_optimizer, 'rewriteFileURI'], $style);
 
       // Rewrite stylesheet with new colors.
       $style = _color_rewrite_stylesheet($theme, $info, $paths, $palette, $style);
@@ -88,8 +94,10 @@ function _color_module_css_write($theme) {
   }
 
   // Maintain list of files.
-  variable_set('color_' . $theme . '_stylesheets', $css);
-  variable_set('color_' . $theme . '_files', $paths['files']);
+  $config
+    ->set('stylesheets', $css)
+    ->set('files', $paths['files'])
+    ->save();
 }
 
 /**
