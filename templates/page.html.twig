@@ -98,6 +98,7 @@
           theme.settings.header_position ? 'glazed-header--side' : 'glazed-header--top',
           theme.settings.navbar_position ? 'navbar-is-' ~ theme.settings.navbar_position,
           theme.settings.header_style ? 'glazed-header--' ~ theme.settings.header_style|clean_class,
+          theme.settings.menu_hover ? 'glazed-header--hover-' ~ theme.settings.menu_hover|clean_class,
           theme.settings.header_top_fixed and theme.settings.header_top_sticky ? 'glazed-header--sticky',
           theme.settings.header_top_fixed and not theme.settings.header_top_sticky ? 'glazed-header--fixed',
         ]

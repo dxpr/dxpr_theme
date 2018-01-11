@@ -154,7 +154,7 @@
 
 // MENU BORDER HOVER EFFECT
 #navbar.glazed-header--hover-background .menu {
-  .active-trail > a,
+  .active > a,
   a:hover,
   a:hover .menu a:focus,
   a.active {
@@ -164,7 +164,7 @@
 }
 
 #navbar.glazed-header--hover-text .menu {
-  .active-trail > a,
+  .active > a,
   a:hover,
   a:focus,
   a.active {
@@ -173,7 +173,7 @@
 }
 
 #navbar.glazed-header--hover-opacity .menu {
-  .active-trail > a,
+  .active > a,
   a:hover,
   a:focus,
   a.active {
@@ -196,10 +196,10 @@
   bottom: 0;
   background: $primary;
 }
-.body--glazed-header-side .glazed-header--side.glazed-header--hover-border .nav > li.active-trail > a:before,
+.body--glazed-header-side .glazed-header--side.glazed-header--hover-border .nav > li.active > a:before,
 .body--glazed-header-side .glazed-header--side.glazed-header--hover-border .nav > li > a:hover:before,
 .body--glazed-header-side .glazed-header--side.glazed-header--hover-border .nav > li > a.active:before,
-.glazed-header--top.glazed-header--hover-border .menu li.active-trail > a:before,
+.glazed-header--top.glazed-header--hover-border .menu li.active > a:before,
 .glazed-header--top.glazed-header--hover-border .menu a:hover:before,
 .glazed-header--top.glazed-header--hover-border .menu a.active:before {
   transform: scale(1, 1) translate(10px, 0);
