@@ -137,10 +137,18 @@ a.text-primary:focus {
   text-decoration: underline;
 }
 
-.wrap-containers .nav > li > a.active {
-  background-color: #eeeeee;
-  color: $primary;
-  text-decoration: none;
+.wrap-containers .nav {
+  float: none;
+  > li {
+    float: none;
+    display: block;
+    > a.is-active {
+      display: block;
+      background-color: #eeeeee;
+      color: $primary;
+      text-decoration: none;
+    }
+  }
 }
 
 .block .nav > li > a .glyphicon {
@@ -169,7 +177,7 @@ a.text-primary:focus {
   }
   .nav > li > a:hover,
   .nav > li > a:focus,
-  .nav > li > a.active {
+  .nav > li > a.is-active {
     color: $silver;
     background: $primary;
     .glyphicon {

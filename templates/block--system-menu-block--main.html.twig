@@ -33,7 +33,38 @@
  * @ingroup templates
  */
 #}
-{% set heading_id = attributes.id ~ '-menu'|clean_id %}
+{%
+  set classes = [
+    'block',
+    'block-' ~ configuration.provider|clean_class,
+    'block-' ~ plugin_id|clean_class,
+    'clearfix',
+    theme.settings.block_well and block.region in theme.settings.block_design_regions ? theme.settings.block_well,
+  ]
+%}
+{%
+  set title_classes = [
+    'block-title',
+    theme.settings.title_well and block.region in theme.settings.block_design_regions ? theme.settings.title_well,
+  ]
+%}
+<section{{ attributes.addClass(classes) }}>
+  {{ title_prefix }}
+  {% if theme.settings.title_sticker and block.region in theme.settings.block_design_regions %}
+    <div class="wrap-block-title">
+  {% endif %}
+  {% if label %}
+    <h2{{ title_attributes.addClass(title_classes) }}>{{ label }}</h2>
+  {% endif %}
+  {% if theme.settings.title_sticker and block.region in theme.settings.block_design_regions %}
+    </div>
+  {% endif %}
+  {% if theme.settings.block_divider and theme.settings.block_divider_thickness and block.region in theme.settings.block_design_regions %}
+    <hr class="block-hr">
+  {% endif %}
+  {{ title_suffix }}
+
   {% block content %}
     {{ content }}
   {% endblock %}
+</section>
