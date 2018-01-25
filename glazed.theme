@@ -73,3 +73,12 @@ function glazed_preprocess_page(&$variables) {
     }
   }
 }
+
+use Drupal\block\Entity\Block;
+/**
+ * Implements template_preprocess_block()
+ */
+function glazed_preprocess_block(&$variables) {
+  $block = Block::load($variables['elements']['#id']);
+  $variables['region'] = $block->getRegion();
+}
