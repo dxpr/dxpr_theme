@@ -138,15 +138,22 @@ a.text-primary:focus {
 }
 
 .wrap-containers .nav {
+  > li {
+    > a.is-active {
+      background-color: #eeeeee;
+      color: $primary;
+      text-decoration: none;
+    }
+  }
+}
+.region-sidebar-first .nav,
+.region-sidebar-second .nav {
   float: none;
   > li {
     float: none;
     display: block;
     > a.is-active {
       display: block;
-      background-color: #eeeeee;
-      color: $primary;
-      text-decoration: none;
     }
   }
 }
