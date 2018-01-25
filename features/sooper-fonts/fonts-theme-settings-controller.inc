@@ -1,6 +1,6 @@
 <?php
 
-$glazed_fonts = array();
+$glazed_fonts = [];
 $glazed_fonts[] = theme_get_setting('body_font_face');
 $glazed_fonts[] = theme_get_setting('headings_font_face');
 $glazed_fonts[] = theme_get_setting('nav_font_face');
@@ -28,14 +28,14 @@ foreach ($glazed_fonts as $glazed_font) {
  */
 function _glazed_add_goog_font($font, &$variables) {
   $font = substr($font, 1);
-  $element = array(
+  $element = [
     '#tag' => 'link',
-    '#attributes' => array(
+    '#attributes' => [
       'href' => '//fonts.googleapis.com/css?family=' . $font,
       'rel' => 'stylesheet',
       'type' => 'text/css',
-    ),
-  );
+    ],
+  ];
   $variables['#attached']['html_head'][] = [$element, $font];
 }
 
@@ -47,13 +47,13 @@ function _glazed_add_local_font($font, &$variables) {
   global $base_url;
 
   $font = explode('|', substr($font, 1));
-  $element = array(
+  $element = [
     '#tag' => 'link',
-    '#attributes' => array(
+    '#attributes' => [
       'href' => $base_url . '/' . drupal_get_path('theme', $font[0]) . $font[1],
       'rel' => 'stylesheet',
       'type' => 'text/css',
-    ),
-  );
+    ],
+  ];
   $variables['#attached']['html_head'][] = [$element, $font[2]];
 }

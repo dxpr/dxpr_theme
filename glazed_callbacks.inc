@@ -121,10 +121,10 @@ function glazed_css_cache_build($theme) {
   }
   $file_object = \file_save_data($CSS, $glazed_css_file, FILE_EXISTS_REPLACE);
   if ($dir_writable && !empty($file_object)) {
-    $message = t('Glazed CSS file cache built for %theme', array('%theme' => $theme));
+    $message = t('Glazed CSS file cache built for %theme', ['%theme' => $theme]);
     drupal_set_message($message);
     \Drupal::logger('glazed')->notice($message);
-    // watchdog('Glazed', 'Glazed CSS file cache built for %theme', array('%theme' => $theme));
+    // watchdog('Glazed', 'Glazed CSS file cache built for %theme', ['%theme' => $theme]);
   }
   else {
     $message = t('Cannot write theme-settings file, please check your file system. (See status report page)');

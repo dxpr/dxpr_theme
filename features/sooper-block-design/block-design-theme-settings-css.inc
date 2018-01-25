@@ -129,7 +129,7 @@ EOT;
 }
 
 function _glazed_regions2selectors($regions, $element) {
-  $selector_array = array();
+  $selector_array = [];
   foreach ($regions as $region) {
     $selector_array[] .= '.region-' . str_replace('_', '-', $region) . ' ' . $element;
   }

@@ -86,7 +86,7 @@ EOT;
  * @return string
  */
 function _glazed_font_stack($font = 'helvetica') {
-  $fonts = array(
+  $fonts = [
     'helvetica' => 'Arial, Helvetica, "Nimbus Sans L", "Liberation Sans", "FreeSans", sans-serif',
     'myriad' => '"myriad pro",myriad,calibri,arial,tahoma,verdana,sans-serif',
     'verdana' => 'Verdana, "Bitstream Vera Sans", Arial, sans-serif',
@@ -99,7 +99,7 @@ function _glazed_font_stack($font = 'helvetica') {
     'georgia' => 'Georgia, "Bitstream Vera Serif", serif',
     'palatino' => '"Palatino Linotype", "URW Palladio L", "Book Antiqua", "Palatino", serif',
     'times' => '"Free Serif", "Times New Roman", Times, serif',
-  );
+  ];
   if (!isset($fonts[$font])) {
     $font = 'helvetica';
   }

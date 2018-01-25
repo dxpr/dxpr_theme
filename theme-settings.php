@@ -18,17 +18,17 @@ function glazed_form_system_theme_settings_alter(&$form, &$form_state, $form_id 
   $glazed_theme_path = drupal_get_path('theme', 'glazed') . '/';
   $theme_path = drupal_get_path('theme', $subject_theme) . '/';
   $themes = \Drupal::service('theme_handler')->listInfo();
-  $theme_chain = array($subject_theme);
+  $theme_chain = [$subject_theme];
   foreach ($themes[$subject_theme]->base_themes as $base_theme => $base_theme_name) {
     $theme_chain[] = $base_theme;
   }
 
   $img = '<img style="width:35px;margin-right:5px;" src="' . $base_path . $glazed_theme_path . 'logo-white.png" />';
-  $form['glazed_settings'] = array(
+  $form['glazed_settings'] = [
     '#type' => 'vertical_tabs', // SETTING TYPE TO DETAILS OR VERTICAL_TABS STOPS RENDERING OF ALL ELEMENTS INSIDE
     '#weight' => -20,
     '#prefix' => '<h2><small>' . $img . ' ' . ucfirst($subject_theme) . ' ' . $themes[$subject_theme]->info['version'] . ' <span class="lead">(Bootstrap ' . $themes['bootstrap']->info['version'] . ')</span>' . '</small></h2>',
-  );
+  ];
   // $form['color']['#group'] = 'glazed_settings';
   if (!empty($form['update'])) {
     $form['update']['#group'] = 'global';
@@ -168,7 +168,7 @@ function glazed_form_system_theme_settings_submit(&$form, &$form_state) {
  * Retrieves the Color module information for a particular theme.
  */
 function _glazed_get_color_names($theme = NULL) {
-  static $theme_info = array();
+  static $theme_info = [];
   if (!isset($theme)) {
     $theme = \Drupal::config('system.theme');
   }
@@ -184,7 +184,7 @@ function _glazed_get_color_names($theme = NULL) {
     $theme_info[$theme] = $info['fields'];
     return $info['fields'];
   } else {
-    return array();
+    return [];
   }
 }
 
@@ -192,18 +192,18 @@ function _glazed_get_color_names($theme = NULL) {
  * Color options for theme settings
  */
 function _glazed_color_options($theme) {
-  $colors = array(
+  $colors = [
     '' => t('None (Theme Default)'),
     'white' => t('White'),
     'custom' => t('Custom Color'),
-  );
+  ];
   $theme_colors = _glazed_get_color_names($theme);
   $colors = array_merge($colors, $theme_colors);
   return $colors;
 }
 
 function _glazed_node_types_options() {
-  $types = array();
+  $types = [];
   foreach (node_type_get_types() as $key => $value) {
     $types[$key] = $value->get('name');
   }
