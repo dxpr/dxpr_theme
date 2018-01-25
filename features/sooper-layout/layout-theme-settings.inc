@@ -104,16 +104,16 @@ $form['glazed_settings']['layout']['background'] = array(
 );
 
 // @see glazed_helper.module glazed_helper_settings_form_submit()
-$form['glazed_settings']['layout']['background']['background_image'] = array(
-  '#default_value' => theme_get_setting('background_image'),
-  '#type' => 'managed_file',
-  '#title' => t('Body Background'),
-  '#description' => t('The default page title image can also be changed per node, using the Body image field in the node form.'),
-  '#upload_location' =>'public://glazed/body-backgrounds',
-  '#upload_validators' => [
-    'file_validate_extensions' => ['gif png jpg jpeg svg'],
-  ],
-);
+$form['glazed_settings']['layout']['background']['background_image_path'] = [
+  '#type' => 'textfield',
+  '#title' => t('Path to custom background image'),
+  '#default_value' => theme_get_setting('background_image_path'),
+];
+$form['glazed_settings']['layout']['background']['background_image'] = [
+  '#type' => 'file',
+  '#title' => t('Default Background'),
+  '#description' => t('The default page title image can also be changed per node, using the Header image field in the node form.'),
+];
 
 $form['glazed_settings']['layout']['background']['background_image_style'] = array(
   '#type' => 'radios',

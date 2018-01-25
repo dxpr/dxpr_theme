@@ -30,11 +30,6 @@ if ($bgstyle = theme_get_setting('page_title_image_style')) {
   }
 }
 
-if ($page_title_image = theme_get_setting('page_title_image', $theme)) {
-  $page_title_image = $page_title_image[0];
-  if ($page_title_image && is_numeric($page_title_image) && ($page_title_image > 0)) {
-    $file =  \Drupal\file\Entity\File::load($page_title_image);
-    $url = $file->url();
-    $CSS .= ".page-title-full-width-container:after { background-image: url('" . $url . "'); }\n\n";
-  }
+if ($page_title_image_path = theme_get_setting('page_title_image_path', $theme)) {
+  $CSS .= ".page-title-full-width-container:after { background-image: url('" . file_create_url($page_title_image_path) . "'); }\n\n";
 }

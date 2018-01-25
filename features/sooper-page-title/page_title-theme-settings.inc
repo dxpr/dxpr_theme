@@ -67,16 +67,16 @@ $form['glazed_settings']['page_title']['background'] = array(
 );
 
 // @see glazed_helper.module glazed_helper_settings_form_submit()
-$form['glazed_settings']['page_title']['background']['page_title_image'] = array(
-  '#type' => 'managed_file',
+$form['glazed_settings']['page_title']['background']['page_title_image_path'] = [
+  '#type' => 'hidden',
+  '#title' => t('Path to custom page title background image'),
+  '#default_value' => theme_get_setting('page_title_image_path'),
+];
+$form['glazed_settings']['page_title']['background']['page_title_image'] = [
+  '#type' => 'file',
   '#title' => t('Default Background'),
   '#description' => t('The default page title image can also be changed per node, using the Header image field in the node form.'),
-  '#default_value' => theme_get_setting('page_title_image'),
-  '#upload_location' =>'public://glazed/page-title-backgrounds',
-  '#upload_validators' => [
-    'file_validate_extensions' => ['gif png jpg jpeg svg'],
-  ],
-);
+];
 
 $form['glazed_settings']['page_title']['background']['page_title_image_opacity'] = array(
   '#type' => 'textfield',
