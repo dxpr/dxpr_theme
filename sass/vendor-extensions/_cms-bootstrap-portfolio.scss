@@ -13,16 +13,14 @@
   width: 64%;
 }
 
-.node-portfolio {
+.cms-portfolio-project {
   .twentytwenty-wrapper,
-  .cms-portfolio-images img,
-  .cms-portfolio-images .image-field-caption {
+  .field--name-field-cms-page-image img {
     margin-bottom: 30px;
   }
 }
 
-.cms-portfolio-images .row img,
-.cms-portfolio-images .row .image-field-caption {
+.field--name-field-cms-page-image .row img {
   margin-bottom: 0;
 }
 
