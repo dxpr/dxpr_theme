@@ -116,7 +116,7 @@ $font-size-h6:            ceil($font-size-base * 0.85); // ~12px
 //$line-height-large:              1.33;
 //$line-height-small:              1.5;
 
-//$border-radius-base:             4px;
+$border-radius-base:             4px;
 //$border-radius-large:            6px;
 //$border-radius-small:            3px;
 
@@ -268,7 +268,7 @@ $font-size-h6:            ceil($font-size-base * 0.85); // ~12px
 // Number of columns in the grid system
 //$grid-columns:              12;
 // Padding, to be divided by two and applied to the left and right of all columns
-//$grid-gutter-width:         30px;
+$grid-gutter-width:         30px;
 // Point at which the navbar stops collapsing
 //$grid-float-breakpoint:     $screen-sm-min;
 
@@ -344,9 +344,9 @@ $font-size-h6:            ceil($font-size-base * 0.85); // ~12px
 //$nav-open-caret-border-color:               #ffffff;
 
 // Tabs
-//$nav-tabs-border-color:                     #ddd;
+$nav-tabs-border-color:                     #ddd;
 
-//$nav-tabs-link-hover-border-color:          $gray-lighter;
+$nav-tabs-link-hover-border-color:          $gray-lighter;
 
 //$nav-tabs-active-link-hover-bg:             $body-bg;
 //$nav-tabs-active-link-hover-color:          $text;
