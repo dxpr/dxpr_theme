@@ -116,7 +116,7 @@ $font-size-h6:            ceil($font-size-base * 0.85); // ~12px
 //$line-height-large:              1.33;
 //$line-height-small:              1.5;
 
-//$border-radius-base:             4px;
+$border-radius-base:             4px;
 //$border-radius-large:            6px;
 //$border-radius-small:            3px;
 
@@ -344,9 +344,9 @@ $font-size-h6:            ceil($font-size-base * 0.85); // ~12px
 //$nav-open-caret-border-color:               #ffffff;
 
 // Tabs
-//$nav-tabs-border-color:                     #ddd;
+$nav-tabs-border-color:                     #ddd;
 
-//$nav-tabs-link-hover-border-color:          $gray-lighter;
+$nav-tabs-link-hover-border-color:          $gray-lighter;
 
 //$nav-tabs-active-link-hover-bg:             $body-bg;
 //$nav-tabs-active-link-hover-color:          $text;
@@ -403,9 +403,9 @@ $font-size-h6:            ceil($font-size-base * 0.85); // ~12px
 //$state-warning-bg:               #fcf8e3;
 //$state-warning-border:           darken(adjust-hue($state-warning-bg, -10), 5%);
 
-//$state-danger-text:              #b94a48;
-//$state-danger-bg:                #f2dede;
-//$state-danger-border:            darken(adjust-hue($state-danger-bg, -10), 5%);
+$state-danger-text:              #b94a48;
+$state-danger-bg:                #f2dede;
+$state-danger-border:            darken(adjust-hue($state-danger-bg, -10), 5%);
 
 // Tooltips
 // -------------------------

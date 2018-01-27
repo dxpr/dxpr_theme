@@ -213,7 +213,7 @@
     <?php print $cnt_content_bottom_squeeze_end; ?>
   </div>
   <?php endif; ?>
-</div>
+</div><!-- end wrap-containers -->
 
 <!-- /#Sticky Footer -->
 <?php if (!empty($page['footer'])): ?>
