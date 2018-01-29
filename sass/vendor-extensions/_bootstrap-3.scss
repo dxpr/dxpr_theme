@@ -369,15 +369,18 @@ blockquote footer, blockquote small, blockquote .small {
   }
 }
 
+.region-content nav.tabs:after {
+  content:" ";
+  display:table;
+  clear:both;
+}
+
 .html .glazed-mini-tabs-wrapper {
-  position: absolute;
-  margin-top: 2px;
-  left: 50%;
-  z-index: 3000;
   pointer-events: none;
+  display: block;
+  float: left;
+  margin-bottom: 10px;
   .tabs--primary {
-    position: relative;
-    left: -50%;
     border: none;
     box-shadow: 0 3px 10px 0 rgba(50, 50, 50, 0.23);
     li {
@@ -400,6 +403,26 @@ blockquote footer, blockquote small, blockquote .small {
       }
     }
   }
+}
+.body--primary-tabs-float .region-content nav.tabs:after {
+  display: none;
+}
+.body--primary-tabs-float .glazed-mini-tabs-wrapper {
+  display:inline-block;
+  float: none;
+  position: absolute;
+  margin-top: 2px;
+  left: 50%;
+  z-index: 3000;
+  .tabs--primary {
+    position: relative;
+    left: -50%;
+  }
+}
+.html .tabs--secondary {
+  float: left;
+  clear: both;
+  margin-bottom: 10px;
 }
 
 // Tabbable tabs

@@ -62,6 +62,7 @@
     not theme.settings.header_position and theme.settings.header_style != 'overlay' ? 'body--glazed-header-not-overlay',
     not theme.settings.header_position ? 'body--glazed-header-' ~ theme.settings.header_style|clean_class,
     not theme.settings.header_position and not theme.settings.header_top_sticky and theme.settings.header_top_fixed ? 'body--glazed-header-fixed',
+    page_title in node.field_glazed_hide_regions.getValue|keys ? 'body--primary-tabs-float',
   ]
 %}
 {% if node.field_glazed_body_background %}
