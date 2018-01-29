@@ -3,28 +3,29 @@
 //
 
 
-[class*='tags'],
-.tagclouds-term {
-  > a {
-    display: inline-block;
-    background: $silver;
-    color: $gray-light;
-    line-height: 1em;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    padding: 6px 7px 7px 8px;
-    margin: 0 5px 5px 0;
-    &:hover,
-    &:focus {
-      text-decoration: none;
-      background: $gray-light;
-      color: $silver;
-    }
+[class*='tags'] .field--item > a,
+.tagclouds-term > a {
+  display: inline-block;
+  background: $silver;
+  color: $gray-light;
+  line-height: 1em;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 6px 7px 7px 8px;
+  margin: 0 5px 5px 0;
+  &:hover,
+  &:focus {
+    text-decoration: none;
+    background: $gray-light;
+    color: $silver;
   }
 }
 
-[class*='tags'] > a {
-  font-size: $font-size-small;
+[class*='tags'] .field--item {
+  display: inline-block;
+  > a {
+    font-size: $font-size-small;
+  }
 }
 
 .cms-blog-links .row {
