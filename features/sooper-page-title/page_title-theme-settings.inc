@@ -71,6 +71,7 @@ $form['glazed_settings']['page_title']['background']['page_title_image_path'] = 
   '#type' => 'textfield',
   '#title' => t('Path to background image'),
   '#default_value' => theme_get_setting('page_title_image_path'),
+  '#description' => t('The path to the file you would like to use as your page title background image. If you upload a file below it will automatically populate this text field'),
 ];
 $form['glazed_settings']['page_title']['background']['page_title_image'] = [
   '#type' => 'file',
