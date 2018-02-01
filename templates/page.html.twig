@@ -145,8 +145,8 @@
 
   {% block page_title %}
   {% if node.field_glazed_page_title_backgrou %}
-    {% set style = 'background-image:url(' ~ file_url(node.field_glazed_page_title_backgrou.entity.getFileUri) ~ ');' %}
-    {% set page_title_attributes = create_attribute({'style': style}) %}
+    {% set data_bg_img = file_url(node.field_glazed_page_title_backgrou.entity.getFileUri) %}
+    {% set page_title_attributes = create_attribute({'data-bg-img': data_bg_img}) %}
   {% endif %}
     <div{{ page_title_attributes }} class="page-title-full-width-container" id="page-title-full-width-container">
     {% set container = theme.settings.full_width_containers.cnt_page_title ? 'glazed-fluid' : 'container' %}

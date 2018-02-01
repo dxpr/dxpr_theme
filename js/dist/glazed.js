@@ -37,6 +37,13 @@ Drupal.behaviors.fullScreenSearch = {
 
 Drupal.behaviors.glazed = {
   attach: function(context, settings) {
+    // Page Title Background Image Helper
+    var bg_img = $('#page-title-full-width-container').attr('data-bg-img');
+    if (bg_img) {
+      $('<style>#page-title-full-width-container:after{background-image:url("'+ bg_img +'")}</style>').appendTo('head');
+    }
+
+    // Menu System
     var windowHeight = $(window).height();
     if ($('#glazed-main-menu .menu').length > 0) {
       glazedMenuGovernor(document);
