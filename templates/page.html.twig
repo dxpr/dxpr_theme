@@ -184,7 +184,9 @@
 {% block main %}
   {% set container = theme.settings.full_width_containers.cnt_content
   or node.field_glazed_main_content_width.getString() == 'glazed-util-full-width-content'
-  or node and attribute(theme.settings.full_width_content_types, node.getType) ? '' : 'container' %}
+  or node and attribute(theme.settings.full_width_content_types, node.getType)
+  and not page.sidebar_first
+  and not page.sidebar_second ? '' : 'container' %}
   <div role="main" class="main-container {{ container }} js-quickedit-main-content clearfix">
     {% if container != '' %}
     <div class="row">
