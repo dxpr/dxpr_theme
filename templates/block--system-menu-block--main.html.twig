@@ -45,27 +45,27 @@
     'block-' ~ configuration.provider|clean_class,
     'block-' ~ plugin_id|clean_class,
     'clearfix',
-    theme.settings.block_well and block.region in designRegions ? theme.settings.block_well,
+    theme.settings.block_well and region in designRegions ? theme.settings.block_well,
   ]
 %}
 {%
   set title_classes = [
     'block-title',
-    theme.settings.title_well and block.region in designRegions ? theme.settings.title_well,
+    theme.settings.title_well and region in designRegions ? theme.settings.title_well,
   ]
 %}
 <section{{ attributes.addClass(classes) }}>
   {{ title_prefix }}
-  {% if theme.settings.title_sticker and block.region in designRegions %}
+  {% if theme.settings.title_sticker and region in designRegions %}
     <div class="wrap-block-title">
   {% endif %}
   {% if label %}
     <h2{{ title_attributes.addClass(title_classes) }}>{{ label }}</h2>
   {% endif %}
-  {% if theme.settings.title_sticker and block.region in designRegions %}
+  {% if theme.settings.title_sticker and region in designRegions %}
     </div>
   {% endif %}
-  {% if theme.settings.block_divider and theme.settings.block_divider_thickness and block.region in designRegions %}
+  {% if theme.settings.block_divider and theme.settings.block_divider_thickness and region in designRegions %}
     <hr class="block-hr">
   {% endif %}
   {{ title_suffix }}
