@@ -25,6 +25,12 @@ a .glyphicon-spin {
   text-decoration: none;
 }
 
+p:last-child,
+.form-group:last-child,
+.panel:last-child {
+  margin-bottom: 0;
+}
+
 html.js {
   .btn .ajax-throbber {
     margin-left: .5em;

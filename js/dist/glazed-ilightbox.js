@@ -7,7 +7,7 @@
       $('.cms-portfolio-project.node-images-grid .cms-portfolio-images')
         .once('cmsPortfolio-gallery')
         .wrapInner('<div class="row">')
-        .find('.field-comparison-images')
+        .find('.twentytwenty-wrapper')
         .addClass('col-sm-12');
       $('.cms-portfolio-project.node-images-grid.node-details-top, .cms-portfolio-project.node-images-grid.node-details-bottom')
         .once('cmsPortfolio-gallery')
