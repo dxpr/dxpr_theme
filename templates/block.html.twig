@@ -72,9 +72,7 @@
     <div class="wrap-block-title">
   {% endif %}
   {% if label %}
-    <h2{{ title_attributes.addClass(title_classes) }}>{{ label }}
-{{ dump(region) }}
-{{ dump(designRegions) }}</h2>
+    <h2{{ title_attributes.addClass(title_classes) }}>{{ label }}</h2>
   {% endif %}
   {% if theme.settings.title_sticker and region in designRegions %}
     </div>

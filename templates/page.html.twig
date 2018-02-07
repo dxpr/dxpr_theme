@@ -185,14 +185,14 @@
   {% set container = theme.settings.full_width_containers.cnt_content
   or node.field_glazed_main_content_width.getString() == 'glazed-util-full-width-content'
   or node and attribute(theme.settings.full_width_content_types, node.getType)
-  and not page.sidebar_first
-  and not page.sidebar_second ? '' : 'container' %}
+  and not page.sidebar_first|render|striptags|trim
+  and not page.sidebar_second|render|striptags|trim ? '' : 'container' %}
   <div role="main" class="main-container {{ container }} js-quickedit-main-content clearfix">
     {% if container != '' %}
     <div class="row">
     {% endif %}
       {# Sidebar First #}
-      {% if page.sidebar_first %}
+      {% if page.sidebar_first|render|striptags|trim %}
         {% block sidebar_first %}
           <aside class="col-sm-3" role="complementary">
             {{ page.sidebar_first }}
@@ -204,10 +204,10 @@
       {% if not node.field_glazed_main_content_width.getString() %}
         {%
           set content_classes = [
-            page.sidebar_first and page.sidebar_second ? 'col-sm-6',
-            page.sidebar_first and page.sidebar_second is empty ? 'col-sm-9',
-            page.sidebar_second and page.sidebar_first is empty ? 'col-sm-9',
-            container != '' and page.sidebar_first is empty and page.sidebar_second is empty ? 'col-sm-12'
+            page.sidebar_first|render|striptags|trim and page.sidebar_second|render|striptags|trim ? 'col-sm-6',
+            page.sidebar_first|render|striptags|trim and page.sidebar_second|render|striptags|trim is empty ? 'col-sm-9',
+            page.sidebar_second|render|striptags|trim and page.sidebar_first|render|striptags|trim is empty ? 'col-sm-9',
+            container != '' and page.sidebar_first|render|striptags|trim is empty and page.sidebar_second|render|striptags|trim is empty ? 'col-sm-12'
           ]
         %}
       {% else %}
@@ -246,7 +246,7 @@
       </section>
 
       {# Sidebar Second #}
-      {% if page.sidebar_second %}
+      {% if page.sidebar_second|render|striptags|trim %}
         {% block sidebar_second %}
           <aside class="col-sm-3" role="complementary">
             {{ page.sidebar_second }}
