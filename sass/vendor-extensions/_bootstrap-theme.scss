@@ -34,6 +34,11 @@ html {
   }
 }
 
+p:last-child,
+.form-group:last-child,
+.panel:last-child {
+  margin-bottom: 0;
+}
 
 // Form elements.
 input, textarea, select, .uneditable-input {
@@ -51,7 +56,6 @@ fieldset legend.panel-heading {
 }
 fieldset .panel-body {
   clear: both;
-  display: inherit;
 }
 fieldset .panel-heading a.panel-title {
   color: inherit;
