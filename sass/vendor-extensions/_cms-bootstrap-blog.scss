@@ -13,6 +13,8 @@
   text-transform: uppercase;
   padding: 6px 7px 7px 8px;
   margin: 0 5px 5px 0;
+  max-width: 100%;
+  overflow: hidden;
   &:hover,
   &:focus {
     text-decoration: none;

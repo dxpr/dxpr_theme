@@ -214,3 +214,5 @@ hidden_regions:
   sidebar_first: 0
   sidebar_second: 0
   footer: 0
+popover_placement: top
+tooltip_placement: 'auto top'
