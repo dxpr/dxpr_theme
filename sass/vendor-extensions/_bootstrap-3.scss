@@ -322,21 +322,13 @@ blockquote footer, blockquote small, blockquote .small {
         cursor: pointer;
         border: 1px solid $gray-lighter;
         border-bottom-color: $body-background;
+        background-color: transparent;
         &:hover,
         &:focus {
           color: $primary;
           cursor: default;
           outline: none;
         }
-      }
-    }
-  }
-  &.tabs--primary {
-    > li {
-      position: relative;
-      // z-index: 4100; // @see glazed.admin.js, applied when collision with header is detected
-      > a {
-        background-color: $body-background;
       }
     }
   }
@@ -358,6 +350,7 @@ blockquote footer, blockquote small, blockquote .small {
       padding: 0;
       border: none;
       a {
+        background-color: white;
         padding: 8px;
         text-transform: uppercase;
         font-size: 12px;
