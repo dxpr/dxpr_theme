@@ -75,6 +75,13 @@ function glazed_preprocess_page(&$variables) {
     $local_hide = array_column($variables['node']->get('field_glazed_hide_regions')->getValue(), 'value');
     $hide_regions = array_unique(array_merge($hide_regions, $local_hide));
   }
+  if (in_array('navigation', $hide_regions)) {
+    $hide_regions[] = 'navigation_collapsible';
+  }
+  if (in_array('header', $hide_regions)) {
+    $hide_regions[] = 'navigation_collapsible';
+    $hide_regions[] = 'navigation';
+  }
   foreach ($hide_regions as $value) {
     if (!empty($variables['page'][$value])) {
       unset($variables['page'][$value]);
