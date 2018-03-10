@@ -3,7 +3,7 @@
 $CSS .= "body, p, .lead { line-height:  " . theme_get_setting('body_line_height', $theme) . " } \n";
 $CSS .= "body { font-size:  " . theme_get_setting('body_font_size', $theme) . "px } \n";
 if (theme_get_setting('menu_type', $theme) != 'lead') {
-  $CSS .= ".glazed-header--top #glazed-main-menu .nav > li > a, .glazed-header--side #glazed-main-menu .nav a  { font-size:  " . theme_get_setting('nav_font_size', $theme) . "px } \n";
+  $CSS .= ".glazed-header--top #glazed-main-menu .nav > li > a, .glazed-header--side #glazed-main-menu .nav a, .body--glazed-nav-desktop .glazed-header--top .nav .dropdown-menu li>a { font-size:  " . theme_get_setting('nav_font_size', $theme) . "px } \n";
 }
 $CSS .= "h1,h2,h3,h4,h5,h6 { line-height:  " . theme_get_setting('headings_line_height', $theme) . "; } \n";
 $CSS .= "h1, .html #page-title .page-title { font-size:  " . theme_get_setting('h1_font_size', $theme) . "px; } \n";
@@ -51,7 +51,7 @@ if ($value = theme_get_setting('divider_color', $theme)) {
 $CSS .= "@media screen and (max-width: 768px) { \n";
   $CSS .= "  body, p { font-size:  " . theme_get_setting('body_mobile_font_size', $theme) . "px; } \n";
   if (theme_get_setting('menu_type', $theme) != 'lead') {
-    $CSS .= "  .glazed-header--top #glazed-main-menu .nav > li > a, .glazed-header--side #glazed-main-menu .nav a { font-size:  " . theme_get_setting('nav_mobile_font_size', $theme) . "px } \n";
+    $CSS .= "  .glazed-header--top #glazed-main-menu .nav > li > a, .glazed-header--side #glazed-main-menu .nav a, .body--glazed-nav-desktop .glazed-header--top .nav .dropdown-menu li>a { font-size:  " . theme_get_setting('nav_mobile_font_size', $theme) . "px } \n";
   }
   $CSS .= "  h1, .html #page-title .page-title { font-size:  " . theme_get_setting('h1_mobile_font_size', $theme) . "px; } \n";
   $CSS .= "  h2 { font-size:  " . theme_get_setting('h2_mobile_font_size', $theme) . "px; } \n";
