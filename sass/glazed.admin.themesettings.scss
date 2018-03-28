@@ -3,7 +3,7 @@
 $black: #000;
 $color_pink_swan: #bbb;
 $color_mine_shaft: #333;
-$white: #fff;
+$white: white;
 $color_alabaster: #f9fafc;
 $color_outer_space_5: rgba(40, 50, 60, 0.05);
 $white_50: rgba(255, 255, 255, 0.5);
@@ -211,14 +211,14 @@ $font_3: 'sans-serif';
       }
       .selected {
         background: $color_curious_blue;
-        color: #fff;
+        color: white;
         a {
-          color: #fff;
+          color: white;
           background: transparent;
           border: none;
         }
         .summary {
-          color: #fff;
+          color: white;
           opacity: 0.5;
         }
       }
@@ -233,7 +233,7 @@ $font_3: 'sans-serif';
   .form-select {
     color: $color_curious_blue;
     option {
-      background: #fff;
+      background: white;
       color: #354051;
     }
   }
@@ -422,7 +422,7 @@ $font_3: 'sans-serif';
     }
   }
   .block-design-wrapper {
-    background: #fff;
+    background: white;
   }
   .block-design-settings {
     width: 50%;

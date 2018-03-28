@@ -5,7 +5,7 @@
 // Using comment patch https: //www.drupal.org/files/bootstrap-use-media-object-as-comments-2109369-6.patch
 
 html.js body.html.page-media-browser {
-  background: #fff;
+  background: white;
   padding: 0 !important;
   .pagination {
     margin-top: 10px;
@@ -30,7 +30,7 @@ html.js body.html.page-media-browser {
   box-shadow: $glazed-shadow-5;
   z-index: 7000;
   .ui-dialog-titlebar {
-    background: #fff;
+    background: white;
     color: $text;
     border: none;
     height: 50px;

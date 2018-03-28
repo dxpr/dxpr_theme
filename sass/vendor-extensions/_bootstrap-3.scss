@@ -102,9 +102,9 @@ $btn-primary-border: $primary;
 .btn-group > .btn-primary,
 .html .fake-submit {
   background: $primary;
-  color: #fff;
+  color: white;
   a {
-    color: #fff;
+    color: white;
   }
 }
 
@@ -121,9 +121,9 @@ $btn-primary-border: $primary;
 a.bg-primary:hover,
 a.bg-primary:focus {
   background-color: $accent1;
-  color: #fff;
+  color: white;
   a {
-    color: #fff;
+    color: white;
   }
 }
 a.text-primary:hover,
@@ -335,7 +335,7 @@ blockquote footer, blockquote small, blockquote .small {
   }
 }
 .glazed-boxed-container .nav-tabs >li.active a {
-  border-bottom-color: #fff;
+  border-bottom-color: white;
 }
 
 
@@ -393,13 +393,13 @@ blockquote footer, blockquote small, blockquote .small {
   border-right-color: $body-background;
 }
 .glazed-boxed-container .tabs-left .nav-tabs .active>a {
-  border-right-color: #fff;
+  border-right-color: white;
 }
 .html .tabs-right .nav-tabs .active>a {
   border-left-color: $body-background;
 }
 .glazed-boxed-container .tabs-right .nav-tabs .active>a {
-  border-left-color: #fff;
+  border-left-color: white;
 }
 
 // Progress Bar
