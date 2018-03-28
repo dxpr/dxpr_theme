@@ -253,15 +253,6 @@ table {
     margin-right: -1px;
     > li > a {
       border-radius: $border-radius-base 0 0 $border-radius-base;
-      &:hover,
-      &:focus {
-        border-color: $nav-tabs-link-hover-border-color $nav-tabs-border-color $nav-tabs-link-hover-border-color $nav-tabs-link-hover-border-color;
-      }
-    }
-    > .active > a,
-    > .active > a:hover,
-    > .active > a:focus {
-      border-color: $nav-tabs-border-color transparent $nav-tabs-border-color $nav-tabs-border-color;
     }
   }
 }
@@ -273,15 +264,6 @@ table {
     margin-left: -1px;
     > li > a {
       border-radius: 0 $border-radius-base $border-radius-base 0;
-      &:hover,
-      &:focus {
-        border-color: $nav-tabs-link-hover-border-color $nav-tabs-link-hover-border-color $nav-tabs-link-hover-border-color $nav-tabs-border-color;
-      }
-    }
-    > .active > a,
-    > .active > a:hover,
-    > .active > a:focus {
-      border-color: $nav-tabs-border-color $nav-tabs-border-color $nav-tabs-border-color transparent;
     }
   }
 }

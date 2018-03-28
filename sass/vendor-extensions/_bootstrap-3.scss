@@ -23,7 +23,7 @@ p:last-child {
 
 .container {
   width: 100%;
-  max-width: 1170px;
+  max-width: 1600px;
   .container {
     padding-left: 0;
     padding-right: 0;
@@ -316,7 +316,8 @@ blockquote footer, blockquote small, blockquote .small {
     &.active,
     &.ui-tabs-active {
       position: relative;
-      bottom: -1px; // more reliable than margin-bbottom. e.g. in sooperthemes checkout form
+      // added !important below because bootstrap? is adding inline JS bottom:0
+      bottom: -1px !important; // more reliable than margin-bbottom. e.g. in sooperthemes checkout form
       a {
         color: $primary;
         cursor: pointer;
@@ -333,6 +334,10 @@ blockquote footer, blockquote small, blockquote .small {
     }
   }
 }
+.glazed-boxed-container .nav-tabs >li.active a {
+  border-bottom-color: #fff;
+}
+
 
 .html .glazed-mini-tabs-wrapper {
   position: absolute;
@@ -383,6 +388,19 @@ blockquote footer, blockquote small, blockquote .small {
 
 .tabs-left>.tab-content, .tabs-right>.tab-content {
   padding: 20px;
+}
+
+.tabs-left .nav-tabs .active>a {
+  border-right-color: $body-background;
+}
+.glazed-boxed-container .tabs-left .nav-tabs .active>a {
+  border-right-color: #fff;
+}
+.tabs-right .nav-tabs .active>a {
+  border-left-color: $body-background;
+}
+.glazed-boxed-container .tabs-right .nav-tabs .active>a {
+  border-left-color: $body-background;
 }
 
 // Progress Bar
