@@ -3,6 +3,9 @@
 // Boxed Layout Box Background Color
 if (theme_get_setting('boxed_layout', $theme) && ($cnt_bg = theme_get_setting('boxed_layout_boxbg', $theme))) {
   $CSS .= ".glazed-boxed-container { background: $cnt_bg; }\n\n";
+  $CSS .= ".glazed-boxed-container .nav-tabs >li.active a { border-bottom-color: $cnt_bg; }\n\n";
+  $CSS .= ".glazed-boxed-container .tabs-left .nav-tabs .active>a { border-right-color: $cnt_bg; }\n\n";
+  $CSS .= ".glazed-boxed-container .tabs-right .nav-tabs .active>a { border-left-color: $cnt_bg; }\n\n";
 }
 
   $box_width = theme_get_setting('box_max_width', $theme);
