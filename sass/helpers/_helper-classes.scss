@@ -153,15 +153,15 @@
   .glazed-util-background-gray,
   .glazed-util-background-black,
   .bg-primary {
-    color: #fff;
+    color: white;
     h1,h2,h3,h4,a,.form-control {
-      color: #fff;
+      color: white;
     }
     hr {
-      background: #fff;
+      background: white;
     }
     .form-control {
-      border-color: #fff;
+      border-color: white;
     }
     ::placeholder  {
       color: rgba(255,255,255,0.8);
@@ -171,7 +171,7 @@
   .glazed-util-overlay-primary,
   .glazed-util-background-primary {
     a {
-      color: #fff;
+      color: white;
     }
   }
   .YTPOverlay { opacity: 0.9; }
