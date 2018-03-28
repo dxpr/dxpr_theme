@@ -389,14 +389,13 @@ blockquote footer, blockquote small, blockquote .small {
 .tabs-left>.tab-content, .tabs-right>.tab-content {
   padding: 20px;
 }
-
-.tabs-left .nav-tabs .active>a {
+.html .tabs-left .nav-tabs .active>a {
   border-right-color: $body-background;
 }
 .glazed-boxed-container .tabs-left .nav-tabs .active>a {
   border-right-color: #fff;
 }
-.tabs-right .nav-tabs .active>a {
+.html .tabs-right .nav-tabs .active>a {
   border-left-color: $body-background;
 }
 .glazed-boxed-container .tabs-right .nav-tabs .active>a {
