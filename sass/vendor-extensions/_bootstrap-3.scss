@@ -364,7 +364,7 @@ blockquote footer, blockquote small, blockquote .small {
         pointer-events: auto;
       }
       &.active {
-        bottom: auto;
+        bottom: auto !important;
         a {
           border: none;
         }
