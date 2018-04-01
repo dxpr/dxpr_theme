@@ -194,7 +194,7 @@
       top: 180px;
       height: 100%;
       height: calc(100vh - 180px);
-      overflow: auto;
+      // overflow: auto;
     }
   }
   &.body--glazed-header-side.body--full-screen-search .glazed-header--side .navbar-header {
