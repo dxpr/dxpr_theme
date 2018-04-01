@@ -14,9 +14,16 @@
  */
 function glazed_library_info_alter(&$libraries, $extension) {
   if ($extension == 'bootstrap') {
+    // Bootstrap < 3.11
     foreach($libraries['theme']['css']['base'] as $key => $value){
       if(strpos($key, 'overrides.min.css')){
         unset($libraries['theme']['css']['base'][$key]);
+      }
+    }
+    // Bootstrap 3.11+
+    foreach($libraries['framework']['css']['base'] as $key => $value){
+      if(strpos($key, 'overrides.min.css')){
+        unset($libraries['framework']['css']['base'][$key]);
       }
     }
   }
