@@ -54,6 +54,7 @@ $form['glazed_settings']['typography']['advanced_type'] = array(
   '#type' => 'fieldset',
   '#collapsible' => TRUE,
   '#collapsed' => TRUE,
+  '#suffix' => _glazed_type_preview(),
 );
 
 $form['glazed_settings']['typography']['advanced_type']['h1_font_size'] = array(
@@ -186,15 +187,14 @@ $form['glazed_settings']['typography']['advanced_type']['mobile_type']['blockquo
   '#maxlength' => 9,
 );
 
-$form['glazed_settings']['typography']['divider'] = array(
+$form['glazed_settings']['typography']['advanced_type']['divider'] = array(
   '#title' => t('Divider'),
   '#type' => 'fieldset',
   '#collapsible' => TRUE,
   '#collapsed' => TRUE,
-  '#suffix' => _glazed_type_preview(),
 );
 
-$form['glazed_settings']['typography']['divider']['divider_thickness'] = array(
+$form['glazed_settings']['typography']['advanced_type']['divider']['divider_thickness'] = array(
   '#type' => 'textfield',
   '#title' => t('Divider Thickness'),
   '#default_value' => ((theme_get_setting('divider_thickness') !== null)) ? theme_get_setting('divider_thickness') : '4',
@@ -202,7 +202,7 @@ $form['glazed_settings']['typography']['divider']['divider_thickness'] = array(
   '#maxlength' => 9,
 );
 
-$form['glazed_settings']['typography']['divider']['divider_length'] = array(
+$form['glazed_settings']['typography']['advanced_type']['divider']['divider_length'] = array(
   '#type' => 'textfield',
   '#title' => t('Divider Length') . ' <small>' . t('(0 = full width)') . '</small>',
   '#default_value' => ((theme_get_setting('divider_length') !== null)) ? theme_get_setting('divider_length') : '0',
@@ -210,7 +210,7 @@ $form['glazed_settings']['typography']['divider']['divider_length'] = array(
   '#maxlength' => 9,
 );
 
-$form['glazed_settings']['typography']['divider']['divider_position'] = array(
+$form['glazed_settings']['typography']['advanced_type']['divider']['divider_position'] = array(
   '#type' => 'textfield',
   '#title' => t('Divider Position'),
   '#default_value' => ((theme_get_setting('divider_position') !== null)) ? theme_get_setting('divider_position') : '0',
@@ -224,14 +224,14 @@ $form['glazed_settings']['typography']['divider']['divider_position'] = array(
   ),
 );
 
-$form['glazed_settings']['typography']['divider']['divider_color'] = array(
+$form['glazed_settings']['typography']['advanced_type']['divider']['divider_color'] = array(
   '#type' => 'select',
   '#title' => t('Divider Color'),
   '#default_value' =>  theme_get_setting('divider_color'),
   '#options' => _glazed_color_options($theme),
 );
 
-$form['glazed_settings']['typography']['divider']['divider_color_custom'] = array(
+$form['glazed_settings']['typography']['advanced_type']['divider']['divider_color_custom'] = array(
   '#type' => 'textfield',
   '#title' => t('Custom Value'),
   '#default_value' => ((theme_get_setting('divider_color_custom') !== null)) ? theme_get_setting('divider_color_custom') : '#eeeeee',
