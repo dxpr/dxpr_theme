@@ -7,6 +7,7 @@ if (\Drupal::moduleHandler()->moduleExists('glazed_helper')) {
     '#weight' => 17,
   ];
 
+  $default_options = _glazed_node_types_options();
   $form['glazed_settings']['prevnext']['prevnext_content_types'] = [
       '#type' => 'checkboxes',
       '#title' => t('Previous / Next Pager'),
