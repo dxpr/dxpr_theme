@@ -1,0 +1,28 @@
+core: 8.x
+type: theme
+version: 8.x-1.0
+base theme: glazed
+
+name: 'THEMETITLE'
+description: 'For basic customization just use Glazed and theme settings. Use this STARTERKIT example if you need to build extra css files and templates on top of Glazed Theme.
+'
+package: 'Bootstrap'
+
+regions:
+  secondary_header: 'Secondary Header'
+  navigation: 'Navigation'
+  navigation_collapsible: 'Navigation (Collapsible)'
+  highlighted: 'Hero Region'
+  page_title: 'Page Title'
+  help: 'Help'
+  content_top: 'Content Top'
+  content: 'Content'
+  content_bottom: 'Content Bottom'
+  sidebar_first: 'Primary'
+  sidebar_second: 'Secondary'
+  footer: 'Footer'
+  page_top: 'Page top'
+  page_bottom: 'Page bottom'
+
+libraries:
+  - 'glazed_STARTERKIT/global-styling'

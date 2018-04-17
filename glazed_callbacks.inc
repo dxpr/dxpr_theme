@@ -133,6 +133,7 @@ function glazed_css_cache_build($theme) {
   }
 
   // If the CSS & JS aggregation are enabled we need to clear the caches
+  drupal_flush_all_caches();
   drupal_clear_css_cache();
   drupal_clear_js_cache();
 }

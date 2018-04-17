@@ -15,15 +15,19 @@
 function glazed_library_info_alter(&$libraries, $extension) {
   if ($extension == 'bootstrap') {
     // Bootstrap < 3.11
-    foreach($libraries['theme']['css']['base'] as $key => $value){
-      if(strpos($key, 'overrides.min.css')){
-        unset($libraries['theme']['css']['base'][$key]);
+    if (isset($libraries['theme']['css']['base'])) {
+      foreach($libraries['theme']['css']['base'] as $key => $value){
+        if(strpos($key, 'overrides.min.css')){
+          unset($libraries['theme']['css']['base'][$key]);
+        }
       }
     }
-    // Bootstrap 3.11+
-    foreach($libraries['framework']['css']['base'] as $key => $value){
-      if(strpos($key, 'overrides.min.css')){
-        unset($libraries['framework']['css']['base'][$key]);
+    elseif (isset($libraries['framework']['css']['base'])) {
+      // Bootstrap 3.11+
+      foreach($libraries['framework']['css']['base'] as $key => $value){
+        if(strpos($key, 'overrides.min.css')){
+          unset($libraries['framework']['css']['base'][$key]);
+        }
       }
     }
   }
@@ -31,7 +35,11 @@ function glazed_library_info_alter(&$libraries, $extension) {
     $current_theme = \Drupal::service('theme.manager')->getActiveTheme()->getName();
     $key = 'public://glazed/css/themesettings-' . $current_theme . '.css';
     if (drupal_realpath($key)) {
-      $libraries['global-styling']['css']['theme'][$key] = array('minified' => FALSE);
+      $libraries['global-styling']['css']['theme'][$key] = array('minified' => FALSE, 'weight' => 5);
+    }
+    if ($current_theme !== 'glazed') {
+      // Subthemes carry their own copy of glazed.css, disable glazed/css/glazed.css
+      unset($libraries['global-styling']['css']['theme']['css/glazed.css']);
     }
   }
 }
@@ -73,7 +81,7 @@ function glazed_preprocess_html(&$variables) {
  */
 function glazed_preprocess_page(&$variables) {
   $hide_regions = $local_hide = [];
-  if (!empty(array_keys(array_filter(theme_get_setting('hidden_regions'))))) {
+  if (theme_get_setting('hidden_regions') && !empty(array_keys(array_filter(theme_get_setting('hidden_regions'))))) {
     $hide_regions = array_keys(array_filter(theme_get_setting('hidden_regions')));
   }
   if (!empty($variables['node'])
