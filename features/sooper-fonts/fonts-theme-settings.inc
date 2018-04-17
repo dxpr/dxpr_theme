@@ -78,7 +78,7 @@ $form['glazed_settings']['fonts']['sitename_font_face'] = [
 $form['glazed_settings']['fonts']['sitename_font_face_selector'] = [
   '#type' => 'textfield',
   '#title' => '&nbsp;',
-  '#default_value' => ((theme_get_setting('sitename_font_face_selector') !== null)) ? theme_get_setting('sitename_font_face_selector') : 'nav,nav ul li,nav a',
+  '#default_value' => ((theme_get_setting('sitename_font_face_selector') !== null)) ? theme_get_setting('sitename_font_face_selector') : '.site-name, .navbar-brand',
 ];
 
 $form['glazed_settings']['fonts']['blockquote_font_face'] = [
