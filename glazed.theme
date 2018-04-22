@@ -85,6 +85,7 @@ function glazed_preprocess_page(&$variables) {
     $hide_regions = array_keys(array_filter(theme_get_setting('hidden_regions')));
   }
   if (!empty($variables['node'])
+    && method_exists($variables['node'], 'hasField')
     && $variables['node']->hasField('field_glazed_hide_regions')
     && $variables['node']->get('field_glazed_hide_regions')) {
     $local_hide = array_column($variables['node']->get('field_glazed_hide_regions')->getValue(), 'value');
