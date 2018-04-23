@@ -138,6 +138,10 @@
         float: none;
       }
     }
+    // @todo remove this when safari fixes their bug
+    // transform CSS forces a redraw of the element and this fixes a safari-only
+    // problem with box-shadow/border remaining visible with the menu @ display:none
+    .dropdown-menu {transform: translateZ(0);}
     li.dropdown:hover,
     li.dropdown:focus {
       .dropdown-menu {
