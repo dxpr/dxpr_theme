@@ -79,6 +79,16 @@ Drupal.behaviors.glazed = {
         .removeClass('col-sm-12')
         .addClass('col-sm-8 col-md-offset-1');
 
+    // Messages, position absolutely when overlay header and no page title
+    if (($('.wrap-messages').length > 0)
+      && ($('.glazed-header--overlay').length > 0)
+      && ($('#page-title').length == 0))
+    $('.wrap-messages', context).css({
+      'position' : 'absolute',
+      'z-index' : '9999',
+      'right' : '0',
+    });
+
     // Breadcrumbs
     $('.breadcrumb a', context)
         .once('glazed')
