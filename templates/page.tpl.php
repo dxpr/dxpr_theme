@@ -182,7 +182,9 @@
 
       <section<?php print $content_column_class; ?>>
         <a id="main-content"></a>
-        <?php print $messages; ?>
+        <?php if (!empty($messages)): ?>
+          <div class="wrap-messages"><?php print $messages; ?></div>
+        <?php endif; ?>
         <?php if (!empty($tabs)): ?>
           <?php if (isset($hide_page_title) OR empty($title)): ?><div class="glazed-mini-tabs-wrapper"><?php endif; ?>
             <?php print render($tabs); ?>
