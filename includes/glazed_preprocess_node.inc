@@ -38,7 +38,7 @@ function glazed_preprocess_node(&$vars) {
   // BLOG NODES
   if ($vars['type'] == 'blog') {
     $_created_date = format_date($vars['node']->created, 'custom', 'M j, Y');
-    $vars['submitted'] = '<em class="text-muted">' . $_created_date . ' ' . t('By') . ' </em> <span class="glazed-util-text-uppercase">' . $vars['node']->name . '</span>';
+    $vars['submitted'] = '<em class="text-muted">' . $_created_date . ' ' . t('By') . ' </em> <span class="glazed-util-text-uppercase">' . check_plain(format_username($vars['node'])) . '</span>';
   }
   // NEWS NODES
   if ($vars['type'] == 'news') {
