@@ -111,5 +111,7 @@ use Drupal\block\Entity\Block;
  */
 function glazed_preprocess_block(&$variables) {
   $block = Block::load($variables['elements']['#id']);
-  $variables['region'] = $block->getRegion();
+  if ($block) {
+    $variables['region'] = $block->getRegion();
+  }
 }
