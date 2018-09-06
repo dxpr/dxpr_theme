@@ -115,7 +115,6 @@ $CSS .= "} \n\n";
       $margin = theme_get_setting('block_divider_spacing', $theme);
       $CSS .= <<<EOT
 $selector {
-  background: $background;
   height: {$height}px;
   width: {$width}px;
   margin-top: {$margin}px;
