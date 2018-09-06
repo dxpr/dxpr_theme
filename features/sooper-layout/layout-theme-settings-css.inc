@@ -99,12 +99,7 @@ if ($bgstyle = theme_get_setting('background_image_style')) {
   }
 }
 
-if ($background_image = theme_get_setting('background_image', $theme)) {
-  $background_image = $background_image[0];
-  if ($background_image && is_numeric($background_image) && ($background_image > 0)) {
-    $file =  \Drupal\file\Entity\File::load($background_image);
-    $url = $file->url();
-    $CSS .= "body { background-image: url('" . $url . "'); }\n\n";
-  }
+if ($background_image_path = theme_get_setting('background_image_path', $theme)) {
+  $CSS .= "body { background-image: url('" . file_create_url($background_image_path) . "'); }\n\n";
 }
 
