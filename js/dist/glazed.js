@@ -10,7 +10,7 @@ var glazedMenuState = '';
 Drupal.behaviors.fullScreenSearch = {
     attach: function(context, settings) {
         function clearSearchForm() {
-            $searchForm.toggleClass("hidden"),
+            $searchForm.toggleClass("invisible"),
             $('body').toggleClass("body--full-screen-search"),
             setTimeout(function() {
                 $searchFormInput.val("")
@@ -22,7 +22,7 @@ Drupal.behaviors.fullScreenSearch = {
           , escapeCode = 27;
         $searchButton.on("touchstart click", function(event) {
             event.preventDefault(),
-            $searchForm.toggleClass("hidden"),
+            $searchForm.toggleClass("invisible"),
             $('body').toggleClass("body--full-screen-search"),
             $searchFormInput.focus()
         }),
@@ -30,7 +30,7 @@ Drupal.behaviors.fullScreenSearch = {
             $($searchButton.target).hasClass("search-query") || clearSearchForm()
         }),
         $(document).keydown(function(event) {
-            event.which === escapeCode && !$searchForm.hasClass("hidden") && clearSearchForm()
+            event.which === escapeCode && !$searchForm.hasClass("invisible") && clearSearchForm()
         })
     }
 }
