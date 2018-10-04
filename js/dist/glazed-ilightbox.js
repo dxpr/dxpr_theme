@@ -2,7 +2,7 @@
   Drupal.behaviors.glazedIlightbox = {
     attach: function(context, settings) {
       $('.cms-portfolio-project.node-images-grid .field--name-field-cms-page-image img').each(function( index ) {
-        $(this).once('cmsPortfolio-gallery').wrap('<a class="ilightbox" data-type="image" href="' + this.src + '">');
+        $(this).once('cmsPortfolio-gallery').wrap('<a class="ilightbox" data-type="image" href="' + this.src + '" data-title="' + this.alt + '" data-caption="' + this.title + '">');
       });
       $('.cms-portfolio-project.node-images-grid .cms-portfolio-images')
         .once('cmsPortfolio-gallery')
