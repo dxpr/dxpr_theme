@@ -13,6 +13,22 @@ $form['glazed_settings']['page_title']['page_title_breadcrumbs'] = [
   '#default_value' => ((theme_get_setting('page_title_breadcrumbs') !== null)) ? theme_get_setting('page_title_breadcrumbs') : 1,
 ];
 
+$form['glazed_settings']['page_title']['page_title_breadcrumbs_align'] = array(
+  '#type' => 'radios',
+  '#title' => t('Align Breadcrumbs'),
+  '#default_value' => ((theme_get_setting('page_title_breadcrumbs_align') !== null)) ? theme_get_setting('page_title_breadcrumbs_align') : 'right',
+  '#options' => array(
+    'left' => t('Left'),
+    'center' => t('Center'),
+    'right' => t('Right')
+  ),
+  '#states' => array(
+    'visible' => array(
+      ':input[name="page_title_breadcrumbs"]' => array('checked' => TRUE),
+    ),
+  ),
+);
+
 $form['glazed_settings']['page_title']['page_title_home_hide'] = [
   '#type' => 'checkbox',
   '#title' => t('Hide on Homepage'),
