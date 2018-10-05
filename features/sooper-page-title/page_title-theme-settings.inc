@@ -12,6 +12,22 @@ $form['glazed_settings']['page_title']['page_title_breadcrumbs'] = array(
   '#default_value' => ((theme_get_setting('page_title_breadcrumbs') !== null)) ? theme_get_setting('page_title_breadcrumbs') : 1,
 );
 
+$form['glazed_settings']['page_title']['page_title_breadcrumbs_align'] = array(
+  '#type' => 'radios',
+  '#title' => t('Align Breadcrumbs'),
+  '#default_value' => ((theme_get_setting('page_title_breadcrumbs_align') !== null)) ? theme_get_setting('page_title_breadcrumbs_align') : 'right',
+  '#options' => array(
+    'left' => t('Left'),
+    'center' => t('Center'),
+    'right' => t('Right')
+  ),
+  '#states' => array(
+    'visible' => array(
+      ':input[name="page_title_breadcrumbs"]' => array('checked' => TRUE),
+    ),
+  ),
+);
+
 $form['glazed_settings']['page_title']['page_title_home_hide'] = array(
   '#type' => 'checkbox',
   '#title' => t('Hide on Homepage'),
@@ -19,15 +35,15 @@ $form['glazed_settings']['page_title']['page_title_home_hide'] = array(
 );
 
 $form['glazed_settings']['page_title']['page_title_align'] = array(
-    '#type' => 'radios',
-    '#title' => t('Align Title'),
-    '#default_value' => ((theme_get_setting('page_title_align') !== null)) ? theme_get_setting('page_title_align') : 'left',
-    '#options' => array(
-      'left' => t('Left'),
-      'center' => t('Center'),
-      'right' => t('Right')
-    ),
-    '#description' => t('Choose position of Page Title within page title header.'),
+  '#type' => 'radios',
+  '#title' => t('Align Title'),
+  '#default_value' => ((theme_get_setting('page_title_align') !== null)) ? theme_get_setting('page_title_align') : 'left',
+  '#options' => array(
+    'left' => t('Left'),
+    'center' => t('Center'),
+    'right' => t('Right')
+  ),
+  '#description' => t('Choose position of Page Title within page title header.'),
 );
 
 $form['glazed_settings']['page_title']['page_title_height'] = array(

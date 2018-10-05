@@ -1,5 +1,17 @@
 <?php
 
+$gutter_container = theme_get_setting('gutter_container', $theme);
+$breadcrumb_align = theme_get_setting('page_title_breadcrumbs_align', $theme);
+if ($breadcrumb_align == 'right') {
+  $CSS .= ".page-title-full-width-container .breadcrumb { right: {$gutter_container}px; left: auto; } \n\n";
+}
+elseif ($breadcrumb_align == 'left') {
+  $CSS .= ".page-title-full-width-container .breadcrumb { left: {$gutter_container}px; right: auto; } \n\n";
+}
+elseif ($breadcrumb_align == 'center') {
+  $CSS .= ".page-title-full-width-container .breadcrumb { left: 0; right: 0;width:100%;text-align:center; } \n\n";
+}
+
 $CSS .= "#page-title { text-align:  " . theme_get_setting('page_title_align', $theme) . " } \n\n";
 
 $CSS .= "#page-title .page-title { height:  " . theme_get_setting('page_title_height', $theme) . "px } \n\n";

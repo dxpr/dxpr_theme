@@ -46,9 +46,6 @@ if (theme_get_setting('boxed_layout', $theme) && ($cnt_bg = theme_get_setting('b
 .page-title-full-width-container {
   margin-bottom: {$gutter_vertical}px;
 }
-.page-title-full-width-container .breadcrumb {
-  right: {$gutter_container}px;
-}
 
 EOT;
 
