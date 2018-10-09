@@ -21,63 +21,36 @@
       border-color: $primary;
     }
   }
+  select,
+  select.form-control {
+    height: 2em;
+    height: calc(1.6em + 24px);
+    padding: 0 12px;
+    background: url(data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0Ljk1IDEwIj48ZGVmcz48c3R5bGU+LmNscy0ye2ZpbGw6IzQ0NDt9PC9zdHlsZT48L2RlZnM+PHRpdGxlPmFycm93czwvdGl0bGU+PHBvbHlnb24gY2xhc3M9ImNscy0yIiBwb2ludHM9IjEuNDEgNC42NyAyLjQ4IDMuMTggMy41NCA0LjY3IDEuNDEgNC42NyIvPjxwb2x5Z29uIGNsYXNzPSJjbHMtMiIgcG9pbnRzPSIzLjU0IDUuMzMgMi40OCA2LjgyIDEuNDEgNS4zMyAzLjU0IDUuMzMiLz48L3N2Zz4=) no-repeat 98% 50%;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    background-size: 18px;
+  }
+  // This hides native dropdown button arrow in IE
+  select::-ms-expand {
+    display: none;
+  }
+
   .form-control.form-file {
     padding: 8px;
   }
   .input-sm {
     padding: 10px;
   }
-}
-
-.glazed-select {
-  position: relative;
-  &::after {
-    pointer-events: none;
-    color: $gray-lighter;
-    content: "<";
-    font-size: 18px;
-    position: absolute;
-    bottom: 8px;
-    right: 0.9em;
-    transition: transform 0.2s ease 0s;
-    transform: translateZ(0) rotate(-90deg) scaleY(1.8); //http://stackoverflow.com/questions/15464055/css-transition-effect-makes-image-blurry-moves-image-1px-in-chrome
-    backface-visibility: hidden;
-  }
-  &:hover::after {
-    color: $primary;
-    transform: translateY(.2em) rotate(-90deg) scaleY(1.5);
-  }
-  select.form-select {
-    appearance: none;
-    padding-right: 30px;
+  .form-actions .form-submit {
+    margin-right: 1em;
   }
 }
 
 .filter-wrapper .form-type-select:after {
+  position: relative;
   bottom: .2em;
-}
-
-.select {
-  padding: 12px;
-  appearance: none;
-  option {
-    background: white;
-    border: none;
-    outline: none;
-    &:focus,
-    &::-moz-focus-inner {
-      outline: none;
-      border: none;
-    }
-  }
-  &.input-sm {
-    padding: 0 10px;
-  }
-}
-
-// This hides native dropdown button arrow in IE
-select::-ms-expand {
-  display: none;
 }
 
 .input-group {
