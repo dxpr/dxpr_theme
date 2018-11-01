@@ -140,6 +140,13 @@
 
 <div class="wrap-containers">
 
+{# Highlighted #}
+{% if page.highlighted %}
+  {% block highlighted %}
+    {{ page.highlighted }}
+  {% endblock %}
+{% endif %}
+
 {# Page Title #}
 {% if page.page_title and not (theme.settings.page_title_home_hide and is_front) %}
 
@@ -154,13 +161,6 @@
         {{ page.page_title }}
       </header>
     </div>
-  {% endblock %}
-{% endif %}
-
-{# Highlighted #}
-{% if page.highlighted %}
-  {% block highlighted %}
-    {{ page.highlighted }}
   {% endblock %}
 {% endif %}
 
