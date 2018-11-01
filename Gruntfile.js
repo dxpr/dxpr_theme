@@ -24,7 +24,6 @@ module.exports = function(grunt) {
       dist: {
         files: {
           'css/glazed.css' : 'sass/glazed.scss',
-          'css/glazed.admin.css' : 'sass/glazed.admin.scss',
           'css/glazed.admin.themesettings.css' : 'sass/glazed.admin.themesettings.scss',
         }
       }
