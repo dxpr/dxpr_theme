@@ -29,8 +29,8 @@
       });
 
       function glazed_map_color (color) {
-        if (color in drupalSettings.glazed.palette) {
-          color = drupalSettings.glazed.palette[color];
+        if (color in drupalSettings.glazedSettings.palette) {
+          color = drupalSettings.glazedSettings.palette[color];
         }
         return color;
       }

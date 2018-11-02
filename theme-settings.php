@@ -56,6 +56,11 @@ function glazed_form_system_theme_settings_alter(&$form, &$form_state, $form_id 
     require_once($file->uri);
   }
   $form['#attached']['library'][] = 'glazed/admin.themesettings';
+
+  if ((\Drupal::moduleHandler()->moduleExists('color')) && ($palette = color_get_palette($subject_theme))) {
+    $form['#attached']['drupalSettings']['glazedSettings'] = ['palette' => $palette]; // glazedSetting vs glazed namespace otherwise if deletes other .glazed data
+  }
+
   array_unshift($form['#submit'], 'glazed_form_system_theme_settings_submit');
   array_unshift($form['#validate'], 'glazed_form_system_theme_settings_validate');
 }
