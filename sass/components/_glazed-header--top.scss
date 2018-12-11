@@ -10,6 +10,9 @@
       height: 90px;
       position: relative;
     }
+    #logo {
+      height: 90px;
+    }
     &.glazed-header--fixed {
       position: fixed;
       left: 0;
@@ -63,7 +66,7 @@
     }
     .wrap-branding {
       display: table;
-      height: 90px;
+      max-height: 90px;
       .logo,
       .navbar-brand {
         display: table-cell;
