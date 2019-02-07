@@ -132,6 +132,9 @@ else {
 .body--glazed-nav-desktop .glazed-header--top .glazed-main-menu {
   height: {$header_top_height}px;
 }
+.body--glazed-nav-desktop .glazed-header--top #logo {
+  max-height: {$header_top_height}px;
+}
 .body--glazed-nav-desktop .glazed-header--top.affix .nav > li > a,
 .body--glazed-nav-desktop .glazed-header--top.affix .navbar-header .wrap-branding,
 .body--glazed-nav-desktop .glazed-header--top.affix .block-glazed-helper  {
@@ -140,6 +143,9 @@ else {
 }
 .body--glazed-nav-desktop .glazed-header--top.affix .glazed-main-menu {
   height: {$header_top_height_scroll}px;
+}
+.body--glazed-nav-desktop .glazed-header--top.affix #logo {
+  max-height: {$header_top_height_scroll}px;
 }
 .body--glazed-nav-desktop .nav-child-fixed-width {
   top: {$header_top_height}px;
@@ -178,6 +184,9 @@ $CSS .= <<<EOT
 .body--glazed-nav-mobile .glazed-header .block-glazed-helper {
   height: {$header_mobile_height}px;
   line-height: {$header_mobile_height}px;
+}
+.body--glazed-nav-mobile .glazed-header #logo {
+  max-height: {$header_mobile_height}px;
 }
 
 EOT;
