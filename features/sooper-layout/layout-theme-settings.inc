@@ -64,7 +64,7 @@ $form['glazed_settings']['layout']['grid']['layout_max_width'] = array(
   '#default_value' => ((theme_get_setting('layout_max_width') !== null)) ? theme_get_setting('layout_max_width') : '1170',
   '#size' => 9,
   '#maxlength' => 9,
-  '#description' => t('Max width of the website container. 480px - 4100px. Default is 1170px. With Side-Header enabled we typically use 980px.'),
+  '#description' => t('Max width of the website container. 480px - 4100px. Default is 1280px. With Side-Header enabled we typically use 980px.'),
 );
 
 $form['glazed_settings']['layout']['grid']['gutter_horizontal'] = array(
