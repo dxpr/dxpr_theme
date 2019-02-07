@@ -7,11 +7,11 @@
   .glazed-header--top {
     width: 100%;
     .glazed-main-menu {
-      height: 90px;
+      height: 100px;
       position: relative;
     }
     #logo {
-      height: 90px;
+      max-height: 100px;
     }
     &.glazed-header--fixed {
       position: fixed;
@@ -66,7 +66,6 @@
     }
     .wrap-branding {
       display: table;
-      max-height: 90px;
       .logo,
       .navbar-brand {
         display: table-cell;
@@ -166,7 +165,7 @@
         font-size: $font-size-large;
         display: table-cell;
         vertical-align: middle;
-        height: 90px;
+        height: 100px;
         padding-top: 0;
         padding-bottom: 0;
       }
@@ -193,11 +192,12 @@
       left: 0;
       right: 0;
       position: absolute;
-      top: 90px;
+      top: 100px;
     }
-    .block-glazed-helper {
-      height: 90px;
-      line-height: 90px;
+    .block-glazed-helper,
+    .wrap-branding {
+      height: 100px;
+      line-height: 100px;
     }
   }
 }
