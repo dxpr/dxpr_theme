@@ -121,14 +121,16 @@ function glazed_local_webfonts() {
       $font_path = str_replace(drupal_get_path('theme', $theme), '', $file->uri);
       $css = file_get_contents($file->uri);
       if ($css) {
-        preg_match_all('/\'(.*?).svg#(.*?)\'/i', $css, $matches);
+        preg_match_all('/font-family: \'(.*?)\'/i', $css, $matches);
       }
       else {
         drupal_set_message(t('Cannot read font files, please check permissions on the fonts folder in the theme.'), 'error');
       }
-      foreach ($matches[2] as $font) {
-        $key = '1' . $theme . '|' . $font_path . '|' . $font;
-        $fonts[$key] = preg_replace('/(?<!\ ) {A-Z]/', ' $0', $font);
+      foreach ($matches[1] as $font) {
+        if ($font) {
+          $key = '1' . $theme . '|' . $font_path . '|' . $font;
+          $fonts[$key] = preg_replace('/(?<!\ ) {A-Z]/', ' $0', $font);
+        }
       }
     }
   }
