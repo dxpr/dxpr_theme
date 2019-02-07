@@ -1,7 +1,7 @@
 name = Glazed STARTERKIT Example
 description = For basic customization just use Glazed and theme settings. Use this STARTERKIT example if you need to build extra css files and templates on top of Glazed Theme.
 core = 7.x
-version = 7.x-2.7.0
+version = 7.x-2.7.2
 base theme = glazed
 
 ; Regions
