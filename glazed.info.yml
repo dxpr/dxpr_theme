@@ -2,12 +2,12 @@ core: 8.x
 type: theme
 project: glazed
 project status url: https://www.sooperthemes.com/release-history
-version: 8.x-1.1.0
+version: 8.x-1.1.2
 base theme: bootstrap
 
 name: 'Glazed'
 description: 'SooperThemes Premium Framework Theme.'
-package: 'Bootstrap'
+package: Sooperthemes
 
 regions:
   secondary_header: 'Secondary Header'
@@ -86,3 +86,4 @@ glazed_classes:
   glazed-util-text-light: 'Text Light'
   glazed-util-text-italic: 'Text Italic'
   glazed-util-vcenter: 'Vertical centering'
+  glazed-form-inline: 'Inline Form'
