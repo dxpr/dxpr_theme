@@ -6,7 +6,7 @@ version: 8.x-1.1.2
 base theme: bootstrap
 
 name: 'Glazed'
-description: 'SooperThemes Premium Framework Theme.'
+description: 'Premium framework theme by Sooperthemes.'
 package: Sooperthemes
 
 regions:
