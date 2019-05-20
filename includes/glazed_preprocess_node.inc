@@ -89,11 +89,11 @@ function glazed_preprocess_node(&$vars) {
     }
     if ($lightbox) {
       $path = drupal_get_path('theme', 'glazed');
-      drupal_add_js($path . '/js/vendor/ilightbox/js/jquery.requestAnimationFrame.js');
-      drupal_add_js($path . '/js/vendor/ilightbox/js/jquery.mousewheel.js');
-      drupal_add_js($path . '/js/vendor/ilightbox/js/ilightbox.min.js');
+      drupal_add_js($path . '/vendor/ilightbox/js/jquery.requestAnimationFrame.js');
+      drupal_add_js($path . '/vendor/ilightbox/js/jquery.mousewheel.js');
+      drupal_add_js($path . '/vendor/ilightbox/js/ilightbox.min.js');
       drupal_add_js($path . '/js/minified/glazed-ilightbox.min.js');
-      drupal_add_css($path . '/js/vendor/ilightbox/css/ilightbox.css');
+      drupal_add_css($path . '/vendor/ilightbox/css/ilightbox.css');
     }
   }
 

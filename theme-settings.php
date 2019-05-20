@@ -68,11 +68,11 @@ function glazed_form_system_theme_settings_alter(&$form, &$form_state) {
   // drupal_add_css('themes/seven/vertical-tabs.css');
   drupal_add_library('system', 'ui.slider'); // If this isn't loaded the bootstrapSlider won't exist anymore
   // drupal_add_library('system', 'ui.tabs');
-  drupal_add_css($glazed_theme_path . 'js/vendor/bootstrap-switch/bootstrap-switch.min.css');
-  drupal_add_css($glazed_theme_path . 'js/vendor/bootstrap-slider/bootstrap-slider.min.css');
+  drupal_add_css($glazed_theme_path . 'vendor/bootstrap-switch/bootstrap-switch.min.css');
+  drupal_add_css($glazed_theme_path . 'vendor/bootstrap-slider/bootstrap-slider.min.css');
   drupal_add_css($glazed_theme_path . 'css/glazed.admin.themesettings.css');
-  drupal_add_js($glazed_theme_path . 'js/vendor/bootstrap-switch/bootstrap-switch.min.js', 'file');
-  drupal_add_js($glazed_theme_path . 'js/vendor/bootstrap-slider/bootstrap-slider.min.js', 'file');
+  drupal_add_js($glazed_theme_path . 'vendor/bootstrap-switch/bootstrap-switch.min.js', 'file');
+  drupal_add_js($glazed_theme_path . 'vendor/bootstrap-slider/bootstrap-slider.min.js', 'file');
   drupal_add_js($glazed_theme_path . 'js/minified/glazed-settings.admin.min.js', 'file');
   drupal_add_js($glazed_theme_path . 'js/color.js', 'file');
   drupal_add_js('jQuery(function () {Drupal.behaviors.formUpdated = null;});', 'inline');
