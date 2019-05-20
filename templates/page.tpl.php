@@ -112,7 +112,7 @@
           <?php endif; ?>
 
           <?php if ((!isset($hide_navigation)) && !empty($primary_nav) || !empty($page['navigation'])): ?>
-            <a id="glazed-menu-toggle" href="#"><span></span></a>
+            <a id="glazed-menu-toggle" href="#"><span></span><div class="screenreader-text element-invisible">Toggle menu</div  ></a>
           <?php endif; ?>
         </div>
 
