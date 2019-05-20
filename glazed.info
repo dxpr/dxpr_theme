@@ -164,10 +164,10 @@ settings[bootstrap_forms_smart_descriptions]          = '1'
 settings[bootstrap_tooltip_placement]                 = '250'
 
 settings[bootstrap_cdn_provider]                      = 'jsdelivr'
-settings[bootstrap_cdn_custom_css]                    = '//cdn.jsdelivr.net/bootstrap/3.3.7/css/bootstrap.css'
-settings[bootstrap_cdn_custom_css_min]                = '//cdn.jsdelivr.net/bootstrap/3.3.7/css/bootstrap.min.css'
-settings[bootstrap_cdn_custom_js]                     = '//cdn.jsdelivr.net/bootstrap/3.3.7/js/bootstrap.js'
-settings[bootstrap_cdn_custom_js_min]                 = '//cdn.jsdelivr.net/bootstrap/3.3.7/js/bootstrap.min.js'
-settings[bootstrap_cdn_jsdelivr_version]              = '3.3.7'
+settings[bootstrap_cdn_custom_css]                    = '//cdn.jsdelivr.net/bootstrap/3.4.1/css/bootstrap.css'
+settings[bootstrap_cdn_custom_css_min]                = '//cdn.jsdelivr.net/bootstrap/3.4.1/css/bootstrap.min.css'
+settings[bootstrap_cdn_custom_js]                     = '//cdn.jsdelivr.net/bootstrap/3.4.1/js/bootstrap.js'
+settings[bootstrap_cdn_custom_js_min]                 = '//cdn.jsdelivr.net/bootstrap/3.4.1/js/bootstrap.min.js'
+settings[bootstrap_cdn_jsdelivr_version]              = '3.4.1'
 
 settings[jquery_update_jquery_version]                = 2.1
