@@ -5,6 +5,25 @@
  */
 function glazed_preprocess_html(&$vars) {
   global $theme;
+  // If bootstrap basetheme is not loading bootstrap from CDN load it locally
+  // This is default behavior starting from Glazed 8.x-1.1.3 and 7.x-2.7.3
+  $bootstrap_cdn = theme_get_setting('cdn_provider');
+  if (!$bootstrap_cdn) {
+    $path = drupal_get_path('theme', 'glazed');
+    drupal_add_js(
+      $path . '/vendor/bootstrap3/js/bootstrap.min.js', array(
+        'group' => JS_LIBRARY,
+        'every_page' => TRUE,
+        'weight' => -18
+      ));
+    drupal_add_css(
+      $path . '/vendor/bootstrap3/css/bootstrap.min.css', array(
+        'group' => CSS_DEFAULT,
+        'media' => 'all',
+        'every_page' => TRUE,
+        'weight' => -18
+      ));
+  }
   // Load Glazed Theme Settings CSS File
   $files_path = variable_get('file_public_path', conf_path() . '/files');
   if (is_file($files_path . '/glazed-themesettings-' . $theme . '.css')) {
