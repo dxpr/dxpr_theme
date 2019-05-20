@@ -31,7 +31,7 @@ libraries:
 libraries-override:
   core/modernizr:
     js:
-      assets/vendor/modernizr/modernizr.min.js: js/vendor/modernizr-custom-d8-glazed.js
+      assets/vendor/modernizr/modernizr.min.js: vendor/modernizr-custom-d8-glazed.js
 
 config:
   install:

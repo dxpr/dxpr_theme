@@ -3,7 +3,7 @@ global-styling:
     theme:
       css/glazed.css: { minified: true }
   js:
-    js/vendor/classie.js: {}
+    vendor/classie.js: {}
     js/minified/glazed-mobile-nav.min.js: {}
     js/minified/glazed.min.js: {}
   dependencies:
@@ -20,13 +20,13 @@ admin:
 
 admin.themesettings:
   js:
-    js/vendor/bootstrap-switch/bootstrap-switch.min.js: {}
-    js/vendor/bootstrap-slider/bootstrap-slider.min.js: {}
+    vendor/bootstrap-switch/bootstrap-switch.min.js: {}
+    vendor/bootstrap-slider/bootstrap-slider.min.js: {}
     js/minified/glazed-settings.admin.min.js: {}
   css:
     component:
-      js/vendor/bootstrap-switch/bootstrap-switch.min.css: {}
-      js/vendor/bootstrap-slider/bootstrap-slider.min.css: {}
+      vendor/bootstrap-switch/bootstrap-switch.min.css: {}
+      vendor/bootstrap-slider/bootstrap-slider.min.css: {}
       css/glazed.admin.themesettings.css: {}
   dependencies:
     - core/jquery
@@ -35,11 +35,11 @@ admin.themesettings:
 
 ilightbox:
   js:
-    js/vendor/ilightbox/js/ilightbox.min.js: {}
+    vendor/ilightbox/js/ilightbox.min.js: {}
     js/minified/glazed-ilightbox.min.js: {}
   css:
     component:
-      js/vendor/ilightbox/css/ilightbox.css: {}
+      vendor/ilightbox/css/ilightbox.css: {}
   dependencies:
     - core/jquery
     - core/jquery.mousewheel
@@ -48,4 +48,4 @@ ilightbox:
 glazed-animatecss-custom:
   css:
     component:
-      js/vendor/animate.css/animate.min.css: { minified: true }
+      vendor/animate.css/animate.min.css: { minified: true }
