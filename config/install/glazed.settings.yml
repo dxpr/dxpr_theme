@@ -218,3 +218,4 @@ popover_placement: top
 tooltip_placement: 'auto top'
 modal_enabled: 0
 modal_jquery_ui_bridge: 0
+cdn_provider: ''
