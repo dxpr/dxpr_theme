@@ -60,8 +60,8 @@ function glazed_form_system_theme_settings_alter(&$form, &$form_state) {
 
   if ($GLOBALS['theme'] == 'seven') {
     drupal_set_message(t('Install the Glazed Theme Tools helper module to have a better theme settings experience'), 'warning');
-    drupal_add_css('https://cdn.jsdelivr.net/bootstrap/3.3.7/css/bootstrap.min.css', 'external');
-    drupal_add_js('https://cdn.jsdelivr.net/bootstrap/3.3.7/js/bootstrap.min.js', 'external');
+    drupal_add_css('https://cdn.jsdelivr.net/bootstrap/3.4.1/css/bootstrap.min.css', 'external');
+    drupal_add_js('https://cdn.jsdelivr.net/bootstrap/3.4.1/js/bootstrap.min.js', 'external');
     drupal_add_css('html body { font-size: 14px; }', 'inline');
   }
 
