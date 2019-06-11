@@ -1,5 +1,7 @@
 <?php
 
+use Drupal\node\Entity\NodeType;
+
 function glazed_form_system_theme_settings_alter(&$form, &$form_state, $form_id = NULL) {
   /**
    * @ code
@@ -145,14 +147,14 @@ function glazed_form_system_theme_settings_submit(&$form, &$form_state) {
     // If the user uploaded a new image, save it to a permanent location
     $value = $form_state->getValue('page_title_image');
     if (!empty($value)) {
-      $filename = file_unmanaged_copy($value->getFileUri());
+      $filename = \Drupal::service('file_system')->copy($value->getFileUri());
       $form_state->setValue('page_title_image', '');
       $form_state->setValue('page_title_image_path', $filename);
     }
 
     $value = $form_state->getValue('background_image');
     if (!empty($value)) {
-      $filename = file_unmanaged_copy($value->getFileUri());
+      $filename = \Drupal::service('file_system')->copy($value->getFileUri());
       $form_state->setValue('background_image', '');
       $form_state->setValue('background_image_path', $filename);
     }
@@ -209,7 +211,7 @@ function _glazed_color_options($theme) {
 
 function _glazed_node_types_options() {
   $types = [];
-  foreach (node_type_get_types() as $key => $value) {
+  foreach (NodeType::loadMultiple() as $key => $value) {
     $types[$key] = $value->get('name');
   }
   return $types;
@@ -269,7 +271,7 @@ EOT;
  */
 function _glazed_validate_path($path) {
   // Absolute local file paths are invalid.
-  if (drupal_realpath($path) == $path) {
+  if (\Drupal::service('file_system')->realpath($path) == $path) {
     return FALSE;
   }
   // A path relative to the Drupal root or a fully qualified URI is valid.
@@ -277,7 +279,7 @@ function _glazed_validate_path($path) {
     return $path;
   }
   // Prepend 'public://' for relative file paths within public filesystem.
-  if (file_uri_scheme($path) === FALSE) {
+  if (\Drupal::service('file_system')->uriScheme($path) === FALSE) {
     $path = 'public://' . $path;
   }
   if (is_file($path)) {
