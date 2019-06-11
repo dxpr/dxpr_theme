@@ -36,7 +36,7 @@ function glazed_library_info_alter(&$libraries, $extension) {
     // Manage glazed themesettings CSS
     $current_theme = \Drupal::service('theme.manager')->getActiveTheme()->getName();
     $key = 'public://glazed/css/themesettings-' . $current_theme . '.css';
-    if (drupal_realpath($key)) {
+    if (\Drupal::service('file_system')->realpath($key)) {
       $libraries['global-styling']['css']['theme'][$key] = array('minified' => FALSE, 'weight' => 5);
     }
     // Subthemes glazed.css
