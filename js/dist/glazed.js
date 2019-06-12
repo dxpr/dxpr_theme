@@ -305,7 +305,7 @@ function glazedMenuGovernor(context) {
 
       // Close menu with click on anchor link
       $('.menu__link').click(function () {
-        if ($(this).attr('href').charAt(0) === '#' ) {
+        if (!$(this).attr('data-submenu')) {
           closeMenu();
         }
       });
