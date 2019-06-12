@@ -289,13 +289,26 @@ function glazedMenuGovernor(context) {
               itemsDelayInterval : 10, // delay between each menu item sliding animation
               // onItemClick: loadDummyData // callback: item that doesn´t have a submenu gets clicked - onItemClick([event], [inner HTML of the clicked item])
           });
-      // mobile menu toggle
-      $('#glazed-menu-toggle').once('glazedMenuToggle').click(function() {
-        $(this).toggleClass( 'navbar-toggle--active' );
+
+      // Close/open menu function
+      var closeMenu = function () {
+        $('#glazed-menu-toggle').toggleClass( 'navbar-toggle--active' );
         $(menuEl).toggleClass( 'menu--open' );
         $('html').toggleClass( 'html--glazed-nav-mobile--open' );
+      };
+
+      // mobile menu toggle
+      $('#glazed-menu-toggle').once('glazedMenuToggle').click(function() {
+        closeMenu();
       });
       $('#glazed-main-menu').show();
+
+      // Close menu with click on anchor link
+      $('.menu__link').click(function () {
+        if ($(this).attr('href').charAt(0) === '#' ) {
+          closeMenu();
+        }
+      });
 
       // See if logo  or block content overlaps menu and apply correction
       if ($('.wrap-branding').length > 0) {
