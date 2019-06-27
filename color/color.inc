@@ -38,7 +38,7 @@
 
   // Available colors and color labels used in theme.
   'fields' => array(
-    'base' => t('Base color'),
+    'base' => t('Primary color'),
     'link' => t('Link color'),
     'accent1' => t('Accent color 1'),
     'accent2' => t('Accent color 2'),
