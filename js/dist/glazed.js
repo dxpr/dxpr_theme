@@ -168,6 +168,17 @@ $(window).resize(_.debounce(function(){
     }
 }, 50));
 
+$(window).scroll(function() {
+  var scroll = $(window).scrollTop();
+  var headerHeight = $('.glazed-header').hasClass('glazed-header--side') ? '' : $('.glazed-header').height();
+  // todo: replace hardcoded scroll offset with option from Theme Settings
+  if (scroll > 39) {
+    $('.wrap-containers').css('margin-top', headerHeight);
+  } else {
+    $('.wrap-containers').css('margin-top', '');
+  }
+});
+
 function glazedMenuGovernor(context) {
   // Bootstrap dropdown multi-column smart menu
   var navBreak = 1200;
