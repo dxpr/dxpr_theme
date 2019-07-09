@@ -572,3 +572,102 @@ $form['glazed_settings']['header']['header_mobile']['header_mobile_height'] = [
   '#maxlength' => 9,
   '#description' => t('Height of header in mobile view. 10px - 200px. Default is 60.'),
 ];
+
+$form['glazed_settings']['header']['header_mobile']['header_mobile_fixed'] = [
+  '#type' => 'checkbox',
+  '#title' => t('Fixed Position'),
+  '#default_value' => ((theme_get_setting('header_mobile_fixed') !== null)) ? theme_get_setting('header_mobile_fixed') : FALSE,
+  '#description' => t('A Fixed header stays in the top of the browser when a user scrolls.'),
+];
+
+$form['glazed_settings']['header']['header_mobile']['header_mobile_sticky'] = [
+  '#type' => 'checkbox',
+  '#title' => t('Sticky Header'),
+  '#default_value' => ((theme_get_setting('header_mobile_sticky') !== null)) ? theme_get_setting('header_mobile_sticky') : FALSE,
+  '#description' => t('A sticky can first be positioned at a distance from the top edge of the window and when the user scrolls past a certain point it will stick to the top of the window.'),
+  '#states' => [
+    'visible' => [
+      ':input[name="header_mobile_fixed"]' => ['checked' => TRUE],
+    ],
+  ],
+];
+
+$form['glazed_settings']['header']['header_mobile']['sticky'] = [
+  '#title' => t('Sticky Header Options'),
+  '#type' => 'details',
+  '#collapsible' => TRUE,
+  '#collapsed' => TRUE,
+  '#states' => [
+    'visible' => [
+      ':input[name="header_mobile_fixed"]' => ['checked' => TRUE],
+      ':input[name="header_mobile_sticky"]' => ['checked' => TRUE],
+    ],
+  ],
+];
+
+$form['glazed_settings']['header']['header_mobile']['sticky']['header_mobile_sticky_show'] = [
+  '#type' => 'radios',
+  '#title' => t('Hide before Scrolling'),
+  '#default_value' => ((theme_get_setting('header_top_sticky_show') !== null)) ? theme_get_setting('header_top_sticky_show') : 'always',
+  '#options' => [
+    'always' => t('Always Show'),
+    'after_scroll' => t('Hide initially. Show after scroll offset'),
+  ],
+  '#description' => t('Hide menu before or after scrolling. Turn on "Overlay Mode" to prevent your menu creating an empty space at the top of your layout.'),
+  '#states' => [
+    'visible' => [
+      ':input[name="header_mobile_fixed"]' => ['checked' => TRUE],
+      ':input[name="header_mobile_sticky"]' => ['checked' => TRUE],
+    ],
+  ],
+  '#states' => [
+    'unchecked' => [
+      ':input[name="header_mobile_fixed"]' => ['checked' => FALSE],
+    ],
+  ],
+];
+
+$form['glazed_settings']['header']['header_mobile']['sticky']['header_mobile_height_sticky_offset'] = [
+  '#type' => 'textfield',
+  '#title' => t('Scroll offset'),
+  '#default_value' => ((theme_get_setting('header_mobile_height_sticky_offset') !== null)) ? theme_get_setting('header_mobile_height_sticky_offset') : '60',
+  '#size' => 9,
+  '#maxlength' => 9,
+  '#description' => t('Scroll distance before header jumps to its fixed position at the top of page. 0 - 2096px. Default is 60.'),
+  '#states' => [
+    'visible' => [
+      ':input[name="header_mobile_fixed"]' => ['checked' => TRUE],
+      ':input[name="header_mobile_sticky"]' => ['checked' => TRUE],
+    ],
+  ],
+];
+
+$form['glazed_settings']['header']['header_mobile']['sticky']['header_mobile_height_scroll'] = [
+  '#type' => 'textfield',
+  '#title' => t('Height'),
+  '#default_value' => ((theme_get_setting('header_mobile_height_scroll') !== null)) ? theme_get_setting('header_mobile_height_scroll') : '50',
+  '#size' => 9,
+  '#maxlength' => 9,
+  '#description' => t('Header height after scrolling past scroll offset. Default is 50.'),
+  '#states' => [
+    'visible' => [
+      ':input[name="header_mobile_fixed"]' => ['checked' => TRUE],
+      ':input[name="header_mobile_sticky"]' => ['checked' => TRUE],
+    ],
+  ],
+];
+
+$form['glazed_settings']['header']['header_mobile']['sticky']['header_mobile_bg_opacity_scroll'] = [
+  '#type' => 'textfield',
+  '#title' => t('Background Opacity'),
+  '#default_value' => ((theme_get_setting('header_mobile_bg_opacity_scroll') !== null)) ? theme_get_setting('header_mobile_bg_opacity_scroll') : 1,
+  '#size' => 9,
+  '#maxlength' => 9,
+  '#description' => t('Creates RGBa translucent background color. 0 is fully transparent and 1 is fully opaque.'),
+  '#states' => [
+    'visible' => [
+      ':input[name="header_mobile_fixed"]' => ['checked' => TRUE],
+      ':input[name="header_mobile_sticky"]' => ['checked' => TRUE],
+    ],
+  ],
+];
