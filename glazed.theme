@@ -80,6 +80,14 @@ function glazed_preprocess_html(&$variables) {
   $variables['page_bottom']['custom_javascript'] = [
     '#markup' => '<div class="hidden" id="glazed-js-seed">sfy39587stp16</div>',
   ];
+
+  if($header_height = theme_get_setting('header_top_height')) {
+    $variables['#attached']['drupalSettings']['glazedBuilder']['headerHeight'] = $header_height;
+  }
+
+  if($header_scroll_offset = theme_get_setting('header_top_height_sticky_offset')) {
+    $variables['#attached']['drupalSettings']['glazedBuilder']['headerOffset'] = $header_scroll_offset;
+  }
 }
 
 /**

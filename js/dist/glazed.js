@@ -170,12 +170,16 @@ $(window).resize(_.debounce(function(){
 
 $(window).scroll(function() {
   var scroll = $(window).scrollTop();
-  var headerHeight = $('.glazed-header').hasClass('glazed-header--side') ? '' : $('.glazed-header').height();
-  // todo: replace hardcoded scroll offset with option from Theme Settings
-  if (scroll > 39) {
-    $('.wrap-containers').css('margin-top', headerHeight);
-  } else {
-    $('.wrap-containers').css('margin-top', '');
+  var headerHeight = drupalSettings.glazedBuilder.headerHeight;
+  var headerScroll = drupalSettings.glazedBuilder.headerOffset;
+
+  console.log($('.glazed-header--sticky'));
+  if (headerHeight && headerScroll && $('.glazed-header--sticky').length > 0) {
+    if (scroll >= headerScroll) {
+      $('.wrap-containers').css('margin-top', +headerHeight);
+    } else {
+      $('.wrap-containers').css('margin-top', '');
+    }
   }
 });
 
