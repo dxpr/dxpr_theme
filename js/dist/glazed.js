@@ -168,19 +168,24 @@ $(window).resize(_.debounce(function(){
     }
 }, 50));
 
-$(window).scroll(function() {
-  var scroll = $(window).scrollTop();
+if ($('.glazed-header--sticky').length > 0) {
   var headerHeight = drupalSettings.glazedBuilder.headerHeight;
   var headerScroll = drupalSettings.glazedBuilder.headerOffset;
 
-  if (headerHeight && headerScroll && $('.glazed-header--sticky').length > 0) {
-    if (scroll >= headerScroll) {
-      $('.wrap-containers').css('margin-top', +headerHeight);
-    } else {
-      $('.wrap-containers').css('margin-top', '');
-    }
+
+  if (headerHeight && headerScroll) {
+    $(window).scroll(function() {
+      var scroll = $(window).scrollTop();
+
+
+      if (scroll >= headerScroll && scroll <= headerScroll * 2) {
+        $('.wrap-containers').css('margin-top', +headerHeight);
+      } else if (scroll <= headerScroll) {
+        $('.wrap-containers').css('margin-top', '');
+      }
+    });
   }
-});
+}
 
 function glazedMenuGovernor(context) {
   // Bootstrap dropdown multi-column smart menu
