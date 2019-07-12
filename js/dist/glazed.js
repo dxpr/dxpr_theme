@@ -173,7 +173,6 @@ $(window).scroll(function() {
   var headerHeight = drupalSettings.glazedBuilder.headerHeight;
   var headerScroll = drupalSettings.glazedBuilder.headerOffset;
 
-  console.log($('.glazed-header--sticky'));
   if (headerHeight && headerScroll && $('.glazed-header--sticky').length > 0) {
     if (scroll >= headerScroll) {
       $('.wrap-containers').css('margin-top', +headerHeight);
