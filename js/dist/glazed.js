@@ -168,6 +168,12 @@ $(window).resize(_.debounce(function(){
     }
 }, 50));
 
+if (drupalSettings.glazedBuilder.headerSideDirection === 'right') {
+  $('.glazed-main-menu').addClass('to-left');
+} else {
+  $('.glazed-main-menu').removeClass('to-left');
+}
+
 function glazedMenuGovernor(context) {
   // Bootstrap dropdown multi-column smart menu
   var navBreak = 1200;

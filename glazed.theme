@@ -80,6 +80,10 @@ function glazed_preprocess_html(&$variables) {
   $variables['page_bottom']['custom_javascript'] = [
     '#markup' => '<div class="hidden" id="glazed-js-seed">sfy39587stp16</div>',
   ];
+
+  if($header_menu_direction = theme_get_setting('header_side_direction')) {
+    $variables['#attached']['drupalSettings']['glazedBuilder']['headerSideDirection'] = $header_menu_direction;
+  }
 }
 
 /**

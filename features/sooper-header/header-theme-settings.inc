@@ -409,6 +409,17 @@ $form['glazed_settings']['header']['header_side']['header_side_width'] = [
   '#description' => t('Width of the side-header. Default is 300.'),
 ];
 
+$form['glazed_settings']['header']['header_side']['header_side_direction'] = [
+  '#type' => 'radios',
+  '#title' => t('Menu open direction'),
+  '#default_value' => ((theme_get_setting('header_side_direction') !== null)) ? theme_get_setting('header_side_direction') : 'left',
+  '#description' => t('Open menu from the right'),
+  '#options' => [
+    'left' => t('Left to Right'),
+    'right' => t('Right to Left'),
+  ],
+];
+
 $form['glazed_settings']['header']['menu'] = [
   '#title' => t('Main Menu Link'),
   '#type' => 'details',
