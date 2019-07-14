@@ -47,6 +47,14 @@ html.js body.html.page-media-browser {
     &:hover, &:focus, &:active {
       outline: none;
     }
+    .ui-icon-closethick {
+      display: none;
+      background: none;
+    }
+    .ui-button-text {
+      display: none;
+      background: none;
+    }
     &::after {
       content: 'x';
       cursor: pointer;
