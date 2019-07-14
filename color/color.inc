@@ -8,7 +8,7 @@
 $info = [
   // Available colors and color labels used in theme.
   'fields' => [
-    'base' => t('Base color'),
+    'base' => t('Primary Color'),
     'link' => t('Link color'),
     'accent1' => t('Accent color 1'),
     'accent2' => t('Accent color 2'),
