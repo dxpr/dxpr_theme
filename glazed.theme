@@ -80,6 +80,15 @@ function glazed_preprocess_html(&$variables) {
   $variables['page_bottom']['custom_javascript'] = [
     '#markup' => '<div class="hidden" id="glazed-js-seed">sfy39587stp16</div>',
   ];
+
+  // Fixed mobile header
+  if($header_mobile_fixed = theme_get_setting('header_mobile_fixed')) {
+    $variables['#attached']['drupalSettings']['glazedSettings']['headerMobileFixed'] = $header_mobile_fixed;
+  }
+  // Mobile header height
+  if($header_mobile_height = theme_get_setting('header_mobile_height')) {
+    $variables['#attached']['drupalSettings']['glazedSettings']['headerMobileHeight'] = $header_mobile_height;
+  }
 }
 
 /**

@@ -51,7 +51,7 @@
 
       // Opacity Sliders
       var $opacitySliders = $(
-        '#edit-header-top-bg-opacity-scroll, #edit-header-mobile-bg-opacity-scroll, #edit-header-top-bg-opacity, #edit-header-side-bg-opacity, #edit-side-header-background-opacity,#edit-page-title-image-opacity,#edit-header-top-opacity,#edit-header-top-opacity-scroll,#edit-menu-full-screen-opacity'
+        '#edit-header-top-bg-opacity-scroll, #edit-header-top-bg-opacity, #edit-header-side-bg-opacity, #edit-side-header-background-opacity,#edit-page-title-image-opacity,#edit-header-top-opacity,#edit-header-top-opacity-scroll,#edit-menu-full-screen-opacity'
       );
       var startValue = 1;
       $opacitySliders.each( function() {
@@ -299,28 +299,6 @@
 
       // Header Mobile height slider
       $input = $('#edit-header-mobile-height');
-      $input.bootstrapSlider({
-        step: 1,
-        min: 10,
-        max: 200,
-        tooltip: 'show',
-        formatter: function(value) {return value + 'px';},
-        value: parseFloat($input.val())
-      });
-
-      // Sticky Mobile header scroll offset
-      $input = $('#edit-header-mobile-height-sticky-offset');
-      $input.bootstrapSlider({
-        step: 10,
-        min: 0,
-        max: 2096,
-        tooltip: 'show',
-        formatter: function(value) {return value + 'px';},
-        value: parseFloat($input.val())
-      });
-
-      // Header Mobile after-scroll height slider
-      $input = $('#edit-header-mobile-height-scroll');
       $input.bootstrapSlider({
         step: 1,
         min: 10,

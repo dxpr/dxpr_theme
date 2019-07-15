@@ -341,6 +341,20 @@ function glazedMenuGovernor(context) {
   }
 }
 
+// Fixed header on mobile on tablet
+var headerHeight = drupalSettings.glazedSettings.headerMobileHeight;
+var headerFixed = drupalSettings.glazedSettings.headerMobileFixed;
+
+if (headerFixed && $('.glazed-header').length > 0 && $(window).width() <= 768) {
+  if ($('#toolbar-bar').length > 0) {
+    $('#navbar').addClass('header-mobile-admin-fixed');
+  }
+  $('.glazed-boxed-container').css('overflow', 'hidden');
+  $('#toolbar-bar').addClass('header-mobile-fixed');
+  $('#navbar').addClass('header-mobile-fixed');
+  $('#secondary-header').css('margin-top', +headerHeight);
+}
+
 function glazedMenuGovernorBodyClass() {
   var navBreak = 1200;
   if('glazedNavBreakpoint' in window) {
