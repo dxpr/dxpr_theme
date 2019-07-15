@@ -82,7 +82,7 @@ function glazed_preprocess_html(&$variables) {
   ];
 
   if($header_menu_direction = theme_get_setting('header_side_direction')) {
-    $variables['#attached']['drupalSettings']['glazedBuilder']['headerSideDirection'] = $header_menu_direction;
+    $variables['#attached']['drupalSettings']['glazedSettings']['headerSideDirection'] = $header_menu_direction;
   }
 }
 
