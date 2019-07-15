@@ -28,7 +28,7 @@
     position: fixed;
     z-index: 4060;
     top: 0;
-    //left: 0;
+    left: 0;
     width: 300px;
     overflow-x: hidden;
     overflow-y: auto;
@@ -43,10 +43,10 @@
 
   }
   .glazed-main-menu.to-left {
-    left: unset;
+    left: auto;
     right: 0;
     .menu__level {
-      left: unset;
+      left: auto;
       right: 0;
     }
   }
@@ -224,7 +224,7 @@
   #glazed-main-menu.to-left.menu--open,
   #glazed-main-menu.to-left.menu--open .menu__breadcrumbs,
   #glazed-main-menu.to-left.menu--open .menu__level {
-    left: unset;
+    left: auto;
     right: 0;
   }
   #glazed-main-menu.menu--open,
@@ -235,7 +235,7 @@
   #glazed-main-menu.to-left,
   #glazed-main-menu.to-left .menu__breadcrumbs,
   #glazed-main-menu.to-left .menu__level {
-    left: unset;
+    left: auto;
     right: -100%;
     transition: right 0.3s;
   }

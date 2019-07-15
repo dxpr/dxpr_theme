@@ -166,9 +166,12 @@ $(window).resize(_.debounce(function(){
       glazedMenuGovernorBodyClass();
       glazedMenuGovernor(document);
     }
+    if ($(window).width() >= 768) {
+      $('.glazed-main-menu').removeClass('to-left');
+    }
 }, 50));
 
-if (drupalSettings.glazedBuilder.headerSideDirection === 'right') {
+if ((drupalSettings.glazedBuilder.headerSideDirection === 'right') && $(window).width() <= 768){
   $('.glazed-main-menu').addClass('to-left');
 } else {
   $('.glazed-main-menu').removeClass('to-left');

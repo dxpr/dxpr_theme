@@ -411,7 +411,7 @@ $form['glazed_settings']['header']['header_side']['header_side_width'] = [
 
 $form['glazed_settings']['header']['header_side']['header_side_direction'] = [
   '#type' => 'radios',
-  '#title' => t('Menu open direction'),
+  '#title' => t('Mobile menu open direction'),
   '#default_value' => ((theme_get_setting('header_side_direction') !== null)) ? theme_get_setting('header_side_direction') : 'left',
   '#description' => t('Open menu from the right'),
   '#options' => [
