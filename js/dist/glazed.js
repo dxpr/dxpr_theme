@@ -168,9 +168,9 @@ $(window).resize(_.debounce(function(){
     }
 }, 50));
 
-if ($('.glazed-header--sticky').length > 0) {
-  var headerHeight = drupalSettings.glazedBuilder.headerHeight;
-  var headerScroll = drupalSettings.glazedBuilder.headerOffset;
+if ($('.glazed-header--sticky').length > 0 && $(window).width() > 1200) {
+  var headerHeight = drupalSettings.glazedSettings.headerHeight;
+  var headerScroll = drupalSettings.glazedSettings.headerOffset;
   var scroll = 0;
 
   if (headerHeight && headerScroll) {
@@ -179,7 +179,7 @@ if ($('.glazed-header--sticky').length > 0) {
       if (scroll >= headerScroll && scroll <= headerScroll * 2) {
         $('.wrap-containers').css('margin-top', +headerHeight);
       } else if (scroll <= headerScroll) {
-        $('.wrap-containers').css('margin-top', '');
+        document.getElementsByClassName("wrap-containers")[0].style.cssText = "margin-top:0";
       }
     });
   }
