@@ -167,14 +167,14 @@ $(window).resize(_.debounce(function(){
       glazedMenuGovernor(document);
     }
     if ($(window).width() > 768) {
-      $('.glazed-main-menu').removeClass('to-left');
+      $('.glazed-main-menu').removeClass('glazed-main-menu--to-left');
     }
 }, 50));
 
 if ((drupalSettings.glazedSettings.headerSideDirection === 'right') && $(window).width() <= 768){
-  $('.glazed-main-menu').addClass('to-left');
+  $('.glazed-main-menu').addClass('glazed-main-menu--to-left');
 } else {
-  $('.glazed-main-menu').removeClass('to-left');
+  $('.glazed-main-menu').removeClass('glazed-main-menu--to-left');
 }
 
 function glazedMenuGovernor(context) {
