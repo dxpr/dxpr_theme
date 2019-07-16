@@ -344,10 +344,16 @@ function glazedMenuGovernor(context) {
 // Fixed header on mobile on tablet
 var headerHeight = drupalSettings.glazedSettings.headerMobileHeight;
 var headerFixed = drupalSettings.glazedSettings.headerMobileFixed;
+var navBreak = 'glazedNavBreakpoint' in window ? window.glazedNavBreakpoint : 1200;
 
-if (headerFixed && $('.glazed-header').length > 0 && $(window).width() <= 768) {
+if (headerFixed && $('.glazed-header').length > 0 && $(window).width() <= navBreak) {
   if ($('#toolbar-bar').length > 0) {
     $('#navbar').addClass('header-mobile-admin-fixed');
+  }
+  if ($(window).width() >= 975) {
+    $('#navbar').addClass('header-mobile-admin-fixed-active');
+  } else {
+    $('#navbar').removeClass('header-mobile-admin-fixed-active');
   }
   $('.glazed-boxed-container').css('overflow', 'hidden');
   $('#toolbar-bar').addClass('header-mobile-fixed');
