@@ -359,11 +359,8 @@ $(document).ready(function () {
   var navBreak = 'glazedNavBreakpoint' in window ? window.glazedNavBreakpoint : 1200;
 
   if (headerFixed && $('.glazed-header').length > 0 && $(window).width() <= navBreak) {
-    if ($('#toolbar').length > 0) {
-      document.getElementsByClassName("wrap-containers")[0].style.cssText = "margin-top:"+ +headerHeight + "px";
-    }
     if ($(window).width() <= 767) {
-      $('.wrap-containers').css('margin-top', +headerHeight);
+      document.getElementsByClassName("wrap-containers")[0].style.cssText = "margin-top:"+ +headerHeight + "px";
     } else {
       document.getElementsByClassName("wrap-containers")[0].style.cssText = "margin-top:0";
     }
