@@ -174,14 +174,14 @@ if ($('.glazed-header--sticky').length > 0 && $(window).width() > 1200) {
   var scroll = 0;
 
   if (headerHeight && headerScroll) {
-    $(window).scroll(function() {
+    _.throttle($(window).scroll(function() {
       scroll = $(window).scrollTop();
       if (scroll >= headerScroll && scroll <= headerScroll * 2) {
-        $('.wrap-containers').css('margin-top', +headerHeight);
-      } else if (scroll <= headerScroll) {
+        document.getElementsByClassName("wrap-containers")[0].style.cssText = "margin-top:"+ +headerHeight + "px";
+      } else if (scroll < headerScroll) {
         document.getElementsByClassName("wrap-containers")[0].style.cssText = "margin-top:0";
       }
-    });
+    }), 10);
   }
 }
 
