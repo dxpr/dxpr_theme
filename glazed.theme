@@ -80,10 +80,6 @@ function glazed_preprocess_html(&$variables) {
   $variables['page_bottom']['custom_javascript'] = [
     '#markup' => '<div class="hidden" id="glazed-js-seed">sfy39587stp16</div>',
   ];
-
-  if ($breadcrumbs_separator = theme_get_setting('page_title_breadcrumbs_separator')) {
-    $variables['#attached']['drupalSettings']['glazedSettings']['breadcrumbsSeparator'] = $breadcrumbs_separator;
-  }
 }
 
 /**

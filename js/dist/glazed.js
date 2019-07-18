@@ -90,16 +90,9 @@ Drupal.behaviors.glazed = {
     });
 
     // Breadcrumbs
-    if (settings.glazedSettings.breadcrumbsSeparator) {
-      var breadcrumbsSeparator = settings.glazedSettings.breadcrumbsSeparator;
-      $('.breadcrumb a', context)
-        .once('glazed')
-        .after(' <span class="glazed-breadcrumb-spacer">' + breadcrumbsSeparator + '</span> ');
-    } else {
-      $('.breadcrumb a', context)
+    $('.breadcrumb a', context)
         .once('glazed')
         .after(' <span class="glazed-breadcrumb-spacer">/</span> ');
-    }
 
     // Sidebar nav blocks
     $('.region-sidebar-first .block .view ul, .region-sidebar-second .block .view ul', context)
