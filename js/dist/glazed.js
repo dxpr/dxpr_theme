@@ -181,7 +181,7 @@ if ($('.glazed-header--sticky').length > 0 && $(window).width() > 1200) {
       } else if (scroll < headerScroll) {
         document.getElementsByClassName("wrap-containers")[0].style.cssText = "margin-top:0";
       }
-    }), 10);
+    }), 100);
   }
 }
 
