@@ -768,6 +768,7 @@
         $('.block-preview hr').css('margin-bottom', $(this).bootstrapSlider('getValue') + 'px');
       });
 
+      $('#edit-page-title-breadcrumbs-separator').attr('maxlength', '1');
 
     }
   };
