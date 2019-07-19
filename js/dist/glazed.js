@@ -166,7 +166,16 @@ $(window).resize(_.debounce(function(){
       glazedMenuGovernorBodyClass();
       glazedMenuGovernor(document);
     }
+    if ($(window).width() > 768) {
+      $('.glazed-main-menu').removeClass('glazed-main-menu--to-left');
+    }
 }, 50));
+
+if ((drupalSettings.glazedSettings.headerSideDirection === 'right') && $(window).width() <= 768){
+  $('.glazed-main-menu').addClass('glazed-main-menu--to-left');
+} else {
+  $('.glazed-main-menu').removeClass('glazed-main-menu--to-left');
+}
 
 function glazedMenuGovernor(context) {
   // Bootstrap dropdown multi-column smart menu
