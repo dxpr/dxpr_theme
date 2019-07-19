@@ -120,4 +120,12 @@ function glazed_preprocess_html(&$vars) {
       }
     }
   }
+  if($header_menu_direction = theme_get_setting('header_side_direction')) {
+    $vars['#attached']['js'][] = array(
+      'type' => 'setting',
+      'data' => array('glazed' => array('headerSideDirection' => $header_menu_direction)),
+    );
+    drupal_add_js(array('glazed' => array('headerSideDirection' => $header_menu_direction)), 'setting');
+  }
+
 }
