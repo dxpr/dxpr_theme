@@ -176,7 +176,20 @@ $(window).resize(_.debounce(function(){
       glazedMenuGovernorBodyClass();
       glazedMenuGovernor(document);
     }
+  if ($(window).width() > 768) {
+    $('.glazed-main-menu').removeClass('glazed-main-menu--to-left');
+  }
 }, 50));
+
+// Mobile menu open direction.
+$(document).ready(function () {
+  if ((Drupal.settings.glazed.headerSideDirection === 'right') && $(window).width() <= 768){
+    $('.glazed-main-menu').addClass('glazed-main-menu--to-left');
+  } else {
+    $('.glazed-main-menu').removeClass('glazed-main-menu--to-left');
+  }
+});
+
 
 function glazedMenuGovernor(context) {
   // Bootstrap dropdown multi-column smart menu
