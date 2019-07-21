@@ -583,3 +583,10 @@ $form['glazed_settings']['header']['header_mobile']['header_mobile_height'] = [
   '#maxlength' => 9,
   '#description' => t('Height of header in mobile view. 10px - 200px. Default is 60.'),
 ];
+
+$form['glazed_settings']['header']['header_mobile']['header_mobile_fixed'] = [
+  '#type' => 'checkbox',
+  '#title' => t('Fixed Position'),
+  '#default_value' => ((theme_get_setting('header_mobile_fixed') !== null)) ? theme_get_setting('header_mobile_fixed') : FALSE,
+  '#description' => t('A Fixed header stays in the top of the browser when a user scrolls.'),
+];
