@@ -364,6 +364,26 @@ function glazedMenuGovernor(context) {
   }
 }
 
+// Fixed header on mobile on tablet
+$(document).ready(function () {
+  var headerHeight = Drupal.settings.glazed.headerMobileHeight;
+  var headerFixed = Drupal.settings.glazed.headerMobileFixed;
+  var toolbarHeight = $('#toolbar').height();
+  var navBreak = 'glazedNavBreakpoint' in window ? window.glazedNavBreakpoint : 1200;
+
+  if (headerFixed && $('.glazed-header').length > 0 && $(window).width() <= navBreak) {
+    if ($(window).width() <= 767) {
+      document.getElementsByClassName("wrap-containers")[0].style.cssText = "margin-top:"+ +headerHeight + "px";
+    } else {
+      document.getElementsByClassName("wrap-containers")[0].style.cssText = "margin-top:0";
+    }
+    $('.glazed-boxed-container').css('overflow', 'hidden');
+    $('#toolbar, #navbar').addClass('header-mobile-fixed');
+    $('#navbar').css('top', toolbarHeight);
+    $('#secondary-header').css('margin-top', +headerHeight);
+  }
+});
+
 function glazedMenuGovernorBodyClass() {
   var navBreak = 1200;
   if('glazedNavBreakpoint' in window) {

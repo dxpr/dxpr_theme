@@ -120,6 +120,24 @@ function glazed_preprocess_html(&$vars) {
       }
     }
   }
+
+  // Fixed mobile header
+  if($header_mobile_fixed = theme_get_setting('header_mobile_fixed')) {
+    $vars['#attached']['js'][] = array(
+      'type' => 'setting',
+      'data' => array('glazed' => array('headerMobileFixed' => $header_mobile_fixed)),
+    );
+    drupal_add_js(array('glazed' => array('headerMobileFixed' => $header_mobile_fixed)), 'setting');
+  }
+  // Mobile header height
+  if($header_mobile_height = theme_get_setting('header_mobile_height')) {
+    $vars['#attached']['js'][] = array(
+      'type' => 'setting',
+      'data' => array('glazed' => array('headerMobileHeight' => $header_mobile_height)),
+    );
+    drupal_add_js(array('glazed' => array('headerMobileHeight' => $header_mobile_height)), 'setting');
+  }
+
   if($header_menu_direction = theme_get_setting('header_side_direction')) {
     $vars['#attached']['js'][] = array(
       'type' => 'setting',
