@@ -34,7 +34,6 @@ $form['glazed_settings']['page_title']['page_title_breadcrumbs_separator'] = [
   '#title' => t('Breadcrumbs separator'),
   '#default_value' => (theme_get_setting('page_title_breadcrumbs_separator')) ? theme_get_setting('page_title_breadcrumbs_separator') : '/',
   '#description' => t('Add custom breadcrumbs separator symbol. Leave empty for default separator.'),
-  '#maxlength' => 2,
   '#states' => [
     'visible' => [
       ':input[name="page_title_breadcrumbs"]' => ['checked' => TRUE],
