@@ -88,6 +88,19 @@ function glazed_preprocess_html(&$variables) {
   if($header_scroll_offset = theme_get_setting('header_top_height_sticky_offset')) {
     $variables['#attached']['drupalSettings']['glazedSettings']['headerOffset'] = $header_scroll_offset;
   }
+
+  // Fixed mobile header
+  if($header_mobile_fixed = theme_get_setting('header_mobile_fixed')) {
+    $variables['#attached']['drupalSettings']['glazedSettings']['headerMobileFixed'] = $header_mobile_fixed;
+  }
+  // Mobile header height
+  if($header_mobile_height = theme_get_setting('header_mobile_height')) {
+    $variables['#attached']['drupalSettings']['glazedSettings']['headerMobileHeight'] = $header_mobile_height;
+  }
+
+  if($header_menu_direction = theme_get_setting('header_side_direction')) {
+    $variables['#attached']['drupalSettings']['glazedSettings']['headerSideDirection'] = $header_menu_direction;
+  }
 }
 
 /**
@@ -124,8 +137,11 @@ use Drupal\block\Entity\Block;
  * Implements template_preprocess_block()
  */
 function glazed_preprocess_block(&$variables) {
-  $block = Block::load($variables['elements']['#id']);
-  if ($block) {
-    $variables['region'] = $block->getRegion();
+  if (isset($variables['elements']['#id'])) {
+    $block = Block::load($variables['elements']['#id']);
+    if ($block) {
+      $variables['region'] = $block->getRegion();
+    }
+
   }
 }

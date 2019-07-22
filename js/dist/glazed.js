@@ -197,6 +197,9 @@ $(window).resize(_.debounce(function(){
       glazedMenuGovernorBodyClass();
       glazedMenuGovernor(document);
     }
+    if ($(window).width() > 768) {
+      $('.glazed-main-menu').removeClass('glazed-main-menu--to-left');
+    }
 }, 50));
 
 if ($('.glazed-header--sticky').length > 0 && $(window).width() > 1200) {
@@ -205,15 +208,21 @@ if ($('.glazed-header--sticky').length > 0 && $(window).width() > 1200) {
   var scroll = 0;
 
   if (headerHeight && headerScroll) {
-    _.throttle($(window).scroll(function() {
+    _.throttle($(window).scroll(function () {
       scroll = $(window).scrollTop();
       if (scroll >= headerScroll && scroll <= headerScroll * 2) {
-        document.getElementsByClassName("wrap-containers")[0].style.cssText = "margin-top:"+ +headerHeight + "px";
+        document.getElementsByClassName("wrap-containers")[0].style.cssText = "margin-top:" + +headerHeight + "px";
       } else if (scroll < headerScroll) {
         document.getElementsByClassName("wrap-containers")[0].style.cssText = "margin-top:0";
       }
     }), 100);
   }
+}
+
+if ((drupalSettings.glazedSettings.headerSideDirection === 'right') && $(window).width() <= 768){
+  $('.glazed-main-menu').addClass('glazed-main-menu--to-left');
+} else {
+  $('.glazed-main-menu').removeClass('glazed-main-menu--to-left');
 }
 
 function glazedMenuGovernor(context) {
@@ -387,6 +396,26 @@ function glazedMenuGovernor(context) {
       }
     glazedMenuState = 'side';
   }
+}
+
+// Fixed header on mobile on tablet
+var headerHeight = drupalSettings.glazedSettings.headerMobileHeight;
+var headerFixed = drupalSettings.glazedSettings.headerMobileFixed;
+var navBreak = 'glazedNavBreakpoint' in window ? window.glazedNavBreakpoint : 1200;
+
+if (headerFixed && $('.glazed-header').length > 0 && $(window).width() <= navBreak) {
+  if ($('#toolbar-bar').length > 0) {
+    $('#navbar').addClass('header-mobile-admin-fixed');
+  }
+  if ($(window).width() >= 975) {
+    $('#navbar').addClass('header-mobile-admin-fixed-active');
+  } else {
+    $('#navbar').removeClass('header-mobile-admin-fixed-active');
+  }
+  $('.glazed-boxed-container').css('overflow', 'hidden');
+  $('#toolbar-bar').addClass('header-mobile-fixed');
+  $('#navbar').addClass('header-mobile-fixed');
+  $('#secondary-header').css('margin-top', +headerHeight);
 }
 
 function glazedMenuGovernorBodyClass() {
