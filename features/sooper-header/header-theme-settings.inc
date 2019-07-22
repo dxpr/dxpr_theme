@@ -409,6 +409,17 @@ $form['glazed_settings']['header']['header_side']['header_side_width'] = [
   '#description' => t('Width of the side-header. Default is 300.'),
 ];
 
+$form['glazed_settings']['header']['header_side']['header_side_direction'] = [
+  '#type' => 'radios',
+  '#title' => t('Mobile menu open direction'),
+  '#default_value' => ((theme_get_setting('header_side_direction') !== null)) ? theme_get_setting('header_side_direction') : 'left',
+  '#description' => t('Open menu from the right'),
+  '#options' => [
+    'left' => t('Left to Right'),
+    'right' => t('Right to Left'),
+  ],
+];
+
 $form['glazed_settings']['header']['menu'] = [
   '#title' => t('Main Menu Link'),
   '#type' => 'details',
@@ -571,4 +582,11 @@ $form['glazed_settings']['header']['header_mobile']['header_mobile_height'] = [
   '#size' => 9,
   '#maxlength' => 9,
   '#description' => t('Height of header in mobile view. 10px - 200px. Default is 60.'),
+];
+
+$form['glazed_settings']['header']['header_mobile']['header_mobile_fixed'] = [
+  '#type' => 'checkbox',
+  '#title' => t('Fixed Position'),
+  '#default_value' => ((theme_get_setting('header_mobile_fixed') !== null)) ? theme_get_setting('header_mobile_fixed') : FALSE,
+  '#description' => t('A Fixed header stays in the top of the browser when a user scrolls.'),
 ];
