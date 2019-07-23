@@ -121,6 +121,22 @@ function glazed_preprocess_html(&$vars) {
     }
   }
 
+  if($header_height = theme_get_setting('header_top_height')) {
+    $vars['#attached']['js'][] = array(
+      'type' => 'setting',
+      'data' => array('glazed' => array('headerHeight' => $header_height)),
+    );
+    drupal_add_js(array('glazed' => array('headerHeight' => $header_height)), 'setting');
+  }
+
+  if($header_scroll_offset = theme_get_setting('header_top_height_sticky_offset')) {
+    $vars['#attached']['js'][] = array(
+      'type' => 'setting',
+      'data' => array('glazed' => array('headerOffset' => $header_scroll_offset)),
+    );
+    drupal_add_js(array('glazed' => array('headerOffset' => $header_scroll_offset)), 'setting');
+  }
+
   // Fixed mobile header
   if($header_mobile_fixed = theme_get_setting('header_mobile_fixed')) {
     $vars['#attached']['js'][] = array(
