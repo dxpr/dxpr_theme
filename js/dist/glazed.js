@@ -202,7 +202,8 @@ $(window).resize(_.debounce(function(){
     }
 }, 50));
 
-if ($('.glazed-header--sticky').length > 0 && $(window).width() > 1200) {
+var navBreak = 'glazedNavBreakpoint' in window ? window.glazedNavBreakpoint : 1200;
+if ($('.glazed-header--sticky').length > 0 && $(window).width() > navBreak) {
   var headerHeight = drupalSettings.glazedSettings.headerHeight;
   var headerScroll = drupalSettings.glazedSettings.headerOffset;
   var scroll = 0;
