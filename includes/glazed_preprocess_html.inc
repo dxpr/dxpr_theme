@@ -12,7 +12,7 @@ function glazed_preprocess_html(&$vars) {
     $path = drupal_get_path('theme', 'glazed');
     drupal_add_js(
       $path . '/vendor/bootstrap3/js/bootstrap.min.js', array(
-        'group' => JS_LIBRARY,
+        'group' => JS_THEME,
         'every_page' => TRUE,
         'weight' => -18
       ));
