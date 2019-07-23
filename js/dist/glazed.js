@@ -200,6 +200,9 @@ $(window).resize(_.debounce(function(){
     if ($(window).width() > 768) {
       $('.glazed-main-menu').removeClass('glazed-main-menu--to-left');
     }
+  if ($(window).width() > 768) {
+    $('.dropdown-menu').css('top', '100%');
+  }
 }, 50));
 
 if ($('.glazed-header--sticky').length > 0 && $(window).width() > 1200) {
