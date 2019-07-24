@@ -22,7 +22,7 @@
       $('#system-theme-settings h2 > small').addClass('well form-header');
       var $input = '';
       // jQuery once is not working..
-      $('#system-theme-settings .form-type-radio .control-label').not('glazedProcessed').each( function() {
+      $('#system-theme-settings .form-type-radio .control-label').not('.glazedProcessed').each( function() {
         $(this).addClass('glazedProcessed');
         $input = $(this).find('input').remove();
         $(this).wrapInner('<span class="glazed-label">').prepend($input);
