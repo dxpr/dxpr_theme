@@ -17,6 +17,11 @@
   .secondary-header-container {
     margin-bottom: 0;
   }
+  &--sticky {
+    position: fixed;
+    left: 0;
+    right: 0;
+  }
 }
 
 .navbar-nav.secondary {
