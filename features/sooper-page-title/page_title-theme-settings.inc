@@ -47,6 +47,18 @@ $form['glazed_settings']['page_title']['page_title_align'] = [
     '#description' => t('Choose position of Page Title within page title header.'),
 ];
 
+$form['glazed_settings']['page_title']['title_type'] = [
+  '#type' => 'radios',
+  '#title' => t('Title Style'),
+  '#default_value' => ((theme_get_setting('title_type') !== null)) ? theme_get_setting('title_type') : '',
+  '#options' => [
+    '' => t('Normal'),
+    'uppercase' => t('Uppercase'),
+    'bold' => t('Bold'),
+    'lead' => t('Lead text')
+  ],
+];
+
 $form['glazed_settings']['page_title']['page_title_height'] = [
   '#type' => 'textfield',
   '#title' => t('Height'),
