@@ -162,4 +162,20 @@ function glazed_preprocess_html(&$vars) {
     drupal_add_js(array('glazed' => array('headerSideDirection' => $header_menu_direction)), 'setting');
   }
 
+  if ($mark_menu_with_children = theme_get_setting('mark_menu_with_children')) {
+    $vars['#attached']['js'][] = array(
+      'type' => 'setting',
+      'data' => array('glazed' => array('markMenuWithChildren' => $mark_menu_with_children)),
+    );
+    drupal_add_js(array('glazed' => array('markMenuWithChildren' => $mark_menu_with_children)), 'setting');
+  }
+
+  if ($children_symbol_class = theme_get_setting('children_symbol_class')) {
+    $vars['#attached']['js'][] = array(
+      'type' => 'setting',
+      'data' => array('glazed' => array('childrenSymbolClass' => $children_symbol_class)),
+    );
+    drupal_add_js(array('glazed' => array('childrenSymbolClass' => $children_symbol_class)), 'setting');
+  }
+
 }
