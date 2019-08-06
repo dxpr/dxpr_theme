@@ -409,6 +409,23 @@ $form['glazed_settings']['header']['header_side']['header_side_width'] = [
   '#description' => t('Width of the side-header. Default is 300.'),
 ];
 
+$form['glazed_settings']['header']['header_side']['mark_menu_with_children'] = [
+  '#type' => 'checkbox',
+  '#title' => t('Mark items with children'),
+  '#default_value' => ((theme_get_setting('mark_menu_with_children') !== null)) ? theme_get_setting('mark_menu_with_children') : FALSE,
+];
+
+$form['glazed_settings']['header']['header_side']['children_symbol_class'] = [
+  '#type' => 'textfield',
+  '#title' => t('Children symbol class'),
+  '#default_value' => ((theme_get_setting('children_symbol_class') !== null)) ? theme_get_setting('children_symbol_class') : 'fa fa-angle-down',
+  '#states' => [
+    'visible' => [
+      ':input[name="mark_menu_with_children"]' => ['checked' => TRUE],
+    ],
+  ],
+];
+
 $form['glazed_settings']['header']['header_side']['header_side_direction'] = [
   '#type' => 'radios',
   '#title' => t('Mobile menu open direction'),

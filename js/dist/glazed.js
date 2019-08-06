@@ -419,6 +419,18 @@ if (headerFixed && $('.glazed-header').length > 0 && $(window).width() <= navBre
   $('#secondary-header').css('margin-top', +headerHeight);
 }
 
+// Mark menu items with children.
+var markMenuItems = drupalSettings.glazedSettings.markMenuWithChildren;
+var childrenSymbolClass = drupalSettings.glazedSettings.childrenSymbolClass;
+
+if (markMenuItems) {
+  $('.menu.nav').children().each(function () {
+    if ($(this).find('ul').length) {
+      $(this).find('.dropdown-toggle').append('<i class="' + childrenSymbolClass + '"></i>');
+    }
+  });
+}
+
 function glazedMenuGovernorBodyClass() {
   var navBreak = 1200;
   if('glazedNavBreakpoint' in window) {
