@@ -200,6 +200,7 @@ $(window).resize(_.debounce(function(){
     if ($(window).width() > 768) {
       $('.glazed-main-menu').removeClass('glazed-main-menu--to-left');
     }
+    markMenu();
 }, 50));
 
 var navBreak = 'glazedNavBreakpoint' in window ? window.glazedNavBreakpoint : 1200;
@@ -423,13 +424,27 @@ if (headerFixed && $('.glazed-header').length > 0 && $(window).width() <= navBre
 var markMenuItems = drupalSettings.glazedSettings.markMenuWithChildren;
 var childrenSymbolClass = drupalSettings.glazedSettings.childrenSymbolClass;
 
-if (markMenuItems) {
-  $('.menu.nav').children().each(function () {
-    if ($(this).find('ul').length) {
-      $(this).find('.dropdown-toggle').append('<i class="' + childrenSymbolClass + '"></i>');
-    }
-  });
+function markMenu() {
+  var headerSide = document.getElementsByClassName('glazed-header--side').length;
+
+  if (markMenuItems && !headerSide) {
+    $('.menu.nav').children().each(function () {
+      if ($(this).find('ul').length) {
+        $(this).find('.dropdown-toggle').append('<i class="' + childrenSymbolClass + '"></i>');
+      }
+    });
+  }
+  else {
+    $('.menu.nav').children().each(function () {
+      if ($(this).find('ul').length) {
+        $(this).find('i').remove();
+      }
+    });
+  }
 }
+$(document).ready(function () {
+  markMenu();
+});
 
 function glazedMenuGovernorBodyClass() {
   var navBreak = 1200;
