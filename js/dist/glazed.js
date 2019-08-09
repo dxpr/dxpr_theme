@@ -210,7 +210,7 @@ $(window).resize(_.debounce(function(){
 }, 50));
 
 var navBreak = 'glazedNavBreakpoint' in window ? window.glazedNavBreakpoint : 1200;
-if ($('.glazed-header--sticky').length > 0 && $(window).width() > navBreak) {
+if ($('.glazed-header--sticky').length > 0 && !$('.glazed-header--overlay').length  && $(window).width() > navBreak) {
   var headerHeight = drupalSettings.glazedSettings.headerHeight;
   var headerScroll = drupalSettings.glazedSettings.headerOffset;
   var scroll = 0;
@@ -314,7 +314,19 @@ function glazedMenuGovernor(context) {
     if (($('#secondary-header').length > 0) && ($('#navbar.glazed-header--overlay').length > 0)) {
       var secHeaderRect = $('#secondary-header')[0].getBoundingClientRect();
       if (glazedHit($('#navbar.glazed-header--overlay')[0].getBoundingClientRect(), secHeaderRect)) {
-        $('#navbar.glazed-header--overlay').css('top', secHeaderRect.bottom);
+        if (drupalSettings.glazedSettings.secondHeaderSticky) {
+          $('#navbar.glazed-header--overlay').css('cssText','top:' + secHeaderRect.bottom + 'px !important;');
+          $('#secondary-header').addClass('glazed-secondary-header--sticky');
+        }
+        else {
+          if ($('#toolbar-bar').length > 0) {
+            $('#navbar.glazed-header--overlay').css('top', secHeaderRect.bottom);
+          }
+          else {
+            $('#navbar.glazed-header--overlay').css('top', '');
+          }
+          $('#secondary-header').removeClass('glazed-secondary-header--sticky');
+        }
       }
     }
   }

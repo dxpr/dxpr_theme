@@ -105,6 +105,11 @@ function glazed_preprocess_html(&$variables) {
   if($header_menu_direction = theme_get_setting('header_side_direction')) {
     $variables['#attached']['drupalSettings']['glazedSettings']['headerSideDirection'] = $header_menu_direction;
   }
+
+  // Second header sticky
+  if ($second_header_sticky = theme_get_setting('second_header_sticky')) {
+    $variables['#attached']['drupalSettings']['glazedSettings']['secondHeaderSticky'] = $second_header_sticky;
+  }
 }
 
 /**
