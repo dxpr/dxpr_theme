@@ -83,10 +83,19 @@ Drupal.behaviors.glazed = {
     });
 
     // Breadcrumbs
-    $('.breadcrumb a', context)
-        .once('glazed')
-        .after(' <span class="glazed-breadcrumb-spacer">/</span> ');
-
+    $(document).ready(function () {
+      if (Drupal.settings.glazed.breadcrumbsSeparator) {
+        var breadcrumbsSeparator = Drupal.settings.glazed.breadcrumbsSeparator;
+        $('.breadcrumb a', context)
+          .once('glazed')
+          .after(' <span class="glazed-breadcrumb-spacer">' + breadcrumbsSeparator + '</span> ');
+      }
+      else {
+        $('.breadcrumb a', context)
+          .once('glazed')
+          .after(' <span class="glazed-breadcrumb-spacer">/</span> ');
+      }
+    });
 
     // Sidebar nav blocks
     $('.region-sidebar-first .block .view ul, .region-sidebar-second .block .view ul', context)
