@@ -215,6 +215,22 @@ if (theme_get_setting('sticky_footer', $theme)) {
 EOT;
 }
 
+// Mark menu items with children.
+if ($mark_menu = theme_get_setting('mark_menu_with_children', $theme)) {
+  if ($symbol = theme_get_setting('children_symbol_class', $theme)) {
+    $CSS .= <<<EOT
+.glazed-header--top .dropdown-toggle:after {
+  content: "{$symbol}";
+  pointer-events: none;
+  position: relative;
+  top: 3px;
+  left: 5px;
+  font-size: 12px;
+}
+EOT;
+  }
+}
+
 /*
  * MENU OPTIONS
 */
