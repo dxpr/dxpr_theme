@@ -122,7 +122,7 @@ html.html--glazed-nav-mobile--open {
 // Fix for FOUC on mobile menu.
 @media all and (max-width: 1200px) {
   #glazed-main-menu {
-    display: none;
+    position: absolute;
   }
 }
 
