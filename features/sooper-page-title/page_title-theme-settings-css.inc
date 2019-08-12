@@ -17,7 +17,7 @@ $CSS .= "#page-title { text-align:  " . theme_get_setting('page_title_align', $t
 /*
  * TITLE OPTIONS
 */
-if (theme_get_setting('title_type', $theme) == 'uppercase') {
+if (in_array('uppercase', theme_get_setting('title_type', $theme))) {
   $CSS .= <<<EOT
 #page-title .page-title {
   text-transform: uppercase;
@@ -25,7 +25,7 @@ if (theme_get_setting('title_type', $theme) == 'uppercase') {
 
 EOT;
 }
-elseif (theme_get_setting('title_type', $theme) == 'bold') {
+if (in_array('bold', theme_get_setting('title_type', $theme))) {
   $CSS .= <<<EOT
 #page-title .page-title {
   font-weight: bold;
@@ -33,11 +33,10 @@ elseif (theme_get_setting('title_type', $theme) == 'bold') {
 
 EOT;
 }
-elseif (theme_get_setting('title_type', $theme) == 'lead') {
+if (in_array('italic', theme_get_setting('title_type', $theme))) {
   $CSS .= <<<EOT
 #page-title .page-title {
-  font-size: 52px;
-  font-weight: 300;
+  font-style: italic;
 }
 
 EOT;

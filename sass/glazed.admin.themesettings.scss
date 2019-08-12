@@ -402,6 +402,18 @@ $font_3: 'sans-serif';
       }
     }
   }
+  #edit-page-title {
+    .form-type-select {
+      .form-select {
+        display: inline;
+        height: calc(4em + 24px);
+        width: 250px;
+        option {
+          width: 106%;
+        }
+      }
+    }
+  }
   #edit-typography {
     .form-item:not(.form-wrapper) {
       float: left;

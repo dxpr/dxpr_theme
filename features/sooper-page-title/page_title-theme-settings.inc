@@ -48,14 +48,15 @@ $form['glazed_settings']['page_title']['page_title_align'] = [
 ];
 
 $form['glazed_settings']['page_title']['title_type'] = [
-  '#type' => 'radios',
+  '#type' => 'select',
+  '#multiple' => TRUE,
   '#title' => t('Font Style'),
   '#default_value' => ((theme_get_setting('title_type') !== null)) ? theme_get_setting('title_type') : '',
   '#options' => [
     '' => t('Normal'),
     'uppercase' => t('Uppercase'),
     'bold' => t('Bold'),
-    'lead' => t('Lead text')
+    'italic' => t('Italic'),
   ],
 ];
 
