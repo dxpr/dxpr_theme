@@ -200,7 +200,6 @@ $(window).resize(_.debounce(function(){
     if ($(window).width() > 768) {
       $('.glazed-main-menu').removeClass('glazed-main-menu--to-left');
     }
-    markMenu();
 }, 50));
 
 var navBreak = 'glazedNavBreakpoint' in window ? window.glazedNavBreakpoint : 1200;
