@@ -418,7 +418,7 @@ $form['glazed_settings']['header']['header_side']['mark_menu_with_children'] = [
 $form['glazed_settings']['header']['header_side']['children_symbol_class'] = [
   '#type' => 'textfield',
   '#title' => t('Children symbol class'),
-  '#default_value' => ((theme_get_setting('children_symbol_class') !== null)) ? theme_get_setting('children_symbol_class') : 'fa fa-angle-down',
+  '#default_value' => ((theme_get_setting('children_symbol_class') !== null)) ? theme_get_setting('children_symbol_class') : "﹀",
   '#states' => [
     'visible' => [
       ':input[name="mark_menu_with_children"]' => ['checked' => TRUE],

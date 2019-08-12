@@ -212,7 +212,6 @@ $(window).resize(_.debounce(function(){
     if ($(window).width() > 768) {
       $('.glazed-main-menu').removeClass('glazed-main-menu--to-left');
     }
-    markMenu();
 }, 50));
 
 $(document).ready(function () {
@@ -436,31 +435,6 @@ $(document).ready(function () {
     $('#navbar').css('top', toolbarHeight);
     $('#secondary-header').css('margin-top', +headerHeight);
   }
-});
-
-// Mark menu items with children.
-function markMenu() {
-  var markMenuItems = Drupal.settings.glazed.markMenuWithChildren;
-  var childrenSymbolClass = Drupal.settings.glazed.childrenSymbolClass;
-  var headerSide = document.getElementsByClassName('glazed-header--side').length;
-
-  if (markMenuItems && !headerSide) {
-    $('.menu.nav').children().each(function () {
-      if ($(this).find('ul').length) {
-        $(this).find('.dropdown-toggle').append('<i class="' + childrenSymbolClass + '"></i>');
-      }
-    });
-  }
-  else {
-    $('.menu.nav').children().each(function () {
-      if ($(this).find('ul').length) {
-        $(this).find('i').remove();
-      }
-    });
-  }
-}
-$(document).ready(function () {
-  markMenu();
 });
 
 function glazedMenuGovernorBodyClass() {
