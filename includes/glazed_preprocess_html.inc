@@ -162,4 +162,21 @@ function glazed_preprocess_html(&$vars) {
     drupal_add_js(array('glazed' => array('headerSideDirection' => $header_menu_direction)), 'setting');
   }
 
+  // Second header sticky
+  if ($second_header_sticky = theme_get_setting('second_header_sticky')) {
+    $vars['#attached']['js'][] = array(
+      'type' => 'setting',
+      'data' => array('glazed' => array('secondHeaderSticky' => $second_header_sticky)),
+    );
+    drupal_add_js(array('glazed' => array('secondHeaderSticky' => $second_header_sticky)), 'setting');
+  }
+
+  // Breadcrumb separator
+  if ($breadcrumbs_separator = theme_get_setting('page_title_breadcrumbs_separator')) {
+    $vars['#attached']['js'][] = array(
+      'type' => 'setting',
+      'data' => array('glazed' => array('breadcrumbsSeparator' => $breadcrumbs_separator)),
+    );
+    drupal_add_js(array('glazed' => array('breadcrumbsSeparator' => $breadcrumbs_separator)), 'setting');
+  }
 }

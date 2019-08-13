@@ -28,6 +28,18 @@ $form['glazed_settings']['page_title']['page_title_breadcrumbs_align'] = array(
   ),
 );
 
+$form['glazed_settings']['page_title']['page_title_breadcrumbs_separator'] = [
+  '#type' => 'textfield',
+  '#title' => t('Breadcrumbs separator'),
+  '#default_value' => (theme_get_setting('page_title_breadcrumbs_separator')) ? theme_get_setting('page_title_breadcrumbs_separator') : '/',
+  '#description' => t('Add custom breadcrumbs separator symbol. Leave empty for default separator.'),
+  '#states' => [
+    'visible' => [
+      ':input[name="page_title_breadcrumbs"]' => ['checked' => TRUE],
+    ],
+  ],
+];
+
 $form['glazed_settings']['page_title']['page_title_home_hide'] = array(
   '#type' => 'checkbox',
   '#title' => t('Hide on Homepage'),

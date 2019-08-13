@@ -96,6 +96,19 @@ $form['glazed_settings']['header']['header_top']['header_top_sticky'] = array(
   ),
 );
 
+$form['glazed_settings']['header']['header_top']['second_header_sticky'] = [
+  '#type' => 'checkbox',
+  '#title' => t('Sticky Second Header'),
+  '#default_value' => ((theme_get_setting('second_header_sticky') !== null)) ? theme_get_setting('second_header_sticky') : FALSE,
+  '#description' => t(''),
+  '#states' => [
+    'visible' => [
+      ':input[name="header_style"]' => ['value' => 'overlay'],
+      ':input[name="header_top_sticky"]' => ['checked' => TRUE],
+    ],
+  ],
+];
+
 $form['glazed_settings']['header']['header_top']['sticky'] = array(
   '#title' => t('Sticky Header Options'),
   '#type' => 'fieldset',
