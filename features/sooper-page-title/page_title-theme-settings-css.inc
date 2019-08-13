@@ -20,7 +20,7 @@ $CSS .= "#page-title .page-title { height:  " . theme_get_setting('page_title_he
  * MENU OPTIONS
 */
 
-if (in_array('uppercase', theme_get_setting('title_type', $theme))) {
+if (theme_get_setting('title_type', $theme)['uppercase']) {
   $CSS .= <<<EOT
 #page-title .page-title {
   text-transform: uppercase;
@@ -28,7 +28,7 @@ if (in_array('uppercase', theme_get_setting('title_type', $theme))) {
 
 EOT;
 }
-if (in_array('bold', theme_get_setting('title_type', $theme))) {
+if (theme_get_setting('title_type', $theme)['bold']) {
   $CSS .= <<<EOT
 #page-title .page-title {
   font-weight: bold;
@@ -36,7 +36,7 @@ if (in_array('bold', theme_get_setting('title_type', $theme))) {
 
 EOT;
 }
-if (in_array('italic', theme_get_setting('title_type', $theme))) {
+if (theme_get_setting('title_type', $theme)['italic']) {
   $CSS .= <<<EOT
 #page-title .page-title {
   font-style: italic;
