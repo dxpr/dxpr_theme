@@ -70,6 +70,16 @@
         background: transparent;
       }
     }
+    &.glazed-menu--has-children {
+      a.dropdown-toggle:after {
+        content: "﹀";
+        pointer-events: none;
+        position: relative;
+        top: 3px;
+        left: 5px;
+        font-size: 12px;
+      }
+    }
   }
   .navbar-header {
     .logo {

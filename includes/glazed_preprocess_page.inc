@@ -214,6 +214,12 @@ function glazed_preprocess_page(&$vars) {
 
     }
   }
+  if (theme_get_setting('mark_menu_with_children', $theme)) {
+    $vars['menu_has_children'] = 'glazed-menu--has-children';
+  }
+  else {
+    $vars['menu_has_children'] = '';
+  }
   // Menu Hover Style
   if (isset($content_design['field_menu_hover_effect'])) {
     $header_menu_hover_effect = $content_design['field_menu_hover_effect'];
