@@ -16,6 +16,35 @@ $CSS .= "#page-title { text-align:  " . theme_get_setting('page_title_align', $t
 
 $CSS .= "#page-title .page-title { height:  " . theme_get_setting('page_title_height', $theme) . "px } \n\n";
 
+/*
+ * MENU OPTIONS
+*/
+
+if (theme_get_setting('title_type', $theme)['uppercase']) {
+  $CSS .= <<<EOT
+#page-title .page-title {
+  text-transform: uppercase;
+}
+
+EOT;
+}
+if (theme_get_setting('title_type', $theme)['bold']) {
+  $CSS .= <<<EOT
+#page-title .page-title {
+  font-weight: bold;
+}
+
+EOT;
+}
+if (theme_get_setting('title_type', $theme)['italic']) {
+  $CSS .= <<<EOT
+#page-title .page-title {
+  font-style: italic;
+}
+
+EOT;
+}
+
 $CSS .= ".page-title-full-width-container:after { opacity:  " . theme_get_setting('page_title_image_opacity', $theme) . " } \n\n";
 
 if ($position = theme_get_setting('page_title_image_position')) {
