@@ -9,6 +9,16 @@
     .glazed-main-menu {
       height: 100px;
       position: relative;
+      &.glazed-menu--has-children {
+        a.dropdown-toggle:after {
+          content: "﹀";
+          pointer-events: none;
+          position: relative;
+          top: 3px;
+          left: 5px;
+          font-size: 12px;
+        }
+      }
     }
     #logo {
       max-height: 100px;

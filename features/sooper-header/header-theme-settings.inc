@@ -434,7 +434,7 @@ $form['glazed_settings']['header']['header_side']['header_side_direction'] = [
 ];
 
 $form['glazed_settings']['header']['menu'] = [
-  '#title' => t('Main Menu Link'),
+  '#title' => t('Main Menu Links'),
   '#type' => 'details',
   '#collapsible' => TRUE,
   '#collapsed' => TRUE,
@@ -460,6 +460,12 @@ $form['glazed_settings']['header']['menu'] = [
 //   '#maxlength' => 9,
 //   '#description' => t('0 is fully transparent and 1 is fully opaque.'),
 // ];
+
+$form['glazed_settings']['header']['menu']['mark_menu_with_children'] = [
+  '#type' => 'checkbox',
+  '#title' => t('Mark items with children'),
+  '#default_value' => ((theme_get_setting('mark_menu_with_children') !== null)) ? theme_get_setting('mark_menu_with_children') : FALSE,
+];
 
 $form['glazed_settings']['header']['menu']['menu_type'] = [
     '#type' => 'radios',
