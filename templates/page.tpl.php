@@ -117,7 +117,7 @@
         </div>
 
         <?php if ((!isset($hide_navigation)) && !empty($primary_nav) || !empty($page['navigation'])): ?>
-          <nav role="navigation" id="glazed-main-menu" class="glazed-main-menu">
+          <nav role="navigation" id="glazed-main-menu" class="glazed-main-menu <?php print $menu_has_children ?>">
             <?php if (!empty($primary_nav)): ?>
                <?php  print render($primary_nav); ?>
             <?php endif; ?>

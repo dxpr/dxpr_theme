@@ -461,6 +461,12 @@ $form['glazed_settings']['header']['menu'] = array(
 //   '#description' => t('0 is fully transparent and 1 is fully opaque.'),
 // );
 
+$form['glazed_settings']['header']['menu']['mark_menu_with_children'] = [
+  '#type' => 'checkbox',
+  '#title' => t('Mark items with children'),
+  '#default_value' => ((theme_get_setting('mark_menu_with_children') !== null)) ? theme_get_setting('mark_menu_with_children') : FALSE,
+];
+
 $form['glazed_settings']['header']['menu']['menu_type'] = array(
     '#type' => 'radios',
     '#title' => t('Font Style'),
