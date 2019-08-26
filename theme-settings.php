@@ -147,14 +147,14 @@ function glazed_form_system_theme_settings_submit(&$form, &$form_state) {
     // If the user uploaded a new image, save it to a permanent location
     $value = $form_state->getValue('page_title_image');
     if (!empty($value)) {
-      $filename = \Drupal::service('file_system')->copy($value->getFileUri(), "public://");
+      $filename = \Drupal::service('file_system')->copy($value->getFileUri(), "public://glazed/images/");
       $form_state->setValue('page_title_image', '');
       $form_state->setValue('page_title_image_path', $filename);
     }
 
     $value = $form_state->getValue('background_image');
     if (!empty($value)) {
-      $filename = \Drupal::service('file_system')->copy($value->getFileUri(), "public://");
+      $filename = \Drupal::service('file_system')->copy($value->getFileUri(), "public://glazed/images/");
       $form_state->setValue('background_image', '');
       $form_state->setValue('background_image_path', $filename);
     }
