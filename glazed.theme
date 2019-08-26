@@ -66,6 +66,33 @@ function glazed_preprocess_html(&$variables) {
     $variables['node'] = $node;
   }
 
+  // Default bg image.
+  if (array_key_exists('node', $variables)) {
+    $node = $variables['node'];
+
+    if (isset($node) && !is_string($node)) {
+      if ($node->hasField('field_glazed_body_background')) {
+        $images = $node->get('field_glazed_body_background');
+
+        if (sizeof($images) === 0) {
+          $image = $images->getFieldDefinition();
+          $defaultImage = $image->getSetting('default_image');
+
+          $entityRepository = Drupal::service('entity.repository');
+          $defaultImageFile = $entityRepository
+            ->loadEntityByUuid('file', $defaultImage['uuid']);
+
+          if($defaultImageFile) {
+            $defaultImageUri = $defaultImageFile->getFileUri();
+            $defaultImage['fileuri'] = $defaultImageUri;
+            $image->setSetting('default_image', $defaultImage);
+            $variables['default_bg_image_path'] = $defaultImageUri;
+          }
+        }
+      }
+    }
+  }
+
   // Load Sooper Features Controllers
   foreach (file_scan_directory(drupal_get_path('theme', 'glazed') . '/features', '/controller.inc/i') as $file) {
     require_once($file->uri);
@@ -140,6 +167,7 @@ function glazed_preprocess_page(&$variables) {
     }
   }
 
+  // Default title bg image.
   if (array_key_exists('node', $variables)) {
     $node = $variables['node'];
 
@@ -159,10 +187,11 @@ function glazed_preprocess_page(&$variables) {
             $defaultImageUri = $defaultImageFile->getFileUri();
             $defaultImage['fileuri'] = $defaultImageUri;
             $image->setSetting('default_image', $defaultImage);
-            $variables['default_bg_image_path'] = $defaultImageUri;
+            $variables['default_title_bg_image_path'] = $defaultImageUri;
           }
         }
       }
+
     }
   }
 }
