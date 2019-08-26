@@ -61,11 +61,6 @@ $form['glazed_settings']['header']['header_top']['header_top_bg_opacity'] = [
   '#size' => 9,
   '#maxlength' => 9,
   '#description' => t('Creates RGBa translucent background color. 0 is fully transparent and 1 is fully opaque.'),
-  '#states' => [
-    'visible' => [
-      ':input[name="header_style"]' => ['value' => 'overlay'],
-    ],
-  ],
 ];
 
 $form['glazed_settings']['header']['header_top']['header_top_height'] = [
