@@ -109,7 +109,7 @@ else {
   if (theme_get_setting('header_top_sticky', $theme) && theme_get_setting('header_top_sticky_show', $theme) == 'after_scroll') {
       $header_top_opacity = 0;
   }
-  if (theme_get_setting('header_style', $theme) == 'overlay') {
+  if (in_array(theme_get_setting('header_style', $theme), array('normal', 'overlay'))) {
     if (module_exists('color')) {
       $color = $theme_colors['header'];
       $opacity = theme_get_setting('header_top_bg_opacity', $theme);
