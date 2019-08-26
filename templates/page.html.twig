@@ -152,7 +152,10 @@
 {% if page.page_title and not (theme.settings.page_title_home_hide and is_front) %}
 
   {% block page_title %}
-  {% if node.field_glazed_page_title_backgrou and node.field_glazed_page_title_backgrou.getValue %}
+  {% if default_bg_image_path %}
+    {% set dafault_bg_img_url = file_url(default_bg_image_path) %}
+    {% set page_title_attributes = create_attribute({'data-bg-img': dafault_bg_img_url}) %}
+  {% elseif node.field_glazed_page_title_backgrou and node.field_glazed_page_title_backgrou.getValue %}
     {% set data_bg_img = file_url(node.field_glazed_page_title_backgrou.entity.getFileUri) %}
     {% set page_title_attributes = create_attribute({'data-bg-img': data_bg_img}) %}
   {% endif %}

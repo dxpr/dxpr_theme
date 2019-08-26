@@ -139,6 +139,32 @@ function glazed_preprocess_page(&$variables) {
       unset($variables['page'][$value]);
     }
   }
+
+  if (array_key_exists('node', $variables)) {
+    $node = $variables['node'];
+
+    if (isset($node) && !is_string($node)) {
+      if ($node->hasField('field_glazed_page_title_backgrou')) {
+        $images = $node->get('field_glazed_page_title_backgrou');
+
+        if (sizeof($images) === 0) {
+          $image = $images->getFieldDefinition();
+          $defaultImage = $image->getSetting('default_image');
+
+          $entityRepository = Drupal::service('entity.repository');
+          $defaultImageFile = $entityRepository
+            ->loadEntityByUuid('file', $defaultImage['uuid']);
+
+          if($defaultImageFile) {
+            $defaultImageUri = $defaultImageFile->getFileUri();
+            $defaultImage['fileuri'] = $defaultImageUri;
+            $image->setSetting('default_image', $defaultImage);
+            $variables['default_bg_image_path'] = $defaultImageUri;
+          }
+        }
+      }
+    }
+  }
 }
 
 use Drupal\block\Entity\Block;
