@@ -72,23 +72,11 @@ function glazed_preprocess_html(&$variables) {
 
     if (isset($node) && !is_string($node)) {
       if ($node->hasField('field_glazed_body_background')) {
-        $images = $node->get('field_glazed_body_background');
-
-        if (sizeof($images) === 0) {
-          $image = $images->getFieldDefinition();
-          $defaultImage = $image->getSetting('default_image');
-
-          $entityRepository = Drupal::service('entity.repository');
-          $defaultImageFile = $entityRepository
-            ->loadEntityByUuid('file', $defaultImage['uuid']);
-
-          if($defaultImageFile) {
-            $defaultImageUri = $defaultImageFile->getFileUri();
-            $defaultImage['fileuri'] = $defaultImageUri;
-            $image->setSetting('default_image', $defaultImage);
-            $variables['default_bg_image_path'] = $defaultImageUri;
-          }
-        }
+        $data = $node->field_glazed_body_background->view([
+          'label' => 'hidden',
+          'type' => 'image_url',
+        ]);
+        $variables['default_bg_image_path'] = $data[0]['#markup'];
       }
     }
   }
@@ -173,25 +161,12 @@ function glazed_preprocess_page(&$variables) {
 
     if (isset($node) && !is_string($node)) {
       if ($node->hasField('field_glazed_page_title_backgrou')) {
-        $images = $node->get('field_glazed_page_title_backgrou');
-
-        if (sizeof($images) === 0) {
-          $image = $images->getFieldDefinition();
-          $defaultImage = $image->getSetting('default_image');
-
-          $entityRepository = Drupal::service('entity.repository');
-          $defaultImageFile = $entityRepository
-            ->loadEntityByUuid('file', $defaultImage['uuid']);
-
-          if($defaultImageFile) {
-            $defaultImageUri = $defaultImageFile->getFileUri();
-            $defaultImage['fileuri'] = $defaultImageUri;
-            $image->setSetting('default_image', $defaultImage);
-            $variables['default_title_bg_image_path'] = $defaultImageUri;
-          }
-        }
+        $data = $node->field_glazed_page_title_backgrou->view([
+          'label' => 'hidden',
+          'type' => 'image_url',
+        ]);
+        $variables['default_title_bg_image_path'] = $data[0]['#markup'];
       }
-
     }
   }
 }
