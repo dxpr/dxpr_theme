@@ -76,7 +76,9 @@ function glazed_preprocess_html(&$variables) {
           'label' => 'hidden',
           'type' => 'image_url',
         ]);
-        $variables['body_bg_image_path'] = $data[0]['#markup'];
+        if (isset($data[0]['#markup'])) {
+          $variables['body_bg_image_path'] = $data[0]['#markup'];
+        }
       }
     }
   }
@@ -165,7 +167,9 @@ function glazed_preprocess_page(&$variables) {
           'label' => 'hidden',
           'type' => 'image_url',
         ]);
-        $variables['title_bg_image_path'] = $data[0]['#markup'];
+        if (isset($data[0]['#markup'])) {
+          $variables['title_bg_image_path'] = $data[0]['#markup'];
+        }
       }
     }
   }
