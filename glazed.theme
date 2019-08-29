@@ -66,7 +66,7 @@ function glazed_preprocess_html(&$variables) {
     $variables['node'] = $node;
   }
 
-  // Default bg image.
+  // Body background image.
   if (array_key_exists('node', $variables)) {
     $node = $variables['node'];
 
@@ -155,7 +155,7 @@ function glazed_preprocess_page(&$variables) {
     }
   }
 
-  // Default title bg image.
+  // Title background image.
   if (array_key_exists('node', $variables)) {
     $node = $variables['node'];
 
