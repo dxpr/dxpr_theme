@@ -65,8 +65,8 @@
     page_title in node.field_glazed_hide_regions.getValue|keys ? 'body--primary-tabs-float',
   ]
 %}
-{% if node.field_glazed_body_background and node.field_glazed_body_background.getValue %}
-  {% set style = 'background-image:url(' ~ file_url(node.field_glazed_body_background.entity.getFileUri) ~ ');' %}
+{% if body_bg_image_path %}
+  {% set style = 'background-image:url(' ~ file_url(body_bg_image_path) ~ ');' %}
   {% set attributes = attributes.setAttribute('style', style) %}
 {% endif %}
 <!DOCTYPE html>
