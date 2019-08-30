@@ -111,6 +111,10 @@ else {
     $opacity_scroll = theme_get_setting('header_top_bg_opacity_scroll', $theme);
     $header_top_rgba = _glazed_hex2rgba($color, $opacity);
     $header_top_scroll_rgba = _glazed_hex2rgba($color, $opacity_scroll);
+
+    if (theme_get_setting('header_style') === 'normal') {
+      $header_top_scroll_rgba = _glazed_hex2rgba($color, $opacity);
+    }
   }
   $CSS .= <<<EOT
 
