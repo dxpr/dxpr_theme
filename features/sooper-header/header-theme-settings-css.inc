@@ -115,10 +115,10 @@ else {
       $opacity = theme_get_setting('header_top_bg_opacity', $theme);
       $header_top_rgba = _glazed_hex2rgba($color, $opacity);
       $color = $theme_colors['header'];
-      $opacity = theme_get_setting('header_top_bg_opacity_scroll', $theme);
-      $header_top_scroll_rgba = _glazed_hex2rgba($color, $opacity);
+      $opacity_scroll = theme_get_setting('header_top_bg_opacity_scroll', $theme);
+      $header_top_scroll_rgba = _glazed_hex2rgba($color, $opacity_scroll);
 
-      if (theme_get_setting('header_style') === 'normal') {
+      if (theme_get_setting('header_style', $theme) === 'normal') {
         $header_top_scroll_rgba = _glazed_hex2rgba($color, $opacity);
       }
     }
