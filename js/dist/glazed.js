@@ -218,10 +218,10 @@ $(window).resize(_.debounce(function(){
       glazedMenuGovernorBodyClass();
       glazedMenuGovernor(document);
     }
-    if ($(window).width() > 768) {
-      $('.glazed-main-menu').removeClass('glazed-main-menu--to-left');
-    }
-    if ($(window).width() > 1200) {
+    // Mobile menu open direction.
+    changeMenuOpenDirection();
+    // Fix bug with unstyled content on page load.
+    if ($(window).width() > window.glazedNavBreakpoint && $('.glazed-header--side').length === 0) {
       $('#glazed-main-menu').css('position', 'relative');
     }
 }, 50));
@@ -247,13 +247,18 @@ $(document).ready(function () {
 });
 
 // Mobile menu open direction.
-$(document).ready(function () {
-  if ((Drupal.settings.glazed.headerSideDirection === 'right') && $(window).width() <= 768){
+function changeMenuOpenDirection() {
+  if ((Drupal.settings.glazed.headerSideDirection === 'right') && $(window).width() <= 768) {
     $('.glazed-main-menu').addClass('glazed-main-menu--to-left');
-  } else {
+  }
+  else {
     $('.glazed-main-menu').removeClass('glazed-main-menu--to-left');
   }
-});
+}
+$(document).ready(function () {
+    changeMenuOpenDirection();
+  }
+);
 
 
 function glazedMenuGovernor(context) {
