@@ -150,7 +150,7 @@ function glazed_form_system_theme_settings_submit(&$form, &$form_state) {
     $file_system = \Drupal::service('file_system');
     $directory = 'public://glazed/images/';
 
-    // Create glazed/images directory at the public folder if it's not exists.
+    // Create glazed/images directory at the public folder if it doesn't exist.
     try {
       $file_system->prepareDirectory($directory, FileSystemInterface::CREATE_DIRECTORY);
     } catch(FileException $e) {
