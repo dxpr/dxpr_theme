@@ -205,7 +205,7 @@ $(window).resize(_.debounce(function(){
       glazedMenuGovernor(document);
     }
     // Mobile menu open direction.
-    if ((drupalSettings.glazedSettings.headerSideDirection === 'right') && $(window).width() <= 768){
+    if ((drupalSettings.glazedSettings.headerSideDirection === 'right') && $(window).width() <= window.glazedNavBreakpoint){
       $('#glazed-main-menu').addClass('glazed-main-menu--to-left');
     }
     else {
