@@ -248,7 +248,7 @@ $(document).ready(function () {
 
 // Mobile menu open direction.
 function changeMenuOpenDirection() {
-  if ((Drupal.settings.glazed.headerSideDirection === 'right') && $(window).width() <= 768) {
+  if ((Drupal.settings.glazed.headerSideDirection === 'right') && $(window).width() <= window.glazedNavBreakpoint) {
     $('.glazed-main-menu').addClass('glazed-main-menu--to-left');
   }
   else {
