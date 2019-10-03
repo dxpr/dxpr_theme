@@ -1,6 +1,8 @@
 <?php
 
 use Drupal\node\Entity\NodeType;
+use Drupal\Core\File\FileSystemInterface;
+use Drupal\Core\File\Exception\FileException;
 
 function glazed_form_system_theme_settings_alter(&$form, &$form_state, $form_id = NULL) {
   /**
@@ -145,18 +147,39 @@ function glazed_form_system_theme_settings_validate(&$form, &$form_state) {
  */
 function glazed_form_system_theme_settings_submit(&$form, &$form_state) {
     // If the user uploaded a new image, save it to a permanent location
+    $file_system = \Drupal::service('file_system');
+    $directory = 'public://glazed/images/';
+
+    // Create glazed/images directory at the public folder if it doesn't exist.
+    try {
+      $file_system->prepareDirectory($directory, FileSystemInterface::CREATE_DIRECTORY);
+    } catch(FileException $e) {
+      \Drupal::messenger()->addMessage($e->getMessage(), 'error');
+      \Drupal::logger('glazed')->error($e->getMessage());
+    }
+
     $value = $form_state->getValue('page_title_image');
     if (!empty($value)) {
-      $filename = \Drupal::service('file_system')->copy($value->getFileUri(), "public://glazed/images/");
       $form_state->setValue('page_title_image', '');
-      $form_state->setValue('page_title_image_path', $filename);
+      try {
+        $filename = $file_system->copy($value->getFileUri(), $directory . $value->getFilename());
+        $form_state->setValue('page_title_image_path', $filename);
+      } catch(FileException $e) {
+        \Drupal::messenger()->addMessage($e->getMessage(), 'error');
+        \Drupal::logger('glazed')->error($e->getMessage());
+      }
     }
 
     $value = $form_state->getValue('background_image');
     if (!empty($value)) {
-      $filename = \Drupal::service('file_system')->copy($value->getFileUri(), "public://glazed/images/");
       $form_state->setValue('background_image', '');
-      $form_state->setValue('background_image_path', $filename);
+      try {
+        $filename = $file_system->copy($value->getFileUri(), $directory . $value->getFilename());
+        $form_state->setValue('background_image_path', $filename);
+      } catch(FileException $e) {
+        \Drupal::messenger()->addMessage($e->getMessage(), 'error');
+        \Drupal::logger('glazed')->error($e->getMessage());
+      }
     }
 
     // If the user entered a path relative to the system files directory for
