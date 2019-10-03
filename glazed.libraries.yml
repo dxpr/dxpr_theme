@@ -40,7 +40,6 @@ admin.themesettings:
   dependencies:
     - core/jquery
     - core/jquery.once
-    - core/jquery.ui.slider
 
 ilightbox:
   js:
