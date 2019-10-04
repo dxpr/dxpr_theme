@@ -1,16 +1,19 @@
 {
-  "name": "jshawl.com",
-  "version": "0.1.0",
+  "name": "glazed",
+  "version": "0.2.0",
   "devDependencies": {
-    "autoprefixer-core": "^6.0.1",
-    "grunt": "^0.4.5",
-    "grunt-autoprefixer": "~0.2.20130806",
-    "grunt-contrib-concat": "^0.5.1",
-    "grunt-contrib-jshint": "~0.10.0",
-    "grunt-contrib-nodeunit": "~0.4.1",
-    "grunt-sass": "^2.0.0",
-    "grunt-contrib-uglify": "~0.5.0",
-    "grunt-contrib-watch": "^0.6.1",
-    "grunt-postcss": "^0.7.2"
-  }
+    "grunt": "^1.0.4",
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-jshint": "^v2.0.0",
+    "grunt-contrib-nodeunit": "^2.0.0 ",
+    "grunt-sass": "^2.1.0",
+    "grunt-contrib-uglify": "^4.0.1",
+    "grunt-contrib-watch": "^1.1.0",
+    "grunt-postcss": "^0.9.0",
+    "browserslist": "^4.7.0",
+    "autoprefixer": "^9.6.1"
+  },
+  "browserslist": [
+    "> 1%"
+  ]
 }
