@@ -98,9 +98,11 @@ if ($bgstyle = theme_get_setting('background_image_style')) {
 
 $background_image = theme_get_setting('background_image', $theme);
 if ($background_image && is_numeric($background_image) && ($background_image > 0)) {
+  global $base_url;
   $file = file_load($background_image);
   $uri = $file->uri;
   $url = file_create_url($uri);
+  $url = '/' . str_replace($base_url .'/', '', $url);
   $CSS .= "body { background-image: url('" . $url . "'); }\n\n";
 }
 
