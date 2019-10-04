@@ -71,5 +71,5 @@ if ($bgstyle = theme_get_setting('page_title_image_style')) {
 }
 
 if ($page_title_image_path = theme_get_setting('page_title_image_path', $theme)) {
-  $CSS .= ".page-title-full-width-container:after { background-image: url('" . file_create_url($page_title_image_path) . "'); }\n\n";
+  $CSS .= ".page-title-full-width-container:after { background-image: url('" . file_url_transform_relative(file_create_url($page_title_image_path)) . "'); }\n\n";
 }
