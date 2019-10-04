@@ -73,10 +73,9 @@ EOT;
 }
 
 $CSS .= <<<EOT
-.glazed-header--side .glazed-main-menu {
-  width: {$header_side_width}px;
-}
-.glazed-header--side .menu__level {
+.glazed-header--side .glazed-main-menu,
+.glazed-header--side .menu__level,
+.glazed-header--side .menu__breadcrumbs {
   width: {$header_side_width}px;
 }
 
