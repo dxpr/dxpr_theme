@@ -204,10 +204,15 @@ $(window).resize(_.debounce(function(){
       glazedMenuGovernorBodyClass();
       glazedMenuGovernor(document);
     }
-    if ($(window).width() > 768) {
-      $('.glazed-main-menu').removeClass('glazed-main-menu--to-left');
+    // Mobile menu open direction.
+    if ((drupalSettings.glazedSettings.headerSideDirection === 'right') && $(window).width() <= window.glazedNavBreakpoint){
+      $('#glazed-main-menu').addClass('glazed-main-menu--to-left');
     }
-    if ($(window).width() > 1200) {
+    else {
+      $('#glazed-main-menu').removeClass('glazed-main-menu--to-left');
+    }
+    // Fix bug with unstyled content on page load.
+    if ($(window).width() > window.glazedNavBreakpoint && $('.glazed-header--side').length === 0) {
       $('#glazed-main-menu').css('position', 'relative');
     }
 }, 50));
@@ -230,11 +235,6 @@ if ($('.glazed-header--sticky').length > 0 && !$('.glazed-header--overlay').leng
   }
 }
 
-if ((drupalSettings.glazedSettings.headerSideDirection === 'right') && $(window).width() <= 768){
-  $('.glazed-main-menu').addClass('glazed-main-menu--to-left');
-} else {
-  $('.glazed-main-menu').removeClass('glazed-main-menu--to-left');
-}
 
 function glazedMenuGovernor(context) {
   // Bootstrap dropdown multi-column smart menu
