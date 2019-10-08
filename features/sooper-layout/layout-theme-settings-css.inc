@@ -98,9 +98,10 @@ if ($bgstyle = theme_get_setting('background_image_style')) {
 
 $background_image = theme_get_setting('background_image', $theme);
 if ($background_image && is_numeric($background_image) && ($background_image > 0)) {
+  global $base_url;
   $file = file_load($background_image);
   $uri = $file->uri;
   $url = file_create_url($uri);
-  $CSS .= "body { background-image: url('" . $url . "'); }\n\n";
+  $CSS .= "body { background-image: url('" . glazed_file_url_transform_relative($url) . "'); }\n\n";
 }
 
