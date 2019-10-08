@@ -154,13 +154,6 @@ function glazed_preprocess_html(&$vars) {
     drupal_add_js(array('glazed' => array('headerMobileHeight' => $header_mobile_height)), 'setting');
   }
 
-  if($header_menu_direction = theme_get_setting('header_side_direction')) {
-    $vars['#attached']['js'][] = array(
-      'type' => 'setting',
-      'data' => array('glazed' => array('headerSideDirection' => $header_menu_direction)),
-    );
-    drupal_add_js(array('glazed' => array('headerSideDirection' => $header_menu_direction)), 'setting');
-  }
 
   // Second header sticky
   if ($second_header_sticky = theme_get_setting('second_header_sticky')) {
