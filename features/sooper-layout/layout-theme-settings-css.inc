@@ -102,7 +102,6 @@ if ($background_image && is_numeric($background_image) && ($background_image > 0
   $file = file_load($background_image);
   $uri = $file->uri;
   $url = file_create_url($uri);
-  $url = '/' . str_replace($base_url .'/', '', $url);
-  $CSS .= "body { background-image: url('" . $url . "'); }\n\n";
+  $CSS .= "body { background-image: url('" . glazed_file_url_transform_relative($url) . "'); }\n\n";
 }
 

@@ -77,6 +77,5 @@ if ($page_title_image && is_numeric($page_title_image) && ($page_title_image > 0
   $file = file_load($page_title_image);
   $uri = $file->uri;
   $url = file_create_url($uri);
-  $url = '/' . str_replace($base_url .'/', '', $url);
-  $CSS .= ".page-title-full-width-container:after { background-image: url('" . $url . "'); }\n\n";
+  $CSS .= ".page-title-full-width-container:after { background-image: url('" . glazed_file_url_transform_relative($url) . "'); }\n\n";
 }
