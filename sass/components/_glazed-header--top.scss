@@ -106,13 +106,15 @@
     &.glazed-header--logo-left-menu-left,
     &.glazed-header--logo-center-menu-left {
       .menu,
-      .block {
+      .block,
+      nav nav {
         float: left;
       }
     }
     &.glazed-header--logo-right-menu-left {
       .menu,
-      .block {
+      .block,
+      nav nav {
         float: left;
       }
       .navbar-header,
@@ -131,7 +133,8 @@
         clear: both;
       }
       .navbar-header,
-      .block {
+      .block,
+      nav nav {
         margin: 0 auto;
         text-align:center;
         float: none;
@@ -139,12 +142,18 @@
         display: inline-block;
         vertical-align: top;
       }
+      #glazed-main-menu {
+        display: block;
+        clear: both;
+        text-align: center;
+      }
     }
     &.glazed-header--centered-inline {
       text-align: center;
       .block,
       .navbar-header,
-      #glazed-main-menu {
+      #glazed-main-menu,
+      nav {
         display: inline-block;
         vertical-align: top;
         float: none;
@@ -160,7 +169,8 @@
         display:block;
       }
     }
-    .block {
+    .block,
+    nav nav {
       float: right;
       position:static;
     }
