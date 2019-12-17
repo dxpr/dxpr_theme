@@ -20,13 +20,13 @@ Drupal.behaviors.fullScreenSearch = {
           , $searchForm = $(".full-screen-search-form")
           , $searchFormInput = $searchForm.find(".search-query")
           , escapeCode = 27;
-        $searchButton.on("touchstart click", function(event) {
+        $searchButton.once().on("touchstart click", function(event) {
             event.preventDefault(),
             $searchForm.toggleClass("invisible"),
             $('body').toggleClass("body--full-screen-search"),
             $searchFormInput.focus()
         }),
-        $searchForm.on("touchstart click", function($searchButton) {
+        $searchForm.once().on("touchstart click", function($searchButton) {
             $($searchButton.target).hasClass("search-query") || clearSearchForm()
         }),
         $(document).keydown(function(event) {
