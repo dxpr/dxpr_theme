@@ -145,6 +145,7 @@ function glazed_local_webfonts() {
 function glazed_font_list() {
   $fonts = [
     'Sans-serif web-safe' => [
+      'SF_Segoe_Roboto' => 'San Francisco/Segoe/Roboto',
       'helvetica' => 'Helvetica/Arial',
       'myriad' => 'Myriad/Calibri',
       'verdana' => 'Verdana',
