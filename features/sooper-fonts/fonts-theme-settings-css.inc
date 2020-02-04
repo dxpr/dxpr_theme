@@ -1,83 +1,43 @@
 <?php
-if (
-     theme_get_setting('headings_font_face', $theme)
-  || theme_get_setting('body_font_face', $theme)
-  || theme_get_setting('nav_font_face', $theme)
-  || theme_get_setting('sitename_font_face', $theme)) {
 
-  $font = theme_get_setting('body_font_face', $theme);
-  $style = (strpos($font, 'italic')) ? 'italic' : 'normal';
-  $weight = (preg_match('/[0-9]{3}/', $font, $matches)) ? $matches[0] : '400';
-  $font = _glazed_get_font($font, $theme);
-  $selector = theme_get_setting('body_font_face_selector', $theme);
-  $CSS .= <<<EOT
+$groups = [
+  'body_font_face',
+  'headings_font_face',
+  'nav_font_face',
+  'sitename_font_face',
+  'blockquote_font_face',
+];
 
-$selector, .toooltip {
-  font-family: $font;
-  font-weight: $weight;
-  font-style: $style;
-}
+foreach ($groups as $group) {
+  if (($font = theme_get_setting($group, $theme))
+      && ($selector = theme_get_setting($group . '_selector', $theme))) {
+    $style = (strpos($font, 'italic')) ? 'italic' : '';
+    $print_style = '';
+    if ($style) {
+      $print_style = "font-style: $style;";
+    }
 
-EOT;
-  $font = theme_get_setting('headings_font_face', $theme);
-  $style = (strpos($font, 'italic')) ? 'italic' : 'normal';
-  $weight = (preg_match('/[0-9]{3}/', $font, $matches)) ? $matches[0] : '400';
-  $font = _glazed_get_font($font, $theme);
-  $selector = theme_get_setting('headings_font_face_selector', $theme);
-  $CSS .= <<<EOT
+    $weight = (preg_match('/[0-9]{3}/', $font, $matches)) ? $matches[0] : '';
+    $print_weight = '';
+    if ($weight) {
+      $print_weight = "font-weight: $weight;";
+    }
 
-$selector {
-  font-family: $font;
-  font-weight: $weight;
-  font-style: $style;
-}
-
-EOT;
-  $font = theme_get_setting('nav_font_face', $theme);
-  $style = (strpos($font, 'italic')) ? 'italic' : 'normal';
-  $weight = (preg_match('/[0-9]{3}/', $font, $matches)) ? $matches[0] : '400';
-  $font = _glazed_get_font($font, $theme);
-  $selector = theme_get_setting('nav_font_face_selector', $theme);
-  $CSS .= <<<EOT
+    $print_font = 'font-family: ' . _glazed_get_font($font, $theme) . ';';
+    $CSS .= <<<EOT
 
 $selector {
-  font-family: $font;
-  font-weight: $weight;
-  font-style: $style;
+  $print_font
+  $print_style
+  $print_weight
 }
 
 EOT;
-  $font = theme_get_setting('sitename_font_face', $theme);
-  $style = (strpos($font, 'italic')) ? 'italic' : 'normal';
-  $weight = (preg_match('/[0-9]{3}/', $font, $matches)) ? $matches[0] : '400';
-  $font = _glazed_get_font($font, $theme);
-  $selector = theme_get_setting('sitename_font_face_selector', $theme);
-  $CSS .= <<<EOT
 
-$selector {
-  font-family: $font;
-  font-weight: $weight;
-  font-style: $style;
-}
-
-EOT;
-  $font = theme_get_setting('blockquote_font_face', $theme);
-  $style = (strpos($font, 'italic')) ? 'italic' : 'normal';
-  $weight = (preg_match('/[0-9]{3}/', $font, $matches)) ? $matches[0] : '400';
-  $font = _glazed_get_font($font, $theme);
-  $selector = theme_get_setting('blockquote_font_face_selector', $theme);
-  $CSS .= <<<EOT
-
-$selector {
-  font-family: $font;
-  font-weight: $weight;
-  font-style: $style;
-}
-
-
-EOT;
+  }
 
 }
+
 
 /**
  * Provides Font Stack values for theme settings which are written to custom.css
@@ -149,7 +109,7 @@ function _glazed_format_google_font_name($key) {
     case 'light':
     $goog_weight = ' Light';
     break;
-    case '400':
+    case '':
     case '400italic':
     case 'regular':
     $goog_weight = ' Regular';
