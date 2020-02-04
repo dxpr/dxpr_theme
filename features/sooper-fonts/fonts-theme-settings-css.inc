@@ -87,6 +87,7 @@ EOT;
  */
 function _glazed_font_stack($font = 'helvetica') {
   $fonts = [
+    'SF_Segoe_Roboto' => '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
     'helvetica' => 'Arial, Helvetica, "Nimbus Sans L", "Liberation Sans", "FreeSans", sans-serif',
     'myriad' => '"myriad pro",myriad,calibri,arial,tahoma,verdana,sans-serif',
     'verdana' => 'Verdana, "Bitstream Vera Sans", Arial, sans-serif',
