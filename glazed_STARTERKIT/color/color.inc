@@ -82,7 +82,7 @@
         'headertext' => '#696969',
         'headerside' => '#20252a',
         'headersidetext' => '#737a85',
-        'pagetitle' => '#0180f0',
+        'pagetitle' => '#0181f0',
         'pagetitletext' => '#fffeff',
         'graylight' => '#777777',
         'graylighter' => '#ededed',
