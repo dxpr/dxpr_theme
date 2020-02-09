@@ -5,7 +5,9 @@
  *
  * Place your custom PHP code in this file.
  */
-
+use Drupal\block\Entity\Block;
+use Drupal\Component\Utility\Html;
+use Drupal\Core\Entity\ContentEntityInterface;
 
 /**
  * Implements hook_library_info_alter().
@@ -64,6 +66,13 @@ function glazed_preprocess_html(&$variables) {
 
   if ($node = \Drupal::routeMatch()->getParameter('node')) {
     $variables['node'] = $node;
+  }
+
+  foreach (\Drupal::routeMatch()->getParameters() as $parameter) {
+    if ($parameter instanceof ContentEntityInterface) {
+      $variables['attributes']['class'][] = Html::getClass('page-' . $parameter->getEntityTypeId(). '-' . $parameter->id());
+      break;
+    }
   }
 
   // Body background image.
@@ -175,7 +184,6 @@ function glazed_preprocess_page(&$variables) {
   }
 }
 
-use Drupal\block\Entity\Block;
 /**
  * Implements template_preprocess_block()
  */
