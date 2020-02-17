@@ -6,7 +6,7 @@
 function glazed_process_html(&$vars) {
   // Hook into color.module.
   if (module_exists('color')) {
-    _color_html_alter($vars);
+    _glazed_color_html_alter($vars);
   }
   $vars['page_bottom'] .= theme_get_setting('custom_javascript_site');
   if (drupal_is_front_page()) {

@@ -259,4 +259,13 @@ function glazed_preprocess_page(&$vars) {
     $vars['glazed_title_classes'][] = theme_get_setting('page_title_animate');
   }
   $vars['glazed_title_classes'] = implode(' ', $vars['glazed_title_classes']);
+
+  // Add styles files only if current theme is glazed, otherwise it subtheme
+  // responsibility to add correct files.
+  if ($theme === 'glazed') {
+    $path = drupal_get_path('theme', 'glazed') . '/css/';
+    foreach (_glazed_get_stylesheets() as $stylesheet) {
+      drupal_add_css($path . $stylesheet, array('group' => CSS_THEME));
+    }
+  }
 }

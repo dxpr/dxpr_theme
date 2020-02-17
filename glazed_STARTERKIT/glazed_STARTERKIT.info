@@ -25,7 +25,3 @@ settings[jquery_update_jquery_version] = 2.1
 ;;;;;;;;;;;;;;;;;;;;;
 
 stylesheets[all][] = css/glazed_subtheme.css
-
-; If you update glazed theme you also need to copy this css file again
-; from the basetheme. Its a Drupal color module issue.
-stylesheets[all][] = css/glazed.css

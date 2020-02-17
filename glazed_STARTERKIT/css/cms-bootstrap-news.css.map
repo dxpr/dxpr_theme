@@ -1,0 +1,11 @@
+{
+	"version": 3,
+	"file": "cms-bootstrap-news.css",
+	"sources": [
+		"../sass/cms-bootstrap-news.scss",
+		"../sass/helpers/_variables.scss",
+		"../sass/vendor-extensions/_cms-bootstrap-news.scss"
+	],
+	"names": [],
+	"mappings": "AEIA,MAAM,CAAC,MAAM,MAAM,SAAS,EAAE,KAAK,EACjC,AAAA,UAAU,AAAA,UAAU,AAAC,CACnB,KAAK,CAAE,GAAG,CACV,WAAW,CAAE,GAAG,CACjB"
+}
