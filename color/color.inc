@@ -11,7 +11,40 @@
 
   // CSS files (excluding @import) to rewrite with new color scheme.
   'css' => array(
-    'css/glazed.css',
+    'css/bootstrap-3.css',
+    'css/bootstrap-theme.css',
+    'css/jquery-ui.css',
+    // GLAZED BASE
+    'css/footer-menu.css',
+    'css/forms.css',
+    'css/layout.css',
+    'css/page-title.css',
+    'css/typography.css',
+    // GLAZED Components
+    'css/stpe-buttons.css',
+    'css/glazed-full-screen-search.css',
+    'css/glazed-header.css',
+    'css/glazed-header--top.css',
+    'css/glazed-header--side.css',
+    'css/glazed-header--mobile.css',
+    'css/glazed-secondary-header.css',
+    // Overrides
+    'css/cubeportfolio.css',
+    'css/drupal-breadcrumbs.css',
+    'css/drupal-comments.css',
+    'css/drupal-media.css',
+    'css/drupal-pager.css',
+    'css/drupal-webform.css',
+    'css/cms-bootstrap-core.css',
+    'css/cms-bootstrap-blog.css',
+    'css/cms-bootstrap-events.css',
+    'css/cms-bootstrap-news.css',
+    'css/cms-bootstrap-portfolio.css',
+    'css/sooperthemes-premium-elements.css',
+    'css/revolution-slider-4.css',
+    'css/glazed-builder.css',
+    // HELPERS
+    'css/helper-classes.css',
   ),
 
   // Color areas to fill (x, y, width, height)
