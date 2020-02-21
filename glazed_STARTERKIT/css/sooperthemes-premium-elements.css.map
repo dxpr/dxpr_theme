@@ -1,0 +1,11 @@
+{
+	"version": 3,
+	"file": "sooperthemes-premium-elements.css",
+	"sources": [
+		"../sass/sooperthemes-premium-elements.scss",
+		"../sass/helpers/_variables.scss",
+		"../sass/vendor-extensions/_sooperthemes-premium-elements.scss"
+	],
+	"names": [],
+	"mappings": "AEMA,AAAA,aAAa,CAAC,wBAAwB,CAAC,GAAG,AAAC,CACzC,UAAU,CDoCP,OAAC,CCnCJ,KAAK,CDiCI,OAAC,CC5BX,AAPD,AAGE,aAHW,CAAC,wBAAwB,CAAC,GAAG,AAGvC,MAAM,CAHT,aAAa,CAAC,wBAAwB,CAAC,GAAG,AAG9B,MAAM,AAAC,CACf,UAAU,CD+BH,OAAC,CC9BR,KAAK,CDgCJ,OAAC,CC/BH,AAKH,AACC,cADa,CACb,qBAAqB,AAAC,CACrB,SAAS,CAAE,IAAI,CACf"
+}

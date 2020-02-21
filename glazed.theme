@@ -46,6 +46,47 @@ function glazed_library_info_alter(&$libraries, $extension) {
       // Subthemes carry their own copy of glazed.css, disable glazed/css/glazed.css
       unset($libraries['global-styling']['css']['theme']['css/glazed.css']);
     }
+
+    // Custom replaces style sheets declared in libraries with color-altered style sheets.
+    /** @var \Drupal\Core\Extension\Extension[] $themes */
+    $themes = \Drupal::service('theme_handler')->listInfo();
+    foreach ($themes as $id => $theme) {
+      $is_glazed_base = isset($theme->info['base theme']) && $theme->info['base theme'] === 'glazed';
+      $color_paths = \Drupal::config('color.theme.' . $id)->get('stylesheets');
+      if ($is_glazed_base && !empty($color_paths)) {
+        foreach (array_keys($libraries) as $name) {
+          if (isset($libraries[$name]['css'])) {
+            // Override stylesheets.
+            foreach ($libraries[$name]['css'] as $category => $css_assets) {
+              foreach ($css_assets as $path => $metadata) {
+                // Loop over the path array with recolored CSS files to find matching
+                // paths which could replace the non-recolored paths.
+                foreach ($color_paths as $color_path) {
+                  // Color module currently requires unique file names to be used,
+                  // which allows us to compare different file paths.
+                  /** @var \Drupal\Core\File\FileSystemInterface $file_system */
+                  $file_system = \Drupal::service('file_system');
+                  if ($file_system->basename($path) == $file_system->basename($color_path)) {
+                    // Replace the path to the new css file.
+                    // This keeps the order of the stylesheets intact.
+                    $index = array_search($path, array_keys($libraries[$name]['css'][$category]));
+                    $preceding_css_assets = array_slice($libraries[$name]['css'][$category], 0, $index);
+                    $succeeding_css_assets = array_slice($libraries[$name]['css'][$category], $index + 1);
+                    $libraries[$name]['css'][$category] = array_merge(
+                      $preceding_css_assets,
+                      [$color_path => $metadata],
+                      $succeeding_css_assets
+                    );
+                  }
+                }
+              }
+            }
+          }
+        }
+        // Support only one subtheme color overrides.
+        break;
+      }
+    }
   }
 }
 
@@ -181,6 +222,46 @@ function glazed_preprocess_page(&$variables) {
         }
       }
     }
+  }
+  $glazed_libraries = [
+    // bootstrap TAILORING
+    'glazed/bootstrap-3',
+    'glazed/bootstrap-theme',
+    'glazed/jquery-ui',
+    // GLAZED BASE
+    'glazed/footer-menu',
+    'glazed/forms',
+    'glazed/layout',
+    'glazed/page-title',
+    'glazed/typography',
+    // GLAZED Components
+    'glazed/stpe-buttons',
+    'glazed/glazed-full-screen-search',
+    'glazed/glazed-header',
+    'glazed/glazed-header--top',
+    'glazed/glazed-header--side',
+    'glazed/glazed-header--mobile',
+    'glazed/glazed-secondary-header',
+    'glazed/pager-prevnext',
+    'glazed/glazed-admin',
+    // Overrides
+    'glazed/cubeportfolio',
+    'glazed/drupal-breadcrumbs',
+    'glazed/drupal-comments',
+    'glazed/drupal-pager',
+    'glazed/drupal-webform',
+    'glazed/cms-bootstrap-core',
+    'glazed/cms-bootstrap-blog',
+    'glazed/cms-bootstrap-events',
+    'glazed/cms-bootstrap-news',
+    'glazed/cms-bootstrap-portfolio',
+    'glazed/sooperthemes-premium-elements',
+    'glazed/glazed-builder',
+    // HELPERS
+    'glazed/helper-classes',
+  ];
+  foreach ($glazed_libraries as $glazed_library) {
+    $variables['#attached']['library'][] = $glazed_library;
   }
 }
 

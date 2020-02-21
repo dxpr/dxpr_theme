@@ -1,0 +1,11 @@
+{
+	"version": 3,
+	"file": "cms-bootstrap-core.css",
+	"sources": [
+		"../sass/cms-bootstrap-core.scss",
+		"../sass/helpers/_variables.scss",
+		"../sass/vendor-extensions/_cms-bootstrap-core.scss"
+	],
+	"names": [],
+	"mappings": "AEIA,AAAA,oBAAoB,AAAC,CACnB,SAAS,CDwEe,IAAI,CCvE7B,AAED,AAAA,kCAAkC,CAAC,EAAE,AAAA,MAAM,AAAC,CAC1C,MAAM,CAAE,MAAM,CACf,AAED,AAAA,sBAAsB,CAAC,EAAE,AAAA,MAAM,AAAC,CAC9B,MAAM,CAAE,CAAC,CACV"
+}
