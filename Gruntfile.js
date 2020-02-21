@@ -22,11 +22,14 @@ module.exports = function(grunt) {
         outputStyle:'compressed'
       },
       dist: {
-        files: {
-          'css/glazed.css' : 'sass/glazed.scss',
-          'css/glazed.admin.css' : 'sass/glazed.admin.scss',
-          'css/glazed.admin.themesettings.css' : 'sass/glazed.admin.themesettings.scss',
-        }
+        files: [{
+          expand: true,
+          cwd: 'sass/',
+          src: '*.scss',
+          dest: 'css/',
+          ext: '.css',
+          extDot: 'last'
+        }]
       }
     },
     postcss: {

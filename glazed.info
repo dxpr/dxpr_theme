@@ -21,8 +21,7 @@ regions[sidebar_first]                                = 'Sidebar First'
 regions[sidebar_second]                               = 'Sidebar Second'
 regions[footer]                                       = 'Footer'
 
-; Stylesheets
-stylesheets[all][]                                    = css/glazed.css
+; Scripts
 scripts[]                                             = js/minified/classie.min.js
 scripts[]                                             = js/minified/glazed-mobile-nav.min.js
 scripts[]                                             = js/minified/glazed.min.js

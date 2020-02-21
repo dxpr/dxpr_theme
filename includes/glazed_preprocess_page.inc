@@ -4,7 +4,7 @@
  * Implements template_preprocess_page().
  */
 function glazed_preprocess_page(&$vars) {
-  global $theme;
+  global $theme, $theme_path;
   if ($hidden_regions = theme_get_setting('hidden_regions')) {
     $hidden_regions = array_filter(theme_get_setting('hidden_regions'));
   }
@@ -259,4 +259,11 @@ function glazed_preprocess_page(&$vars) {
     $vars['glazed_title_classes'][] = theme_get_setting('page_title_animate');
   }
   $vars['glazed_title_classes'] = implode(' ', $vars['glazed_title_classes']);
+
+  // Add styles files using global variable $theme_path, so if current theme is
+  // glazed subtheme, then css files will load from subtheme directory.
+  $path = $theme_path . '/css/';
+  foreach (_glazed_get_stylesheets() as $stylesheet) {
+    drupal_add_css($path . $stylesheet, array('group' => CSS_THEME));
+  }
 }
