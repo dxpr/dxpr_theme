@@ -196,3 +196,12 @@ function glazed_preprocess_block(&$variables) {
 
   }
 }
+
+/**
+ * Implements template_preprocess_links()
+ */
+function glazed_preprocess_links__language_block(&$variables) {
+  $variables['attributes']['class'][] = 'nav';
+  $variables['attributes']['class'][] = 'menu';
+}
+
