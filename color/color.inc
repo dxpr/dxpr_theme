@@ -64,7 +64,40 @@ $info = [
 
   // CSS files (excluding @import) to rewrite with new color scheme.
   'css' => [
-    'css/glazed.css',
+    // GLAZED BASE
+    'css/base/footer-menu.css',
+    'css/base/forms.css',
+    'css/base/layout.css',
+    'css/base/page-title.css',
+    'css/base/typography.css',
+    // GLAZED Components
+    'css/components/stpe-buttons.css',
+    'css/components/glazed-full-screen-search.css',
+    'css/components/glazed-header.css',
+    'css/components/glazed-header--top.css',
+    'css/components/glazed-header--side.css',
+    'css/components/glazed-header--mobile.css',
+    'css/components/glazed-secondary-header.css',
+    'css/components/pager-prevnext.css',
+    'css/components/glazed-admin.css',
+    // Overrides
+    'css/vendor-extensions/bootstrap-3.css',
+    'css/vendor-extensions/bootstrap-theme.css',
+    'css/vendor-extensions/jquery-ui.css',
+    'css/vendor-extensions/cubeportfolio.css',
+    'css/vendor-extensions/drupal-breadcrumbs.css',
+    'css/vendor-extensions/drupal-comments.css',
+    'css/vendor-extensions/drupal-pager.css',
+    'css/vendor-extensions/drupal-webform.css',
+    'css/vendor-extensions/cms-bootstrap-core.css',
+    'css/vendor-extensions/cms-bootstrap-blog.css',
+    'css/vendor-extensions/cms-bootstrap-events.css',
+    'css/vendor-extensions/cms-bootstrap-news.css',
+    'css/vendor-extensions/cms-bootstrap-portfolio.css',
+    'css/vendor-extensions/sooperthemes-premium-elements.css',
+    'css/vendor-extensions/glazed-builder.css',
+    // HELPERS
+    'css/helpers/helper-classes.css',
   ],
 
   // Files to copy.

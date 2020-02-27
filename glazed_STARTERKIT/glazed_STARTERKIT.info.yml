@@ -25,3 +25,35 @@ regions:
 
 libraries:
   - 'glazed_STARTERKIT/global-styling'
+
+libraries-override:
+  glazed/bootstrap-3: false
+  glazed/bootstrap-theme: false
+  glazed/jquery-ui: false
+  glazed/footer-menu: false
+  glazed/forms: false
+  glazed/layout: false
+  glazed/page-title: false
+  glazed/typography: false
+  glazed/stpe-buttons: false
+  glazed/glazed-full-screen-search: false
+  glazed/glazed-header: false
+  glazed/glazed-header--top: false
+  glazed/glazed-header--side: false
+  glazed/glazed-header--mobile: false
+  glazed/glazed-secondary-header: false
+  glazed/pager-prevnext: false
+  glazed/glazed-admin: false
+  glazed/cubeportfolio: false
+  glazed/drupal-breadcrumbs: false
+  glazed/drupal-comments: false
+  glazed/drupal-pager: false
+  glazed/drupal-webform: false
+  glazed/cms-bootstrap-core: false
+  glazed/cms-bootstrap-blog: false
+  glazed/cms-bootstrap-events: false
+  glazed/cms-bootstrap-news: false
+  glazed/cms-bootstrap-portfolio: false
+  glazed/sooperthemes-premium-elements: false
+  glazed/glazed-builder: false
+  glazed/helper-classes: false

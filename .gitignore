@@ -10,7 +10,7 @@ node_modules
 Thumbs.db
 
 # CSS files.
-/css/*
+/css
 
 # JS Files
 /js/minified/*

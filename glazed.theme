@@ -182,6 +182,46 @@ function glazed_preprocess_page(&$variables) {
       }
     }
   }
+  $glazed_libraries = [
+    // bootstrap TAILORING
+    'glazed/bootstrap-3',
+    'glazed/bootstrap-theme',
+    'glazed/jquery-ui',
+    // GLAZED BASE
+    'glazed/footer-menu',
+    'glazed/forms',
+    'glazed/layout',
+    'glazed/page-title',
+    'glazed/typography',
+    // GLAZED Components
+    'glazed/stpe-buttons',
+    'glazed/glazed-full-screen-search',
+    'glazed/glazed-header',
+    'glazed/glazed-header--top',
+    'glazed/glazed-header--side',
+    'glazed/glazed-header--mobile',
+    'glazed/glazed-secondary-header',
+    'glazed/pager-prevnext',
+    'glazed/glazed-admin',
+    // Overrides
+    'glazed/cubeportfolio',
+    'glazed/drupal-breadcrumbs',
+    'glazed/drupal-comments',
+    'glazed/drupal-pager',
+    'glazed/drupal-webform',
+    'glazed/cms-bootstrap-core',
+    'glazed/cms-bootstrap-blog',
+    'glazed/cms-bootstrap-events',
+    'glazed/cms-bootstrap-news',
+    'glazed/cms-bootstrap-portfolio',
+    'glazed/sooperthemes-premium-elements',
+    'glazed/glazed-builder',
+    // HELPERS
+    'glazed/helper-classes',
+  ];
+  foreach ($glazed_libraries as $glazed_library) {
+    $variables['#attached']['library'][] = $glazed_library;
+  }
 }
 
 /**
