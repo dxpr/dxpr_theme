@@ -11,82 +11,82 @@ global-styling:
 bootstrap-3:
   css:
     theme:
-      css/bootstrap-3.css: { minified: true }
+      css/vendor-extensions/bootstrap-3.css: { minified: true }
 
 bootstrap-theme:
   css:
     theme:
-      css/bootstrap-theme.css: { minified: true }
+      css/vendor-extensions/bootstrap-theme.css: { minified: true }
 
 jquery-ui:
   css:
     theme:
-      css/jquery-ui.css: { minified: true }
+      css/vendor-extensions/jquery-ui.css: { minified: true }
 
 footer-menu:
   css:
     theme:
-      css/footer-menu.css: { minified: true }
+      css/base/footer-menu.css: { minified: true }
 
 forms:
   css:
     theme:
-      css/forms.css: { minified: true }
+      css/base/forms.css: { minified: true }
 
 layout:
   css:
     theme:
-      css/layout.css: { minified: true }
+      css/base/layout.css: { minified: true }
 
 page-title:
   css:
     theme:
-      css/page-title.css: { minified: true }
+      css/base/page-title.css: { minified: true }
 
 typography:
   css:
     theme:
-      css/typography.css: { minified: true }
+      css/base/typography.css: { minified: true }
 
 stpe-buttons:
   css:
     theme:
-      css/stpe-buttons.css: { minified: true }
+      css/components/stpe-buttons.css: { minified: true }
 
 glazed-full-screen-search:
   css:
     theme:
-      css/glazed-full-screen-search.css: { minified: true }
+      css/components/glazed-full-screen-search.css: { minified: true }
 
 glazed-header:
   css:
     theme:
-      css/glazed-header.css: { minified: true }
+      css/components/glazed-header.css: { minified: true }
 
 glazed-header--top:
   css:
     theme:
-      css/glazed-header--top.css: { minified: true }
+      css/components/glazed-header--top.css: { minified: true }
 
 glazed-header--side:
   css:
     theme:
-      css/glazed-header--side.css: { minified: true }
+      css/components/glazed-header--side.css: { minified: true }
 
 glazed-header--mobile:
   css:
     theme:
-      css/glazed-header--mobile.css: { minified: true }
+      css/components/glazed-header--mobile.css: { minified: true }
 
 glazed-secondary-header:
   css:
     theme:
-      css/glazed-secondary-header.css: { minified: true }
+      css/components/glazed-secondary-header.css: { minified: true }
 
 pager-prevnext:
   css:
     theme:
-      css/pager-prevnext.css: { minified: true }
+      css/components/pager-prevnext.css: { minified: true }
 
 glazed-admin:
   css:
@@ -96,67 +96,67 @@ glazed-admin:
 cubeportfolio:
   css:
     theme:
-      css/cubeportfolio.css: { minified: true }
+      css/vendor-extensions/cubeportfolio.css: { minified: true }
 
 drupal-breadcrumbs:
   css:
     theme:
-      css/drupal-breadcrumbs.css: { minified: true }
+      css/vendor-extensions/drupal-breadcrumbs.css: { minified: true }
 
 drupal-comments:
   css:
     theme:
-      css/drupal-comments.css: { minified: true }
+      css/vendor-extensions/drupal-comments.css: { minified: true }
 
 drupal-pager:
   css:
     theme:
-      css/drupal-pager.css: { minified: true }
+      css/vendor-extensions/drupal-pager.css: { minified: true }
 
 drupal-webform:
   css:
     theme:
-      css/drupal-webform.css: { minified: true }
+      css/vendor-extensions/drupal-webform.css: { minified: true }
 
 cms-bootstrap-core:
   css:
     theme:
-      css/cms-bootstrap-core.css: { minified: true }
+      css/vendor-extensions/cms-bootstrap-core.css: { minified: true }
 
 cms-bootstrap-blog:
   css:
     theme:
-      css/cms-bootstrap-blog.css: { minified: true }
+      css/vendor-extensions/ms-bootstrap-blog.css: { minified: true }
 
 cms-bootstrap-events:
   css:
     theme:
-      css/cms-bootstrap-events.css: { minified: true }
+      css/vendor-extensions/cms-bootstrap-events.css: { minified: true }
 
 cms-bootstrap-news:
   css:
     theme:
-      css/cms-bootstrap-news.css: { minified: true }
+      css/vendor-extensions/cms-bootstrap-news.css: { minified: true }
 
 cms-bootstrap-portfolio:
   css:
     theme:
-      css/cms-bootstrap-portfolio.css: { minified: true }
+      css/vendor-extensions/cms-bootstrap-portfolio.css: { minified: true }
 
 sooperthemes-premium-elements:
   css:
     theme:
-      css/sooperthemes-premium-elements.css: { minified: true }
+      css/vendor-extensions/sooperthemes-premium-elements.css: { minified: true }
 
 glazed-builder:
   css:
     theme:
-      css/glazed-builder.css: { minified: true }
+      css/vendor-extensions/glazed-builder.css: { minified: true }
 
 helper-classes:
   css:
     theme:
-      css/helper-classes.css: { minified: true }
+      css/helpers/helper-classes.css: { minified: true }
 
 bootstrap3:
   css:
