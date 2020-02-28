@@ -24,8 +24,8 @@ module.exports = function(grunt) {
       dist: {
         files: [{
           expand: true,
-          cwd: 'sass/',
-          src: '*.scss',
+          cwd: 'scss/',
+          src: '**/*.scss',
           dest: 'css/',
           ext: '.css',
           extDot: 'last'
@@ -42,7 +42,7 @@ module.exports = function(grunt) {
     },
     watch: {
       css: {
-        files: ['sass/*.scss', 'sass/**/*.scss'],
+        files: ['scss/*.scss', 'scss/**/*.scss'],
         tasks: ['sass', 'postcss']
       },
       js: {

@@ -51,41 +51,41 @@ EOT;
  */
 function _glazed_get_stylesheets() {
   return array(
-    // bootstrap TAILORING
-    'bootstrap-3.css',
-    'bootstrap-theme.css',
-    'jquery-ui.css',
-    // GLAZED BASE
-    'footer-menu.css',
-    'forms.css',
-    'layout.css',
-    'page-title.css',
-    'typography.css',
-    // GLAZED Components
-    'stpe-buttons.css',
-    'glazed-full-screen-search.css',
-    'glazed-header.css',
-    'glazed-header--top.css',
-    'glazed-header--side.css',
-    'glazed-header--mobile.css',
-    'glazed-secondary-header.css',
     // Overrides
-    'cubeportfolio.css',
-    'drupal-breadcrumbs.css',
-    'drupal-comments.css',
-    'drupal-media.css',
-    'drupal-pager.css',
-    'drupal-webform.css',
-    'cms-bootstrap-core.css',
-    'cms-bootstrap-blog.css',
-    'cms-bootstrap-events.css',
-    'cms-bootstrap-news.css',
-    'cms-bootstrap-portfolio.css',
-    'sooperthemes-premium-elements.css',
-    'revolution-slider-4.css',
-    'glazed-builder.css',
+    'vendor-extensions/bootstrap-3.css',
+    'vendor-extensions/bootstrap-theme.css',
+    'vendor-extensions/jquery-ui.css',
+    // GLAZED BASE
+    'base/footer-menu.css',
+    'base/forms.css',
+    'base/layout.css',
+    'base/page-title.css',
+    'base/typography.css',
+    // GLAZED Components
+    'components/stpe-buttons.css',
+    'components/glazed-full-screen-search.css',
+    'components/glazed-header.css',
+    'components/glazed-header--top.css',
+    'components/glazed-header--side.css',
+    'components/glazed-header--mobile.css',
+    'components/glazed-secondary-header.css',
+    // Overrides
+    'vendor-extensions/cubeportfolio.css',
+    'vendor-extensions/drupal-breadcrumbs.css',
+    'vendor-extensions/drupal-comments.css',
+    'vendor-extensions/drupal-media.css',
+    'vendor-extensions/drupal-pager.css',
+    'vendor-extensions/drupal-webform.css',
+    'vendor-extensions/cms-bootstrap-core.css',
+    'vendor-extensions/cms-bootstrap-blog.css',
+    'vendor-extensions/cms-bootstrap-events.css',
+    'vendor-extensions/cms-bootstrap-news.css',
+    'vendor-extensions/cms-bootstrap-portfolio.css',
+    'vendor-extensions/sooperthemes-premium-elements.css',
+    'vendor-extensions/revolution-slider-4.css',
+    'vendor-extensions/glazed-builder.css',
     // HELPERS
-    'helper-classes.css',
+    'helpers/helper-classes.css',
   );
 }
 
