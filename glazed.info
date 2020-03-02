@@ -141,6 +141,7 @@ settings[nav_mobile_font_size]                        = "14"
 settings[h1_mobile_font_size]                         = "52"
 settings[h2_mobile_font_size]                         = "38"
 settings[h3_mobile_font_size]                         = "29"
+settings[h4_mobile_font_size]                         = "24"
 
 settings[body_font_face]                              = "0Source+Sans+Pro:"
 settings[body_font_face_selector]                     = "body"
