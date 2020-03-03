@@ -73,6 +73,8 @@ div.lead {
   border-left: 3px solid rgba(0,0,0,0.08);
   border-radius: 4px;
   padding: 8px 18px;
+  white-space: normal;
+  word-wrap: break-word;
   &:hover,
   &:focus {
     border-bottom-color: rgba(0,0,0,0.4);
