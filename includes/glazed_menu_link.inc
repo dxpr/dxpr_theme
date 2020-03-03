@@ -17,6 +17,7 @@
 function glazed_menu_link(array $variables) {
   $element = $variables['element'];
   $sub_menu = '';
+  $careticon = '';
 
   if ($element['#below']) {
     // Prevent dropdown functions from being added to management menu so it
@@ -34,6 +35,7 @@ function glazed_menu_link(array $variables) {
 
       // Set dropdown trigger element to # to prevent inadvertant page loading
       // when a submenu link is clicked.
+      $careticon .= ' <span class="caret" data-toggle="dropdown"></span>';
       $element['#localized_options']['attributes']['data-target'] = '#';
       $element['#localized_options']['attributes']['class'][] = 'dropdown-toggle';
       // $element['#localized_options']['attributes']['data-toggle'] = 'dropdown';
@@ -57,5 +59,5 @@ function glazed_menu_link(array $variables) {
     $element['#attributes']['class'][] = 'active';
   }
   $output = l($element['#title'], $element['#href'], $element['#localized_options']);
-  return '<li' . drupal_attributes($element['#attributes']) . '>' . $output . $sub_menu . "</li>\n";
+  return '<li' . drupal_attributes($element['#attributes']) . '>' . $careticon . $output . $sub_menu . "</li>\n";
 }

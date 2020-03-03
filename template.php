@@ -69,6 +69,7 @@ function _glazed_get_stylesheets() {
     'components/glazed-header--side.css',
     'components/glazed-header--mobile.css',
     'components/glazed-secondary-header.css',
+    'components/glazed-sidebar--menu.css',
     // Overrides
     'vendor-extensions/cubeportfolio.css',
     'vendor-extensions/drupal-breadcrumbs.css',
