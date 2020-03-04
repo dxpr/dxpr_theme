@@ -1,0 +1,46 @@
+@import "../includes/variables";
+
+.wrap-containers {
+  .caret {
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 10;
+    border: none;
+    cursor: pointer;
+    width: 45px;
+    height: 45px;
+
+    &:after {
+      content: "﹀";
+      pointer-events: none;
+      position: relative;
+      top: 12px;
+      left: 16px;
+      font-size: 12px;
+    }
+  }
+
+  .open {
+    .caret {
+      transform: rotate(180deg);
+    }
+  }
+
+  .dropdown-menu {
+    position: relative;
+    float: none;
+    width: 100%;
+    border-radius: 0;
+    box-shadow: none;
+    border: none;
+    margin: 0;
+  }
+
+  ul.nav {
+    li {
+      position: relative;
+      float: none;
+    }
+  }
+}
