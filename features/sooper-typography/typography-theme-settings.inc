@@ -178,6 +178,15 @@ $form['glazed_settings']['typography']['advanced_type']['mobile_type']['h3_mobil
   '#maxlength' => 9,
 );
 
+$form['glazed_settings']['typography']['advanced_type']['mobile_type']['h4_mobile_font_size'] = [
+  '#type' => 'textfield',
+  '#title' => t('H4 Font Size'),
+  '#default_value' => ((theme_get_setting('h4_mobile_font_size') !== null)) ? theme_get_setting('h4_mobile_font_size') : '20',
+  '#attributes' => ['class' => ['font-size-slider']],
+  '#size' => 9,
+  '#maxlength' => 9,
+];
+
 $form['glazed_settings']['typography']['advanced_type']['mobile_type']['blockquote_mobile_font_size'] = array(
   '#type' => 'textfield',
   '#title' => t('Blockquote Font Size'),
