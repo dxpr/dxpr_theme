@@ -82,6 +82,11 @@ if ($position = theme_get_setting('background_image_position')) {
   $CSS .= "body { background-position: $position; }\n\n";
 }
 
+if ($mode = theme_get_setting('background_image_attachment')) {
+  $mode = str_replace('_', ' ', $mode);
+}
+
+
 if ($bgstyle = theme_get_setting('background_image_style')) {
   switch ($bgstyle) {
     case 'no_repeat':
@@ -102,6 +107,6 @@ if ($background_image && is_numeric($background_image) && ($background_image > 0
   $file = file_load($background_image);
   $uri = $file->uri;
   $url = file_create_url($uri);
-  $CSS .= "body { background-image: url('" . glazed_file_url_transform_relative($url) . "'); }\n\n";
+  $CSS .= "body { background-image: url('" . glazed_file_url_transform_relative($url) . "') $mode!important; }\n\n";
 }
 
