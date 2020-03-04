@@ -57,6 +57,7 @@ nav_mobile_font_size: '14'
 h1_mobile_font_size: '52'
 h2_mobile_font_size: '38'
 h3_mobile_font_size: '29'
+h4_mobile_font_size: '24'
 body_font_face: '0Source+Sans+Pro:'
 body_font_face_selector: body
 headings_font_face: '0Source+Sans+Pro:300'
