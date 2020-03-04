@@ -175,7 +175,7 @@
   <div<?php print $content_container_class; ?>>
     <div<?php print $content_row_class; ?>>
       <?php if (!empty($page['sidebar_first'])): ?>
-        <aside class="col-sm-3 sidebar" role="complementary">
+        <aside class="col-sm-3" role="complementary">
           <?php print render($page['sidebar_first']); ?>
         </aside>  <!-- /#sidebar-first -->
       <?php endif; ?>
@@ -200,7 +200,7 @@
       </section>
 
       <?php if (!empty($page['sidebar_second'])): ?>
-        <aside class="col-sm-3 sidebar" role="complementary">
+        <aside class="col-sm-3" role="complementary">
           <?php print render($page['sidebar_second']); ?>
         </aside>  <!-- /#sidebar-second -->
       <?php endif; ?>
