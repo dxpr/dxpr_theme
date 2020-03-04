@@ -83,7 +83,6 @@ if ($position = theme_get_setting('background_image_position')) {
 }
 
 if ($mode = theme_get_setting('background_image_attachment')) {
-  $mode = str_replace('_', ' ', $mode);
   $CSS .= "body { background-attachment: $mode; }\n\n";
 }
 
