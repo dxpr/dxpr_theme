@@ -118,6 +118,8 @@ function glazed_form_system_theme_settings_alter(&$form, &$form_state) {
     // unset($form['logo']);
     // unset($form['favicon']);
   // Return the additional form widgets
+
+  $form['#validate'][] = 'glazed_form_system_theme_settings_alter_validate';
   return $form;
 }
 
@@ -266,6 +268,37 @@ function glazed_settings_form_submit(&$form, &$form_state) {
           }
         }
       }
+    }
+  }
+}
+
+/**
+ * Validator for the glazed_form_system_theme_settings_alter() form.
+ */
+function glazed_form_system_theme_settings_alter_validate(&$form, &$form_state) {
+  // Handle file uploads.
+  $validators = array('file_validate_extensions' => array('png gif jpg jpeg svg'));
+
+  // Check for a new uploaded logo.
+  $file = file_save_upload('logo_upload', $validators);
+  if (isset($file)) {
+    // File upload was attempted.
+    if ($file) {
+      // Put the temporary file in form_values so we can save it on submit.
+      $form_state['values']['logo_upload'] = $file;
+    }
+    else {
+      // File upload failed.
+      form_set_error('logo_upload', t('The logo could not be uploaded.'));
+    }
+  }
+
+  // If the user provided a path for a logo or favicon file, make sure a file
+  // exists at that path.
+  if (!empty($form_state['values']['logo_path'])) {
+    $path = _system_theme_settings_validate_path($form_state['values']['logo_path']);
+    if (!$path) {
+      form_set_error('logo_path', t('The custom logo path is invalid.'));
     }
   }
 }
