@@ -27,20 +27,24 @@
     }
   }
 
-  .dropdown-menu {
-    position: relative;
-    float: none;
-    width: 100%;
-    border-radius: 0;
-    box-shadow: none;
-    border: none;
-    margin: 0;
-  }
-
-  ul.nav {
-    li {
+  ul.nav.menu {
+    li.expanded {
       position: relative;
-      float: none;
+
+      .dropdown-menu {
+        position: relative;
+        float: none;
+        width: 100%;
+        border-radius: 0;
+        box-shadow: none;
+        border: none;
+        background-color: transparent;
+        margin: 0;
+
+        li {
+          float: none;
+        }
+      }
     }
   }
 }
