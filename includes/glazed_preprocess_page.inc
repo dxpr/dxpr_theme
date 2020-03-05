@@ -262,8 +262,8 @@ function glazed_preprocess_page(&$vars) {
 
   // Add styles files using global variable $theme_path, so if current theme is
   // glazed subtheme, then css files will load from subtheme directory.
-  $path = $theme_path . '/css/';
+  $theme_css_path = $theme_path . '/css/';
   foreach (_glazed_get_stylesheets() as $stylesheet) {
-    drupal_add_css($path . $stylesheet, array('group' => CSS_THEME));
+    drupal_add_css($theme_css_path . $stylesheet, array('group' => CSS_THEME));
   }
 }

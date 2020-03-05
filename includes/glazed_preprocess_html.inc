@@ -29,10 +29,7 @@ function glazed_preprocess_html(&$vars) {
   if (is_file($files_path . '/glazed-themesettings-' . $theme . '.css')) {
     drupal_add_css(
       $files_path . '/glazed-themesettings-' . $theme . '.css', array(
-        'preprocess' => variable_get('preprocess_css', '') == 1 ? TRUE : FALSE,
         'group' => CSS_THEME,
-        'media' => 'all',
-        'every_page' => TRUE,
         'weight' => 100
       )
     );
