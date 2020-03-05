@@ -23,22 +23,21 @@
     left: 0;
     right: 0;
   }
-}
-
-.navbar-nav.secondary {
-  float:right;
-  margin-top: 0;
-  margin-bottom: 0;
-  a {
-    padding-top: 0;
-    padding-bottom: 0;
-    line-height: 1.2em;
-    &:hover,
-    &:focus {
-      background: transparent;
+  ul.menu {
+    float:right;
+    margin-top: 0;
+    margin-bottom: 0;
+    a {
+      padding-top: 0;
+      padding-bottom: 0;
+      line-height: 1.2em;
+      &:hover,
+      &:focus {
+        background: transparent;
+      }
     }
-  }
-  li {
-    float:left;
+    li {
+      float:left;
+    }
   }
 }
