@@ -4,6 +4,10 @@
  * Implements template_preprocess_block()
  */
 function glazed_preprocess_block(&$vars) {
+  global $theme_path;
+  if ($vars['block_html_id'] == 'block-glazed-helper-full-screen-search') {
+    drupal_add_css($theme_path . '/css/components/glazed-full-screen-search.css', array('group' => CSS_THEME));
+  }
   if ((theme_get_setting('block_design_regions'))
     && in_array($vars['block']->region, array_filter(theme_get_setting('block_design_regions')))) {
     if ($block_well = theme_get_setting('block_well')) {
