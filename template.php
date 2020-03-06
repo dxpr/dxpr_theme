@@ -49,7 +49,7 @@ EOT;
  * @return array
  *  Array of all glazed theme style files names.
  */
-function _glazed_get_stylesheets() {
+function _glazed_sitewide_css() {
   return array(
     // Overrides
     'vendor-extensions/bootstrap-3.css',
@@ -62,7 +62,6 @@ function _glazed_get_stylesheets() {
     'base/page-title.css',
     'base/typography.css',
     // GLAZED Components
-    'components/stpe-buttons.css',
     'components/glazed-full-screen-search.css',
     'components/glazed-header.css',
     'components/glazed-header--top.css',
@@ -71,20 +70,12 @@ function _glazed_get_stylesheets() {
     'components/glazed-secondary-header.css',
     'components/glazed-sidebar--menu.css',
     // Overrides
-    'vendor-extensions/cubeportfolio.css',
     'vendor-extensions/drupal-breadcrumbs.css',
     'vendor-extensions/drupal-comments.css',
-    'vendor-extensions/drupal-media.css',
+    'vendor-extensions/drupal-media-browser.css',
     'vendor-extensions/drupal-pager.css',
-    'vendor-extensions/drupal-webform.css',
-    'vendor-extensions/cms-bootstrap-core.css',
-    'vendor-extensions/cms-bootstrap-blog.css',
-    'vendor-extensions/cms-bootstrap-events.css',
-    'vendor-extensions/cms-bootstrap-news.css',
-    'vendor-extensions/cms-bootstrap-portfolio.css',
-    'vendor-extensions/sooperthemes-premium-elements.css',
-    'vendor-extensions/revolution-slider-4.css',
-    'vendor-extensions/glazed-builder.css',
+    'vendor-extensions/drupal-mini-pager.css',
+    'vendor-extensions/drupal-prevnext.css',
     // HELPERS
     'helpers/helper-classes.css',
   );
