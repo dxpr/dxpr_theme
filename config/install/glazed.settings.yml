@@ -103,6 +103,7 @@ page_title_image_mode: normal
 page_title_image_position: center_center
 background_image_style: cover
 background_image_position: center_center
+background_image_attachment: fixed
 prevnext_content_types:
   cms_blog: cms_blog
   cms_event: cms_event

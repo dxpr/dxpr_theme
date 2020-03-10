@@ -82,6 +82,10 @@ if ($position = theme_get_setting('background_image_position')) {
   $CSS .= "body { background-position: $position; }\n\n";
 }
 
+if ($mode = theme_get_setting('background_image_attachment')) {
+  $CSS .= "body { background-attachment: $mode; }\n\n";
+}
+
 if ($bgstyle = theme_get_setting('background_image_style')) {
   switch ($bgstyle) {
     case 'no_repeat':
