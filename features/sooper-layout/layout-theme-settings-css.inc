@@ -82,6 +82,9 @@ if ($position = theme_get_setting('background_image_position')) {
   $CSS .= "body { background-position: $position; }\n\n";
 }
 
+if ($mode = theme_get_setting('background_image_attachment')) {
+  $CSS .= "body { background-attachment: $mode; }\n\n";
+}
 
 if ($bgstyle = theme_get_setting('background_image_style')) {
   switch ($bgstyle) {
@@ -97,13 +100,11 @@ if ($bgstyle = theme_get_setting('background_image_style')) {
   }
 }
 
-$mode = theme_get_setting('background_image_attachment'); 
-
 $background_image = theme_get_setting('background_image', $theme);
 if ($background_image && is_numeric($background_image) && ($background_image > 0)) {
   global $base_url;
   $file = file_load($background_image);
   $uri = $file->uri;
   $url = file_create_url($uri);
-  $CSS .= "body { background: url('" . glazed_file_url_transform_relative($url) . "') $mode!important; }\n\n";
+  $CSS .= "body { background-image: url('" . glazed_file_url_transform_relative($url) . "'); }\n\n";
 }
