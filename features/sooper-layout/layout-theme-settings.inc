@@ -147,15 +147,15 @@ $form['glazed_settings']['layout']['background']['background_image_position'] = 
   ),
 );
 
-$form['glazed_settings']['layout']['background']['background_image_attachment'] = [
+$form['glazed_settings']['layout']['background']['background_image_attachment'] = array(
   '#type' => 'radios',
   '#title' => t('Background Mode'),
   '#default_value' => ((theme_get_setting('background_image_attachment') !== null)) ? theme_get_setting('background_image_attachment') : 'fixed',
-  '#options' => [
+  '#options' => array(
     'scroll' => t('Normal'),
     'fixed' => t('Fixed (Parallax)'),
-  ],
-];
+  ),
+);
 
 $form['glazed_settings']['layout']['mobile_layout'] = array(
   '#title' => t('Mobile view'),
