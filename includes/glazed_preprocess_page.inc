@@ -4,7 +4,7 @@
  * Implements template_preprocess_page().
  */
 function glazed_preprocess_page(&$vars) {
-  global $theme, $theme_path;
+  global $theme, $theme_path, $user;
   if ($hidden_regions = theme_get_setting('hidden_regions')) {
     $hidden_regions = array_filter(theme_get_setting('hidden_regions'));
   }
@@ -260,10 +260,33 @@ function glazed_preprocess_page(&$vars) {
   }
   $vars['glazed_title_classes'] = implode(' ', $vars['glazed_title_classes']);
 
-  // Add styles files using global variable $theme_path, so if current theme is
-  // glazed subtheme, then css files will load from subtheme directory.
-  $path = $theme_path . '/css/';
-  foreach (_glazed_get_stylesheets() as $stylesheet) {
-    drupal_add_css($path . $stylesheet, array('group' => CSS_THEME));
+  // CSS to load on every page
+  $sitewide_css = array(
+    // Overrides
+    '/css/vendor-extensions/bootstrap-3.css',
+    '/css/vendor-extensions/bootstrap-theme.css',
+    // GLAZED BASE
+    '/css/base/forms.css',
+    '/css/base/layout.css',
+    '/css/base/page-title.css',
+    '/css/base/typography.css',
+    // GLAZED Components
+    '/css/components/glazed-sidebar--menu.css',
+    // HELPERS
+    '/css/helpers/helper-classes.css',
+  );
+  foreach ($sitewide_css as $css) {
+    drupal_add_css($theme_path . $css, array('group' => CSS_THEME, 'every_page' => TRUE));
+  }
+  // CSS that is only relevant in backend interfaces (field, views config, node forms, etc.)
+  $auth_css = array(
+    '/css/vendor-extensions/jquery-ui.css',
+    '/css/vendor-extensions/drupal-media-browser.css',
+  );
+  if ($user->uid > 0) {
+    foreach ($auth_css as $css) {
+      drupal_add_css($theme_path . $css, array('group' => CSS_THEME, 'every_page' => TRUE));
+    }
+
   }
 }

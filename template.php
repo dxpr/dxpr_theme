@@ -43,51 +43,6 @@ EOT;
   return $nav_init;
 }
 
-/**
- * Return all styles files names.
- *
- * @return array
- *  Array of all glazed theme style files names.
- */
-function _glazed_get_stylesheets() {
-  return array(
-    // Overrides
-    'vendor-extensions/bootstrap-3.css',
-    'vendor-extensions/bootstrap-theme.css',
-    'vendor-extensions/jquery-ui.css',
-    // GLAZED BASE
-    'base/footer-menu.css',
-    'base/forms.css',
-    'base/layout.css',
-    'base/page-title.css',
-    'base/typography.css',
-    // GLAZED Components
-    'components/stpe-buttons.css',
-    'components/glazed-full-screen-search.css',
-    'components/glazed-header.css',
-    'components/glazed-header--top.css',
-    'components/glazed-header--side.css',
-    'components/glazed-header--mobile.css',
-    'components/glazed-secondary-header.css',
-    // Overrides
-    'vendor-extensions/cubeportfolio.css',
-    'vendor-extensions/drupal-breadcrumbs.css',
-    'vendor-extensions/drupal-comments.css',
-    'vendor-extensions/drupal-media.css',
-    'vendor-extensions/drupal-pager.css',
-    'vendor-extensions/drupal-webform.css',
-    'vendor-extensions/cms-bootstrap-core.css',
-    'vendor-extensions/cms-bootstrap-blog.css',
-    'vendor-extensions/cms-bootstrap-events.css',
-    'vendor-extensions/cms-bootstrap-news.css',
-    'vendor-extensions/cms-bootstrap-portfolio.css',
-    'vendor-extensions/sooperthemes-premium-elements.css',
-    'vendor-extensions/revolution-slider-4.css',
-    'vendor-extensions/glazed-builder.css',
-    // HELPERS
-    'helpers/helper-classes.css',
-  );
-}
 
 /**
  * Replace stylesheet by the colorized version.
