@@ -143,6 +143,8 @@ settings[h2_mobile_font_size]                         = "38"
 settings[h3_mobile_font_size]                         = "29"
 settings[h4_mobile_font_size]                         = "24"
 
+settings[background_image_attachment]                 = fixed
+
 settings[body_font_face]                              = "0Source+Sans+Pro:"
 settings[body_font_face_selector]                     = "body"
 settings[headings_font_face]                          = "0Source+Sans+Pro:300"
