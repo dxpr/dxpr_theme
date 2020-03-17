@@ -204,17 +204,10 @@ function glazed_preprocess_page(&$variables) {
     'glazed/pager-prevnext',
     'glazed/glazed-admin',
     // Overrides
-    'glazed/cubeportfolio',
     'glazed/drupal-breadcrumbs',
     'glazed/drupal-comments',
     'glazed/drupal-pager',
     'glazed/drupal-webform',
-    'glazed/cms-bootstrap-core',
-    'glazed/cms-bootstrap-blog',
-    'glazed/cms-bootstrap-events',
-    'glazed/cms-bootstrap-news',
-    'glazed/cms-bootstrap-portfolio',
-    'glazed/sooperthemes-premium-elements',
     'glazed/glazed-builder',
     // HELPERS
     'glazed/helper-classes',
