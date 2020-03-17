@@ -33,7 +33,7 @@
     'css/vendor-extensions/drupal-comments.css',
     'css/vendor-extensions/drupal-media-browser.css',
     'css/vendor-extensions/drupal-pager.css',
-    'css/vendor-extensions/drupal-prevnext.css',
+    'css/components/drupal-prevnext.css',
     // HELPERS
     'css/helpers/helper-classes.css',
   ),

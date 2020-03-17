@@ -20,7 +20,7 @@ function glazed_preprocess_node(&$vars) {
     $types = theme_get_setting('prevnext_content_types');
     $type = $vars['node']->type;
     if (isset($types[$type]) && !empty($types[$type])) {
-      drupal_add_css($theme_path . '/css/vendor-extensions/drupal-prevnext.css', array('group' => CSS_THEME));
+      drupal_add_css($theme_path . '/css/components/drupal-prevnext.css', array('group' => CSS_THEME));
       $prevnext = glazed_next_prev($vars['node']);
       $vars['prevnext'] = '<div class="prev-next small clear-both clearfix">';
       if (!empty($prevnext['prev'])) {
