@@ -202,7 +202,7 @@ function glazed_preprocess_page(&$variables) {
     'glazed/glazed-header--mobile',
     'glazed/glazed-secondary-header',
     'glazed/pager-prevnext',
-    'glazed/glazed-admin',
+    'glazed/admin',
     // Overrides
     'glazed/drupal-breadcrumbs',
     'glazed/drupal-comments',
