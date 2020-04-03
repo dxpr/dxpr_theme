@@ -181,32 +181,31 @@ function glazed_preprocess_page(&$variables) {
         }
       }
     }
+  }  
+  
+  //Include Glazed full search block css library
+  $full_search_block = \Drupal\block\Entity\Block::load('glazedfullscreensearch')->status();//Check if the block enabled
+  if ($full_search_block) {
+    $variables['#attached']['library'][] = 'glazed/glazed-full-screen-search';
   }
+  
+  // CSS to load on every page
   $glazed_libraries = [
     // bootstrap TAILORING
     'glazed/bootstrap-3',
     'glazed/bootstrap-theme',
-    'glazed/jquery-ui',
+    'glazed/jquery-ui',//TODO: include only if needed.
     // GLAZED BASE
-    'glazed/footer-menu',
     'glazed/forms',
     'glazed/layout',
     'glazed/page-title',
     'glazed/typography',
-    // GLAZED Components
+    // GLAZED Components  //TODO: include only if needed.
     'glazed/stpe-buttons',
-    'glazed/glazed-full-screen-search',
-    'glazed/glazed-header',
-    'glazed/glazed-header--top',
     'glazed/glazed-header--side',
-    'glazed/glazed-header--mobile',
-    'glazed/glazed-secondary-header',
     'glazed/pager-prevnext',
     'glazed/admin',
-    // Overrides
-    'glazed/drupal-breadcrumbs',
-    'glazed/drupal-comments',
-    'glazed/drupal-pager',
+    // Overrides   //TODO: include only if needed.
     'glazed/drupal-webform',
     'glazed/glazed-builder',
     // HELPERS
@@ -220,7 +219,7 @@ function glazed_preprocess_page(&$variables) {
 /**
  * Implements template_preprocess_block()
  */
-function glazed_preprocess_block(&$variables) {
+function glazed_preprocess_block(&$variables) {    
   if (isset($variables['elements']['#id'])) {
     $block = Block::load($variables['elements']['#id']);
     if ($block) {
@@ -238,3 +237,47 @@ function glazed_preprocess_links__language_block(&$variables) {
   $variables['attributes']['class'][] = 'menu';
 }
 
+/**
+ * Implements template_preprocess_region()
+ */
+function glazed_preprocess_region(&$variables) {
+  switch ($variables['region']) {
+    case 'secondary_header':
+      $variables['#attached']['library'][] ='glazed/glazed-secondary-header';
+    case 'navigation':
+      $variables['#attached']['library'][] ='glazed/glazed-header';
+      $variables['#attached']['library'][] ='glazed/glazed-header--top';
+      $variables['#attached']['library'][] ='glazed/glazed-header--mobile';
+      break;
+    case 'footer':
+       $variables['#attached']['library'][] = 'glazed/footer-menu';
+      break;
+  }
+}
+
+/**
+ * Implements template_preprocess_breadcrumb()
+ */
+function glazed_preprocess_breadcrumb(&$variables) {
+  if (($node = \Drupal::routeMatch()->getParameter('node')) && $variables['breadcrumb']) {
+    $variables['#attached']['library'][] = 'glazed/drupal-breadcrumbs';
+  }
+}
+
+/**
+ * Implements template_preprocess_comment()
+ */
+function glazed_preprocess_comment(&$variables) {
+  if($variables['elements']['#comment']){
+    $variables['#attached']['library'][] = 'glazed/drupal-comments';
+  }
+}
+
+/**
+ * Implements template_preprocess_pager()
+ */
+function glazed_preprocess_pager(&$variables) {
+  if($variables['pager']['#element']){
+    $variables['#attached']['library'][] = 'glazed/drupal-pager';
+  }
+}
