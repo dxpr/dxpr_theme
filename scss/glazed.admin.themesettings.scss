@@ -105,8 +105,7 @@ $font_3: 'sans-serif';
   .form-text,
   .form-type-select,
   .form-radios,
-  .slider,
-  .bootstrap-switch {
+  .slider {
     float: left;
     max-width: 100%;
     width: 400px;
@@ -124,13 +123,6 @@ $font_3: 'sans-serif';
     float: left;
     clear: both;
     padding: 12px 0 18px 0;
-  }
-  //BOOTSTRAP SWITCH
-  .bootstrap-switch {
-    border: none;
-    position: absolute;
-    left: 200px;
-    max-width: 95px;
   }
   // BOOTSTRAP SLIDER
   .slider + input {
@@ -153,14 +145,6 @@ $font_3: 'sans-serif';
   .slider {
     position: relative;
     display: block;
-  }
-  .bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-default,
-  .bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-default {
-    background: #dddddd;
-  }
-  .bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-success,
-  .bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-success {
-    background: $color_curious_blue;
   }
   .slider-handle, {
     background: #000;
@@ -418,9 +402,6 @@ $font_3: 'sans-serif';
     .slider + input {
       width: 20%;
     }
-    .bootstrap-switch .bootstrap-switch-label {
-      background: #f0f0f0;
-    }
   }
   .block-design-wrapper {
     background: white;
@@ -446,14 +427,57 @@ $font_3: 'sans-serif';
     label {
       width: 300px;
     }
-    .bootstrap-switch {
-      left: 300px;
-    }
   }
   .glazed-settings-export {
     width: 100%;
     height: 400px;
     // overflow: auto;
     white-space: pre;
+  }
+  .form-type-checkbox {
+    input[type=checkbox] {
+      position: absolute;
+      width: 0;
+      height: 0;
+      display: none;
+    }
+    label {
+      position: relative;
+      width: 200px;
+      &:before {
+	    content: '';
+        cursor: pointer;
+        text-indent: -9999px;
+        margin: 0;
+        padding: 0;
+        width: 54px;
+        height: 27px;
+        border-radius: 20px;
+        background: $color_suva_gray;
+        display: block;
+        position: absolute;
+        right: -54px;
+        top: 0;
+      }
+      &:after {
+        content: '';
+        position: absolute;
+        top: 3px;
+        right: -24px;
+        width: 21px;
+        height: 21px;
+        background: #fff;
+        border-radius: 50%;
+        transition: 0.3s;
+      }
+    }
+    &.checked {
+	  label:before {
+		background: $color_curious_blue;
+	  }
+	  label:after {
+		right: -51px;
+	  }
+	}
   }
 }
