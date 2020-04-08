@@ -20,5 +20,10 @@ function glazed_checkbox($variables) {
   _form_set_class($element, array(
     'form-checkbox',
   ));
-  return '<input' . drupal_attributes($element['#attributes']) . ' /><span class="switcher"></span>';
+  if (arg(0) == 'admin' && arg(1) == 'appearance' && arg(2) == 'settings' && arg(3)) {
+    return '<input' . drupal_attributes($element['#attributes']) . ' /><span class="switcher"></span>';
+  }
+  else {
+	return '<input' . drupal_attributes($element['#attributes']) . ' />';
+  }
 }
