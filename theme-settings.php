@@ -1,9 +1,16 @@
 <?php
 
+/**
+ * @file
+ */
+
 use Drupal\node\Entity\NodeType;
 use Drupal\Core\File\FileSystemInterface;
 use Drupal\Core\File\Exception\FileException;
 
+/**
+ *
+ */
 function glazed_form_system_theme_settings_alter(&$form, &$form_state, $form_id = NULL) {
   /**
    * @ code
@@ -11,7 +18,8 @@ function glazed_form_system_theme_settings_alter(&$form, &$form_state, $form_id 
    * will contain the color module data. So we ignore the first
    * @see https://www.drupal.org/node/943212
    */
-  if (!isset($form_id)) { // form_id is only present the second time around
+  // form_id is only present the second time around.
+  if (!isset($form_id)) {
     return;
   };
 
@@ -29,7 +37,8 @@ function glazed_form_system_theme_settings_alter(&$form, &$form_state, $form_id 
 
   $img = '<img style="width:35px;margin-right:5px;" src="' . $base_path . $glazed_theme_path . 'logo-white.png" />';
   $form['glazed_settings'] = [
-    '#type' => 'vertical_tabs', // SETTING TYPE TO DETAILS OR VERTICAL_TABS STOPS RENDERING OF ALL ELEMENTS INSIDE
+  // SETTING TYPE TO DETAILS OR VERTICAL_TABS STOPS RENDERING OF ALL ELEMENTS INSIDE.
+    '#type' => 'vertical_tabs',
     '#weight' => -20,
     '#prefix' => '<h2><small>' . $img . ' ' . ucfirst($subject_theme) . ' ' . $themes[$subject_theme]->info['version'] . ' <span class="lead">(Bootstrap ' . $themes['bootstrap']->info['version'] . ')</span>' . '</small></h2>',
   ];
@@ -52,17 +61,18 @@ function glazed_form_system_theme_settings_alter(&$form, &$form_state, $form_id 
    * settings are saved and once after the redirect with the updated settings.
    * @todo come up with a less 'icky' solution
    */
-  require_once(drupal_get_path('theme', 'glazed') . '/glazed_callbacks.inc');
+  require_once drupal_get_path('theme', 'glazed') . '/glazed_callbacks.inc';
   glazed_css_cache_build($subject_theme);
 
   foreach (file_scan_directory(drupal_get_path('theme', 'glazed') . '/features', '/settings.inc/i') as $file) {
     $theme = 'glazed';
-    require_once($file->uri);
+    require_once $file->uri;
   }
   $form['#attached']['library'][] = 'glazed/admin.themesettings';
 
   if ((\Drupal::moduleHandler()->moduleExists('color')) && ($palette = color_get_palette($subject_theme))) {
-    $form['#attached']['drupalSettings']['glazedSettings'] = ['palette' => $palette]; // glazedSetting vs glazed namespace otherwise if deletes other .glazed data
+    // glazedSetting vs glazed namespace otherwise if deletes other .glazed data.
+    $form['#attached']['drupalSettings']['glazedSettings'] = ['palette' => $palette];
   }
 
   array_unshift($form['#submit'], 'glazed_form_system_theme_settings_submit');
@@ -70,61 +80,61 @@ function glazed_form_system_theme_settings_alter(&$form, &$form_state, $form_id 
 }
 
 /**
- * Validate callback for theme settings form
+ * Validate callback for theme settings form.
+ *
  * @see core/modules/system/src/Form/ThemeSettingsForm.php validateForm
  */
 function glazed_form_system_theme_settings_validate(&$form, &$form_state) {
   if (\Drupal::moduleHandler()->moduleExists('file')) {
-      // Handle file uploads.
-      $validators = ['file_validate_is_image' => []];
+    // Handle file uploads.
+    $validators = ['file_validate_is_image' => []];
 
-      // Check for a new uploaded logo.
-      $file = file_save_upload('page_title_image', $validators, FALSE, 0);
-      if (isset($file)) {
-        // File upload was attempted.
-        if ($file) {
-          // Put the temporary file in form_values so we can save it on submit.
-          $form_state->setValue('page_title_image', $file);
-        }
-        else {
-          // File upload failed.
-          $form_state->setErrorByName('page_title_image', t('The logo could not be uploaded.'));
-        }
+    // Check for a new uploaded logo.
+    $file = file_save_upload('page_title_image', $validators, FALSE, 0);
+    if (isset($file)) {
+      // File upload was attempted.
+      if ($file) {
+        // Put the temporary file in form_values so we can save it on submit.
+        $form_state->setValue('page_title_image', $file);
       }
+      else {
+        // File upload failed.
+        $form_state->setErrorByName('page_title_image', t('The logo could not be uploaded.'));
+      }
+    }
 
-      // Check for a new uploaded background image.
-      $file = file_save_upload('background_image', $validators, FALSE, 0);
-      if (isset($file)) {
-        // File upload was attempted.
-        if ($file) {
-          // Put the temporary file in form_values so we can save it on submit.
-          $form_state->setValue('background_image', $file);
-        }
-        else {
-          // File upload failed.
-          $form_state->setErrorByName('background_image', t('The background image could not be uploaded.'));
-        }
+    // Check for a new uploaded background image.
+    $file = file_save_upload('background_image', $validators, FALSE, 0);
+    if (isset($file)) {
+      // File upload was attempted.
+      if ($file) {
+        // Put the temporary file in form_values so we can save it on submit.
+        $form_state->setValue('background_image', $file);
       }
+      else {
+        // File upload failed.
+        $form_state->setErrorByName('background_image', t('The background image could not be uploaded.'));
+      }
+    }
 
-      // If the user provided a path for a logo or background image file, make sure a file
-      // exists at that path.
-      if ($form_state->getValue('page_title_image_path')) {
-        $path = _glazed_validate_path($form_state->getValue('page_title_image_path'));
-        if (!$path) {
-          $form_state->setErrorByName('page_title_image_path', t('The custom logo path is invalid.'));
-        }
+    // If the user provided a path for a logo or background image file, make sure a file
+    // exists at that path.
+    if ($form_state->getValue('page_title_image_path')) {
+      $path = _glazed_validate_path($form_state->getValue('page_title_image_path'));
+      if (!$path) {
+        $form_state->setErrorByName('page_title_image_path', t('The custom logo path is invalid.'));
       }
-      if ($form_state->getValue('background_image_path')) {
-        $path = _glazed_validate_path($form_state->getValue('background_image_path'));
-        if (!$path) {
-          $form_state->setErrorByName('background_image_path', t('The custom background image path is invalid.'));
-        }
+    }
+    if ($form_state->getValue('background_image_path')) {
+      $path = _glazed_validate_path($form_state->getValue('background_image_path'));
+      if (!$path) {
+        $form_state->setErrorByName('background_image_path', t('The custom background image path is invalid.'));
       }
+    }
 
     // Handle file uploads.
     $validators = ['file_validate_is_image' => []];
     // $validators = [];
-
     // Check for a new uploaded logo.
     $file = file_save_upload('page_title_image', $validators, FALSE, 0);
     if (isset($file)) {
@@ -142,56 +152,60 @@ function glazed_form_system_theme_settings_validate(&$form, &$form_state) {
 }
 
 /**
- * Submit callback for theme settings form
+ * Submit callback for theme settings form.
+ *
  * @see core/modules/system/src/Form/ThemeSettingsForm.php submitForm
  */
 function glazed_form_system_theme_settings_submit(&$form, &$form_state) {
-    // If the user uploaded a new image, save it to a permanent location
-    $file_system = \Drupal::service('file_system');
-    $directory = 'public://glazed/images/';
+  // If the user uploaded a new image, save it to a permanent location.
+  $file_system = \Drupal::service('file_system');
+  $directory = 'public://glazed/images/';
 
-    // Create glazed/images directory at the public folder if it doesn't exist.
+  // Create glazed/images directory at the public folder if it doesn't exist.
+  try {
+    $file_system->prepareDirectory($directory, FileSystemInterface::CREATE_DIRECTORY);
+  }
+  catch (FileException $e) {
+    \Drupal::messenger()->addMessage($e->getMessage(), 'error');
+    \Drupal::logger('glazed')->error($e->getMessage());
+  }
+
+  $value = $form_state->getValue('page_title_image');
+  if (!empty($value)) {
+    $form_state->setValue('page_title_image', '');
     try {
-      $file_system->prepareDirectory($directory, FileSystemInterface::CREATE_DIRECTORY);
-    } catch(FileException $e) {
+      $filename = $file_system->copy($value->getFileUri(), $directory . $value->getFilename());
+      $form_state->setValue('page_title_image_path', $filename);
+    }
+    catch (FileException $e) {
       \Drupal::messenger()->addMessage($e->getMessage(), 'error');
       \Drupal::logger('glazed')->error($e->getMessage());
     }
+  }
 
-    $value = $form_state->getValue('page_title_image');
-    if (!empty($value)) {
-      $form_state->setValue('page_title_image', '');
-      try {
-        $filename = $file_system->copy($value->getFileUri(), $directory . $value->getFilename());
-        $form_state->setValue('page_title_image_path', $filename);
-      } catch(FileException $e) {
-        \Drupal::messenger()->addMessage($e->getMessage(), 'error');
-        \Drupal::logger('glazed')->error($e->getMessage());
-      }
+  $value = $form_state->getValue('background_image');
+  if (!empty($value)) {
+    $form_state->setValue('background_image', '');
+    try {
+      $filename = $file_system->copy($value->getFileUri(), $directory . $value->getFilename());
+      $form_state->setValue('background_image_path', $filename);
     }
+    catch (FileException $e) {
+      \Drupal::messenger()->addMessage($e->getMessage(), 'error');
+      \Drupal::logger('glazed')->error($e->getMessage());
+    }
+  }
 
-    $value = $form_state->getValue('background_image');
-    if (!empty($value)) {
-      $form_state->setValue('background_image', '');
-      try {
-        $filename = $file_system->copy($value->getFileUri(), $directory . $value->getFilename());
-        $form_state->setValue('background_image_path', $filename);
-      } catch(FileException $e) {
-        \Drupal::messenger()->addMessage($e->getMessage(), 'error');
-        \Drupal::logger('glazed')->error($e->getMessage());
-      }
-    }
-
-    // If the user entered a path relative to the system files directory for
-    // a logo or favicon, store a public:// URI so the theme system can handle it.
-    if (!empty($form_state->getValue('page_title_image_path'))) {
-      $path = _glazed_validate_path($form_state->getValue('page_title_image_path'));
-      $form_state->setValue('page_title_image_path', $path);
-    }
-    if (!empty($form_state->getValue('background_image_path'))) {
-      $path = _glazed_validate_path($form_state->getValue('background_image_path'));
-      $form_state->setValue('background_image_path', $path);
-    }
+  // If the user entered a path relative to the system files directory for
+  // a logo or favicon, store a public:// URI so the theme system can handle it.
+  if (!empty($form_state->getValue('page_title_image_path'))) {
+    $path = _glazed_validate_path($form_state->getValue('page_title_image_path'));
+    $form_state->setValue('page_title_image_path', $path);
+  }
+  if (!empty($form_state->getValue('background_image_path'))) {
+    $path = _glazed_validate_path($form_state->getValue('background_image_path'));
+    $form_state->setValue('background_image_path', $path);
+  }
 }
 
 /**
@@ -213,13 +227,14 @@ function _glazed_get_color_names($theme = NULL) {
     include $file;
     $theme_info[$theme] = $info['fields'];
     return $info['fields'];
-  } else {
+  }
+  else {
     return [];
   }
 }
 
 /**
- * Color options for theme settings
+ * Color options for theme settings.
  */
 function _glazed_color_options($theme) {
   $colors = [
@@ -232,6 +247,9 @@ function _glazed_color_options($theme) {
   return $colors;
 }
 
+/**
+ *
+ */
 function _glazed_node_types_options() {
   $types = [];
   foreach (NodeType::loadMultiple() as $key => $value) {
@@ -240,6 +258,9 @@ function _glazed_node_types_options() {
   return $types;
 }
 
+/**
+ *
+ */
 function _glazed_type_preview() {
   $output = <<<EOT
 <div class="type-preview">
@@ -275,10 +296,9 @@ EOT;
   return $output;
 }
 
-
-
 /**
  * Helper function for the system_theme_settings form.
+ *
  * @see core/modules/system/src/Form/ThemeSettingsForm.php validatePath
  *
  * Attempts to validate normal system paths, paths relative to the public files
@@ -288,6 +308,7 @@ EOT;
  * @param string $path
  *   A path relative to the Drupal root or to the public files directory, or
  *   a stream wrapper URI.
+ *
  * @return mixed
  *   A valid path that can be displayed through the theme system, or FALSE if
  *   the path could not be validated.
@@ -311,14 +332,16 @@ function _glazed_validate_path($path) {
   return FALSE;
 }
 
-// Change checkbox markup at theme settings
+/**
+ * Change checkbox markup at theme settings.
+ */
 function glazed_preprocess_form_element_label(&$variables) {
   if (\Drupal::routeMatch()->getRouteName() == 'system.theme_settings_theme') {
     // Grab a reference to the element.
     $element = $variables['element'];
 
     if ($element['#is_checkbox'] && !empty($element['#children'])) {
-      $variables['element']['#children'] = $element['#children'].'<span class="switcher"></span>';
+      $variables['element']['#children'] = $element['#children'] . '<span class="switcher"></span>';
     }
   }
 }
