@@ -4,15 +4,6 @@
   "use strict";
 
   $(window).on("load", function() {
-	//checkbox added checked class 
-    $('input:checkbox').each(function() {
-      if($(this).is(':checked')) $(this).parent().addClass('checked');
-    });
-    $('input:checkbox').change(function() {
-      $('input:not(:checked)').parent().removeClass("checked");
-      $('input:checked').parent().addClass("checked");
-    });
-
     // remove color module locks, they are broken when bootstrap theme loads
     $('.color-palette__lock, .color-palette__hook').remove();
   });

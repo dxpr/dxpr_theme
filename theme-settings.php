@@ -310,3 +310,15 @@ function _glazed_validate_path($path) {
   }
   return FALSE;
 }
+
+// Change checkbox markup at theme settings
+function glazed_preprocess_form_element_label(&$variables) {
+  if (\Drupal::routeMatch()->getRouteName() == 'system.theme_settings_theme') {
+    // Grab a reference to the element.
+    $element = $variables['element'];
+
+    if ($element['#is_checkbox'] && !empty($element['#children'])) {
+      $variables['element']['#children'] = $element['#children'].'<span class="switcher"></span>';
+    }
+  }
+}
