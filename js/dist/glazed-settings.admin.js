@@ -7,15 +7,6 @@
     // Re-call attachBehaviors, without this the states.js api doens't work on radios
     Drupal.attachBehaviors('#system-theme-settings');
 
-    //checkbox added checked class
-    $('input:checkbox').each(function() {
-	  if($(this).is(':checked')) $(this).parent().addClass('checked');
-	});
-	$('input:checkbox').change(function() {
-	  $('input:not(:checked)').parent().removeClass("checked");
-	  $('input:checked').parent().addClass("checked");
-	});
-
     // remove color module locks, they are broken when bootstrap theme loads
     // $('.lock, .hook').remove();
   });
