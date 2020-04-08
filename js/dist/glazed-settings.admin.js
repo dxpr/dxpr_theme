@@ -36,18 +36,6 @@
         return color;
       }
 
-      // CONVERT CHECKBOXES TO SWITCHES
-      $.fn.bootstrapSwitch.defaults.onColor = "success";
-      $.fn.bootstrapSwitch.defaults.onText = "On";
-      $.fn.bootstrapSwitch.defaults.offText = "Off";
-      $.fn.bootstrapSwitch.defaults.size = "small";
-      $.fn.bootstrapSwitch.defaults.onSwitchChange = function(event, state) {
-        // This patched up incompatibility with $ <1.10
-        // https://github.com/nostalgiaz/bootstrap-switch/issues/474
-        $(this).trigger('change');
-        setTimeout(function(){ $('.slider + input').bootstrapSlider('relayout'); }, 10);
-      };
-      $("[type='checkbox']").bootstrapSwitch();
 
       // BOOTSTRAP SLIDER CONFIG
 
@@ -499,7 +487,6 @@
         $('#edit-block-divider-thickness').bootstrapSlider('setValue', parseInt($('#edit-divider-thickness').val()));
         $('#edit-block-divider-length').bootstrapSlider('setValue', parseInt($('#edit-divider-length').val()));
         $('#edit-block-divider-spacing').bootstrapSlider('setValue', 10);
-        $('#edit-block-divider, #edit-block-divider-custom, #edit-title-sticker').bootstrapSwitch('state', false);
         $('#edit-block-background-custom, #edit-title-background-custom, #edit-block-divider-color-custom').val('');
         $('#edit-block-advanced select').val('');
         $('#edit-title-align-left').prop("checked", true);
@@ -539,14 +526,12 @@
           case 'title_sticker':
             $('#edit-title-well').val('well glazed-util-background-gray');
             $('#edit-title-padding').bootstrapSlider('setValue', 10);
-            $('#edit-title-sticker').bootstrapSwitch('state', true);
             $('#edit-title-font-size-body').prop("checked", true);
             break;
           case 'title_sticker_color':
             $('#edit-title-font-size-body').prop("checked", true);
             $('#edit-title-padding').bootstrapSlider('setValue', 10);
             $('#edit-title-well').val('well bg-primary');
-            $('#edit-title-sticker').bootstrapSwitch('state', true);
             break;
           case 'title_outline':
             $('#edit-title-padding').bootstrapSlider('setValue', 15);
@@ -554,12 +539,7 @@
             $('#edit-title-border-color').val('text');
             $('#edit-title-font-size-h4').prop("checked", true);
             break;
-          case 'default_divider':
-            $('#edit-block-divider').bootstrapSwitch('state', true);
-            break;
           case 'hairline_divider':
-            $('#edit-block-divider').bootstrapSwitch('state', true);
-            $('#edit-block-divider-custom').bootstrapSwitch('state', true);
             $('#edit-block-divider-thickness').bootstrapSlider('setValue', 1);
             break;
         }
@@ -646,8 +626,8 @@
         $('.type-preview h1, .type-preview h2, .type-preview h3, .type-preview h4')
           .css('letter-spacing', $(this).bootstrapSlider('getValue') + 'em');
       });
-      $('#edit-headings-uppercase').on('switchChange.bootstrapSwitch', function(event, state) {
-        if (state) {
+      $('#edit-headings-uppercase').click(function() {
+        if ($(this).prop("checked") == true) {
           $('.type-preview h1, .type-preview h2, .type-preview h3, .type-preview h4').css('text-transform', 'uppercase');
         }
         else {
@@ -710,8 +690,8 @@
       $('#edit-title-background-custom').bind('keyup change', function() {
         $('.block-preview .block-title').css('background-color', $(this).val());
       });
-      $('#edit-title-sticker').on('switchChange.bootstrapSwitch', function(event, state) {
-        if (state) {
+      $('#edit-title-sticker').click(function() {
+        if ($(this).prop("checked") == true) {
           $('.block-preview .block-title').css('display', 'inline-block');
         }
         else {
@@ -740,8 +720,8 @@
       if ($('#edit-block-divider:checked').length == 0) {
         $('.block-preview hr').hide();
       }
-      $('#edit-block-divider').on('switchChange.bootstrapSwitch', function(event, state) {
-        if (state) {
+      $('#edit-block-divider').click(function() {
+        if ($(this).prop("checked") == true) {
           $('.block-preview hr').show();
         }
         else {
