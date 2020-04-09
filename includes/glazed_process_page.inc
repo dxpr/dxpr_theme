@@ -1,6 +1,10 @@
 <?php
 
 /**
+ * @file
+ */
+
+/**
  * Override or insert variables into the page template.
  */
 function glazed_process_page(&$vars) {

@@ -1,10 +1,15 @@
 <?php
 
 /**
+ * @file
+ */
+
+/**
  * Returns HTML for status and/or error messages, grouped by type.
  *
  * Overriding the bootstrap basetheme hack that does extra filtering
  * Restoring this with Drupal 7 core function body.
+ *
  * @see https://www.drupal.org/node/2824575
  *
  * @param array $variables

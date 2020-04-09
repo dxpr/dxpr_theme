@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Default theme implementation to display a node.
@@ -102,7 +103,8 @@
   <footer class="cms-blog-links">
     <div class="row">
       <div class="col-sm-4 text-center">
-        <?php  if (isset($comment_count)): print $comment_count; endif; ?> <em class="text-muted"><?php print t('Comments'); ?></em>
+        <?php  if (isset($comment_count)): print $comment_count;
+        endif; ?> <em class="text-muted"><?php print t('Comments'); ?></em>
       </div>
       <div class="col-sm-4 text-center glazed-service-links">
         <?php print render($content['links']); ?>

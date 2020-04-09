@@ -1,7 +1,11 @@
 <?php
 
 /**
- * Override menu link to support multilevel dropdowns
+ * @file
+ */
+
+/**
+ * Override menu link to support multilevel dropdowns.
  *
  * @param array $variables
  *   An associative array containing:
@@ -46,10 +50,9 @@ function glazed_menu_link(array $variables) {
       $sub_menu = '<ul class="glazed-megamenu">' . drupal_render($element['#below']) . '</ul>';
       // $element['#attributes']['class'][] = 'megamenu';
       // $element['#localized_options']['html'] = TRUE;
-
       // Set dropdown trigger element to # to prevent inadvertant page loading
       // when a submenu link is clicked.
-      // $element['#localized_options']['attributes']['data-target'] = '#';
+      // $element['#localized_options']['attributes']['data-target'] = '#';.
       $element['#localized_options']['attributes']['class'][] = 'glazed-megamenu__heading';
     }
   }

@@ -1,6 +1,10 @@
 <?php
 
 /**
+ * @file
+ */
+
+/**
  * Implements template_preprocess_page().
  */
 function glazed_preprocess_page(&$vars) {
@@ -13,7 +17,7 @@ function glazed_preprocess_page(&$vars) {
   }
 
   // Render field collection object into simple array structure
-  // We abort on finding arg(2) to avoid using fancy headers on /edit and /devel etc
+  // We abort on finding arg(2) to avoid using fancy headers on /edit and /devel etc.
   if ((arg(0) == 'node') && is_numeric(arg(1)) && !arg(2)
     && !empty($vars['node']->field_glazed_content_design)
     && isset($vars['node']->field_glazed_content_design['und'][0]['value'])
@@ -27,7 +31,7 @@ function glazed_preprocess_page(&$vars) {
       'field_glazed_content_region',
       'field_glazed_header_mode',
       'field_glazed_header_position',
-      'field_glazed_header_style'
+      'field_glazed_header_style',
     );
     $entity_id = $vars['node']->field_glazed_content_design['und'][0]['value'];
     $content_design = glazed_rows_from_field_collection($entity_id, $field_array);
@@ -50,7 +54,7 @@ function glazed_preprocess_page(&$vars) {
     }
   }
 
-  // Boxed / Full-width Layout
+  // Boxed / Full-width Layout.
   $vars['boxed_cnt'] = $vars['boxed_cnt_end'] = '';
   if (isset($content_design['field_page_layout'])) {
     if ($content_design['field_page_layout'] == 'boxed') {
@@ -62,7 +66,7 @@ function glazed_preprocess_page(&$vars) {
     $vars['boxed_cnt'] = '<div class="glazed-boxed-container">';
     $vars['boxed_cnt_end'] = '</div>';
   }
-  // Full width regions
+  // Full width regions.
   (theme_get_setting('full_width_containers')) ? $fwc = theme_get_setting('full_width_containers') : $fwc = array(
     'cnt_footer' => 0,
     'cnt_secondary_header' => 0,
@@ -90,7 +94,7 @@ function glazed_preprocess_page(&$vars) {
       $vars[$key] = 'container';
     }
   }
-  // Full width content types
+  // Full width content types.
   if (!($types = theme_get_setting('full_width_content_types'))) {
     $sitetypes = array_keys(node_type_get_types());
     $types = array();
@@ -104,10 +108,10 @@ function glazed_preprocess_page(&$vars) {
   $vars['content_row_class'] = ' class="row"';
   $vars['content_container_class'] = ' class="container main-container clearfix"';
   if (($fwc['cnt_content'] == 1)
-      OR (isset($vars['node'])
+      or (isset($vars['node'])
       && (((array_key_exists($vars['node']->type, $types))
       && ($types[$vars['node']->type]))
-      OR (isset($content_design) && ($content_design['field_glazed_content_region'] == 'glazed-util-full-width-content'))))
+      or (isset($content_design) && ($content_design['field_glazed_content_region'] == 'glazed-util-full-width-content'))))
       && empty($vars['page']['sidebar_first'])
       && empty($vars['page']['sidebar_second'])) {
     $vars['content_column_class'] = '';
@@ -119,7 +123,7 @@ function glazed_preprocess_page(&$vars) {
     $vars['cnt_page_title_full_width'] = '';
   }
 
-  // override any of the above conditions
+  // Override any of the above conditions.
   if (isset($content_design)
     && isset($content_design['field_glazed_content_region'])
     && ($content_design['field_glazed_content_region'] != 'glazed-util-full-width-content')) {
@@ -127,12 +131,15 @@ function glazed_preprocess_page(&$vars) {
       case 'glazed-util-content-center-4-col':
         $vars['content_column_class'] = ' class="col-md-4 col-md-offset-4"';
         break;
+
       case 'glazed-util-content-center-6-col':
         $vars['content_column_class'] = ' class="col-md-6 col-md-offset-3"';
         break;
+
       case 'glazed-util-content-center-8-col':
         $vars['content_column_class'] = ' class="col-md-8 col-md-offset-2"';
         break;
+
       case 'glazed-util-content-center-10-col':
         $vars['content_column_class'] = ' class="col-md-10 col-md-offset-1"';
         break;
@@ -140,18 +147,19 @@ function glazed_preprocess_page(&$vars) {
     $vars['content_row_class'] = ' class="row"';
   }
 
-  // Page Title Hiding
+  // Page Title Hiding.
   if ((theme_get_setting('page_title_home_hide') !== 0) && $vars['is_front']) {
     $vars['title'] = '';
   }
 
   if ($vars['is_front'] && theme_get_setting('stlink')) {
     $vars['sooperthemes_attribution_link'] = glazed_attribution_link();
-  } else {
+  }
+  else {
     $vars['sooperthemes_attribution_link'] = '';
   }
 
-  // Glazed Header
+  // Glazed Header.
   $vars['glazed_header_classes'] = array('navbar', 'glazed-header');
   if (isset($content_design['field_glazed_header_mode'])) {
     $header_mode = $content_design['field_glazed_header_mode'];
@@ -165,15 +173,15 @@ function glazed_preprocess_page(&$vars) {
     }
   }
   if ($header_mode == 'side') {
-    // Side Header
+    // Side Header.
     $vars['glazed_header_classes'][] = 'glazed-header--side';
     $vars['glazed_header_classes'][] = theme_get_setting('header_side_align');
   }
   else {
-    // Top Header
+    // Top Header.
     $vars['glazed_header_classes'][] = 'glazed-header--top';
 
-    // Header Layout Logo left/center/right etc
+    // Header Layout Logo left/center/right etc.
     if (isset($content_design['field_header_layout'])) {
       $header_layout = $content_design['field_header_layout'];
       $vars['glazed_header_classes'][] = 'glazed-header--' . drupal_html_class($header_layout);
@@ -182,7 +190,7 @@ function glazed_preprocess_page(&$vars) {
       $vars['glazed_header_classes'][] = 'glazed-header--' . drupal_html_class($header_layout);
     }
 
-    // Header Style Normal/Overlay/Pull-Down
+    // Header Style Normal/Overlay/Pull-Down.
     if (isset($content_design['field_glazed_header_style'])) {
       $header_style = $content_design['field_glazed_header_style'];
       $vars['glazed_header_classes'][] = 'glazed-header--' . drupal_html_class($header_style);
@@ -192,7 +200,7 @@ function glazed_preprocess_page(&$vars) {
     }
 
     // Layout Position Static/Fixed/Sticky
-    // Header Style Normal/Overlay/Pull-Down
+    // Header Style Normal/Overlay/Pull-Down.
     if (isset($content_design['field_glazed_header_position'])) {
       $vars['glazed_header_classes'][] = 'glazed-header--' . $content_design['field_glazed_header_position'];
       if ($content_design['field_glazed_header_position'] == 'sticky') {
@@ -220,7 +228,7 @@ function glazed_preprocess_page(&$vars) {
   else {
     $vars['menu_has_children'] = '';
   }
-  // Menu Hover Style
+  // Menu Hover Style.
   if (isset($content_design['field_menu_hover_effect'])) {
     $header_menu_hover_effect = $content_design['field_menu_hover_effect'];
     $vars['glazed_header_classes'][] = 'glazed-header--hover-' . drupal_html_class($header_menu_hover_effect);
@@ -231,15 +239,17 @@ function glazed_preprocess_page(&$vars) {
 
   $vars['glazed_header_classes'] = implode(' ', $vars['glazed_header_classes']);
 
-  // Glazed Secondary Header
+  // Glazed Secondary Header.
   $vars['glazed_secondary_header_classes'] = array('glazed-secondary-header');
   switch (theme_get_setting('secondary_header_hide')) {
     case 'hidden_xs':
       $vars['glazed_secondary_header_classes'][] = 'hidden-xs';
       break;
+
     case 'hidden_sm':
-     $vars['glazed_secondary_header_classes'] += array('hidden-xs', 'hidden-sm');
+      $vars['glazed_secondary_header_classes'] += array('hidden-xs', 'hidden-sm');
       break;
+
     case 'hidden_md':
       $vars['glazed_secondary_header_classes'] += array('hidden-xs', 'hidden-sm', 'hidden-md');
       break;
@@ -252,7 +262,7 @@ function glazed_preprocess_page(&$vars) {
   }
   $vars['glazed_secondary_header_classes'] = implode(' ', $vars['glazed_secondary_header_classes']);
 
-  // Page Title
+  // Page Title.
   $vars['glazed_title_classes'] = array('page-title');
   if (theme_get_setting('page_title_animate')) {
     $vars['glazed_title_classes'][] = 'animated';
@@ -260,19 +270,19 @@ function glazed_preprocess_page(&$vars) {
   }
   $vars['glazed_title_classes'] = implode(' ', $vars['glazed_title_classes']);
 
-  // CSS to load on every page
+  // CSS to load on every page.
   $page_css = array(
-    // Overrides
+    // Overrides.
     '/css/vendor-extensions/bootstrap-3.css',
     '/css/vendor-extensions/bootstrap-theme.css',
-    // GLAZED BASE
+    // GLAZED BASE.
     '/css/base/forms.css',
     '/css/base/layout.css',
     '/css/base/page-title.css',
     '/css/base/typography.css',
-    // GLAZED Components
+    // GLAZED Components.
     '/css/components/glazed-sidebar--menu.css',
-    // HELPERS
+    // HELPERS.
     '/css/helpers/helper-classes.css',
   );
   if (($vars['page']['secondary_header']) || ($vars['secondary_nav'])) {
@@ -288,7 +298,8 @@ function glazed_preprocess_page(&$vars) {
     $page_css[] = '/css/base/footer-menu.css';
   }
   if ($vars['tabs']['#secondary']) {
-    $page_css[] = '/css/vendor-extensions/drupal-pager.css'; // secondary tabs use bootstrap "pager" styling
+    // Secondary tabs use bootstrap "pager" styling.
+    $page_css[] = '/css/vendor-extensions/drupal-pager.css';
   }
   foreach ($page_css as $css) {
     drupal_add_css($theme_path . $css, array('group' => CSS_THEME, 'every_page' => TRUE));

@@ -1,23 +1,27 @@
 <?php
 
 /**
+ * @file
+ */
+
+/**
  * Implements template_preprocess_node()
  */
 function glazed_preprocess_node(&$vars) {
   global $theme, $theme_path;
   // There is a bug that makes global variable $theme_path return the base theme
-  // path instead of the active theme path, hence the custom variable below
+  // path instead of the active theme path, hence the custom variable below.
   $theme_path_custom = drupal_get_path('theme', $theme);
   // ALL NODES
-  // remove "add comment link. it's silly because the comment form will be right there in our theme"
+  // remove "add comment link. it's silly because the comment form will be right there in our theme".
   if (isset($vars['content']['links']['comment'])) {
     unset($vars['content']['links']['comment']);
   }
-  // Hide byline on all teasers
+  // Hide byline on all teasers.
   if ($vars['teaser']) {
     $vars['display_submitted'] = FALSE;
   }
-  // Next / Prev pager
+  // Next / Prev pager.
   $vars['prevnext'] = '';
   if ($vars['view_mode'] == 'full') {
     $types = theme_get_setting('prevnext_content_types');
@@ -40,16 +44,16 @@ function glazed_preprocess_node(&$vars) {
     }
   }
 
-  // BLOG NODES
+  // BLOG NODES.
   if ($vars['type'] == 'blog') {
     $_created_date = format_date($vars['node']->created, 'custom', 'M j, Y');
     $vars['submitted'] = '<em class="text-muted">' . $_created_date . ' ' . t('By') . ' </em> <span class="glazed-util-text-uppercase">' . check_plain(format_username($vars['node'])) . '</span>';
   }
-  // NEWS NODES
+  // NEWS NODES.
   if ($vars['type'] == 'news') {
-    $vars['submitted'] = t('Posted on !datetime', array( '!datetime' => format_date($vars['node']->created, 'custom', 'l, F j, Y')));
+    $vars['submitted'] = t('Posted on !datetime', array('!datetime' => format_date($vars['node']->created, 'custom', 'l, F j, Y')));
   }
-  // EVENT NODES
+  // EVENT NODES.
   if ($vars['type'] == 'event') {
     if (!empty($vars['field_event_registration']['und'][0]['registration_type'])
       && function_exists('registration_event_count')) {
@@ -66,14 +70,14 @@ function glazed_preprocess_node(&$vars) {
       else {
         $available = $settings['capacity'] - $count;
       }
-        $vars['registration_event_count'] = '<h3 class="field-label">' . t('Spaces') . '</h3><div class="field-event-spaces">' . $capacity . '</div>';
-        $vars['registration_event_capacity'] = '<h3 class="field-label">' . t('Available spaces') . '</h3><div class="field-event-spaces-available">' . $available . '</div>';
+      $vars['registration_event_count'] = '<h3 class="field-label">' . t('Spaces') . '</h3><div class="field-event-spaces">' . $capacity . '</div>';
+      $vars['registration_event_capacity'] = '<h3 class="field-label">' . t('Available spaces') . '</h3><div class="field-event-spaces-available">' . $available . '</div>';
     }
   }
-  // PORTFOLIO NODES
+  // PORTFOLIO NODES.
   if (($vars['type'] == 'portfolio') && ($vars['view_mode'] == 'full')) {
     // Hide portfolio images if hide mode is selected. this is useful if you
-    // want to show the images in a custom case study layout
+    // want to show the images in a custom case study layout.
     $hide = FALSE;
     if (!empty($vars['field_image_display_style']) && $vars['field_image_display_style']['und'][0]['value'] == 'hide') {
       $hide = TRUE;
@@ -84,7 +88,7 @@ function glazed_preprocess_node(&$vars) {
     if ($hide && isset($vars['content']['group_portfolio_images']['field_portfolio_images'])) {
       hide($vars['content']['group_portfolio_images']['field_portfolio_images']);
     }
-    // Load Lightbox assets if gallery grid is selected
+    // Load Lightbox assets if gallery grid is selected.
     $lightbox = FALSE;
     if (!empty($vars['field_image_display_style']) && $vars['field_image_display_style']['und'][0]['value'] == 'grid') {
       $lightbox = TRUE;
@@ -102,11 +106,10 @@ function glazed_preprocess_node(&$vars) {
     }
   }
 
-  // Render node CSS
-
+  // Render node CSS.
   // Get node object
   // Somehow node_load causes $node->field_glazed_content_design['und][0]['value']
-  // to move to $node->field_glazed_content_design[0]['value'] in glazed_preprocess_html
+  // to move to $node->field_glazed_content_design[0]['value'] in glazed_preprocess_html.
   // @see glazed_preprocess_html.inc
   // We abort on finding arg(2) to avoid using fancy headers on /edit and /devel etc
   if ((arg(0) == 'node') && is_numeric(arg(1)) && !arg(2)) {
@@ -141,9 +144,9 @@ function glazed_preprocess_node(&$vars) {
       $entity_id = $node->field_glazed_content_design['und'][0]['value'];
       $content_design = glazed_rows_from_field_collection($entity_id, $field_array);
 
-      // COLLECT CSS
+      // COLLECT CSS.
       $CSS = '';
-      // BODY BACKGROUND AND PAGE TITLE BACKGROUND
+      // BODY BACKGROUND AND PAGE TITLE BACKGROUND.
       if (isset($content_design['field_glazed_body_image'])) {
         $url = file_create_url($content_design['field_glazed_body_image']['uri']);
         $CSS .= "body { background-image: url('" . $url . "') !important; }\n\n";
@@ -152,7 +155,7 @@ function glazed_preprocess_node(&$vars) {
         $url = file_create_url($content_design['field_glazed_header_image']['uri']);
         $CSS .= ".page-title-full-width-container:after { background-image: url('" . $url . "') !important; }\n\n";
       }
-      // STYLES THAT USE HEADER HEIGHT
+      // STYLES THAT USE HEADER HEIGHT.
       if ($header_top_height = $content_design['field_header_height']) {
         $header_top_height_scroll = theme_get_setting('header_top_height_scroll');
         $CSS .= <<<EOT
@@ -193,8 +196,7 @@ EOT;
         $CSS .= ".body--glazed-nav-desktop.body--glazed-header-not-overlay #navbar.glazed-header--top .col-sm-12 {\n margin-bottom: 0; }\n\n";
       }
 
-
-      // CUSTOM NAVIGATION COLORS
+      // CUSTOM NAVIGATION COLORS.
       if ($value = $content_design['field_header_background']) {
         $CSS .= ".html.body--glazed-nav-desktop  #navbar.glazed-header--top { background-color: $value }\n\n";
       }
@@ -234,7 +236,7 @@ EOT;
       if ($value = $content_design['field_dropdown_hover_text_color']) {
         $CSS .= ".html #navbar.glazed-header--top .dropdown-menu a:hover,#navbar.glazed-header--top .dropdown-menu a:focus { color: $value }\n\n";
       }
-      // SIDE HEADER
+      // SIDE HEADER.
       if ($value = $content_design['field_side_header_background']) {
         $CSS .= "#navbar.glazed-header--side .menu__level, #navbar.glazed-header--side .glazed-main-menu { background-color: $value }\n\n";
       }

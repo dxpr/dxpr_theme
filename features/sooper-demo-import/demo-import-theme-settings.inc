@@ -1,7 +1,11 @@
 <?php
 
 /**
- * Helper function export settings to .info format
+ * @file
+ */
+
+/**
+ * Helper function export settings to .info format.
  *
  * @return string
  *   The full .info settings.
@@ -9,7 +13,7 @@
 function _glazed_settings_export($theme) {
   $settings = variable_get('theme_' . $theme . '_settings');
   if (!$settings) {
-    return false;
+    return FALSE;
   }
   unset(
     $settings['glazed_settings__active_tab'],
@@ -27,7 +31,7 @@ function _glazed_settings_export($theme) {
 
 /**
  * Helper function to build the contents of the .info file.
- * Based on Magic module's _magic_build_info_file
+ * Based on Magic module's _magic_build_info_file.
  *
  * This function will take the current theme information, and create the export
  * based upon the current info file and settings saved within the database.
@@ -48,7 +52,7 @@ function _glazed_build_info_file($array, $prefix = '') {
     }
     else {
       if (is_string($value)) {
-        $value = '"' .str_replace('"', "'", $value) . '"';
+        $value = '"' . str_replace('"', "'", $value) . '"';
       }
       $info .= $prefix ? ("{$prefix}[$key]") : $key;
       $info .= " = " . str_replace("'", "\'", $value) . "\n";
@@ -97,7 +101,7 @@ $form['glazed_settings']['import_export']['demo_import'] = array(
   '#type' => 'fieldset',
   '#description' => t("Demo content packages will help learn to use Glazed elements and modules. If you are on very poor hosting import packages one by one to avoid timeout issues. If you disable a demo content package it won't delete any content! Imported content can only be removed manually."),
   '#collapsible' => TRUE,
-  '#collapsed' => TRUE
+  '#collapsed' => TRUE,
 );
 
 $form['glazed_settings']['import_export']['demo_import'] = array(
@@ -105,7 +109,7 @@ $form['glazed_settings']['import_export']['demo_import'] = array(
   '#type' => 'fieldset',
   '#description' => t("Demo content packages will help you get started quickly and learn to use Glazed elements and modules."),
   '#collapsible' => TRUE,
-  '#collapsed' => TRUE
+  '#collapsed' => TRUE,
 );
 
 $form['glazed_settings']['import_export']['subtheme_demo_import'] = array(
@@ -113,7 +117,7 @@ $form['glazed_settings']['import_export']['subtheme_demo_import'] = array(
   '#type' => 'fieldset',
   '#description' => t("Demo content packages will help you get started quickly and learn to use Glazed elements and modules."),
   '#collapsible' => TRUE,
-  '#collapsed' => TRUE
+  '#collapsed' => TRUE,
 );
 
 if (module_exists('uuid_features')) {
@@ -121,7 +125,7 @@ if (module_exists('uuid_features')) {
   module_load_include('inc', 'features', 'features.admin');
   $demo_content_modules = array_filter(_features_get_features_list(), '_glazed_is_demo_content_exclude_subtheme');
 
-  usort($demo_content_modules, function($a, $b) {
+  usort($demo_content_modules, function ($a, $b) {
     return (count($a->info['features']['uuid_node']) < count($b->info['features']['uuid_node'])) ? 1 : -1;
   });
 
@@ -153,7 +157,7 @@ $form['glazed_settings']['import_export']['subtheme_demo_import'] = array(
   '#type' => 'fieldset',
   '#description' => t("Demo content packages will help you get started quickly and learn to use Glazed elements and modules."),
   '#collapsible' => TRUE,
-  '#collapsed' => TRUE
+  '#collapsed' => TRUE,
 );
 
 if (module_exists('uuid_features')) {
@@ -161,7 +165,7 @@ if (module_exists('uuid_features')) {
   module_load_include('inc', 'features', 'features.admin');
   $demo_content_modules = array_filter(_features_get_features_list(), '_glazed_is_subtheme');
 
-  usort($demo_content_modules, function($a, $b) {
+  usort($demo_content_modules, function ($a, $b) {
     return (count($a->info['features']['uuid_node']) < count($b->info['features']['uuid_node'])) ? 1 : -1;
   });
 

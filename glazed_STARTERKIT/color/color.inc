@@ -1,8 +1,13 @@
 <?php
-  //color schemes
-  $info = array(
 
-  // Images to copy over
+/**
+ * @file
+ * Color schemes.
+ */
+
+$info = array(
+
+  // Images to copy over.
   'copy' => array(
     'logo.png',
     'logo.svg',
@@ -11,13 +16,13 @@
 
   // CSS files (excluding @import) to rewrite with new color scheme.
   'css' => array(
-    // GLAZED BASE
+    // GLAZED BASE.
     'css/base/footer-menu.css',
     'css/base/forms.css',
     'css/base/layout.css',
     'css/base/page-title.css',
     'css/base/typography.css',
-    // GLAZED Components
+    // GLAZED Components.
     'css/components/glazed-full-screen-search.css',
     'css/components/glazed-header.css',
     'css/components/glazed-header--top.css',
@@ -25,7 +30,7 @@
     'css/components/glazed-header--mobile.css',
     'css/components/glazed-secondary-header.css',
     'css/components/glazed-sidebar--menu.css',
-    // Overrides
+    // Overrides.
     'css/vendor-extensions/bootstrap-3.css',
     'css/vendor-extensions/bootstrap-theme.css',
     'css/vendor-extensions/jquery-ui.css',
@@ -34,30 +39,27 @@
     'css/vendor-extensions/drupal-media-browser.css',
     'css/vendor-extensions/drupal-pager.css',
     'css/components/drupal-prevnext.css',
-    // HELPERS
+    // HELPERS.
     'css/helpers/helper-classes.css',
   ),
 
   // Color areas to fill (x, y, width, height)
-  'fill' => array(
-  ),
+  'fill' => array(),
 
   // Gradient definitions.
-  'gradients' => array(
-  ),
+  'gradients' => array(),
 
   // Coordinates of all the theme slices (x, y, width, height)
   // with their filename as used in the stylesheet.
-  'slices' => array(
-  ),
+  'slices' => array(),
 
-  // color preview css
+  // Color preview css.
   'preview_css' => '',
 
-  // Base file for image generation
+  // Base file for image generation.
   'base_image' => 'glazed-favicon-transparent.png',
 
-  //  blend target
+  // Blend target.
   'blend_target' => '#ffffff',
 
   // Available colors and color labels used in theme.

@@ -1,4 +1,9 @@
 <?php
+
+/**
+ * @file
+ */
+
 $form['glazed_settings']['typography'] = array(
   '#title' => t('Typography'),
   '#type' => 'fieldset',
@@ -9,7 +14,7 @@ $form['glazed_settings']['typography'] = array(
 $form['glazed_settings']['typography']['body_line_height'] = array(
   '#type' => 'textfield',
   '#title' => t('Body Line Height'),
-  '#default_value' => ((theme_get_setting('body_line_height') !== null)) ? theme_get_setting('body_line_height') : '1.42857',
+  '#default_value' => ((theme_get_setting('body_line_height') !== NULL)) ? theme_get_setting('body_line_height') : '1.42857',
   '#attributes' => array('class' => array('line-height-slider')),
   '#size' => 9,
   '#maxlength' => 9,
@@ -18,7 +23,7 @@ $form['glazed_settings']['typography']['body_line_height'] = array(
 $form['glazed_settings']['typography']['body_font_size'] = array(
   '#type' => 'textfield',
   '#title' => t('Body Font Size'),
-  '#default_value' => ((theme_get_setting('body_font_size') !== null)) ? theme_get_setting('body_font_size') : '14',
+  '#default_value' => ((theme_get_setting('body_font_size') !== NULL)) ? theme_get_setting('body_font_size') : '14',
   '#size' => 9,
   '#maxlength' => 9,
 );
@@ -26,7 +31,7 @@ $form['glazed_settings']['typography']['body_font_size'] = array(
 $form['glazed_settings']['typography']['nav_font_size'] = array(
   '#type' => 'textfield',
   '#title' => t('Main menu Font Size'),
-  '#default_value' => ((theme_get_setting('nav_font_size') !== null)) ? theme_get_setting('nav_font_size') : '14',
+  '#default_value' => ((theme_get_setting('nav_font_size') !== NULL)) ? theme_get_setting('nav_font_size') : '14',
   '#size' => 9,
   '#maxlength' => 9,
 );
@@ -34,7 +39,7 @@ $form['glazed_settings']['typography']['nav_font_size'] = array(
 $form['glazed_settings']['typography']['headings_line_height'] = array(
   '#type' => 'textfield',
   '#title' => t('Headings Line Height'),
-  '#default_value' => ((theme_get_setting('headings_line_height') !== null)) ? theme_get_setting('headings_line_height') : '1.05',
+  '#default_value' => ((theme_get_setting('headings_line_height') !== NULL)) ? theme_get_setting('headings_line_height') : '1.05',
   '#attributes' => array('class' => array('line-height-slider')),
   '#size' => 9,
   '#maxlength' => 9,
@@ -43,7 +48,7 @@ $form['glazed_settings']['typography']['headings_line_height'] = array(
 $form['glazed_settings']['typography']['scale_factor'] = array(
   '#type' => 'textfield',
   '#title' => t('Typography Scale Factor') . ' <small>' . t('(This overrides advanced type controls)') . '</small>',
-  '#default_value' => ((theme_get_setting('scale_factor') !== null)) ? theme_get_setting('scale_factor') : '1.25',
+  '#default_value' => ((theme_get_setting('scale_factor') !== NULL)) ? theme_get_setting('scale_factor') : '1.25',
   '#size' => 9,
   '#maxlength' => 9,
 );
@@ -60,7 +65,7 @@ $form['glazed_settings']['typography']['advanced_type'] = array(
 $form['glazed_settings']['typography']['advanced_type']['h1_font_size'] = array(
   '#type' => 'textfield',
   '#title' => t('H1 Font Size (Page Title)'),
-  '#default_value' => ((theme_get_setting('h1_font_size') !== null)) ? theme_get_setting('h1_font_size') : '36',
+  '#default_value' => ((theme_get_setting('h1_font_size') !== NULL)) ? theme_get_setting('h1_font_size') : '36',
   '#attributes' => array('class' => array('font-size-slider')),
   '#size' => 9,
   '#maxlength' => 9,
@@ -69,7 +74,7 @@ $form['glazed_settings']['typography']['advanced_type']['h1_font_size'] = array(
 $form['glazed_settings']['typography']['advanced_type']['h2_font_size'] = array(
   '#type' => 'textfield',
   '#title' => t('H2 Font Size'),
-  '#default_value' => ((theme_get_setting('h2_font_size') !== null)) ? theme_get_setting('h2_font_size') : '30',
+  '#default_value' => ((theme_get_setting('h2_font_size') !== NULL)) ? theme_get_setting('h2_font_size') : '30',
   '#attributes' => array('class' => array('font-size-slider')),
   '#size' => 9,
   '#maxlength' => 9,
@@ -78,7 +83,7 @@ $form['glazed_settings']['typography']['advanced_type']['h2_font_size'] = array(
 $form['glazed_settings']['typography']['advanced_type']['h3_font_size'] = array(
   '#type' => 'textfield',
   '#title' => t('H3 Font Size'),
-  '#default_value' => ((theme_get_setting('h3_font_size') !== null)) ? theme_get_setting('h3_font_size') : '24',
+  '#default_value' => ((theme_get_setting('h3_font_size') !== NULL)) ? theme_get_setting('h3_font_size') : '24',
   '#attributes' => array('class' => array('font-size-slider')),
   '#size' => 9,
   '#maxlength' => 9,
@@ -87,7 +92,7 @@ $form['glazed_settings']['typography']['advanced_type']['h3_font_size'] = array(
 $form['glazed_settings']['typography']['advanced_type']['h4_font_size'] = array(
   '#type' => 'textfield',
   '#title' => t('H4 Font Size'),
-  '#default_value' => ((theme_get_setting('h4_font_size') !== null)) ? theme_get_setting('h4_font_size') : '18',
+  '#default_value' => ((theme_get_setting('h4_font_size') !== NULL)) ? theme_get_setting('h4_font_size') : '18',
   '#attributes' => array('class' => array('font-size-slider')),
   '#size' => 9,
   '#maxlength' => 9,
@@ -96,7 +101,7 @@ $form['glazed_settings']['typography']['advanced_type']['h4_font_size'] = array(
 $form['glazed_settings']['typography']['advanced_type']['blockquote_font_size'] = array(
   '#type' => 'textfield',
   '#title' => t('Blockquote Font Size'),
-  '#default_value' => ((theme_get_setting('blockquote_font_size') !== null)) ? theme_get_setting('blockquote_font_size') : '18',
+  '#default_value' => ((theme_get_setting('blockquote_font_size') !== NULL)) ? theme_get_setting('blockquote_font_size') : '18',
   '#attributes' => array('class' => array('font-size-slider')),
   '#size' => 9,
   '#maxlength' => 9,
@@ -105,7 +110,7 @@ $form['glazed_settings']['typography']['advanced_type']['blockquote_font_size'] 
 $form['glazed_settings']['typography']['advanced_type']['blockquote_line_height'] = array(
   '#type' => 'textfield',
   '#title' => t('Blockquote Line Height'),
-  '#default_value' => ((theme_get_setting('blockquote_line_height') !== null)) ? theme_get_setting('blockquote_line_height') : '1.5',
+  '#default_value' => ((theme_get_setting('blockquote_line_height') !== NULL)) ? theme_get_setting('blockquote_line_height') : '1.5',
   '#attributes' => array('class' => array('line-height-slider')),
   '#size' => 9,
   '#maxlength' => 9,
@@ -114,7 +119,7 @@ $form['glazed_settings']['typography']['advanced_type']['blockquote_line_height'
 $form['glazed_settings']['typography']['advanced_type']['headings_letter_spacing'] = array(
   '#type' => 'textfield',
   '#title' => t('Headings Letter Spacing'),
-  '#default_value' => ((theme_get_setting('headings_letter_spacing') !== null)) ? theme_get_setting('headings_letter_spacing') : '0',
+  '#default_value' => ((theme_get_setting('headings_letter_spacing') !== NULL)) ? theme_get_setting('headings_letter_spacing') : '0',
   '#size' => 9,
   '#maxlength' => 9,
 );
@@ -122,7 +127,7 @@ $form['glazed_settings']['typography']['advanced_type']['headings_letter_spacing
 $form['glazed_settings']['typography']['advanced_type']['headings_uppercase'] = array(
   '#type' => 'checkbox',
   '#title' => t('Headings Uppercase'),
-  '#default_value' => ((theme_get_setting('headings_uppercase') !== null)) ? theme_get_setting('headings_uppercase') : FALSE,
+  '#default_value' => ((theme_get_setting('headings_uppercase') !== NULL)) ? theme_get_setting('headings_uppercase') : FALSE,
   '#size' => 9,
   '#maxlength' => 9,
 );
@@ -138,7 +143,7 @@ $form['glazed_settings']['typography']['advanced_type']['mobile_type'] = array(
 $form['glazed_settings']['typography']['advanced_type']['mobile_type']['body_mobile_font_size'] = array(
   '#type' => 'textfield',
   '#title' => t('Body Font Size'),
-  '#default_value' => ((theme_get_setting('body_mobile_font_size') !== null)) ? theme_get_setting('body_mobile_font_size') : '14',
+  '#default_value' => ((theme_get_setting('body_mobile_font_size') !== NULL)) ? theme_get_setting('body_mobile_font_size') : '14',
   '#size' => 9,
   '#maxlength' => 9,
 );
@@ -146,7 +151,7 @@ $form['glazed_settings']['typography']['advanced_type']['mobile_type']['body_mob
 $form['glazed_settings']['typography']['advanced_type']['mobile_type']['nav_mobile_font_size'] = array(
   '#type' => 'textfield',
   '#title' => t('Nav Font Size'),
-  '#default_value' => ((theme_get_setting('nav_mobile_font_size') !== null)) ? theme_get_setting('nav_mobile_font_size') : '14',
+  '#default_value' => ((theme_get_setting('nav_mobile_font_size') !== NULL)) ? theme_get_setting('nav_mobile_font_size') : '14',
   '#size' => 9,
   '#maxlength' => 9,
 );
@@ -154,7 +159,7 @@ $form['glazed_settings']['typography']['advanced_type']['mobile_type']['nav_mobi
 $form['glazed_settings']['typography']['advanced_type']['mobile_type']['h1_mobile_font_size'] = array(
   '#type' => 'textfield',
   '#title' => t('H1 Font Size (Page Title)'),
-  '#default_value' => ((theme_get_setting('h1_mobile_font_size') !== null)) ? theme_get_setting('h1_mobile_font_size') : '36',
+  '#default_value' => ((theme_get_setting('h1_mobile_font_size') !== NULL)) ? theme_get_setting('h1_mobile_font_size') : '36',
   '#attributes' => array('class' => array('font-size-slider')),
   '#size' => 9,
   '#maxlength' => 9,
@@ -163,7 +168,7 @@ $form['glazed_settings']['typography']['advanced_type']['mobile_type']['h1_mobil
 $form['glazed_settings']['typography']['advanced_type']['mobile_type']['h2_mobile_font_size'] = array(
   '#type' => 'textfield',
   '#title' => t('H2 Font Size'),
-  '#default_value' => ((theme_get_setting('h2_mobile_font_size') !== null)) ? theme_get_setting('h2_mobile_font_size') : '30',
+  '#default_value' => ((theme_get_setting('h2_mobile_font_size') !== NULL)) ? theme_get_setting('h2_mobile_font_size') : '30',
   '#attributes' => array('class' => array('font-size-slider')),
   '#size' => 9,
   '#maxlength' => 9,
@@ -172,7 +177,7 @@ $form['glazed_settings']['typography']['advanced_type']['mobile_type']['h2_mobil
 $form['glazed_settings']['typography']['advanced_type']['mobile_type']['h3_mobile_font_size'] = array(
   '#type' => 'textfield',
   '#title' => t('H3 Font Size'),
-  '#default_value' => ((theme_get_setting('h3_mobile_font_size') !== null)) ? theme_get_setting('h3_mobile_font_size') : '24',
+  '#default_value' => ((theme_get_setting('h3_mobile_font_size') !== NULL)) ? theme_get_setting('h3_mobile_font_size') : '24',
   '#attributes' => array('class' => array('font-size-slider')),
   '#size' => 9,
   '#maxlength' => 9,
@@ -181,7 +186,7 @@ $form['glazed_settings']['typography']['advanced_type']['mobile_type']['h3_mobil
 $form['glazed_settings']['typography']['advanced_type']['mobile_type']['h4_mobile_font_size'] = [
   '#type' => 'textfield',
   '#title' => t('H4 Font Size'),
-  '#default_value' => ((theme_get_setting('h4_mobile_font_size') !== null)) ? theme_get_setting('h4_mobile_font_size') : '20',
+  '#default_value' => ((theme_get_setting('h4_mobile_font_size') !== NULL)) ? theme_get_setting('h4_mobile_font_size') : '20',
   '#attributes' => ['class' => ['font-size-slider']],
   '#size' => 9,
   '#maxlength' => 9,
@@ -190,7 +195,7 @@ $form['glazed_settings']['typography']['advanced_type']['mobile_type']['h4_mobil
 $form['glazed_settings']['typography']['advanced_type']['mobile_type']['blockquote_mobile_font_size'] = array(
   '#type' => 'textfield',
   '#title' => t('Blockquote Font Size'),
-  '#default_value' => ((theme_get_setting('blockquote_mobile_font_size') !== null)) ? theme_get_setting('blockquote_mobile_font_size') : '18',
+  '#default_value' => ((theme_get_setting('blockquote_mobile_font_size') !== NULL)) ? theme_get_setting('blockquote_mobile_font_size') : '18',
   '#attributes' => array('class' => array('font-size-slider')),
   '#size' => 9,
   '#maxlength' => 9,
@@ -206,7 +211,7 @@ $form['glazed_settings']['typography']['advanced_type']['divider'] = array(
 $form['glazed_settings']['typography']['advanced_type']['divider']['divider_thickness'] = array(
   '#type' => 'textfield',
   '#title' => t('Divider Thickness'),
-  '#default_value' => ((theme_get_setting('divider_thickness') !== null)) ? theme_get_setting('divider_thickness') : '4',
+  '#default_value' => ((theme_get_setting('divider_thickness') !== NULL)) ? theme_get_setting('divider_thickness') : '4',
   '#size' => 9,
   '#maxlength' => 9,
 );
@@ -214,7 +219,7 @@ $form['glazed_settings']['typography']['advanced_type']['divider']['divider_thic
 $form['glazed_settings']['typography']['advanced_type']['divider']['divider_length'] = array(
   '#type' => 'textfield',
   '#title' => t('Divider Length') . ' <small>' . t('(0 = full width)') . '</small>',
-  '#default_value' => ((theme_get_setting('divider_length') !== null)) ? theme_get_setting('divider_length') : '0',
+  '#default_value' => ((theme_get_setting('divider_length') !== NULL)) ? theme_get_setting('divider_length') : '0',
   '#size' => 9,
   '#maxlength' => 9,
 );
@@ -222,7 +227,7 @@ $form['glazed_settings']['typography']['advanced_type']['divider']['divider_leng
 $form['glazed_settings']['typography']['advanced_type']['divider']['divider_position'] = array(
   '#type' => 'textfield',
   '#title' => t('Divider Position'),
-  '#default_value' => ((theme_get_setting('divider_position') !== null)) ? theme_get_setting('divider_position') : '0',
+  '#default_value' => ((theme_get_setting('divider_position') !== NULL)) ? theme_get_setting('divider_position') : '0',
   '#attributes' => array('class' => array('element-invisible')),
   '#size' => 9,
   '#maxlength' => 9,
@@ -236,14 +241,14 @@ $form['glazed_settings']['typography']['advanced_type']['divider']['divider_posi
 $form['glazed_settings']['typography']['advanced_type']['divider']['divider_color'] = array(
   '#type' => 'select',
   '#title' => t('Divider Color'),
-  '#default_value' =>  theme_get_setting('divider_color'),
+  '#default_value' => theme_get_setting('divider_color'),
   '#options' => _glazed_color_options($theme),
 );
 
 $form['glazed_settings']['typography']['advanced_type']['divider']['divider_color_custom'] = array(
   '#type' => 'textfield',
   '#title' => t('Custom Value'),
-  '#default_value' => ((theme_get_setting('divider_color_custom') !== null)) ? theme_get_setting('divider_color_custom') : '#eeeeee',
+  '#default_value' => ((theme_get_setting('divider_color_custom') !== NULL)) ? theme_get_setting('divider_color_custom') : '#eeeeee',
   '#states' => array(
     'visible' => array(
       'select[name="divider_color"]' => array('value' => 'custom'),
