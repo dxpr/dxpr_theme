@@ -287,6 +287,9 @@ function glazed_preprocess_page(&$vars) {
   if ($vars['page']['footer']) {
     $page_css[] = '/css/base/footer-menu.css';
   }
+  if ($vars['tabs']['#secondary']) {
+    $page_css[] = '/css/vendor-extensions/drupal-pager.css'; // secondary tabs use bootstrap "pager" styling
+  }
   foreach ($page_css as $css) {
     drupal_add_css($theme_path . $css, array('group' => CSS_THEME, 'every_page' => TRUE));
   }
