@@ -4,7 +4,10 @@
  * Implements template_preprocess_node()
  */
 function glazed_preprocess_node(&$vars) {
-  global $theme_path;
+  global $theme, $theme_path;
+  // There is a bug that makes global variable $theme_path return the base theme
+  // path instead of the active theme path, hence the custom variable below
+  $theme_path_custom = drupal_get_path('theme', $theme);
   // ALL NODES
   // remove "add comment link. it's silly because the comment form will be right there in our theme"
   if (isset($vars['content']['links']['comment'])) {
@@ -20,7 +23,7 @@ function glazed_preprocess_node(&$vars) {
     $types = theme_get_setting('prevnext_content_types');
     $type = $vars['node']->type;
     if (isset($types[$type]) && !empty($types[$type])) {
-      drupal_add_css($theme_path . '/css/components/drupal-prevnext.css', array('group' => CSS_THEME));
+      drupal_add_css($theme_path_custom . '/css/components/drupal-prevnext.css', array('group' => CSS_THEME));
       $prevnext = glazed_next_prev($vars['node']);
       $vars['prevnext'] = '<div class="prev-next small clear-both clearfix">';
       if (!empty($prevnext['prev'])) {

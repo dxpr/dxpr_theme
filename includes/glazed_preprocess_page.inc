@@ -261,7 +261,7 @@ function glazed_preprocess_page(&$vars) {
   $vars['glazed_title_classes'] = implode(' ', $vars['glazed_title_classes']);
 
   // CSS to load on every page
-  $sitewide_css = array(
+  $page_css = array(
     // Overrides
     '/css/vendor-extensions/bootstrap-3.css',
     '/css/vendor-extensions/bootstrap-theme.css',
@@ -275,7 +275,19 @@ function glazed_preprocess_page(&$vars) {
     // HELPERS
     '/css/helpers/helper-classes.css',
   );
-  foreach ($sitewide_css as $css) {
+  if ($vars['page']['secondary_header'] || $vars['secondary_nav']) {
+    $page_css[] = '/css/components/glazed-secondary-header.css';
+  }
+  if ($vars['page']['navigation'] || $vars['primary_nav']) {
+    $page_css[] = '/css/components/glazed-header.css';
+    $page_css[] = '/css/components/glazed-header--top.css';
+    $page_css[] = '/css/components/glazed-header--side.css';
+    $page_css[] = '/css/components/glazed-header--mobiel.css';
+  }
+  if ($vars['page']['footer']) {
+    $page_css[] = '/css/base/footer-menu.css';
+  }
+  foreach ($page_css as $css) {
     drupal_add_css($theme_path . $css, array('group' => CSS_THEME, 'every_page' => TRUE));
   }
   // CSS that is only relevant in backend interfaces (field, views config, node forms, etc.)
