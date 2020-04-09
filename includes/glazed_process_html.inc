@@ -1,6 +1,10 @@
 <?php
 
 /**
+ * @file
+ */
+
+/**
  * Override or insert variables into the page template for HTML output.
  */
 function glazed_process_html(&$vars) {

@@ -1,12 +1,16 @@
 <?php
 
 /**
+ * @file
+ */
+
+/**
  * Implements template_preprocess_block()
  */
 function glazed_preprocess_block(&$vars) {
   global $theme, $theme_path;
   // There is a bug that makes global variable $theme_path return the base theme
-  // path instead of the active theme path, hence the custom variable below
+  // path instead of the active theme path, hence the custom variable below.
   $theme_path_custom = drupal_get_path('theme', $theme);
   if ($vars['block_html_id'] == 'block-glazed-helper-full-screen-search') {
     drupal_add_css($theme_path_custom . '/css/components/glazed-full-screen-search.css', array('group' => CSS_THEME));

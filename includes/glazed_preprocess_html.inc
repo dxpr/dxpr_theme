@@ -1,12 +1,16 @@
 <?php
 
 /**
+ * @file
+ */
+
+/**
  * Implements template_preprocess_html().
  */
 function glazed_preprocess_html(&$vars) {
   global $theme;
   // If bootstrap basetheme is not loading bootstrap from CDN load it locally
-  // This is default behavior starting from Glazed 8.x-1.1.3 and 7.x-2.7.3
+  // This is default behavior starting from Glazed 8.x-1.1.3 and 7.x-2.7.3.
   $bootstrap_cdn = theme_get_setting('cdn_provider');
   if (!$bootstrap_cdn) {
     $path = drupal_get_path('theme', 'glazed');
@@ -14,38 +18,38 @@ function glazed_preprocess_html(&$vars) {
       $path . '/vendor/bootstrap3/js/bootstrap.min.js', array(
         'group' => JS_THEME,
         'every_page' => TRUE,
-        'weight' => -18
+        'weight' => -18,
       ));
     drupal_add_css(
       $path . '/vendor/bootstrap3/css/bootstrap.min.css', array(
         'group' => CSS_DEFAULT,
         'media' => 'all',
         'every_page' => TRUE,
-        'weight' => -18
+        'weight' => -18,
       ));
   }
-  // Load Glazed Theme Settings CSS File
+  // Load Glazed Theme Settings CSS File.
   $files_path = variable_get('file_public_path', conf_path() . '/files');
   if (is_file($files_path . '/glazed-themesettings-' . $theme . '.css')) {
     drupal_add_css(
       $files_path . '/glazed-themesettings-' . $theme . '.css', array(
         'group' => CSS_THEME,
-        'weight' => 100
+        'weight' => 100,
       )
     );
   }
 
-  // Add body class for core toolbar to help with header spacing
+  // Add body class for core toolbar to help with header spacing.
   if (module_exists('admin_menu_toolbar') && user_access('access administration menu')) {
     $vars['classes_array'][] = 'admin-menu-toolbar';
   }
   // Load Glazed Page Settings Overrides
-  // We abort on finding arg(2) to avoid using fancy headers on /edit and /devel etc
+  // We abort on finding arg(2) to avoid using fancy headers on /edit and /devel etc.
   if ((arg(0) == 'node') && is_numeric(arg(1)) && !arg(2)) {
     $node = node_load(arg(1));
     if (isset($node->field_glazed_content_design)
       && !empty($node->field_glazed_content_design)
-      && (!empty($node->field_glazed_content_design[0]) OR !empty($node->field_glazed_content_design['und']))
+      && (!empty($node->field_glazed_content_design[0]) or !empty($node->field_glazed_content_design['und']))
       && module_exists('field_collection')) {
       $field_array = array(
         'field_glazed_header_mode',
@@ -83,11 +87,11 @@ function glazed_preprocess_html(&$vars) {
     }
 
     if ($header_position == 'side') {
-      // Side Header
+      // Side Header.
       $vars['classes_array'][] = 'body--glazed-header-side';
     }
     else {
-      // Top Header
+      // Top Header.
       $vars['classes_array'][] = 'body--glazed-header-top';
       if (isset($content_design['field_glazed_header_style'])) {
         if ($content_design['field_glazed_header_style'] != 'overlay') {
@@ -118,7 +122,7 @@ function glazed_preprocess_html(&$vars) {
     }
   }
 
-  if($header_height = theme_get_setting('header_top_height')) {
+  if ($header_height = theme_get_setting('header_top_height')) {
     $vars['#attached']['js'][] = array(
       'type' => 'setting',
       'data' => array('glazed' => array('headerHeight' => $header_height)),
@@ -126,7 +130,7 @@ function glazed_preprocess_html(&$vars) {
     drupal_add_js(array('glazed' => array('headerHeight' => $header_height)), 'setting');
   }
 
-  if($header_scroll_offset = theme_get_setting('header_top_height_sticky_offset')) {
+  if ($header_scroll_offset = theme_get_setting('header_top_height_sticky_offset')) {
     $vars['#attached']['js'][] = array(
       'type' => 'setting',
       'data' => array('glazed' => array('headerOffset' => $header_scroll_offset)),
@@ -134,16 +138,16 @@ function glazed_preprocess_html(&$vars) {
     drupal_add_js(array('glazed' => array('headerOffset' => $header_scroll_offset)), 'setting');
   }
 
-  // Fixed mobile header
-  if($header_mobile_fixed = theme_get_setting('header_mobile_fixed')) {
+  // Fixed mobile header.
+  if ($header_mobile_fixed = theme_get_setting('header_mobile_fixed')) {
     $vars['#attached']['js'][] = array(
       'type' => 'setting',
       'data' => array('glazed' => array('headerMobileFixed' => $header_mobile_fixed)),
     );
     drupal_add_js(array('glazed' => array('headerMobileFixed' => $header_mobile_fixed)), 'setting');
   }
-  // Mobile header height
-  if($header_mobile_height = theme_get_setting('header_mobile_height')) {
+  // Mobile header height.
+  if ($header_mobile_height = theme_get_setting('header_mobile_height')) {
     $vars['#attached']['js'][] = array(
       'type' => 'setting',
       'data' => array('glazed' => array('headerMobileHeight' => $header_mobile_height)),
@@ -151,8 +155,7 @@ function glazed_preprocess_html(&$vars) {
     drupal_add_js(array('glazed' => array('headerMobileHeight' => $header_mobile_height)), 'setting');
   }
 
-
-  // Second header sticky
+  // Second header sticky.
   if ($second_header_sticky = theme_get_setting('second_header_sticky')) {
     $vars['#attached']['js'][] = array(
       'type' => 'setting',
@@ -161,7 +164,7 @@ function glazed_preprocess_html(&$vars) {
     drupal_add_js(array('glazed' => array('secondHeaderSticky' => $second_header_sticky)), 'setting');
   }
 
-  // Breadcrumb separator
+  // Breadcrumb separator.
   if ($breadcrumbs_separator = theme_get_setting('page_title_breadcrumbs_separator')) {
     $vars['#attached']['js'][] = array(
       'type' => 'setting',

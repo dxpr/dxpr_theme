@@ -1,6 +1,10 @@
 <?php
 
 /**
+ * @file
+ */
+
+/**
  * Implements hook_js_alter().
  */
 function glazed_js_alter(&$js) {
@@ -9,8 +13,8 @@ function glazed_js_alter(&$js) {
   $js['settings']['data'][]['glazed'] = array(
     'glazedPath' => $theme_path,
   );
-  // Override color module color.js because it's broken when bootstrap theme is loaded
-  if (isset( $js['modules/color/color.js']['data'])) {
+  // Override color module color.js because it's broken when bootstrap theme is loaded.
+  if (isset($js['modules/color/color.js']['data'])) {
     $js['modules/color/color.js']['data'] = $theme_path . 'js/minified/color.min.js';
   }
 }

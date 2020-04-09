@@ -1,9 +1,13 @@
 <?php
 
 /**
+ * @file
  * Overrides theme_checkbox().
  */
 
+/**
+ *
+ */
 function glazed_checkbox($variables) {
   $element = $variables['element'];
   $element['#attributes']['type'] = 'checkbox';
@@ -24,6 +28,6 @@ function glazed_checkbox($variables) {
     return '<input' . drupal_attributes($element['#attributes']) . ' /><span class="switcher"></span>';
   }
   else {
-	 return '<input' . drupal_attributes($element['#attributes']) . ' />';
+    return '<input' . drupal_attributes($element['#attributes']) . ' />';
   }
 }

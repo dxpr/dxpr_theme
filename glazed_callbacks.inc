@@ -1,11 +1,15 @@
 <?php
 
-//
-//  Glazed Helper functions
-//
+/**
+ * @file
+ */
 
+/**
+ * Glazed Helper functions
+ * .
+ */
 function _color_module_css_write($theme) {
-  // stuff copied from color module, because this code is not encapsulated in a function other than theme submit
+  // Stuff copied from color module, because this code is not encapsulated in a function other than theme submit.
   module_load_include('module', 'color');
   $info = color_get_info($theme);
   $palette = color_get_palette($theme);
@@ -92,25 +96,26 @@ function _color_module_css_write($theme) {
 /**
  * Theme CSS generator from Glazed theme-settings.php
  * Custom theme settings might need a lot of CSS
- * So we put it in a file for optimal performance
+ * So we put it in a file for optimal performance.
  */
 function glazed_css_cache_build($theme) {
   global $base_path, $base_theme_info;
   $files_path = variable_get('file_public_path', conf_path() . '/files');
 
   $glazed_css_file = $files_path . '/glazed-themesettings-' . $theme . '.css';
-  //Construct CSS file:
+  // Construct CSS file:
   $CSS = '';
-  // Load Glazed theme colors palette
+  // Load Glazed theme colors palette.
   $palette = theme_get_setting('palette', $theme);
-  // Load Sooper Features CSS
+  // Load Sooper Features CSS.
   foreach (file_scan_directory(drupal_get_path('theme', 'glazed') . '/features', '/css.inc/i') as $file) {
-    require_once($file->uri);
+    require_once $file->uri;
   }
 
   $fh = fopen($glazed_css_file, 'w');
   if ($fh) {
-    fwrite($fh, $CSS); // write css to file
+    // Write css to file.
+    fwrite($fh, $CSS);
     watchdog('Glazed', 'Glazed CSS file cache built for %theme', array('%theme' => $theme));
   }
   else {
@@ -118,11 +123,10 @@ function glazed_css_cache_build($theme) {
   }
 
   fclose($fh);
-  // If the CSS & JS aggregation are enabled we need to clear the caches
+  // If the CSS & JS aggregation are enabled we need to clear the caches.
   drupal_clear_css_cache();
   drupal_clear_js_cache();
 }
-
 
 /**
  * Transforms an absolute URL of a local file to a relative URL.
