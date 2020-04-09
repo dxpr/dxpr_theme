@@ -10,6 +10,10 @@
   color: $secondary-header-text;
   a {
     color: $secondary-header-text;
+    &:hover,
+    &:focus {
+      color: $secondary-header-text;
+    }
   }
   .block,
   p {
