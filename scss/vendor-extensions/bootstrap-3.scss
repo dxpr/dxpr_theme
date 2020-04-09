@@ -39,6 +39,18 @@ p:last-child {
 .container-fluid {
   padding-left :0;
   padding-right: 0;
+  .navbar-right,
+  .navbar-left {
+    margin-left: 0; //remove negative margins
+    margin-right: 0;
+  }
+}
+.glazed-fluid {
+  .navbar-right,
+  .navbar-left {
+    margin-left: 0; //remove negative margins
+    margin-right: 0;
+  }
 }
 
 .row {
