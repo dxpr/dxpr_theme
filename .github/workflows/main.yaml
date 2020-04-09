@@ -1,0 +1,70 @@
+name: CI
+
+on:
+  push:
+
+env:
+  TARGET_DRUPAL_CORE_VERSION: 7
+
+jobs:
+# just check and send reports for now because too many errors
+
+  drupal-lint:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Lint Drupal
+      run: |
+        TARGET_DRUPAL_CORE_VERSION=$TARGET_DRUPAL_CORE_VERSION docker-compose up --exit-code-from drupal-lint drupal-lint
+
+  # eslint:
+  #   runs-on: ubuntu-latest
+
+  #   steps:
+  #   - uses: actions/checkout@v2
+
+  #   - name: Lint with eslint
+  #     run: |
+  #       docker-compose up dev
+  #       REPORT_ENABLED=true docker-compose up eslint
+
+  #   - name: Archive eslint html report
+  #     uses: actions/upload-artifact@v1
+  #     if: always()
+  #     with:
+  #       name: eslint-report
+  #       path: out/eslint-report.html
+
+  publish-artifacts:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Build artifacts
+      run: |
+        docker-compose up --exit-code-from dev dev
+
+        BRANCH_NAME=$(echo ${GITHUB_REF} | sed -e "s/refs\/heads\///g")
+        echo "::set-env name=BRANCH_NAME::$BRANCH_NAME"
+
+      # only on feature branch (not on tag)
+    - name: Git commit files
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        # add built artifacts
+        git add -f css
+        git add -f js
+        git commit -m "automated built artifacts updates from CI" || true # ok if no changes
+      # if: startsWith(github.ref, 'refs/heads/')
+      if: env.BRANCH_NAME == '7.x'
+
+    - name: Git push changes
+      uses: ad-m/github-push-action@v0.5.0
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: ${{ env.BRANCH_NAME }}
+      # if: startsWith(github.ref, 'refs/heads/')
+      if: env.BRANCH_NAME == '7.x'
