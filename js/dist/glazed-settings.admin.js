@@ -4,7 +4,7 @@
   "use strict";
 
   $(window).on("load", function() {
-	//checkbox added checked class 
+	//checkbox added checked class
     $('input:checkbox').each(function() {
       if($(this).is(':checked')) $(this).parent().addClass('checked');
     });
