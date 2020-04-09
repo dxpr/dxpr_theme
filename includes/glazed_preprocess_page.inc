@@ -292,7 +292,7 @@ function glazed_preprocess_page(&$vars) {
     $page_css[] = '/css/components/glazed-header.css';
     $page_css[] = '/css/components/glazed-header--top.css';
     $page_css[] = '/css/components/glazed-header--side.css';
-    $page_css[] = '/css/components/glazed-header--mobiel.css';
+    $page_css[] = '/css/components/glazed-header--mobile.css';
   }
   if ($vars['page']['footer']) {
     $page_css[] = '/css/base/footer-menu.css';
