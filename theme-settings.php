@@ -74,7 +74,7 @@ function glazed_form_system_theme_settings_alter(&$form, &$form_state) {
   drupal_add_js($glazed_theme_path . 'vendor/bootstrap-switch/bootstrap-switch.min.js', 'file');
   drupal_add_js($glazed_theme_path . 'vendor/bootstrap-slider/bootstrap-slider.min.js', 'file');
   drupal_add_js($glazed_theme_path . 'js/minified/glazed-settings.admin.min.js', 'file');
-  drupal_add_js($glazed_theme_path . 'js/color.js', 'file');
+  drupal_add_js($glazed_theme_path . 'js/minified/color.min.js', 'file');
   drupal_add_js('jQuery(function () {Drupal.behaviors.formUpdated = null;});', 'inline');
   // Decoy function to fix erros resulting from missing preview.js
   drupal_add_js('Drupal.color = { callback: function() {} }', 'inline');

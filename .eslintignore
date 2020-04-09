@@ -1,8 +1,3 @@
 node_modules/**
-glazed_builder/vendor/**
-glazed_builder/build/glazed-elements/**
-glazed_builder/build/glazed-param-types/**
-glazed_builder/glazed_builder.js
-# too big to get finished
-glazed_builder/glazed_param_types.js
-glazed_builder/*.min.js
+vendor
+js/minified
