@@ -22,6 +22,7 @@
   </div>
 {% endif %}
 {% if secondary %}
+  {{ attach_library('glazed/drupal-pager') }}
   <h2 class="visually-hidden">{{ 'Secondary tabs'|t }}</h2>
   <ul class="tabs--secondary pagination pagination-sm">{{ secondary }}</ul>
 {% endif %}
