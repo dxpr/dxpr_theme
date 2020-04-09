@@ -11,6 +11,6 @@ function glazed_js_alter(&$js) {
   );
   // Override color module color.js because it's broken when bootstrap theme is loaded
   if (isset( $js['modules/color/color.js']['data'])) {
-    $js['modules/color/color.js']['data'] = $theme_path . 'js/color.js';
+    $js['modules/color/color.js']['data'] = $theme_path . 'js/minified/color.min.js';
   }
 }

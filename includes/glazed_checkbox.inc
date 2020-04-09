@@ -24,6 +24,6 @@ function glazed_checkbox($variables) {
     return '<input' . drupal_attributes($element['#attributes']) . ' /><span class="switcher"></span>';
   }
   else {
-	return '<input' . drupal_attributes($element['#attributes']) . ' />';
+	 return '<input' . drupal_attributes($element['#attributes']) . ' />';
   }
 }

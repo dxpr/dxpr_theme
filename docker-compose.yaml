@@ -1,0 +1,59 @@
+version: '3'
+
+services:
+
+  # to watch and build files, use:
+  # DEV_WATCH=true docker-compose up -d dev && docker-compose logs -f dev
+  dev:
+    image: ${NODE_IMAGE:-node:12.16}
+    working_dir: /src
+    command: bash -c "./scripts/run_dev.sh"
+    tty: true
+    environment:
+      WATCH: ${DEV_WATCH:-false}
+    volumes:
+      - .:/src
+
+  eslint:
+    image: ${NODE_IMAGE:-node:12.16}
+    working_dir: /src
+    command: bash -c "./scripts/run_eslint.sh"
+    tty: true
+    environment:
+      REPORT_ENABLED: ${REPORT_ENABLED:-false}
+    volumes:
+      - .:/src
+    depends_on:
+      - dev
+
+  eslint-auto-fix:
+    image: ${NODE_IMAGE:-node:12.16}
+    working_dir: /src
+    command: bash -c "./scripts/run_eslint-auto-fix.sh"
+    tty: true
+    volumes:
+      - .:/src
+    depends_on:
+      - dev
+
+
+  drupal-lint:
+    image: ${COMPOSER_IMAGE:-composer:1.9}
+    working_dir: /src
+    command: bash -c "./scripts/run_drupal-lint.sh"
+    tty: true
+    environment:
+      TARGET_DRUPAL_CORE_VERSION: ${TARGET_DRUPAL_CORE_VERSION:-7}
+    volumes:
+      - .:/src
+
+
+  drupal-lint-auto-fix:
+    image: ${COMPOSER_IMAGE:-composer:1.9}
+    working_dir: /src
+    command: bash -c "./scripts/run_drupal-lint-auto-fix.sh"
+    tty: true
+    environment:
+      TARGET_DRUPAL_CORE_VERSION: ${TARGET_DRUPAL_CORE_VERSION:-7}
+    volumes:
+      - .:/src
