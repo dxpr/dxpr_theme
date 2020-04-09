@@ -275,10 +275,10 @@ function glazed_preprocess_page(&$vars) {
     // HELPERS
     '/css/helpers/helper-classes.css',
   );
-  if ($vars['page']['secondary_header'] || $vars['secondary_nav']) {
+  if (($vars['page']['secondary_header']) || ($vars['secondary_nav'])) {
     $page_css[] = '/css/components/glazed-secondary-header.css';
   }
-  if ($vars['page']['navigation'] || $vars['primary_nav']) {
+  if (($vars['page']['navigation']) || ($vars['primary_nav'])) {
     $page_css[] = '/css/components/glazed-header.css';
     $page_css[] = '/css/components/glazed-header--top.css';
     $page_css[] = '/css/components/glazed-header--side.css';
