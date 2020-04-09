@@ -181,9 +181,9 @@ function glazed_preprocess_page(&$variables) {
         }
       }
     }
-  }  
-  
-  
+  }
+
+
   // CSS to load on every page
   $glazed_libraries = [
     // bootstrap TAILORING
@@ -208,6 +208,15 @@ function glazed_preprocess_page(&$variables) {
   ];
   foreach ($glazed_libraries as $glazed_library) {
     $variables['#attached']['library'][] = $glazed_library;
+  }
+}
+
+/**
+ * Implements template_menu_local_tasks()
+ */
+function glazed_preprocess_menu_local_tasks(&$variables) {
+  if ($variables['secondary']) {
+    $variables['#attached']['library'][] = 'glazed/drupal-pager'; // secondary tabs are styled with bootstrap pager CSS
   }
 }
 
@@ -275,7 +284,5 @@ function glazed_preprocess_comment(&$variables) {
  * Implements template_preprocess_pager()
  */
 function glazed_preprocess_pager(&$variables) {
-  if($variables['pager']['#element']){
-    $variables['#attached']['library'][] = 'glazed/drupal-pager';
-  }
+  $variables['#attached']['library'][] = 'glazed/drupal-pager';
 }

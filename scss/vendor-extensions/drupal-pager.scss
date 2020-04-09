@@ -7,7 +7,7 @@
 
 .pagination {
   border-radius: 0;
-  .pager__item {
+  .pager__item, li {
     > a,
     > span {
       color: $gray-light;
@@ -15,6 +15,13 @@
       border-color: $silver;
       opacity: 0.6;
       padding: 1em 1.4em;
+      &:hover,
+      &:focus {
+        color: $gray-light;
+        background-color: transparent;
+        border-color: $silver;
+        opacity: 1;
+      }
     }
     &:first-child {
       > a,
@@ -28,43 +35,31 @@
         border-radius: 0;
       }
     }
-  }
-
-  .pager__item > a,
-  .pager__item > span {
-    &:hover,
-    &:focus {
-      color: $gray-light;
-      background-color: transparent;
-      border-color: $silver;
-      opacity: 1;
+    &.active > a,
+    &.active > span {
+      &,
+      &:hover,
+      &:focus {
+        color: $gray-light;
+        background-color: transparent;
+        border-color:  $silver;
+        opacity: 1;
+      }
+    }
+    &.disabled {
+      > span,
+      > span:hover,
+      > span:focus,
+      > a,
+      > a:hover,
+      > a:focus {
+        color:  $gray-lighter;
+        background-color: $gray-light;
+        border-color: transparent;
+      }
     }
   }
 
-  > .active > a,
-  > .active > span {
-    &,
-    &:hover,
-    &:focus {
-      color: $gray-light;
-      background-color: transparent;
-      border-color:  $silver;
-      opacity: 1;
-    }
-  }
-
-  > .disabled {
-    > span,
-    > span:hover,
-    > span:focus,
-    > a,
-    > a:hover,
-    > a:focus {
-      color:  $gray-lighter;
-      background-color: $gray-light;
-      border-color: transparent;
-    }
-  }
 }
 
 // Mini Pager
