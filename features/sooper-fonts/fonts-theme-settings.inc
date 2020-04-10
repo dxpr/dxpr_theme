@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * @file
+ */
+
 $weights = [
   '' => t('Theme defaults'),
   '100' => t('Thin') . ' ' . t('100'),
@@ -23,15 +27,15 @@ $form['glazed_settings']['fonts'] = [
   '#group' => 'glazed_settings',
   '#collapsible' => TRUE,
   '#collapsed' => TRUE,
-   '#weight' => 4,
+  '#weight' => 4,
   '#weight' => 20,
 ];
 
-// Regular Fonts Settings
+// Regular Fonts Settings.
 $form['glazed_settings']['fonts']['body_font_face'] = [
   '#type' => 'select',
   '#title' => t('Base font'),
-  '#default_value' =>  theme_get_setting('body_font_face'),
+  '#default_value' => theme_get_setting('body_font_face'),
   '#options' => $font_list,
   '#prefix'        => '<p>' . t('Choose from @count webfonts', ['@count' => $font_count]) . '</p>',
 ];
@@ -39,59 +43,59 @@ $form['glazed_settings']['fonts']['body_font_face'] = [
 $form['glazed_settings']['fonts']['body_font_face_selector'] = [
   '#type' => 'textfield',
   '#title' => t('CSS Selector'),
-  '#default_value' => ((theme_get_setting('body_font_face_selector') !== null)) ? theme_get_setting('body_font_face_selector') : 'body',
+  '#default_value' => ((theme_get_setting('body_font_face_selector') !== NULL)) ? theme_get_setting('body_font_face_selector') : 'body',
 ];
 
 $form['glazed_settings']['fonts']['headings_font_face'] = [
   '#type' => 'select',
   '#title' => t('Headings'),
-  '#default_value' =>  theme_get_setting('headings_font_face'),
+  '#default_value' => theme_get_setting('headings_font_face'),
   '#options' => $font_list,
 ];
 
 $form['glazed_settings']['fonts']['headings_font_face_selector'] = [
   '#type' => 'textfield',
   '#title' => '&nbsp;',
-  '#default_value' => ((theme_get_setting('headings_font_face_selector') !== null)) ? theme_get_setting('headings_font_face_selector') : 'h1,h2,h3,h4,h5,h6,label,.field--label,.page-title, .html .tp-caption',
+  '#default_value' => ((theme_get_setting('headings_font_face_selector') !== NULL)) ? theme_get_setting('headings_font_face_selector') : 'h1,h2,h3,h4,h5,h6,label,.field--label,.page-title, .html .tp-caption',
 ];
 
 $form['glazed_settings']['fonts']['nav_font_face'] = [
   '#type' => 'select',
   '#title' => t('Navigation'),
-  '#default_value' =>  theme_get_setting('nav_font_face'),
+  '#default_value' => theme_get_setting('nav_font_face'),
   '#options' => $font_list,
 ];
 
 $form['glazed_settings']['fonts']['nav_font_face_selector'] = [
   '#type' => 'textfield',
   '#title' => '&nbsp;',
-  '#default_value' => ((theme_get_setting('nav_font_face_selector') !== null)) ? theme_get_setting('nav_font_face_selector') : 'nav,nav ul li,nav a',
+  '#default_value' => ((theme_get_setting('nav_font_face_selector') !== NULL)) ? theme_get_setting('nav_font_face_selector') : 'nav,nav ul li,nav a',
 ];
 
 $form['glazed_settings']['fonts']['sitename_font_face'] = [
   '#type' => 'select',
   '#title' => t('Site name'),
-  '#default_value' =>  theme_get_setting('sitename_font_face'),
+  '#default_value' => theme_get_setting('sitename_font_face'),
   '#options' => $font_list,
 ];
 
 $form['glazed_settings']['fonts']['sitename_font_face_selector'] = [
   '#type' => 'textfield',
   '#title' => '&nbsp;',
-  '#default_value' => ((theme_get_setting('sitename_font_face_selector') !== null)) ? theme_get_setting('sitename_font_face_selector') : '.site-name, .navbar-brand',
+  '#default_value' => ((theme_get_setting('sitename_font_face_selector') !== NULL)) ? theme_get_setting('sitename_font_face_selector') : '.site-name, .navbar-brand',
 ];
 
 $form['glazed_settings']['fonts']['blockquote_font_face'] = [
   '#type' => 'select',
   '#title' => t('Blockquote'),
-  '#default_value' =>  theme_get_setting('blockquote_font_face'),
+  '#default_value' => theme_get_setting('blockquote_font_face'),
   '#options' => $font_list,
 ];
 
 $form['glazed_settings']['fonts']['blockquote_font_face_selector'] = [
   '#type' => 'textfield',
   '#title' => '&nbsp;',
-  '#default_value' => ((theme_get_setting('blockquote_font_face_selector') !== null)) ? theme_get_setting('blockquote_font_face_selector') : 'blockquote, blockquote p',
+  '#default_value' => ((theme_get_setting('blockquote_font_face_selector') !== NULL)) ? theme_get_setting('blockquote_font_face_selector') : 'blockquote, blockquote p',
 ];
 
 $form['glazed_settings']['fonts']['font_preview'] = [
@@ -104,13 +108,12 @@ $form['glazed_settings']['fonts']['font_preview'] = [
 ];
 
 $form['glazed_settings']['fonts']['font_preview']['preview'] = [
- '#type' => 'markup',
- '#markup' => _glazed_font_previews(),
+  '#type' => 'markup',
+  '#markup' => _glazed_font_previews(),
 ];
 
-
 /**
- * Helper function to get list of locally hosted fonts
+ * Helper function to get list of locally hosted fonts.
  */
 function glazed_local_webfonts() {
   global $base_path, $base_url;
@@ -169,9 +172,9 @@ function glazed_font_list() {
 }
 
 /**
- * Helper function to get list of google web fonts
+ * Helper function to get list of google web fonts.
  *
- * Source: https://raw.githubusercontent.com/jonathantneal/google-fonts-complete/master/api-response.json
+ * Source: https://raw.githubusercontent.com/jonathantneal/google-fonts-complete/master/api-response.json.
  */
 function glazed_google_webfonts() {
   $json_webfonts = file_get_contents(dirname(__FILE__) . '/google-webfonts.json');
@@ -180,7 +183,9 @@ function glazed_google_webfonts() {
   foreach ($webfonts as $font_family) {
     $fam_name = $font_family->family;
     foreach ($font_family->variants as $font) {
-      if ($font == 'regular') $font = '';
+      if ($font == 'regular') {
+        $font = '';
+      }
       $font_name = $fam_name . ' ' . $font;
       $font_name_safe = str_replace(' ', '+', $fam_name) . ':' . $font;
       $font_name_key = '0' . $font_name_safe;
@@ -191,7 +196,7 @@ function glazed_google_webfonts() {
 }
 
 /**
- * Helper function to display font previews in the settings form
+ * Helper function to display font previews in the settings form.
  */
 function _glazed_font_previews() {
   $output = '<div class="fonts-previews">';
