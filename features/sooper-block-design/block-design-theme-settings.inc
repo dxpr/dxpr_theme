@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * @file
+ */
+
 $form['glazed_settings']['block'] = [
   '#title' => t('Block Design'),
   '#type' => 'details',
@@ -10,7 +14,7 @@ $form['glazed_settings']['block'] = [
 $form['glazed_settings']['block']['block_preset'] = [
   '#type' => 'select',
   '#title' => t('Block Design Preset'),
-  '#default_value' => ((theme_get_setting('block_preset') !== null)) ? theme_get_setting('block_preset') : 'none',
+  '#default_value' => ((theme_get_setting('block_preset') !== NULL)) ? theme_get_setting('block_preset') : 'none',
   '#options' => [
     '' => t('None (Theme Defaults)'),
     'block_boxed' => t('Block Boxed'),
@@ -58,21 +62,21 @@ $well_options = [
 $form['glazed_settings']['block']['block_advanced']['block_el']['block_well'] = [
   '#type' => 'select',
   '#title' => t('Block Well Style'),
-  '#default_value' =>  theme_get_setting('block_well'),
+  '#default_value' => theme_get_setting('block_well'),
   '#options' => $well_options,
 ];
 
 $form['glazed_settings']['block']['block_advanced']['block_el']['block_background'] = [
   '#type' => 'select',
   '#title' => t('Block Background'),
-  '#default_value' =>  theme_get_setting('block_background'),
+  '#default_value' => theme_get_setting('block_background'),
   '#options' => _glazed_color_options($theme),
 ];
 
 $form['glazed_settings']['block']['block_advanced']['block_el']['block_background_custom'] = [
   '#type' => 'textfield',
   '#title' => t('Custom Value'),
-  '#default_value' => ((theme_get_setting('block_background_custom') !== null)) ? theme_get_setting('block_background_custom') : '#eeeeee',
+  '#default_value' => ((theme_get_setting('block_background_custom') !== NULL)) ? theme_get_setting('block_background_custom') : '#eeeeee',
   '#states' => [
     'visible' => [
       'select[name="block_background"]' => ['value' => 'custom'],
@@ -83,7 +87,7 @@ $form['glazed_settings']['block']['block_advanced']['block_el']['block_backgroun
 $form['glazed_settings']['block']['block_advanced']['block_el']['block_padding'] = [
   '#type' => 'textfield',
   '#title' => t('Block padding'),
-  '#default_value' => ((theme_get_setting('block_padding') !== null)) ? theme_get_setting('block_padding') : '0',
+  '#default_value' => ((theme_get_setting('block_padding') !== NULL)) ? theme_get_setting('block_padding') : '0',
   '#attributes' => ['class' => ['border-size-slider']],
   '#size' => 9,
   '#maxlength' => 9,
@@ -92,7 +96,7 @@ $form['glazed_settings']['block']['block_advanced']['block_el']['block_padding']
 $form['glazed_settings']['block']['block_advanced']['block_el']['block_border_radius'] = [
   '#type' => 'textfield',
   '#title' => t('Block Border Radius'),
-  '#default_value' => ((theme_get_setting('block_border_radius') !== null)) ? theme_get_setting('block_border_radius') : '0',
+  '#default_value' => ((theme_get_setting('block_border_radius') !== NULL)) ? theme_get_setting('block_border_radius') : '0',
   '#attributes' => ['class' => ['border-radius-slider']],
   '#size' => 9,
   '#maxlength' => 9,
@@ -101,7 +105,7 @@ $form['glazed_settings']['block']['block_advanced']['block_el']['block_border_ra
 $form['glazed_settings']['block']['block_advanced']['block_el']['block_border'] = [
   '#type' => 'textfield',
   '#title' => t('Block Border'),
-  '#default_value' => ((theme_get_setting('block_border') !== null)) ? theme_get_setting('block_border') : '0',
+  '#default_value' => ((theme_get_setting('block_border') !== NULL)) ? theme_get_setting('block_border') : '0',
   '#attributes' => ['class' => ['border-size-slider']],
   '#size' => 9,
   '#maxlength' => 9,
@@ -110,7 +114,7 @@ $form['glazed_settings']['block']['block_advanced']['block_el']['block_border'] 
 $form['glazed_settings']['block']['block_advanced']['block_el']['block_border_color'] = [
   '#type' => 'select',
   '#title' => t('Block Border Color'),
-  '#default_value' =>  theme_get_setting('block_border_color'),
+  '#default_value' => theme_get_setting('block_border_color'),
   '#options' => _glazed_color_options($theme),
   '#states' => [
     'visible' => [
@@ -122,7 +126,7 @@ $form['glazed_settings']['block']['block_advanced']['block_el']['block_border_co
 $form['glazed_settings']['block']['block_advanced']['block_el']['block_border_color_custom'] = [
   '#type' => 'textfield',
   '#title' => t('Custom Value'),
-  '#default_value' => ((theme_get_setting('block_border_color_custom') !== null)) ? theme_get_setting('block_border_color_custom') : '#eeeeee',
+  '#default_value' => ((theme_get_setting('block_border_color_custom') !== NULL)) ? theme_get_setting('block_border_color_custom') : '#eeeeee',
   '#states' => [
     'visible' => [
       'input[name="block_border"]' => ['!value' => '0'],
@@ -141,45 +145,45 @@ $form['glazed_settings']['block']['block_advanced']['title_el'] = [
 $form['glazed_settings']['block']['block_advanced']['title_el']['title_font_size'] = [
   '#type' => 'radios',
   '#title' => t('Title Font Size'),
-    '#default_value' => ((theme_get_setting('title_font_size') !== null)) ? theme_get_setting('title_font_size') : 'h3',
-    '#options' => [
-      'h1' => t('h1'),
-      'h2' => t('h2'),
-      'h3' => t('h3'),
-      'h4' => t('h4'),
-      'body' => t('Paragraph'),
-    ],
+  '#default_value' => ((theme_get_setting('title_font_size') !== NULL)) ? theme_get_setting('title_font_size') : 'h3',
+  '#options' => [
+    'h1' => t('h1'),
+    'h2' => t('h2'),
+    'h3' => t('h3'),
+    'h4' => t('h4'),
+    'body' => t('Paragraph'),
+  ],
 ];
 
 $form['glazed_settings']['block']['block_advanced']['title_el']['title_align'] = [
   '#type' => 'radios',
   '#title' => t('Title Align'),
-    '#default_value' => ((theme_get_setting('title_align') !== null)) ? theme_get_setting('title_align') : 'left',
-    '#options' => [
-      'left' => t('Left'),
-      'center' => t('Center'),
-      'right' => t('Right')
-    ],
+  '#default_value' => ((theme_get_setting('title_align') !== NULL)) ? theme_get_setting('title_align') : 'left',
+  '#options' => [
+    'left' => t('Left'),
+    'center' => t('Center'),
+    'right' => t('Right'),
+  ],
 ];
 
 $form['glazed_settings']['block']['block_advanced']['title_el']['title_well'] = [
   '#type' => 'select',
   '#title' => t('Title Well Style'),
-  '#default_value' =>  theme_get_setting('title_well'),
+  '#default_value' => theme_get_setting('title_well'),
   '#options' => $well_options,
 ];
 
 $form['glazed_settings']['block']['block_advanced']['title_el']['title_background'] = [
   '#type' => 'select',
   '#title' => t('Title Background'),
-  '#default_value' =>  theme_get_setting('title_background'),
+  '#default_value' => theme_get_setting('title_background'),
   '#options' => _glazed_color_options($theme),
 ];
 
 $form['glazed_settings']['block']['block_advanced']['title_el']['title_background_custom'] = [
   '#type' => 'textfield',
   '#title' => t('Custom Value'),
-  '#default_value' => ((theme_get_setting('title_background_custom') !== null)) ? theme_get_setting('title_background_custom') : '#eeeeee',
+  '#default_value' => ((theme_get_setting('title_background_custom') !== NULL)) ? theme_get_setting('title_background_custom') : '#eeeeee',
   '#states' => [
     'visible' => [
       'select[name="title_background"]' => ['value' => 'custom'],
@@ -190,7 +194,7 @@ $form['glazed_settings']['block']['block_advanced']['title_el']['title_backgroun
 $form['glazed_settings']['block']['block_advanced']['title_el']['title_padding'] = [
   '#type' => 'textfield',
   '#title' => t('Title padding'),
-  '#default_value' => ((theme_get_setting('title_padding') !== null)) ? theme_get_setting('title_padding') : '0',
+  '#default_value' => ((theme_get_setting('title_padding') !== NULL)) ? theme_get_setting('title_padding') : '0',
   '#attributes' => ['class' => ['border-size-slider']],
   '#size' => 9,
   '#maxlength' => 9,
@@ -199,7 +203,7 @@ $form['glazed_settings']['block']['block_advanced']['title_el']['title_padding']
 $form['glazed_settings']['block']['block_advanced']['title_el']['title_border'] = [
   '#type' => 'textfield',
   '#title' => t('Title Border'),
-  '#default_value' => ((theme_get_setting('title_border') !== null)) ? theme_get_setting('title_border') : '0',
+  '#default_value' => ((theme_get_setting('title_border') !== NULL)) ? theme_get_setting('title_border') : '0',
   '#attributes' => ['class' => ['border-size-slider']],
   '#size' => 9,
   '#maxlength' => 9,
@@ -208,7 +212,7 @@ $form['glazed_settings']['block']['block_advanced']['title_el']['title_border'] 
 $form['glazed_settings']['block']['block_advanced']['title_el']['title_border_radius'] = [
   '#type' => 'textfield',
   '#title' => t('Title Border Radius'),
-  '#default_value' => ((theme_get_setting('title_border_radius') !== null)) ? theme_get_setting('title_border_radius') : '0',
+  '#default_value' => ((theme_get_setting('title_border_radius') !== NULL)) ? theme_get_setting('title_border_radius') : '0',
   '#attributes' => ['class' => ['border-radius-slider']],
   '#size' => 9,
   '#maxlength' => 9,
@@ -217,7 +221,7 @@ $form['glazed_settings']['block']['block_advanced']['title_el']['title_border_ra
 $form['glazed_settings']['block']['block_advanced']['title_el']['title_border_color'] = [
   '#type' => 'select',
   '#title' => t('Title Border Color'),
-  '#default_value' =>  theme_get_setting('title_border_color'),
+  '#default_value' => theme_get_setting('title_border_color'),
   '#options' => _glazed_color_options($theme),
   '#states' => [
     'visible' => [
@@ -229,7 +233,7 @@ $form['glazed_settings']['block']['block_advanced']['title_el']['title_border_co
 $form['glazed_settings']['block']['block_advanced']['title_el']['title_border_color_custom'] = [
   '#type' => 'textfield',
   '#title' => t('Custom Value'),
-  '#default_value' => ((theme_get_setting('title_border_color_custom') !== null)) ? theme_get_setting('title_border_color_custom') : '#eeeeee',
+  '#default_value' => ((theme_get_setting('title_border_color_custom') !== NULL)) ? theme_get_setting('title_border_color_custom') : '#eeeeee',
   '#states' => [
     'visible' => [
       'input[name="title_border"]' => ['!value' => '0'],
@@ -241,12 +245,12 @@ $form['glazed_settings']['block']['block_advanced']['title_el']['title_border_co
 $form['glazed_settings']['block']['block_advanced']['title_el']['title_align'] = [
   '#type' => 'radios',
   '#title' => t('Title Align'),
-    '#default_value' => ((theme_get_setting('title_align') !== null)) ? theme_get_setting('title_align') : 'left',
-    '#options' => [
-      'left' => t('Left'),
-      'center' => t('Center'),
-      'right' => t('Right')
-    ],
+  '#default_value' => ((theme_get_setting('title_align') !== NULL)) ? theme_get_setting('title_align') : 'left',
+  '#options' => [
+    'left' => t('Left'),
+    'center' => t('Center'),
+    'right' => t('Right'),
+  ],
   '#states' => [
     'visible' => [
       ':input[name="title_sticker"]' => ['checked' => FALSE],
@@ -257,7 +261,7 @@ $form['glazed_settings']['block']['block_advanced']['title_el']['title_align'] =
 $form['glazed_settings']['block']['block_advanced']['title_el']['title_sticker'] = [
   '#type' => 'checkbox',
   '#title' => t('Title Sticker Mode'),
-  '#default_value' => ((theme_get_setting('title_sticker') !== null)) ? theme_get_setting('title_sticker') : 0,
+  '#default_value' => ((theme_get_setting('title_sticker') !== NULL)) ? theme_get_setting('title_sticker') : 0,
   '#description' => 'In Sticker mode the title\'s width is flexible. By default the title takes the full width of the block',
   '#prefix' => '<br>',
 ];
@@ -272,14 +276,14 @@ $form['glazed_settings']['block']['block_advanced']['divider_el'] = [
 $form['glazed_settings']['block']['block_advanced']['divider_el']['block_divider'] = [
   '#type' => 'checkbox',
   '#title' => t('Add Divider to Block'),
-  '#default_value' => ((theme_get_setting('block_divider') !== null)) ? theme_get_setting('block_divider') : 0,
+  '#default_value' => ((theme_get_setting('block_divider') !== NULL)) ? theme_get_setting('block_divider') : 0,
 ];
 
 $form['glazed_settings']['block']['block_advanced']['divider_el']['block_divider_custom'] = [
   '#type' => 'checkbox',
   '#title' => t('Customize Divider'),
   '#description' => t('Turn on to customize block divider specifically. To customize the divider default styling globally across the website find the Divider settings in the Typography tab.'),
-  '#default_value' => ((theme_get_setting('block_divider_custom') !== null)) ? theme_get_setting('block_divider_custom') : 0,
+  '#default_value' => ((theme_get_setting('block_divider_custom') !== NULL)) ? theme_get_setting('block_divider_custom') : 0,
   '#states' => [
     'visible' => [
       ':input[name="block_divider"]' => ['checked' => TRUE],
@@ -290,7 +294,7 @@ $form['glazed_settings']['block']['block_advanced']['divider_el']['block_divider
 $form['glazed_settings']['block']['block_advanced']['divider_el']['block_divider_color'] = [
   '#type' => 'select',
   '#title' => t('Divider Color'),
-  '#default_value' =>  theme_get_setting('block_divider_color'),
+  '#default_value' => theme_get_setting('block_divider_color'),
   '#options' => _glazed_color_options($theme),
   '#states' => [
     'visible' => [
@@ -303,7 +307,7 @@ $form['glazed_settings']['block']['block_advanced']['divider_el']['block_divider
 $form['glazed_settings']['block']['block_advanced']['divider_el']['block_divider_color_custom'] = [
   '#type' => 'textfield',
   '#title' => t('Custom Value'),
-  '#default_value' => ((theme_get_setting('block_divider_color_custom') !== null)) ? theme_get_setting('block_divider_color_custom') : '#eeeeee',
+  '#default_value' => ((theme_get_setting('block_divider_color_custom') !== NULL)) ? theme_get_setting('block_divider_color_custom') : '#eeeeee',
   '#states' => [
     'visible' => [
       'select[name="block_divider_color"]' => ['value' => 'custom'],
@@ -316,7 +320,7 @@ $form['glazed_settings']['block']['block_advanced']['divider_el']['block_divider
 $form['glazed_settings']['block']['block_advanced']['divider_el']['block_divider_thickness'] = [
   '#type' => 'textfield',
   '#title' => t('Divider Thickness'),
-  '#default_value' => ((theme_get_setting('block_divider_thickness') !== null)) ? theme_get_setting('block_divider_thickness') : '4',
+  '#default_value' => ((theme_get_setting('block_divider_thickness') !== NULL)) ? theme_get_setting('block_divider_thickness') : '4',
   '#size' => 9,
   '#maxlength' => 9,
   '#states' => [
@@ -330,7 +334,7 @@ $form['glazed_settings']['block']['block_advanced']['divider_el']['block_divider
 $form['glazed_settings']['block']['block_advanced']['divider_el']['block_divider_length'] = [
   '#type' => 'textfield',
   '#title' => t('Divider Length'),
-  '#default_value' => ((theme_get_setting('block_divider_length') !== null)) ? theme_get_setting('block_divider_length') : '10',
+  '#default_value' => ((theme_get_setting('block_divider_length') !== NULL)) ? theme_get_setting('block_divider_length') : '10',
   '#size' => 9,
   '#maxlength' => 9,
   '#states' => [
@@ -344,7 +348,7 @@ $form['glazed_settings']['block']['block_advanced']['divider_el']['block_divider
 $form['glazed_settings']['block']['block_advanced']['divider_el']['block_divider_spacing'] = [
   '#type' => 'textfield',
   '#title' => t('Divider Spacing'),
-  '#default_value' => ((theme_get_setting('block_divider_spacing') !== null)) ? theme_get_setting('block_divider_spacing') : '20',
+  '#default_value' => ((theme_get_setting('block_divider_spacing') !== NULL)) ? theme_get_setting('block_divider_spacing') : '20',
   '#size' => 9,
   '#maxlength' => 9,
   '#states' => [
@@ -368,7 +372,7 @@ $form['glazed_settings']['block']['regions']['block_design_regions'] = [
   '#type' => 'checkboxes',
   '#multiple' => TRUE,
   '#title' => t('Regions'),
-  '#default_value' => ((theme_get_setting('block_design_regions') !== null)) ? theme_get_setting('block_design_regions') : [],
+  '#default_value' => ((theme_get_setting('block_design_regions') !== NULL)) ? theme_get_setting('block_design_regions') : [],
   '#options' => [
     'secondary_header' => t('Secondary Header'),
     'navigation' => t('Navigation'),
@@ -385,6 +389,9 @@ $form['glazed_settings']['block']['regions']['block_design_regions'] = [
   ],
 ];
 
+/**
+ *
+ */
 function _glazed_block_preview() {
   $block_well = theme_get_setting('block_well');
   $title_well = theme_get_setting('title_well');

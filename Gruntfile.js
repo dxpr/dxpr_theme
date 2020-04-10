@@ -1,18 +1,18 @@
 module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
-    uglify: {
+    terser: {
       options: {
-        banner: '/*! <%= pkg.name %> <%= grunt.template.today("dd-mm-yyyy") %> */\n'
+        ecma: 2015
       },
-      dist: {
-        files: {
-          'js/minified/glazed.min.js': ['js/dist/glazed.js'],
-          'js/minified/glazed-settings.admin.min.js': ['js/dist/glazed-settings.admin.js'],
-          'js/minified/glazed-mobile-nav.min.js': ['js/dist/glazed-mobile-nav.js'],
-          'js/minified/classie.min.js': ['vendor/classie.js']
-        }
-      }
+      your_target: {
+        'js/minified/glazed.min.js': ['js/dist/glazed.js'],
+        'js/minified/glazed.admin.min.js': ['js/dist/glazed.admin.js'],
+        'js/minified/glazed-settings.admin.min.js': ['js/dist/glazed-settings.admin.js'],
+        'js/minified/glazed-mobile-nav.min.js': ['js/dist/glazed-mobile-nav.js'],
+        'js/minified/color.min.js': ['js/dist/color.js'],
+        'js/minified/classie.min.js': ['vendor/classie.js']
+      },
     },
     sass: {
       options: {
@@ -23,7 +23,7 @@ module.exports = function(grunt) {
         files: [{
           expand: true,
           cwd: 'scss/',
-          src: ['*.scss', '**/*.scss'],
+          src: '**/*.scss',
           dest: 'css/',
           ext: '.css',
           extDot: 'last'
@@ -45,11 +45,11 @@ module.exports = function(grunt) {
       },
       js: {
         files: ['js/dist/*.js'],
-        tasks: ['uglify']
+        tasks: ['terser']
       }
     }
   });
-  grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-terser');
   grunt.loadNpmTasks('grunt-sass');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-postcss');

@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * @file
+ */
+
 $glazed_fonts = [];
 $glazed_fonts[] = theme_get_setting('body_font_face');
 $glazed_fonts[] = theme_get_setting('headings_font_face');
@@ -12,7 +16,7 @@ $glazed_fonts = array_unique($glazed_fonts);
 foreach ($glazed_fonts as $glazed_font) {
   if (isset($glazed_font[0]) && $glazed_font[0] === '0') {
     // If the font is loaded without a weight or style specified
-    // try to load a complete set
+    // try to load a complete set.
     if (substr($glazed_font, -1) == ':') {
       $glazed_font .= '400italic,700italic,400,700';
     }
@@ -24,7 +28,7 @@ foreach ($glazed_fonts as $glazed_font) {
 }
 
 /**
- * Helper function to add google fonts to the page
+ * Helper function to add google fonts to the page.
  */
 function _glazed_add_goog_font($font, &$variables) {
   $font = substr($font, 1);

@@ -1,14 +1,19 @@
 <?php
 
-//
-//  Glazed Helper functions
-//
+/**
+ * @file
+ */
 
+// Glazed Helper functions
+// .
 use Drupal\Core\Asset\CssOptimizer;
 use Drupal\Core\File\FileSystemInterface;
 
+/**
+ *
+ */
 function glazed_color_module_css_write($theme) {
-  // stuff copied from color module, because this code is not encapsulated in a function other than theme submit
+  // Stuff copied from color module, because this code is not encapsulated in a function other than theme submit.
   module_load_include('module', 'color');
   $info = color_get_info($theme);
   $palette = color_get_palette($theme);
@@ -106,7 +111,7 @@ function glazed_color_module_css_write($theme) {
 /**
  * Theme CSS generator from Glazed theme-settings.php
  * Custom theme settings might need a lot of CSS
- * So we put it in a file for optimal performance
+ * So we put it in a file for optimal performance.
  */
 function glazed_css_cache_build($theme) {
   $glazed_css_file = 'public://glazed/css/themesettings-' . $theme . '.css';
@@ -117,18 +122,18 @@ function glazed_css_cache_build($theme) {
   if (\Drupal::moduleHandler()->moduleExists('color')) {
     $palette = color_get_palette($theme);
   }
-  //Construct CSS file:
+  // Construct CSS file:
   $CSS = '';
-  // Load Sooper Features CSS
+  // Load Sooper Features CSS.
   foreach (file_scan_directory(drupal_get_path('theme', 'glazed') . '/features', '/css.inc/i') as $file) {
-    require_once($file->uri);
+    require_once $file->uri;
   }
   $file_object = \file_save_data($CSS, $glazed_css_file, FileSystemInterface::EXISTS_REPLACE);
   if ($dir_writable && !empty($file_object)) {
     $message = t('Glazed CSS file cache built for %theme', ['%theme' => $theme]);
     \Drupal::messenger()->addMessage($message);
     \Drupal::logger('glazed')->notice($message);
-    // watchdog('Glazed', 'Glazed CSS file cache built for %theme', ['%theme' => $theme]);
+    // watchdog('Glazed', 'Glazed CSS file cache built for %theme', ['%theme' => $theme]);.
   }
   else {
     $message = t('Cannot write theme-settings file, please check your file system. (See status report page)');
@@ -136,7 +141,7 @@ function glazed_css_cache_build($theme) {
     \Drupal::logger('glazed')->error($message);
   }
 
-  // If the CSS & JS aggregation are enabled we need to clear the caches
+  // If the CSS & JS aggregation are enabled we need to clear the caches.
   drupal_flush_all_caches();
   \Drupal::service('asset.css.collection_optimizer')->deleteAll();
   \Drupal::service('asset.js.collection_optimizer')->deleteAll();

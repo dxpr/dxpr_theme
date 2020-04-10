@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Glazed sub-theme.
@@ -11,17 +12,17 @@
  */
 function glazed_STARTERKIT_preprocess_page(&$variables) {
   $glazed_libraries = [
-    // bootstrap TAILORING
+    // Bootstrap TAILORING.
     'glazed_STARTERKIT/bootstrap-3',
     'glazed_STARTERKIT/bootstrap-theme',
     'glazed_STARTERKIT/jquery-ui',
-    // GLAZED BASE
+    // GLAZED BASE.
     'glazed_STARTERKIT/footer-menu',
     'glazed_STARTERKIT/forms',
     'glazed_STARTERKIT/layout',
     'glazed_STARTERKIT/page-title',
     'glazed_STARTERKIT/typography',
-    // GLAZED Components
+    // GLAZED Components.
     'glazed_STARTERKIT/stpe-buttons',
     'glazed_STARTERKIT/glazed-full-screen-search',
     'glazed_STARTERKIT/glazed-header',
@@ -31,7 +32,7 @@ function glazed_STARTERKIT_preprocess_page(&$variables) {
     'glazed_STARTERKIT/glazed-secondary-header',
     'glazed_STARTERKIT/pager-prevnext',
     'glazed_STARTERKIT/glazed-admin',
-    // Overrides
+    // Overrides.
     'glazed_STARTERKIT/cubeportfolio',
     'glazed_STARTERKIT/drupal-breadcrumbs',
     'glazed_STARTERKIT/drupal-comments',
@@ -44,7 +45,7 @@ function glazed_STARTERKIT_preprocess_page(&$variables) {
     'glazed_STARTERKIT/cms-bootstrap-portfolio',
     'glazed_STARTERKIT/sooperthemes-premium-elements',
     'glazed_STARTERKIT/glazed-builder',
-    // HELPERS
+    // HELPERS.
     'glazed_STARTERKIT/helper-classes',
   ];
   foreach ($glazed_libraries as $glazed_library) {

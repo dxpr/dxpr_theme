@@ -64,13 +64,13 @@ $info = [
 
   // CSS files (excluding @import) to rewrite with new color scheme.
   'css' => [
-    // GLAZED BASE
+    // GLAZED BASE.
     'css/base/footer-menu.css',
     'css/base/forms.css',
     'css/base/layout.css',
     'css/base/page-title.css',
     'css/base/typography.css',
-    // GLAZED Components
+    // GLAZED Components.
     'css/components/stpe-buttons.css',
     'css/components/glazed-full-screen-search.css',
     'css/components/glazed-header.css',
@@ -80,7 +80,7 @@ $info = [
     'css/components/glazed-secondary-header.css',
     'css/components/pager-prevnext.css',
     'css/components/glazed-admin.css',
-    // Overrides
+    // Overrides.
     'css/vendor-extensions/bootstrap-3.css',
     'css/vendor-extensions/bootstrap-theme.css',
     'css/vendor-extensions/jquery-ui.css',
@@ -96,7 +96,7 @@ $info = [
     'css/vendor-extensions/cms-bootstrap-portfolio.css',
     'css/vendor-extensions/sooperthemes-premium-elements.css',
     'css/vendor-extensions/glazed-builder.css',
-    // HELPERS
+    // HELPERS.
     'css/helpers/helper-classes.css',
   ],
 
