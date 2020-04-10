@@ -9,9 +9,10 @@ node_modules
 .DS_Store
 Thumbs.db
 
-# CSS files.
-/css
+/out
 
-# JS files
+# CSS files. these will now be included so they are downloaded during composer installation
+# /css
 
-js/minified/*
+# JS Files. these will now be included so they are downloaded during composer installation
+# /js/minified/*
