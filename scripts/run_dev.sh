@@ -5,6 +5,7 @@ rm -rf .build-done || true
 npm install -g grunt
 
 npm install
+npm rebuild node-sass
 
 grunt uglify
 grunt sass
