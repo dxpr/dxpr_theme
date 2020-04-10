@@ -6,7 +6,6 @@ npm install -g grunt
 
 npm install
 
-grunt concat
 grunt uglify
 grunt sass
 grunt postcss
