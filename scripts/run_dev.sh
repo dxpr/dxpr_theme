@@ -7,7 +7,7 @@ npm install -g grunt
 npm install
 npm rebuild node-sass
 
-grunt uglify
+grunt terser
 grunt sass
 grunt postcss
 
