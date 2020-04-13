@@ -7,7 +7,7 @@ For development documentation and support please check: https://app.sooperthemes
 
 ## [WARNING] Don't push the built artifact files
 
-Artifact (min.js etc.) files are built and published automatically by CI/CD (Github Actions), so don't push these
+Artifact (.ccs, min.js etc.) files are built and published automatically by CI/CD (Github Actions), so don't push these
 changes to the repo manually, they will be re-written anyway.
 
 # Continuous Integration / Automation
