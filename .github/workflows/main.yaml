@@ -58,13 +58,11 @@ jobs:
         git add -f css
         git add -f js
         git commit -m "automated built artifacts updates from CI" || true # ok if no changes
-      # if: startsWith(github.ref, 'refs/heads/')
-      if: env.BRANCH_NAME == '7.x'
+      if: env.BRANCH_NAME != '7.x'
 
     - name: Git push changes
       uses: ad-m/github-push-action@v0.5.0
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         branch: ${{ env.BRANCH_NAME }}
-      # if: startsWith(github.ref, 'refs/heads/')
-      if: env.BRANCH_NAME == '7.x'
+      if: env.BRANCH_NAME != '7.x'
