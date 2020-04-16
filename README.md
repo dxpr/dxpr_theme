@@ -57,18 +57,6 @@ $ docker-compose up dev eslint-auto-fix
 $ docker-compose up drupal-lint
 ```
 
-### How to run Drupal lint check with different target Drupal core version
-
-By default, `TARGET_DRUPAL_CORE_VERSION=8` is used. To change it:
-
-```bash
-$ TARGET_DRUPAL_CORE_VERSION=9 docker-compose up drupal-lint
-```
-
-```bash
-$ TARGET_DRUPAL_CORE_VERSION=7 docker-compose up drupal-lint
-```
-
 ### How to run Drupal lint auto fix
 
 ```bash
