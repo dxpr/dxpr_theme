@@ -1,13 +1,17 @@
 <?php
 
+/**
+ * @file
+ */
+
 if ((theme_get_setting('block_preset')) && ($regions = array_filter(theme_get_setting('block_design_regions')))) {
-  // Block Styling
+  // Block Styling.
   $border_width = theme_get_setting('block_border', $theme);
   ($border_width) ? $border_style = 'solid' : $border_style = 'none';
   $border_radius = theme_get_setting('block_border_radius', $theme);
 
   $selector = _glazed_regions2selectors($regions, '.block');
-  $CSS .= <<<EOT
+  $css .= <<<EOT
 $selector {
   border-width: {$border_width}px;
   border-style: $border_style;
@@ -15,7 +19,7 @@ $selector {
 
 EOT;
   if ($value = theme_get_setting('block_padding', $theme)) {
-    $CSS .= "  padding:  {$value}px; \n";
+    $css .= "  padding:  {$value}px; \n";
   }
 
   if ($value = theme_get_setting('block_background', $theme)) {
@@ -25,7 +29,7 @@ EOT;
     elseif (isset($palette[$value])) {
       $value = $palette[$value];
     }
-    $CSS .= "  background-color:  $value; \n";
+    $css .= "  background-color:  $value; \n";
   }
 
   if ($value = theme_get_setting('block_border_color', $theme)) {
@@ -35,11 +39,11 @@ EOT;
     elseif (isset($palette[$value])) {
       $value = $palette[$value];
     }
-    $CSS .= "  border-color:  $value; \n";
+    $css .= "  border-color:  $value; \n";
   }
-  $CSS .= "} \n\n";
+  $css .= "} \n\n";
 
-  // Block Title Styling
+  // Block Title Styling.
   $selector = _glazed_regions2selectors($regions, '.block-title');
 
   $font_size = theme_get_setting('title_font_size', $theme);
@@ -51,7 +55,7 @@ EOT;
   $border_radius = theme_get_setting('title_border_radius', $theme);
   (theme_get_setting('title_sticker', $theme)) ? $display = 'inline-block' : $display = 'block';
 
-  $CSS .= <<<EOT
+  $css .= <<<EOT
 $selector {
   font-size: {$font_size}px;
   text-align: $align;
@@ -63,7 +67,7 @@ $selector {
 EOT;
 
   if ($value = theme_get_setting('title_padding', $theme)) {
-    $CSS .= "  padding:  {$value}px; \n";
+    $css .= "  padding:  {$value}px; \n";
   }
 
   if ($value = theme_get_setting('title_background', $theme)) {
@@ -73,7 +77,7 @@ EOT;
     elseif (isset($palette[$value])) {
       $value = $palette[$value];
     }
-    $CSS .= "  background-color:  $value; \n";
+    $css .= "  background-color:  $value; \n";
   }
 
   if ($value = theme_get_setting('title_border_color', $theme)) {
@@ -83,15 +87,15 @@ EOT;
     elseif (isset($palette[$value])) {
       $value = $palette[$value];
     }
-    $CSS .= "  border-color:  $value; \n";
+    $css .= "  border-color:  $value; \n";
   }
-  $CSS .= "} \n\n";
+  $css .= "} \n\n";
 
-$CSS .= "@media screen and (max-width: 768px) { \n";
-  $CSS .= "  $selector { font-size: {$font_size_mobile}px; } \n";
-$CSS .= "} \n\n";
+  $css .= "@media screen and (max-width: 768px) { \n";
+  $css .= "  $selector { font-size: {$font_size_mobile}px; } \n";
+  $css .= "} \n\n";
 
-  // Divider Styling
+  // Divider Styling.
   if (theme_get_setting('block_divider') && theme_get_setting('block_divider_custom')) {
     $selector = _glazed_regions2selectors($regions, '.block-hr');
     if ($value = theme_get_setting('block_divider_color', $theme)) {
@@ -101,7 +105,7 @@ $CSS .= "} \n\n";
       elseif (isset($palette[$value])) {
         $value = $palette[$value];
       }
-      $CSS .= "$selector {  background-color:  $value; } \n";
+      $css .= "$selector {  background-color:  $value; } \n";
     }
 
     if (theme_get_setting('block_divider_custom') && ($height = theme_get_setting('block_divider_thickness', $theme))) {
@@ -112,7 +116,7 @@ $CSS .= "} \n\n";
         $width = '100%';
       }
       $margin = theme_get_setting('block_divider_spacing', $theme);
-      $CSS .= <<<EOT
+      $css .= <<<EOT
 $selector {
   height: {$height}px;
   width: {$width}px;
@@ -127,6 +131,9 @@ EOT;
 
 }
 
+/**
+ *
+ */
 function _glazed_regions2selectors($regions, $element) {
   $selector_array = [];
   foreach ($regions as $region) {
