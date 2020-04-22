@@ -63,7 +63,7 @@ function glazed_form_system_theme_settings_alter(&$form, &$form_state, $form_id 
     $function_name = basename($file->filename, '.inc');
     $function_name = str_replace('-', '_', $function_name);
     if (function_exists($function_name)) {
-      $function_name($form, 'glazed');
+      $function_name($form, $subject_theme);
     }
   }
   $form['#attached']['library'][] = 'glazed/admin.themesettings';

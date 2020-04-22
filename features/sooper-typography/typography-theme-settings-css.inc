@@ -2,66 +2,76 @@
 
 /**
  * @file
+ * Typography settings css styles.
  */
 
-$css .= "body, p, .lead { line-height:  " . theme_get_setting('body_line_height', $theme) . " } \n";
-$css .= "body { font-size:  " . theme_get_setting('body_font_size', $theme) . "px } \n";
-if (theme_get_setting('menu_type', $theme) != 'lead') {
-  $css .= ".glazed-header--top #glazed-main-menu .nav > li > a, .glazed-header--side #glazed-main-menu .nav a, .body--glazed-nav-desktop .glazed-header--top .nav .dropdown-menu li>a { font-size:  " . theme_get_setting('nav_font_size', $theme) . "px } \n";
-}
-$css .= "h1,h2,h3,h4,h5,h6 { line-height:  " . theme_get_setting('headings_line_height', $theme) . "; } \n";
-$css .= "h1, .html #page-title .page-title { font-size:  " . theme_get_setting('h1_font_size', $theme) . "px; } \n";
-$css .= "h2 { font-size:  " . theme_get_setting('h2_font_size', $theme) . "px; } \n";
-$css .= "h3 { font-size:  " . theme_get_setting('h3_font_size', $theme) . "px; } \n";
-$css .= "h4 { font-size:  " . theme_get_setting('h4_font_size', $theme) . "px; } \n";
-$css .= "blockquote, .blockquote p { font-size:  " . theme_get_setting('blockquote_font_size', $theme) . "px } \n";
-
-if ($letter_spacing = theme_get_setting('headings_letter_spacing', $theme)) {
-  $css .= "h1,h2,h3,h4,h5,h6 { letter-spacing:  " . $letter_spacing . "em; } \n";
-}
-if (theme_get_setting('headings_uppercase', $theme)) {
-  $css .= "h1,h2,h3,h4,h5,h6 { text-transform: uppercase; } \n";
-}
-if ($height = theme_get_setting('divider_thickness', $theme)) {
-  $css .= "hr { height:  " . $height . "px; } \n";
-}
-if ($length = theme_get_setting('divider_length', $theme)) {
-  $css .= "hr { width:  " . $length . "px; } \n";
-}
-$position = theme_get_setting('divider_position', $theme);
-switch ($position) {
-  case 1:
-    $css .= "hr { margin-left: 0;margin-right: auto; }\n";
-    break;
-
-  case 2:
-    $css .= "hr { margin-left: auto;margin-right: auto; }\n";
-    break;
-
-  case 3:
-    $css .= "hr { margin-left: auto;margin-right: 0; }\n";
-    break;
-}
-
-if ($value = theme_get_setting('divider_color', $theme)) {
-  if (theme_get_setting('divider_color', $theme) == 'custom') {
-    $value = theme_get_setting('divider_color_custom', $theme);
+/**
+ * Generate typography theme css styles.
+ *
+ * @param string $theme
+ *   Theme machine name.
+ * @param string $css
+ *   Generated css styles string.
+ */
+function typography_theme_settings_css($theme, &$css) {
+  $css .= "body, p, .lead { line-height:  " . theme_get_setting('body_line_height', $theme) . " } \n";
+  $css .= "body { font-size:  " . theme_get_setting('body_font_size', $theme) . "px } \n";
+  if (theme_get_setting('menu_type', $theme) != 'lead') {
+    $css .= ".glazed-header--top #glazed-main-menu .nav > li > a, .glazed-header--side #glazed-main-menu .nav a, .body--glazed-nav-desktop .glazed-header--top .nav .dropdown-menu li>a { font-size:  " . theme_get_setting('nav_font_size', $theme) . "px } \n";
   }
-  elseif (isset($palette[$value])) {
-    $value = $palette[$value];
+  $css .= "h1,h2,h3,h4,h5,h6 { line-height:  " . theme_get_setting('headings_line_height', $theme) . "; } \n";
+  $css .= "h1, .html #page-title .page-title { font-size:  " . theme_get_setting('h1_font_size', $theme) . "px; } \n";
+  $css .= "h2 { font-size:  " . theme_get_setting('h2_font_size', $theme) . "px; } \n";
+  $css .= "h3 { font-size:  " . theme_get_setting('h3_font_size', $theme) . "px; } \n";
+  $css .= "h4 { font-size:  " . theme_get_setting('h4_font_size', $theme) . "px; } \n";
+  $css .= "blockquote, .blockquote p { font-size:  " . theme_get_setting('blockquote_font_size', $theme) . "px } \n";
+
+  if ($letter_spacing = theme_get_setting('headings_letter_spacing', $theme)) {
+    $css .= "h1,h2,h3,h4,h5,h6 { letter-spacing:  " . $letter_spacing . "em; } \n";
   }
-  $css .= "hr {  background-color:  $value; } \n";
-}
+  if (theme_get_setting('headings_uppercase', $theme)) {
+    $css .= "h1,h2,h3,h4,h5,h6 { text-transform: uppercase; } \n";
+  }
+  if ($height = theme_get_setting('divider_thickness', $theme)) {
+    $css .= "hr { height:  " . $height . "px; } \n";
+  }
+  if ($length = theme_get_setting('divider_length', $theme)) {
+    $css .= "hr { width:  " . $length . "px; } \n";
+  }
+  $position = theme_get_setting('divider_position', $theme);
+  switch ($position) {
+    case 1:
+      $css .= "hr { margin-left: 0;margin-right: auto; }\n";
+      break;
 
+    case 2:
+      $css .= "hr { margin-left: auto;margin-right: auto; }\n";
+      break;
 
-$css .= "@media screen and (max-width: 768px) { \n";
-$css .= "  body, p { font-size:  " . theme_get_setting('body_mobile_font_size', $theme) . "px; } \n";
-if (theme_get_setting('menu_type', $theme) != 'lead') {
-  $css .= "  .glazed-header--top #glazed-main-menu .nav > li > a, .glazed-header--side #glazed-main-menu .nav a, .body--glazed-nav-desktop .glazed-header--top .nav .dropdown-menu li>a { font-size:  " . theme_get_setting('nav_mobile_font_size', $theme) . "px } \n";
+    case 3:
+      $css .= "hr { margin-left: auto;margin-right: 0; }\n";
+      break;
+  }
+
+  if ($value = theme_get_setting('divider_color', $theme)) {
+    if (theme_get_setting('divider_color', $theme) == 'custom') {
+      $value = theme_get_setting('divider_color_custom', $theme);
+    }
+    elseif (isset($palette[$value])) {
+      $value = $palette[$value];
+    }
+    $css .= "hr {  background-color:  $value; } \n";
+  }
+
+  $css .= "@media screen and (max-width: 768px) { \n";
+  $css .= "  body, p { font-size:  " . theme_get_setting('body_mobile_font_size', $theme) . "px; } \n";
+  if (theme_get_setting('menu_type', $theme) != 'lead') {
+    $css .= "  .glazed-header--top #glazed-main-menu .nav > li > a, .glazed-header--side #glazed-main-menu .nav a, .body--glazed-nav-desktop .glazed-header--top .nav .dropdown-menu li>a { font-size:  " . theme_get_setting('nav_mobile_font_size', $theme) . "px } \n";
+  }
+  $css .= "  h1, .html #page-title .page-title { font-size:  " . theme_get_setting('h1_mobile_font_size', $theme) . "px; } \n";
+  $css .= "  h2 { font-size:  " . theme_get_setting('h2_mobile_font_size', $theme) . "px; } \n";
+  $css .= "  h3 { font-size:  " . theme_get_setting('h3_mobile_font_size', $theme) . "px; } \n";
+  $css .= "  h4 { font-size:  " . theme_get_setting('h4_mobile_font_size', $theme) . "px; } \n";
+  $css .= "  blockquote, .blockquote p { font-size:  " . theme_get_setting('blockquote_mobile_font_size', $theme) . "px; } \n";
+  $css .= "} \n\n";
 }
-$css .= "  h1, .html #page-title .page-title { font-size:  " . theme_get_setting('h1_mobile_font_size', $theme) . "px; } \n";
-$css .= "  h2 { font-size:  " . theme_get_setting('h2_mobile_font_size', $theme) . "px; } \n";
-$css .= "  h3 { font-size:  " . theme_get_setting('h3_mobile_font_size', $theme) . "px; } \n";
-$css .= "  h4 { font-size:  " . theme_get_setting('h4_mobile_font_size', $theme) . "px; } \n";
-$css .= "  blockquote, .blockquote p { font-size:  " . theme_get_setting('blockquote_mobile_font_size', $theme) . "px; } \n";
-$css .= "} \n\n";

@@ -131,6 +131,11 @@ function glazed_css_cache_build($theme) {
   // Load Sooper Features CSS.
   foreach (\Drupal::service('file_system')->scanDirectory(drupal_get_path('theme', 'glazed') . '/features', '/css.inc/i') as $file) {
     require_once $file->uri;
+    $function_name = basename($file->filename, '.inc');
+    $function_name = str_replace('-', '_', $function_name);
+    if (function_exists($function_name)) {
+      $function_name($theme, $css);
+    }
   }
   $file_object = file_save_data($css, $glazed_css_file, FileSystemInterface::EXISTS_REPLACE);
   if ($dir_writable && !empty($file_object)) {

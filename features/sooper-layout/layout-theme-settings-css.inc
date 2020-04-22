@@ -2,23 +2,32 @@
 
 /**
  * @file
- * Boxed Layout Box Background Color.
+ * Layout settings css styles.
  */
 
-if (theme_get_setting('boxed_layout', $theme) && ($cnt_bg = theme_get_setting('boxed_layout_boxbg', $theme))) {
-  $css .= ".glazed-boxed-container { background: $cnt_bg; }\n\n";
-  $css .= ".glazed-boxed-container .nav-tabs >li.active a { border-bottom-color: $cnt_bg; }\n\n";
-  $css .= ".glazed-boxed-container .tabs-left .nav-tabs .active>a { border-right-color: $cnt_bg; }\n\n";
-  $css .= ".glazed-boxed-container .tabs-right .nav-tabs .active>a { border-left-color: $cnt_bg; }\n\n";
-}
+/**
+ * Generate layouts theme css styles.
+ *
+ * @param string $theme
+ *   Theme machine name.
+ * @param string $css
+ *   Generated css styles string.
+ */
+function layout_theme_settings_css($theme, &$css) {
+  if (theme_get_setting('boxed_layout', $theme) && ($cnt_bg = theme_get_setting('boxed_layout_boxbg', $theme))) {
+    $css .= ".glazed-boxed-container { background: $cnt_bg; }\n\n";
+    $css .= ".glazed-boxed-container .nav-tabs >li.active a { border-bottom-color: $cnt_bg; }\n\n";
+    $css .= ".glazed-boxed-container .tabs-left .nav-tabs .active>a { border-right-color: $cnt_bg; }\n\n";
+    $css .= ".glazed-boxed-container .tabs-right .nav-tabs .active>a { border-left-color: $cnt_bg; }\n\n";
+  }
 
-$box_width = theme_get_setting('box_max_width', $theme);
-$max_width = theme_get_setting('layout_max_width', $theme);
-$gutter_horizontal = theme_get_setting('gutter_horizontal', $theme) / 2;
-$gutter_vertical = theme_get_setting('gutter_vertical', $theme);
-$gutter_container = theme_get_setting('gutter_container', $theme);
+  $box_width = theme_get_setting('box_max_width', $theme);
+  $max_width = theme_get_setting('layout_max_width', $theme);
+  $gutter_horizontal = theme_get_setting('gutter_horizontal', $theme) / 2;
+  $gutter_vertical = theme_get_setting('gutter_vertical', $theme);
+  $gutter_container = theme_get_setting('gutter_container', $theme);
 
-$css .= <<<EOT
+  $css .= <<<EOT
 .container {
   max-width: {$max_width}px;
   padding-left: {$gutter_container}px;
@@ -53,11 +62,11 @@ $css .= <<<EOT
 
 EOT;
 
-$gutter_horizontal = theme_get_setting('gutter_horizontal_mobile', $theme) / 2;
-$gutter_vertical = theme_get_setting('gutter_vertical_mobile', $theme) / 2;
-$gutter_container = theme_get_setting('gutter_container_mobile', $theme);
+  $gutter_horizontal = theme_get_setting('gutter_horizontal_mobile', $theme) / 2;
+  $gutter_vertical = theme_get_setting('gutter_vertical_mobile', $theme) / 2;
+  $gutter_container = theme_get_setting('gutter_container_mobile', $theme);
 
-$css .= <<<EOT
+  $css .= <<<EOT
 @media screen and (max-width: 1200px) {
   .container {
     padding-left: {$gutter_horizontal}px;
@@ -81,31 +90,32 @@ $css .= <<<EOT
 
 EOT;
 
-if ($position = theme_get_setting('background_image_position')) {
-  $position = str_replace('_', ' ', $position);
-  $css .= "body { background-position: $position; }\n\n";
-}
-
-if ($mode = theme_get_setting('background_image_attachment')) {
-  $css .= "body { background-attachment: $mode; }\n\n";
-}
-
-if ($bgstyle = theme_get_setting('background_image_style')) {
-  switch ($bgstyle) {
-    case 'no_repeat':
-      $css .= "body { background-size: auto;background-repeat: no-repeat; }\n\n";
-      break;
-
-    case 'repeat':
-      $css .= "body { background-size: auto; }\n\n";
-      break;
-
-    case 'contain':
-      $css .= "body { background-size: contain; }\n\n";
-      break;
+  if ($position = theme_get_setting('background_image_position')) {
+    $position = str_replace('_', ' ', $position);
+    $css .= "body { background-position: $position; }\n\n";
   }
-}
 
-if ($background_image_path = theme_get_setting('background_image_path', $theme)) {
-  $css .= "body { background-image: url('" . file_url_transform_relative(file_create_url($background_image_path)) . "'); }\n\n";
+  if ($mode = theme_get_setting('background_image_attachment')) {
+    $css .= "body { background-attachment: $mode; }\n\n";
+  }
+
+  if ($bgstyle = theme_get_setting('background_image_style')) {
+    switch ($bgstyle) {
+      case 'no_repeat':
+        $css .= "body { background-size: auto;background-repeat: no-repeat; }\n\n";
+        break;
+
+      case 'repeat':
+        $css .= "body { background-size: auto; }\n\n";
+        break;
+
+      case 'contain':
+        $css .= "body { background-size: contain; }\n\n";
+        break;
+    }
+  }
+
+  if ($background_image_path = theme_get_setting('background_image_path', $theme)) {
+    $css .= "body { background-image: url('" . file_url_transform_relative(file_create_url($background_image_path)) . "'); }\n\n";
+  }
 }
