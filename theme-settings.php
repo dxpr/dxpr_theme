@@ -2,6 +2,7 @@
 
 /**
  * @file
+ * Glazed theme settings.
  */
 
 use Drupal\node\Entity\NodeType;
@@ -9,38 +10,32 @@ use Drupal\Core\File\FileSystemInterface;
 use Drupal\Core\File\Exception\FileException;
 
 /**
- *
+ * Implements hook_form_FORM_ID_alter().
  */
 function glazed_form_system_theme_settings_alter(&$form, &$form_state, $form_id = NULL) {
-  /**
-   * @ code
-   * a bug in D7 and D8 causes the theme to load twice. Only the second time $form
-   * will contain the color module data. So we ignore the first
-   * @see https://www.drupal.org/node/943212
-   */
+  global $base_path;
+  // @code
+  // A bug in D7 and D8 causes the theme to load twice.
+  // Only the second time $form
+  // will contain the color module data. So we ignore the first
+  // @see https://www.drupal.org/node/943212
   // form_id is only present the second time around.
   if (!isset($form_id)) {
     return;
   };
-
-  global $base_path, $theme_chain;
-
   $build_info = $form_state->getBuildInfo();
   $subject_theme = $build_info['args'][0];
   $glazed_theme_path = drupal_get_path('theme', 'glazed') . '/';
-  $theme_path = drupal_get_path('theme', $subject_theme) . '/';
   $themes = \Drupal::service('theme_handler')->listInfo();
-  $theme_chain = [$subject_theme];
-  foreach ($themes[$subject_theme]->base_themes as $base_theme => $base_theme_name) {
-    $theme_chain[] = $base_theme;
-  }
 
   $img = '<img style="width:35px;margin-right:5px;" src="' . $base_path . $glazed_theme_path . 'logo-white.png" />';
+  $version = $themes[$subject_theme]->info['version'] ?? '';
   $form['glazed_settings'] = [
-  // SETTING TYPE TO DETAILS OR VERTICAL_TABS STOPS RENDERING OF ALL ELEMENTS INSIDE.
+    // SETTING TYPE TO DETAILS OR VERTICAL_TABS
+    // STOPS RENDERING OF ALL ELEMENTS INSIDE.
     '#type' => 'vertical_tabs',
     '#weight' => -20,
-    '#prefix' => '<h2><small>' . $img . ' ' . ucfirst($subject_theme) . ' ' . $themes[$subject_theme]->info['version'] . ' <span class="lead">(Bootstrap ' . $themes['bootstrap']->info['version'] . ')</span>' . '</small></h2>',
+    '#prefix' => '<h2><small>' . $img . ' ' . ucfirst($subject_theme) . ' ' . $version . ' <span class="lead">(Bootstrap ' . $themes['bootstrap']->info['version'] . ')</span>' . '</small></h2>',
   ];
   // $form['color']['#group'] = 'glazed_settings';
   if (!empty($form['update'])) {
@@ -64,14 +59,19 @@ function glazed_form_system_theme_settings_alter(&$form, &$form_state, $form_id 
   require_once drupal_get_path('theme', 'glazed') . '/glazed_callbacks.inc';
   glazed_css_cache_build($subject_theme);
 
-  foreach (file_scan_directory(drupal_get_path('theme', 'glazed') . '/features', '/settings.inc/i') as $file) {
-    $theme = 'glazed';
+  foreach (\Drupal::service('file_system')->scanDirectory(drupal_get_path('theme', 'glazed') . '/features', '/settings.inc/i') as $file) {
     require_once $file->uri;
+    $function_name = basename($file->filename, '.inc');
+    $function_name = str_replace('-', '_', $function_name);
+    if (function_exists($function_name)) {
+      $function_name($form, $subject_theme);
+    }
   }
   $form['#attached']['library'][] = 'glazed/admin.themesettings';
 
   if ((\Drupal::moduleHandler()->moduleExists('color')) && ($palette = color_get_palette($subject_theme))) {
-    // glazedSetting vs glazed namespace otherwise if deletes other .glazed data.
+    // glazedSetting vs glazed namespace otherwise
+    // if deletes other .glazed data.
     $form['#attached']['drupalSettings']['glazedSettings'] = ['palette' => $palette];
   }
 
@@ -82,7 +82,7 @@ function glazed_form_system_theme_settings_alter(&$form, &$form_state, $form_id 
 /**
  * Validate callback for theme settings form.
  *
- * @see core/modules/system/src/Form/ThemeSettingsForm.php validateForm
+ * @see \Drupal\system\Form\ThemeSettingsForm::validateForm()
  */
 function glazed_form_system_theme_settings_validate(&$form, &$form_state) {
   if (\Drupal::moduleHandler()->moduleExists('file')) {
@@ -117,8 +117,8 @@ function glazed_form_system_theme_settings_validate(&$form, &$form_state) {
       }
     }
 
-    // If the user provided a path for a logo or background image file, make sure a file
-    // exists at that path.
+    // If the user provided a path for a logo or background image file,
+    // make sure a file exists at that path.
     if ($form_state->getValue('page_title_image_path')) {
       $path = _glazed_validate_path($form_state->getValue('page_title_image_path'));
       if (!$path) {
@@ -154,7 +154,7 @@ function glazed_form_system_theme_settings_validate(&$form, &$form_state) {
 /**
  * Submit callback for theme settings form.
  *
- * @see core/modules/system/src/Form/ThemeSettingsForm.php submitForm
+ * @see \Drupal\system\Form\ThemeSettingsForm::submitForm()
  */
 function glazed_form_system_theme_settings_submit(&$form, &$form_state) {
   // If the user uploaded a new image, save it to a permanent location.
@@ -225,8 +225,10 @@ function _glazed_get_color_names($theme = NULL) {
   $file = DRUPAL_ROOT . '/' . $path . '/color/color.inc';
   if ($path && file_exists($file)) {
     include $file;
+    // phpcs:disable
     $theme_info[$theme] = $info['fields'];
     return $info['fields'];
+    // phpcs:enable
   }
   else {
     return [];
@@ -235,6 +237,12 @@ function _glazed_get_color_names($theme = NULL) {
 
 /**
  * Color options for theme settings.
+ *
+ * @param string $theme
+ *   Theme machine name.
+ *
+ * @return array
+ *   Color options.
  */
 function _glazed_color_options($theme) {
   $colors = [
@@ -248,7 +256,10 @@ function _glazed_color_options($theme) {
 }
 
 /**
+ * Get available node bundles.
  *
+ * @return array
+ *   Available node bundles.
  */
 function _glazed_node_types_options() {
   $types = [];
@@ -259,7 +270,7 @@ function _glazed_node_types_options() {
 }
 
 /**
- *
+ * Generate node type preview markup.
  */
 function _glazed_type_preview() {
   $output = <<<EOT
@@ -299,8 +310,6 @@ EOT;
 /**
  * Helper function for the system_theme_settings form.
  *
- * @see core/modules/system/src/Form/ThemeSettingsForm.php validatePath
- *
  * Attempts to validate normal system paths, paths relative to the public files
  * directory, or stream wrapper URIs. If the given path is any of the above,
  * returns a valid path or URI that the theme system can display.
@@ -312,6 +321,8 @@ EOT;
  * @return mixed
  *   A valid path that can be displayed through the theme system, or FALSE if
  *   the path could not be validated.
+ *
+ * @see \Drupal\system\Form\ThemeSettingsForm::validatePath()
  */
 function _glazed_validate_path($path) {
   // Absolute local file paths are invalid.

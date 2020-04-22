@@ -46,7 +46,8 @@ function glazed_library_info_alter(&$libraries, $extension) {
     }
     // Subthemes glazed.css.
     if ($current_theme !== 'glazed') {
-      // Subthemes carry their own copy of glazed.css, disable glazed/css/glazed.css.
+      // Subthemes carry their own copy of glazed.css,
+      // disable glazed/css/glazed.css.
       unset($libraries['global-styling']['css']['theme']['css/glazed.css']);
     }
   }
@@ -96,8 +97,13 @@ function glazed_preprocess_html(&$variables) {
   }
 
   // Load Sooper Features Controllers.
-  foreach (file_scan_directory(drupal_get_path('theme', 'glazed') . '/features', '/controller.inc/i') as $file) {
+  foreach (\Drupal::service('file_system')->scanDirectory(drupal_get_path('theme', 'glazed') . '/features', '/controller.inc/i') as $file) {
     require_once $file->uri;
+    $function_name = basename($file->filename, '.inc');
+    $function_name = str_replace('-', '_', $function_name);
+    if (function_exists($function_name)) {
+      $function_name($variables);
+    }
   }
 
   if ($custom_js = theme_get_setting('custom_javascript_site')) {

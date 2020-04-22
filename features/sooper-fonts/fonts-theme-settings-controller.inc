@@ -2,35 +2,49 @@
 
 /**
  * @file
+ * Applying theme font settings.
  */
 
-$glazed_fonts = [];
-$glazed_fonts[] = theme_get_setting('body_font_face');
-$glazed_fonts[] = theme_get_setting('headings_font_face');
-$glazed_fonts[] = theme_get_setting('nav_font_face');
-$glazed_fonts[] = theme_get_setting('sitename_font_face');
-$glazed_fonts[] = theme_get_setting('blockquote_font_face');
+/**
+ * Process theme font theme settings.
+ *
+ * @param array $variables
+ *   Variables array for the html template.
+ */
+function fonts_theme_settings_controller(array &$variables) {
+  $glazed_fonts = [];
+  $glazed_fonts[] = theme_get_setting('body_font_face');
+  $glazed_fonts[] = theme_get_setting('headings_font_face');
+  $glazed_fonts[] = theme_get_setting('nav_font_face');
+  $glazed_fonts[] = theme_get_setting('sitename_font_face');
+  $glazed_fonts[] = theme_get_setting('blockquote_font_face');
 
-$glazed_fonts = array_unique($glazed_fonts);
+  $glazed_fonts = array_unique($glazed_fonts);
 
-foreach ($glazed_fonts as $glazed_font) {
-  if (isset($glazed_font[0]) && $glazed_font[0] === '0') {
-    // If the font is loaded without a weight or style specified
-    // try to load a complete set.
-    if (substr($glazed_font, -1) == ':') {
-      $glazed_font .= '400italic,700italic,400,700';
+  foreach ($glazed_fonts as $glazed_font) {
+    if (isset($glazed_font[0]) && $glazed_font[0] === '0') {
+      // If the font is loaded without a weight or style specified
+      // try to load a complete set.
+      if (substr($glazed_font, -1) == ':') {
+        $glazed_font .= '400italic,700italic,400,700';
+      }
+      _glazed_add_goog_font($glazed_font, $variables);
     }
-    _glazed_add_goog_font($glazed_font, $variables);
-  }
-  elseif (isset($glazed_font[0]) && $glazed_font[0] === '1') {
-    _glazed_add_local_font($glazed_font, $variables);
+    elseif (isset($glazed_font[0]) && $glazed_font[0] === '1') {
+      _glazed_add_local_font($glazed_font, $variables);
+    }
   }
 }
 
 /**
  * Helper function to add google fonts to the page.
+ *
+ * @param string $font
+ *   Font family name.
+ * @param array $variables
+ *   Variables array.
  */
-function _glazed_add_goog_font($font, &$variables) {
+function _glazed_add_goog_font($font, array &$variables) {
   $font = substr($font, 1);
   $element = [
     '#tag' => 'link',
@@ -44,10 +58,17 @@ function _glazed_add_goog_font($font, &$variables) {
 }
 
 /**
- * Helper function to add local fonts to the page. Add query string to stylesheet to prevent
- * identically named files to overwrite eachother.
+ * Helper function to add local fonts to the page.
+ *
+ * Add query string to stylesheet to prevent identically named files
+ * to overwrite each other.
+ *
+ * @param string $font
+ *   Font family name.
+ * @param array $variables
+ *   Variables array.
  */
-function _glazed_add_local_font($font, &$variables) {
+function _glazed_add_local_font($font, array &$variables) {
   global $base_url;
 
   $font = explode('|', substr($font, 1));

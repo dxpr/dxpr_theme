@@ -1,13 +1,16 @@
 # Glazed Theme
 
-For user documentation and support please check: https://app.sooperthemes.com/hc/documentation
+For user documentation and support please check:
+https://app.sooperthemes.com/hc/documentation
 
-For development documentation and support please check: https://app.sooperthemes.com/hc/documentation/internal
+For development documentation and support please check:
+https://app.sooperthemes.com/hc/documentation/internal
 
 
 ## [WARNING] Don't push the built artifact files
 
-Artifact (.ccs, min.js etc.) files are built and published automatically by CI/CD (Github Actions), so don't push these
+Artifact (.ccs, min.js etc.) files are built and published automatically
+by CI/CD (Github Actions), so don't push these
 changes to the repo manually, they will be re-written anyway.
 
 # Continuous Integration / Automation
@@ -21,7 +24,9 @@ changes to the repo manually, they will be re-written anyway.
 
 ## Development Setup
 
-You need to install `docker` and `docker-compose` to your workstation. You can keep using whatever to run your webserver, we just use docker to run our scripts.
+You need to install `docker` and `docker-compose` to your workstation.
+You can keep using whatever to run your webserver,
+we just use docker to run our scripts.
 
 
 ### How to watch and build files

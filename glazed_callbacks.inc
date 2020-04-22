@@ -2,18 +2,21 @@
 
 /**
  * @file
+ * Glazed theme helper functions.
  */
 
-// Glazed Helper functions
-// .
 use Drupal\Core\Asset\CssOptimizer;
 use Drupal\Core\File\FileSystemInterface;
 
 /**
+ * Write css files for the color settings.
  *
+ * @param string $theme
+ *   Theme machine name.
  */
 function glazed_color_module_css_write($theme) {
-  // Stuff copied from color module, because this code is not encapsulated in a function other than theme submit.
+  // Stuff copied from color module, because this code is not encapsulated
+  // in a function other than theme submit.
   module_load_include('module', 'color');
   $info = color_get_info($theme);
   $palette = color_get_palette($theme);
@@ -109,9 +112,13 @@ function glazed_color_module_css_write($theme) {
 }
 
 /**
- * Theme CSS generator from Glazed theme-settings.php
- * Custom theme settings might need a lot of CSS
+ * Theme CSS generator from Glazed theme-settings.php.
+ *
+ * Custom theme settings might need a lot of CSS.
  * So we put it in a file for optimal performance.
+ *
+ * @param string $theme
+ *   Theme name.
  */
 function glazed_css_cache_build($theme) {
   $glazed_css_file = 'public://glazed/css/themesettings-' . $theme . '.css';
@@ -122,18 +129,25 @@ function glazed_css_cache_build($theme) {
   if (\Drupal::moduleHandler()->moduleExists('color')) {
     $palette = color_get_palette($theme);
   }
-  // Construct CSS file:
-  $CSS = '';
-  // Load Sooper Features CSS.
-  foreach (file_scan_directory(drupal_get_path('theme', 'glazed') . '/features', '/css.inc/i') as $file) {
-    require_once $file->uri;
+  else {
+    $palette = [];
   }
-  $file_object = \file_save_data($CSS, $glazed_css_file, FileSystemInterface::EXISTS_REPLACE);
+  // Construct CSS file:
+  $css = '';
+  // Load Sooper Features CSS.
+  foreach (\Drupal::service('file_system')->scanDirectory(drupal_get_path('theme', 'glazed') . '/features', '/css.inc/i') as $file) {
+    require_once $file->uri;
+    $function_name = basename($file->filename, '.inc');
+    $function_name = str_replace('-', '_', $function_name);
+    if (function_exists($function_name)) {
+      $function_name($theme, $css, $palette);
+    }
+  }
+  $file_object = file_save_data($css, $glazed_css_file, FileSystemInterface::EXISTS_REPLACE);
   if ($dir_writable && !empty($file_object)) {
     $message = t('Glazed CSS file cache built for %theme', ['%theme' => $theme]);
     \Drupal::messenger()->addMessage($message);
     \Drupal::logger('glazed')->notice($message);
-    // watchdog('Glazed', 'Glazed CSS file cache built for %theme', ['%theme' => $theme]);.
   }
   else {
     $message = t('Cannot write theme-settings file, please check your file system. (See status report page)');
