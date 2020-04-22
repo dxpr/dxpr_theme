@@ -12,8 +12,10 @@
  *   Theme machine name.
  * @param string $css
  *   Generated css styles string.
+ * @param array $palette
+ *   Theme palette array.
  */
-function layout_theme_settings_css($theme, &$css) {
+function layout_theme_settings_css($theme, &$css, array $palette) {
   if (theme_get_setting('boxed_layout', $theme) && ($cnt_bg = theme_get_setting('boxed_layout_boxbg', $theme))) {
     $css .= ".glazed-boxed-container { background: $cnt_bg; }\n\n";
     $css .= ".glazed-boxed-container .nav-tabs >li.active a { border-bottom-color: $cnt_bg; }\n\n";

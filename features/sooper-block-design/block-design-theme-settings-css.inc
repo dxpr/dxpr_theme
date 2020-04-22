@@ -12,8 +12,10 @@
  *   Theme machine name.
  * @param string $css
  *   Generated css styles string.
+ * @param array $palette
+ *   Theme palette array.
  */
-function block_design_theme_settings_css($theme, &$css) {
+function block_design_theme_settings_css($theme, &$css, array $palette) {
   if ((theme_get_setting('block_preset')) && ($regions = array_filter(theme_get_setting('block_design_regions')))) {
     // Block Styling.
     $border_width = theme_get_setting('block_border', $theme);

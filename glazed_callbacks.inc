@@ -126,6 +126,12 @@ function glazed_css_cache_build($theme) {
   $dir_writable = \Drupal::service('file_system')
     ->prepareDirectory($dir, FileSystemInterface::CREATE_DIRECTORY);
 
+  if (\Drupal::moduleHandler()->moduleExists('color')) {
+    $palette = color_get_palette($theme);
+  }
+  else {
+    $palette = [];
+  }
   // Construct CSS file:
   $css = '';
   // Load Sooper Features CSS.
@@ -134,7 +140,7 @@ function glazed_css_cache_build($theme) {
     $function_name = basename($file->filename, '.inc');
     $function_name = str_replace('-', '_', $function_name);
     if (function_exists($function_name)) {
-      $function_name($theme, $css);
+      $function_name($theme, $css, $palette);
     }
   }
   $file_object = file_save_data($css, $glazed_css_file, FileSystemInterface::EXISTS_REPLACE);

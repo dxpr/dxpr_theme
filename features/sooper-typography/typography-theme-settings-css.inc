@@ -12,8 +12,10 @@
  *   Theme machine name.
  * @param string $css
  *   Generated css styles string.
+ * @param array $palette
+ *   Theme palette array.
  */
-function typography_theme_settings_css($theme, &$css) {
+function typography_theme_settings_css($theme, &$css, array $palette) {
   $css .= "body, p, .lead { line-height:  " . theme_get_setting('body_line_height', $theme) . " } \n";
   $css .= "body { font-size:  " . theme_get_setting('body_font_size', $theme) . "px } \n";
   if (theme_get_setting('menu_type', $theme) != 'lead') {

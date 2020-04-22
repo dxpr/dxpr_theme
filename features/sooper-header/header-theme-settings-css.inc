@@ -73,8 +73,10 @@ function _glazed_hex2rgba($color, $opacity = NULL) {
  *   Theme machine name.
  * @param string $css
  *   Generated css styles string.
+ * @param array $palette
+ *   Theme palette array.
  */
-function header_theme_settings_css($theme, &$css) {
+function header_theme_settings_css($theme, &$css, array $palette) {
   // Header Vars.
   $align = theme_get_setting('header_side_align', $theme);
   $header_side_width = theme_get_setting('header_side_width', $theme);

@@ -224,8 +224,10 @@ function _glazed_get_color_names($theme = NULL) {
   $file = DRUPAL_ROOT . '/' . $path . '/color/color.inc';
   if ($path && file_exists($file)) {
     include $file;
+    // phpcs:disable
     $theme_info[$theme] = $info['fields'];
     return $info['fields'];
+    // phpcs:enable
   }
   else {
     return [];

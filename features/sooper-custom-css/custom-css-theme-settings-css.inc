@@ -12,8 +12,10 @@
  *   Theme machine name.
  * @param string $css
  *   Generated css styles string.
+ * @param array $palette
+ *   Theme palette array.
  */
-function block_design_theme_settings_css($theme, &$css) {
+function block_design_theme_settings_css($theme, &$css, array $palette) {
   if (theme_get_setting('custom_css_site', $theme)) {
     $css .= theme_get_setting('custom_css_site', $theme);
   }

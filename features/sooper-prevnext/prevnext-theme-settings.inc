@@ -13,7 +13,7 @@
  * @param string $theme
  *   Theme machine name.
  */
-function prevnext_theme_settings(array &$form, $theme) {
+function prevnext_theme_settings(array &$form, $theme, array $palette) {
   if (\Drupal::moduleHandler()->moduleExists('glazed_helper')) {
     $form['glazed_settings']['prevnext'] = [
       '#title' => t('Previous/Next Links'),

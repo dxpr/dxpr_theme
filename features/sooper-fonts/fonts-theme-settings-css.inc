@@ -12,8 +12,10 @@
  *   Theme machine name.
  * @param string $css
  *   Generated css styles string.
+ * @param array $palette
+ *   Theme palette array.
  */
-function fonts_theme_settings_css($theme, &$css) {
+function fonts_theme_settings_css($theme, &$css, array $palette) {
   if (
     theme_get_setting('headings_font_face', $theme)
     || theme_get_setting('body_font_face', $theme)

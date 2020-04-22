@@ -12,8 +12,10 @@
  *   Theme machine name.
  * @param string $css
  *   Generated css styles string.
+ * @param array $palette
+ *   Theme palette array.
  */
-function page_title_theme_settings_css($theme, &$css) {
+function page_title_theme_settings_css($theme, &$css, array $palette) {
   $gutter_container = theme_get_setting('gutter_container', $theme);
   $breadcrumb_align = theme_get_setting('page_title_breadcrumbs_align', $theme);
   if ($breadcrumb_align == 'right') {

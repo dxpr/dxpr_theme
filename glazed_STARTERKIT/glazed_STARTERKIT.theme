@@ -10,6 +10,7 @@
 /**
  * Implements hook_preprocess_page().
  */
+// phpcs:disable
 function glazed_STARTERKIT_preprocess_page(&$variables) {
   $glazed_libraries = [
     // Bootstrap TAILORING.
@@ -52,3 +53,4 @@ function glazed_STARTERKIT_preprocess_page(&$variables) {
     $variables['#attached']['library'][] = $glazed_library;
   }
 }
+// phpcs:enable
