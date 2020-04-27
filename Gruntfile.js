@@ -5,14 +5,16 @@ module.exports = function(grunt) {
       options: {
         ecma: 2015
       },
-      your_target: {
-        'js/minified/glazed.min.js': ['js/dist/glazed.js'],
-        'js/minified/glazed.admin.min.js': ['js/dist/glazed.admin.js'],
-        'js/minified/glazed-settings.admin.min.js': ['js/dist/glazed-settings.admin.js'],
-        'js/minified/glazed-mobile-nav.min.js': ['js/dist/glazed-mobile-nav.js'],
-        'js/minified/color.min.js': ['js/dist/color.js'],
-        'js/minified/classie.min.js': ['vendor/classie.js']
-      },
+      main: {
+        files: {
+          'js/minified/glazed.min.js': ['js/dist/glazed.js'],
+          'js/minified/glazed.admin.min.js': ['js/dist/glazed.admin.js'],
+          'js/minified/glazed-settings.admin.min.js': ['js/dist/glazed-settings.admin.js'],
+          'js/minified/glazed-mobile-nav.min.js': ['js/dist/glazed-mobile-nav.js'],
+          'js/minified/color.min.js': ['js/dist/color.js'],
+          'js/minified/classie.min.js': ['vendor/classie.js']
+        },
+      }
     },
     sass: {
       options: {
