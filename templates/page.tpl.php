@@ -78,7 +78,7 @@
 <?php print $boxed_cnt; ?>
 
 <?php if (!empty($secondary_nav) || !empty($page['secondary_header'])): ?>
-<header id="secondary-header" role="banner" class="<?php print $glazed_secondary_header_classes; ?> clearfix">
+<header id="secondary-header" role="banner" class="<?php print $dxpr_theme_secondary_header_classes; ?> clearfix">
   <div class="<?php print $cnt_secondary_header ?> secondary-header-container">
     <?php print $cnt_secondary_header_squeeze_start; ?>
         <?php if (!empty($page['secondary_header'])): ?>
@@ -93,7 +93,7 @@
 <?php endif; ?>
 
 <?php if (!isset($hide_header)): ?>
-<header id="navbar" role="banner" class="<?php print $glazed_header_classes; ?>"<?php if (isset($header_affix)): print $header_affix; endif; ?>>
+<header id="navbar" role="banner" class="<?php print $dxpr_theme_header_classes; ?>"<?php if (isset($header_affix)): print $header_affix; endif; ?>>
   <div class="<?php print $cnt_header_nav ?> navbar-container">
     <?php print $cnt_header_nav_squeeze_start; ?>
         <div class="navbar-header">
@@ -112,12 +112,12 @@
           <?php endif; ?>
 
           <?php if ((!isset($hide_navigation)) && !empty($primary_nav) || !empty($page['navigation'])): ?>
-            <a id="glazed-menu-toggle" href="#"><span></span><div class="screenreader-text element-invisible">Toggle menu</div  ></a>
+            <a id="dxpr-theme-menu-toggle" href="#"><span></span><div class="screenreader-text element-invisible">Toggle menu</div  ></a>
           <?php endif; ?>
         </div>
 
         <?php if ((!isset($hide_navigation)) && !empty($primary_nav) || !empty($page['navigation'])): ?>
-          <nav role="navigation" id="glazed-main-menu" class="glazed-main-menu <?php print $menu_has_children ?> glazed-mobile-header-open-<?php print theme_get_setting('header_side_open_direction', $theme) ?>">
+          <nav role="navigation" id="dxpr-theme-main-menu" class="dxpr-theme-main-menu <?php print $menu_has_children ?> dxpr-theme-mobile-header-open-<?php print theme_get_setting('header_side_open_direction', $theme) ?>">
             <?php if (!empty($primary_nav)): ?>
                <?php  print render($primary_nav); ?>
             <?php endif; ?>
@@ -143,7 +143,7 @@
     <header role="banner" id="page-title" class="<?php print $cnt_page_title; ?> page-title-container">
       <?php print render($title_prefix); ?>
       <?php if (!empty($title)): ?>
-      <h1 class="<?php print $glazed_title_classes; ?>"><?php print $title; ?></h1>
+      <h1 class="<?php print $dxpr_theme_title_classes; ?>"><?php print $title; ?></h1>
       <?php endif; ?>
       <?php print render($title_suffix); ?>
       <?php print render($page['header']); ?>
@@ -186,7 +186,7 @@
           <div class="wrap-messages"><?php print $messages; ?></div>
         <?php endif; ?>
         <?php if (!empty($tabs)): ?>
-          <?php if (isset($hide_page_title) OR empty($title)): ?><div class="glazed-mini-tabs-wrapper"><?php endif; ?>
+          <?php if (isset($hide_page_title) OR empty($title)): ?><div class="dxpr-theme-mini-tabs-wrapper"><?php endif; ?>
             <?php print render($tabs); ?>
           <?php if (isset($hide_page_title) OR empty($title)): ?></div><?php endif; ?>
         <?php endif; ?>
@@ -219,7 +219,7 @@
 
 <!-- /#Sticky Footer -->
 <?php if (!empty($page['footer'])): ?>
-<footer class="glazed-footer clearfix">
+<footer class="dxpr-theme-footer clearfix">
   <div class="<?php print $cnt_footer ?> footer-container">
     <?php print $cnt_footer_squeeze_start; ?>
         <?php print render($page['footer']); ?>

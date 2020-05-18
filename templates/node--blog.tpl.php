@@ -106,7 +106,7 @@
         <?php  if (isset($comment_count)): print $comment_count;
         endif; ?> <em class="text-muted"><?php print t('Comments'); ?></em>
       </div>
-      <div class="col-sm-4 text-center glazed-service-links">
+      <div class="col-sm-4 text-center dxpr-theme-service-links">
         <?php print render($content['links']); ?>
       </div>
       <div class="col-sm-4 text-center">

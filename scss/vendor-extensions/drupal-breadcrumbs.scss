@@ -27,7 +27,7 @@
       }
       // Hide UUID Redirector breadcrumb
       &[href$="/uuid"],
-      &[href$="/uuid"] + .glazed-breadcrumb-spacer {
+      &[href$="/uuid"] + .dxpr-theme-breadcrumb-spacer {
         display: none;
       }
     }

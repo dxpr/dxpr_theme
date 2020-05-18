@@ -106,11 +106,11 @@
       <div class="col-sm-4 text-center">
         <?php print $comment_count; ?> <em class="text-muted"><?php print t('Comments'); ?></em>
       </div>
-      <div class="col-sm-4 text-center glazed-service-links">
+      <div class="col-sm-4 text-center dxpr-theme-service-links">
         <?php print render($content['links']); ?>
       </div>
       <div class="col-sm-4 text-center">
-       <em class="text-muted"><?php print t('By'); ?> </em> <span class="glazed-util-text-uppercase"><?php print $name; ?></span>
+       <em class="text-muted"><?php print t('By'); ?> </em> <span class="dxpr-theme-util-text-uppercase"><?php print $name; ?></span>
       </div>
     </div>
   </footer>

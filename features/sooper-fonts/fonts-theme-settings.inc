@@ -18,10 +18,10 @@ $weights = array(
   '950' => t('ExtraBlack') . ' ' . t('950'),
 );
 
-$font_list = glazed_font_list();
+$font_list = dxpr_theme_font_list();
 $font_count = count($font_list, COUNT_RECURSIVE);
 
-$form['glazed_settings']['fonts'] = array(
+$form['dxpr_theme_settings']['fonts'] = array(
   '#title' => t('Fonts'),
   '#type' => 'fieldset',
   '#collapsible' => TRUE,
@@ -31,7 +31,7 @@ $form['glazed_settings']['fonts'] = array(
 );
 
 // Regular Fonts Settings.
-$form['glazed_settings']['fonts']['body_font_face'] = array(
+$form['dxpr_theme_settings']['fonts']['body_font_face'] = array(
   '#type' => 'select',
   '#title' => t('Base font'),
   '#default_value' => theme_get_setting('body_font_face'),
@@ -39,82 +39,82 @@ $form['glazed_settings']['fonts']['body_font_face'] = array(
   '#prefix'        => '<p>' . t('Choose from @count webfonts', ['@count' => $font_count]) . '</p>',
 );
 
-$form['glazed_settings']['fonts']['body_font_face_selector'] = array(
+$form['dxpr_theme_settings']['fonts']['body_font_face_selector'] = array(
   '#type' => 'textfield',
   '#title' => t('CSS Selector'),
   '#default_value' => ((theme_get_setting('body_font_face_selector') !== NULL)) ? theme_get_setting('body_font_face_selector') : 'body',
 );
 
-$form['glazed_settings']['fonts']['headings_font_face'] = array(
+$form['dxpr_theme_settings']['fonts']['headings_font_face'] = array(
   '#type' => 'select',
   '#title' => t('Headings'),
   '#default_value' => theme_get_setting('headings_font_face'),
   '#options' => $font_list,
 );
 
-$form['glazed_settings']['fonts']['headings_font_face_selector'] = array(
+$form['dxpr_theme_settings']['fonts']['headings_font_face_selector'] = array(
   '#type' => 'textfield',
   '#title' => '&nbsp;',
   '#default_value' => ((theme_get_setting('headings_font_face_selector') !== NULL)) ? theme_get_setting('headings_font_face_selector') : 'h1,h2,h3,h4,h5,h6,label,.field-label, .html .tp-caption',
 );
 
-$form['glazed_settings']['fonts']['nav_font_face'] = array(
+$form['dxpr_theme_settings']['fonts']['nav_font_face'] = array(
   '#type' => 'select',
   '#title' => t('Navigation'),
   '#default_value' => theme_get_setting('nav_font_face'),
   '#options' => $font_list,
 );
 
-$form['glazed_settings']['fonts']['nav_font_face_selector'] = array(
+$form['dxpr_theme_settings']['fonts']['nav_font_face_selector'] = array(
   '#type' => 'textfield',
   '#title' => '&nbsp;',
   '#default_value' => ((theme_get_setting('nav_font_face_selector') !== NULL)) ? theme_get_setting('nav_font_face_selector') : 'nav,nav ul li,nav a',
 );
 
-$form['glazed_settings']['fonts']['sitename_font_face'] = array(
+$form['dxpr_theme_settings']['fonts']['sitename_font_face'] = array(
   '#type' => 'select',
   '#title' => t('Site name'),
   '#default_value' => theme_get_setting('sitename_font_face'),
   '#options' => $font_list,
 );
 
-$form['glazed_settings']['fonts']['sitename_font_face_selector'] = array(
+$form['dxpr_theme_settings']['fonts']['sitename_font_face_selector'] = array(
   '#type' => 'textfield',
   '#title' => '&nbsp;',
   '#default_value' => ((theme_get_setting('sitename_font_face_selector') !== NULL)) ? theme_get_setting('sitename_font_face_selector') : 'nav,nav ul li,nav a',
 );
 
-$form['glazed_settings']['fonts']['blockquote_font_face'] = array(
+$form['dxpr_theme_settings']['fonts']['blockquote_font_face'] = array(
   '#type' => 'select',
   '#title' => t('Blockquote'),
   '#default_value' => theme_get_setting('blockquote_font_face'),
   '#options' => $font_list,
 );
 
-$form['glazed_settings']['fonts']['blockquote_font_face_selector'] = array(
+$form['dxpr_theme_settings']['fonts']['blockquote_font_face_selector'] = array(
   '#type' => 'textfield',
   '#title' => '&nbsp;',
   '#default_value' => ((theme_get_setting('blockquote_font_face_selector') !== NULL)) ? theme_get_setting('blockquote_font_face_selector') : 'blockquote, blockquote p',
 );
 
-$form['glazed_settings']['fonts']['font_preview'] = array(
+$form['dxpr_theme_settings']['fonts']['font_preview'] = array(
   '#title' => t('Browse & View Fonts'),
   '#type' => 'fieldset',
   '#collapsible' => TRUE,
   '#collapsed' => TRUE,
   '#prefix' => '<br class="clear-both"><br class="clear-both">',
-  '#suffix' => _glazed_type_preview(),
+  '#suffix' => _dxpr_theme_type_preview(),
 );
 
-$form['glazed_settings']['fonts']['font_preview']['preview'] = array(
+$form['dxpr_theme_settings']['fonts']['font_preview']['preview'] = array(
   '#type' => 'markup',
-  '#markup' => _glazed_font_previews(),
+  '#markup' => _dxpr_theme_font_previews(),
 );
 
 /**
  * Helper function to provide a list of fonts for select list in theme settings.
  */
-function glazed_font_list() {
+function dxpr_theme_font_list() {
   $fonts = array(
     '' => 'Theme defaults',
     'Sans-serif web-safe' => array(
@@ -135,8 +135,8 @@ function glazed_font_list() {
       'times' => 'Times New Roman',
     ),
   );
-  $fonts['Local webfonts'] = glazed_local_webfonts();
-  $fonts['Google webfonts'] = glazed_google_webfonts();
+  $fonts['Local webfonts'] = dxpr_theme_local_webfonts();
+  $fonts['Google webfonts'] = dxpr_theme_google_webfonts();
 
   return $fonts;
 }
@@ -144,7 +144,7 @@ function glazed_font_list() {
 /**
  * Helper function to get list of google web fonts.
  */
-function glazed_google_webfonts() {
+function dxpr_theme_google_webfonts() {
   $json_webfonts = file_get_contents(dirname(__FILE__) . '/google-webfonts.json');
   $webfonts = json_decode($json_webfonts);
   $fonts = array();
@@ -166,7 +166,7 @@ function glazed_google_webfonts() {
 /**
  * Helper function to get list of locally hosted fonts.
  */
-function glazed_local_webfonts($loadem = FALSE) {
+function dxpr_theme_local_webfonts($loadem = FALSE) {
   global $base_path, $base_url, $theme_chain;
   $fonts = array();
   foreach ($theme_chain as $theme) {
@@ -205,13 +205,13 @@ function glazed_local_webfonts($loadem = FALSE) {
 /**
  * Helper function to display font previews in the settings form.
  */
-function _glazed_font_previews() {
+function _dxpr_theme_font_previews() {
   $output = '<div class="fonts-previews">';
   $output .= '  <h3>Google fonts preview</h3>';
   $output .= '  <p>Check out <a href="http://www.google.com/webfonts">google.com/webfonts</a> for previews of google web fonts.</p>';
   $output .= '  <h3>Local fonts preview</h3>';
-  $output .= '  <p>Glazed will automatically detect and load any Fontsquirrel-generated @font-face package in the exmapletheme/fonts folder. See <a href="https://www.fontsquirrel.com/tools/webfont-generator">Fontsquirrel.com</a></p>';
-  foreach (glazed_local_webfonts(TRUE) as $key => $font_name) {
+  $output .= '  <p>DXPR Theme will automatically detect and load any Fontsquirrel-generated @font-face package in the exmapletheme/fonts folder. See <a href="https://www.fontsquirrel.com/tools/webfont-generator">Fontsquirrel.com</a></p>';
+  foreach (dxpr_theme_local_webfonts(TRUE) as $key => $font_name) {
     $font = explode('|', $key);
     $local_name = $font[2];
     $output .= '  <div class="font-preview font-local" style="font-family:' . $local_name . '">';

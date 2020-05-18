@@ -15,7 +15,7 @@ body {
   background-position: center center;
 }
 
-.glazed-boxed-container {
+.dxpr-theme-boxed-container {
   background: white;
   margin: 0 auto;
   max-width: 1580px;
@@ -29,8 +29,8 @@ body {
 
 // navbar and page-title padding is not user-controlled and should be kept
 // away from viewport edge
-.navbar-container.glazed-fluid,
-.page-title-container.glazed-fluid,
+.navbar-container.dxpr-theme-fluid,
+.page-title-container.dxpr-theme-fluid,
 .container-fluid {
   padding-left: 60px;
   padding-right: 60px;
@@ -113,7 +113,7 @@ html.js .kenburnimg img {
 }
 
 // FOOTER
-.glazed-footer {
+.dxpr-theme-footer {
   background-color: $footer;
   color: $footer-text;
   border-color: $footer-text;
@@ -153,7 +153,7 @@ html.js .kenburnimg img {
 
 // STICKY FOOTER Flexbox method
 // https://css-tricks.com/couple-takes-sticky-footer/
-.html--glazed-sticky-footer {
+.html--dxpr-theme-sticky-footer {
   height: 100%;
   body {
     height: 100%;
@@ -163,13 +163,13 @@ html.js .kenburnimg img {
   .wrap-containers {
     flex: 1 0 auto;
   }
-  .body--glazed-nav-desktop .glazed-header--top {
+  .body--dxpr-theme-nav-desktop .dxpr-theme-header--top {
     min-height: 90px;
   }
-  .body--glazed-nav-desktop .glazed-header--top.glazed-header--navbar-pull-down {
+  .body--dxpr-theme-nav-desktop .dxpr-theme-header--top.dxpr-theme-header--navbar-pull-down {
     min-height: 45px;
   }
-  .body--glazed-nav-desktop .glazed-header--top.affix {
+  .body--dxpr-theme-nav-desktop .dxpr-theme-header--top.affix {
     min-height: 60px;
   }
 }

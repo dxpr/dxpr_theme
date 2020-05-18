@@ -46,7 +46,7 @@ p:last-child {
 }
 
 // Bootstrap long dropdown multi-column helper
-// @see glazed.js
+// @see dxpr-theme.js
 .dropdown-menu {
   min-width: 160px;
   li {
@@ -212,7 +212,7 @@ blockquote footer, blockquote small, blockquote .small {
 
 // Disabling the background on Modal Windows
 // Backdrops only work well when modal content is attached to the end of the page
-// In practice glazed builder and custo html snippets will add modals to the body
+// In practice dxpr_theme builder and custo html snippets will add modals to the body
 // which has a lower z-index so the modal can appear behind the backdrop.
 .modal-backdrop {
     z-index: -1!important;
@@ -297,12 +297,12 @@ blockquote footer, blockquote small, blockquote .small {
     }
   }
 }
-.glazed-boxed-container .nav-tabs >li.active a {
+.dxpr-theme-boxed-container .nav-tabs >li.active a {
   border-bottom-color: white;
 }
 
 
-.html .glazed-mini-tabs-wrapper {
+.html .dxpr-theme-mini-tabs-wrapper {
   position: absolute;
   margin-top: 2px;
   left: 50%;
@@ -355,13 +355,13 @@ blockquote footer, blockquote small, blockquote .small {
 .html .tabs-left .nav-tabs .active>a {
   border-right-color: $body-background;
 }
-.glazed-boxed-container .tabs-left .nav-tabs .active>a {
+.dxpr-theme-boxed-container .tabs-left .nav-tabs .active>a {
   border-right-color: white;
 }
 .html .tabs-right .nav-tabs .active>a {
   border-left-color: $body-background;
 }
-.glazed-boxed-container .tabs-right .nav-tabs .active>a {
+.dxpr-theme-boxed-container .tabs-right .nav-tabs .active>a {
   border-left-color: white;
 }
 

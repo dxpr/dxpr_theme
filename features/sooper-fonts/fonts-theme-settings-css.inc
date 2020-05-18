@@ -23,7 +23,7 @@ foreach ($groups as $group) {
       $print_weight = "font-weight: $weight;";
     }
 
-    $print_font = 'font-family: ' . _glazed_get_font($font, $theme) . ';';
+    $print_font = 'font-family: ' . _dxpr_theme_get_font($font, $theme) . ';';
     $CSS .= <<<EOT
 
 $selector {
@@ -45,7 +45,7 @@ EOT;
  * @param $attributes
  * @return string
  */
-function _glazed_font_stack($font = 'helvetica') {
+function _dxpr_theme_font_stack($font = 'helvetica') {
   $fonts = array(
     'SF_Segoe_Roboto' => '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
     'helvetica' => 'Arial, Helvetica, "Nimbus Sans L", "Liberation Sans", "FreeSans", sans-serif',
@@ -70,15 +70,15 @@ function _glazed_font_stack($font = 'helvetica') {
 /**
  * Helper determine font type
  */
-function _glazed_get_font($font, $theme) {
+function _dxpr_theme_get_font($font, $theme) {
   if (substr($font, 0, 1) === '0') {
-    $font = _glazed_format_google_font_name($font);
+    $font = _dxpr_theme_format_google_font_name($font);
   }
   elseif (substr($font, 0, 1) === '1') {
-    $font = _glazed_format_local_font_name($font);
+    $font = _dxpr_theme_format_local_font_name($font);
   }
   else {
-    $font = _glazed_font_stack($font);
+    $font = _dxpr_theme_font_stack($font);
   }
   return $font;
 }
@@ -88,7 +88,7 @@ function _glazed_get_font($font, $theme) {
  * Helper function to format the font name, following a pattern that seems
  * to hold for all google web fonts.
  */
-function _glazed_format_google_font_name($key) {
+function _dxpr_theme_format_google_font_name($key) {
   $font = explode(':', substr($key, 1));
   $font_basename = str_replace('+', ' ', $font[0]);
   $variant = $font[1];
@@ -156,7 +156,7 @@ else {
  * Helper function to read the font name from the key. The hard part was already done in theme-settings.php
  */
 
-function _glazed_format_local_font_name($key) {
+function _dxpr_theme_format_local_font_name($key) {
   $font = explode('|', $key);
   $local_name = $font[2];
   return $local_name;

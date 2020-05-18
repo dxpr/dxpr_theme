@@ -7,10 +7,10 @@ module.exports = function(grunt) {
       },
       main: {
         files: {
-          'js/minified/glazed.min.js': ['js/dist/glazed.js'],
-          'js/minified/glazed.admin.min.js': ['js/dist/glazed.admin.js'],
-          'js/minified/glazed-settings.admin.min.js': ['js/dist/glazed-settings.admin.js'],
-          'js/minified/glazed-mobile-nav.min.js': ['js/dist/glazed-mobile-nav.js'],
+          'js/minified/dxpr-theme.min.js': ['js/dist/dxpr-theme.js'],
+          'js/minified/dxpr-theme.admin.min.js': ['js/dist/dxpr-theme.admin.js'],
+          'js/minified/dxpr-theme-settings.admin.min.js': ['js/dist/dxpr-theme-settings.admin.js'],
+          'js/minified/dxpr-theme-mobile-nav.min.js': ['js/dist/dxpr-theme-mobile-nav.js'],
           'js/minified/color.min.js': ['js/dist/color.js'],
           'js/minified/classie.min.js': ['vendor/classie.js']
         },

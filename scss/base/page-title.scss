@@ -11,7 +11,7 @@
   }
   position: relative;
   margin-bottom: 30px;
-  &.glazed-no-margin {
+  &.dxpr-theme-no-margin {
     margin-bottom: 0;
   }
   &:after {
@@ -44,12 +44,12 @@
   }
 }
 
-.body--glazed-full-width-content .page-title-full-width-container {
+.body--dxpr-theme-full-width-content .page-title-full-width-container {
   margin-bottom: 0;
 }
 
 @media screen and (min-width: 1200px) {
-  .body--glazed-header-overlay .page-title-full-width-container {
+  .body--dxpr-theme-header-overlay .page-title-full-width-container {
     padding-top: 130px;
   }
 }

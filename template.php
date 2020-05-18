@@ -8,18 +8,18 @@
  * Load template.php logic from theme features
  */
 
-foreach (file_scan_directory(drupal_get_path('theme', 'glazed') . '/features', '/controller.inc/i') as $file) {
+foreach (file_scan_directory(drupal_get_path('theme', 'dxpr_theme') . '/features', '/controller.inc/i') as $file) {
   require_once($file->uri);
 }
 /**
- * Load template.php Glazed theme functions
+ * Load template.php DXPR Theme theme functions
  */
 
-foreach (file_scan_directory(drupal_get_path('theme', 'glazed') . '/includes', '/.inc/i') as $file) {
+foreach (file_scan_directory(drupal_get_path('theme', 'dxpr_theme') . '/includes', '/.inc/i') as $file) {
   require_once($file->uri);
 }
 
-function glazedNavFastInit() {
+function dxpr_themeNavFastInit() {
   if ($breakpoint = theme_get_setting('header_mobile_breakpoint')) {
     if ($breakpoint > 4099) {
       $breakpoint = 99999;
@@ -30,13 +30,13 @@ function glazedNavFastInit() {
   }
   $nav_init = <<<EOT
   <script>
-  var glazedNavBreakpoint = {$breakpoint};
-  var glazedWindowWidth = window.innerWidth;
-  if (glazedWindowWidth > glazedNavBreakpoint) {
-    document.body.className += ' body--glazed-nav-desktop';
+  var dxpr_themeNavBreakpoint = {$breakpoint};
+  var dxpr_themeWindowWidth = window.innerWidth;
+  if (dxpr_themeWindowWidth > dxpr_themeNavBreakpoint) {
+    document.body.className += ' body--dxpr-theme-nav-desktop';
   }
   else {
-    document.body.className += ' body--glazed-nav-mobile';
+    document.body.className += ' body--dxpr-theme-nav-mobile';
   }
   </script>
 EOT;
@@ -50,7 +50,7 @@ EOT;
  * @param array $vars
  *  Variables array.
  */
-function _glazed_color_html_alter(&$vars) {
+function _dxpr_theme_color_html_alter(&$vars) {
   global $theme_key;
   $theme_path = drupal_get_path('theme', $theme_key);
   // Override stylesheets.

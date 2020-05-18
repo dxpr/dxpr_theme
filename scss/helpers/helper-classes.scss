@@ -1,19 +1,19 @@
-// Glazed utility classes
+// DXPR Theme utility classes
 // For Bootstrap core helper classes see http://getbootstrap.com/css/#helper-classes
 
-// @See glazed.js for more helper classes
+// @See dxpr-theme.js for more helper classes
 
 // Layout helper classes
 @import "../includes/variables";
 
-.glazed-util-full-width-content .main-container {
+.dxpr-theme-util-full-width-content .main-container {
   width: auto;
   max-width: none;
   margin-left: 0;
   margin-right: 0;
 }
 
-.glazed-util-full-width-content .col-sm-12 {
+.dxpr-theme-util-full-width-content .col-sm-12 {
   padding-left: 0;
   padding-right: 0;
 }
@@ -25,41 +25,41 @@
   }
 
   // Layout helper classes
-  .glazed-util-clear-both,
+  .dxpr-theme-util-clear-both,
   .clear-both {
     clear: both;
   }
 
-  .glazed-util-clear-left {
+  .dxpr-theme-util-clear-left {
     clear: left;
   }
 
-  .glazed-util-clear-right {
+  .dxpr-theme-util-clear-right {
     clear: right;
   }
 
-  .glazed-util-float-left {
+  .dxpr-theme-util-float-left {
     float: left;
     img {
       margin: 0 20px 15px 0;
     }
   }
 
-  .glazed-util-float-right {
+  .dxpr-theme-util-float-right {
     float: right;
     img {
       margin: 0 0 15px 20px;
     }
   }
 
-  .glazed-util-columns-5 .col-lg-2,
-  .glazed-util-columns-5 .col-md-2,
-  .glazed-util-columns-5 .col-sm-2,
-  .glazed-util-columns-5 .col-xs-2 {
+  .dxpr-theme-util-columns-5 .col-lg-2,
+  .dxpr-theme-util-columns-5 .col-md-2,
+  .dxpr-theme-util-columns-5 .col-sm-2,
+  .dxpr-theme-util-columns-5 .col-xs-2 {
     width: 20%;
   }
 
-  .glazed-util-no-gutter {
+  .dxpr-theme-util-no-gutter {
     margin: 0!important;
     padding: 0!important;
     .row {
@@ -71,23 +71,23 @@
       margin: 0!important;
     }
   }
-  .row .glazed-util-no-gutter .row { margin: 0!important }
+  .row .dxpr-theme-util-no-gutter .row { margin: 0!important }
 
-  .glazed-util-no-spacer {
+  .dxpr-theme-util-no-spacer {
     .col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
       margin-bottom: 0;
     }
   }
 
-  .glazed-util-gutter-bottom {
+  .dxpr-theme-util-gutter-bottom {
     margin-bottom: 30px;
   }
 
   @media (max-width: 768px) {
-    .glazed-util-columns-5 .col-lg-2,
-    .glazed-util-columns-5 .col-md-2,
-    .glazed-util-columns-5 .col-sm-2,
-    .glazed-util-columns-5 .col-xs-2 {
+    .dxpr-theme-util-columns-5 .col-lg-2,
+    .dxpr-theme-util-columns-5 .col-md-2,
+    .dxpr-theme-util-columns-5 .col-sm-2,
+    .dxpr-theme-util-columns-5 .col-xs-2 {
       width: 100%;
       clear:none;
       margin-left: 0;
@@ -97,28 +97,28 @@
   }
 
   // Text shadows
-  .glazed-util-text-shadow { text-shadow: 1px 1px rgba(0,0,0,1); }
-  .glazed-util-text-shadow-80 { text-shadow: 1px 1px rgba(0,0,0,0.8); }
-  .glazed-util-text-shadow-60 { text-shadow: 1px 1px rgba(0,0,0,0.6); }
-  .glazed-util-text-shadow-40 { text-shadow: 1px 1px rgba(0,0,0,0.4); }
-  .glazed-util-text-shadow-20 { text-shadow: 1px 1px rgba(0,0,0,0.2); }
+  .dxpr-theme-util-text-shadow { text-shadow: 1px 1px rgba(0,0,0,1); }
+  .dxpr-theme-util-text-shadow-80 { text-shadow: 1px 1px rgba(0,0,0,0.8); }
+  .dxpr-theme-util-text-shadow-60 { text-shadow: 1px 1px rgba(0,0,0,0.6); }
+  .dxpr-theme-util-text-shadow-40 { text-shadow: 1px 1px rgba(0,0,0,0.4); }
+  .dxpr-theme-util-text-shadow-20 { text-shadow: 1px 1px rgba(0,0,0,0.2); }
 
   // Text muted with color support
-  .glazed-util-text-muted { opacity: 0.75; }
+  .dxpr-theme-util-text-muted { opacity: 0.75; }
 
   // Text transform
-  .glazed-util-text-uppercase { text-transform: uppercase; }
-  .glazed-util-text-bold { font-weight: 700; }
-  .glazed-util-text-light { font-weight: 300; }
-  .glazed-util-text-italic { font-style: italic; }
+  .dxpr-theme-util-text-uppercase { text-transform: uppercase; }
+  .dxpr-theme-util-text-bold { font-weight: 700; }
+  .dxpr-theme-util-text-light { font-weight: 300; }
+  .dxpr-theme-util-text-italic { font-style: italic; }
 
   // Color overlay for background tinting
-  .glazed-util-overlay-primary,
-  .glazed-util-overlay-accent1,
-  .glazed-util-overlay-accent2,
-  .glazed-util-overlay-black,
-  .glazed-util-overlay-white,
-  .glazed-util-overlay-gray {
+  .dxpr-theme-util-overlay-primary,
+  .dxpr-theme-util-overlay-accent1,
+  .dxpr-theme-util-overlay-accent2,
+  .dxpr-theme-util-overlay-black,
+  .dxpr-theme-util-overlay-white,
+  .dxpr-theme-util-overlay-gray {
     position:relative;
     z-index: 0;
     &:after {
@@ -134,21 +134,21 @@
       z-index: -1;
     }
   }
-  .glazed-util-overlay-20:after,.glazed-util-overlay-20 .YTPOverlay { opacity: 0.20; }
-  .glazed-util-overlay-40:after,.glazed-util-overlay-40 .YTPOverlay { opacity: 0.40; }
-  .glazed-util-overlay-60:after,.glazed-util-overlay-60 .YTPOverlay { opacity: 0.60; }
-  .glazed-util-overlay-80:after,.glazed-util-overlay-80 .YTPOverlay { opacity: 0.80; }
+  .dxpr-theme-util-overlay-20:after,.dxpr-theme-util-overlay-20 .YTPOverlay { opacity: 0.20; }
+  .dxpr-theme-util-overlay-40:after,.dxpr-theme-util-overlay-40 .YTPOverlay { opacity: 0.40; }
+  .dxpr-theme-util-overlay-60:after,.dxpr-theme-util-overlay-60 .YTPOverlay { opacity: 0.60; }
+  .dxpr-theme-util-overlay-80:after,.dxpr-theme-util-overlay-80 .YTPOverlay { opacity: 0.80; }
 
-  .glazed-util-overlay-primary,
-  .glazed-util-overlay-accent1,
-  .glazed-util-overlay-accent2,
-  .glazed-util-overlay-black,
-  .glazed-util-overlay-gray,
-  .glazed-util-background-accent2,
-  .glazed-util-background-accent1,
-  .glazed-util-background-primary,
-  .glazed-util-background-gray,
-  .glazed-util-background-black,
+  .dxpr-theme-util-overlay-primary,
+  .dxpr-theme-util-overlay-accent1,
+  .dxpr-theme-util-overlay-accent2,
+  .dxpr-theme-util-overlay-black,
+  .dxpr-theme-util-overlay-gray,
+  .dxpr-theme-util-background-accent2,
+  .dxpr-theme-util-background-accent1,
+  .dxpr-theme-util-background-primary,
+  .dxpr-theme-util-background-gray,
+  .dxpr-theme-util-background-black,
   .bg-primary {
     color: white;
     h1,h2,h3,h4,a,.form-control {
@@ -165,59 +165,59 @@
     }
   }
   .bg-primary,
-  .glazed-util-overlay-primary,
-  .glazed-util-background-primary {
+  .dxpr-theme-util-overlay-primary,
+  .dxpr-theme-util-background-primary {
     a {
       color: white;
     }
   }
   .YTPOverlay { opacity: 0.9; }
-  .glazed-util-overlay-primary:after,.glazed-util-overlay-primary .YTPOverlay { background-color: $primary; }
-  .glazed-util-overlay-accent1:after,.glazed-util-overlay-accent1 .YTPOverlay { background-color: $accent1; }
-  .glazed-util-overlay-accent2:after,.glazed-util-overlay-accent2 .YTPOverlay { background-color: $accent2; }
-  .glazed-util-overlay-black:after,.glazed-util-overlay-black .YTPOverlay { background-color: #000; }
-  .glazed-util-overlay-white:after,.glazed-util-overlay-white .YTPOverlay { background-color: white; }
-  .glazed-util-overlay-gray:after,.glazed-util-overlay-gray .YTPOverlay { background-color: $text; }
+  .dxpr-theme-util-overlay-primary:after,.dxpr-theme-util-overlay-primary .YTPOverlay { background-color: $primary; }
+  .dxpr-theme-util-overlay-accent1:after,.dxpr-theme-util-overlay-accent1 .YTPOverlay { background-color: $accent1; }
+  .dxpr-theme-util-overlay-accent2:after,.dxpr-theme-util-overlay-accent2 .YTPOverlay { background-color: $accent2; }
+  .dxpr-theme-util-overlay-black:after,.dxpr-theme-util-overlay-black .YTPOverlay { background-color: #000; }
+  .dxpr-theme-util-overlay-white:after,.dxpr-theme-util-overlay-white .YTPOverlay { background-color: white; }
+  .dxpr-theme-util-overlay-gray:after,.dxpr-theme-util-overlay-gray .YTPOverlay { background-color: $text; }
 
   // Color helper classes
-  .glazed-util-background-body { background-color: $body-background; }
-  .glazed-util-background-gray { background-color: $text; }
-  .glazed-util-background-primary, .bg-primary { background-color: $primary; }
-  .glazed-util-background-accent1 { background-color: $accent1; }
-  .glazed-util-background-accent2 { background-color: $accent2; }
-  .glazed-util-background-well-text { background-color: $well-text; }
-  .glazed-util-background-white { background-color: white; }
-  .glazed-util-background-black { background-color: #000; }
-  .glazed-util-background-silver { background-color: $silver; }
-  .glazed-util-border-primary { border-color: $primary; }
-  .glazed-util-border-accent1 { border-color: $accent1; }
-  .glazed-util-border-accent2 { border-color: $accent2; }
-  .glazed-util-border-primary-gray { border-color: $text; }
-  .glazed-util-border-white { border-color: white; }
-  .glazed-util-border-black { border-color: #000; }
-  .glazed-util-border-silver { border-color: $silver; }
-  .glazed-util-color-gray { color: $text; }
-  .glazed-util-color-primary,.text-primary { color: $primary; }
-  .glazed-util-color-accent1 { color: $accent1; }
-  .glazed-util-color-accent2 { color: $accent2; }
-  .glazed-util-color-well-text { color: $well-text; }
-  .glazed-util-color-white { color: white; }
-  .glazed-util-color-black { color: #000; }
-  .glazed-util-color-silver { color: $silver; }
-  .glazed-util-hover-background-primary:hover { background-color: $primary; }
-  .glazed-util-hover-background-white:hover { background-color: white; }
-  .glazed-util-hover-background-black:hover { background-color: #000; }
-  .glazed-util-hover-border-primary:hover { border-color: $primary; }
-  .glazed-util-hover-border-white:hover { border-color: white; }
-  .glazed-util-hover-border-black:hover { border-color: #000; }
-  .glazed-util-hover-border-silver:hover { border-color: $silver; }
-  .glazed-util-hover-color-primary:hover { color: $primary; }
-  .glazed-util-hover-color-white:hover { color: white; }
-  .glazed-util-hover-color-black:hover { color: #000; }
-  .glazed-util-hover-color-silver:hover { color: $silver; }
+  .dxpr-theme-util-background-body { background-color: $body-background; }
+  .dxpr-theme-util-background-gray { background-color: $text; }
+  .dxpr-theme-util-background-primary, .bg-primary { background-color: $primary; }
+  .dxpr-theme-util-background-accent1 { background-color: $accent1; }
+  .dxpr-theme-util-background-accent2 { background-color: $accent2; }
+  .dxpr-theme-util-background-well-text { background-color: $well-text; }
+  .dxpr-theme-util-background-white { background-color: white; }
+  .dxpr-theme-util-background-black { background-color: #000; }
+  .dxpr-theme-util-background-silver { background-color: $silver; }
+  .dxpr-theme-util-border-primary { border-color: $primary; }
+  .dxpr-theme-util-border-accent1 { border-color: $accent1; }
+  .dxpr-theme-util-border-accent2 { border-color: $accent2; }
+  .dxpr-theme-util-border-primary-gray { border-color: $text; }
+  .dxpr-theme-util-border-white { border-color: white; }
+  .dxpr-theme-util-border-black { border-color: #000; }
+  .dxpr-theme-util-border-silver { border-color: $silver; }
+  .dxpr-theme-util-color-gray { color: $text; }
+  .dxpr-theme-util-color-primary,.text-primary { color: $primary; }
+  .dxpr-theme-util-color-accent1 { color: $accent1; }
+  .dxpr-theme-util-color-accent2 { color: $accent2; }
+  .dxpr-theme-util-color-well-text { color: $well-text; }
+  .dxpr-theme-util-color-white { color: white; }
+  .dxpr-theme-util-color-black { color: #000; }
+  .dxpr-theme-util-color-silver { color: $silver; }
+  .dxpr-theme-util-hover-background-primary:hover { background-color: $primary; }
+  .dxpr-theme-util-hover-background-white:hover { background-color: white; }
+  .dxpr-theme-util-hover-background-black:hover { background-color: #000; }
+  .dxpr-theme-util-hover-border-primary:hover { border-color: $primary; }
+  .dxpr-theme-util-hover-border-white:hover { border-color: white; }
+  .dxpr-theme-util-hover-border-black:hover { border-color: #000; }
+  .dxpr-theme-util-hover-border-silver:hover { border-color: $silver; }
+  .dxpr-theme-util-hover-color-primary:hover { color: $primary; }
+  .dxpr-theme-util-hover-color-white:hover { color: white; }
+  .dxpr-theme-util-hover-color-black:hover { color: #000; }
+  .dxpr-theme-util-hover-color-silver:hover { color: $silver; }
 
   // Form Helper Classes
-  .glazed-form-inline {
+  .dxpr-theme-form-inline {
     .form-item,
     .form-actions {
       display: block;
@@ -230,7 +230,7 @@
     }
   }
 
-  .glazed-util-vcenter {
+  .dxpr-theme-util-vcenter {
     display: flex;
     align-items: center;
   }
