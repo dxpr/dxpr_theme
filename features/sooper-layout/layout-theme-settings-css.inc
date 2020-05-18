@@ -17,10 +17,10 @@
  */
 function layout_theme_settings_css($theme, &$css, array $palette) {
   if (theme_get_setting('boxed_layout', $theme) && ($cnt_bg = theme_get_setting('boxed_layout_boxbg', $theme))) {
-    $css .= ".glazed-boxed-container { background: $cnt_bg; }\n\n";
-    $css .= ".glazed-boxed-container .nav-tabs >li.active a { border-bottom-color: $cnt_bg; }\n\n";
-    $css .= ".glazed-boxed-container .tabs-left .nav-tabs .active>a { border-right-color: $cnt_bg; }\n\n";
-    $css .= ".glazed-boxed-container .tabs-right .nav-tabs .active>a { border-left-color: $cnt_bg; }\n\n";
+    $css .= ".dxpr-theme-boxed-container { background: $cnt_bg; }\n\n";
+    $css .= ".dxpr-theme-boxed-container .nav-tabs >li.active a { border-bottom-color: $cnt_bg; }\n\n";
+    $css .= ".dxpr-theme-boxed-container .tabs-left .nav-tabs .active>a { border-right-color: $cnt_bg; }\n\n";
+    $css .= ".dxpr-theme-boxed-container .tabs-right .nav-tabs .active>a { border-left-color: $cnt_bg; }\n\n";
   }
 
   $box_width = theme_get_setting('box_max_width', $theme);
@@ -35,13 +35,13 @@ function layout_theme_settings_css($theme, &$css, array $palette) {
   padding-left: {$gutter_container}px;
   padding-right: {$gutter_container}px;
 }
-.navbar-container.glazed-fluid,
-.page-title-container.glazed-fluid,
+.navbar-container.dxpr-theme-fluid,
+.page-title-container.dxpr-theme-fluid,
 .container-fluid {
   padding-left: {$gutter_horizontal}px;
   padding-right: {$gutter_horizontal}px;
 }
-.glazed-boxed-container {
+.dxpr-theme-boxed-container {
   max-width: {$box_width}px;
 }
 .row {
@@ -55,7 +55,7 @@ function layout_theme_settings_css($theme, &$css, array $palette) {
 }
 .region-sidebar-first .block,
 .region-sidebar-second .block,
-.glazed-util-gutter-bottom {
+.dxpr-theme-util-gutter-bottom {
   margin-bottom: {$gutter_vertical}px;
 }
 .page-title-full-width-container {
@@ -74,8 +74,8 @@ EOT;
     padding-left: {$gutter_horizontal}px;
     padding-right: {$gutter_horizontal}px;
   }
-  .navbar-container.glazed-fluid,
-  .page-title-container.glazed-fluid,
+  .navbar-container.dxpr-theme-fluid,
+  .page-title-container.dxpr-theme-fluid,
   .container-fluid {
     padding-left: {$gutter_horizontal}px;
     padding-right: {$gutter_horizontal}px;

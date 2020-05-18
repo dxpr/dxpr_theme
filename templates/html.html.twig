@@ -46,7 +46,7 @@
 #}
 {%
   set html_classes = [
-    theme.settings.sticky_footer and not theme.settings.boxed_layout ? 'html--glazed-sticky-footer',
+    theme.settings.sticky_footer and not theme.settings.boxed_layout ? 'html--dxpr-theme-sticky-footer',
   ]
 %}
 {%
@@ -58,11 +58,11 @@
     db_offline ? 'db-offline',
     theme.settings.navbar_position ? 'navbar-is-' ~ theme.settings.navbar_position,
     theme.has_glyphicons ? 'has-glyphicons',
-    theme.settings.header_position ? 'body--glazed-header-side' : 'body--glazed-header-top',
-    not theme.settings.header_position and theme.settings.header_style != 'overlay' ? 'body--glazed-header-not-overlay',
-    not theme.settings.header_position ? 'body--glazed-header-' ~ theme.settings.header_style|clean_class,
-    not theme.settings.header_position and not theme.settings.header_top_sticky and theme.settings.header_top_fixed ? 'body--glazed-header-fixed',
-    page_title in node.field_glazed_hide_regions.getValue|keys ? 'body--primary-tabs-float',
+    theme.settings.header_position ? 'body--dxpr-theme-header-side' : 'body--dxpr-theme-header-top',
+    not theme.settings.header_position and theme.settings.header_style != 'overlay' ? 'body--dxpr-theme-header-not-overlay',
+    not theme.settings.header_position ? 'body--dxpr-theme-header-' ~ theme.settings.header_style|clean_class,
+    not theme.settings.header_position and not theme.settings.header_top_sticky and theme.settings.header_top_fixed ? 'body--dxpr-theme-header-fixed',
+    page_title in node.field_dth_hide_regions.getValue|keys ? 'body--primary-tabs-float',
   ]
 %}
 {% if body_bg_image_path %}
@@ -81,13 +81,13 @@
   <body{{ attributes.addClass(body_classes) }}>
   {% set breakpoint = theme.settings.header_mobile_breakpoint > 4099 ? '99999' : theme.settings.header_mobile_breakpoint %}
   <script>
-  var glazedNavBreakpoint = {{ breakpoint }};
-  var glazedWindowWidth = window.innerWidth;
-  if (glazedWindowWidth > glazedNavBreakpoint) {
-    document.body.className += ' body--glazed-nav-desktop';
+  var dxpr_themeNavBreakpoint = {{ breakpoint }};
+  var dxpr_themeWindowWidth = window.innerWidth;
+  if (dxpr_themeWindowWidth > dxpr_themeNavBreakpoint) {
+    document.body.className += ' body--dxpr-theme-nav-desktop';
   }
   else {
-    document.body.className += ' body--glazed-nav-mobile';
+    document.body.className += ' body--dxpr-theme-nav-mobile';
   }
   </script>
     <a href="#main-content" class="visually-hidden focusable skip-link">

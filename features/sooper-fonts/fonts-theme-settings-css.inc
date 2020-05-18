@@ -25,7 +25,7 @@ function fonts_theme_settings_css($theme, &$css, array $palette) {
     $font = theme_get_setting('body_font_face', $theme);
     $style = (strpos($font, 'italic')) ? 'italic' : 'normal';
     $weight = (preg_match('/[0-9]{3}/', $font, $matches)) ? $matches[0] : '400';
-    $font = _glazed_get_font($font, $theme);
+    $font = _dxpr_theme_get_font($font, $theme);
     $selector = theme_get_setting('body_font_face_selector', $theme);
     $css .= <<<EOT
 
@@ -39,7 +39,7 @@ EOT;
     $font = theme_get_setting('headings_font_face', $theme);
     $style = (strpos($font, 'italic')) ? 'italic' : 'normal';
     $weight = (preg_match('/[0-9]{3}/', $font, $matches)) ? $matches[0] : '400';
-    $font = _glazed_get_font($font, $theme);
+    $font = _dxpr_theme_get_font($font, $theme);
     $selector = theme_get_setting('headings_font_face_selector', $theme);
     $css .= <<<EOT
 
@@ -53,7 +53,7 @@ EOT;
     $font = theme_get_setting('nav_font_face', $theme);
     $style = (strpos($font, 'italic')) ? 'italic' : 'normal';
     $weight = (preg_match('/[0-9]{3}/', $font, $matches)) ? $matches[0] : '400';
-    $font = _glazed_get_font($font, $theme);
+    $font = _dxpr_theme_get_font($font, $theme);
     $selector = theme_get_setting('nav_font_face_selector', $theme);
     $css .= <<<EOT
 
@@ -67,7 +67,7 @@ EOT;
     $font = theme_get_setting('sitename_font_face', $theme);
     $style = (strpos($font, 'italic')) ? 'italic' : 'normal';
     $weight = (preg_match('/[0-9]{3}/', $font, $matches)) ? $matches[0] : '400';
-    $font = _glazed_get_font($font, $theme);
+    $font = _dxpr_theme_get_font($font, $theme);
     $selector = theme_get_setting('sitename_font_face_selector', $theme);
     $css .= <<<EOT
 
@@ -81,7 +81,7 @@ EOT;
     $font = theme_get_setting('blockquote_font_face', $theme);
     $style = (strpos($font, 'italic')) ? 'italic' : 'normal';
     $weight = (preg_match('/[0-9]{3}/', $font, $matches)) ? $matches[0] : '400';
-    $font = _glazed_get_font($font, $theme);
+    $font = _dxpr_theme_get_font($font, $theme);
     $selector = theme_get_setting('blockquote_font_face_selector', $theme);
     $css .= <<<EOT
 
@@ -107,7 +107,7 @@ EOT;
  *   The font stack string.
  * @see font_list()
  */
-function _glazed_font_stack($font = 'helvetica') {
+function _dxpr_theme_font_stack($font = 'helvetica') {
   $fonts = [
     'SF_Segoe_Roboto' => '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
     'helvetica' => 'Arial, Helvetica, "Nimbus Sans L", "Liberation Sans", "FreeSans", sans-serif',
@@ -140,15 +140,15 @@ function _glazed_font_stack($font = 'helvetica') {
  * @return string
  *   The font stack string.
  */
-function _glazed_get_font($font, $theme) {
+function _dxpr_theme_get_font($font, $theme) {
   if (substr($font, 0, 1) === '0') {
-    $font = _glazed_format_google_font_name($font);
+    $font = _dxpr_theme_format_google_font_name($font);
   }
   elseif (substr($font, 0, 1) === '1') {
-    $font = _glazed_format_local_font_name($font);
+    $font = _dxpr_theme_format_local_font_name($font);
   }
   else {
-    $font = _glazed_font_stack($font);
+    $font = _dxpr_theme_font_stack($font);
   }
   return $font;
 }
@@ -164,7 +164,7 @@ function _glazed_get_font($font, $theme) {
  * @return string
  *   Formatted font string.
  */
-function _glazed_format_google_font_name($key) {
+function _dxpr_theme_format_google_font_name($key) {
   $font = explode(':', substr($key, 1));
   $font_basename = str_replace('+', ' ', $font[0]);
   $variant = $font[1];
@@ -247,7 +247,7 @@ function _glazed_format_google_font_name($key) {
  * @return string
  *   The local font name..
  */
-function _glazed_format_local_font_name($key) {
+function _dxpr_theme_format_local_font_name($key) {
   $font = explode('|', $key);
   return $font[2];
 }

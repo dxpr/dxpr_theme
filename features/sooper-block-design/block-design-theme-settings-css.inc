@@ -22,7 +22,7 @@ function block_design_theme_settings_css($theme, &$css, array $palette) {
     ($border_width) ? $border_style = 'solid' : $border_style = 'none';
     $border_radius = theme_get_setting('block_border_radius', $theme);
 
-    $selector = _glazed_regions2selectors($regions, '.block');
+    $selector = _dxpr_theme_regions2selectors($regions, '.block');
     $css .= <<<EOT
 $selector {
   border-width: {$border_width}px;
@@ -56,7 +56,7 @@ EOT;
     $css .= "} \n\n";
 
     // Block Title Styling.
-    $selector = _glazed_regions2selectors($regions, '.block-title');
+    $selector = _dxpr_theme_regions2selectors($regions, '.block-title');
 
     $font_size = theme_get_setting('title_font_size', $theme);
     $font_size_mobile = theme_get_setting($font_size . '_mobile_font_size', $theme);
@@ -109,7 +109,7 @@ EOT;
 
     // Divider Styling.
     if (theme_get_setting('block_divider') && theme_get_setting('block_divider_custom')) {
-      $selector = _glazed_regions2selectors($regions, '.block-hr');
+      $selector = _dxpr_theme_regions2selectors($regions, '.block-hr');
       if ($value = theme_get_setting('block_divider_color', $theme)) {
         if (theme_get_setting('block_divider_color', $theme) == 'custom') {
           $value = theme_get_setting('block_divider_color_custom', $theme);
@@ -155,7 +155,7 @@ EOT;
  * @return string
  *   Generated CSS selector for the regions and element.
  */
-function _glazed_regions2selectors(array $regions, $element) {
+function _dxpr_theme_regions2selectors(array $regions, $element) {
   $selector_array = [];
   foreach ($regions as $region) {
     $selector_array[] .= '.region-' . str_replace('_', '-', $region) . ' ' . $element;

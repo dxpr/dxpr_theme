@@ -19,7 +19,7 @@ function typography_theme_settings_css($theme, &$css, array $palette) {
   $css .= "body, p, .lead { line-height:  " . theme_get_setting('body_line_height', $theme) . " } \n";
   $css .= "body { font-size:  " . theme_get_setting('body_font_size', $theme) . "px } \n";
   if (theme_get_setting('menu_type', $theme) != 'lead') {
-    $css .= ".glazed-header--top #glazed-main-menu .nav > li > a, .glazed-header--side #glazed-main-menu .nav a, .body--glazed-nav-desktop .glazed-header--top .nav .dropdown-menu li>a { font-size:  " . theme_get_setting('nav_font_size', $theme) . "px } \n";
+    $css .= ".dxpr-theme-header--top #dxpr-theme-main-menu .nav > li > a, .dxpr-theme-header--side #dxpr-theme-main-menu .nav a, .body--dxpr-theme-nav-desktop .dxpr-theme-header--top .nav .dropdown-menu li>a { font-size:  " . theme_get_setting('nav_font_size', $theme) . "px } \n";
   }
   $css .= "h1,h2,h3,h4,h5,h6 { line-height:  " . theme_get_setting('headings_line_height', $theme) . "; } \n";
   $css .= "h1, .html #page-title .page-title { font-size:  " . theme_get_setting('h1_font_size', $theme) . "px; } \n";
@@ -68,7 +68,7 @@ function typography_theme_settings_css($theme, &$css, array $palette) {
   $css .= "@media screen and (max-width: 768px) { \n";
   $css .= "  body, p { font-size:  " . theme_get_setting('body_mobile_font_size', $theme) . "px; } \n";
   if (theme_get_setting('menu_type', $theme) != 'lead') {
-    $css .= "  .glazed-header--top #glazed-main-menu .nav > li > a, .glazed-header--side #glazed-main-menu .nav a, .body--glazed-nav-desktop .glazed-header--top .nav .dropdown-menu li>a { font-size:  " . theme_get_setting('nav_mobile_font_size', $theme) . "px } \n";
+    $css .= "  .dxpr-theme-header--top #dxpr-theme-main-menu .nav > li > a, .dxpr-theme-header--side #dxpr-theme-main-menu .nav a, .body--dxpr-theme-nav-desktop .dxpr-theme-header--top .nav .dropdown-menu li>a { font-size:  " . theme_get_setting('nav_mobile_font_size', $theme) . "px } \n";
   }
   $css .= "  h1, .html #page-title .page-title { font-size:  " . theme_get_setting('h1_mobile_font_size', $theme) . "px; } \n";
   $css .= "  h2 { font-size:  " . theme_get_setting('h2_mobile_font_size', $theme) . "px; } \n";

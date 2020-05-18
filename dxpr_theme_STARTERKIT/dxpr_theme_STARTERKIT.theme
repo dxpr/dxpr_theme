@@ -1,0 +1,56 @@
+<?php
+
+/**
+ * @file
+ * DXPR Theme sub-theme.
+ *
+ * Place your custom PHP code in this file.
+ */
+
+/**
+ * Implements hook_preprocess_page().
+ */
+// phpcs:disable
+function dxpr_theme_STARTERKIT_preprocess_page(&$variables) {
+  $dxpr_theme_libraries = [
+    // Bootstrap TAILORING.
+    'dxpr_theme_STARTERKIT/bootstrap-3',
+    'dxpr_theme_STARTERKIT/bootstrap-theme',
+    'dxpr_theme_STARTERKIT/jquery-ui',
+    // DXPR THEME BASE.
+    'dxpr_theme_STARTERKIT/footer-menu',
+    'dxpr_theme_STARTERKIT/forms',
+    'dxpr_theme_STARTERKIT/layout',
+    'dxpr_theme_STARTERKIT/page-title',
+    'dxpr_theme_STARTERKIT/typography',
+    // DXPR THEME Components.
+    'dxpr_theme_STARTERKIT/stpe-buttons',
+    'dxpr_theme_STARTERKIT/dxpr-theme-full-screen-search',
+    'dxpr_theme_STARTERKIT/dxpr-theme-header',
+    'dxpr_theme_STARTERKIT/dxpr-theme-header--top',
+    'dxpr_theme_STARTERKIT/dxpr-theme-header--side',
+    'dxpr_theme_STARTERKIT/dxpr-theme-header--mobile',
+    'dxpr_theme_STARTERKIT/dxpr-theme-secondary-header',
+    'dxpr_theme_STARTERKIT/pager-prevnext',
+    'dxpr_theme_STARTERKIT/dxpr-theme-admin',
+    // Overrides.
+    'dxpr_theme_STARTERKIT/cubeportfolio',
+    'dxpr_theme_STARTERKIT/drupal-breadcrumbs',
+    'dxpr_theme_STARTERKIT/drupal-comments',
+    'dxpr_theme_STARTERKIT/drupal-pager',
+    'dxpr_theme_STARTERKIT/drupal-webform',
+    'dxpr_theme_STARTERKIT/cms-bootstrap-core',
+    'dxpr_theme_STARTERKIT/cms-bootstrap-blog',
+    'dxpr_theme_STARTERKIT/cms-bootstrap-events',
+    'dxpr_theme_STARTERKIT/cms-bootstrap-news',
+    'dxpr_theme_STARTERKIT/cms-bootstrap-portfolio',
+    'dxpr_theme_STARTERKIT/sooperthemes-premium-elements',
+    'dxpr_theme_STARTERKIT/dxpr-theme-builder',
+    // HELPERS.
+    'dxpr_theme_STARTERKIT/helper-classes',
+  ];
+  foreach ($dxpr_theme_libraries as $dxpr_theme_library) {
+    $variables['#attached']['library'][] = $dxpr_theme_library;
+  }
+}
+// phpcs:enable

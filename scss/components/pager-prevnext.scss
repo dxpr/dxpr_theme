@@ -1,5 +1,5 @@
 //
-// Author: Jurriaan Roelofs for SooperThemes. Copyright SooperThemes.
+// Author: Jurriaan Roelofs for DXPR. Copyright DXPR.
 //
 
 // Next / Previous Pager
@@ -16,12 +16,12 @@
     display: table;
     width: 100%;
   }
-  .glazed-icon, .nextprev-text {
+  .dxpr-theme-icon, .nextprev-text {
     display: table-cell;
     vertical-align: middle;
     line-height: 1em;
   }
-  .glazed-icon {
+  .dxpr-theme-icon {
     height: auto;
     width: 8px;
     svg {
@@ -37,7 +37,7 @@
   }
   .prev {
     text-align: left;
-    .glazed-icon {
+    .dxpr-theme-icon {
       padding-right: 15px;
     }
   }
@@ -49,7 +49,7 @@
   }
   .next {
     text-align: right;
-    .glazed-icon {
+    .dxpr-theme-icon {
       padding-left: 15px;
     }
   }

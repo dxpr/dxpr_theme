@@ -14,14 +14,14 @@
  *   Theme machine name.
  */
 function block_design_theme_settings(array &$form, $theme) {
-  $form['glazed_settings']['block'] = [
+  $form['dxpr_theme_settings']['block'] = [
     '#title' => t('Block Design'),
     '#type' => 'details',
-    '#group' => 'glazed_settings',
+    '#group' => 'dxpr_theme_settings',
     '#weight' => 25,
   ];
 
-  $form['glazed_settings']['block']['block_preset'] = [
+  $form['dxpr_theme_settings']['block']['block_preset'] = [
     '#type' => 'select',
     '#title' => t('Block Design Preset'),
     '#default_value' => ((theme_get_setting('block_preset') !== NULL)) ? theme_get_setting('block_preset') : 'none',
@@ -42,7 +42,7 @@ function block_design_theme_settings(array &$form, $theme) {
     '#prefix' => '<div class="block-design-wrapper clearfix"><div class="block-design-settings">',
   ];
 
-  $form['glazed_settings']['block']['block_advanced'] = [
+  $form['dxpr_theme_settings']['block']['block_advanced'] = [
     '#title' => t('Customize Design'),
     '#type' => 'details',
     '#collapsible' => TRUE,
@@ -50,7 +50,7 @@ function block_design_theme_settings(array &$form, $theme) {
     '#prefix' => '<br>',
   ];
 
-  $form['glazed_settings']['block']['block_advanced']['block_el'] = [
+  $form['dxpr_theme_settings']['block']['block_advanced']['block_el'] = [
     '#title' => t('Block Element'),
     '#type' => 'details',
     '#collapsible' => TRUE,
@@ -60,29 +60,29 @@ function block_design_theme_settings(array &$form, $theme) {
   $well_options = [
     '' => t('None'),
     'well' => t('Well'),
-    'well bg-primary' => t('Well Glazed Primary Color'),
-    'well glazed-util-background-accent1' => t('Well Accent 1 Color'),
-    'well glazed-util-background-accent2' => t('Well Accent 2 Color'),
-    'well glazed-util-background-black' => t('Well Black'),
-    'well glazed-util-background-white' => t('Well White'),
-    'well glazed-util-background-gray' => t('Well Gray'),
+    'well bg-primary' => t('Well DXPR Theme Primary Color'),
+    'well dxpr-theme-util-background-accent1' => t('Well Accent 1 Color'),
+    'well dxpr-theme-util-background-accent2' => t('Well Accent 2 Color'),
+    'well dxpr-theme-util-background-black' => t('Well Black'),
+    'well dxpr-theme-util-background-white' => t('Well White'),
+    'well dxpr-theme-util-background-gray' => t('Well Gray'),
   ];
 
-  $form['glazed_settings']['block']['block_advanced']['block_el']['block_well'] = [
+  $form['dxpr_theme_settings']['block']['block_advanced']['block_el']['block_well'] = [
     '#type' => 'select',
     '#title' => t('Block Well Style'),
     '#default_value' => theme_get_setting('block_well'),
     '#options' => $well_options,
   ];
 
-  $form['glazed_settings']['block']['block_advanced']['block_el']['block_background'] = [
+  $form['dxpr_theme_settings']['block']['block_advanced']['block_el']['block_background'] = [
     '#type' => 'select',
     '#title' => t('Block Background'),
     '#default_value' => theme_get_setting('block_background'),
-    '#options' => _glazed_color_options($theme),
+    '#options' => _dxpr_theme_color_options($theme),
   ];
 
-  $form['glazed_settings']['block']['block_advanced']['block_el']['block_background_custom'] = [
+  $form['dxpr_theme_settings']['block']['block_advanced']['block_el']['block_background_custom'] = [
     '#type' => 'textfield',
     '#title' => t('Custom Value'),
     '#default_value' => ((theme_get_setting('block_background_custom') !== NULL)) ? theme_get_setting('block_background_custom') : '#eeeeee',
@@ -93,7 +93,7 @@ function block_design_theme_settings(array &$form, $theme) {
     ],
   ];
 
-  $form['glazed_settings']['block']['block_advanced']['block_el']['block_padding'] = [
+  $form['dxpr_theme_settings']['block']['block_advanced']['block_el']['block_padding'] = [
     '#type' => 'textfield',
     '#title' => t('Block padding'),
     '#default_value' => ((theme_get_setting('block_padding') !== NULL)) ? theme_get_setting('block_padding') : '0',
@@ -102,7 +102,7 @@ function block_design_theme_settings(array &$form, $theme) {
     '#maxlength' => 9,
   ];
 
-  $form['glazed_settings']['block']['block_advanced']['block_el']['block_border_radius'] = [
+  $form['dxpr_theme_settings']['block']['block_advanced']['block_el']['block_border_radius'] = [
     '#type' => 'textfield',
     '#title' => t('Block Border Radius'),
     '#default_value' => ((theme_get_setting('block_border_radius') !== NULL)) ? theme_get_setting('block_border_radius') : '0',
@@ -111,7 +111,7 @@ function block_design_theme_settings(array &$form, $theme) {
     '#maxlength' => 9,
   ];
 
-  $form['glazed_settings']['block']['block_advanced']['block_el']['block_border'] = [
+  $form['dxpr_theme_settings']['block']['block_advanced']['block_el']['block_border'] = [
     '#type' => 'textfield',
     '#title' => t('Block Border'),
     '#default_value' => ((theme_get_setting('block_border') !== NULL)) ? theme_get_setting('block_border') : '0',
@@ -120,11 +120,11 @@ function block_design_theme_settings(array &$form, $theme) {
     '#maxlength' => 9,
   ];
 
-  $form['glazed_settings']['block']['block_advanced']['block_el']['block_border_color'] = [
+  $form['dxpr_theme_settings']['block']['block_advanced']['block_el']['block_border_color'] = [
     '#type' => 'select',
     '#title' => t('Block Border Color'),
     '#default_value' => theme_get_setting('block_border_color'),
-    '#options' => _glazed_color_options($theme),
+    '#options' => _dxpr_theme_color_options($theme),
     '#states' => [
       'visible' => [
         'input[name="block_border"]' => ['!value' => '0'],
@@ -132,7 +132,7 @@ function block_design_theme_settings(array &$form, $theme) {
     ],
   ];
 
-  $form['glazed_settings']['block']['block_advanced']['block_el']['block_border_color_custom'] = [
+  $form['dxpr_theme_settings']['block']['block_advanced']['block_el']['block_border_color_custom'] = [
     '#type' => 'textfield',
     '#title' => t('Custom Value'),
     '#default_value' => ((theme_get_setting('block_border_color_custom') !== NULL)) ? theme_get_setting('block_border_color_custom') : '#eeeeee',
@@ -144,14 +144,14 @@ function block_design_theme_settings(array &$form, $theme) {
     ],
   ];
 
-  $form['glazed_settings']['block']['block_advanced']['title_el'] = [
+  $form['dxpr_theme_settings']['block']['block_advanced']['title_el'] = [
     '#title' => t('Block Title Element'),
     '#type' => 'details',
     '#collapsible' => TRUE,
     '#collapsed' => TRUE,
   ];
 
-  $form['glazed_settings']['block']['block_advanced']['title_el']['title_font_size'] = [
+  $form['dxpr_theme_settings']['block']['block_advanced']['title_el']['title_font_size'] = [
     '#type' => 'radios',
     '#title' => t('Title Font Size'),
     '#default_value' => ((theme_get_setting('title_font_size') !== NULL)) ? theme_get_setting('title_font_size') : 'h3',
@@ -164,7 +164,7 @@ function block_design_theme_settings(array &$form, $theme) {
     ],
   ];
 
-  $form['glazed_settings']['block']['block_advanced']['title_el']['title_align'] = [
+  $form['dxpr_theme_settings']['block']['block_advanced']['title_el']['title_align'] = [
     '#type' => 'radios',
     '#title' => t('Title Align'),
     '#default_value' => ((theme_get_setting('title_align') !== NULL)) ? theme_get_setting('title_align') : 'left',
@@ -175,21 +175,21 @@ function block_design_theme_settings(array &$form, $theme) {
     ],
   ];
 
-  $form['glazed_settings']['block']['block_advanced']['title_el']['title_well'] = [
+  $form['dxpr_theme_settings']['block']['block_advanced']['title_el']['title_well'] = [
     '#type' => 'select',
     '#title' => t('Title Well Style'),
     '#default_value' => theme_get_setting('title_well'),
     '#options' => $well_options,
   ];
 
-  $form['glazed_settings']['block']['block_advanced']['title_el']['title_background'] = [
+  $form['dxpr_theme_settings']['block']['block_advanced']['title_el']['title_background'] = [
     '#type' => 'select',
     '#title' => t('Title Background'),
     '#default_value' => theme_get_setting('title_background'),
-    '#options' => _glazed_color_options($theme),
+    '#options' => _dxpr_theme_color_options($theme),
   ];
 
-  $form['glazed_settings']['block']['block_advanced']['title_el']['title_background_custom'] = [
+  $form['dxpr_theme_settings']['block']['block_advanced']['title_el']['title_background_custom'] = [
     '#type' => 'textfield',
     '#title' => t('Custom Value'),
     '#default_value' => ((theme_get_setting('title_background_custom') !== NULL)) ? theme_get_setting('title_background_custom') : '#eeeeee',
@@ -200,7 +200,7 @@ function block_design_theme_settings(array &$form, $theme) {
     ],
   ];
 
-  $form['glazed_settings']['block']['block_advanced']['title_el']['title_padding'] = [
+  $form['dxpr_theme_settings']['block']['block_advanced']['title_el']['title_padding'] = [
     '#type' => 'textfield',
     '#title' => t('Title padding'),
     '#default_value' => ((theme_get_setting('title_padding') !== NULL)) ? theme_get_setting('title_padding') : '0',
@@ -209,7 +209,7 @@ function block_design_theme_settings(array &$form, $theme) {
     '#maxlength' => 9,
   ];
 
-  $form['glazed_settings']['block']['block_advanced']['title_el']['title_border'] = [
+  $form['dxpr_theme_settings']['block']['block_advanced']['title_el']['title_border'] = [
     '#type' => 'textfield',
     '#title' => t('Title Border'),
     '#default_value' => ((theme_get_setting('title_border') !== NULL)) ? theme_get_setting('title_border') : '0',
@@ -218,7 +218,7 @@ function block_design_theme_settings(array &$form, $theme) {
     '#maxlength' => 9,
   ];
 
-  $form['glazed_settings']['block']['block_advanced']['title_el']['title_border_radius'] = [
+  $form['dxpr_theme_settings']['block']['block_advanced']['title_el']['title_border_radius'] = [
     '#type' => 'textfield',
     '#title' => t('Title Border Radius'),
     '#default_value' => ((theme_get_setting('title_border_radius') !== NULL)) ? theme_get_setting('title_border_radius') : '0',
@@ -227,11 +227,11 @@ function block_design_theme_settings(array &$form, $theme) {
     '#maxlength' => 9,
   ];
 
-  $form['glazed_settings']['block']['block_advanced']['title_el']['title_border_color'] = [
+  $form['dxpr_theme_settings']['block']['block_advanced']['title_el']['title_border_color'] = [
     '#type' => 'select',
     '#title' => t('Title Border Color'),
     '#default_value' => theme_get_setting('title_border_color'),
-    '#options' => _glazed_color_options($theme),
+    '#options' => _dxpr_theme_color_options($theme),
     '#states' => [
       'visible' => [
         'input[name="title_border"]' => ['!value' => '0'],
@@ -239,7 +239,7 @@ function block_design_theme_settings(array &$form, $theme) {
     ],
   ];
 
-  $form['glazed_settings']['block']['block_advanced']['title_el']['title_border_color_custom'] = [
+  $form['dxpr_theme_settings']['block']['block_advanced']['title_el']['title_border_color_custom'] = [
     '#type' => 'textfield',
     '#title' => t('Custom Value'),
     '#default_value' => ((theme_get_setting('title_border_color_custom') !== NULL)) ? theme_get_setting('title_border_color_custom') : '#eeeeee',
@@ -251,7 +251,7 @@ function block_design_theme_settings(array &$form, $theme) {
     ],
   ];
 
-  $form['glazed_settings']['block']['block_advanced']['title_el']['title_align'] = [
+  $form['dxpr_theme_settings']['block']['block_advanced']['title_el']['title_align'] = [
     '#type' => 'radios',
     '#title' => t('Title Align'),
     '#default_value' => ((theme_get_setting('title_align') !== NULL)) ? theme_get_setting('title_align') : 'left',
@@ -267,7 +267,7 @@ function block_design_theme_settings(array &$form, $theme) {
     ],
   ];
 
-  $form['glazed_settings']['block']['block_advanced']['title_el']['title_sticker'] = [
+  $form['dxpr_theme_settings']['block']['block_advanced']['title_el']['title_sticker'] = [
     '#type' => 'checkbox',
     '#title' => t('Title Sticker Mode'),
     '#default_value' => ((theme_get_setting('title_sticker') !== NULL)) ? theme_get_setting('title_sticker') : 0,
@@ -275,20 +275,20 @@ function block_design_theme_settings(array &$form, $theme) {
     '#prefix' => '<br>',
   ];
 
-  $form['glazed_settings']['block']['block_advanced']['divider_el'] = [
+  $form['dxpr_theme_settings']['block']['block_advanced']['divider_el'] = [
     '#title' => t('Divider Element'),
     '#type' => 'details',
     '#collapsible' => TRUE,
     '#collapsed' => TRUE,
   ];
 
-  $form['glazed_settings']['block']['block_advanced']['divider_el']['block_divider'] = [
+  $form['dxpr_theme_settings']['block']['block_advanced']['divider_el']['block_divider'] = [
     '#type' => 'checkbox',
     '#title' => t('Add Divider to Block'),
     '#default_value' => ((theme_get_setting('block_divider') !== NULL)) ? theme_get_setting('block_divider') : 0,
   ];
 
-  $form['glazed_settings']['block']['block_advanced']['divider_el']['block_divider_custom'] = [
+  $form['dxpr_theme_settings']['block']['block_advanced']['divider_el']['block_divider_custom'] = [
     '#type' => 'checkbox',
     '#title' => t('Customize Divider'),
     '#description' => t('Turn on to customize block divider specifically. To customize the divider default styling globally across the website find the Divider settings in the Typography tab.'),
@@ -300,11 +300,11 @@ function block_design_theme_settings(array &$form, $theme) {
     ],
   ];
 
-  $form['glazed_settings']['block']['block_advanced']['divider_el']['block_divider_color'] = [
+  $form['dxpr_theme_settings']['block']['block_advanced']['divider_el']['block_divider_color'] = [
     '#type' => 'select',
     '#title' => t('Divider Color'),
     '#default_value' => theme_get_setting('block_divider_color'),
-    '#options' => _glazed_color_options($theme),
+    '#options' => _dxpr_theme_color_options($theme),
     '#states' => [
       'visible' => [
         ':input[name="block_divider"]' => ['checked' => TRUE],
@@ -313,7 +313,7 @@ function block_design_theme_settings(array &$form, $theme) {
     ],
   ];
 
-  $form['glazed_settings']['block']['block_advanced']['divider_el']['block_divider_color_custom'] = [
+  $form['dxpr_theme_settings']['block']['block_advanced']['divider_el']['block_divider_color_custom'] = [
     '#type' => 'textfield',
     '#title' => t('Custom Value'),
     '#default_value' => ((theme_get_setting('block_divider_color_custom') !== NULL)) ? theme_get_setting('block_divider_color_custom') : '#eeeeee',
@@ -326,7 +326,7 @@ function block_design_theme_settings(array &$form, $theme) {
     ],
   ];
 
-  $form['glazed_settings']['block']['block_advanced']['divider_el']['block_divider_thickness'] = [
+  $form['dxpr_theme_settings']['block']['block_advanced']['divider_el']['block_divider_thickness'] = [
     '#type' => 'textfield',
     '#title' => t('Divider Thickness'),
     '#default_value' => ((theme_get_setting('block_divider_thickness') !== NULL)) ? theme_get_setting('block_divider_thickness') : '4',
@@ -340,7 +340,7 @@ function block_design_theme_settings(array &$form, $theme) {
     ],
   ];
 
-  $form['glazed_settings']['block']['block_advanced']['divider_el']['block_divider_length'] = [
+  $form['dxpr_theme_settings']['block']['block_advanced']['divider_el']['block_divider_length'] = [
     '#type' => 'textfield',
     '#title' => t('Divider Length'),
     '#default_value' => ((theme_get_setting('block_divider_length') !== NULL)) ? theme_get_setting('block_divider_length') : '10',
@@ -354,7 +354,7 @@ function block_design_theme_settings(array &$form, $theme) {
     ],
   ];
 
-  $form['glazed_settings']['block']['block_advanced']['divider_el']['block_divider_spacing'] = [
+  $form['dxpr_theme_settings']['block']['block_advanced']['divider_el']['block_divider_spacing'] = [
     '#type' => 'textfield',
     '#title' => t('Divider Spacing'),
     '#default_value' => ((theme_get_setting('block_divider_spacing') !== NULL)) ? theme_get_setting('block_divider_spacing') : '20',
@@ -368,16 +368,16 @@ function block_design_theme_settings(array &$form, $theme) {
     ],
   ];
 
-  $form['glazed_settings']['block']['regions'] = [
+  $form['dxpr_theme_settings']['block']['regions'] = [
     '#title' => t('Choose Regions'),
     '#type' => 'details',
     '#collapsible' => TRUE,
     '#collapsed' => TRUE,
     '#description' => t('The custom block design only applies to selected regions.'),
-    '#suffix' => '</div><div class="block-preview">' . _glazed_block_preview() . '</div></div>',
+    '#suffix' => '</div><div class="block-preview">' . _dxpr_theme_block_preview() . '</div></div>',
   ];
 
-  $form['glazed_settings']['block']['regions']['block_design_regions'] = [
+  $form['dxpr_theme_settings']['block']['regions']['block_design_regions'] = [
     '#type' => 'checkboxes',
     '#multiple' => TRUE,
     '#title' => t('Regions'),
@@ -402,7 +402,7 @@ function block_design_theme_settings(array &$form, $theme) {
 /**
  * Generate block preview markup.
  */
-function _glazed_block_preview() {
+function _dxpr_theme_block_preview() {
   $block_well = theme_get_setting('block_well');
   $title_well = theme_get_setting('title_well');
   $output = <<<EOT
@@ -428,14 +428,14 @@ function _glazed_block_preview() {
       <div class=
       "view view-cms-blog-cat view-id-cms_blog_cat view-display-id-blog_categories view-dom-id-414e72d6e00d6259852916a789bc63e5 ">
       <div class="view-content">
-          <ul class="glazed-processed nav">
+          <ul class="dxpr-theme-processed nav">
             <li class="">
               <a href="#">Business <span class=
-              "glazed-util-text-muted">(12)</span></a>
+              "dxpr-theme-util-text-muted">(12)</span></a>
             </li>
             <li class="">
               <a href="#">Lifestyle <span class=
-              "glazed-util-text-muted">(3)</span></a>
+              "dxpr-theme-util-text-muted">(3)</span></a>
             </li>
           </ul>
         </div>

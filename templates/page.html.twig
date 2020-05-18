@@ -57,16 +57,16 @@
  * @see html.html.twig
  */
 #}
-{% if not node.field_glazed_page_layout.getString() and theme.settings.boxed_layout
-  or node.field_glazed_page_layout.getString() == 'boxed' %}
-<div class="glazed-boxed-container">
+{% if not node.field_dth_page_layout.getString() and theme.settings.boxed_layout
+  or node.field_dth_page_layout.getString() == 'boxed' %}
+<div class="dxpr-theme-boxed-container">
 {% endif %}
 
 {# Secondary Header #}
 {% if page.secondary_header %}
   {% block secondary_header %}
-    {% set container = theme.settings.full_width_containers.cnt_secondary_header ? 'glazed-fluid' : 'container' %}
-    <header id="secondary-header" class="glazed-secondary-header clearfix {{ theme.settings.secondary_header_hide|clean_class }}" role="banner">
+    {% set container = theme.settings.full_width_containers.cnt_secondary_header ? 'dxpr-theme-fluid' : 'container' %}
+    <header id="secondary-header" class="dxpr-theme-secondary-header clearfix {{ theme.settings.secondary_header_hide|clean_class }}" role="banner">
       <div class="{{ container }} secondary-header-container">
         {% if not theme.settings.full_width_containers.cnt_secondary_header %}
           <div class="row container-row"><div class="col-sm-12 container-col">
@@ -86,7 +86,7 @@
     {% if theme.settings.header_position %}
       {%
         set navbar_classes = [
-          'navbar glazed-header glazed-header--top',
+          'navbar dxpr-theme-header dxpr-theme-header--top',
           theme.settings.navbar_position ? 'navbar-is-' ~ theme.settings.navbar_position,
         theme.settings.header_side_align,
         ]
@@ -94,25 +94,25 @@
     {% else %}
       {%
         set navbar_classes = [
-          'navbar glazed-header',
-          theme.settings.header_position ? 'glazed-header--side' : 'glazed-header--top',
+          'navbar dxpr-theme-header',
+          theme.settings.header_position ? 'dxpr-theme-header--side' : 'dxpr-theme-header--top',
           theme.settings.navbar_position ? 'navbar-is-' ~ theme.settings.navbar_position,
-          theme.settings.header_top_layout ? 'glazed-header--' ~ theme.settings.header_top_layout|clean_class,
-          theme.settings.header_style ? 'glazed-header--' ~ theme.settings.header_style|clean_class,
-          theme.settings.menu_hover ? 'glazed-header--hover-' ~ theme.settings.menu_hover|clean_class,
-          theme.settings.header_top_fixed and theme.settings.header_top_sticky ? 'glazed-header--sticky',
-          theme.settings.header_top_fixed and not theme.settings.header_top_sticky ? 'glazed-header--fixed',
+          theme.settings.header_top_layout ? 'dxpr-theme-header--' ~ theme.settings.header_top_layout|clean_class,
+          theme.settings.header_style ? 'dxpr-theme-header--' ~ theme.settings.header_style|clean_class,
+          theme.settings.menu_hover ? 'dxpr-theme-header--hover-' ~ theme.settings.menu_hover|clean_class,
+          theme.settings.header_top_fixed and theme.settings.header_top_sticky ? 'dxpr-theme-header--sticky',
+          theme.settings.header_top_fixed and not theme.settings.header_top_sticky ? 'dxpr-theme-header--fixed',
         ]
       %}
     {% endif %}
-    {% set mark_menu = theme.settings.mark_menu_with_children ? 'glazed-menu--has-children' : '' %}
+    {% set mark_menu = theme.settings.mark_menu_with_children ? 'dxpr-theme-menu--has-children' : '' %}
     {% set navbar_attributes = navbar_attributes.removeClass('container').addClass(navbar_classes) %}
     {% if theme.settings.header_top_fixed and theme.settings.header_top_sticky %}
       {% set navbar_attributes = navbar_attributes.setAttribute('data-spy', 'affix').setAttribute('data-offset-top', theme.settings.header_top_height_sticky_offset) %}
     {% endif %}
 
     <header{{ navbar_attributes }} id="navbar" role="banner">
-      {% set container = theme.settings.full_width_containers.cnt_header_nav ? 'glazed-fluid' : 'container' %}
+      {% set container = theme.settings.full_width_containers.cnt_header_nav ? 'dxpr-theme-fluid' : 'container' %}
       <div class="{{ container }} navbar-container">
         {% if not theme.settings.full_width_containers.cnt_header_nav%}
           <div class="row container-row"><div class="col-sm-12 container-col">
@@ -121,13 +121,13 @@
           {{ page.navigation }}
           {# .btn-navbar is used as the toggle for collapsed navbar content #}
           {% if page.navigation_collapsible %}
-            <a id="glazed-menu-toggle" href="#"><span></span><div class="screenreader-text visually-hidden">Toggle menu</div></a>
+            <a id="dxpr-theme-menu-toggle" href="#"><span></span><div class="screenreader-text visually-hidden">Toggle menu</div></a>
           {% endif %}
         </div>
 
         {# Navigation (collapsible) #}
         {% if page.navigation_collapsible %}
-            <nav role="navigation" id="glazed-main-menu" class="glazed-main-menu {{ mark_menu }}">
+            <nav role="navigation" id="dxpr-theme-main-menu" class="dxpr-theme-main-menu {{ mark_menu }}">
             {{ page.navigation_collapsible }}
             </nav>
         {% endif %}
@@ -157,7 +157,7 @@
     {% set page_title_attributes = create_attribute({'data-bg-img': title_bg_img_url}) %}
   {% endif %}
     <div{{ page_title_attributes }} class="page-title-full-width-container" id="page-title-full-width-container">
-    {% set container = theme.settings.full_width_containers.cnt_page_title ? 'glazed-fluid' : 'container' %}
+    {% set container = theme.settings.full_width_containers.cnt_page_title ? 'dxpr-theme-fluid' : 'container' %}
       <header role="banner" id="page-title" class="{{ container }} page-title-container">
         {{ page.page_title }}
       </header>
@@ -168,7 +168,7 @@
 {# Content Top #}
 {% if page.content_top %}
   {% block content_top %}
-    {% set container = theme.settings.full_width_containers.cnt_content_top ? 'glazed-fluid' : 'container' %}
+    {% set container = theme.settings.full_width_containers.cnt_content_top ? 'dxpr-theme-fluid' : 'container' %}
     <div class="{{ container }} content-top-container">
       {% if not theme.settings.full_width_containers.cnt_content_top %}
       <div class="row container-row"><div class="col-sm-12 container-col">
@@ -184,7 +184,7 @@
 {# Main #}
 {% block main %}
   {% set container = theme.settings.full_width_containers.cnt_content
-  or node.field_glazed_main_content_width.getString() == 'glazed-util-full-width-content'
+  or node.field_dth_main_content_width.getString() == 'dxpr-theme-util-full-width-content'
   or node and attribute(theme.settings.full_width_content_types, node.getType)
   and not page.sidebar_first|render|striptags|trim
   and not page.sidebar_second|render|striptags|trim ? '' : 'container' %}
@@ -202,7 +202,7 @@
       {% endif %}
 
       {# Content #}
-      {% if not node.field_glazed_main_content_width.getString() %}
+      {% if not node.field_dth_main_content_width.getString() %}
         {%
           set content_classes = [
             page.sidebar_first|render|striptags|trim and page.sidebar_second|render|striptags|trim ? 'col-sm-6',
@@ -212,13 +212,13 @@
           ]
         %}
       {% else %}
-        {% set col = node.field_glazed_main_content_width.getString() %}
+        {% set col = node.field_dth_main_content_width.getString() %}
         {%
           set content_classes = [
-            col == 'glazed-util-content-center-4-col' ? 'col-md-4 col-md-offset-4',
-            col == 'glazed-util-content-center-6-col' ? 'col-md-6 col-md-offset-3',
-            col == 'glazed-util-content-center-8-col' ? 'col-md-8 col-md-offset-2',
-            col == 'glazed-util-content-center-10-col' ? 'col-md-10 col-md-offset-1',
+            col == 'dxpr-theme-util-content-center-4-col' ? 'col-md-4 col-md-offset-4',
+            col == 'dxpr-theme-util-content-center-6-col' ? 'col-md-6 col-md-offset-3',
+            col == 'dxpr-theme-util-content-center-8-col' ? 'col-md-8 col-md-offset-2',
+            col == 'dxpr-theme-util-content-center-10-col' ? 'col-md-10 col-md-offset-1',
           ]
         %}
       {% endif %}
@@ -263,7 +263,7 @@
 {# Content Bottom #}
 {% if page.content_bottom %}
   {% block content_bottom %}
-    {% set container = theme.settings.full_width_containers.cnt_content_bottom ? 'glazed-fluid' : 'container' %}
+    {% set container = theme.settings.full_width_containers.cnt_content_bottom ? 'dxpr-theme-fluid' : 'container' %}
     <div class="{{ container }} content-bottom-container">
       {% if not theme.settings.full_width_containers.cnt_content_bottom %}
       <div class="row container-row"><div class="col-sm-12 container-col">
@@ -280,8 +280,8 @@
 {# Footer #}
 {% if page.footer %}
   {% block footer %}
-    <footer class="glazed-footer clearfix" role="contentinfo">
-      {% set container = theme.settings.full_width_containers.cnt_footer ? 'glazed-fluid' : 'container' %}
+    <footer class="dxpr-theme-footer clearfix" role="contentinfo">
+      {% set container = theme.settings.full_width_containers.cnt_footer ? 'dxpr-theme-fluid' : 'container' %}
       <div class="{{ container }} footer-container">
         {% if not theme.settings.full_width_containers.cnt_footer %}
         <div class="row container-row"><div class="col-sm-12 container-col">
@@ -295,7 +295,7 @@
   {% endblock %}
 {% endif %}
 
-{% if not node.field_glazed_page_layout.getString() and theme.settings.boxed_layout
-  or node.field_glazed_page_layout.getString() == 'boxed' %}
-</div><!-- end glazed-boxed-container -->
+{% if not node.field_dth_page_layout.getString() and theme.settings.boxed_layout
+  or node.field_dth_page_layout.getString() == 'boxed' %}
+</div><!-- end dxpr-theme-boxed-container -->
 {% endif %}

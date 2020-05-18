@@ -18,7 +18,7 @@
  * @return string
  *   Converted color rgba value.
  */
-function _glazed_hex2rgba($color, $opacity = NULL) {
+function _dxpr_theme_hex2rgba($color, $opacity = NULL) {
   $default = 'rgb(0,0,0)';
   // Return default if no color provided.
   if (empty($color)) {
@@ -84,16 +84,16 @@ function header_theme_settings_css($theme, &$css, array $palette) {
   $header_top_height_scroll = theme_get_setting('header_top_height_scroll', $theme);
   $header_top_opacity = $header_top_opacity_scroll = 1;
   $css .= <<<EOT
-  #glazed-main-menu,
-  #glazed-main-menu .menu__breadcrumbs,
-  #glazed-main-menu .menu__level {
+  #dxpr-theme-main-menu,
+  #dxpr-theme-main-menu .menu__breadcrumbs,
+  #dxpr-theme-main-menu .menu__level {
     text-align: $align;
   }
 
 EOT;
   if ($align == 'right') {
     $css .= <<<EOT
-  #glazed-main-menu .menu__link  {
+  #dxpr-theme-main-menu .menu__link  {
     padding: 10px 70px 10px 20px;
   }
 
@@ -101,10 +101,10 @@ EOT;
   }
 
   $css .= <<<EOT
-.glazed-header--side .glazed-main-menu {
+.dxpr-theme-header--side .dxpr-theme-main-menu {
   width: {$header_side_width}px;
 }
-.glazed-header--side .menu__level {
+.dxpr-theme-header--side .menu__level {
   width: {$header_side_width}px;
 }
 
@@ -112,13 +112,13 @@ EOT;
 
   if (theme_get_setting('header_position', $theme)) {
     $css .= <<<EOT
-.body--glazed-nav-desktop.body--glazed-header-side #navbar.glazed-header {
+.body--dxpr-theme-nav-desktop.body--dxpr-theme-header-side #navbar.dxpr-theme-header {
   text-align: $align;
 }
-.body--glazed-nav-desktop.body--glazed-header-side {
+.body--dxpr-theme-nav-desktop.body--dxpr-theme-header-side {
   padding-left: {$header_side_width}px;
 }
-.body--glazed-nav-desktop .glazed-header--side {
+.body--dxpr-theme-nav-desktop .dxpr-theme-header--side {
   width: {$header_side_width}px;
 }
 
@@ -142,52 +142,52 @@ EOT;
       }
       $opacity = theme_get_setting('header_top_bg_opacity', $theme);
       $opacity_scroll = theme_get_setting('header_top_bg_opacity_scroll', $theme);
-      $header_top_rgba = _glazed_hex2rgba($color, $opacity);
-      $header_top_scroll_rgba = _glazed_hex2rgba($color, $opacity_scroll);
+      $header_top_rgba = _dxpr_theme_hex2rgba($color, $opacity);
+      $header_top_scroll_rgba = _dxpr_theme_hex2rgba($color, $opacity_scroll);
 
       if (theme_get_setting('header_style') === 'normal') {
-        $header_top_scroll_rgba = _glazed_hex2rgba($color, $opacity);
+        $header_top_scroll_rgba = _dxpr_theme_hex2rgba($color, $opacity);
       }
     }
     $css .= <<<EOT
 
-.body--glazed-nav-desktop #navbar.glazed-header--top {
+.body--dxpr-theme-nav-desktop #navbar.dxpr-theme-header--top {
   background-color: $header_top_rgba;
   opacity: $header_top_opacity;
 }
-.body--glazed-nav-desktop #navbar.glazed-header--top.affix {
+.body--dxpr-theme-nav-desktop #navbar.dxpr-theme-header--top.affix {
   background-color: $header_top_scroll_rgba;
   opacity: $header_top_opacity_scroll;
 }
 
-.body--glazed-nav-desktop .glazed-header--top .nav > li > a,
-.body--glazed-nav-desktop .glazed-header--top .wrap-branding,
-.body--glazed-nav-desktop .glazed-header--top .block-glazed-helper {
+.body--dxpr-theme-nav-desktop .dxpr-theme-header--top .nav > li > a,
+.body--dxpr-theme-nav-desktop .dxpr-theme-header--top .wrap-branding,
+.body--dxpr-theme-nav-desktop .dxpr-theme-header--top .block-dxpr-theme-helper {
   height: {$header_top_height}px;
   line-height: {$header_top_height}px;
 }
-.body--glazed-nav-desktop .glazed-header--top .glazed-main-menu {
+.body--dxpr-theme-nav-desktop .dxpr-theme-header--top .dxpr-theme-main-menu {
   height: {$header_top_height}px;
 }
-.body--glazed-nav-desktop .glazed-header--top #logo {
+.body--dxpr-theme-nav-desktop .dxpr-theme-header--top #logo {
   max-height: {$header_top_height}px;
 }
-.body--glazed-nav-desktop .glazed-header--top.affix .nav > li > a,
-.body--glazed-nav-desktop .glazed-header--top.affix .navbar-header .wrap-branding,
-.body--glazed-nav-desktop .glazed-header--top.affix .block-glazed-helper  {
+.body--dxpr-theme-nav-desktop .dxpr-theme-header--top.affix .nav > li > a,
+.body--dxpr-theme-nav-desktop .dxpr-theme-header--top.affix .navbar-header .wrap-branding,
+.body--dxpr-theme-nav-desktop .dxpr-theme-header--top.affix .block-dxpr-theme-helper  {
   height: {$header_top_height_scroll}px;
   line-height: {$header_top_height_scroll}px;
 }
-.body--glazed-nav-desktop .glazed-header--top.affix .glazed-main-menu {
+.body--dxpr-theme-nav-desktop .dxpr-theme-header--top.affix .dxpr-theme-main-menu {
   height: {$header_top_height_scroll}px;
 }
-.body--glazed-nav-desktop .glazed-header--top.affix #logo {
+.body--dxpr-theme-nav-desktop .dxpr-theme-header--top.affix #logo {
   max-height: {$header_top_height_scroll}px;
 }
-.body--glazed-nav-desktop .nav-child-fixed-width {
+.body--dxpr-theme-nav-desktop .nav-child-fixed-width {
   top: {$header_top_height}px;
 }
-.body--glazed-nav-desktop .glazed-header--top.affix .nav-child-fixed-width {
+.body--dxpr-theme-nav-desktop .dxpr-theme-header--top.affix .nav-child-fixed-width {
   top: $header_top_height_scroll;
 }
 
@@ -196,18 +196,18 @@ EOT;
     if (theme_get_setting('header_style', $theme) == 'overlay') {
       // For overlay header add a big gap in the top of the page title
       // to make room for the header.
-      $css .= ".body--glazed-nav-desktop.body--glazed-header-overlay .page-title-full-width-container  { padding-top: " . ($header_top_height + 30) . "px }\n\n";
+      $css .= ".body--dxpr-theme-nav-desktop.body--dxpr-theme-header-overlay .page-title-full-width-container  { padding-top: " . ($header_top_height + 30) . "px }\n\n";
     }
     elseif (theme_get_setting('header_top_fixed', $theme)) {
       // For fixed headers create small padding to prevent fixed
       // header from hiding toolbars.
-      $css .= ".body--glazed-nav-desktop.body--glazed-header-fixed.body--glazed-header-not-overlay { padding-top: " . $header_top_height . "px !important }\n\n";
-      $css .= "  html.js .body--glazed-nav-desktop.toolbar-fixed.toolbar-horizontal.body--glazed-header-fixed.body--glazed-header-not-overlay { padding-top: " . ($header_top_height + 39) . "px !important }\n\n";
-      $css .= "  html.js .body--glazed-nav-desktop.toolbar-fixed.toolbar-horizontal.toolbar-tray-open.toolbar-horizontal.body--glazed-header-fixed.body--glazed-header-not-overlay { padding-top: " . ($header_top_height + 80) . "px !important }\n\n";
+      $css .= ".body--dxpr-theme-nav-desktop.body--dxpr-theme-header-fixed.body--dxpr-theme-header-not-overlay { padding-top: " . $header_top_height . "px !important }\n\n";
+      $css .= "  html.js .body--dxpr-theme-nav-desktop.toolbar-fixed.toolbar-horizontal.body--dxpr-theme-header-fixed.body--dxpr-theme-header-not-overlay { padding-top: " . ($header_top_height + 39) . "px !important }\n\n";
+      $css .= "  html.js .body--dxpr-theme-nav-desktop.toolbar-fixed.toolbar-horizontal.toolbar-tray-open.toolbar-horizontal.body--dxpr-theme-header-fixed.body--dxpr-theme-header-not-overlay { padding-top: " . ($header_top_height + 80) . "px !important }\n\n";
     }
 
     if (theme_get_setting('header_style', $theme) == 'navbar_pull_down') {
-      $css .= ".body--glazed-nav-desktop.body--glazed-header-not-overlay .glazed-header--top .col-sm-12 {\n margin-bottom: -" . ($header_top_height / 2) . "px; }\n\n";
+      $css .= ".body--dxpr-theme-nav-desktop.body--dxpr-theme-header-not-overlay .dxpr-theme-header--top .col-sm-12 {\n margin-bottom: -" . ($header_top_height / 2) . "px; }\n\n";
     }
 
   }
@@ -215,15 +215,15 @@ EOT;
   // Mobile Header.
   $header_mobile_height = theme_get_setting('header_mobile_height', $theme);
   $css .= <<<EOT
-.body--glazed-nav-mobile .glazed-header .navbar-header .wrap-branding,
-.body--glazed-nav-mobile .glazed-header .navbar-toggle {
+.body--dxpr-theme-nav-mobile .dxpr-theme-header .navbar-header .wrap-branding,
+.body--dxpr-theme-nav-mobile .dxpr-theme-header .navbar-toggle {
   height: {$header_mobile_height}px;
 }
-.body--glazed-nav-mobile .glazed-header .block-glazed-helper {
+.body--dxpr-theme-nav-mobile .dxpr-theme-header .block-dxpr-theme-helper {
   height: {$header_mobile_height}px;
   line-height: {$header_mobile_height}px;
 }
-.body--glazed-nav-mobile .glazed-header #logo {
+.body--dxpr-theme-nav-mobile .dxpr-theme-header #logo {
   max-height: {$header_mobile_height}px;
 }
 
@@ -237,16 +237,16 @@ EOT;
       $header_top_height = $header_top_height / 2;
     }
     $css .= <<<EOT
-.html--glazed-sticky-footer .body--glazed-nav-desktop .glazed-header--top {
+.html--dxpr-theme-sticky-footer .body--dxpr-theme-nav-desktop .dxpr-theme-header--top {
   min-height: {$header_top_height}px;
 }
-.html--glazed-sticky-footer .body--glazed-nav-desktop .glazed-header--top.affix {
+.html--dxpr-theme-sticky-footer .body--dxpr-theme-nav-desktop .dxpr-theme-header--top.affix {
   min-height: {$header_top_height_scroll}px;
 }
-.html--glazed-sticky-footer .body--glazed-nav-mobile .glazed-header {
+.html--dxpr-theme-sticky-footer .body--dxpr-theme-nav-mobile .dxpr-theme-header {
   min-height: {$header_mobile_height}px;
 }
-.html--glazed-sticky-footer .body--glazed-nav-mobile .glazed-header.affix {
+.html--dxpr-theme-sticky-footer .body--dxpr-theme-nav-mobile .dxpr-theme-header.affix {
   min-height: {$header_mobile_height}px;
 }
 
@@ -259,7 +259,7 @@ EOT;
 
   if (theme_get_setting('menu_type', $theme) == 'uppercase') {
     $css .= <<<EOT
-.glazed-header .menu a {
+.dxpr-theme-header .menu a {
   text-transform: uppercase;
 }
 
@@ -267,7 +267,7 @@ EOT;
   }
   elseif (theme_get_setting('menu_type', $theme) == 'bold') {
     $css .= <<<EOT
-.glazed-header .menu a {
+.dxpr-theme-header .menu a {
   font-weight: bold;
 }
 
@@ -275,8 +275,8 @@ EOT;
   }
   elseif (theme_get_setting('menu_type', $theme) == 'lead') {
     $css .= <<<EOT
-.glazed-header .menu a ,
-.glazed-header .menu span {
+.dxpr-theme-header .menu a ,
+.dxpr-theme-header .menu span {
   font-size: 21px;
   font-weight: 300;
 }
@@ -289,8 +289,8 @@ EOT;
   // to look broken in mobile menus.
   if (theme_get_setting('menu_hover', $theme) == 'border') {
     $css .= <<<EOT
-.body--glazed-header-side .glazed-header--side.glazed-header--hover-border .menu a::before,
-.glazed-header--top.glazed-header--hover-border .nav > li > a::before {
+.body--dxpr-theme-header-side .dxpr-theme-header--side.dxpr-theme-header--hover-border .menu a::before,
+.dxpr-theme-header--top.dxpr-theme-header--hover-border .nav > li > a::before {
 
 EOT;
     if ($height = theme_get_setting('menu_border_size', $theme)) {
@@ -335,7 +335,7 @@ EOT;
     && ($margin_sticky = theme_get_setting('menu_border_position_offset_sticky', $theme))
     && (theme_get_setting('header_position', $theme) == FALSE)) {
     $css .= <<<EOT
-.glazed-header--top.glazed-header--hover-border.affix .nav > li > a::before {
+.dxpr-theme-header--top.dxpr-theme-header--hover-border.affix .nav > li > a::before {
   margin-{$position}: {$margin_sticky}px;
 }
 EOT;
@@ -349,7 +349,7 @@ EOT;
     elseif (isset($palette[$navbarbg])) {
       $navbarbg = $palette[$navbarbg];
     }
-    $css .= ".html #navbar.glazed-header--top .container-row > .col-sm-12 { background-color: $navbarbg }\n\n";
+    $css .= ".html #navbar.dxpr-theme-header--top .container-row > .col-sm-12 { background-color: $navbarbg }\n\n";
   }
   if ($blockbg = theme_get_setting('header_block_background', $theme)) {
     if (theme_get_setting('header_block_background', $theme) == 'custom') {
@@ -358,7 +358,7 @@ EOT;
     elseif (isset($palette[$blockbg])) {
       $blockbg = $palette[$blockbg];
     }
-    $css .= "#navbar.glazed-header--top .block { background-color: $blockbg }\n\n";
+    $css .= "#navbar.dxpr-theme-header--top .block { background-color: $blockbg }\n\n";
   }
   if ($blocktxt = theme_get_setting('header_block_text_color', $theme)) {
     if (theme_get_setting('header_block_text_color', $theme) == 'custom') {
@@ -367,7 +367,7 @@ EOT;
     elseif (isset($palette[$blocktxt])) {
       $blocktxt = $palette[$blocktxt];
     }
-    $css .= "#navbar.glazed-header--top .block, #navbar.glazed-header--top .block a, #navbar.glazed-header--top .block .btn-link { color: $blocktxt }\n\n";
+    $css .= "#navbar.dxpr-theme-header--top .block, #navbar.dxpr-theme-header--top .block a, #navbar.dxpr-theme-header--top .block .btn-link { color: $blocktxt }\n\n";
   }
   if ($menubg = theme_get_setting('menu_background', $theme)) {
     if (theme_get_setting('menu_background', $theme) == 'custom') {
@@ -376,7 +376,7 @@ EOT;
     elseif (isset($palette[$menubg])) {
       $menubg = $palette[$menubg];
     }
-    $css .= "#navbar.glazed-header--top .menu { background-color: $menubg }\n\n";
+    $css .= "#navbar.dxpr-theme-header--top .menu { background-color: $menubg }\n\n";
   }
   if ($menutxt = theme_get_setting('menu_text_color', $theme)) {
     if (theme_get_setting('menu_text_color', $theme) == 'custom') {
@@ -385,7 +385,7 @@ EOT;
     elseif (isset($palette[$menutxt])) {
       $menutxt = $palette[$menutxt];
     }
-    $css .= "#navbar.glazed-header--top .menu, #navbar.glazed-header--top .menu a { color: $menutxt }\n\n";
+    $css .= "#navbar.dxpr-theme-header--top .menu, #navbar.dxpr-theme-header--top .menu a { color: $menutxt }\n\n";
   }
   if ($menuhoverbg = theme_get_setting('menu_hover_background', $theme)) {
     if (theme_get_setting('menu_hover_background', $theme) == 'custom') {
@@ -394,7 +394,7 @@ EOT;
     elseif (isset($palette[$menuhoverbg])) {
       $menuhoverbg = $palette[$menuhoverbg];
     }
-    $css .= "#navbar.glazed-header--top .menu a:hover, #navbar.glazed-header--top .menu a:focus { background-color: $menuhoverbg }\n\n";
+    $css .= "#navbar.dxpr-theme-header--top .menu a:hover, #navbar.dxpr-theme-header--top .menu a:focus { background-color: $menuhoverbg }\n\n";
   }
   if ($menuhovertxt = theme_get_setting('menu_hover_text_color', $theme)) {
     if (theme_get_setting('menu_hover_text_color', $theme) == 'custom') {
@@ -403,7 +403,7 @@ EOT;
     elseif (isset($palette[$menuhovertxt])) {
       $menuhovertxt = $palette[$menuhovertxt];
     }
-    $css .= "#navbar.glazed-header--top .menu a:hover, #navbar.glazed-header--top .menu a:focus { color: $menuhovertxt }\n\n";
+    $css .= "#navbar.dxpr-theme-header--top .menu a:hover, #navbar.dxpr-theme-header--top .menu a:focus { color: $menuhovertxt }\n\n";
   }
   if ($dropdownbg = theme_get_setting('dropdown_background', $theme)) {
     if (theme_get_setting('dropdown_background', $theme) == 'custom') {
@@ -412,7 +412,7 @@ EOT;
     elseif (isset($palette[$dropdownbg])) {
       $dropdownbg = $palette[$dropdownbg];
     }
-    $css .= "#navbar.glazed-header--top .dropdown-menu { background-color: $dropdownbg }\n\n";
+    $css .= "#navbar.dxpr-theme-header--top .dropdown-menu { background-color: $dropdownbg }\n\n";
   }
   if ($dropdowntxt = theme_get_setting('dropdown_text_color', $theme)) {
     if (theme_get_setting('dropdown_text_color', $theme) == 'custom') {
@@ -421,7 +421,7 @@ EOT;
     elseif (isset($palette[$dropdowntxt])) {
       $dropdowntxt = $palette[$dropdowntxt];
     }
-    $css .= "#navbar.glazed-header--top .dropdown, #navbar.glazed-header--top .dropdown-menu a { color: $dropdowntxt }\n\n";
+    $css .= "#navbar.dxpr-theme-header--top .dropdown, #navbar.dxpr-theme-header--top .dropdown-menu a { color: $dropdowntxt }\n\n";
   }
   if ($dropdownhoverbg = theme_get_setting('dropdown_hover_background', $theme)) {
     if (theme_get_setting('dropdown_hover_background', $theme) == 'custom') {
@@ -430,7 +430,7 @@ EOT;
     elseif (isset($palette[$dropdownhoverbg])) {
       $dropdownhoverbg = $palette[$dropdownhoverbg];
     }
-    $css .= "#navbar.glazed-header--top .dropdown-menu a:hover,#navbar.glazed-header--top .dropdown-menu a:focus { background-color: $dropdownhoverbg }\n\n";
+    $css .= "#navbar.dxpr-theme-header--top .dropdown-menu a:hover,#navbar.dxpr-theme-header--top .dropdown-menu a:focus { background-color: $dropdownhoverbg }\n\n";
   }
   if ($dropdownhovertxt = theme_get_setting('dropdown_hover_text_color', $theme)) {
     if (theme_get_setting('dropdown_hover_text_color', $theme) == 'custom') {
@@ -439,6 +439,6 @@ EOT;
     elseif (isset($palette[$dropdownhovertxt])) {
       $dropdownhovertxt = $palette[$dropdownhovertxt];
     }
-    $css .= "#navbar.glazed-header--top .dropdown-menu a:hover,#navbar.glazed-header--top .dropdown-menu a:focus { color: $dropdownhovertxt }\n\n";
+    $css .= "#navbar.dxpr-theme-header--top .dropdown-menu a:hover,#navbar.dxpr-theme-header--top .dropdown-menu a:focus { color: $dropdownhovertxt }\n\n";
   }
 }

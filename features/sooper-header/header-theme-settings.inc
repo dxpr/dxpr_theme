@@ -14,20 +14,20 @@
  *   Theme machine name.
  */
 function header_theme_settings(array &$form, $theme) {
-  $form['glazed_settings']['header'] = [
+  $form['dxpr_theme_settings']['header'] = [
     '#title' => t('Header & Main Menu'),
     '#type' => 'details',
-    '#group' => 'glazed_settings',
+    '#group' => 'dxpr_theme_settings',
     '#weight' => 10,
   ];
 
-  $form['glazed_settings']['header']['header_position'] = [
+  $form['dxpr_theme_settings']['header']['header_position'] = [
     '#type' => 'checkbox',
     '#title' => t('Side-Header'),
     '#default_value' => ((theme_get_setting('header_position') !== NULL)) ? theme_get_setting('header_position') : 0,
   ];
 
-  $form['glazed_settings']['header']['header_top'] = [
+  $form['dxpr_theme_settings']['header']['header_top'] = [
     '#title' => t('Top Header Options'),
     '#type' => 'details',
     '#collapsible' => TRUE,
@@ -39,7 +39,7 @@ function header_theme_settings(array &$form, $theme) {
     ],
   ];
 
-  $form['glazed_settings']['header']['header_top']['header_top_layout'] = [
+  $form['dxpr_theme_settings']['header']['header_top']['header_top_layout'] = [
     '#type' => 'radios',
     '#title' => t('Layout'),
     '#description' => t('Different header layouts give a different view at your menu and logo.'),
@@ -55,7 +55,7 @@ function header_theme_settings(array &$form, $theme) {
     ],
   ];
 
-  $form['glazed_settings']['header']['header_top']['header_style'] = [
+  $form['dxpr_theme_settings']['header']['header_top']['header_style'] = [
     '#type' => 'radios',
     '#title' => t('Header Style'),
     '#description' => t('Create transparent headers and free floating navbars. Overlays the header over the page title and content.'),
@@ -67,7 +67,7 @@ function header_theme_settings(array &$form, $theme) {
     ],
   ];
 
-  $form['glazed_settings']['header']['header_top']['header_top_bg_opacity'] = [
+  $form['dxpr_theme_settings']['header']['header_top']['header_top_bg_opacity'] = [
     '#type' => 'textfield',
     '#title' => t('Header Opacity'),
     '#default_value' => ((theme_get_setting('header_top_bg_opacity') !== NULL)) ? theme_get_setting('header_top_bg_opacity') : 1,
@@ -76,7 +76,7 @@ function header_theme_settings(array &$form, $theme) {
     '#description' => t('Creates RGBa translucent background color. 0 is fully transparent and 1 is fully opaque.'),
   ];
 
-  $form['glazed_settings']['header']['header_top']['header_top_height'] = [
+  $form['dxpr_theme_settings']['header']['header_top']['header_top_height'] = [
     '#type' => 'textfield',
     '#title' => t('Height'),
     '#default_value' => ((theme_get_setting('header_top_height') !== NULL)) ? theme_get_setting('header_top_height') : '100',
@@ -85,14 +85,14 @@ function header_theme_settings(array &$form, $theme) {
     '#description' => t('Initial height of the header. 10px - 200px. Default is 100.'),
   ];
 
-  $form['glazed_settings']['header']['header_top']['header_top_fixed'] = [
+  $form['dxpr_theme_settings']['header']['header_top']['header_top_fixed'] = [
     '#type' => 'checkbox',
     '#title' => t('Fixed Position'),
     '#default_value' => ((theme_get_setting('header_top_fixed') !== NULL)) ? theme_get_setting('header_top_fixed') : FALSE,
     '#description' => t('A Fixed header stays in the top of the browser when a user scrolls.'),
   ];
 
-  $form['glazed_settings']['header']['header_top']['header_top_sticky'] = [
+  $form['dxpr_theme_settings']['header']['header_top']['header_top_sticky'] = [
     '#type' => 'checkbox',
     '#title' => t('Sticky Header'),
     '#default_value' => ((theme_get_setting('header_top_sticky') !== NULL)) ? theme_get_setting('header_top_sticky') : FALSE,
@@ -104,7 +104,7 @@ function header_theme_settings(array &$form, $theme) {
     ],
   ];
 
-  $form['glazed_settings']['header']['header_top']['second_header_sticky'] = [
+  $form['dxpr_theme_settings']['header']['header_top']['second_header_sticky'] = [
     '#type' => 'checkbox',
     '#title' => t('Sticky Second Header'),
     '#default_value' => ((theme_get_setting('second_header_sticky') !== NULL)) ? theme_get_setting('second_header_sticky') : FALSE,
@@ -117,7 +117,7 @@ function header_theme_settings(array &$form, $theme) {
     ],
   ];
 
-  $form['glazed_settings']['header']['header_top']['sticky'] = [
+  $form['dxpr_theme_settings']['header']['header_top']['sticky'] = [
     '#title' => t('Sticky Header Options'),
     '#type' => 'details',
     '#collapsible' => TRUE,
@@ -130,7 +130,7 @@ function header_theme_settings(array &$form, $theme) {
     ],
   ];
 
-  $form['glazed_settings']['header']['header_top']['sticky']['header_top_sticky_show'] = [
+  $form['dxpr_theme_settings']['header']['header_top']['sticky']['header_top_sticky_show'] = [
     '#type' => 'radios',
     '#title' => t('Hide before Scrolling'),
     '#default_value' => ((theme_get_setting('header_top_sticky_show') !== NULL)) ? theme_get_setting('header_top_sticky_show') : 'always',
@@ -152,7 +152,7 @@ function header_theme_settings(array &$form, $theme) {
     ],
   ];
 
-  $form['glazed_settings']['header']['header_top']['sticky']['header_top_height_sticky_offset'] = [
+  $form['dxpr_theme_settings']['header']['header_top']['sticky']['header_top_height_sticky_offset'] = [
     '#type' => 'textfield',
     '#title' => t('Scroll offset'),
     '#default_value' => ((theme_get_setting('header_top_height_sticky_offset') !== NULL)) ? theme_get_setting('header_top_height_sticky_offset') : '60',
@@ -167,7 +167,7 @@ function header_theme_settings(array &$form, $theme) {
     ],
   ];
 
-  $form['glazed_settings']['header']['header_top']['sticky']['header_top_height_scroll'] = [
+  $form['dxpr_theme_settings']['header']['header_top']['sticky']['header_top_height_scroll'] = [
     '#type' => 'textfield',
     '#title' => t('Height'),
     '#default_value' => ((theme_get_setting('header_top_height_scroll') !== NULL)) ? theme_get_setting('header_top_height_scroll') : '50',
@@ -182,7 +182,7 @@ function header_theme_settings(array &$form, $theme) {
     ],
   ];
 
-  $form['glazed_settings']['header']['header_top']['sticky']['header_top_bg_opacity_scroll'] = [
+  $form['dxpr_theme_settings']['header']['header_top']['sticky']['header_top_bg_opacity_scroll'] = [
     '#type' => 'textfield',
     '#title' => t('Background Opacity'),
     '#default_value' => ((theme_get_setting('header_top_bg_opacity_scroll') !== NULL)) ? theme_get_setting('header_top_bg_opacity_scroll') : 1,
@@ -197,21 +197,21 @@ function header_theme_settings(array &$form, $theme) {
     ],
   ];
 
-  $form['glazed_settings']['header']['header_top']['navcolors'] = [
+  $form['dxpr_theme_settings']['header']['header_top']['navcolors'] = [
     '#title' => t('Customize Navigation Colors'),
     '#type' => 'details',
     '#collapsible' => TRUE,
     '#collapsed' => TRUE,
   ];
 
-  $form['glazed_settings']['header']['header_top']['navcolors']['navbar_background'] = [
+  $form['dxpr_theme_settings']['header']['header_top']['navcolors']['navbar_background'] = [
     '#type' => 'select',
     '#title' => t('Navbar Background'),
     '#default_value' => theme_get_setting('navbar_background'),
-    '#options' => _glazed_color_options($theme),
+    '#options' => _dxpr_theme_color_options($theme),
   ];
 
-  $form['glazed_settings']['header']['header_top']['navcolors']['navbar_background_custom'] = [
+  $form['dxpr_theme_settings']['header']['header_top']['navcolors']['navbar_background_custom'] = [
     '#type' => 'textfield',
     '#title' => t('Custom Navbar Background'),
     '#default_value' => ((theme_get_setting('navbar_background_custom') !== NULL)) ? theme_get_setting('navbar_background_custom') : theme_get_setting('navbar_background_custom'),
@@ -222,14 +222,14 @@ function header_theme_settings(array &$form, $theme) {
     ],
   ];
 
-  $form['glazed_settings']['header']['header_top']['navcolors']['header_block_background'] = [
+  $form['dxpr_theme_settings']['header']['header_top']['navcolors']['header_block_background'] = [
     '#type' => 'select',
     '#title' => t('Block Background'),
     '#default_value' => theme_get_setting('header_block_background'),
-    '#options' => _glazed_color_options($theme),
+    '#options' => _dxpr_theme_color_options($theme),
   ];
 
-  $form['glazed_settings']['header']['header_top']['navcolors']['header_block_background_custom'] = [
+  $form['dxpr_theme_settings']['header']['header_top']['navcolors']['header_block_background_custom'] = [
     '#type' => 'textfield',
     '#title' => t('Custom Block Background'),
     '#default_value' => ((theme_get_setting('header_block_background_custom') !== NULL)) ? theme_get_setting('header_block_background_custom') : theme_get_setting('header_block_background_custom'),
@@ -240,14 +240,14 @@ function header_theme_settings(array &$form, $theme) {
     ],
   ];
 
-  $form['glazed_settings']['header']['header_top']['navcolors']['header_block_text_color'] = [
+  $form['dxpr_theme_settings']['header']['header_top']['navcolors']['header_block_text_color'] = [
     '#type' => 'select',
     '#title' => t('Block Text'),
     '#default_value' => theme_get_setting('header_block_text_color'),
-    '#options' => _glazed_color_options($theme),
+    '#options' => _dxpr_theme_color_options($theme),
   ];
 
-  $form['glazed_settings']['header']['header_top']['navcolors']['header_block_text_color_custom'] = [
+  $form['dxpr_theme_settings']['header']['header_top']['navcolors']['header_block_text_color_custom'] = [
     '#type' => 'textfield',
     '#title' => t('Custom Block Text Color'),
     '#default_value' => ((theme_get_setting('header_block_text_color_custom') !== NULL)) ? theme_get_setting('header_block_text_color_custom') : theme_get_setting('header_block_text_color_custom'),
@@ -258,14 +258,14 @@ function header_theme_settings(array &$form, $theme) {
     ],
   ];
 
-  $form['glazed_settings']['header']['header_top']['navcolors']['menu_background'] = [
+  $form['dxpr_theme_settings']['header']['header_top']['navcolors']['menu_background'] = [
     '#type' => 'select',
     '#title' => t('Menu Background'),
     '#default_value' => theme_get_setting('menu_background'),
-    '#options' => _glazed_color_options($theme),
+    '#options' => _dxpr_theme_color_options($theme),
   ];
 
-  $form['glazed_settings']['header']['header_top']['navcolors']['menu_background_custom'] = [
+  $form['dxpr_theme_settings']['header']['header_top']['navcolors']['menu_background_custom'] = [
     '#type' => 'textfield',
     '#title' => t('Custom Menu Background'),
     '#default_value' => ((theme_get_setting('menu_background_custom') !== NULL)) ? theme_get_setting('menu_background_custom') : theme_get_setting('menu_background_custom'),
@@ -276,14 +276,14 @@ function header_theme_settings(array &$form, $theme) {
     ],
   ];
 
-  $form['glazed_settings']['header']['header_top']['navcolors']['menu_text_color'] = [
+  $form['dxpr_theme_settings']['header']['header_top']['navcolors']['menu_text_color'] = [
     '#type' => 'select',
     '#title' => t('Menu Text'),
     '#default_value' => theme_get_setting('menu_text_color'),
-    '#options' => _glazed_color_options($theme),
+    '#options' => _dxpr_theme_color_options($theme),
   ];
 
-  $form['glazed_settings']['header']['header_top']['navcolors']['menu_text_color_custom'] = [
+  $form['dxpr_theme_settings']['header']['header_top']['navcolors']['menu_text_color_custom'] = [
     '#type' => 'textfield',
     '#title' => t('Custom Menu Text Color'),
     '#default_value' => ((theme_get_setting('menu_text_color_custom') !== NULL)) ? theme_get_setting('menu_text_color_custom') : theme_get_setting('menu_text_color_custom'),
@@ -294,14 +294,14 @@ function header_theme_settings(array &$form, $theme) {
     ],
   ];
 
-  $form['glazed_settings']['header']['header_top']['navcolors']['menu_hover_background'] = [
+  $form['dxpr_theme_settings']['header']['header_top']['navcolors']['menu_hover_background'] = [
     '#type' => 'select',
     '#title' => t('Menu Hover Background'),
     '#default_value' => theme_get_setting('menu_hover_background'),
-    '#options' => _glazed_color_options($theme),
+    '#options' => _dxpr_theme_color_options($theme),
   ];
 
-  $form['glazed_settings']['header']['header_top']['navcolors']['menu_hover_background_custom'] = [
+  $form['dxpr_theme_settings']['header']['header_top']['navcolors']['menu_hover_background_custom'] = [
     '#type' => 'textfield',
     '#title' => t('Custom Menu Hover Background'),
     '#default_value' => ((theme_get_setting('menu_hover_background_custom') !== NULL)) ? theme_get_setting('menu_hover_background_custom') : theme_get_setting('menu_hover_background_custom'),
@@ -312,14 +312,14 @@ function header_theme_settings(array &$form, $theme) {
     ],
   ];
 
-  $form['glazed_settings']['header']['header_top']['navcolors']['menu_hover_text_color'] = [
+  $form['dxpr_theme_settings']['header']['header_top']['navcolors']['menu_hover_text_color'] = [
     '#type' => 'select',
     '#title' => t('Menu Hover Text'),
     '#default_value' => theme_get_setting('menu_hover_text_color'),
-    '#options' => _glazed_color_options($theme),
+    '#options' => _dxpr_theme_color_options($theme),
   ];
 
-  $form['glazed_settings']['header']['header_top']['navcolors']['menu_hover_text_color_custom'] = [
+  $form['dxpr_theme_settings']['header']['header_top']['navcolors']['menu_hover_text_color_custom'] = [
     '#type' => 'textfield',
     '#title' => t('Custom Menu Hover Text Color'),
     '#default_value' => ((theme_get_setting('menu_hover_text_color_custom') !== NULL)) ? theme_get_setting('menu_hover_text_color_custom') : theme_get_setting('menu_hover_text_color_custom'),
@@ -330,14 +330,14 @@ function header_theme_settings(array &$form, $theme) {
     ],
   ];
 
-  $form['glazed_settings']['header']['header_top']['navcolors']['dropdown_background'] = [
+  $form['dxpr_theme_settings']['header']['header_top']['navcolors']['dropdown_background'] = [
     '#type' => 'select',
     '#title' => t('Dropdown Background'),
     '#default_value' => theme_get_setting('dropdown_background'),
-    '#options' => _glazed_color_options($theme),
+    '#options' => _dxpr_theme_color_options($theme),
   ];
 
-  $form['glazed_settings']['header']['header_top']['navcolors']['dropdown_background_custom'] = [
+  $form['dxpr_theme_settings']['header']['header_top']['navcolors']['dropdown_background_custom'] = [
     '#type' => 'textfield',
     '#title' => t('Custom Dropdown Background'),
     '#default_value' => ((theme_get_setting('dropdown_background_custom') !== NULL)) ? theme_get_setting('dropdown_background_custom') : theme_get_setting('dropdown_background_custom'),
@@ -348,14 +348,14 @@ function header_theme_settings(array &$form, $theme) {
     ],
   ];
 
-  $form['glazed_settings']['header']['header_top']['navcolors']['dropdown_text_color'] = [
+  $form['dxpr_theme_settings']['header']['header_top']['navcolors']['dropdown_text_color'] = [
     '#type' => 'select',
     '#title' => t('Dropdown Text'),
     '#default_value' => theme_get_setting('dropdown_text_color'),
-    '#options' => _glazed_color_options($theme),
+    '#options' => _dxpr_theme_color_options($theme),
   ];
 
-  $form['glazed_settings']['header']['header_top']['navcolors']['dropdown_text_color_custom'] = [
+  $form['dxpr_theme_settings']['header']['header_top']['navcolors']['dropdown_text_color_custom'] = [
     '#type' => 'textfield',
     '#title' => t('Custom Dropdown Text Color'),
     '#default_value' => ((theme_get_setting('dropdown_text_color_custom') !== NULL)) ? theme_get_setting('dropdown_text_color_custom') : theme_get_setting('dropdown_text_color_custom'),
@@ -366,14 +366,14 @@ function header_theme_settings(array &$form, $theme) {
     ],
   ];
 
-  $form['glazed_settings']['header']['header_top']['navcolors']['dropdown_hover_background'] = [
+  $form['dxpr_theme_settings']['header']['header_top']['navcolors']['dropdown_hover_background'] = [
     '#type' => 'select',
     '#title' => t('Dropdown Hover Background'),
     '#default_value' => theme_get_setting('dropdown_hover_background'),
-    '#options' => _glazed_color_options($theme),
+    '#options' => _dxpr_theme_color_options($theme),
   ];
 
-  $form['glazed_settings']['header']['header_top']['navcolors']['dropdown_hover_background_custom'] = [
+  $form['dxpr_theme_settings']['header']['header_top']['navcolors']['dropdown_hover_background_custom'] = [
     '#type' => 'textfield',
     '#title' => t('Custom Dropdown Hover Background'),
     '#default_value' => ((theme_get_setting('dropdown_hover_background_custom') !== NULL)) ? theme_get_setting('dropdown_hover_background_custom') : theme_get_setting('dropdown_hover_background_custom'),
@@ -384,14 +384,14 @@ function header_theme_settings(array &$form, $theme) {
     ],
   ];
 
-  $form['glazed_settings']['header']['header_top']['navcolors']['dropdown_hover_text_color'] = [
+  $form['dxpr_theme_settings']['header']['header_top']['navcolors']['dropdown_hover_text_color'] = [
     '#type' => 'select',
     '#title' => t('Dropdown Hover Text'),
     '#default_value' => theme_get_setting('dropdown_hover_text_color'),
-    '#options' => _glazed_color_options($theme),
+    '#options' => _dxpr_theme_color_options($theme),
   ];
 
-  $form['glazed_settings']['header']['header_top']['navcolors']['dropdown_hover_text_color_custom'] = [
+  $form['dxpr_theme_settings']['header']['header_top']['navcolors']['dropdown_hover_text_color_custom'] = [
     '#type' => 'textfield',
     '#title' => t('Custom Dropdown Hover Text Color'),
     '#default_value' => ((theme_get_setting('dropdown_hover_text_color_custom') !== NULL)) ? theme_get_setting('dropdown_hover_text_color_custom') : theme_get_setting('dropdown_hover_text_color_custom'),
@@ -402,14 +402,14 @@ function header_theme_settings(array &$form, $theme) {
     ],
   ];
 
-  $form['glazed_settings']['header']['header_side'] = [
+  $form['dxpr_theme_settings']['header']['header_side'] = [
     '#title' => t('Side Header & Mobile Menu Options'),
     '#type' => 'details',
     '#collapsible' => TRUE,
     '#collapsed' => TRUE,
   ];
 
-  $form['glazed_settings']['header']['header_side']['header_side_align'] = [
+  $form['dxpr_theme_settings']['header']['header_side']['header_side_align'] = [
     '#type' => 'radios',
     '#title' => t('Align Content'),
     '#description' => t('Different header aligns give a different view at your menu and logo.'),
@@ -421,7 +421,7 @@ function header_theme_settings(array &$form, $theme) {
     ],
   ];
 
-  $form['glazed_settings']['header']['header_side']['header_side_width'] = [
+  $form['dxpr_theme_settings']['header']['header_side']['header_side_width'] = [
     '#type' => 'textfield',
     '#title' => t('Width'),
     '#default_value' => ((theme_get_setting('header_side_width') !== NULL)) ? theme_get_setting('header_side_width') : '300',
@@ -430,7 +430,7 @@ function header_theme_settings(array &$form, $theme) {
     '#description' => t('Width of the side-header. Default is 300.'),
   ];
 
-  $form['glazed_settings']['header']['header_side']['header_side_direction'] = [
+  $form['dxpr_theme_settings']['header']['header_side']['header_side_direction'] = [
     '#type' => 'radios',
     '#title' => t('Mobile menu open direction'),
     '#default_value' => ((theme_get_setting('header_side_direction') !== NULL)) ? theme_get_setting('header_side_direction') : 'left',
@@ -441,20 +441,20 @@ function header_theme_settings(array &$form, $theme) {
     ],
   ];
 
-  $form['glazed_settings']['header']['menu'] = [
+  $form['dxpr_theme_settings']['header']['menu'] = [
     '#title' => t('Main Menu Links'),
     '#type' => 'details',
     '#collapsible' => TRUE,
     '#collapsed' => TRUE,
   ];
 
-  $form['glazed_settings']['header']['menu']['mark_menu_with_children'] = [
+  $form['dxpr_theme_settings']['header']['menu']['mark_menu_with_children'] = [
     '#type' => 'checkbox',
     '#title' => t('Mark items with children'),
     '#default_value' => ((theme_get_setting('mark_menu_with_children') !== NULL)) ? theme_get_setting('mark_menu_with_children') : FALSE,
   ];
 
-  $form['glazed_settings']['header']['menu']['menu_type'] = [
+  $form['dxpr_theme_settings']['header']['menu']['menu_type'] = [
     '#type' => 'radios',
     '#title' => t('Font Style'),
     '#default_value' => ((theme_get_setting('menu_type') !== NULL)) ? theme_get_setting('menu_type') : '',
@@ -466,7 +466,7 @@ function header_theme_settings(array &$form, $theme) {
     ],
   ];
 
-  $form['glazed_settings']['header']['menu']['menu_hover'] = [
+  $form['dxpr_theme_settings']['header']['menu']['menu_hover'] = [
     '#type' => 'radios',
     '#title' => t('Hover Style'),
     '#default_value' => ((theme_get_setting('menu_hover') !== NULL)) ? theme_get_setting('menu_hover') : 'opacity',
@@ -480,14 +480,14 @@ function header_theme_settings(array &$form, $theme) {
 
   // Would like to use FAPI states here but doesn't work:
   // https://www.drupal.org/node/2751693
-  $form['glazed_settings']['header']['menu']['menu_border'] = [
+  $form['dxpr_theme_settings']['header']['menu']['menu_border'] = [
     '#title' => t('Customize Menu Border'),
     '#type' => 'details',
     '#collapsible' => TRUE,
     '#collapsed' => TRUE,
   ];
 
-  $form['glazed_settings']['header']['menu']['menu_border']['menu_border_position'] = [
+  $form['dxpr_theme_settings']['header']['menu']['menu_border']['menu_border_position'] = [
     '#type' => 'radios',
     '#title' => t('Hover Style'),
     '#default_value' => ((theme_get_setting('menu_border_position') !== NULL)) ? theme_get_setting('menu_border_position') : 'bottom',
@@ -497,7 +497,7 @@ function header_theme_settings(array &$form, $theme) {
     ],
   ];
 
-  $form['glazed_settings']['header']['menu']['menu_border']['menu_border_animate'] = [
+  $form['dxpr_theme_settings']['header']['menu']['menu_border']['menu_border_animate'] = [
     '#type' => 'radios',
     '#title' => t('Animation'),
     '#default_value' => ((theme_get_setting('menu_border_animate') !== NULL)) ? theme_get_setting('menu_border_animate') : 0,
@@ -510,7 +510,7 @@ function header_theme_settings(array &$form, $theme) {
     ],
   ];
 
-  $form['glazed_settings']['header']['menu']['menu_border']['menu_border_position_offset'] = [
+  $form['dxpr_theme_settings']['header']['menu']['menu_border']['menu_border_position_offset'] = [
     '#type' => 'textfield',
     '#title' => t('Position Offset'),
     '#default_value' => ((theme_get_setting('menu_border_position_offset') !== NULL)) ? theme_get_setting('menu_border_position_offset') : '0',
@@ -523,7 +523,7 @@ function header_theme_settings(array &$form, $theme) {
     ],
   ];
 
-  $form['glazed_settings']['header']['menu']['menu_border']['menu_border_position_offset_sticky'] = [
+  $form['dxpr_theme_settings']['header']['menu']['menu_border']['menu_border_position_offset_sticky'] = [
     '#type' => 'textfield',
     '#title' => t('Position Offset for Sticky Header'),
     '#default_value' => ((theme_get_setting('menu_border_position_offset_sticky') !== NULL)) ? theme_get_setting('menu_border_position_offset_sticky') : '0',
@@ -538,7 +538,7 @@ function header_theme_settings(array &$form, $theme) {
     ],
   ];
 
-  $form['glazed_settings']['header']['menu']['menu_border']['menu_border_size'] = [
+  $form['dxpr_theme_settings']['header']['menu']['menu_border']['menu_border_size'] = [
     '#type' => 'textfield',
     '#title' => t('Border Thickness'),
     '#default_value' => ((theme_get_setting('menu_border_size') !== NULL)) ? theme_get_setting('menu_border_size') : '2',
@@ -546,14 +546,14 @@ function header_theme_settings(array &$form, $theme) {
     '#maxlength' => 9,
   ];
 
-  $form['glazed_settings']['header']['menu']['menu_border']['menu_border_color'] = [
+  $form['dxpr_theme_settings']['header']['menu']['menu_border']['menu_border_color'] = [
     '#type' => 'select',
     '#title' => t('Border Color'),
     '#default_value' => theme_get_setting('menu_border_color'),
-    '#options' => _glazed_color_options($theme),
+    '#options' => _dxpr_theme_color_options($theme),
   ];
 
-  $form['glazed_settings']['header']['menu']['menu_border']['menu_border_color_custom'] = [
+  $form['dxpr_theme_settings']['header']['menu']['menu_border']['menu_border_color_custom'] = [
     '#type' => 'textfield',
     '#title' => t('Custom Value'),
     '#default_value' => ((theme_get_setting('menu_border_color_custom') !== NULL)) ? theme_get_setting('menu_border_color_custom') : theme_get_setting('menu_border_color_custom'),
@@ -565,23 +565,23 @@ function header_theme_settings(array &$form, $theme) {
   ];
 
   // Header in mobile mode.
-  $form['glazed_settings']['header']['header_mobile'] = [
+  $form['dxpr_theme_settings']['header']['header_mobile'] = [
     '#title' => t('Mobile Header'),
     '#type' => 'details',
     '#collapsible' => TRUE,
     '#collapsed' => TRUE,
   ];
 
-  $form['glazed_settings']['header']['header_mobile']['header_mobile_breakpoint'] = [
+  $form['dxpr_theme_settings']['header']['header_mobile']['header_mobile_breakpoint'] = [
     '#type' => 'textfield',
     '#title' => t('Mobile Breakpoint'),
     '#default_value' => ((theme_get_setting('header_mobile_breakpoint') !== NULL)) ? theme_get_setting('header_mobile_breakpoint') : '1200',
     '#size' => 9,
     '#maxlength' => 9,
-    '#description' => t('Point below where Glazed switches to mobile header and navigation. If you set this to the maximum value (4100) the desktop style will never show. Default is 1200.'),
+    '#description' => t('Point below where DXPR Theme switches to mobile header and navigation. If you set this to the maximum value (4100) the desktop style will never show. Default is 1200.'),
   ];
 
-  $form['glazed_settings']['header']['header_mobile']['header_mobile_height'] = [
+  $form['dxpr_theme_settings']['header']['header_mobile']['header_mobile_height'] = [
     '#type' => 'textfield',
     '#title' => t('Height'),
     '#default_value' => ((theme_get_setting('header_mobile_height') !== NULL)) ? theme_get_setting('header_mobile_height') : '60',
@@ -590,7 +590,7 @@ function header_theme_settings(array &$form, $theme) {
     '#description' => t('Height of header in mobile view. 10px - 200px. Default is 60.'),
   ];
 
-  $form['glazed_settings']['header']['header_mobile']['header_mobile_fixed'] = [
+  $form['dxpr_theme_settings']['header']['header_mobile']['header_mobile_fixed'] = [
     '#type' => 'checkbox',
     '#title' => t('Fixed Position'),
     '#default_value' => ((theme_get_setting('header_mobile_fixed') !== NULL)) ? theme_get_setting('header_mobile_fixed') : FALSE,

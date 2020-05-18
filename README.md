@@ -1,4 +1,4 @@
-# Glazed Theme
+# DXPR Theme
 
 For user documentation and support please check:
 https://app.sooperthemes.com/hc/documentation

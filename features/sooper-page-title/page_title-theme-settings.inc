@@ -14,20 +14,20 @@
  *   Theme machine name.
  */
 function page_title_theme_settings(array &$form, $theme) {
-  $form['glazed_settings']['page_title'] = [
+  $form['dxpr_theme_settings']['page_title'] = [
     '#title' => t('Page Title'),
     '#type' => 'details',
-    '#group' => 'glazed_settings',
+    '#group' => 'dxpr_theme_settings',
     '#weight' => 10,
   ];
 
-  $form['glazed_settings']['page_title']['page_title_breadcrumbs'] = [
+  $form['dxpr_theme_settings']['page_title']['page_title_breadcrumbs'] = [
     '#type' => 'checkbox',
     '#title' => t('Show Breadcrumbs'),
     '#default_value' => ((theme_get_setting('page_title_breadcrumbs') !== NULL)) ? theme_get_setting('page_title_breadcrumbs') : 1,
   ];
 
-  $form['glazed_settings']['page_title']['page_title_breadcrumbs_align'] = [
+  $form['dxpr_theme_settings']['page_title']['page_title_breadcrumbs_align'] = [
     '#type' => 'radios',
     '#title' => t('Align Breadcrumbs'),
     '#default_value' => ((theme_get_setting('page_title_breadcrumbs_align') !== NULL)) ? theme_get_setting('page_title_breadcrumbs_align') : 'right',
@@ -43,7 +43,7 @@ function page_title_theme_settings(array &$form, $theme) {
     ],
   ];
 
-  $form['glazed_settings']['page_title']['page_title_breadcrumbs_separator'] = [
+  $form['dxpr_theme_settings']['page_title']['page_title_breadcrumbs_separator'] = [
     '#type' => 'textfield',
     '#title' => t('Breadcrumbs separator'),
     '#default_value' => (theme_get_setting('page_title_breadcrumbs_separator')) ? theme_get_setting('page_title_breadcrumbs_separator') : '/',
@@ -55,13 +55,13 @@ function page_title_theme_settings(array &$form, $theme) {
     ],
   ];
 
-  $form['glazed_settings']['page_title']['page_title_home_hide'] = [
+  $form['dxpr_theme_settings']['page_title']['page_title_home_hide'] = [
     '#type' => 'checkbox',
     '#title' => t('Hide on Homepage'),
     '#default_value' => ((theme_get_setting('page_title_home_hide') !== NULL)) ? theme_get_setting('page_title_home_hide') : 1,
   ];
 
-  $form['glazed_settings']['page_title']['page_title_align'] = [
+  $form['dxpr_theme_settings']['page_title']['page_title_align'] = [
     '#type' => 'radios',
     '#title' => t('Align Title'),
     '#default_value' => ((theme_get_setting('page_title_align') !== NULL)) ? theme_get_setting('page_title_align') : 'left',
@@ -73,7 +73,7 @@ function page_title_theme_settings(array &$form, $theme) {
     '#description' => t('Choose position of Page Title within page title header.'),
   ];
 
-  $form['glazed_settings']['page_title']['title_type'] = [
+  $form['dxpr_theme_settings']['page_title']['title_type'] = [
     '#type' => 'checkboxes',
     '#title' => t('Font Style'),
     '#default_value' => ((theme_get_setting('title_type') !== NULL)) ? theme_get_setting('title_type') : [],
@@ -84,7 +84,7 @@ function page_title_theme_settings(array &$form, $theme) {
     ],
   ];
 
-  $form['glazed_settings']['page_title']['page_title_height'] = [
+  $form['dxpr_theme_settings']['page_title']['page_title_height'] = [
     '#type' => 'textfield',
     '#title' => t('Height'),
     '#default_value' => ((theme_get_setting('page_title_height') !== NULL)) ? theme_get_setting('page_title_height') : '120',
@@ -93,7 +93,7 @@ function page_title_theme_settings(array &$form, $theme) {
     '#description' => t('height of the header. 50px - 500px. Default is 120px.'),
   ];
 
-  $form['glazed_settings']['page_title']['page_title_animate'] = [
+  $form['dxpr_theme_settings']['page_title']['page_title_animate'] = [
     '#type' => 'radios',
     '#title' => t('Animation'),
     '#default_value' => ((theme_get_setting('page_title_animate') !== NULL)) ? theme_get_setting('page_title_animate') : '0',
@@ -112,27 +112,27 @@ function page_title_theme_settings(array &$form, $theme) {
     '#description' => t('Choose <a target="_blank" href="@animatecss">animate.css</a> appear animation', ['@drupal-handbook' => 'https://daneden.github.io/animate.css/']),
   ];
 
-  $form['glazed_settings']['page_title']['background'] = [
+  $form['dxpr_theme_settings']['page_title']['background'] = [
     '#title' => t('Background Image'),
     '#type' => 'details',
     '#collapsible' => TRUE,
     '#collapsed' => TRUE,
   ];
 
-  // @see glazed_helper.module glazed_helper_settings_form_submit()
-  $form['glazed_settings']['page_title']['background']['page_title_image_path'] = [
+  // @see dxpr_theme_helper.module dxpr_theme_helper_settings_form_submit()
+  $form['dxpr_theme_settings']['page_title']['background']['page_title_image_path'] = [
     '#type' => 'textfield',
     '#title' => t('Path to background image'),
     '#default_value' => theme_get_setting('page_title_image_path'),
     '#description' => t('The path to the file you would like to use as your page title background image. If you upload a file below it will automatically populate this text field'),
   ];
-  $form['glazed_settings']['page_title']['background']['page_title_image'] = [
+  $form['dxpr_theme_settings']['page_title']['background']['page_title_image'] = [
     '#type' => 'file',
     '#title' => t('Upload Background'),
     '#description' => t('The default page title image can also be changed per node, using the Header image field in the node form.'),
   ];
 
-  $form['glazed_settings']['page_title']['background']['page_title_image_opacity'] = [
+  $form['dxpr_theme_settings']['page_title']['background']['page_title_image_opacity'] = [
     '#type' => 'textfield',
     '#title' => t('Backound Image Opacity'),
     '#default_value' => ((theme_get_setting('page_title_image_opacity') !== NULL)) ? theme_get_setting('page_title_image_opacity') : 1,
@@ -141,7 +141,7 @@ function page_title_theme_settings(array &$form, $theme) {
     '#description' => t('Use this to blend the background image with a color. 0 is fully transparent and 1 is fully opaque.'),
   ];
 
-  $form['glazed_settings']['page_title']['background']['page_title_image_style'] = [
+  $form['dxpr_theme_settings']['page_title']['background']['page_title_image_style'] = [
     '#type' => 'radios',
     '#title' => t('Background Style'),
     '#default_value' => ((theme_get_setting('page_title_image_style') !== NULL)) ? theme_get_setting('page_title_image_style') : 'cover',
@@ -153,7 +153,7 @@ function page_title_theme_settings(array &$form, $theme) {
     ],
   ];
 
-  $form['glazed_settings']['page_title']['background']['page_title_image_mode'] = [
+  $form['dxpr_theme_settings']['page_title']['background']['page_title_image_mode'] = [
     '#type' => 'radios',
     '#title' => t('Background Mode'),
     '#default_value' => ((theme_get_setting('page_title_image_mode') !== NULL)) ? theme_get_setting('page_title_image_mode') : 'normal',
@@ -163,7 +163,7 @@ function page_title_theme_settings(array &$form, $theme) {
     ],
   ];
 
-  $form['glazed_settings']['page_title']['background']['page_title_image_position'] = [
+  $form['dxpr_theme_settings']['page_title']['background']['page_title_image_position'] = [
     '#type' => 'radios',
     '#title' => t('Background Position'),
     '#default_value' => ((theme_get_setting('page_title_image_position') !== NULL)) ? theme_get_setting('page_title_image_position') : 'center_center',

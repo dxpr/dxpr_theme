@@ -14,21 +14,21 @@
  *   Theme machine name.
  */
 function layout_theme_settings(array &$form, $theme) {
-  $form['glazed_settings']['layout'] = [
+  $form['dxpr_theme_settings']['layout'] = [
     '#title' => t('Layout'),
     '#type' => 'details',
-    '#group' => 'glazed_settings',
+    '#group' => 'dxpr_theme_settings',
     '#weight' => 5,
   ];
 
-  $form['glazed_settings']['layout']['boxed_layout'] = [
+  $form['dxpr_theme_settings']['layout']['boxed_layout'] = [
     '#type' => 'checkbox',
     '#title' => t('Boxed Layout'),
     '#default_value' => ((theme_get_setting('boxed_layout') !== NULL)) ? theme_get_setting('boxed_layout') : 1,
     '#description' => t('By default containers and their backgrounds are full-width. Boxed containers will squeeze all container backgrounds into a centered column.'),
   ];
 
-  $form['glazed_settings']['layout']['sticky_footer'] = [
+  $form['dxpr_theme_settings']['layout']['sticky_footer'] = [
     '#type' => 'checkbox',
     '#title' => t('Sticky Footer'),
     '#default_value' => ((theme_get_setting('sticky_footer') !== NULL)) ? theme_get_setting('sticky_footer') : 1,
@@ -40,7 +40,7 @@ function layout_theme_settings(array &$form, $theme) {
     ],
   ];
 
-  $form['glazed_settings']['layout']['boxed_layout_boxbg'] = [
+  $form['dxpr_theme_settings']['layout']['boxed_layout_boxbg'] = [
     '#type' => 'textfield',
     '#title' => t('Box Background'),
     '#default_value' => ((theme_get_setting('boxed_layout_boxbg') !== NULL)) ? theme_get_setting('boxed_layout_boxbg') : '#ffffff',
@@ -52,14 +52,14 @@ function layout_theme_settings(array &$form, $theme) {
     ],
   ];
 
-  $form['glazed_settings']['layout']['grid'] = [
+  $form['dxpr_theme_settings']['layout']['grid'] = [
     '#title' => t('Grid Settings'),
     '#type' => 'details',
     '#collapsible' => TRUE,
     '#collapsed' => TRUE,
   ];
 
-  $form['glazed_settings']['layout']['grid']['box_max_width'] = [
+  $form['dxpr_theme_settings']['layout']['grid']['box_max_width'] = [
     '#type' => 'textfield',
     '#title' => t('Boxed Container Max-width'),
     '#default_value' => ((theme_get_setting('box_max_width') !== NULL)) ? theme_get_setting('box_max_width') : '1170',
@@ -73,7 +73,7 @@ function layout_theme_settings(array &$form, $theme) {
     ],
   ];
 
-  $form['glazed_settings']['layout']['grid']['layout_max_width'] = [
+  $form['dxpr_theme_settings']['layout']['grid']['layout_max_width'] = [
     '#type' => 'textfield',
     '#title' => t('Content Max-width'),
     '#default_value' => ((theme_get_setting('layout_max_width') !== NULL)) ? theme_get_setting('layout_max_width') : '1170',
@@ -82,7 +82,7 @@ function layout_theme_settings(array &$form, $theme) {
     '#description' => t('Max width of the website container. 480px - 4100px. Default is 1280px. With Side-Header enabled we typically use 980px.'),
   ];
 
-  $form['glazed_settings']['layout']['grid']['gutter_horizontal'] = [
+  $form['dxpr_theme_settings']['layout']['grid']['gutter_horizontal'] = [
     '#type' => 'textfield',
     '#title' => t('Space between columns'),
     '#default_value' => ((theme_get_setting('gutter_horizontal') !== NULL)) ? theme_get_setting('gutter_horizontal') : '30',
@@ -91,7 +91,7 @@ function layout_theme_settings(array &$form, $theme) {
     '#description' => t('Default is 30px.'),
   ];
 
-  $form['glazed_settings']['layout']['grid']['gutter_vertical'] = [
+  $form['dxpr_theme_settings']['layout']['grid']['gutter_vertical'] = [
     '#type' => 'textfield',
     '#title' => t('Space between rows'),
     '#default_value' => ((theme_get_setting('gutter_vertical') !== NULL)) ? theme_get_setting('gutter_vertical') : '30',
@@ -100,7 +100,7 @@ function layout_theme_settings(array &$form, $theme) {
     '#description' => t('Default is 30px.'),
   ];
 
-  $form['glazed_settings']['layout']['grid']['gutter_container'] = [
+  $form['dxpr_theme_settings']['layout']['grid']['gutter_container'] = [
     '#type' => 'textfield',
     '#title' => t('Container Space'),
     '#default_value' => ((theme_get_setting('gutter_container') !== NULL)) ? theme_get_setting('gutter_container') : '60',
@@ -109,27 +109,27 @@ function layout_theme_settings(array &$form, $theme) {
     '#description' => t('Default is 60px.'),
   ];
 
-  $form['glazed_settings']['layout']['background'] = [
+  $form['dxpr_theme_settings']['layout']['background'] = [
     '#title' => t('Background Image'),
     '#type' => 'details',
     '#collapsible' => TRUE,
     '#collapsed' => TRUE,
   ];
 
-  // @see glazed_helper.module glazed_helper_settings_form_submit()
-  $form['glazed_settings']['layout']['background']['background_image_path'] = [
+  // @see dxpr_theme_helper.module dxpr_theme_helper_settings_form_submit()
+  $form['dxpr_theme_settings']['layout']['background']['background_image_path'] = [
     '#type' => 'textfield',
     '#title' => t('Path to  background image'),
     '#default_value' => theme_get_setting('background_image_path'),
     '#description' => t('The path to the file you would like to use as your page title background image. If you upload a file below it will automatically populate this text field'),
   ];
-  $form['glazed_settings']['layout']['background']['background_image'] = [
+  $form['dxpr_theme_settings']['layout']['background']['background_image'] = [
     '#type' => 'file',
     '#title' => t('Upload Background'),
     '#description' => t('The default page title image can also be changed per node, using the Header image field in the node form.'),
   ];
 
-  $form['glazed_settings']['layout']['background']['background_image_style'] = [
+  $form['dxpr_theme_settings']['layout']['background']['background_image_style'] = [
     '#type' => 'radios',
     '#title' => t('Background Style'),
     '#default_value' => ((theme_get_setting('background_image_style') !== NULL)) ? theme_get_setting('background_image_style') : 'cover',
@@ -141,7 +141,7 @@ function layout_theme_settings(array &$form, $theme) {
     ],
   ];
 
-  $form['glazed_settings']['layout']['background']['background_image_position'] = [
+  $form['dxpr_theme_settings']['layout']['background']['background_image_position'] = [
     '#type' => 'radios',
     '#title' => t('Background Position'),
     '#default_value' => ((theme_get_setting('background_image_position') !== NULL)) ? theme_get_setting('background_image_position') : 'center_center',
@@ -157,7 +157,7 @@ function layout_theme_settings(array &$form, $theme) {
     ],
   ];
 
-  $form['glazed_settings']['layout']['background']['background_image_attachment'] = [
+  $form['dxpr_theme_settings']['layout']['background']['background_image_attachment'] = [
     '#type' => 'radios',
     '#title' => t('Background Mode'),
     '#default_value' => ((theme_get_setting('background_image_attachment') !== NULL)) ? theme_get_setting('background_image_attachment') : 'fixed',
@@ -167,32 +167,32 @@ function layout_theme_settings(array &$form, $theme) {
     ],
   ];
 
-  $form['glazed_settings']['layout']['mobile_layout'] = [
+  $form['dxpr_theme_settings']['layout']['mobile_layout'] = [
     '#title' => t('Mobile view'),
     '#type' => 'details',
     '#collapsible' => TRUE,
     '#collapsed' => TRUE,
   ];
 
-  $form['glazed_settings']['layout']['mobile_layout']['gutter_horizontal_mobile'] = [
+  $form['dxpr_theme_settings']['layout']['mobile_layout']['gutter_horizontal_mobile'] = [
     '#type' => 'textfield',
     '#title' => t('Space between columns'),
     '#default_value' => ((theme_get_setting('gutter_horizontal_mobile') !== NULL)) ? theme_get_setting('gutter_horizontal_mobile') : '30',
     '#size' => 9,
     '#maxlength' => 9,
-    '#description' => t('Width of the horizontal gutter in Glazed mobile view (<1200px). 0 - 100px. Default is 30.'),
+    '#description' => t('Width of the horizontal gutter in DXPR Theme mobile view (<1200px). 0 - 100px. Default is 30.'),
   ];
 
-  $form['glazed_settings']['layout']['mobile_layout']['gutter_vertical_mobile'] = [
+  $form['dxpr_theme_settings']['layout']['mobile_layout']['gutter_vertical_mobile'] = [
     '#type' => 'textfield',
     '#title' => t('Space between rows'),
     '#default_value' => ((theme_get_setting('gutter_vertical_mobile') !== NULL)) ? theme_get_setting('gutter_vertical_mobile') : '30',
     '#size' => 9,
     '#maxlength' => 9,
-    '#description' => t('Width of the vertical gutter in Glazed mobile view (<1200px). 0 - 100px. Default is 30px.'),
+    '#description' => t('Width of the vertical gutter in DXPR Theme mobile view (<1200px). 0 - 100px. Default is 30px.'),
   ];
 
-  $form['glazed_settings']['layout']['mobile_layout']['gutter_container_mobile'] = [
+  $form['dxpr_theme_settings']['layout']['mobile_layout']['gutter_container_mobile'] = [
     '#type' => 'textfield',
     '#title' => t('Mobile Container space'),
     '#default_value' => ((theme_get_setting('gutter_container_mobile') !== NULL)) ? theme_get_setting('gutter_container_mobile') : '30',
@@ -202,14 +202,14 @@ function layout_theme_settings(array &$form, $theme) {
   ];
 
   // Secondary Header.
-  $form['glazed_settings']['layout']['mobile_layout']['secondary_header'] = [
+  $form['dxpr_theme_settings']['layout']['mobile_layout']['secondary_header'] = [
     '#title' => t('Secondary Header'),
     '#type' => 'details',
     '#collapsible' => TRUE,
     '#collapsed' => TRUE,
   ];
 
-  $form['glazed_settings']['layout']['mobile_layout']['secondary_header']['secondary_header_hide'] = [
+  $form['dxpr_theme_settings']['layout']['mobile_layout']['secondary_header']['secondary_header_hide'] = [
     '#type' => 'radios',
     '#title' => t('Hide in small devices'),
     '#default_value' => ((theme_get_setting('secondary_header_hide') !== NULL)) ? theme_get_setting('secondary_header_hide') : 'hidden_none',
@@ -221,14 +221,14 @@ function layout_theme_settings(array &$form, $theme) {
     ],
   ];
 
-  $form['glazed_settings']['layout']['granular_boxed'] = [
+  $form['dxpr_theme_settings']['layout']['granular_boxed'] = [
     '#title' => t('Full Width Regions and Content Types'),
     '#type' => 'details',
     '#collapsible' => TRUE,
     '#collapsed' => TRUE,
   ];
 
-  $form['glazed_settings']['layout']['granular_boxed']['full_width_containers'] = [
+  $form['dxpr_theme_settings']['layout']['granular_boxed']['full_width_containers'] = [
     '#type' => 'checkboxes',
     '#multiple' => TRUE,
     '#title' => t('Full width regions'),
@@ -245,7 +245,7 @@ function layout_theme_settings(array &$form, $theme) {
     ],
   ];
 
-  $default_options = _glazed_node_types_options();
+  $default_options = _dxpr_theme_node_types_options();
   foreach ($default_options as $key => $value) {
     if (strpos($key, 'drag_drop') !== FALSE) {
       $default_options[$key] = $key;
@@ -254,15 +254,15 @@ function layout_theme_settings(array &$form, $theme) {
       $default_options[$key] = 0;
     }
   }
-  $form['glazed_settings']['layout']['granular_boxed']['full_width_content_types'] = [
+  $form['dxpr_theme_settings']['layout']['granular_boxed']['full_width_content_types'] = [
     '#type' => 'checkboxes',
     '#title' => t('Full width content types'),
     '#description' => t('If you want to create Drag and Drop pages with full-width sections you need this setting. This only works if the pages have no sidebar blocks. When you enable sidebar blocks alongside your full-width content pages they will simply squish into fixed containers to make room for the sidebar.'),
     '#default_value' => ((theme_get_setting('full_width_content_types') !== NULL)) ? theme_get_setting('full_width_content_types') : $default_options,
-    '#options' => _glazed_node_types_options(),
+    '#options' => _dxpr_theme_node_types_options(),
   ];
 
-  $default_options = _glazed_node_types_options();
+  $default_options = _dxpr_theme_node_types_options();
   foreach ($default_options as $key => $value) {
     if (in_array($key, ['blog', 'event', 'news', 'portfolio'])) {
       $default_options[$key] = $key;
@@ -272,14 +272,14 @@ function layout_theme_settings(array &$form, $theme) {
     }
   }
 
-  $form['glazed_settings']['layout']['hide_regions'] = [
+  $form['dxpr_theme_settings']['layout']['hide_regions'] = [
     '#title' => t('Hide Regions'),
     '#type' => 'details',
     '#collapsible' => TRUE,
     '#collapsed' => TRUE,
   ];
 
-  $form['glazed_settings']['layout']['hide_regions']['hidden_regions'] = [
+  $form['dxpr_theme_settings']['layout']['hide_regions']['hidden_regions'] = [
     '#type' => 'checkboxes',
     '#multiple' => TRUE,
     '#title' => t('Hide Regions'),

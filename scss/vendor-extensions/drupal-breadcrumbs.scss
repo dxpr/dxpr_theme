@@ -1,5 +1,5 @@
 //
-// Author: Jurriaan Roelofs for SooperThemes. Copyright SooperThemes.
+// Author: Jurriaan Roelofs for DXPR. Copyright DXPR.
 //
 @import "../includes/variables";
 
@@ -27,7 +27,7 @@
       }
       // Hide UUID Redirector breadcrumb
       &[href$="/uuid"],
-      &[href$="/uuid"] + .glazed-breadcrumb-spacer {
+      &[href$="/uuid"] + .dxpr-theme-breadcrumb-spacer {
         display: none;
       }
     }
