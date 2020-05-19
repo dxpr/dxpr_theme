@@ -142,9 +142,6 @@ else {
 .body--dxpr-theme-nav-desktop .dxpr-theme-header--top .dxpr-theme-main-menu {
   height: {$header_top_height}px;
 }
-.body--dxpr-theme-nav-desktop .dxpr-theme-header--top #logo {
-  max-height: {$header_top_height}px;
-}
 .body--dxpr-theme-nav-desktop .dxpr-theme-header--top.affix .nav > li > a,
 .body--dxpr-theme-nav-desktop .dxpr-theme-header--top.affix .navbar-header .wrap-branding,
 .body--dxpr-theme-nav-desktop .dxpr-theme-header--top.affix #block-dxpr-theme-helper-full-screen-search  {
@@ -153,9 +150,6 @@ else {
 }
 .body--dxpr-theme-nav-desktop .dxpr-theme-header--top.affix .dxpr-theme-main-menu {
   height: {$header_top_height_scroll}px;
-}
-.body--dxpr-theme-nav-desktop .dxpr-theme-header--top.affix #logo {
-  max-height: {$header_top_height_scroll}px;
 }
 .body--dxpr-theme-nav-desktop .nav-child-fixed-width {
   top: {$header_top_height}px;
@@ -195,9 +189,6 @@ $CSS .= <<<EOT
 .body--dxpr-theme-nav-mobile .dxpr-theme-header #block-dxpr-theme-helper-full-screen-search {
   height: {$header_mobile_height}px;
   line-height: {$header_mobile_height}px;
-}
-.body--dxpr-theme-nav-mobile .dxpr-theme-header #logo {
-  max-height: {$header_mobile_height}px;
 }
 
 EOT;
