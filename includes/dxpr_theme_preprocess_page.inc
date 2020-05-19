@@ -275,24 +275,24 @@ function dxpr_theme_preprocess_page(&$vars) {
     // Overrides.
     '/css/vendor-extensions/bootstrap-3.css',
     '/css/vendor-extensions/bootstrap-theme.css',
-    // GLAZED BASE.
+    // DXPR BASE.
     '/css/base/forms.css',
     '/css/base/layout.css',
     '/css/base/page-title.css',
     '/css/base/typography.css',
-    // GLAZED Components.
-    '/css/components/dxpr_theme-sidebar--menu.css',
+    // DXPR Components.
+    '/css/components/dxpr-theme-sidebar--menu.css',
     // HELPERS.
     '/css/helpers/helper-classes.css',
   );
   if (($vars['page']['secondary_header']) || ($vars['secondary_nav'])) {
-    $page_css[] = '/css/components/dxpr_theme-secondary-header.css';
+    $page_css[] = '/css/components/dxpr-theme-secondary-header.css';
   }
   if (($vars['page']['navigation']) || ($vars['primary_nav'])) {
-    $page_css[] = '/css/components/dxpr_theme-header.css';
-    $page_css[] = '/css/components/dxpr_theme-header--top.css';
-    $page_css[] = '/css/components/dxpr_theme-header--side.css';
-    $page_css[] = '/css/components/dxpr_theme-header--mobile.css';
+    $page_css[] = '/css/components/dxpr-theme-header.css';
+    $page_css[] = '/css/components/dxpr-theme-header--top.css';
+    $page_css[] = '/css/components/dxpr-theme-header--side.css';
+    $page_css[] = '/css/components/dxpr-theme-header--mobile.css';
   }
   if ($vars['page']['footer']) {
     $page_css[] = '/css/base/footer-menu.css';

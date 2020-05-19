@@ -13,7 +13,7 @@ function dxpr_theme_preprocess_block(&$vars) {
   // path instead of the active theme path, hence the custom variable below.
   $theme_path_custom = drupal_get_path('theme', $theme);
   if ($vars['block_html_id'] == 'block-dxpr-theme-helper-full-screen-search') {
-    drupal_add_css($theme_path_custom . '/css/components/dxpr_theme-full-screen-search.css', array('group' => CSS_THEME));
+    drupal_add_css($theme_path_custom . '/css/components/dxpr-theme-full-screen-search.css', array('group' => CSS_THEME));
   }
   if ((theme_get_setting('block_design_regions'))
     && in_array($vars['block']->region, array_filter(theme_get_setting('block_design_regions')))) {
