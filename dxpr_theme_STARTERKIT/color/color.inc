@@ -10,8 +10,7 @@ $info = array(
   // Images to copy over.
   'copy' => array(
     'logo.png',
-    'logo.svg',
-    'dxpr-theme-favicon.png',
+    'dxpr-logo-white.svg',
   ),
 
   // CSS files (excluding @import) to rewrite with new color scheme.
@@ -56,7 +55,7 @@ $info = array(
   'preview_css' => '',
 
   // Base file for image generation.
-  'base_image' => 'dxpr-theme-favicon-transparent.png',
+  'base_image' => 'logo.png',
 
   // Blend target.
   'blend_target' => '#ffffff',

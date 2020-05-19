@@ -22,10 +22,3 @@ $form['dxpr_theme_settings']['custom_css']['custom_javascript_site'] = array(
   '#default_value' =>  theme_get_setting('custom_javascript_site'),
   '#rows' => 15,
 );
-
-$form['dxpr_theme_settings']['custom_css']['stlink'] = array(
-  '#type' => 'checkbox',
-  '#description' => t('SooperThemes attribution homeopage link in footer.'),
-  '#title' => t('SooperThemes Link'),
-  '#default_value' => ((theme_get_setting('stlink') !== null)) ? theme_get_setting('stlink') : 0,
-);

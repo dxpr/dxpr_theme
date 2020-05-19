@@ -223,7 +223,6 @@
   <div class="<?php print $cnt_footer ?> footer-container">
     <?php print $cnt_footer_squeeze_start; ?>
         <?php print render($page['footer']); ?>
-        <?php print $sooperthemes_attribution_link; ?>
     <?php print $cnt_footer_squeeze_end; ?>
   </div>
 </footer>

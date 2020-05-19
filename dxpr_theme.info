@@ -1,7 +1,7 @@
 name                                                  = DXPR Theme
 description                                           = SooperThemes Premium Framework Theme.
 core                                                  = 7.x
-version                                               = 7.x-2.7.7
+version                                               = 7.x-1.0.0-beta1
 project                                               = dxpr_theme
 project status url                                    = https://www.sooperthemes.com/release-history
 

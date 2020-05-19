@@ -31,7 +31,7 @@
       function dxpr_themeButtonAdd($toolbar) {
         const themeName = Drupal.settings.dxpr_themeDefaultTheme || "dxpr_theme";
         const dxpr_themeLogoPath = `${Drupal.settings.basePath +
-          Drupal.settings.dxpr_theme.dxpr_themePath}/logo.svg`;
+          Drupal.settings.dxpr_theme.dxpr_themePath}dxpr-logo-white.svg`;
         const $dxpr_themeButton = $('<div id="dxpr-theme-button-wrapper">').html(
           $("<a>", {
             text: Drupal.t("Theme Settings"),
@@ -41,7 +41,7 @@
           }).prepend(
             $("<img>", {
               src: dxpr_themeLogoPath,
-              width: 15
+              width: 25
             })
           )
         );

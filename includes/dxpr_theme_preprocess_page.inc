@@ -152,13 +152,6 @@ function dxpr_theme_preprocess_page(&$vars) {
     $vars['title'] = '';
   }
 
-  if ($vars['is_front'] && theme_get_setting('stlink')) {
-    $vars['sooperthemes_attribution_link'] = dxpr_theme_attribution_link();
-  }
-  else {
-    $vars['sooperthemes_attribution_link'] = '';
-  }
-
   // DXPR Theme Header.
   $vars['dxpr_theme_header_classes'] = array('navbar', 'dxpr-theme-header');
   if (isset($content_design['field_dxpr_theme_header_mode'])) {
