@@ -82,25 +82,6 @@ $form['dxpr_theme_settings']['page_title']['page_title_height'] = array(
   '#description' => t('height of the header. 50px - 500px. Default is 120px.'),
 );
 
-$form['dxpr_theme_settings']['page_title']['page_title_animate'] = array(
-  '#type' => 'radios',
-  '#title' => t('Animation'),
-  '#default_value' => ((theme_get_setting('page_title_animate') !== NULL)) ? theme_get_setting('page_title_animate') : '0',
-  '#options' => array(
-    '0' => t('No Animation'),
-    'bounce' => t('Bounce'),
-    'flash' => t('Flash'),
-    'pulse' => t('Pulse'),
-    'fadeIn' => t('Fade in'),
-    'bounceInDown' => t('Bounce in down'),
-    'bounceInUp' => t('Bounce in up'),
-    'fadeInDown' => t('Fade in down'),
-    'fadeInUp' => t('Fade in up'),
-  ),
-  '#prefix' => '<br class="clear-both"><br class="clear-both">',
-  '#description' => t('Choose <a target="_blank" href="@animatecss">animate.css</a> appear animation', array('@drupal-handbook' => 'https://daneden.github.io/animate.css/')),
-);
-
 $form['dxpr_theme_settings']['page_title']['background'] = array(
   '#title' => t('Background Image'),
   '#type' => 'fieldset',

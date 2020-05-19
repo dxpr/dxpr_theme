@@ -955,13 +955,6 @@
   //         }));
   //       }
 
-  //       var animate = $context.find('input[name="page_title_animate"]:checked');
-  //       if (animate.val()) {
-  //         summary.push(Drupal.t('@animate', {
-  //           '@animate': animate.find('+label').text()
-  //         }));
-  //       }
-
   //       if ($context.find(':input[name="page_title_breadcrumbs"]').is(':checked')) {
   //         summary.push(Drupal.t('Crumbs'));
   //       } else {

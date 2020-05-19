@@ -97,7 +97,6 @@
     hide($content['links']);
     hide($content['field_tags']);
     print render($content);
-    print $prevnext;
   ?>
   </div>
   <?php if ($display_submitted): ?>

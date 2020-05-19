@@ -264,10 +264,6 @@ function dxpr_theme_preprocess_page(&$vars) {
 
   // Page Title.
   $vars['dxpr_theme_title_classes'] = array('page-title');
-  if (theme_get_setting('page_title_animate')) {
-    $vars['dxpr_theme_title_classes'][] = 'animated';
-    $vars['dxpr_theme_title_classes'][] = theme_get_setting('page_title_animate');
-  }
   $vars['dxpr_theme_title_classes'] = implode(' ', $vars['dxpr_theme_title_classes']);
 
   // CSS to load on every page.
