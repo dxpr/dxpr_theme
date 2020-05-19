@@ -10,7 +10,6 @@ $info = array(
   // Images to copy over.
   'copy' => array(
     'logo.png',
-    'dxpr-logo-white.svg',
   ),
 
   // CSS files (excluding @import) to rewrite with new color scheme.
