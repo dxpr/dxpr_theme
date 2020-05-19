@@ -172,7 +172,7 @@ bootstrap3:
 admin:
   css:
     component:
-      css/dxpr_theme.admin.css: {}
+      css/dxpr-theme.admin.css: {}
 
 admin.themesettings:
   js:
@@ -183,7 +183,7 @@ admin.themesettings:
     component:
       vendor/bootstrap-switch/bootstrap-switch.min.css: {}
       vendor/bootstrap-slider/bootstrap-slider.min.css: {}
-      css/dxpr_theme.admin.themesettings.css: {}
+      css/dxpr-theme.admin.themesettings.css: {}
   dependencies:
     - core/jquery
     - core/jquery.once

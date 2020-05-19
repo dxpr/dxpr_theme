@@ -28,7 +28,7 @@ function dxpr_theme_form_system_theme_settings_alter(&$form, &$form_state, $form
   $dxpr_theme_theme_path = drupal_get_path('theme', 'dxpr_theme') . '/';
   $themes = \Drupal::service('theme_handler')->listInfo();
 
-  $img = '<img style="width:35px;margin-right:5px;" src="' . $base_path . $dxpr_theme_theme_path . 'logo-white.png" />';
+  $img = '<img style="width:35px;margin-right:5px;" src="' . $base_path . $dxpr_theme_theme_path . 'dxpr-logo-white.svg" />';
   $version = $themes[$subject_theme]->info['version'] ?? '';
   $form['dxpr_theme_settings'] = [
     // SETTING TYPE TO DETAILS OR VERTICAL_TABS

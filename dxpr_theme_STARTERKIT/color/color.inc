@@ -36,15 +36,15 @@ $info = [
     'default' => [
       'title' => t('DXPR Theme Default'),
       'colors' => [
-        'base' => '#0180ef',
-        'link' => '#0180ef',
+        'base' => '#284ed9',
+        'link' => '#284ed9',
         'accent1' => '#05e993',
-        'accent2' => '#0181ee',
+        'accent2' => '#284fd8',
         'text' => '#555555',
         'headings' => '#333333',
         'footer' => '#21252a',
         'footertext' => '#747a85',
-        'secheader' => '#0181ef',
+        'secheader' => '#284fd9',
         'secheadertext' => '#fffffe',
         'well' => '#eeeeee',
         'welltext' => '#444444',
@@ -52,7 +52,7 @@ $info = [
         'headertext' => '#696969',
         'headerside' => '#20252a',
         'headersidetext' => '#737a85',
-        'pagetitle' => '#0181f0',
+        'pagetitle' => '#284fdb',
         'pagetitletext' => '#fffeff',
         'graylight' => '#777777',
         'graylighter' => '#ededed',
@@ -103,6 +103,5 @@ $info = [
   // Files to copy.
   'copy' => [
     'logo.svg',
-    'dxpr-theme-favicon.png',
   ],
 ];
