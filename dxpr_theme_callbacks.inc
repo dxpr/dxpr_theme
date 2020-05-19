@@ -116,7 +116,7 @@ function dxpr_theme_css_cache_build($theme) {
   if ($fh) {
     // Write css to file.
     fwrite($fh, $CSS);
-    watchdog('Glazed Theme', 'DXPR Theme CSS file cache built for %theme', array('%theme' => $theme));
+    watchdog('DXPR Theme', 'DXPR Theme CSS file cache built for %theme', array('%theme' => $theme));
   }
   else {
     drupal_set_message(t('Cannot write theme-settings file, please check your file system. (See status report page)'), 'error');

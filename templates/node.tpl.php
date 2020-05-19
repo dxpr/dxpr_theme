@@ -110,6 +110,5 @@
     <?php print render($content['links']); ?>
   </footer>
   <?php endif; ?>
-  <?php print $prevnext; ?>
   <?php print render($content['comments']); ?>
 </article>

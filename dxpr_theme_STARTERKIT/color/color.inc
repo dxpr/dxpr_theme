@@ -10,26 +10,25 @@ $info = array(
   // Images to copy over.
   'copy' => array(
     'logo.png',
-    'logo.svg',
-    'dxpr-theme-favicon.png',
+    'dxpr-logo-white.svg',
   ),
 
   // CSS files (excluding @import) to rewrite with new color scheme.
   'css' => array(
-    // GLAZED BASE.
+    // DXPR BASE.
     'css/base/footer-menu.css',
     'css/base/forms.css',
     'css/base/layout.css',
     'css/base/page-title.css',
     'css/base/typography.css',
-    // GLAZED Components.
-    'css/components/dxpr_theme-full-screen-search.css',
-    'css/components/dxpr_theme-header.css',
-    'css/components/dxpr_theme-header--top.css',
-    'css/components/dxpr_theme-header--side.css',
-    'css/components/dxpr_theme-header--mobile.css',
-    'css/components/dxpr_theme-secondary-header.css',
-    'css/components/dxpr_theme-sidebar--menu.css',
+    // DXPR Components.
+    'css/components/dxpr-theme-full-screen-search.css',
+    'css/components/dxpr-theme-header.css',
+    'css/components/dxpr-theme-header--top.css',
+    'css/components/dxpr-theme-header--side.css',
+    'css/components/dxpr-theme-header--mobile.css',
+    'css/components/dxpr-theme-secondary-header.css',
+    'css/components/dxpr-theme-sidebar--menu.css',
     // Overrides.
     'css/vendor-extensions/bootstrap-3.css',
     'css/vendor-extensions/bootstrap-theme.css',
@@ -38,7 +37,6 @@ $info = array(
     'css/vendor-extensions/drupal-comments.css',
     'css/vendor-extensions/drupal-media-browser.css',
     'css/vendor-extensions/drupal-pager.css',
-    'css/components/drupal-prevnext.css',
     // HELPERS.
     'css/helpers/helper-classes.css',
   ),
@@ -57,7 +55,7 @@ $info = array(
   'preview_css' => '',
 
   // Base file for image generation.
-  'base_image' => 'dxpr-theme-favicon-transparent.png',
+  'base_image' => 'logo.png',
 
   // Blend target.
   'blend_target' => '#ffffff',
@@ -92,15 +90,15 @@ $info = array(
     'default' => array(
       'title' => t('DXPR Theme (Default)'),
       'colors' => array(
-        'base' => '#0180ef',
-        'link' => '#0180ef',
+        'base' => '#284ed9',
+        'link' => '#284ed9',
         'accent1' => '#05e993',
-        'accent2' => '#0181ee',
+        'accent2' => '#284fd8',
         'text' => '#555555',
         'headings' => '#333333',
         'footer' => '#21252a',
         'footertext' => '#747a85',
-        'secheader' => '#0181ef',
+        'secheader' => '#284fd9',
         'secheadertext' => '#fffffe',
         'well' => '#eeeeee',
         'welltext' => '#444444',
@@ -108,7 +106,7 @@ $info = array(
         'headertext' => '#696969',
         'headerside' => '#20252a',
         'headersidetext' => '#737a85',
-        'pagetitle' => '#0181f0',
+        'pagetitle' => '#284fdb',
         'pagetitletext' => '#fffeff',
         'graylight' => '#777777',
         'graylighter' => '#ededed',

@@ -278,14 +278,6 @@ $form['dxpr_theme_settings']['layout']['pagers'] = array(
   '#collapsed' => TRUE,
 );
 
-$form['dxpr_theme_settings']['layout']['pagers']['prevnext_content_types'] = array(
-  '#type' => 'checkboxes',
-  '#title' => t('Previous / Next pager'),
-  '#description' => t('Nodes in this content type will get previous/next links at the bottom.'),
-  '#default_value' => ((theme_get_setting('prevnext_content_types') !== NULL)) ? theme_get_setting('prevnext_content_types') : $default_options,
-  '#options' => _dxpr_theme_node_types_options(),
-);
-
 $form['dxpr_theme_settings']['layout']['hide_regions'] = array(
   '#title' => t('Hide Regions'),
   '#type' => 'fieldset',

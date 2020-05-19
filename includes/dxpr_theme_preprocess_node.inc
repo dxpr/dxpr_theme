@@ -21,28 +21,7 @@ function dxpr_theme_preprocess_node(&$vars) {
   if ($vars['teaser']) {
     $vars['display_submitted'] = FALSE;
   }
-  // Next / Prev pager.
-  $vars['prevnext'] = '';
-  if ($vars['view_mode'] == 'full') {
-    $types = theme_get_setting('prevnext_content_types');
-    $type = $vars['node']->type;
-    if (isset($types[$type]) && !empty($types[$type])) {
-      drupal_add_css($theme_path_custom . '/css/components/drupal-prevnext.css', array('group' => CSS_THEME));
-      $prevnext = dxpr_theme_next_prev($vars['node']);
-      $vars['prevnext'] = '<div class="prev-next small clear-both clearfix">';
-      if (!empty($prevnext['prev'])) {
-        $url = url('node/' . $prevnext['prev']['nid']);
-        $title = check_plain($prevnext['prev']['title']);
-        $vars['prevnext'] .= '<div class="prev pull-left"><a class="nextprev-link" href="' . $url . '" title="' . $title . '"><i class="fa fa-angle-left"></i><span class="nextprev-text">' . t('Previous') . '</span></a></div>';
-      }
-      if (!empty($prevnext['next'])) {
-        $url = url('node/' . $prevnext['next']['nid']);
-        $title = check_plain($prevnext['next']['title']);
-        $vars['prevnext'] .= '<div class="next pull-right"><a class="nextprev-link" href="' . $url . '" title="' . $title . '"><span class="nextprev-text">' . t('Next') . '</span><i class="fa fa-angle-right"></i></a></div>';
-      }
-      $vars['prevnext'] .= '</div>';
-    }
-  }
+
 
   // BLOG NODES.
   if ($vars['type'] == 'blog') {

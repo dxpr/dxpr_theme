@@ -88,7 +88,7 @@ function dxpr_theme_form_system_theme_settings_alter(&$form, &$form_state) {
   // $header  = '<div class="settings-header">';
   // $header .= '  <h2>' . ucfirst($subject_theme) . ' ' . $themes[$subject_theme]->info['version'] . ' <span class="lead">(Bootstrap ' . $themes['bootstrap']->info['version'] . ')</span></h2>';
   // $header .= '</div>';
-  $img = '<img  class="theme-settings-logo" src="' . $base_path . $dxpr_theme_theme_path . 'logo-white.png" />';
+  $img = '<img  class="theme-settings-logo" src="' . $base_path . $dxpr_theme_theme_path . 'dxpr-logo-white.svg" />';
   $form['dxpr_theme_settings'] = array(
     '#type' => 'vertical_tabs',
     '#weight' => -20,
@@ -160,21 +160,6 @@ function _dxpr_theme_color_options($theme) {
   return $colors;
 }
 
-function _dxpr_theme_is_demo_content ($feature) {
-  return ((strpos($feature->name, '_content') OR (strpos($feature->name, '_theme_settings')))
-    && isset($feature->info['features']['uuid_node']));
-}
-
-function _dxpr_theme_is_demo_content_exclude_subtheme ($feature) {
-  return (strpos($feature->name, '_content')
-    && isset($feature->info['features']['uuid_node']));
-}
-
-function _dxpr_theme_is_subtheme ($feature) {
-  return (strpos($feature->name, '_theme_settings')
-    && isset($feature->info['features']['uuid_node']));
-}
-
 function _dxpr_theme_node_types_options() {
   $types = array();
   foreach (node_type_get_types() as $key => $value) {
@@ -238,36 +223,12 @@ EOT;
 
 /**
  * Submit callback for theme settings form
- * Import Demo content.
  */
 function dxpr_theme_settings_form_submit(&$form, &$form_state) {
   if ($import = $form_state['values']['settings_import_box']) {
     $import_settings = drupal_parse_info_format($import);
     if (is_array($import_settings) && isset($import_settings['settings'])) {
       $form_state['values'] = array_merge($form_state['values'], $import_settings['settings']);
-    }
-  }
-
-  // If requested import additional demo content
-  if (module_exists('uuid_features')) {
-    module_load_include('module', 'uuid');
-    module_load_include('inc', 'features', 'features.admin');
-    $demo_content_modules = array_filter(_features_get_features_list(), "_dxpr_theme_is_demo_content");
-    if (!empty($demo_content_modules)) {
-      usort($demo_content_modules, function($a, $b) {
-        $return = (count($a->info['features']['uuid_node']) < count($b->info['features']['uuid_node'])) ? 1 : -1;
-        return $return;
-      });
-      foreach ($demo_content_modules as $module) {
-        if (isset($module->info['features']) && isset($module->info['features']['uuid_node'])) {
-          $node_sample = $module->info['features']['uuid_node'][0];
-          if ($form_state['values'][$module->name] && !entity_get_id_by_uuid('node', array($node_sample))) {
-            drupal_set_message($module->name . ' ' . t('installed'));
-            module_enable(array($module->name));
-            module_disable(array($module->name), FALSE);
-          }
-        }
-      }
     }
   }
 }
