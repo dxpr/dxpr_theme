@@ -10,15 +10,8 @@ node_modules
 Thumbs.db
 
 # Auto generated files.
-/css/*
-/dxpr_builder/css/*
-/dxpr_builder/dxpr_builder.js
-/dxpr_builder/dxpr_builder.min.js
-/dxpr_builder/dxpr_theme_elements.js
-/dxpr_builder/dxpr_theme_elements.min.js
-/dxpr_builder/dxpr_theme_frontend.min.js
-/dxpr_builder/dxpr_theme_param_types.js
-/dxpr_builder/dxpr_theme_param_types.min.js
+# /css/*
+# /js/minified/*
 
 .build-done
 out
