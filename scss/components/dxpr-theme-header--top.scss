@@ -31,6 +31,8 @@
       left: 0;
       right: 0;
       top: 0;
+      pointer-events: none;
+      li,a {pointer-events: all;}
     }
     &.dxpr-theme-header--fixed,
     &.affix {
@@ -44,6 +46,8 @@
       left: 0;
       right: 0;
       top: 39px;
+      pointer-events: none;
+      li,a {pointer-events: all;}
       &.dxpr-theme-header--fixed {
         position: fixed;
       }
