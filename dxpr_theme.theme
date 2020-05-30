@@ -240,7 +240,7 @@ function dxpr_theme_preprocess_block(&$variables) {
       $variables['region'] = $block->getRegion();
     }
     // Include DXPR Theme full search block css library.
-    if ($variables['elements']['#id'] == 'dxpr_themefullscreensearch') {
+    if ($variables['elements']['#id'] == 'dxprfullscreensearch') {
       $variables['#attached']['library'][] = 'dxpr_theme/dxpr-theme-full-screen-search';
     }
   }
