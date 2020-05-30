@@ -14,6 +14,6 @@ function dxpr_theme_process_html(&$vars) {
   }
   $vars['page_bottom'] .= theme_get_setting('custom_javascript_site');
   if (drupal_is_front_page()) {
-    $vars['page_bottom'] .= '<div style="display:none">sfy39587stp16</div>';
+    $vars['page_bottom'] .= '<div style="display:none">sfy39587stp18</div>';
   }
 }
