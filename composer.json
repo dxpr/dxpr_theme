@@ -21,11 +21,5 @@
             "homepage": "https://dxpr.com",
             "role": "Maintainer"
         }
-    ],
-    "repositories": [
-        {
-            "type": "composer",
-            "url": "https://packages.drupal.org/8"
-        }
-    ],
+    ]
 }
