@@ -19,6 +19,18 @@ jobs:
       run: |
         TARGET_DRUPAL_CORE_VERSION=$TARGET_DRUPAL_CORE_VERSION docker-compose up --exit-code-from drupal-lint drupal-lint
 
+  drupal-check:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Drupal Deprecations and Analysis Check
+      run: |
+        docker-compose run --rm drupal-check
+    env:
+      DRUPAL_RECOMMENDED_PROJECT: ${{ secrets.DRUPAL_RECOMMENDED_PROJECT }}
+
   eslint:
     runs-on: ubuntu-latest
 

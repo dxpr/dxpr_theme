@@ -43,7 +43,7 @@ services:
     command: bash -c "./scripts/run_drupal-lint.sh"
     tty: true
     environment:
-      TARGET_DRUPAL_CORE_VERSION: ${TARGET_DRUPAL_CORE_VERSION:-7}
+      TARGET_DRUPAL_CORE_VERSION: ${TARGET_DRUPAL_CORE_VERSION:-8}
     volumes:
       - .:/src
 
@@ -54,6 +54,16 @@ services:
     command: bash -c "./scripts/run_drupal-lint-auto-fix.sh"
     tty: true
     environment:
-      TARGET_DRUPAL_CORE_VERSION: ${TARGET_DRUPAL_CORE_VERSION:-7}
+      TARGET_DRUPAL_CORE_VERSION: ${TARGET_DRUPAL_CORE_VERSION:-8}
+    volumes:
+      - .:/src
+
+  drupal-check:
+    image: ${COMPOSER_IMAGE:-composer:1.10}
+    working_dir: /
+    command: bash -c "/src/scripts/run_drupal-check.sh"
+    tty: true
+    environment:
+      DRUPAL_RECOMMENDED_PROJECT: ${DRUPAL_RECOMMENDED_PROJECT:-8.8.x-dev}
     volumes:
       - .:/src
