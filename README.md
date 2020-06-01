@@ -66,4 +66,12 @@ $ docker-compose up drupal-lint
 
 ```bash
 $ docker-compose up drupal-lint-auto-fix
+
+### How to run drupal-check
+
+```bash
+$ docker-compose up drupal-check
+# or
+$ docker-compose run --rm drupal-check
+```
 ```
