@@ -115,7 +115,7 @@ function dxpr_theme_local_webfonts() {
   $theme_chain = ['dxpr_theme'];
   $fonts = [];
   foreach ($theme_chain as $theme) {
-    foreach (file_scan_directory(drupal_get_path('theme', $theme) . '/fonts', '/.css/i') as $file) {
+    foreach (\Drupal::service('file_system')->scanDirectory(drupal_get_path('theme', $theme) . '/fonts', '/.css/i') as $file) {
       $font_path = str_replace(drupal_get_path('theme', $theme), '', $file->uri);
       $css = file_get_contents($file->uri);
       if ($css) {
