@@ -35,7 +35,6 @@ libraries-override:
   dxpr_theme/layout: false
   dxpr_theme/page-title: false
   dxpr_theme/typography: false
-  dxpr_theme/stpe-buttons: false
   dxpr_theme/dxpr-theme-full-screen-search: false
   dxpr_theme/dxpr-theme-header: false
   dxpr_theme/dxpr-theme-header--top: false

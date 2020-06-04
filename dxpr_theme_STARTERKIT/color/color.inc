@@ -71,7 +71,6 @@ $info = [
     'css/base/page-title.css',
     'css/base/typography.css',
     // DXPR THEME Components.
-    'css/components/stpe-buttons.css',
     'css/components/dxpr-theme-full-screen-search.css',
     'css/components/dxpr-theme-header.css',
     'css/components/dxpr-theme-header--top.css',

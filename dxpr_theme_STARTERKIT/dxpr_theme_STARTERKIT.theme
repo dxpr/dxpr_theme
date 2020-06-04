@@ -24,7 +24,6 @@ function dxpr_theme_STARTERKIT_preprocess_page(&$variables) {
     'dxpr_theme_STARTERKIT/page-title',
     'dxpr_theme_STARTERKIT/typography',
     // DXPR THEME Components.
-    'dxpr_theme_STARTERKIT/stpe-buttons',
     'dxpr_theme_STARTERKIT/dxpr-theme-full-screen-search',
     'dxpr_theme_STARTERKIT/dxpr-theme-header',
     'dxpr_theme_STARTERKIT/dxpr-theme-header--top',

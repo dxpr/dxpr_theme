@@ -43,11 +43,6 @@ typography:
     theme:
       css/base/typography.css: { minified: true }
 
-stpe-buttons:
-  css:
-    theme:
-      css/components/stpe-buttons.css: { minified: true }
-
 dxpr-theme-full-screen-search:
   css:
     theme:

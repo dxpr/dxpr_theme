@@ -205,7 +205,6 @@ function dxpr_theme_preprocess_page(&$variables) {
     'dxpr_theme/page-title',
     'dxpr_theme/typography',
     // DXPR THEME Components  //TODO: include only if needed.
-    'dxpr_theme/stpe-buttons',
     'dxpr_theme/dxpr-theme-header--side',
     'dxpr_theme/pager-prevnext',
     'dxpr_theme/admin',
