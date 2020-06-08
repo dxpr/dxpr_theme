@@ -21,5 +21,8 @@
             "homepage": "https://dxpr.com",
             "role": "Maintainer"
         }
-    ]
+    ],
+    "require": {
+        "drupal/bootstrap": "^3.21"
+    }
 }
