@@ -12,7 +12,7 @@ foreach (file_scan_directory(drupal_get_path('theme', 'dxpr_theme') . '/features
   require_once($file->uri);
 }
 /**
- * Load template.php DXPR Theme theme functions
+ * Load template.php DXPR Theme functions
  */
 
 foreach (file_scan_directory(drupal_get_path('theme', 'dxpr_theme') . '/includes', '/.inc/i') as $file) {

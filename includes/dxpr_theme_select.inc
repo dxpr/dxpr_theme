@@ -14,7 +14,7 @@ function dxpr_theme_select($variables) {
   element_set_attributes($element, array('id', 'name', 'size'));
   _form_set_class($element, array('form-select'));
   $output = '';
-  // DXPR Theme Themed Selectbox, only works with single select, not multi selectbox.
+  // DXPR Themed Selectbox, only works with single select, not multi selectbox.
   if (!isset($element['#attributes']['multiple'])) {
     $output .= '<div class="dxpr-theme-select">';
   }

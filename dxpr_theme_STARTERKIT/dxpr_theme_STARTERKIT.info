@@ -1,5 +1,5 @@
 name = DXPR Theme STARTERKIT Example
-description = For basic customization just use DXPR Theme and theme settings. Use this STARTERKIT example if you need to build extra css files and templates on top of DXPR Theme Theme.
+description = For basic customization just use DXPR Theme and theme settings. Use this STARTERKIT example if you need to build extra css files and templates on top of DXPR Theme.
 core = 7.x
 version = 7.x-1.0.0-beta1
 base theme = dxpr_theme

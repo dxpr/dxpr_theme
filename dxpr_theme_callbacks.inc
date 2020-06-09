@@ -94,7 +94,7 @@ function _color_module_css_write($theme) {
 }
 
 /**
- * Theme CSS generator from DXPR Theme theme-settings.php
+ * Theme CSS generator from DXPR Theme-settings.php
  * Custom theme settings might need a lot of CSS
  * So we put it in a file for optimal performance.
  */
@@ -105,7 +105,7 @@ function dxpr_theme_css_cache_build($theme) {
   $dxpr_theme_css_file = $files_path . '/dxpr-theme-themesettings-' . $theme . '.css';
   // Construct CSS file:
   $CSS = '';
-  // Load DXPR Theme theme colors palette.
+  // Load DXPR Theme colors palette.
   $palette = theme_get_setting('palette', $theme);
   // Load Sooper Features CSS.
   foreach (file_scan_directory(drupal_get_path('theme', 'dxpr_theme') . '/features', '/css.inc/i') as $file) {

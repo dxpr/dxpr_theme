@@ -28,7 +28,7 @@ function dxpr_theme_preprocess_html(&$vars) {
         'weight' => -18,
       ));
   }
-  // Load DXPR Theme Theme Settings CSS File.
+  // Load DXPR Theme Settings CSS File.
   $files_path = variable_get('file_public_path', conf_path() . '/files');
   if (is_file($files_path . '/dxpr-theme-themesettings-' . $theme . '.css')) {
     drupal_add_css(
