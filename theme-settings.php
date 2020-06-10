@@ -59,7 +59,7 @@ function dxpr_theme_form_system_theme_settings_alter(&$form, &$form_state) {
   dxpr_theme_css_cache_build(arg(count(arg()) - 1));
 
   if ($GLOBALS['theme'] == 'seven') {
-    drupal_set_message(t('Install the DXPR Theme Tools helper module to have a better theme settings experience'), 'warning');
+    drupal_set_message(t('Install the DXPR Theme Helper module to have a better theme settings experience'), 'warning');
     drupal_add_css('https://cdn.jsdelivr.net/bootstrap/3.4.1/css/bootstrap.min.css', 'external');
     drupal_add_js('https://cdn.jsdelivr.net/bootstrap/3.4.1/js/bootstrap.min.js', 'external');
     drupal_add_css('html body { font-size: 14px; }', 'inline');
