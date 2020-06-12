@@ -2,7 +2,7 @@
 
 /**
  * @file
- * DXPR Theme theme settings.
+ * DXPR Theme settings.
  */
 
 use Drupal\node\Entity\NodeType;

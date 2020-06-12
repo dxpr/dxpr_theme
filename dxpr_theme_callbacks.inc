@@ -2,7 +2,7 @@
 
 /**
  * @file
- * DXPR Theme theme helper functions.
+ * DXPR Theme helper functions.
  */
 
 use Drupal\Core\Asset\CssOptimizer;
@@ -112,7 +112,7 @@ function dxpr_theme_color_module_css_write($theme) {
 }
 
 /**
- * Theme CSS generator from DXPR Theme theme-settings.php.
+ * Theme CSS generator from DXPR Theme-settings.php.
  *
  * Custom theme settings might need a lot of CSS.
  * So we put it in a file for optimal performance.
