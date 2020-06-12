@@ -1,7 +1,7 @@
 /**
  * @file
  * Attaches the behaviors for the Color module.
- * This is copied to DXPR Theme theme because the color module locks break when bootstrap theme loads
+ * This is copied to DXPR Theme because the color module locks break when bootstrap theme loads
  * Other unused parts are also edited out
  */
 
