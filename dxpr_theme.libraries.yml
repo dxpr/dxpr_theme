@@ -1,8 +1,7 @@
 global-styling:
   js:
-    vendor/classie.js: {}
-    js/minified/dxpr-theme-mobile-nav.min.js: {}
-    js/minified/dxpr-theme.min.js: {}
+    vendor/classie.min.js: { minified: true }
+    js/minified/dxpr-theme.min.js: { minified: true }
   dependencies:
     - core/jquery
     - core/jquery.once
@@ -49,11 +48,16 @@ typography:
       css/base/typography.css: { minified: true }
 
 dxpr-theme-full-screen-search:
+  js:
+    js/minified/dxpr-theme-full-screen-search.min.js: { minified: true }
   css:
     theme:
       css/components/dxpr-theme-full-screen-search.css: { minified: true }
 
 dxpr-theme-header:
+  js:
+    js/minified/dxpr-theme-header.min.js: { minified: true }
+    js/minified/dxpr-theme-multilevel-mobile-nav.min.js: { minified: true }
   css:
     theme:
       css/components/dxpr-theme-header.css: { minified: true }
@@ -94,6 +98,8 @@ cubeportfolio:
       css/vendor-extensions/cubeportfolio.css: { minified: true }
 
 drupal-breadcrumbs:
+  js:
+    js/minified/dxpr-theme-breadcrumbs.min.js: { minified: true }
   css:
     theme:
       css/vendor-extensions/drupal-breadcrumbs.css: { minified: true }
@@ -167,33 +173,21 @@ bootstrap3:
 admin:
   css:
     component:
-      css/dxpr-theme.admin.css: {}
+      css/dxpr-theme.admin.css: { minified: true }
 
 admin.themesettings:
   js:
-    vendor/bootstrap-switch/bootstrap-switch.min.js: {}
-    vendor/bootstrap-slider/bootstrap-slider.min.js: {}
-    js/minified/dxpr-theme-settings.admin.min.js: {}
+    vendor/bootstrap-switch/bootstrap-switch.min.js: { minified: true }
+    vendor/bootstrap-slider/bootstrap-slider.min.js: { minified: true }
+    js/minified/dxpr-theme-settings.admin.min.js: { minified: true }
   css:
     component:
-      vendor/bootstrap-switch/bootstrap-switch.min.css: {}
-      vendor/bootstrap-slider/bootstrap-slider.min.css: {}
-      css/dxpr-theme.admin.themesettings.css: {}
+      vendor/bootstrap-switch/bootstrap-switch.min.css: { minified: true }
+      vendor/bootstrap-slider/bootstrap-slider.min.css: { minified: true }
+      css/dxpr-theme.admin.themesettings.css: { minified: true }
   dependencies:
     - core/jquery
     - core/jquery.once
-
-ilightbox:
-  js:
-    vendor/ilightbox/js/ilightbox.min.js: {}
-    js/minified/dxpr-theme-ilightbox.min.js: {}
-  css:
-    component:
-      vendor/ilightbox/css/ilightbox.css: {}
-  dependencies:
-    - core/jquery
-    - core/jquery.mousewheel
-    - core/jquery.requestAnimationFrame
 
 dxpr-theme-animatecss-custom:
   css:
