@@ -14,5 +14,6 @@ function dxpr_theme_preprocess_breadcrumb(&$vars) {
   $theme_path_custom = drupal_get_path('theme', $theme);
   if ($vars['breadcrumb']) {
     drupal_add_css($theme_path_custom . '/css/vendor-extensions/drupal-breadcrumbs.css', array('group' => CSS_THEME));
+    drupal_add_js($theme_path . '/js/minified/dxpr-theme-breadcrumbs.min.js');
   }
 }

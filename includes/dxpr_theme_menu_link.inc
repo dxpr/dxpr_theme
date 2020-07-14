@@ -19,11 +19,14 @@
  * @ingroup theme_functions
  */
 function dxpr_theme_menu_link(array $variables) {
+  global $theme;
+  $current_theme_path = drupal_get_path('theme', $theme);
   $element = $variables['element'];
   $sub_menu = '';
   $careticon = '';
 
   if ($element['#below']) {
+    drupal_add_js($current_theme_path . '/js/minified/dxpr-theme-multilevel-mobile-nav.min.js');
     // Prevent dropdown functions from being added to management menu so it
     // does not affect the navbar module.
     if (($element['#original_link']['menu_name'] == 'management') && (module_exists('navbar'))) {
