@@ -7,16 +7,10 @@ module.exports = function(grunt) {
       },
       main: {
         files: {
-          'js/minified/classie.min.js': ['vendor/classie.js'],
+          'js/minified/dxpr-theme-settings.admin.min.js': ['js/dist/dxpr-theme-settings.admin.js'],
+          'js/minified/dxpr-theme-mobile-nav.min.js': ['js/dist/dxpr-theme-mobile-nav.js'],
           'js/minified/color.min.js': ['js/dist/color.js'],
-          'js/minified/dxpr-theme-breadcrumbs.min.js': ['js/dist/dxpr-theme-breadcrumbs.js'],
-          'js/minified/dxpr-theme-full-screen-search.min.js': ['js/dist/dxpr-theme-full-screen-search.js'],
-          'js/minified/dxpr-theme-header.min.js': ['js/dist/dxpr-theme-header.js'],
-          'js/minified/dxpr-theme-multilevel-mobile-nav.min.js': ['js/dist/dxpr-theme-multilevel-mobile-nav.js'],
-          'js/minified/dxpr-theme-settings.admin.min.js': ['js/dist/dxpr-theme-settings.admin.js'],
-          'js/minified/dxpr-theme-settings.admin.min.js': ['js/dist/dxpr-theme-settings.admin.js'],
-          'js/minified/dxpr-theme.min.js': ['js/dist/dxpr-theme.js'],
-          'vendor/classie.min.js': ['vendor/classie.js']
+          'js/minified/classie.min.js': ['vendor/classie.js']
         },
       }
     },
@@ -50,7 +44,7 @@ module.exports = function(grunt) {
         tasks: ['sass', 'postcss']
       },
       js: {
-        files: ['js/dist/*.js', 'vendor/classie.js'],
+        files: ['js/dist/*.js'],
         tasks: ['terser']
       }
     }

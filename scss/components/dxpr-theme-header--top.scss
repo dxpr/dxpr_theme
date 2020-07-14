@@ -225,7 +225,14 @@
     }
   }
 }
-
+.body--dxpr-theme-header-overlay {
+  .wrap-messages {
+    position: fixed;
+    right: 30px;
+    top: 30px;
+    z-index: 9999;
+  }
+}
 // Toolbar fixes
 html.js .body--dxpr-theme-nav-desktop {
   &.toolbar-fixed.toolbar-horizontal .dxpr-theme-header--top.dxpr-theme-header--overlay {
