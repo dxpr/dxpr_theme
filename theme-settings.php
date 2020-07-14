@@ -57,7 +57,11 @@ function dxpr_theme_form_system_theme_settings_alter(&$form, &$form_state, $form
    * @todo come up with a less 'icky' solution
    */
   require_once drupal_get_path('theme', 'dxpr_theme') . '/dxpr_theme_callbacks.inc';
-  dxpr_theme_css_cache_build($subject_theme);
+
+  $dxpr_theme_css_file = _dxpr_theme_css_cache_file($subject_theme);
+  if (!file_exists($dxpr_theme_css_file)) {
+    dxpr_theme_css_cache_build($subject_theme);
+  }
 
   foreach (\Drupal::service('file_system')->scanDirectory(drupal_get_path('theme', 'dxpr_theme') . '/features', '/settings.inc/i') as $file) {
     require_once $file->uri;
@@ -77,6 +81,8 @@ function dxpr_theme_form_system_theme_settings_alter(&$form, &$form_state, $form
 
   array_unshift($form['#submit'], 'dxpr_theme_form_system_theme_settings_submit');
   array_unshift($form['#validate'], 'dxpr_theme_form_system_theme_settings_validate');
+
+  $form['#submit'][] = 'dxpr_theme_form_system_theme_settings_after_submit';
 }
 
 /**
@@ -355,4 +361,34 @@ function dxpr_theme_preprocess_form_element_label(&$variables) {
       $variables['element']['#children'] = $element['#children'] . '<span class="switcher"></span>';
     }
   }
+}
+
+/**
+ * Submit callback for theme settings form.
+ *
+ * This is the last handler in the submit queue.
+ *
+ * @see \Drupal\system\Form\ThemeSettingsForm::submitForm()
+ */
+function dxpr_theme_form_system_theme_settings_after_submit(&$form, &$form_state) {
+  $build_info = $form_state->getBuildInfo();
+  $subject_theme = $build_info['args'][0];
+  //It is needed to clear the theme cache.
+  $theme_cache =&drupal_static('theme_get_setting', []);
+  $theme_cache = [];
+  dxpr_theme_css_cache_build($subject_theme);
+}
+
+/**
+ * Helper function returns path of css cache file.
+ *
+ * @param string $path
+ *   A path relative to the Drupal root or to the public files directory, or
+ *   a stream wrapper URI.
+ *
+ * @return string
+ *   A valid path of css cache file.
+ */
+function _dxpr_theme_css_cache_file($theme) {
+  return 'public://dxpr_theme/css/themesettings-' . $theme . '.css';
 }
