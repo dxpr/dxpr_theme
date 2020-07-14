@@ -26,7 +26,9 @@ function dxpr_theme_menu_link(array $variables) {
   $careticon = '';
 
   if ($element['#below']) {
-    drupal_add_js($current_theme_path . '/js/minified/dxpr-theme-multilevel-mobile-nav.min.js');
+    // below file should be loaded here after properly separating all mulitilevel menu code from dxpr-theme-header.js
+    // drupal_add_js($current_theme_path . '/js/minified/dxpr-theme-multilevel-mobile-nav.min.js');
+
     // Prevent dropdown functions from being added to management menu so it
     // does not affect the navbar module.
     if (($element['#original_link']['menu_name'] == 'management') && (module_exists('navbar'))) {
