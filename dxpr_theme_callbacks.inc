@@ -121,7 +121,7 @@ function dxpr_theme_color_module_css_write($theme) {
  *   Theme name.
  */
 function dxpr_theme_css_cache_build($theme) {
-  $dxpr_theme_css_file = 'public://dxpr_theme/css/themesettings-' . $theme . '.css';
+  $dxpr_theme_css_file = _dxpr_theme_css_cache_file($theme);
   $dir = 'public://dxpr_theme/css/';
   $dir_writable = \Drupal::service('file_system')
     ->prepareDirectory($dir, FileSystemInterface::CREATE_DIRECTORY);
