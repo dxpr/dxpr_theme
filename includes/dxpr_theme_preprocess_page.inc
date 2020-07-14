@@ -282,6 +282,7 @@ function dxpr_theme_preprocess_page(&$vars) {
     $page_css[] = '/css/components/dxpr-theme-header--top.css';
     $page_css[] = '/css/components/dxpr-theme-header--side.css';
     $page_css[] = '/css/components/dxpr-theme-header--mobile.css';
+    drupal_add_js($theme_path . '/js/minified/dxpr-theme-header.min.js');
   }
   if ($vars['page']['footer']) {
     $page_css[] = '/css/base/footer-menu.css';

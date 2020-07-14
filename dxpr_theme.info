@@ -20,7 +20,7 @@ regions[footer]                                       = 'Footer'
 
 ; Scripts
 scripts[]                                             = js/minified/classie.min.js
-scripts[]                                             = js/minified/dxpr-theme-mobile-nav.min.js
+scripts[]                                             = js/minified/dxpr-theme-multilevel-mobile-nav.min.js
 scripts[]                                             = js/minified/dxpr-theme.min.js
 
 ; DXPR Theme Builder Utility Classes
