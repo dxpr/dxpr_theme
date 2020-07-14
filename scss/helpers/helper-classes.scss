@@ -1,9 +1,6 @@
 // DXPR Theme utility classes
 // For Bootstrap core helper classes see http://getbootstrap.com/css/#helper-classes
 
-
-// @See dxpr_theme.js for more helper classes
-
 // Layout helper classes
 @import "../includes/variables";
 
@@ -17,6 +14,10 @@
 .dxpr-theme-util-full-width-content .col-sm-12 {
   padding-left: 0;
   padding-right: 0;
+}
+
+.dxpr-theme-util-full-height {
+  min-height: 100vh;
 }
 
 .html {

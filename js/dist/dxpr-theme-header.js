@@ -7,123 +7,6 @@
 (function($, Drupal, window, document, undefined) {
   let dxpr_themeMenuState = "";
 
-  Drupal.behaviors.fullScreenSearch = {
-    attach(context, settings) {
-      function clearSearchForm() {
-        $searchForm.toggleClass("invisible"),
-          $("body").toggleClass("body--full-screen-search"),
-          setTimeout(() => {
-            $searchFormInput.val("");
-          }, 350);
-      }
-      const $searchButton = $(".full-screen-search-button");
-      var $searchForm = $(".full-screen-search-form");
-      var $searchFormInput = $searchForm.find(".search-query");
-      const escapeCode = 27;
-      $searchButton.once().on("touchstart click", event => {
-        event.preventDefault(),
-          $searchForm.toggleClass("invisible"),
-          $("body").toggleClass("body--full-screen-search"),
-          $searchFormInput.focus();
-      }),
-        $searchForm.once().on("touchstart click", $searchButton => {
-          $($searchButton.target).hasClass("search-query") || clearSearchForm();
-        }),
-        $(document).keydown(event => {
-          event.which === escapeCode &&
-            !$searchForm.hasClass("invisible") &&
-            clearSearchForm();
-        });
-    }
-  };
-
-  Drupal.behaviors.dxpr_theme = {
-    attach(context, settings) {
-      // Page Title Background Image Helper
-      const bg_img = $("#page-title-full-width-container").attr("data-bg-img");
-      if (bg_img) {
-        $(
-          `<style>#page-title-full-width-container:after{background-image:url("${bg_img}")}</style>`
-        ).appendTo("head");
-      }
-
-      // Menu System
-      const windowHeight = $(window).height();
-      if ($("#dxpr-theme-main-menu .menu").length > 0) {
-        dxpr_themeMenuGovernor(document);
-      }
-
-      // Helper classes
-      $(".dxpr-theme-util-full-height", context).css("min-height", windowHeight);
-
-      // User page
-      $(".page-user .main-container", context)
-        .find("> .row > .col-sm-12")
-        .once("dxpr_theme")
-        .removeClass("col-sm-12")
-        .addClass("col-sm-8 col-md-offset-2");
-
-      // Main content layout
-      $(".dxpr-theme-util-content-center-4-col .main-container", context)
-        .find("> .row > .col-sm-12")
-        .once("dxpr_theme")
-        .removeClass("col-sm-12")
-        .addClass("col-sm-4 col-md-offset-4");
-
-      $(".dxpr-theme-util-content-center-6-col .main-container", context)
-        .find("> .row > .col-sm-12")
-        .once("dxpr_theme")
-        .removeClass("col-sm-12")
-        .addClass("col-sm-6 col-md-offset-3");
-
-      $(".dxpr-theme-util-content-center-8-col .main-container", context)
-        .find("> .row > .col-sm-12")
-        .once("dxpr_theme")
-        .removeClass("col-sm-12")
-        .addClass("col-sm-8 col-md-offset-2");
-
-      $(".dxpr-theme-util-content-center-10-col .main-container", context)
-        .find("> .row > .col-sm-12")
-        .once("dxpr_theme")
-        .removeClass("col-sm-12")
-        .addClass("col-sm-8 col-md-offset-1");
-
-      // Messages, position absolutely when overlay header and no page title
-      if (
-        $(".wrap-messages").length > 0 &&
-        $(".dxpr-theme-header--overlay").length > 0 &&
-        $("#page-title").length == 0
-      )
-        $(".wrap-messages", context).css({
-          position: "absolute",
-          "z-index": "9999",
-          right: "0"
-        });
-
-      // Breadcrumbs
-      if (settings.dxpr_themeSettings.breadcrumbsSeparator) {
-        const { breadcrumbsSeparator } = settings.dxpr_themeSettings;
-        $(".breadcrumb a", context)
-          .once("dxpr_theme")
-          .after(
-            ` <span class="dxpr-theme-breadcrumb-spacer">${breadcrumbsSeparator}</span> `
-          );
-      } else {
-        $(".breadcrumb a", context)
-          .once("dxpr_theme")
-          .after(' <span class="dxpr-theme-breadcrumb-spacer">/</span> ');
-      }
-
-      // Sidebar nav blocks
-      $(
-        ".region-sidebar-first .block .view ul, .region-sidebar-second .block .view ul",
-        context
-      )
-        .once("dxpr_theme")
-        .addClass("nav");
-    }
-  };
-
   // Create underscore debounce and throttle functions if they doesn't exist already
   if (typeof _ != "function") {
     window._ = {};
@@ -414,7 +297,7 @@
       }
     }
     // Mobile Menu with sliding panels and breadcrumb
-    // @dsee dxpr-theme-mobile-nav.js
+    // @dsee dxpr-theme-multilevel-mobile-nav.js
     else {
       if (dxpr_themeMenuState == "side") {
         return false;
@@ -553,6 +436,15 @@
     $("#navbar").addClass("header-mobile-fixed");
     $("#secondary-header").css("margin-top", +headerHeight);
   }
+
+
+
+  $(document).ready(() => {
+    if ($("#dxpr-theme-main-menu .menu").length > 0) {
+      dxpr_themeMenuGovernorBodyClass();
+      dxpr_themeMenuGovernor(document);
+    }
+  });
 
   function dxpr_themeMenuGovernorBodyClass() {
     let navBreak = 1200;

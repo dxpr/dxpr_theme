@@ -7,7 +7,6 @@ module.exports = function(grunt) {
       },
       main: {
         files: {
-          'js/minified/dxpr_theme.min.js': ['js/dist/dxpr_theme.js'],
           'js/minified/dxpr-theme-settings.admin.min.js': ['js/dist/dxpr-theme-settings.admin.js'],
           'js/minified/dxpr-theme-mobile-nav.min.js': ['js/dist/dxpr-theme-mobile-nav.js'],
           'js/minified/color.min.js': ['js/dist/color.js'],

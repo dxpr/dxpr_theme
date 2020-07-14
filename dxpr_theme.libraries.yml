@@ -2,7 +2,6 @@ global-styling:
   js:
     vendor/classie.js: {}
     js/minified/dxpr-theme-mobile-nav.min.js: {}
-    js/minified/dxpr_theme.min.js: {}
   dependencies:
     - core/jquery
     - core/jquery.once
