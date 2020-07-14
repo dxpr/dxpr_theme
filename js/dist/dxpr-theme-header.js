@@ -297,7 +297,7 @@
       }
     }
     // Mobile Menu with sliding panels and breadcrumb
-    // @dsee dxpr-theme-multilevel-mobile-nav.js
+    // @see dxpr-theme-multilevel-mobile-nav.js
     else {
       if (dxpr_themeMenuState == "side") {
         return false;
