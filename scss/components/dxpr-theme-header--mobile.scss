@@ -69,6 +69,19 @@ html.html--dxpr-theme-nav-mobile--open {
       span:after {
         bottom: -8px;
         }
+      &.two-dash {
+        span {
+          background-color: transparent;
+        }
+
+        span:before {
+          top: -4px;
+        }
+
+        span:before {
+          bottom: -4px;
+        }
+      }
       &.navbar-toggle--active span {
         background-color: transparent;
         &:before {

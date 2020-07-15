@@ -50,6 +50,15 @@
       right: 0;
     }
   }
+  &.dxpr-theme-header--mobile-menu-dropdown .dxpr-theme-main-menu {
+    height: 100%;
+
+    .menu__level {
+      position: relative;
+      height: auto !important;
+      width: auto;
+    }
+  }
   .block {
     margin-bottom: 20px;
   }
@@ -228,6 +237,9 @@
     left: auto;
     right: 0;
   }
+  .dxpr-theme-header--mobile-menu-dropdown #dxpr-theme-main-menu.menu--open {
+    height: 100%;
+  }
   #dxpr-theme-main-menu.menu--open,
   #dxpr-theme-main-menu.menu--open .menu__breadcrumbs,
   #dxpr-theme-main-menu.menu--open .menu__level {
@@ -239,6 +251,28 @@
     left: auto;
     right: -100%;
     transition: right 0.3s;
+  }
+  .dxpr-theme-header--mobile-menu-dropdown #dxpr-theme-main-menu {
+    height: 0;
+    padding: 0;
+    transition: height 1s cubic-bezier(0.52, 0.16, 0.24, 1), left 0s, right 0s, padding-top 2s 0s, padding-bottom 2s 0s;
+    left: 0;
+    overflow-y: hidden;
+
+    .menu__level {
+      left: 0;
+      right: auto;
+    }
+
+    &.dxpr-theme-main-menu--to-left {
+      right: 0;
+      left: auto;
+
+      .menu__level {
+        right: 0;
+        left: auto;
+      }
+    }
   }
 }
 

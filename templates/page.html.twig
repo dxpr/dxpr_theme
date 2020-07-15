@@ -105,8 +105,12 @@
         ]
       %}
     {% endif %}
+
+    {% set hamburger_menu = theme.settings.hamburger_menu ? theme.settings.hamburger_menu : 'tree-dash' %}
+    {% set mobile_menu_dropdown =  (theme.settings.hamburger_menu == 'two-dash') ? 'dxpr-theme-header--mobile-menu-dropdown' : '' %}
     {% set mark_menu = theme.settings.mark_menu_with_children ? 'dxpr-theme-menu--has-children' : '' %}
-    {% set navbar_attributes = navbar_attributes.removeClass('container').addClass(navbar_classes) %}
+    {% set navbar_attributes = navbar_attributes.removeClass('container').addClass(navbar_classes).addClass(mobile_menu_dropdown) %}
+
     {% if theme.settings.header_top_fixed and theme.settings.header_top_sticky %}
       {% set navbar_attributes = navbar_attributes.setAttribute('data-spy', 'affix').setAttribute('data-offset-top', theme.settings.header_top_height_sticky_offset) %}
     {% endif %}
@@ -121,7 +125,7 @@
           {{ page.navigation }}
           {# .btn-navbar is used as the toggle for collapsed navbar content #}
           {% if page.navigation_collapsible %}
-            <a id="dxpr-theme-menu-toggle" href="#"><span></span><div class="screenreader-text visually-hidden">Toggle menu</div></a>
+            <a id="dxpr-theme-menu-toggle" class={{ hamburger_menu }} href="#"><span></span><div class="screenreader-text visually-hidden">Toggle menu</div></a>
           {% endif %}
         </div>
 
