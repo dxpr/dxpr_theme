@@ -14,8 +14,7 @@ module.exports = function(grunt) {
           'js/minified/dxpr-theme-header.min.js': ['js/dist/dxpr-theme-header.js'],
           'js/minified/dxpr-theme-multilevel-mobile-nav.min.js': ['js/dist/dxpr-theme-multilevel-mobile-nav.js'],
           'js/minified/dxpr-theme-settings.admin.min.js': ['js/dist/dxpr-theme-settings.admin.js'],
-          'js/minified/dxpr-theme.admin.min.js': ['js/dist/dxpr-theme.admin.js'],
-          'js/minified/dxpr-theme.min.js': ['js/dist/dxpr-theme.js']
+          'js/minified/dxpr-theme.admin.min.js': ['js/dist/dxpr-theme.admin.js']
         },
       }
     },
