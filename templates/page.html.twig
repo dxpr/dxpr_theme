@@ -106,8 +106,8 @@
       %}
     {% endif %}
 
-    {% set hamburger_menu = theme.settings.hamburger_menu ? theme.settings.hamburger_menu : 'tree-dash' %}
-    {% set mobile_menu_dropdown =  (theme.settings.hamburger_menu == 'two-dash') ? 'dxpr-theme-header--mobile-menu-dropdown' : '' %}
+    {% set hamburger_menu = theme.settings.hamburger_menu ? theme.settings.hamburger_menu : 'three-lines' %}
+    {% set mobile_menu_dropdown =  (theme.settings.hamburger_menu == 'two-lines') ? 'dxpr-theme-header--mobile-menu-dropdown' : '' %}
     {% set mark_menu = theme.settings.mark_menu_with_children ? 'dxpr-theme-menu--has-children' : '' %}
     {% set navbar_attributes = navbar_attributes.removeClass('container').addClass(navbar_classes).addClass(mobile_menu_dropdown) %}
 

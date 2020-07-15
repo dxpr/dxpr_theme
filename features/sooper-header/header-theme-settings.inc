@@ -445,10 +445,10 @@ function header_theme_settings(array &$form, $theme) {
     '#type' => 'radios',
     '#title' => t('Hamburger Menu'),
     '#description' => t('Hamburger menu.'),
-    '#default_value' => ((theme_get_setting('hamburger_menu') !== NULL)) ? theme_get_setting('hamburger_menu') : 'three-dash',
+    '#default_value' => ((theme_get_setting('hamburger_menu') !== NULL)) ? theme_get_setting('hamburger_menu') : 'three-lines',
     '#options' => [
-      'three-dash' => t('Three dash'),
-      'two-dash' => t('Two dash'),
+      'three-lines' => t('Three lines'),
+      'two-lines' => t('Two lines'),
     ],
   ];
 
