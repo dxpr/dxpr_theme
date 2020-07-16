@@ -147,6 +147,7 @@ dropdown_hover_text_color: ''
 dropdown_hover_text_color_custom: ''
 header_side_align: left
 header_side_width: '300'
+hamburger_menu: 'three-dash'
 menu_type: uppercase
 menu_hover: opacity
 menu_border_position: bottom
