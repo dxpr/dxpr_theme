@@ -20,7 +20,6 @@ regions[footer]                                       = 'Footer'
 
 ; Scripts
 scripts[]                                             = js/minified/classie.min.js
-scripts[]                                             = js/minified/dxpr-theme.min.js
 
 ; DXPR Theme Builder Utility Classes
 dxpr_builder_classes[dxpr-theme-util-background-accent1]        = Background color: DXPR Theme accent1
