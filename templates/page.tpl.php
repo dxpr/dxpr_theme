@@ -112,7 +112,7 @@
           <?php endif; ?>
 
           <?php if ((!isset($hide_navigation)) && !empty($primary_nav) || !empty($page['navigation'])): ?>
-            <a id="dxpr-theme-menu-toggle" href="#"><span></span><div class="screenreader-text element-invisible">Toggle menu</div  ></a>
+            <a id="dxpr-theme-menu-toggle" href="#" class="<?php print $hamburger_menu; ?>"><span></span><div class="screenreader-text element-invisible">Toggle menu</div  ></a>
           <?php endif; ?>
         </div>
 

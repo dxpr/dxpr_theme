@@ -431,6 +431,17 @@ $form['dxpr_theme_settings']['header']['header_side']['header_side_open_directio
   ],
 ];
 
+$form['dxpr_theme_settings']['header']['header_side']['hamburger_menu'] = [
+  '#type' => 'radios',
+  '#title' => t('Hamburger Menu'),
+  '#description' => t('Hamburger menu.'),
+  '#default_value' => ((theme_get_setting('hamburger_menu') !== NULL)) ? theme_get_setting('hamburger_menu') : 'three-dash',
+  '#options' => [
+    'three-dash' => t('Three dash'),
+    'two-dash' => t('Two dash'),
+  ],
+];
+
 $form['dxpr_theme_settings']['header']['menu'] = array(
   '#title' => t('Main Menu Links'),
   '#type' => 'fieldset',

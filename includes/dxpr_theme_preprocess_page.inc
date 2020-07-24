@@ -307,4 +307,10 @@ function dxpr_theme_preprocess_page(&$vars) {
     }
 
   }
+
+  // Default class for hamburger menu is three-dash
+  $vars['hamburger_menu'] = 'three-dash';
+  if ($hm_settings = theme_get_setting('hamburger_menu')) {
+    $vars['hamburger_menu'] = $hm_settings;
+  }
 }

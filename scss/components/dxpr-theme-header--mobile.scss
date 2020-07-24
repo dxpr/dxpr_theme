@@ -72,6 +72,40 @@ html.html--dxpr-theme-nav-mobile--open {
       span:after {
         bottom: -8px;
         }
+
+      &.two-dash {
+        span {
+          background-color: transparent;
+        }
+
+        span:before,
+        span:after {
+          transition: transform .18s cubic-bezier(0.04, 0.04, 0.12, 0.96),
+          top .1s cubic-bezier(0.52, 0.16, 0.52, 0.84) .16s,
+          bottom .1s cubic-bezier(0.52, 0.16, 0.52, 0.84) .16s;
+        }
+
+        span:before {
+          top: -4px;
+        }
+
+        span:after {
+          bottom: -4px;
+        }
+
+        &.navbar-toggle--active {
+          span:before,
+          span:after {
+            top: 0;
+            bottom: 0;
+
+            transition: transform .18s cubic-bezier(0.04, 0.04, 0.12, 0.96) .08s,
+            top .1s cubic-bezier(0.52, 0.16, 0.52, 0.84),
+            bottom .1s cubic-bezier(0.52, 0.16, 0.52, 0.84);
+          }
+        }
+      }
+
       &.navbar-toggle--active span {
         background-color: transparent;
         &:before {
