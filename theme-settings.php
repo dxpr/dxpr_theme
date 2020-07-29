@@ -56,7 +56,13 @@ function dxpr_theme_form_system_theme_settings_alter(&$form, &$form_state) {
     $files_path = variable_get('file_public_path', conf_path() . '/files');
   }
   require_once(drupal_get_path('theme', 'dxpr_theme') . '/dxpr_theme_callbacks.inc');
-  dxpr_theme_css_cache_build(arg(count(arg()) - 1));
+
+  //Create cache file only if file does not exist.The new installation case.
+  $dxpr_theme_css_file = _dxpr_theme_css_cache_file($subject_theme);
+  if (!file_exists($dxpr_theme_css_file)) {
+    $subject_theme = arg(count(arg()) - 1);
+    dxpr_theme_css_cache_build($subject_theme);
+  }
 
   if ($GLOBALS['theme'] == 'seven') {
     drupal_set_message(t('Install the DXPR Theme Helper module to have a better theme settings experience'), 'warning');
@@ -231,6 +237,9 @@ function dxpr_theme_settings_form_submit(&$form, &$form_state) {
       $form_state['values'] = array_merge($form_state['values'], $import_settings['settings']);
     }
   }
+
+  // We do this because the order of the system submit function in the queue cannot be overwritten.
+  register_shutdown_function('dxpr_theme_settings_form_shutdown_function');
 }
 
 /**
@@ -262,4 +271,40 @@ function dxpr_theme_form_system_theme_settings_alter_validate(&$form, &$form_sta
       form_set_error('logo_path', t('The custom logo path is invalid.'));
     }
   }
+}
+
+/**
+ * Helper functions for rebuilding the cache.
+ *
+ * It is needed because the module hooks do not work on the theme form page
+ * and we cannot call some other function after the system_settings_form_submit is calling
+ *
+ * @param string $path
+ *   A path relative to the Drupal root or to the public files directory, or
+ *   a stream wrapper URI.
+ *
+ * @return string
+ *   A valid path of css cache file.
+ */
+function dxpr_theme_settings_form_shutdown_function() {
+  $subject_theme = arg(count(arg()) - 1);
+  // When the submit case this file may not be included
+  if (!function_exists('dxpr_theme_css_cache_build')) {
+    require_once(drupal_get_path('theme', 'dxpr_theme') . '/dxpr_theme_callbacks.inc');
+  }
+
+  dxpr_theme_css_cache_build($subject_theme);
+}
+
+/**
+ * Helper function returns path of css cache file.
+ *
+ * @param string $theme
+ *   Theme name.
+ *
+ * @return
+ */
+function _dxpr_theme_css_cache_file($theme) {
+  $files_path = variable_get('file_public_path', conf_path() . '/files');
+  return $files_path . '/dxpr-theme-themesettings-' . $theme . '.css';
 }

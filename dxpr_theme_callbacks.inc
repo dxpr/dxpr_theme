@@ -102,7 +102,7 @@ function dxpr_theme_css_cache_build($theme) {
   global $base_path, $base_theme_info;
   $files_path = variable_get('file_public_path', conf_path() . '/files');
 
-  $dxpr_theme_css_file = $files_path . '/dxpr-theme-themesettings-' . $theme . '.css';
+  $dxpr_theme_css_file = _dxpr_theme_css_cache_file($theme);
   // Construct CSS file:
   $CSS = '';
   // Load DXPR Theme colors palette.
