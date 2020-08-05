@@ -1,11 +1,9 @@
-core: 8.x
 type: theme
-project status url: https://www.sooperthemes.com/release-history
 core_version_requirement: ^8 || ^9
 base theme: bootstrap
 
 name: 'DXPR Theme'
-description: 'Premium framework theme by DXPR.'
+description: 'Low code framework theme by DXPR.'
 package: DXPR
 
 regions:
