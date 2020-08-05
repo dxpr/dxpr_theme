@@ -274,10 +274,10 @@ function dxpr_theme_preprocess_page(&$vars) {
     // HELPERS.
     '/css/helpers/helper-classes.css',
   );
-  if (($vars['page']['secondary_header']) || ($vars['secondary_nav'])) {
+  if ((!empty($vars['page']['secondary_header'])) || ($vars['secondary_nav'])) {
     $page_css[] = '/css/components/dxpr-theme-secondary-header.css';
   }
-  if (($vars['page']['navigation']) || ($vars['primary_nav'])) {
+  if ((!empty($vars['page']['navigation'])) || ($vars['primary_nav'])) {
     $page_css[] = '/css/components/dxpr-theme-header.css';
     $page_css[] = '/css/components/dxpr-theme-header--top.css';
     $page_css[] = '/css/components/dxpr-theme-header--side.css';
@@ -286,7 +286,7 @@ function dxpr_theme_preprocess_page(&$vars) {
     drupal_add_js($path . '/js/minified/dxpr-theme-multilevel-mobile-nav.min.js');
     drupal_add_js($path . '/js/minified/dxpr-theme-header.min.js');
   }
-  if ($vars['page']['footer']) {
+  if (!empty($vars['page']['footer'])) {
     $page_css[] = '/css/base/footer-menu.css';
   }
   if ($vars['tabs']['#secondary']) {
