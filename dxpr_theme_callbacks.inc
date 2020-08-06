@@ -4,6 +4,20 @@
  * @file
  */
 
+
+/**
+ * Helper function returns path of css cache file.
+ *
+ * @param string $theme
+ *   Theme name.
+ *
+ * @return
+ */
+function _dxpr_theme_css_cache_file($theme) {
+  $files_path = variable_get('file_public_path', conf_path() . '/files');
+  return $files_path . '/dxpr-theme-themesettings-' . $theme . '.css';
+}
+
 /**
  * DXPR Theme Helper functions
  * .
