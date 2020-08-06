@@ -379,16 +379,3 @@ function dxpr_theme_form_system_theme_settings_after_submit(&$form, &$form_state
   dxpr_theme_css_cache_build($subject_theme);
 }
 
-/**
- * Helper function returns path of css cache file.
- *
- * @param string $path
- *   A path relative to the Drupal root or to the public files directory, or
- *   a stream wrapper URI.
- *
- * @return string
- *   A valid path of css cache file.
- */
-function _dxpr_theme_css_cache_file($theme) {
-  return 'public://dxpr_theme/css/themesettings-' . $theme . '.css';
-}
