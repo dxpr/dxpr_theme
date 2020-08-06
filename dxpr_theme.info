@@ -1,5 +1,5 @@
 name                                                  = DXPR Theme
-description                                           = SooperThemes Premium Framework Theme.
+description                                           = Low code framework theme by DXPR.
 core                                                  = 7.x
 
 base theme                                            = bootstrap
