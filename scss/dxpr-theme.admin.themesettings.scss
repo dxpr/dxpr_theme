@@ -462,8 +462,8 @@ $font_3: 'sans-serif';
     white-space: pre;
   }
   .checkbox {
-	position: relative;
-	input[type=checkbox] {
+  position: relative;
+  input[type=checkbox] {
       position: absolute;
       z-index: 10;
       left: 200px;
@@ -472,8 +472,10 @@ $font_3: 'sans-serif';
       width: 54px;
       height: 27px;
       cursor: pointer;
-      opacity: 0;
-      appearance: none;
+      // Can't add the switcher div with #suffix and #prefix for some reason
+      // So just using checkboxes again
+      // opacity: 0;
+      // appearance: none;
       &:checked + .switcher {
         background: $color_curious_blue;
         &:after {
