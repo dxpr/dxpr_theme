@@ -350,20 +350,6 @@ function _dxpr_theme_validate_path($path) {
 }
 
 /**
- * Change checkbox markup at theme settings.
- */
-function dxpr_theme_preprocess_form_element_label(&$variables) {
-  if (\Drupal::routeMatch()->getRouteName() == 'system.theme_settings_theme') {
-    // Grab a reference to the element.
-    $element = $variables['element'];
-
-    if ($element['#is_checkbox'] && !empty($element['#children'])) {
-      $variables['element']['#children'] = $element['#children'] . '<span class="switcher"></span>';
-    }
-  }
-}
-
-/**
  * Submit callback for theme settings form.
  *
  * This is the last handler in the submit queue.
