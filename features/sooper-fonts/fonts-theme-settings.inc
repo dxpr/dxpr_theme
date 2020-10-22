@@ -112,11 +112,20 @@ function fonts_theme_settings(array &$form, $theme) {
  * Helper function to get list of locally hosted fonts.
  */
 function dxpr_theme_local_webfonts() {
-  $theme_chain = ['dxpr_theme'];
+  $theme = \Drupal::service('theme.manager')->getActiveTheme();
+  $theme_chain = [$theme->getName()];
+  if (!empty($theme->getExtension()->base_themes)) {
+    $theme_chain = array_merge($theme_chain, array_keys($theme->getExtension()->base_themes));
+  }
+
   $fonts = [];
   foreach ($theme_chain as $theme) {
-    foreach (\Drupal::service('file_system')->scanDirectory(drupal_get_path('theme', $theme) . '/fonts', '/.css/i') as $file) {
-      $font_path = str_replace(drupal_get_path('theme', $theme), '', $file->uri);
+    $theme_path = drupal_get_path('theme', $theme);
+    if (!is_dir($theme_path . '/fonts')) {
+      continue;
+    }
+    foreach (\Drupal::service('file_system')->scanDirectory($theme_path . '/fonts', '/.css/i') as $file) {
+      $font_path = str_replace($theme_path, '', $file->uri);
       $css = file_get_contents($file->uri);
       if ($css) {
         preg_match_all('/font-family: \'(.*?)\'/i', $css, $matches);
