@@ -58,6 +58,7 @@ h1_mobile_font_size: '52'
 h2_mobile_font_size: '38'
 h3_mobile_font_size: '29'
 h4_mobile_font_size: '24'
+preload_local_fonts: false
 body_font_face: '0Source+Sans+Pro:'
 body_font_face_selector: body
 headings_font_face: '0Source+Sans+Pro:300'
