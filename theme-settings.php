@@ -232,8 +232,8 @@ function _dxpr_theme_get_color_names($theme = NULL) {
   if ($path && file_exists($file)) {
     include $file;
     // phpcs:disable
-    $theme_info[$theme] = $info['fields'];
-    return $info['fields'];
+    $theme_info[$theme] = $info['fields']; // @phpstan-ignore-line
+    return $info['fields']; // @phpstan-ignore-line
     // phpcs:enable
   }
   else {

@@ -12,9 +12,8 @@ use Drupal\Core\File\FileSystemInterface;
 /**
  * Helper function returns path of css cache file.
  *
- * @param string $path
- *   A path relative to the Drupal root or to the public files directory, or
- *   a stream wrapper URI.
+ * @param string $theme
+ *   Theme machine name.
  *
  * @return string
  *   A valid path of css cache file.
