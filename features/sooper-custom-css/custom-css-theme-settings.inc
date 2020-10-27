@@ -21,7 +21,6 @@ function custom_css_theme_settings(array &$form, $theme) {
     '#description' => t("This CSS will be attached after the theme and allows you to customize your site without needing the additional complexity of a subtheme."),
     '#collapsible' => TRUE,
     '#collapsed' => TRUE,
-    '#weight' => 4,
     '#weight' => 30,
   ];
 

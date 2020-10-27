@@ -123,6 +123,7 @@ function dxpr_theme_local_webfonts() {
       }
       else {
         \Drupal::messenger()->addMessage(t('Cannot read font files, please check permissions on the fonts folder in the theme.'), 'error');
+        continue;
       }
       foreach ($matches[1] as $font) {
         if ($font) {

@@ -140,14 +140,9 @@ function header_theme_settings(array &$form, $theme) {
     ],
     '#description' => t('Hide menu before or after scrolling. Turn on "Overlay Mode" to prevent your menu creating an empty space at the top of your layout.'),
     '#states' => [
-      'visible' => [
-        ':input[name="header_top_fixed"]' => ['checked' => TRUE],
-        ':input[name="header_top_sticky"]' => ['checked' => TRUE],
-      ],
-    ],
-    '#states' => [
       'unchecked' => [
         ':input[name="header_top_fixed"]' => ['checked' => FALSE],
+        ':input[name="header_top_sticky"]' => ['checked' => TRUE],
       ],
     ],
   ];

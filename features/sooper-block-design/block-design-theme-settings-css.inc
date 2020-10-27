@@ -158,7 +158,7 @@ EOT;
 function _dxpr_theme_regions2selectors(array $regions, $element) {
   $selector_array = [];
   foreach ($regions as $region) {
-    $selector_array[] .= '.region-' . str_replace('_', '-', $region) . ' ' . $element;
+    $selector_array[] = '.region-' . str_replace('_', '-', $region) . ' ' . $element;
   }
   $selector_array[] = '.blocks-preview ' . $element;
   $selector = implode(', ', $selector_array);

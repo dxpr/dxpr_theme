@@ -11,6 +11,7 @@ use Drupal\Core\Render\Markup;
 use Drupal\block\Entity\Block;
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Entity\ContentEntityInterface;
+use Drupal\node\NodeInterface;
 
 /**
  * Implements hook_library_info_alter().
@@ -156,9 +157,8 @@ function dxpr_theme_preprocess_page(&$variables) {
     $hide_regions = array_keys(array_filter(theme_get_setting('hidden_regions')));
   }
   if (!empty($variables['node'])
-    && method_exists($variables['node'], 'hasField')
-    && $variables['node']->hasField('field_dth_hide_regions')
-    && $variables['node']->get('field_dth_hide_regions')) {
+    && $variables['node'] instanceof NodeInterface
+    && $variables['node']->hasField('field_dth_hide_regions')) {
     $local_hide = array_column($variables['node']->get('field_dth_hide_regions')->getValue(), 'value');
     $hide_regions = array_unique(array_merge($hide_regions, $local_hide));
   }
