@@ -35,7 +35,7 @@ function typography_theme_settings_css($theme, &$css, array $palette) {
     $css .= "h1,h2,h3,h4,h5,h6 { text-transform: uppercase; } \n";
   }
   if ($height = theme_get_setting('divider_thickness', $theme)) {
-    $css .= "hr { height:  " . $height . "px; } \n";
+    $css .= "hr { border-top-width:  " . $height . "px; } \n";
   }
   if ($length = theme_get_setting('divider_length', $theme)) {
     $css .= "hr { width:  " . $length . "px; } \n";
