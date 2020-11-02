@@ -138,13 +138,10 @@ h1, h2, h3, h4, h5, h6, .navbar-brand, th, .nav-tabs > li > a {
 }
 
 hr {
-  // height: 4px;
   height: 0;
-  // background: $well; // well background color
   border-top: 4px solid $well;
   margin-bottom: 20px;
   margin-top: 20px;
-  // border: none;
 }
 .region-sidebar-first hr,
 .region-sidebar-second hr {
