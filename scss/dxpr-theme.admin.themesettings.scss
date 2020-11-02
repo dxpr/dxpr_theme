@@ -252,10 +252,10 @@ $font_3: 'sans-serif';
       width: auto;
     }
     // label.option,
-    .dxpr-theme-label {
+    input ~ label.option,
+    input ~ span {
       font-weight: 300;
       padding: 5px 0;
-      width: 400px;
       margin-top: -1px;
       line-height: 24px;
       width: auto;
@@ -266,7 +266,6 @@ $font_3: 'sans-serif';
         font-size: 18px;
         display: inline-block;
         width: 25px;
-        line-height: 1em;
         font-weight: normal;
       }
     }
