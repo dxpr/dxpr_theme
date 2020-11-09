@@ -245,6 +245,9 @@ $font_3: 'sans-serif';
   }
   .form-composite {
     padding: 0 0 20px 0;
+    .form-checkboxes input {
+      display: block;
+    }
     input {
       display: none;
     }
