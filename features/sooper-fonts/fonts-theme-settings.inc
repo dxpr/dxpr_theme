@@ -98,9 +98,6 @@ function fonts_theme_settings(array &$form, $theme) {
     '#title' => t('Preload local fonts'),
     '#default_value' => theme_get_setting('preload_local_fonts'),
     '#description' => t('Add preload links to the header for the local fonts.'),
-    '#wrapper_attributes' => [
-      'class' => ['form-wrapper'],
-    ],
   ];
 
   $form['dxpr_theme_settings']['fonts']['font_preview'] = [
