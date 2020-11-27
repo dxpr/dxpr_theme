@@ -357,6 +357,8 @@ function _dxpr_theme_validate_path($path) {
  * @see \Drupal\system\Form\ThemeSettingsForm::submitForm()
  */
 function dxpr_theme_form_system_theme_settings_after_submit(&$form, &$form_state) {
+  require_once drupal_get_path('theme', 'dxpr_theme') . '/dxpr_theme_callbacks.inc';
+
   $build_info = $form_state->getBuildInfo();
   $subject_theme = $build_info['args'][0];
   //It is needed to clear the theme cache.
