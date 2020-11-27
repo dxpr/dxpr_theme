@@ -64,6 +64,14 @@
   content: '*';
   display: inline-block;
   padding-left: 3px;
+  background-image: none;
+}
+
+.has-glyphicons .select-wrapper,
+.select-wrapper {
+  &::after {
+    display: none;
+  }
 }
 
 .input-group {
