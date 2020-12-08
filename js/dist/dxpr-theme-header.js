@@ -108,24 +108,11 @@
         dxpr_themeMenuGovernorBodyClass();
         dxpr_themeMenuGovernor(document);
       }
-      // Mobile menu open direction.
-      if (
-        drupalSettings.dxpr_themeSettings.headerSideDirection === "right" &&
-        $(window).width() <= window.dxpr_themeNavBreakpoint
-      ) {
-        $("#dxpr-theme-main-menu").addClass("dxpr-theme-main-menu--to-left");
-      } else {
-        $("#dxpr-theme-main-menu").removeClass("dxpr-theme-main-menu--to-left");
-      }
-      // Fix bug with unstyled content on page load.
-      if (
-        $(window).width() > window.dxpr_themeNavBreakpoint &&
-        $(".dxpr-theme-header--side").length === 0
-      ) {
-        $("#dxpr-theme-main-menu").css("position", "relative");
-      }
+      dpxr_themeMenuOnResize();
     }, 50)
   );
+
+  dpxr_themeMenuOnResize();
 
   var navBreak =
     "dxpr_themeNavBreakpoint" in window ? window.dxpr_themeNavBreakpoint : 1200;
@@ -459,6 +446,25 @@
       $(".body--dxpr-theme-nav-desktop")
         .removeClass("body--dxpr-theme-nav-desktop")
         .addClass("body--dxpr-theme-nav-mobile");
+    }
+  }
+
+  function dpxr_themeMenuOnResize(){
+    // Mobile menu open direction.
+    if (
+      drupalSettings.dxpr_themeSettings.headerSideDirection === "right" &&
+      $(window).width() <= window.dxpr_themeNavBreakpoint
+    ) {
+      $("#dxpr-theme-main-menu").addClass("dxpr-theme-main-menu--to-left");
+    } else {
+      $("#dxpr-theme-main-menu").removeClass("dxpr-theme-main-menu--to-left");
+    }
+    // Fix bug with unstyled content on page load.
+    if (
+      $(window).width() > window.dxpr_themeNavBreakpoint &&
+      $(".dxpr-theme-header--side").length === 0
+    ) {
+      $("#dxpr-theme-main-menu").css("position", "relative");
     }
   }
 
