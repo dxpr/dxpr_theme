@@ -9,14 +9,14 @@
     attach(context, settings) {
       // Breadcrumbs
       if (settings.dxpr_themeSettings.breadcrumbsSeparator) {
-        const { breadcrumbsSeparator } = settings.dxpr_themeSettings;
-        $(".breadcrumb a", context)
+        const breadcrumbsSeparator = settings.dxpr_themeSettings.breadcrumbsSeparator;
+        $(".page-title-full-width-container .breadcrumb a", context)
           .once("dxpr_theme")
           .after(
             ` <span class="dxpr-theme-breadcrumb-spacer">${breadcrumbsSeparator}</span> `
           );
       } else {
-        $(".breadcrumb a", context)
+        $(".page-title-full-width-container .breadcrumb a", context)
           .once("dxpr_theme")
           .after(' <span class="dxpr-theme-breadcrumb-spacer">/</span> ');
       }

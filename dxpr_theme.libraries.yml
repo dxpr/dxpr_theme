@@ -94,6 +94,8 @@ cubeportfolio:
       css/vendor-extensions/cubeportfolio.css: { minified: true }
 
 drupal-breadcrumbs:
+  js:
+    js/minified/dxpr-theme-breadcrumbs.min.js: { minified: true }
   css:
     theme:
       css/vendor-extensions/drupal-breadcrumbs.css: { minified: true }
