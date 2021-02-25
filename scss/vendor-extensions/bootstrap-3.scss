@@ -263,35 +263,36 @@ blockquote footer, blockquote small, blockquote .small {
     height: 1px!important;
 }
 .modal {
-    .modal-dialog {
-        margin-top: 80px;
-        color: $text; // White background is defined but text color is not, this prevents
-        // white text when modal is added within a dark section
-        h1, h2, h3, h4, h5, h6 {
-            color: $text;
-        }
-        ul {
-            padding-left: 10px;
-            // li {
-            //   padding-bottom: 5px;
-            // }
-        }
+  .modal-dialog {
+    margin-top: 80px;
+    color: $text; // White background is defined but text color is not, this prevents
+    // white text when modal is added within a dark section
+    h1, h2, h3, h4, h5, h6 {
+        color: $text;
     }
-    .modal-content {
-        border-radius: 0;
-        border: none;
+    ul {
+        padding-left: 10px;
+        // li {
+        //   padding-bottom: 5px;
+        // }
     }
-    &:before {
-        content: ' ';
-        z-index: 4610;
-        position: fixed;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        background: #000000;
-        opacity: 0.3;
-    }
+  }
+  .modal-content {
+    border-radius: 0;
+    border: none;
+  }
+  &:not(#drupal-off-canvas)::before {
+    content: ' ';
+    z-index: 4610;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: #000000;
+    opacity: 0.3;
+  }
+
 }
 
 // Tabs
