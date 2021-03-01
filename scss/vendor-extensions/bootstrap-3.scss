@@ -1,5 +1,5 @@
 //
-// Author: Jurriaan Roelofs for SooperThemes. Copyright SooperThemes.
+// Author: Jurriaan Roelofs for DXPR. Copyright DXPR.
 //
 
 // Fixing weird stuff in the bootstrap basetheme
@@ -279,7 +279,7 @@ blockquote footer, blockquote small, blockquote .small {
     &.ui-tabs-active {
       position: relative;
       // added !important below because bootstrap? is adding inline JS bottom:0
-      bottom: -1px !important; // more reliable than margin-bbottom. e.g. in sooperthemes checkout form
+      bottom: -1px !important; // more reliable than margin-bbottom. e.g. in dxpr checkout form
       a {
         color: $primary;
         cursor: pointer;
