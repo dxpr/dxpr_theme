@@ -154,9 +154,8 @@
 
   {% block page_title %}
   {% if title_bg_image_path %}
-    {% set title_bg_img_url = file_url(title_bg_image_path) %}
     <style>
-      #page-title-full-width-container::after{ background-image:url({{ title_bg_img_url }});}
+      #page-title-full-width-container::after{ background-image:url({{ file_url(title_bg_image_path) }});}
     </style>
   {% endif %}
     <div{{ page_title_attributes }} class="page-title-full-width-container" id="page-title-full-width-container">
