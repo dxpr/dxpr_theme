@@ -155,7 +155,9 @@
   {% block page_title %}
   {% if title_bg_image_path %}
     {% set title_bg_img_url = file_url(title_bg_image_path) %}
-    {% set page_title_attributes = create_attribute({'data-bg-img': title_bg_img_url}) %}
+    <style>
+      #page-title-full-width-container::after{ background-image:url({{ title_bg_img_url }});}
+    </style>
   {% endif %}
     <div{{ page_title_attributes }} class="page-title-full-width-container" id="page-title-full-width-container">
     {% set container = theme.settings.full_width_containers.cnt_page_title ? 'dxpr-theme-fluid' : 'container' %}
