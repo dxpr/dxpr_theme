@@ -3,8 +3,9 @@
 
 .full-screen-search-button {
   font-size: 18px;
-  text-decoration: none;
-  &:hover, &:focus {
+  &.btn-link,
+  &.btn-link:hover,
+  &.btn-link:focus {
     text-decoration: none;
   }
 }
