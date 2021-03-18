@@ -189,7 +189,7 @@ function dxpr_theme_font_list() {
  * Source: https://raw.githubusercontent.com/jonathantneal/google-fonts-complete/master/api-response.json.
  */
 function dxpr_theme_google_webfonts() {
-  $json_webfonts = file_get_contents(dirname(__FILE__) . '/google-webfonts.json');
+  $json_webfonts = file_get_contents(__DIR__ . '/google-webfonts.json');
   $webfonts = json_decode($json_webfonts);
   $fonts = [];
   foreach ($webfonts as $font_family) {
