@@ -2,6 +2,8 @@
   "name": "dxpr_theme",
   "version": "0.2.0",
   "devDependencies": {
+    "@babel/core": "^7.13.8",
+    "@babel/preset-env": "^7.12.11",
     "autoprefixer": "^9.6.1",
     "babel-eslint": "^8",
     "browserslist": "^4.7.0",
@@ -15,6 +17,7 @@
     "eslint-plugin-prettier": "^2",
     "eslint-plugin-react": "^7",
     "grunt": "^1.0.4",
+    "grunt-babel": "^8.0.0",
     "grunt-contrib-concat": "^1.0.1",
     "grunt-contrib-jshint": "^v2.0.0",
     "grunt-contrib-nodeunit": "^2.0.0 ",

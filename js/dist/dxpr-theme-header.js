@@ -4,7 +4,7 @@
  *
  * @see sass/styles.scss for more info
  */
-(function($, Drupal, window, document, undefined) {
+(function($, Drupal) {
   let dxpr_themeMenuState = "";
 
   // Create underscore debounce and throttle functions if they doesn't exist already
@@ -63,9 +63,8 @@
         return func.apply(this, args);
       };
     };
-    _.delay = restArgs(function (func, wait, args) {
-        setTimeout(function() {func.apply(null, args)}, wait);
-      }
+    _.delay = restArgs((func, wait, args) =>
+      setTimeout(() => func.apply(null, args), wait)
     );
 
     window._.throttle = function(func, wait, options) {
@@ -104,7 +103,7 @@
   }
 
   $(window).resize(
-    _.debounce(function() {
+    _.debounce(() => {
       if ($("#dxpr-theme-main-menu .menu").length > 0) {
         dxpr_themeMenuGovernorBodyClass();
         dxpr_themeMenuGovernor(document);
@@ -122,18 +121,18 @@
     !$(".dxpr-theme-header--overlay").length &&
     $(window).width() > navBreak
   ) {
-    var headerHeight = drupalSettings.dxpr_themeSettings;
+    var { headerHeight } = drupalSettings.dxpr_themeSettings;
     const headerScroll = drupalSettings.dxpr_themeSettings.headerOffset;
     let scroll = 0;
 
     if (headerHeight && headerScroll) {
       _.throttle(
-        $(window).scroll(function() {
+        $(window).scroll(() => {
           scroll = $(window).scrollTop();
           if (scroll >= headerScroll && scroll <= headerScroll * 2) {
             document.getElementsByClassName(
               "wrap-containers"
-            )[0].style.cssText = 'margin-top:' + headerHeight + 'px';
+            )[0].style.cssText = `margin-top:${+headerHeight}px`;
           } else if (scroll < headerScroll) {
             document.getElementsByClassName(
               "wrap-containers"
@@ -195,7 +194,7 @@
             })
             .find(".dropdown-menu >li")
             .css({
-              width: 100 / columns + '%'
+              width: `${100 / columns}%`
             });
         } else {
           const $this = $(this);
@@ -210,7 +209,7 @@
           // See https://github.com/twbs/bootstrap/issues/13477.
           const $topLevelItem = $this.parent();
           // Set timeout to let the rendering threads catch up.
-          setTimeout(function() {
+          setTimeout(() => {
             const delta = Math.round(
               bodyWidth -
                 $topLevelItem.offset().left -
@@ -219,7 +218,7 @@
             );
             // Only fix items that went out of screen.
             if (delta < 0) {
-              $this.css("left", delta + 'px');
+              $this.css("left", `${delta}px`);
             }
           }, 0);
         }
@@ -265,7 +264,7 @@
           if (drupalSettings.dxpr_themeSettings.secondHeaderSticky) {
             $("#navbar.dxpr-theme-header--overlay").css(
               "cssText",
-              'top:' + secHeaderRect.bottom + 'px !important;'
+              `top:${secHeaderRect.bottom}px !important;`
             );
             $("#secondary-header").addClass("dxpr-theme-secondary-header--sticky");
           } else {
@@ -341,7 +340,7 @@
       // mobile menu toggle
       $("#dxpr-theme-menu-toggle")
         .once("dxpr_themeMenuToggle")
-        .click(function() {
+        .click(() => {
           closeMenu();
         });
       $("#dxpr-theme-main-menu")
@@ -381,7 +380,7 @@
         var offset = 40 + lastBlockBottom;
         $(".dxpr-theme-header--side .menu__level").css(
           "height",
-          'calc(100vh - ' + offset + 'px)'
+          `calc(100vh - ${offset}px)`
         );
       } else if (
         $(".body--dxpr-theme-header-side").length > 0 &&
@@ -393,7 +392,7 @@
         var offset = 40 + brandingBottom;
         $(".dxpr-theme-header--side .menu__level").css(
           "height",
-          'calc(100vh - ' + offset + 'px)'
+          `calc(100vh - ${offset}px)`
         );
       }
       dxpr_themeMenuState = "side";
@@ -427,7 +426,7 @@
 
 
 
-  $(document).ready(function () {
+  $(document).ready(() => {
     if ($("#dxpr-theme-main-menu .menu").length > 0) {
       dxpr_themeMenuGovernorBodyClass();
       dxpr_themeMenuGovernor(document);
@@ -478,4 +477,4 @@
       rect1.top > rect2.bottom
     );
   }
-})(jQuery, Drupal, this, this.document);
+})(jQuery, Drupal);

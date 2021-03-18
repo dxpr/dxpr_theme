@@ -37,7 +37,7 @@
   };
 
   function extend(a, b) {
-    for (var key in b) {
+    for (const key in b) {
       if (b.hasOwnProperty(key)) {
         a[key] = b[key];
       }
@@ -71,7 +71,7 @@
     direction: "r2l",
     // callback: item that doesn´t have a submenu gets clicked
     // onItemClick([event], [inner HTML of the clicked item])
-    onItemClick: function(ev, itemName) {
+    onItemClick(ev, itemName) {
       return false;
     }
   };
@@ -80,8 +80,8 @@
     // iterate the existing menus and create an array of menus, more specifically an array of objects where each one holds the info of each menu element and its menu items
     this.menusArr = [];
     const self = this;
-    this.menus.forEach(function (menuEl, pos) {
-      const menu = { menuEl: menuEl, menuItems: [].slice.call(menuEl.children) };
+    this.menus.forEach((menuEl, pos) => {
+      const menu = { menuEl, menuItems: [].slice.call(menuEl.children) };
       self.menusArr.push(menu);
 
       // set current menu class
@@ -116,11 +116,11 @@
     const self = this;
 
     for (let i = 0, len = this.menusArr.length; i < len; ++i) {
-      this.menusArr[i].menuItems.forEach(function (item, pos) {
-        item.querySelector("a").addEventListener("click", function(ev) {
+      this.menusArr[i].menuItems.forEach((item, pos) => {
+        item.querySelector("a").addEventListener("click", ev => {
           const submenu = ev.target.getAttribute("data-submenu");
           const itemName = ev.target.innerHTML;
-          const subMenuEl = self.el.querySelector('ul[data-menu="' + submenu + '"]');
+          const subMenuEl = self.el.querySelector(`ul[data-menu="${submenu}"]`);
 
           // check if there's a sub menu for this item
           if (submenu && subMenuEl) {
@@ -147,7 +147,7 @@
 
     // back navigation
     if (this.options.backCtrl) {
-      this.backCtrl.addEventListener("click", function() {
+      this.backCtrl.addEventListener("click", () => {
         self._back();
       });
     }
@@ -198,12 +198,12 @@
     const isBackNavigation = typeof clickPosition == "undefined";
 
     // slide out current menu items - first, set the delays for the items
-    this.menusArr[this.current].menuItems.forEach(function (item, pos) {
+    this.menusArr[this.current].menuItems.forEach((item, pos) => {
       item.style.WebkitAnimationDelay = item.style.animationDelay = isBackNavigation
-        ? parseInt(pos * self.options.itemsDelayInterval) + 'ms'
-        : parseInt(
+        ? `${parseInt(pos * self.options.itemsDelayInterval)}ms`
+        : `${parseInt(
             Math.abs(clickPosition - pos) * self.options.itemsDelayInterval
-          ) + 'ms';
+          )}ms`;
     });
     // animation class
     if (this.options.direction === "r2l") {
@@ -231,12 +231,12 @@
     const nextMenuItemsTotal = nextMenuItems.length;
 
     // slide in next menu items - first, set the delays for the items
-    nextMenuItems.forEach(function (item, pos) {
+    nextMenuItems.forEach((item, pos) => {
       item.style.WebkitAnimationDelay = item.style.animationDelay = isBackNavigation
-        ? parseInt(pos * self.options.itemsDelayInterval) + 'ms'
-        : parseInt(
+        ? `${parseInt(pos * self.options.itemsDelayInterval)}ms`
+        : `${parseInt(
             Math.abs(clickPosition - pos) * self.options.itemsDelayInterval
-          ) + 'ms';
+          )}ms`;
 
       // we need to reset the classes once the last item animates in
       // the "last item" is the farthest from the clicked item
@@ -247,7 +247,7 @@
           : 0;
 
       if (pos === farthestIdx) {
-        onEndAnimation(item, function () {
+        onEndAnimation(item, () => {
           // reset classes
           if (self.options.direction === "r2l") {
             classie.remove(
@@ -320,7 +320,7 @@
     this.breadcrumbsCtrl.appendChild(bc);
 
     const self = this;
-    bc.addEventListener("click", function(ev) {
+    bc.addEventListener("click", ev => {
       ev.preventDefault();
 
       // do nothing if this breadcrumb is the last one in the list of breadcrumbs
