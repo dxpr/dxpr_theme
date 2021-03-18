@@ -98,13 +98,14 @@
         return func.apply(this, args);
       };
     };
-    _.delay = restArgs((func, wait, args) =>
-      setTimeout(() => func.apply(null, args), wait)
+    _.delay = restArgs(function (func, wait, args) {
+        setTimeout(function() {func.apply(null, args)}, wait);
+      }
     );
   }
 
   $(window).resize(
-    _.debounce(() => {
+    _.debounce(function() {
       if ($("#dxpr-theme-main-menu .menu").length > 0) {
         dxpr_themeMenuGovernorBodyClass();
         dxpr_themeMenuGovernor(document);
@@ -119,7 +120,7 @@
     }, 50)
   );
 
-  $(document).ready(() => {
+  $(document).ready(function() {
     const navBreak =
       "dxpr_themeNavBreakpoint" in window ? window.dxpr_themeNavBreakpoint : 1200;
     if (
@@ -127,18 +128,18 @@
       !$(".dxpr-theme-header--overlay").length &&
       $(window).width() > navBreak
     ) {
-      const { headerHeight } = Drupal.settings.dxpr_theme;
+      const headerHeight = Drupal.settings.dxpr_theme;
       const headerScroll = Drupal.settings.dxpr_theme.headerOffset;
       let scroll = 0;
 
       if (headerHeight && headerScroll) {
         _.throttle(
-          $(window).scroll(() => {
+          $(window).scroll(function() {
             scroll = $(window).scrollTop();
             if (scroll >= headerScroll && scroll <= headerScroll * 2) {
               document.getElementsByClassName(
                 "wrap-containers"
-              )[0].style.cssText = `margin-top:${+headerHeight}px`;
+              )[0].style.cssText = 'margin-top:' + headerHeight + 'px';
             } else if (scroll < headerScroll) {
               document.getElementsByClassName(
                 "wrap-containers"
@@ -201,7 +202,7 @@
             })
             .find(".dropdown-menu >li")
             .css({
-              width: `${100 / columns}%`
+              width: 100 / columns + '%'
             });
         } else {
           const $this = $(this);
@@ -216,7 +217,7 @@
           // See https://github.com/twbs/bootstrap/issues/13477.
           const $topLevelItem = $this.parent();
           // Set timeout to let the rendering threads catch up.
-          setTimeout(() => {
+          setTimeout(function() {
             const delta = Math.round(
               bodyWidth -
                 $topLevelItem.offset().left -
@@ -225,7 +226,7 @@
             );
             // Only fix items that went out of screen.
             if (delta < 0) {
-              $this.css("left", `${delta}px`);
+              $this.css("left", delta + 'px');
             }
           }, 0);
         }
@@ -271,7 +272,7 @@
           if (Drupal.settings.dxpr_theme.headerOffset) {
             $("#navbar.dxpr-theme-header--overlay").css(
               "cssText",
-              `top:${secHeaderRect.bottom}px !important;`
+              'top:' + secHeaderRect.bottom + 'px !important;'
             );
             $("#secondary-header").addClass("dxpr-theme-secondary-header--sticky");
           } else {
@@ -347,7 +348,7 @@
       // mobile menu toggle
       $("#dxpr-theme-menu-toggle")
         .once("dxpr_themeMenuToggle")
-        .click(() => {
+        .click(function() {
           closeMenu();
         });
       $("#dxpr-theme-main-menu")
@@ -387,7 +388,7 @@
         var offset = 40 + lastBlockBottom;
         $(".dxpr-theme-header--side .menu__level").css(
           "height",
-          `calc(100vh - ${offset}px)`
+          'calc(100vh - ' + offset + 'px)'
         );
       } else if (
         $(".body--dxpr-theme-header-side").length > 0 &&
@@ -399,7 +400,7 @@
         var offset = 40 + brandingBottom;
         $(".dxpr-theme-header--side .menu__level").css(
           "height",
-          `calc(100vh - ${offset}px)`
+          'calc(100vh - ' + offset + 'px)'
         );
       }
       dxpr_themeMenuState = "side";
@@ -407,7 +408,7 @@
   }
 
   // Fixed header on mobile on tablet
-  $(document).ready(() => {
+  $(document).ready(function () {
     const headerHeight = Drupal.settings.dxpr_theme.headerMobileHeight;
     const headerFixed = Drupal.settings.dxpr_theme.headerMobileFixed;
     const toolbarHeight = $("#toolbar").height();
@@ -422,7 +423,7 @@
       if ($(window).width() <= 767) {
         document.getElementsByClassName(
           "wrap-containers"
-        )[0].style.cssText = `margin-top:${+headerHeight}px`;
+        )[0].style.cssText = 'margin-top:' + headerHeight + 'px';
       } else {
         document.getElementsByClassName("wrap-containers")[0].style.cssText =
           "margin-top:0";
