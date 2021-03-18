@@ -164,6 +164,7 @@ function dxpr_theme_form_system_theme_settings_validate(&$form, &$form_state) {
  */
 function dxpr_theme_form_system_theme_settings_submit(&$form, &$form_state) {
   // If the user uploaded a new image, save it to a permanent location.
+  /** @var FileSystemInterface $file_system */
   $file_system = \Drupal::service('file_system');
   $directory = 'public://dxpr_theme/images/';
 
@@ -340,7 +341,7 @@ function _dxpr_theme_validate_path($path) {
     return $path;
   }
   // Prepend 'public://' for relative file paths within public filesystem.
-  if (\Drupal::service('file_system')->uriScheme($path) === FALSE) {
+  if (\Drupal::service('stream_wrapper_manager')->getScheme($path) === FALSE) {
     $path = 'public://' . $path;
   }
   if (is_file($path)) {
