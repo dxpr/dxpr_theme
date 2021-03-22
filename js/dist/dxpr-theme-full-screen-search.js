@@ -4,7 +4,7 @@
  *
  * @see sass/styles.scss for more info
  */
-(function($, Drupal, window, document, undefined) {
+(function($, Drupal) {
   Drupal.behaviors.fullScreenSearch = {
     attach(context, settings) {
       function clearSearchForm() {
@@ -34,4 +34,4 @@
         });
     }
   };
-})(jQuery, Drupal, this, this.document);
+})(jQuery, Drupal);

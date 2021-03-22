@@ -4,7 +4,7 @@
  *
  * @see sass/styles.scss for more info
  */
-(function($, Drupal, window, document, undefined) {
+(function($, Drupal) {
   let dxpr_themeMenuState = "";
 
   // Create underscore debounce and throttle functions if they doesn't exist already
@@ -477,4 +477,4 @@
       rect1.top > rect2.bottom
     );
   }
-})(jQuery, Drupal, this, this.document);
+})(jQuery, Drupal);

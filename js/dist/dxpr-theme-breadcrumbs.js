@@ -4,7 +4,7 @@
  *
  * @see sass/styles.scss for more info
  */
-(function($, Drupal, window, document, undefined) {
+(function($, Drupal) {
   Drupal.behaviors.dxpr_theme_breadcrumbs = {
     attach(context, settings) {
       // Breadcrumbs
@@ -22,4 +22,4 @@
       }
     }
   };
-})(jQuery, Drupal, this, this.document);
+})(jQuery, Drupal);
