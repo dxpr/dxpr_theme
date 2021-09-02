@@ -138,7 +138,7 @@ function dxpr_theme_preprocess_html(&$variables) {
     $variables['#attached']['drupalSettings']['dxpr_themeSettings']['headerMobileHeight'] = $header_mobile_height;
   }
 
-  if ($header_menu_direction = theme_get_setting('header_side_direction')) {
+  if ($header_menu_direction = ((theme_get_setting('header_side_direction') !== NULL)) ? theme_get_setting('header_side_direction') : 'left') {
     $variables['#attached']['drupalSettings']['dxpr_themeSettings']['headerSideDirection'] = $header_menu_direction;
   }
 
