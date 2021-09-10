@@ -59,7 +59,7 @@ jobs:
         docker-compose up --exit-code-from dev dev
 
         BRANCH_NAME=$(echo ${GITHUB_REF} | sed -e "s/refs\/heads\///g")
-        echo "::set-env name=BRANCH_NAME::$BRANCH_NAME"
+        echo "BRANCH_NAME=$BRANCH_NAME" >> $GITHUB_ENV
 
       # only on feature branch (not on tag)
     - name: Git commit files
