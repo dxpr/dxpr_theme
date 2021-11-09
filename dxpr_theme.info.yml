@@ -2,7 +2,7 @@ type: theme
 core_version_requirement: ^8 || ^9
 base theme: bootstrap
 
-name: 'DXPR Theme'
+name: 'DXPR Theme -'
 description: 'Low code framework theme by DXPR.'
 package: DXPR
 
