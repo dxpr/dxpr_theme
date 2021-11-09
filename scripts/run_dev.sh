@@ -1,20 +1,19 @@
 #!/bin/bash
 
+set -euxo pipefail
+
 rm -rf .build-done || true
 
-npm install -g grunt
+[ ! -f "$NPM_INSTALL_STAMP" ] && { npm install; npm rebuild node-sass; touch "$NPM_INSTALL_STAMP"; }
 
-npm install
-npm rebuild node-sass
-
-grunt babel
-grunt terser
-grunt sass
-grunt postcss
+npx grunt babel
+npx grunt terser
+npx grunt sass
+npx grunt postcss
 
 touch .build-done
 
 
 if [ "$WATCH" = 'true' ]; then
-  grunt watch
+  npx grunt watch
 fi

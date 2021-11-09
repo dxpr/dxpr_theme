@@ -2,6 +2,9 @@ name: CI
 
 on:
   push:
+    branches:
+      - '1.x'
+
 
 env:
   TARGET_DRUPAL_CORE_VERSION: 8
@@ -17,7 +20,7 @@ jobs:
 
     - name: Lint Drupal
       run: |
-        TARGET_DRUPAL_CORE_VERSION=$TARGET_DRUPAL_CORE_VERSION docker-compose up --exit-code-from drupal-lint drupal-lint
+        TARGET_DRUPAL_CORE_VERSION=$TARGET_DRUPAL_CORE_VERSION docker-compose run --rm drupal-lint
 
   drupal-check:
     runs-on: ubuntu-latest
@@ -39,8 +42,7 @@ jobs:
 
     - name: Lint with eslint
       run: |
-        docker-compose up dev
-        REPORT_ENABLED=true docker-compose up eslint
+        REPORT_ENABLED=true docker-compose run --rm eslint
 
     - name: Archive eslint html report
       uses: actions/upload-artifact@v1
@@ -56,7 +58,7 @@ jobs:
 
     - name: Build artifacts
       run: |
-        docker-compose up --exit-code-from dev dev
+        docker-compose run --rm dev
 
         BRANCH_NAME=$(echo ${GITHUB_REF} | sed -e "s/refs\/heads\///g")
         echo "BRANCH_NAME=$BRANCH_NAME" >> $GITHUB_ENV

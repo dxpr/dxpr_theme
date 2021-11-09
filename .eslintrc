@@ -15,7 +15,10 @@
     "Backbone": true,
     "Modernizr": true,
     "CKEDITOR": true,
-    "WOW": true
+    "WOW": true,
+    "bootstrapVersion": true,
+    "isElementHidden": true,
+    "getBootstrapBreakPoints": true
   },
   "rules": {
     "camelcase": 0,
@@ -32,6 +35,11 @@
     "no-underscore-dangle": 0,
     "no-unused-vars": [2, {"vars": "local", "args": "none"}],
     "no-use-before-define": 2,
-    "strict": 0
+    "strict": 0,
+    "no-plusplus": 0,
+    "no-restricted-properties": [0, {
+      "object": "window",
+      "property": "isNaN"
+    }]
   }
 }

@@ -1,4 +1,6 @@
 module.exports = function(grunt) {
+  const sass = require('node-sass');
+
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     babel: {
@@ -34,6 +36,7 @@ module.exports = function(grunt) {
     },
     sass: {
       options: {
+        implementation: sass,
         sourceMap: false,
         outputStyle:'compressed'
       },
