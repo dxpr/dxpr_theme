@@ -14,7 +14,7 @@ jobs:
 
     - name: Lint Drupal
       run: |
-        TARGET_DRUPAL_CORE_VERSION=$TARGET_DRUPAL_CORE_VERSION docker-compose up --exit-code-from drupal-lint drupal-lint
+        TARGET_DRUPAL_CORE_VERSION=$TARGET_DRUPAL_CORE_VERSION docker-compose run --rm drupal-lint
 
   # eslint:
   #   runs-on: ubuntu-latest
