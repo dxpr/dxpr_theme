@@ -75,3 +75,15 @@ $ docker-compose up drupal-check
 $ docker-compose run --rm drupal-check
 ```
 ```
+
+### Using our Demo sites
+
+You can use one of three demo sites to save time in settings up a Drupal site with DXPR and using its features: dxpr_basic_demo, dxpr_qa_demo, and dxpr_logistics_demo. The Logistics Demo is the best showcase of DXPR Theme because it makes use of more of its theme settings.
+
+For instruction setting up these demo sites see here: 
+
+https://github.com/dxpr/lightning_dxpr_project
+
+I also made a full demo video of the steps to install lightning_dxpr locally:
+
+https://www.youtube.com/watch?v=AYEIkdiWuC4
