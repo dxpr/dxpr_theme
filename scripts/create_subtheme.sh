@@ -34,12 +34,12 @@ if [ -z "${CUSTOM_DXPR_THEME}" ]; then
   exit
 fi
 
-if [[ ! -e ../../custom ]]; then
-  mkdir ../../custom
+if [[ ! -e $(dirname "$(dirname $PWD)")/custom ]]; then
+  mkdir $(dirname "$(dirname $PWD)")/custom
 fi
 
-cd ../../custom
-cp -r ../contrib/dxpr_theme/dxpr_theme_STARTERKIT $CUSTOM_DXPR_THEME
+cd $(dirname "$(dirname $PWD)")/custom
+cp -r $(dirname $PWD)/contrib/dxpr_theme/dxpr_theme_STARTERKIT $CUSTOM_DXPR_THEME
 cd $CUSTOM_DXPR_THEME
 for file in *dxpr_theme_STARTERKIT.*; do mv $file ${file//dxpr_theme_STARTERKIT/$CUSTOM_DXPR_THEME}; done
 for file in config/*/*dxpr_theme_STARTERKIT.*; do mv $file ${file//dxpr_theme_STARTERKIT/$CUSTOM_DXPR_THEME}; done
