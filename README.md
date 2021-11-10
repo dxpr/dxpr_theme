@@ -94,4 +94,4 @@ https://www.youtube.com/watch?v=AYEIkdiWuC4
 
 #### Video demo of your local site over from QA to Logistics demo
 
-@todo
+https://www.youtube.com/watch?v=_NnUTFC39n4
