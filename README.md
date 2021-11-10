@@ -74,7 +74,6 @@ $ docker-compose up drupal-check
 # or
 $ docker-compose run --rm drupal-check
 ```
-```
 
 ### Using our Demo sites
 
