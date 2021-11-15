@@ -105,6 +105,7 @@ EOT;
  *
  * @return string
  *   The font stack string.
+ *
  * @see font_list()
  */
 function _dxpr_theme_font_stack($font = 'helvetica') {

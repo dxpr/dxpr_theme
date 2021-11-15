@@ -436,7 +436,7 @@ function header_theme_settings(array &$form, $theme) {
     ],
   ];
 
-  $form['dxpr_theme_settings']['header']['header_side']['hamburger_menu'] =[
+  $form['dxpr_theme_settings']['header']['header_side']['hamburger_menu'] = [
     '#type' => 'radios',
     '#title' => t('Hamburger Menu'),
     '#description' => t('Hamburger menu.'),

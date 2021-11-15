@@ -164,11 +164,12 @@ function dxpr_theme_form_system_theme_settings_validate(&$form, &$form_state) {
  */
 function dxpr_theme_form_system_theme_settings_submit(&$form, &$form_state) {
   // If the user uploaded a new image, save it to a permanent location.
-  /** @var FileSystemInterface $file_system */
+  /** @var \Drupal\Core\File\FileSystemInterface $file_system */
   $file_system = \Drupal::service('file_system');
   $directory = 'public://dxpr_theme/images/';
 
-  // Create dxpr_theme/images directory at the public folder if it doesn't exist.
+  // Create dxpr_theme/images directory at the public folder
+  // if it doesn't exist.
   try {
     $file_system->prepareDirectory($directory, FileSystemInterface::CREATE_DIRECTORY);
   }
@@ -362,9 +363,8 @@ function dxpr_theme_form_system_theme_settings_after_submit(&$form, &$form_state
 
   $build_info = $form_state->getBuildInfo();
   $subject_theme = $build_info['args'][0];
-  //It is needed to clear the theme cache.
+  // It is needed to clear the theme cache.
   $theme_cache =&drupal_static('theme_get_setting', []);
   $theme_cache = [];
   dxpr_theme_css_cache_build($subject_theme);
 }
-

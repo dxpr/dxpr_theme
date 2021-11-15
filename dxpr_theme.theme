@@ -43,7 +43,10 @@ function dxpr_theme_library_info_alter(&$libraries, $extension) {
     $current_theme = \Drupal::service('theme.manager')->getActiveTheme()->getName();
     $key = 'public://dxpr_theme/css/themesettings-' . $current_theme . '.css';
     if (\Drupal::service('file_system')->realpath($key)) {
-      $libraries['global-styling']['css']['theme'][$key] = ['minified' => FALSE, 'weight' => 5];
+      $libraries['global-styling']['css']['theme'][$key] = [
+        'minified' => FALSE,
+        'weight' => 5,
+      ];
     }
     // Subthemes dxpr_theme.css.
     if ($current_theme !== 'dxpr_theme') {
@@ -197,18 +200,18 @@ function dxpr_theme_preprocess_page(&$variables) {
     // Bootstrap TAILORING.
     'dxpr_theme/bootstrap-3',
     'dxpr_theme/bootstrap-theme',
-  // TODO: include only if needed.
+  // @todo include only if needed.
     'dxpr_theme/jquery-ui',
     // DXPR THEME BASE.
     'dxpr_theme/forms',
     'dxpr_theme/layout',
     'dxpr_theme/page-title',
     'dxpr_theme/typography',
-    // DXPR THEME Components  //TODO: include only if needed.
+    // DXPR THEME Components  //@todo: include only if needed.
     'dxpr_theme/dxpr-theme-header--side',
     'dxpr_theme/pager-prevnext',
     'dxpr_theme/admin',
-    // Overrides   //TODO: include only if needed.
+    // Overrides   //@todo: include only if needed.
     'dxpr_theme/drupal-webform',
     'dxpr_theme/dxpr-theme-builder',
     // HELPERS.
