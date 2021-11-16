@@ -8,7 +8,6 @@
 use Drupal\Core\Asset\CssOptimizer;
 use Drupal\Core\File\FileSystemInterface;
 
-
 /**
  * Helper function returns path of css cache file.
  *
@@ -21,6 +20,7 @@ use Drupal\Core\File\FileSystemInterface;
 function _dxpr_theme_css_cache_file($theme) {
   return 'public://dxpr_theme/css/themesettings-' . $theme . '.css';
 }
+
 /**
  * Write css files for the color settings.
  *
@@ -107,7 +107,11 @@ function dxpr_theme_color_module_css_write($theme) {
       $css_optimizer->rewriteFileURIBasePath = base_path() . dirname($paths['source'] . $file) . '/';
 
       // Prefix all paths within this CSS file, ignoring absolute paths.
-      $style = preg_replace_callback('/url\([\'"]?(?![a-z]+:|\/+)([^\'")]+)[\'"]?\)/i', [$css_optimizer, 'rewriteFileURI'], $style);
+      $style = preg_replace_callback(
+          '/url\([\'"]?(?![a-z]+:|\/+)([^\'")]+)[\'"]?\)/i',
+          [$css_optimizer, 'rewriteFileURI'],
+          $style
+      );
 
       // Rewrite stylesheet with new colors.
       $style = _color_rewrite_stylesheet($theme, $info, $paths, $palette, $style);

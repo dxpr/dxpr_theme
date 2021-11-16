@@ -103,7 +103,7 @@ function _dxpr_theme_add_local_font($font, array &$variables) {
  * @param array $variables
  *   Variables array.
  */
-function _dxpr_theme_add_local_font_preload_link($path, $font_family, &$variables) {
+function _dxpr_theme_add_local_font_preload_link($path, $font_family, array $variables) {
   $font_families = _dxpr_theme_add_local_font_parse_font_families($path);
   if (!empty($font_families[$font_family])) {
     $element = [
@@ -117,15 +117,19 @@ function _dxpr_theme_add_local_font_preload_link($path, $font_family, &$variable
         'crossorigin' => TRUE,
       ],
     ];
-    $variables['#attached']['html_head'][] = [$element, $font_family . '_preload'];
+    $variables['#attached']['html_head'][] = [
+      $element,
+      $font_family . '_preload',
+    ];
   }
 }
 
 /**
  * Parse stylesheet file to fetch font files url and format.
  *
- * @param $path
+ * @param string $path
  *   Path to the fonts stylesheet file.
+ *
  * @return array
  *   Array of the parsed data for the provided stylesheet file.
  */
