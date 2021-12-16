@@ -6,7 +6,7 @@ EXIT_CODE=0
 
 phpcs --standard=Drupal \
   --extensions=php,module,inc,install,test,profile,theme,info,txt,md,yml \
-  --ignore="node_modules,vendor" \
+  --ignore="node_modules,vendor,.github" \
   -v \
   .
 
@@ -18,7 +18,7 @@ fi
 
 phpcs --standard=DrupalPractice \
   --extensions=php,module,inc,install,test,profile,theme,info,txt,md,yml \
-  --ignore="node_modules,vendor" \
+  --ignore="node_modules,vendor,.github" \
   -v \
   .
 
