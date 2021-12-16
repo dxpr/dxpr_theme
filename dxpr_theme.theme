@@ -59,7 +59,6 @@ function dxpr_theme_library_info_alter(&$libraries, $extension) {
 
 /**
  * Prepares variables for the all templates. Theme settings.
- *
  */
 function dxpr_theme_preprocess(&$variables, $hook, $info) {
   $theme = \Drupal::theme()
