@@ -9,6 +9,11 @@
     .dxpr-theme-main-menu {
       height: 100px;
       position: relative;
+      a.dropdown-toggle:after {
+        margin: 0;
+        border: none;
+        vertical-align: baseline;
+      }
       &.dxpr-theme-menu--has-children {
         a.dropdown-toggle:after {
           content: "﹀";
@@ -17,9 +22,6 @@
           top: 3px;
           left: 5px;
           font-size: 12px;
-          margin: 0;
-          border: none;
-          vertical-align: baseline;
         }
       }
     }
