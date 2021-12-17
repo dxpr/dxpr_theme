@@ -166,7 +166,6 @@ function dxpr_theme_preprocess_html(&$variables) {
  * Implements template_preprocess_page()
  */
 function dxpr_theme_preprocess_page(&$variables) {
-  // Navbar attributes.
   $variables['navbar_attributes'] = [
     'class' => ['navbar'],
     'id' => ['navbar'],
@@ -174,7 +173,6 @@ function dxpr_theme_preprocess_page(&$variables) {
   ];
   $variables['navbar_attributes'] = new Attribute($variables['navbar_attributes']);
 
-  // Hiding regions.
   $hide_regions = $local_hide = [];
   if (theme_get_setting('hidden_regions') && !empty(array_keys(array_filter(theme_get_setting('hidden_regions'))))) {
     $hide_regions = array_keys(array_filter(theme_get_setting('hidden_regions')));
