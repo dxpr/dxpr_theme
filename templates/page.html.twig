@@ -112,7 +112,7 @@
     {% endif %}
     {% set hamburger_menu = theme.settings.hamburger_menu ? theme.settings.hamburger_menu : 'three-dash' %}
 
-    <header{{ navbar_attributes }} id="navbar" role="banner">
+    <header{{ navbar_attributes }}>
       {% set container = theme.settings.full_width_containers.cnt_header_nav ? 'dxpr-theme-fluid' : 'container' %}
       <div class="{{ container }} navbar-container">
         {% if not theme.settings.full_width_containers.cnt_header_nav%}
