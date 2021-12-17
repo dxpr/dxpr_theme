@@ -18,6 +18,7 @@
 }
   // DXPR Theme Header Defaults across all layouts
 .dxpr-theme-header {
+  display: block;
   z-index: 4050;
   border: none;
   border-radius: 0;
@@ -42,6 +43,7 @@
   .nav {
     margin-left: 0;
     margin-right: 0;
+    display: block;
   }
   // override bootstrap styling
   background: $header-color;
@@ -96,6 +98,7 @@
     border-top-right-radius: 0;
     margin-top: 0;
     border: none;
+    position: absolute;
     ul { padding-left: 0; }
     li {
       list-style: none;

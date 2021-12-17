@@ -17,6 +17,9 @@
           top: 3px;
           left: 5px;
           font-size: 12px;
+          margin: 0;
+          border: none;
+          vertical-align: baseline;
         }
       }
     }
@@ -190,8 +193,7 @@
         display: table-cell;
         vertical-align: middle;
         height: 100px;
-        padding-top: 0;
-        padding-bottom: 0;
+        padding: 0 15px 0 15px;
       }
       .dropdown-menu li {
         width: 100%;
