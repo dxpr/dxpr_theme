@@ -23,6 +23,7 @@
   border: none;
   border-radius: 0;
   min-height: 0;
+  padding: 0;
   a {
     cursor: pointer; // for "nolink" <a> tags
     outline: none;
@@ -73,6 +74,11 @@
       &:focus {
         background: transparent;
       }
+    }
+    a.dropdown-toggle:after {
+      margin: 0;
+      border: none;
+      vertical-align: baseline;
     }
   }
   .navbar-header {
