@@ -94,7 +94,7 @@
     {% else %}
       {%
         set navbar_classes = [
-          'navbar dxpr-theme-header',
+          'navbar dxpr-theme-header clearfix',
           theme.settings.header_position ? 'dxpr-theme-header--side' : 'dxpr-theme-header--top',
           theme.settings.navbar_position ? 'navbar-is-' ~ theme.settings.navbar_position,
           theme.settings.header_top_layout ? 'dxpr-theme-header--' ~ theme.settings.header_top_layout|clean_class,
