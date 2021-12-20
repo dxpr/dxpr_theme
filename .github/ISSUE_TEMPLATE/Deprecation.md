@@ -2,7 +2,7 @@
 name: Deprecation
 about: Use this template to propose deprecation of a feature.
 title: "Deprecation: FEATURE TO BE DEPRECATED"
-labels: 1.x,deprecation,documentation
+labels: 2.x,deprecation,documentation
 ---
 
 <!-- Use this template as a starting point for deprecations. -->

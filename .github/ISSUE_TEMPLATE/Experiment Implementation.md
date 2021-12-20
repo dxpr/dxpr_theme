@@ -2,7 +2,7 @@
 name: Experiment Implementation
 about: Use this template propose experiment implementations.
 title: "Experiment Implementation: {EXPERIMENT IDEA ISSUE NUMBER AND TITLE}"
-labels: 1.x,experiment,experiment implementation
+labels: 2.x,experiment,experiment implementation
 ---
 
 # Experiment Summary
