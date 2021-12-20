@@ -43,7 +43,7 @@ services:
 
 
   drupal-lint:
-    image: ${COMPOSER_IMAGE:-composer:1.9}
+    image: ${COMPOSER_IMAGE:-composer:2.1}
     working_dir: /src
     command: bash -c "./scripts/run_drupal-lint.sh"
     environment:
@@ -53,7 +53,7 @@ services:
 
 
   drupal-lint-auto-fix:
-    image: ${COMPOSER_IMAGE:-composer:1.9}
+    image: ${COMPOSER_IMAGE:-composer:2.1}
     working_dir: /src
     command: bash -c "./scripts/run_drupal-lint-auto-fix.sh"
     environment:
@@ -62,7 +62,7 @@ services:
       - .:/src
 
   drupal-check:
-    image: ${COMPOSER_IMAGE:-composer:1.9}
+    image: ${COMPOSER_IMAGE:-composer:2.1}
     working_dir: /
     command: bash -c "/src/scripts/run_drupal-check.sh"
     tty: true

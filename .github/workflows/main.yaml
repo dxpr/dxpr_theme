@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - '1.x'
-
+      - '2.x'
 
 env:
   TARGET_DRUPAL_CORE_VERSION: 8
