@@ -6,6 +6,10 @@ https://app.sooperthemes.com/hc/documentation
 For development documentation and support please check:
 https://app.sooperthemes.com/hc/documentation/internal
 
+## Contributing Guidelines
+
+Before you write any code for this project please also check https://github.com/dxpr/dxpr_maven/blob/main/CONTRIBUTING.md
+
 ## [WARNING2] Save theme settings form after updating theme CSS
 
 Because DXPR Theme integrates with the color module, changes to its CSS may not
