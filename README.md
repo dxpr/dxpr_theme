@@ -6,13 +6,6 @@ https://app.sooperthemes.com/hc/documentation
 For development documentation and support please check:
 https://app.sooperthemes.com/hc/documentation/internal
 
-
-## [WARNING] Don't push the built artifact files
-
-Artifact (.ccs, min.js etc.) files are built and published automatically
-by CI/CD (Github Actions), so don't push these
-changes to the repo manually, they will be re-written anyway.
-
 ## [WARNING2] Save theme settings form after updating theme CSS
 
 Because DXPR Theme integrates with the color module, changes to its CSS may not
