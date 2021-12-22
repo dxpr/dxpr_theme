@@ -18,7 +18,7 @@ function dxpr_theme_form_system_theme_settings_alter(&$form, &$form_state, $form
   // A bug in D7 and D8 causes the theme to load twice.
   // Only the second time $form
   // will contain the color module data. So we ignore the first
-  // @see https://www.drupal.org/node/943212
+  // @see https://www.drupal.org/project/drupal/issues/943212#comment-12102383
   // form_id is only present the second time around.
   if (!isset($form_id)) {
     return;
