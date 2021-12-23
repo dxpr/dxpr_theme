@@ -4,16 +4,15 @@ Contributing guidelines
 ### Git workflow
 
 1. Every pull request must be linked to an issue, no exceptions
-2. Make sure you're familiar with our 
-3. Ensure your branch contains logical [atomic commits](https://www.pauline-vos.nl/atomic-commits/) 
-4. Write commit messages following the [alphagov Git styleguide](https://github.com/alphagov/styleguides/blob/master/git.md)
-5. Pull requests must contain a short description of your solution
-6. Branch naming convention: person/target-branch/#issue-description-of-branch
+2. Ensure your branch contains logical [atomic commits](https://www.pauline-vos.nl/atomic-commits/) 
+3. Write commit messages following the [alphagov Git styleguide](https://github.com/alphagov/styleguides/blob/master/git.md)
+4. Pull requests must contain a short description of your solution
+5. Branch naming convention: person/target-branch/#issue-description-of-branch
     1. person — The name of the owner of the branch. For example Jur, Rokaya, Shaaer, Denis, etc.
     2. main-branch — A reference to the target branch you want to merge into
     3. #issue — Every branch must be linked to a GitHub issue. Enter the issue number here.
     4. description-of-branch — Describe what's inside, for example" fix-for-jumping-controls-bug or new-icon-set-for-parameter-definition.
-7. Artifacts (min.js etc.) files are built and published automatically by CI/CD (Github Actions), so don't push these changes to the repo manually.
+6. Artifacts (min.js etc.) files are built and published automatically by CI/CD (Github Actions), so don't push these changes to the repo manually.
 
 ### Coding Standards
 
