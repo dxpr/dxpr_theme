@@ -14,6 +14,10 @@ Contributing guidelines
     4. description-of-branch — Describe what's inside, for example" fix-for-jumping-controls-bug or new-icon-set-for-parameter-definition.
 6. Artifacts (min.js etc.) files are built and published automatically by CI/CD (Github Actions), so don't push these changes to the repo manually.
 
+### Code ownership
+
+@jjroelofs is the code owner in this repository and no pull requests can be merged without his review
+
 ### Coding Standards
 
 1. [Drupal coding standards](https://www.drupal.org/docs/develop/standards)
