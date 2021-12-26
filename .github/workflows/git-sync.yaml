@@ -1,0 +1,41 @@
+name: Git Sync
+
+on:
+  push:
+
+jobs:
+  git-sync:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: set default settings
+        id: set_default_settings
+        run: |
+          source ./scripts/ci-set-default.sh
+        env:
+          GIT_SYNC_ENABLED: ${{ secrets.GIT_SYNC_ENABLED }}
+          SOURCE_REPO: ${{ secrets.SOURCE_REPO }}
+          DESTINATION_REPO: ${{ secrets.DESTINATION_REPO }}
+
+      - name: git force sync branches
+        uses: wei/git-sync@v3
+        if: steps.set_default_settings.outputs.git_sync_enabled == 'true'
+        with:
+          # force push all branches from source repo to the destination repo
+          source_repo: ${{ steps.set_default_settings.outputs.source_repo }}
+          source_branch: "refs/remotes/source/*"
+          destination_repo: ${{ steps.set_default_settings.outputs.destination_repo }}
+          destination_branch: "refs/heads/*"
+          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: git force sync tags
+        uses: wei/git-sync@v3
+        if: steps.set_default_settings.outputs.git_sync_enabled == 'true'
+        with:
+          # force push all branches from source repo to the destination repo
+          source_repo: ${{ steps.set_default_settings.outputs.source_repo }}
+          source_branch: "refs/tags/*"
+          destination_repo: ${{ steps.set_default_settings.outputs.destination_repo }}
+          destination_branch: "refs/tags/*"
+          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
