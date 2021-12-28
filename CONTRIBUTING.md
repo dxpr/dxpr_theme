@@ -12,7 +12,7 @@ Contributing guidelines
     2. main-branch — A reference to the target branch you want to merge into
     3. #issue — Every branch must be linked to a GitHub issue. Enter the issue number here.
     4. description-of-branch — Describe what's inside, for example" fix-for-jumping-controls-bug or new-icon-set-for-parameter-definition.
-6. Artifacts (min.js etc.) files are built and published automatically by CI/CD (Github Actions), so don't push these changes to the repo manually.
+6. Unlike in dxpr_builder repository, we do push artifacts (.css files etc) to the repository here. This is because DXPR Theme is released on Drupal.org, and Drupal.org does not provide the ability to run our Docker scripts to create artifacts on the fly.
 
 ### Code ownership
 
