@@ -4,7 +4,7 @@ Contributing guidelines
 ### Git workflow
 
 1. Every pull request must be linked to an issue, no exceptions
-2. Ensure your branch contains logical [atomic commits](https://www.pauline-vos.nl/atomic-commits/) 
+2. Ensure your branch contains logical [atomic commits](https://www.pauline-vos.nl/atomic-commits/)
 3. Write commit messages following the [alphagov Git styleguide](https://github.com/alphagov/styleguides/blob/master/git.md)
 4. Pull requests must contain a short description of your solution
 5. Branch naming convention: person/target-branch/#issue-description-of-branch
@@ -25,4 +25,3 @@ Contributing guidelines
 3. Compatibility with PHP [7.1 and higher](https://github.com/dxpr/dxpr_builder/blob/1.x/scripts/run_drupal-lint.sh#L9)
 
 Coding standards are automatically checked when you create a Pull Request. You can run code linters locally as well using instructions here: https://github.com/dxpr/dxpr_theme/blob/2.x/README.md#how-to-run-eslint-check
-
