@@ -13,6 +13,7 @@ Contributing guidelines
     3. #issue — Every branch must be linked to a GitHub issue. Enter the issue number here.
     4. description-of-branch — Describe what's inside, for example" fix-for-jumping-controls-bug or new-icon-set-for-parameter-definition.
 6. Unlike in dxpr_builder repository, we do push artifacts (.css files etc) to the repository here. This is because DXPR Theme is released on Drupal.org, and Drupal.org does not provide the ability to run our Docker scripts to create artifacts on the fly.
+7. If the issue defines a "Scope of affected files" do not include changes to files not in this list unless absolutely necessary. When you do this you must explain why. 
 
 ### Code ownership
 
