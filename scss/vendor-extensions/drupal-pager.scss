@@ -16,7 +16,6 @@
       opacity: 0.6;
       padding: 1em 1.4em;
       border: 1px solid $silver;
-      font-size: 12px;
       &:hover,
       &:focus {
         color: $gray-light;
@@ -62,6 +61,12 @@
     }
   }
 
+}
+
+.pagination-sm {
+  .nav-link {
+    font-size: 12px;
+  }
 }
 
 // Mini Pager
