@@ -57,7 +57,7 @@ $font_3: 'sans-serif';
   .tabs-left > .tab-content, .tabs-right > .tab-content {
 
   }
-  div.form-wrapper {
+  .form-wrapper {
     background: transparent;
     clear: both;
     border-left: 4px solid #dce2e5;
@@ -261,9 +261,11 @@ $font_3: 'sans-serif';
     .vertical-tabs-panes {
       margin-left: 0;
     }
-
+    .vertical-tabs__panes {
+      overflow: hidden;
+      padding: 10px 15px;
+    }
   }
-
   .form-select {
     color: $color_curious_blue;
     option {
@@ -271,7 +273,9 @@ $font_3: 'sans-serif';
       color: #354051;
     }
   }
-
+  #edit-scheme {
+      width: 250px;
+  }
   .form-composite {
     padding: 0 0 20px 0;
     .form-checkboxes input {
