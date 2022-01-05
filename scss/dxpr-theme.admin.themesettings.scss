@@ -344,7 +344,6 @@ $font_3: 'sans-serif';
     }
     .form-item-scheme {
       height: 3.2em;
-      margin-right: 0;
     }
     h2 {
       visibility: hidden;
@@ -361,11 +360,8 @@ $font_3: 'sans-serif';
   }
   .color-placeholder {
     position: absolute;
-    right: -1em;
+    right: 0;
     top: 0;
-  }
-  details > .details-wrapper {
-      padding: 0.5em 1em;
   }
   .color-palette {
     margin-top: 2em;
@@ -503,7 +499,7 @@ $font_3: 'sans-serif';
     // overflow: auto;
     white-space: pre;
   }
-  .form-type-checkbox {
+  .checkbox {
   position: relative;
   input[type=checkbox] {
       position: absolute;
