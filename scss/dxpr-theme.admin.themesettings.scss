@@ -344,6 +344,7 @@ $font_3: 'sans-serif';
     }
     .form-item-scheme {
       height: 3.2em;
+      margin-right: 0;
     }
     h2 {
       visibility: hidden;
@@ -360,8 +361,11 @@ $font_3: 'sans-serif';
   }
   .color-placeholder {
     position: absolute;
-    right: 0;
+    right: -1em;
     top: 0;
+  }
+  details > .details-wrapper {
+      padding: 0.5em 1em;
   }
   .color-palette {
     margin-top: 2em;
