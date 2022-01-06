@@ -1,4 +1,6 @@
-related to/fixes #PUT_ISSUE_NUMBER_HERE
+## Linked issues
+
+- #PUT_ISSUE_NUMBER_HERE
 
 ## Solution
 
