@@ -14,6 +14,6 @@
  * @see template_preprocess_menu_local_task()
  */
 #}
-<li{{ attributes.addClass(is_active ? 'active', 'nav-item') }}>
-    <a href="{{ link['#url'] }}" class="nav-link page-link {{ is_active ? 'active' }}">{{ link['#title'] }}</a>
+<li{{ attributes.addClass(is_active ? 'active', 'page-item') }}>
+    <a href="{{ link['#url'] }}" class="page-link {{ is_active ? 'active' }}">{{ link['#title'] }}</a>
 </li>
