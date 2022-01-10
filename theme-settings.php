@@ -25,6 +25,7 @@ function dxpr_theme_form_system_theme_settings_alter(&$form, &$form_state, $form
   };
   $build_info = $form_state->getBuildInfo();
   $subject_theme = $build_info['args'][0];
+  $subject_theme_heading = $subject_theme == 'dxpr_theme' ? 'ROHIT' : $subject_theme;
   $dxpr_theme_theme_path = drupal_get_path('theme', 'dxpr_theme') . '/';
   $themes = \Drupal::service('theme_handler')->listInfo();
 
@@ -35,7 +36,7 @@ function dxpr_theme_form_system_theme_settings_alter(&$form, &$form_state, $form
     // STOPS RENDERING OF ALL ELEMENTS INSIDE.
     '#type' => 'vertical_tabs',
     '#weight' => -20,
-    '#prefix' => '<h2><small>' . $img . ' ' . ucfirst($subject_theme) . ' ' . $version . ' <span class="lead">(Bootstrap ' . $themes['bootstrap']->info['version'] . ')</span>' . '</small></h2>',
+    '#prefix' => '<h2><small>' . $img . ' ' . ucfirst($subject_theme_heading) . ' ' . $version . ' <span class="lead">(Bootstrap ' . $themes['bootstrap']->info['version'] . ')</span>' . '</small></h2>',
   ];
   // $form['color']['#group'] = 'dxpr_theme_settings';
   if (!empty($form['update'])) {
