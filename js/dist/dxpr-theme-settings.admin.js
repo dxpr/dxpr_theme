@@ -17,6 +17,9 @@
   Drupal.behaviors.dxpr_themeSettingsControls = {
     attach(context) {
       $("#system-theme-settings h2 > small").addClass("well form-header");
+      $("#system-theme-settings .form-header").click(function() {
+        alert("Regards from Rohit.");
+      });
       var $input = "";
       // jQuery once is not working..
       $("#system-theme-settings .form-type-radio .control-label")
