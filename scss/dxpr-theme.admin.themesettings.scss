@@ -178,7 +178,7 @@ $font_3: 'sans-serif';
     display: block;
     width: 100%;
     margin-bottom: 0;
-    background: $color_curious_blue;
+    background: $black;
     color: white;
     padding: 20px;
     img {
@@ -190,7 +190,7 @@ $font_3: 'sans-serif';
     position: relative;
     background: #ecf2f6;
     color: #354051;
-    width: 100%;    
+    width: 100%;
     margin: 0;
 
     .vertical-tabs__menu {
@@ -205,7 +205,7 @@ $font_3: 'sans-serif';
       top: 0;
       left: 0;
       height: 100%;
-      padding-top: 30px;      
+      padding-top: 30px;
       margin: 0;
       border: none;
       .vertical-tabs__menu-item {
