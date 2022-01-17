@@ -60,6 +60,24 @@
     }
   }
 
+  &.pagination-sm {
+    .page-item {
+      .page-link  {
+        padding: 1em 1.4em;
+        font-size: 12px;
+      }
+
+      &.active {
+        .page-link  {
+          color: $gray-light;
+          background-color: transparent;
+          border-color: $silver;
+          opacity: 1;
+        }
+      }
+    }
+  }
+
 }
 
 // Mini Pager
