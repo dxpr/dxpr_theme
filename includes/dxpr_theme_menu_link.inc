@@ -20,14 +20,18 @@
  */
 function dxpr_theme_menu_link(array $variables) {
   global $theme;
-  $current_theme_path = drupal_get_path('theme', $theme);
+  // Global $theme_path variable is buggy so we create our own vars
+  // @see https://github.com/dxpr/dxpr_theme/issues/170
+  $theme_path_active = drupal_get_path('theme', $theme);
+  $theme_path_base = drupal_get_path('theme', 'dxpr_theme');
+  
   $element = $variables['element'];
   $sub_menu = '';
   $careticon = '';
 
   if ($element['#below']) {
     // below file should be loaded here after properly separating all mulitilevel menu code from dxpr-theme-header.js
-    // drupal_add_js($current_theme_path . '/js/minified/dxpr-theme-multilevel-mobile-nav.min.js');
+    // drupal_add_js($theme_path_base . '/js/minified/dxpr-theme-multilevel-mobile-nav.min.js');
 
     // Prevent dropdown functions from being added to management menu so it
     // does not affect the navbar module.

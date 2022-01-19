@@ -8,10 +8,12 @@
  * Implements template_preprocess_node()
  */
 function dxpr_theme_preprocess_node(&$vars) {
-  global $theme, $theme_path;
-  // There is a bug that makes global variable $theme_path return the base theme
-  // path instead of the active theme path, hence the custom variable below.
-  $theme_path_custom = drupal_get_path('theme', $theme);
+  global $theme;
+  // Global $theme_path variable is buggy so we create our own vars
+  // @see https://github.com/dxpr/dxpr_theme/issues/170
+  $theme_path_active = drupal_get_path('theme', $theme);
+  $theme_path_base = drupal_get_path('theme', 'dxpr_theme');
+
   // ALL NODES
   // remove "add comment link. it's silly because the comment form will be right there in our theme".
   if (isset($vars['content']['links']['comment'])) {
@@ -76,12 +78,11 @@ function dxpr_theme_preprocess_node(&$vars) {
       $lightbox = TRUE;
     }
     if ($lightbox) {
-      $path = drupal_get_path('theme', 'dxpr_theme');
-      drupal_add_js($path . '/vendor/ilightbox/js/jquery.requestAnimationFrame.js');
-      drupal_add_js($path . '/vendor/ilightbox/js/jquery.mousewheel.js');
-      drupal_add_js($path . '/vendor/ilightbox/js/ilightbox.min.js');
-      drupal_add_js($path . '/js/minified/dxpr-theme-ilightbox.min.js');
-      drupal_add_css($path . '/vendor/ilightbox/css/ilightbox.css');
+      drupal_add_js($theme_path_base . '/vendor/ilightbox/js/jquery.requestAnimationFrame.js');
+      drupal_add_js($theme_path_base . '/vendor/ilightbox/js/jquery.mousewheel.js');
+      drupal_add_js($theme_path_base . '/vendor/ilightbox/js/ilightbox.min.js');
+      drupal_add_js($theme_path_base . '/js/minified/dxpr-theme-ilightbox.min.js');
+      drupal_add_css($theme_path_base . '/vendor/ilightbox/css/ilightbox.css');
     }
   }
 

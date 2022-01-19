@@ -9,19 +9,23 @@
  */
 function dxpr_theme_preprocess_html(&$vars) {
   global $theme;
+  // Global $theme_path variable is buggy so we create our own vars
+  // @see https://github.com/dxpr/dxpr_theme/issues/170
+  $theme_path_active = drupal_get_path('theme', $theme);
+  $theme_path_base = drupal_get_path('theme', 'dxpr_theme');
+
   // If bootstrap basetheme is not loading bootstrap from CDN load it locally
   // This is default behavior starting from DXPR Theme 8.x-1.1.3 and 7.x-2.7.3.
   $bootstrap_cdn = theme_get_setting('cdn_provider');
   if (!$bootstrap_cdn) {
-    $path = drupal_get_path('theme', 'dxpr_theme');
     drupal_add_js(
-      $path . '/vendor/bootstrap3/js/bootstrap.min.js', array(
+      $theme_path_base . '/vendor/bootstrap3/js/bootstrap.min.js', array(
         'group' => JS_THEME,
         'every_page' => TRUE,
         'weight' => -18,
       ));
     drupal_add_css(
-      $path . '/vendor/bootstrap3/css/bootstrap.min.css', array(
+      $theme_path_base . '/vendor/bootstrap3/css/bootstrap.min.css', array(
         'group' => CSS_DEFAULT,
         'media' => 'all',
         'every_page' => TRUE,
