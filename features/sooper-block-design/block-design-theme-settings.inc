@@ -364,7 +364,7 @@ $form['dxpr_theme_settings']['block']['regions'] = array(
   '#collapsible' => TRUE,
   '#collapsed' => TRUE,
   '#description' => t('The custom block design only applies to selected regions.'),
-  '#suffix' => '</div><div class="block-preview">' . _dxpr_theme_block_preview() . '</div>',
+  '#suffix' => '</div><div class="block-preview">' . _dxpr_theme_block_preview() . '</div></div>',
 );
 
 $form['dxpr_theme_settings']['block']['regions']['block_design_regions'] = array(
