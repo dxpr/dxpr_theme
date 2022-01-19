@@ -8,13 +8,15 @@
  * Implements template_preprocess_block()
  */
 function dxpr_theme_preprocess_block(&$vars) {
-  global $theme, $theme_path;
-  // There is a bug that makes global variable $theme_path return the base theme
-  // path instead of the active theme path, hence the custom variable below.
-  $theme_path_custom = drupal_get_path('theme', $theme);
+  global $theme;
+  // Global $theme_path variable is buggy so we create our own vars
+  // @see https://github.com/dxpr/dxpr_theme/issues/170
+  $theme_path_active = drupal_get_path('theme', $theme);
+  $theme_path_base = drupal_get_path('theme', 'dxpr_theme');
+
   if ($vars['block_html_id'] == 'block-dxpr-theme-helper-full-screen-search') {
-    drupal_add_css($theme_path_custom . '/css/components/dxpr-theme-full-screen-search.css', array('group' => CSS_THEME));
-    drupal_add_js($theme_path . '/js/minified/dxpr-theme-full-screen-search.min.js');
+    drupal_add_css($theme_path_active . '/css/components/dxpr-theme-full-screen-search.css', array('group' => CSS_THEME));
+    drupal_add_js($theme_path_base . '/js/minified/dxpr-theme-full-screen-search.min.js');
   }
   if ((theme_get_setting('block_design_regions'))
     && in_array($vars['block']->region, array_filter(theme_get_setting('block_design_regions')))) {

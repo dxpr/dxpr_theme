@@ -52,7 +52,7 @@ EOT;
  */
 function _dxpr_theme_color_html_alter(&$vars) {
   global $theme_key;
-  $theme_path = drupal_get_path('theme', $theme_key);
+  $theme_path_key = drupal_get_path('theme', $theme_key);
   // Override stylesheets.
   $color_paths = variable_get('color_' . $theme_key . '_stylesheets', array());
   if (!empty($color_paths)) {
@@ -61,7 +61,7 @@ function _dxpr_theme_color_html_alter(&$vars) {
       $color_paths_map[drupal_basename($color_path)] = $color_path;
     }
     foreach ($vars['css'] as $old_path => $data) {
-      if (strpos($old_path, $theme_path) === 0 && isset($color_paths_map[drupal_basename($old_path)])) {
+      if (strpos($old_path, $theme_path_key) === 0 && isset($color_paths_map[drupal_basename($old_path)])) {
         $vars['css'][$old_path]['data'] = $color_paths_map[drupal_basename($old_path)];
       }
     }

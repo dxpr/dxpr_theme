@@ -8,7 +8,12 @@
  * Implements template_preprocess_page().
  */
 function dxpr_theme_preprocess_page(&$vars) {
-  global $theme, $theme_path, $user;
+  global $theme, $user;
+  // Global $theme_path variable is buggy so we create our own vars
+  // @see https://github.com/dxpr/dxpr_theme/issues/170
+  $theme_path_active = drupal_get_path('theme', $theme);
+  $theme_path_base = drupal_get_path('theme', 'dxpr_theme');
+
   if ($hidden_regions = theme_get_setting('hidden_regions')) {
     $hidden_regions = array_filter(theme_get_setting('hidden_regions'));
   }
@@ -282,9 +287,8 @@ function dxpr_theme_preprocess_page(&$vars) {
     $page_css[] = '/css/components/dxpr-theme-header--top.css';
     $page_css[] = '/css/components/dxpr-theme-header--side.css';
     $page_css[] = '/css/components/dxpr-theme-header--mobile.css';
-    $path = drupal_get_path('theme', 'dxpr_theme');
-    drupal_add_js($path . '/js/minified/dxpr-theme-multilevel-mobile-nav.min.js');
-    drupal_add_js($path . '/js/minified/dxpr-theme-header.min.js');
+    drupal_add_js($theme_path_base . '/js/minified/dxpr-theme-multilevel-mobile-nav.min.js');
+    drupal_add_js($theme_path_base . '/js/minified/dxpr-theme-header.min.js');
   }
   if (!empty($vars['page']['footer'])) {
     $page_css[] = '/css/base/footer-menu.css';
@@ -294,7 +298,7 @@ function dxpr_theme_preprocess_page(&$vars) {
     $page_css[] = '/css/vendor-extensions/drupal-pager.css';
   }
   foreach ($page_css as $css) {
-    drupal_add_css($theme_path . $css, array('group' => CSS_THEME, 'every_page' => TRUE));
+    drupal_add_css($theme_path_active . $css, array('group' => CSS_THEME, 'every_page' => TRUE));
   }
   // CSS that is only relevant in backend interfaces (field, views config, node forms, etc.)
   $auth_css = array(
@@ -303,7 +307,7 @@ function dxpr_theme_preprocess_page(&$vars) {
   );
   if ($user->uid > 0) {
     foreach ($auth_css as $css) {
-      drupal_add_css($theme_path . $css, array('group' => CSS_THEME, 'every_page' => TRUE));
+      drupal_add_css($theme_path_active . $css, array('group' => CSS_THEME, 'every_page' => TRUE));
     }
 
   }
