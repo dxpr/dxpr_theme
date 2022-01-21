@@ -292,3 +292,10 @@ function dxpr_theme_preprocess_comment(&$variables) {
 function dxpr_theme_preprocess_pager(&$variables) {
   $variables['#attached']['library'][] = 'dxpr_theme/drupal-pager';
 }
+
+/**
+ * Implements template_preprocess_views_mini_pager()
+ */
+function dxpr_theme_preprocess_views_mini_pager(&$variables) {
+  $variables['#attached']['library'][] = 'dxpr_theme/drupal-pager';
+}

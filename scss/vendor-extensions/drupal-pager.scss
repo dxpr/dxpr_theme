@@ -5,6 +5,11 @@
 // Pager
 @import "../includes/variables";
 
+.pager-nav {
+  display: flex;
+  justify-content: center;
+}
+
 .pagination {
   border-radius: 0;
   .pager__item, li {
@@ -60,6 +65,21 @@
     }
   }
 
+  .page-item {
+    .page-link {
+      border-radius: 0;
+    }
+
+    &.active {
+      .page-link  {
+        color: $gray-light;
+        background-color: transparent;
+        border-color: $silver;
+        opacity: 1;
+      }
+    }
+  }
+
   &.pagination-sm {
     .page-item {
       .page-link  {
@@ -85,15 +105,16 @@
 .pager {
   li > a,
   li > span {
-    background: transparent;
-    border-color: $gray-light;
-    color: $gray-light;
-    border-radius: 3px;
-    padding: 4px 8px;
+    display: inline-block;
+    background: white;
+    border: 1px solid $gray-lighter;
+    border-radius: 15px;
+    padding: 5px 14px;
     font-style: normal;
     &:hover,
     &:focus {
       background: transparent;
+      text-decoration: none;
     }
     &:active {
       ouline: none;
