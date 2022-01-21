@@ -329,3 +329,13 @@ function dxpr_theme_form_alter(&$form, FormStateInterface $form_state, $form_id)
     ];
   }
 }
+
+/**
+ * Implements template_preprocess_input()
+ */
+function dxpr_theme_preprocess_input(&$variables) {
+  $element = $variables['element'];
+  if ($element['#icon']) {
+    $variables['icon'] = $element['#icon'];
+  }
+}
