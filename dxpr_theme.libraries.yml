@@ -120,6 +120,11 @@ drupal-webform:
     theme:
       css/vendor-extensions/drupal-webform.css: { minified: true }
 
+drupal-search:
+  css:
+    theme:
+      css/vendor-extensions/drupal-search.css: { minified: true }
+
 cms-bootstrap-core:
   css:
     theme:
