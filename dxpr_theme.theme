@@ -314,5 +314,18 @@ function dxpr_theme_form_alter(&$form, FormStateInterface $form_state, $form_id)
       1 => 'input-group',
     ];
     $form['basic']['keys']['#placeholder'] = $form['basic']['keys']['#title'];
+    $form['basic']['submit']['#icon'] = [
+      '#type' => 'html_tag',
+      '#tag' => 'span',
+      '#value' => "",
+      '#attributes' => [
+        'class' => [
+          0 => 'icon',
+          1 => 'glyphicon',
+          2 => 'glyphicon-search',
+        ],
+        'aria-hidden' => TRUE,
+      ],
+    ];
   }
 }
