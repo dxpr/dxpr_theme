@@ -22,13 +22,6 @@
           </a>
         </li>
       {% endif %}
-      {% if items.current %}
-        <li class="pager__item is-active">
-          {% trans %}
-            Page {{ items.current }}
-          {% endtrans %}
-        </li>
-      {% endif %}
       {% if items.next %}
         <li class="pager__item pager__item--next">
           <a href="{{ items.next.href }}" title="{{ 'Go to next page'|t }}" rel="next"{{ items.next.attributes|without('href', 'title', 'rel') }}>
