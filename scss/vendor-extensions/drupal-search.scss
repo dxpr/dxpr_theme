@@ -1,0 +1,23 @@
+//
+// Author: Jurriaan Roelofs for DXPR. Copyright DXPR.
+//
+
+// Search
+
+.search-form {
+  .form-search {
+    font-size: 14px;
+  }
+
+  .input-group {
+    align-items: center;
+  }
+
+  .input-group-btn {
+    button {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+      border-bottom: 0;
+    }
+  }
+}
