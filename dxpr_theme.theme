@@ -338,4 +338,5 @@ function dxpr_theme_preprocess_input(&$variables) {
   if ($element['#icon']) {
     $variables['icon'] = $element['#icon'];
   }
+  $variables['#attached']['library'][] = 'dxpr_theme/drupal-search';
 }
