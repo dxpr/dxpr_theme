@@ -13,6 +13,7 @@ use Drupal\block\Entity\Block;
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\node\NodeInterface;
+use Drupal\Core\Form\FormStateInterface;
 
 /**
  * Implements hook_library_info_alter().
@@ -300,5 +301,18 @@ function dxpr_theme_theme_suggestions_form_element_alter(array &$suggestions, ar
   if (isset($variables['element']['#type'])) {
     $id = str_replace("-", "_", $variables['element']['#type']);
     $suggestions[] = $hook . '__' . $id;
+  }
+}
+
+/**
+ * Implements hook_form_alter()
+ */
+function dxpr_theme_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  if ($form_id === 'search_form') {
+    $form['basic']['#attributes']['class'] = [
+      0 => 'form-group',
+      1 => 'input-group',
+    ];
+    $form['basic']['keys']['#placeholder'] = $form['basic']['keys']['#title'];
   }
 }
