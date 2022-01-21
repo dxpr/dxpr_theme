@@ -274,8 +274,6 @@ function dxpr_theme_preprocess_page(&$vars) {
     '/css/base/layout.css',
     '/css/base/page-title.css',
     '/css/base/typography.css',
-    // DXPR Components.
-    '/css/components/dxpr-theme-sidebar--menu.css',
     // HELPERS.
     '/css/helpers/helper-classes.css',
   );

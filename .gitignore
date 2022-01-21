@@ -1,6 +1,7 @@
 .idea
 deploy.sh
 node_modules
+.build-done
 
 # SASS Cache
 *.sass-cache*
