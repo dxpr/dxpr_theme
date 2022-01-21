@@ -28,7 +28,6 @@ $info = array(
     'css/components/dxpr-theme-header--side.css',
     'css/components/dxpr-theme-header--mobile.css',
     'css/components/dxpr-theme-secondary-header.css',
-    'css/components/dxpr-theme-sidebar--menu.css',
     // Overrides.
     'css/vendor-extensions/bootstrap-3.css',
     'css/vendor-extensions/bootstrap-theme.css',
