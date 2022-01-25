@@ -13,6 +13,7 @@ use Drupal\block\Entity\Block;
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\node\NodeInterface;
+use Drupal\Core\Form\FormStateInterface;
 
 /**
  * Implements hook_library_info_alter().
@@ -298,4 +299,51 @@ function dxpr_theme_preprocess_pager(&$variables) {
  */
 function dxpr_theme_preprocess_views_mini_pager(&$variables) {
   $variables['#attached']['library'][] = 'dxpr_theme/drupal-pager';
+}
+
+/**
+ * Implements template_theme_suggestions_form_element_alter()
+ */
+function dxpr_theme_theme_suggestions_form_element_alter(array &$suggestions, array $variables, $hook) {
+  if (isset($variables['element']['#type'])) {
+    $id = str_replace("-", "_", $variables['element']['#type']);
+    $suggestions[] = $hook . '__' . $id;
+  }
+}
+
+/**
+ * Implements hook_form_alter()
+ */
+function dxpr_theme_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  if ($form_id === 'search_form') {
+    $form['basic']['#attributes']['class'] = [
+      0 => 'form-group',
+      1 => 'input-group',
+    ];
+    $form['basic']['keys']['#placeholder'] = $form['basic']['keys']['#title'];
+    $form['basic']['submit']['#icon'] = [
+      '#type' => 'html_tag',
+      '#tag' => 'span',
+      '#value' => "",
+      '#attributes' => [
+        'class' => [
+          0 => 'icon',
+          1 => 'glyphicon',
+          2 => 'glyphicon-search',
+        ],
+        'aria-hidden' => TRUE,
+      ],
+    ];
+  }
+}
+
+/**
+ * Implements template_preprocess_input()
+ */
+function dxpr_theme_preprocess_input(&$variables) {
+  $element = $variables['element'];
+  if (isset($element['#icon'])) {
+    $variables['icon'] = $element['#icon'];
+  }
+  $variables['#attached']['library'][] = 'dxpr_theme/drupal-search';
 }
