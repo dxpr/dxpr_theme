@@ -57,6 +57,7 @@ $font_3: 'sans-serif';
   .tabs-left > .tab-content, .tabs-right > .tab-content {
 
   }
+  details.form-wrapper,
   div.form-wrapper {
     background: transparent;
     clear: both;
@@ -261,11 +262,19 @@ $font_3: 'sans-serif';
     .vertical-tabs-panes {
       margin-left: 0;
     }
+    .vertical-tabs__panes {
+      padding: 10px 15px;
+      .details-wrapper {
+        padding: 15px;
+      }
+    }
 
   }
 
   .form-select {
     color: $color_curious_blue;
+    font-size: 14px;
+    width: 250px;
     option {
       background: white;
       color: #354051;
@@ -323,7 +332,6 @@ $font_3: 'sans-serif';
   }
   .color-form {
     max-width: 740px;
-    position: relative;
     .form-item {
       height: auto;
     }
@@ -340,6 +348,7 @@ $font_3: 'sans-serif';
     }
     .form-item-scheme {
       height: 3.2em;
+      margin-right: 160px;
     }
     h2 {
       visibility: hidden;
@@ -356,8 +365,7 @@ $font_3: 'sans-serif';
   }
   .color-placeholder {
     position: absolute;
-    right: 0;
-    top: 0;
+    right: 3px;
   }
   .color-palette {
     margin-top: 2em;
