@@ -29,7 +29,7 @@ $color_celeste: #ccc;
 $font_0: 'Helvetica Neue';
 $font_1: 'Helvetica';
 $font_2: 'Arial';
-$font_3: 'sans-serif';
+$font_3: 'sans-serif'; 
 
 
 
@@ -503,7 +503,7 @@ $font_3: 'sans-serif';
     // overflow: auto;
     white-space: pre;
   }
-  .checkbox {
+  .form-type-checkbox {
   position: relative;
   input[type=checkbox] {
       position: absolute;
