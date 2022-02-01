@@ -40,7 +40,7 @@ function dxpr_theme_form_system_theme_settings_alter(&$form, &$form_state, $form
     // STOPS RENDERING OF ALL ELEMENTS INSIDE.
     '#type' => 'vertical_tabs',
     '#weight' => -20,
-    '#prefix' => '<h2><small>' . $img . ' ' . ucfirst($subject_theme) . ' ' . $version . ' <span class="lead">(Bootstrap ' . $themes['bootstrap4']->info['version'] . ')</span>' . '</small></h2>',
+    '#prefix' => '<h2><small>' . $img . ' ' . ucfirst($subject_theme) . ' ' . $version . ' <span class="small">(' . $themes['bootstrap4']->info['name'] . ' base theme ' . $themes['bootstrap4']->info['version'] . ')</span>' . '</small></h2>',
   ];
   // $form['color']['#group'] = 'dxpr_theme_settings';
   if (!empty($form['update'])) {
