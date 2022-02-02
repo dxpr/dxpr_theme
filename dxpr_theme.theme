@@ -352,5 +352,5 @@ function dxpr_theme_preprocess_input(&$variables) {
  * Implements template_preprocess_details()
  */
 function dxpr_theme_preprocess_details(&$variables) {
-    $variables['attributes']['class'][] = 'form-item';
+  $variables['attributes']['class'][] = 'form-item';
 }
