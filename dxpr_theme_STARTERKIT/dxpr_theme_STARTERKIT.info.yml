@@ -24,7 +24,7 @@ regions:
   page_bottom: 'Page bottom'
 
 libraries:
-  - 'dxpr_theme/global-styling'
+  - 'dxpr_theme_STARTERKIT/global-styling'
 
 libraries-override:
   dxpr_theme/bootstrap-3: false
