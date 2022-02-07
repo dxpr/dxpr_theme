@@ -190,10 +190,8 @@ $font_3: 'sans-serif';
     position: relative;
     background: #ecf2f6;
     color: #354051;
-    width: 100%;    
-    margin: 0;
-
-    .vertical-tabs__menu {
+    width: 100%;
+    .vertical-tabs-list {
       background: #354051;
       color: #a0acbe;
       float: none;
@@ -205,8 +203,7 @@ $font_3: 'sans-serif';
       top: 0;
       left: 0;
       height: 100%;
-      padding-top: 30px;      
-      margin: 0;
+      padding-top: 30px;
       a {
         color: #a0acbe;
         border: none;
@@ -218,7 +215,7 @@ $font_3: 'sans-serif';
           background: transparent;
         }
       }
-      .is-selected {
+      .selected {
         background: $color_curious_blue;
         color: white;
         a {
