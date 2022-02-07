@@ -347,3 +347,10 @@ function dxpr_theme_preprocess_input(&$variables) {
   }
   $variables['#attached']['library'][] = 'dxpr_theme/drupal-search';
 }
+
+/**
+ * Implements template_preprocess_details()
+ */
+function dxpr_theme_preprocess_details(&$variables) {
+  $variables['attributes']['class'][] = 'form-item';
+}

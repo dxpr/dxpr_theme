@@ -82,6 +82,24 @@ $font_3: 'sans-serif';
         }
       }
     }
+    summary {
+      padding: 10px 15px;
+      .details-title {
+        outline: none;
+        text-decoration: none;
+        background: none;
+        color: inherit;
+      }
+      &::before {
+        display: none;
+      }
+      &::marker {
+        content: '';
+      }
+    }
+    .description {
+      display: none;
+    }
   }
   label,
   legend {
