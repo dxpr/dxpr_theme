@@ -300,6 +300,7 @@ $font_3: 'sans-serif';
   }
 
   .form-composite {
+    display: flex;
     padding: 0 0 20px 0;
     .form-checkboxes input {
       display: block;
@@ -314,10 +315,10 @@ $font_3: 'sans-serif';
     input ~ label.option,
     input ~ span {
       font-weight: 300;
-      padding: 5px 0;
-      margin-top: -1px;
+      margin: 0;
       line-height: 24px;
       width: auto;
+      cursor: pointer;
       &:before {
         content: '__';
         color: $color_curious_blue;
