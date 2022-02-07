@@ -207,35 +207,15 @@ $font_3: 'sans-serif';
       height: 100%;
       padding-top: 30px;      
       margin: 0;
-      border: none;
-      .vertical-tabs__menu-item {
+      a {
+        color: #a0acbe;
         border: none;
         background: transparent;
-        a {
+        &:hover,
+        &:active {
           color: #a0acbe;
           border: none;
           background: transparent;
-          padding: 10px 15px;
-          margin-bottom: 3px;
-          &:hover,
-          &:active {
-            color: #a0acbe;
-            border: none;
-            background: transparent;
-            outline: none;
-            text-decoration: none;
-          }
-          &:focus {
-            text-decoration: none;
-          }
-          &:hover .vertical-tabs__menu-item-title,
-          &:focus .vertical-tabs__menu-item-title,
-          &:active .vertical-tabs__menu-item-title {
-            text-decoration: none;
-          }
-          .vertical-tabs__menu-item-title {
-              font-weight: normal;
-          }
         }
       }
       .is-selected {
@@ -245,9 +225,6 @@ $font_3: 'sans-serif';
           color: white;
           background: transparent;
           border: none;
-          .vertical-tabs__menu-item-title {
-            color: #fff;
-          }
         }
         .summary {
           color: white;
@@ -261,9 +238,7 @@ $font_3: 'sans-serif';
     .vertical-tabs-panes {
       margin-left: 0;
     }
-
   }
-
   .form-select {
     color: $color_curious_blue;
     option {
@@ -271,7 +246,6 @@ $font_3: 'sans-serif';
       color: #354051;
     }
   }
-
   .form-composite {
     padding: 0 0 20px 0;
     .form-checkboxes input {
@@ -350,9 +324,6 @@ $font_3: 'sans-serif';
   }
   .form-item {
     padding-left: 0;
-  }
-  .form-item.form-type-vertical-tabs {
-    margin-top: 0;
   }
   .color-placeholder {
     position: absolute;
