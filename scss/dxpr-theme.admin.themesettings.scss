@@ -190,10 +190,8 @@ $font_3: 'sans-serif';
     position: relative;
     background: #ecf2f6;
     color: #354051;
-    width: 100%;    
-    margin: 0;
-
-    .vertical-tabs__menu {
+    width: 100%;
+    .vertical-tabs-list {
       background: #354051;
       color: #a0acbe;
       float: none;
@@ -205,49 +203,25 @@ $font_3: 'sans-serif';
       top: 0;
       left: 0;
       height: 100%;
-      padding-top: 30px;      
-      margin: 0;
-      border: none;
-      .vertical-tabs__menu-item {
+      padding-top: 30px;
+      a {
+        color: #a0acbe;
         border: none;
         background: transparent;
-        a {
+        &:hover,
+        &:active {
           color: #a0acbe;
           border: none;
           background: transparent;
-          padding: 10px 15px;
-          margin-bottom: 3px;
-          &:hover,
-          &:active {
-            color: #a0acbe;
-            border: none;
-            background: transparent;
-            outline: none;
-            text-decoration: none;
-          }
-          &:focus {
-            text-decoration: none;
-          }
-          &:hover .vertical-tabs__menu-item-title,
-          &:focus .vertical-tabs__menu-item-title,
-          &:active .vertical-tabs__menu-item-title {
-            text-decoration: none;
-          }
-          .vertical-tabs__menu-item-title {
-              font-weight: normal;
-          }
         }
       }
-      .is-selected {
+      .selected {
         background: $color_curious_blue;
         color: white;
         a {
           color: white;
           background: transparent;
           border: none;
-          .vertical-tabs__menu-item-title {
-            color: #fff;
-          }
         }
         .summary {
           color: white;
@@ -261,9 +235,7 @@ $font_3: 'sans-serif';
     .vertical-tabs-panes {
       margin-left: 0;
     }
-
   }
-
   .form-select {
     color: $color_curious_blue;
     option {
@@ -271,7 +243,6 @@ $font_3: 'sans-serif';
       color: #354051;
     }
   }
-
   .form-composite {
     padding: 0 0 20px 0;
     .form-checkboxes input {
@@ -350,9 +321,6 @@ $font_3: 'sans-serif';
   }
   .form-item {
     padding-left: 0;
-  }
-  .form-item.form-type-vertical-tabs {
-    margin-top: 0;
   }
   .color-placeholder {
     position: absolute;
