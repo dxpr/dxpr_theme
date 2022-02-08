@@ -312,33 +312,38 @@ $font_3: 'sans-serif';
     label {
       width: auto;
     }
-    // label.option,
-    input ~ label.option,
-    input ~ span {
-      font-weight: 300;
-      margin: 0;
-      line-height: 24px;
-      width: auto;
-      cursor: pointer;
-      &:before {
-        content: '__';
-        color: $color_curious_blue;
-        opacity: 0.3;
-        font-size: 18px;
-        display: inline-block;
-        width: 25px;
-        font-weight: normal;
+    .form-radios {
+      // label.option,
+      input ~ label.option,
+      input ~ span {
+        font-weight: 300;
+        margin: 0;
+        line-height: 24px;
+        width: auto;
+        cursor: pointer;
+
+        &:before {
+          content: '__';
+          color: $color_curious_blue;
+          opacity: 0.3;
+          font-size: 18px;
+          display: inline-block;
+          width: 25px;
+          font-weight: normal;
+        }
       }
-    }
-    input:checked ~ label.option,
-    input:checked ~ span {
-      font-weight: normal;
-      font-style: italic;
-      &:before {
-        content: '✓';
-        opacity: 1;
-        color: $color_curious_blue;
-        font-size: 24px;
+
+      input:checked ~ label.option,
+      input:checked ~ span {
+        font-weight: normal;
+        font-style: italic;
+
+        &:before {
+          content: '✓';
+          opacity: 1;
+          color: $color_curious_blue;
+          font-size: 24px;
+        }
       }
     }
   }
