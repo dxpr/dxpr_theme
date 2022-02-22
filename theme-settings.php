@@ -50,6 +50,18 @@ function dxpr_theme_form_system_theme_settings_alter(&$form, &$form_state, $form
     $form['color']['#group'] = 'dxpr_theme_settings';
     $form['color']['#title'] = t('Colors');
   }
+  $form['core_theme_settings'] = [
+    '#type' => 'vertical_tabs',
+    '#weight' => -20,
+    '#prefix' => '<h2><small>' . t('Core theme settings') . '</small></h2>',
+  ];
+  $form['theme_settings']['#group'] = 'core_theme_settings';
+  $form['logo']['#group'] = 'core_theme_settings';
+  $form['favicon']['#group'] = 'core_theme_settings';
+  unset($form['body_details']);
+  unset($form['nav_details']);
+  unset($form['footer_details']);
+  unset($form['subtheme']);
 
   /**
    * DXPR Theme cache builder
