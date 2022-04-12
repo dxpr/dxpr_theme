@@ -117,31 +117,33 @@
 
     for (let i = 0, len = this.menusArr.length; i < len; ++i) {
       this.menusArr[i].menuItems.forEach((item, pos) => {
-        item.querySelector("a").addEventListener("click", ev => {
-          const submenu = ev.target.getAttribute("data-submenu");
-          const itemName = ev.target.innerHTML;
-          const subMenuEl = self.el.querySelector(`ul[data-menu="${submenu}"]`);
+        if(item.querySelector("a")) {
+          item.querySelector("a").addEventListener("click", ev => {
+            const submenu = ev.target.getAttribute("data-submenu");
+            const itemName = ev.target.innerHTML;
+            const subMenuEl = self.el.querySelector(`ul[data-menu="${submenu}"]`);
 
-          // check if there's a sub menu for this item
-          if (submenu && subMenuEl) {
-            ev.preventDefault();
-            // open it
-            self._openSubMenu(subMenuEl, pos, itemName);
-          } else {
-            // add class current
-            const currentlink = self.el.querySelector(".menu__link--current");
-            if (currentlink) {
-              classie.remove(
-                self.el.querySelector(".menu__link--current"),
-                "menu__link--current"
-              );
+            // check if there's a sub menu for this item
+            if (submenu && subMenuEl) {
+              ev.preventDefault();
+              // open it
+              self._openSubMenu(subMenuEl, pos, itemName);
+            } else {
+              // add class current
+              const currentlink = self.el.querySelector(".menu__link--current");
+              if (currentlink) {
+                classie.remove(
+                    self.el.querySelector(".menu__link--current"),
+                    "menu__link--current"
+                );
+              }
+              classie.add(ev.target, "menu__link--current");
+
+              // callback
+              self.options.onItemClick(ev, itemName);
             }
-            classie.add(ev.target, "menu__link--current");
-
-            // callback
-            self.options.onItemClick(ev, itemName);
-          }
-        });
+          });
+        }
       });
     }
 
