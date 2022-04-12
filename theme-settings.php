@@ -23,15 +23,27 @@ function dxpr_theme_form_system_theme_settings_alter(&$form, &$form_state, $form
   if (!isset($form_id)) {
     return;
   };
-  if (theme_get_setting('box_max_width') < '1100') {
-    \Drupal::messenger()->addStatus('You set a Boxed Container Max Width of less than 1100px. To preserve the layout of the settings form we are overriding this setting specifically for this page. Your setting is applied on other pages.');
-    ?>
+  if (theme_get_setting('boxed_layout') === 1) {
+    if (theme_get_setting('box_max_width') < '1200') {
+      \Drupal::messenger()->addStatus('You set a Boxed Container Max Width of less than 1200px. To preserve the layout of the settings form we are overriding this setting specifically for this page. Your setting is applied on other pages.');
+      ?>
       <style>
           .dxpr-theme-boxed-container {
               max-width: 1300px !important;
           }
       </style>
-    <?php
+      <?php
+    }
+  }
+  elseif (theme_get_setting('layout_max_width') < '1200') {
+    \Drupal::messenger()->addStatus('You set a Content Max Width of less than 1200px. To preserve the layout of the settings form we are overriding this setting specifically for this page. Your setting is applied on other pages.');
+    ?>
+        <style>
+            .container {
+                max-width: 1300px !important;
+            }
+        </style>
+        <?php
   }
   $build_info = $form_state->getBuildInfo();
   $subject_theme = $build_info['args'][0];
