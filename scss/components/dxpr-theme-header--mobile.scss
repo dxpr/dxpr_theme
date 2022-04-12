@@ -127,6 +127,11 @@ html.html--dxpr-theme-nav-mobile--open {
     .navbar-collapse.collapse {
       display: none!important;
     }
+    .menu__level--current {
+      span {
+        padding: 7px 20px;
+      }
+    }
     .nav {
       float: none!important;
       margin-top: 7.5px;
