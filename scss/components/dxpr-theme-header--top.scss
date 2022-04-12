@@ -178,6 +178,10 @@
       float: right;
       position:static;
     }
+    span {
+      line-height: 100px;
+      padding: 0 15px 0 15px;
+    }
     .nav {
       float: right;
       > li {
