@@ -178,9 +178,22 @@
       float: right;
       position:static;
     }
-    span {
-      line-height: 100px;
-      padding: 0 15px 0 15px;
+    .dropdown {
+      span {
+        pointer-events: none;
+        padding: 0 15px 0 15px;
+      }
+    }
+    .dropdown-menu {
+      .dropdown {
+        > span {
+          font-size: 16px;
+          font-weight: normal;
+          padding: 5px 20px;
+          display: block;
+          line-height: unset;
+        }
+      }
     }
     .nav {
       float: right;
