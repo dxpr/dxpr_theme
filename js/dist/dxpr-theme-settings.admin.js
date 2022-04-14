@@ -926,6 +926,16 @@
           `${$(this).bootstrapSlider("getValue")}px`
         );
       });
+      $(".js-form-type-textfield").each(function() {
+        const divs = $(this).find(".slider-horizontal,.form-text");
+        if (divs.length >= 2) {
+          for (let i = 0; i < divs.length; i += 2) {
+            divs
+              .slice(i, i + 2)
+              .wrapAll("<div class='slider-input-wrapper'></div>");
+          }
+        }
+      });
     }
   };
 
