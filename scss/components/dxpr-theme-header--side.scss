@@ -83,6 +83,11 @@
     display: block;
     width: 100%;
     float: none;
+    span {
+      padding: 7px 20px;
+      pointer-events: none;
+      font-size: 16px;
+    }
   }
   .menu__link {
     position: relative;
