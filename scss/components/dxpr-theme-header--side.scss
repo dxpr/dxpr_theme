@@ -83,6 +83,12 @@
     display: block;
     width: 100%;
     float: none;
+    span {
+      padding: 7px 20px;
+      pointer-events: none;
+      font-size: 16px;
+      color: $header-side-text-color;
+    }
   }
   .menu__link {
     position: relative;
