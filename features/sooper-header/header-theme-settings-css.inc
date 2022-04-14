@@ -161,6 +161,7 @@ EOT;
 }
 
 .body--dxpr-theme-nav-desktop .dxpr-theme-header--top .nav > li > a,
+.body--dxpr-theme-nav-desktop .dxpr-theme-header--top .nav > li > span,
 .body--dxpr-theme-nav-desktop .dxpr-theme-header--top .wrap-branding,
 .body--dxpr-theme-nav-desktop .dxpr-theme-header--top .block-dxpr-theme-helper {
   height: {$header_top_height}px;
