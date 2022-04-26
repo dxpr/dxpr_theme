@@ -2,6 +2,8 @@
 // Author: Jurriaan Roelofs for DXPR. Copyright DXPR.
 //
 
+@import "../includes/variables";
+
 // Search
 
 .search-form {
@@ -19,6 +21,64 @@
         border-bottom-left-radius: 0;
         border-bottom: 0;
         padding: 9px 18px;
+      }
+    }
+  }
+}
+
+// Search details wrapper
+.search-advanced {
+  margin-top: 0;
+  margin-bottom: 20px;
+  background-color: $header-color;
+  border: 1px solid $gray-lighter;
+  summary {
+    color: $text-headings;
+    background-color: #f5f5f5;
+    padding: 10px 15px;
+    border-bottom: 1px solid $gray-lighter;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    &::before {
+      content: unset;
+    }
+    &::marker {
+      content: '';
+    }
+    .details-title {
+      display: block;
+      font-size: 16px;
+      cursor: pointer;
+      color: $text-headings;
+      text-decoration: none;
+    }
+  }
+  .details-wrapper {
+    padding: 15px;
+    fieldset {
+      margin-bottom: 20px;
+      background-color: $header-color;
+      border: 1px solid $gray-lighter;
+      border-radius: 4px;
+      margin-top: 0;
+      legend {
+        color: $text-headings;
+        background-color: #f5f5f5;
+        border-color: $gray-lighter;
+        padding: 10px 15px;
+        border-bottom: 1px solid transparent;
+        border-top-left-radius: 3px;
+        border-top-right-radius: 3px;
+        .fieldset-legend {
+          display: block;
+          font-size: 16px;
+        }
+      }
+      .fieldset-wrapper {
+        padding: 15px;
+      }
+      .form-item {
+        margin-top: 0;
       }
     }
   }
