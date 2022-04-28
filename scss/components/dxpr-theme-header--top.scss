@@ -178,6 +178,23 @@
       float: right;
       position:static;
     }
+    .dropdown {
+      span {
+        pointer-events: none;
+        padding: 0 15px 0 15px;
+      }
+    }
+    .dropdown-menu {
+      .dropdown {
+        > span {
+          font-weight: normal;
+          padding: 10px 20px;
+          display: block;
+          line-height: unset;
+          color: $header-text-color;
+        }
+      }
+    }
     .nav {
       float: right;
       > li {
