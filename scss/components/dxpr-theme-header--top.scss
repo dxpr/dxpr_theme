@@ -178,6 +178,22 @@
       float: right;
       position:static;
     }
+    .dropdown {
+      span {
+        pointer-events: none;
+        padding: 0 15px 0 15px;
+      }
+    }
+    .dropdown-menu {
+      .dropdown {
+        > span {
+          font-weight: normal;
+          padding: 10px 20px;
+          display: block;
+          line-height: 1.42857143;
+        }
+      }
+    }
     .nav {
       float: right;
       > li {
