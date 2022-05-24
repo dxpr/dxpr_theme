@@ -25,7 +25,7 @@ function dxpr_theme_form_system_theme_settings_alter(&$form, &$form_state, $form
   };
   $build_info = $form_state->getBuildInfo();
   $subject_theme = $build_info['args'][0];
-  $dxpr_theme_theme_path = drupal_get_path('theme', 'dxpr_theme') . '/';
+  $dxpr_theme_theme_path = \Drupal::service('extension.list.theme')->getPath('dxpr_theme') . '/';
   $themes = \Drupal::service('theme_handler')->listInfo();
 
   $img = '<img style="width:35px;margin-right:5px;" src="' . $base_path . $dxpr_theme_theme_path . 'dxpr-logo-white.svg" />';
@@ -73,14 +73,14 @@ function dxpr_theme_form_system_theme_settings_alter(&$form, &$form_state, $form
    * settings are saved and once after the redirect with the updated settings.
    * @todo come up with a less 'icky' solution
    */
-  require_once drupal_get_path('theme', 'dxpr_theme') . '/dxpr_theme_callbacks.inc';
+  require_once \Drupal::service('extension.list.theme')->getPath('dxpr_theme') . '/dxpr_theme_callbacks.inc';
 
   $dxpr_theme_css_file = _dxpr_theme_css_cache_file($subject_theme);
   if (!file_exists($dxpr_theme_css_file)) {
     dxpr_theme_css_cache_build($subject_theme);
   }
 
-  foreach (\Drupal::service('file_system')->scanDirectory(drupal_get_path('theme', 'dxpr_theme') . '/features', '/settings.inc/i') as $file) {
+  foreach (\Drupal::service('file_system')->scanDirectory(\Drupal::service('extension.list.theme')->getPath('dxpr_theme') . '/features', '/settings.inc/i') as $file) {
     require_once $file->uri;
     $function_name = basename($file->filename, '.inc');
     $function_name = str_replace('-', '_', $function_name);
@@ -246,7 +246,7 @@ function _dxpr_theme_get_color_names($theme = NULL) {
     return $theme_info[$theme];
   }
 
-  $path = drupal_get_path('theme', $theme);
+  $path = \Drupal::service('extension.list.theme')->getPath($theme);
   $file = DRUPAL_ROOT . '/' . $path . '/color/color.inc';
   if ($path && file_exists($file)) {
     include $file;
@@ -376,7 +376,7 @@ function _dxpr_theme_validate_path($path) {
  * @see \Drupal\system\Form\ThemeSettingsForm::submitForm()
  */
 function dxpr_theme_form_system_theme_settings_after_submit(&$form, &$form_state) {
-  require_once drupal_get_path('theme', 'dxpr_theme') . '/dxpr_theme_callbacks.inc';
+  require_once \Drupal::service('extension.list.theme')->getPath('dxpr_theme') . '/dxpr_theme_callbacks.inc';
 
   $build_info = $form_state->getBuildInfo();
   $subject_theme = $build_info['args'][0];

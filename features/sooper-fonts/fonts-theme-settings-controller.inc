@@ -75,7 +75,7 @@ function _dxpr_theme_add_local_font($font, array &$variables) {
   $added_stylesheets = $added_stylesheets ?? [];
 
   $font = explode('|', substr($font, 1));
-  $path = drupal_get_path('theme', $font[0]) . $font[1];
+  $path = \Drupal::service('extension.list.theme')->getPath($font[0]) . $font[1];
   if (empty($added_stylesheets[$path])) {
     $element = [
       '#tag' => 'link',
