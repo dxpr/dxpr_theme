@@ -18,13 +18,13 @@
       var $searchForm = $(".full-screen-search-form");
       var $searchFormInput = $searchForm.find(".search-query");
       const escapeCode = 27;
-      $searchButton.once().on("touchstart click", event => {
-        event.preventDefault(),
-          $searchForm.toggleClass("invisible"),
-          $("body").toggleClass("body--full-screen-search"),
-          $searchFormInput.focus();
-      }),
-        $searchForm.once().on("touchstart click", $searchButton => {
+      $(once('search-button', $searchButton)).on("touchstart click", event => {
+          event.preventDefault(),
+            $searchForm.toggleClass("invisible"),
+            $("body").toggleClass("body--full-screen-search"),
+            $searchFormInput.focus();
+        }),
+        $(once('search-form', $searchForm)).on("touchstart click", $searchButton => {
           $($searchButton.target).hasClass("search-query") || clearSearchForm();
         }),
         $(document).keydown(event => {

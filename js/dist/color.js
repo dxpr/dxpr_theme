@@ -13,9 +13,7 @@
       let colors;
       let field_name;
       // This behavior attaches by ID, so is only valid once on a page.
-      const form = $("#system-theme-settings .color-form", context).once(
-        "color"
-      );
+      const form = once("color", "#system-theme-settings .color-form", context);
       if (form.length == 0) {
         return;
       }
@@ -42,7 +40,7 @@
       // Loop through all defined gradients.
       // for (i in settings.gradients) {
       //   // Add element to display the gradient.
-      //   $('#preview').once('color').append('<div id="gradient-' + i + '"></div>');
+      //   $(once('color', '#preview')).append('<div id="gradient-' + i + '"></div>');
       //   var gradient = $('#preview #gradient-' + i);
       //   // Add height of current gradient to the list (divided by 10).
       //   height.push(parseInt(gradient.css('height'), 10) / 10);

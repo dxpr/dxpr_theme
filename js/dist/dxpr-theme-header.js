@@ -338,8 +338,7 @@
       };
 
       // mobile menu toggle
-      $("#dxpr-theme-menu-toggle")
-        .once("dxpr_themeMenuToggle")
+        $(once("dxpr_themeMenuToggle", "#dxpr-theme-menu-toggle"))
         .click(() => {
           closeMenu();
         });
