@@ -49,7 +49,7 @@
         <a href="{{ item.url }}" class="dxpr-theme-megamenu__heading" data-target="#">{{ item.title }}</a>
       {% else %}
         <li{{ item.attributes.addClass(item_classes) }}>
-        {{ link(item.title, item.url) }}
+        {{ link(item.title, item.url, { 'class': 'parent_link' }) }}
       {% endif %}
       {% if item.below %}
         {{ menus.menu_links(item.below, attributes.removeClass('nav', 'navbar-nav', 'menu', 'dropdown-menu', 'dxpr-theme-megamenu'), menu_level + 1) }}
