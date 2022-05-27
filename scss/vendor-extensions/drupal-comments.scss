@@ -18,8 +18,14 @@
   img {
     width: 100%;
   }
-  .pull-left {
+  .float-left {
     margin-right: 25px;
+  }
+  .media-body {
+    display: table-cell;
+    vertical-align: top;
+    overflow: hidden;
+    width: 10000px;
   }
   .indented {
     padding-left: 74px;
@@ -27,7 +33,15 @@
     margin-top: -25px;
   }
   h3 {
-    margin-top: 0.3em;
+    margin: 0.3em 0;
+    font-size: 25px;
+  }
+  .content,
+  p {
+    line-height: 1.4;
+  }
+  footer {
+    padding: 0;
   }
   .post-date {
     font-style: italic;
@@ -47,5 +61,17 @@
   }
   .title.comment-form {
     margin-top: 30px;
+  }
+  .inline {
+    li {
+      padding-left: 0;
+      padding-right: 5px;
+    }
+    a {
+      color: $text;
+      &:hover {
+        color: $text;
+      }
+    }
   }
 }
