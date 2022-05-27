@@ -126,7 +126,7 @@ EOT;
 
   }
   else {
-    $header_top_rgba = $header_top_scroll_rgba = $header_top_scroll_rgba = $palette['header'];
+    $header_top_rgba = $header_top_scroll_rgba = $header_top_scroll_rgba = $palette['header'] ?? '';
     if (theme_get_setting('header_top_sticky', $theme) && theme_get_setting('header_top_sticky_show', $theme) == 'after_scroll') {
       $header_top_opacity = 0;
     }

@@ -4,22 +4,18 @@
  *
  * @see sass/styles.scss for more info
  */
-(function($, Drupal) {
+(function($, Drupal, once) {
   Drupal.behaviors.dxpr_theme_breadcrumbs = {
     attach(context, settings) {
       // Breadcrumbs
       if (settings.dxpr_themeSettings.breadcrumbsSeparator) {
         const breadcrumbsSeparator = settings.dxpr_themeSettings.breadcrumbsSeparator;
-        $(".page-title-full-width-container .breadcrumb a", context)
-          .once("dxpr_theme")
-          .after(
+        $(once("dxpr_theme", ".page-title-full-width-container .breadcrumb a", context)).after(
             ` <span class="dxpr-theme-breadcrumb-spacer">${breadcrumbsSeparator}</span> `
           );
       } else {
-        $(".page-title-full-width-container .breadcrumb a", context)
-          .once("dxpr_theme")
-          .after(' <span class="dxpr-theme-breadcrumb-spacer">/</span> ');
+        $(once("dxpr_theme", ".page-title-full-width-container .breadcrumb a", context)).after(' <span class="dxpr-theme-breadcrumb-spacer">/</span> ');
       }
     }
   };
-})(jQuery, Drupal);
+})(jQuery, Drupal, once);

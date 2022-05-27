@@ -127,7 +127,7 @@ function dxpr_theme_local_webfonts() {
 
   $fonts = [];
   foreach ($theme_chain as $theme) {
-    $theme_path = drupal_get_path('theme', $theme);
+    $theme_path = \Drupal::service('extension.list.theme')->getPath($theme);
     if (!is_dir($theme_path . '/fonts')) {
       continue;
     }
