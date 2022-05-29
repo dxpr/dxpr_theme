@@ -62,7 +62,7 @@ function dxpr_theme_color_module_css_write($theme) {
   }
   $paths['target'] = $paths['target'] . '/';
   $paths['id'] = $id;
-  $paths['source'] = drupal_get_path('theme', $theme) . '/';
+  $paths['source'] = \Drupal::service('extension.list.theme')->getPath($theme) . '/';
   $paths['files'] = $paths['map'] = [];
 
   // Save palette and logo location.
@@ -152,7 +152,7 @@ function dxpr_theme_css_cache_build($theme) {
   // Construct CSS file:
   $css = '';
   // Load Sooper Features CSS.
-  foreach (\Drupal::service('file_system')->scanDirectory(drupal_get_path('theme', 'dxpr_theme') . '/features', '/css.inc/i') as $file) {
+  foreach (\Drupal::service('file_system')->scanDirectory(\Drupal::service('extension.list.theme')->getPath('dxpr_theme') . '/features', '/css.inc/i') as $file) {
     require_once $file->uri;
     $function_name = basename($file->filename, '.inc');
     $function_name = str_replace('-', '_', $function_name);
@@ -160,7 +160,7 @@ function dxpr_theme_css_cache_build($theme) {
       $function_name($theme, $css, $palette);
     }
   }
-  $file_object = file_save_data($css, $dxpr_theme_css_file, FileSystemInterface::EXISTS_REPLACE);
+  $file_object = \Drupal::service('file.repository')->writeData($css, $dxpr_theme_css_file, FileSystemInterface::EXISTS_REPLACE);
   if ($dir_writable && !empty($file_object)) {
     $message = t('DXPR Theme CSS file cache built for %theme', ['%theme' => $theme]);
     \Drupal::messenger()->addMessage($message);
