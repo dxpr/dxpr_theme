@@ -29,9 +29,10 @@ libraries-override:
   core/modernizr:
     js:
       assets/vendor/modernizr/modernizr.min.js: vendor/modernizr-custom-d8-dxpr-theme.js
-
-stylesheets-remove:
-  - core/themes/classy/css/components/collapse-processed.css
+  classy/base:
+    css:
+      component:
+        css/components/collapse-processed.css: false
 
 config:
   install:
