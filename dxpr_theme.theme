@@ -348,6 +348,21 @@ function dxpr_theme_form_alter(&$form, FormStateInterface $form_state, $form_id)
     ];
   }
   if ($form_id === 'search_block_form') {
+    $form['actions']['#type'] = 'submit';
+    $form['keys']['#placeholder'] = 'Search';
+    $form['actions']['#icon'] = [
+      '#type' => 'html_tag',
+      '#tag' => 'span',
+      '#value' => "",
+      '#attributes' => [
+        'class' => [
+          0 => 'icon',
+          1 => 'glyphicon',
+          2 => 'glyphicon-search',
+        ],
+        'aria-hidden' => TRUE,
+      ],
+    ];
     unset($form['actions']['submit']);
   }
 }
@@ -375,4 +390,11 @@ function dxpr_theme_preprocess_input(&$variables) {
  */
 function dxpr_theme_preprocess_details(&$variables) {
   $variables['attributes']['class'][] = 'form-item';
+}
+
+/**
+ * Implements template_theme_suggestions_form_alter()
+ */
+function dxpr_theme_theme_suggestions_form_alter(array &$suggestions, array $variables) {
+  $suggestions[] = 'form__' . $variables['element']['#form_id'];
 }
