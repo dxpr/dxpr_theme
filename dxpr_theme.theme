@@ -40,16 +40,6 @@ function dxpr_theme_library_info_alter(&$libraries, $extension) {
 }
 
 /**
- * Prepares variables for the all templates. Theme settings.
- */
-function dxpr_theme_preprocess(&$variables, $hook, $info) {
-  $theme = \Drupal::theme()
-    ->getActiveTheme()
-    ->getName();
-  $variables['theme']['settings'] = \Drupal::config($theme . '.settings')->get();
-}
-
-/**
  * Prepares variables for the html template. Adds node object.
  *
  * Default template: html.html.twig.
@@ -63,7 +53,7 @@ function dxpr_theme_preprocess_html(&$variables) {
   if (!$bootstrap_cdn) {
     $variables['#attached']['library'][] = 'dxpr_theme/bootstrap3';
   }
-  
+
   if ($node = \Drupal::routeMatch()->getParameter('node')) {
     $variables['node'] = $node;
   }
