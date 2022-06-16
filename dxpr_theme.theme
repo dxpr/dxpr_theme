@@ -375,12 +375,14 @@ function dxpr_theme_preprocess_input(&$variables) {
   if (isset($element['#icon'])) {
     $variables['icon'] = $element['#icon'];
   }
-  if ($element['#id'] === 'full_screen_search') {
-    $variables['icon'] = [
-      '#type' => 'html_tag',
-      '#tag' => 'span',
-      '#value' => '',
-    ];
+  if (isset($element['#id'])) {
+    if ($element['#id'] === 'full_screen_search') {
+      $variables['icon'] = [
+        '#type' => 'html_tag',
+        '#tag' => 'span',
+        '#value' => '',
+      ];
+    }
   }
   $variables['#attached']['library'][] = 'dxpr_theme/drupal-search';
 }
