@@ -333,36 +333,12 @@ function dxpr_theme_form_alter(&$form, FormStateInterface $form_state, $form_id)
     ];
     $form['basic']['keys']['#placeholder'] = $form['basic']['keys']['#title'];
     unset($form['basic']['keys']['#title']);
-    $form['basic']['submit']['#icon'] = [
-      '#type' => 'html_tag',
-      '#tag' => 'span',
-      '#value' => "",
-      '#attributes' => [
-        'class' => [
-          0 => 'icon',
-          1 => 'glyphicon',
-          2 => 'glyphicon-search',
-        ],
-        'aria-hidden' => TRUE,
-      ],
-    ];
+    $form['basic']['submit']['#icon'] = TRUE;
   }
   if ($form_id === 'search_block_form') {
     $form['actions']['#type'] = 'submit';
     $form['keys']['#placeholder'] = 'Search';
-    $form['actions']['#icon'] = [
-      '#type' => 'html_tag',
-      '#tag' => 'span',
-      '#value' => "",
-      '#attributes' => [
-        'class' => [
-          0 => 'icon',
-          1 => 'glyphicon',
-          2 => 'glyphicon-search',
-        ],
-        'aria-hidden' => TRUE,
-      ],
-    ];
+    $form['actions']['#icon'] = TRUE;
     unset($form['actions']['submit']);
   }
 }
@@ -377,11 +353,7 @@ function dxpr_theme_preprocess_input(&$variables) {
   }
   if (isset($element['#id'])) {
     if ($element['#id'] === 'full_screen_search') {
-      $variables['icon'] = [
-        '#type' => 'html_tag',
-        '#tag' => 'span',
-        '#value' => '',
-      ];
+      $variables['icon'] = TRUE;
     }
   }
   $variables['#attached']['library'][] = 'dxpr_theme/drupal-search';
