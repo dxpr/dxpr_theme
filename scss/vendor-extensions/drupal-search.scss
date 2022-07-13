@@ -4,13 +4,14 @@
 
 // Search
 
-.search-form {
+.search-form,
+.search-block-form {
   .input-group {
     align-items: center;
 
     .form-control {
       font-size: 14px;
-      padding: 10px;
+      padding: 10.5px;
     }
 
     .input-group-btn {
@@ -21,5 +22,11 @@
         padding: 9px 18px;
       }
     }
+  }
+}
+
+.full-screen-search-form {
+  .input-group-btn {
+    display: none;
   }
 }

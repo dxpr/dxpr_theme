@@ -332,19 +332,14 @@ function dxpr_theme_form_alter(&$form, FormStateInterface $form_state, $form_id)
       1 => 'input-group',
     ];
     $form['basic']['keys']['#placeholder'] = $form['basic']['keys']['#title'];
-    $form['basic']['submit']['#icon'] = [
-      '#type' => 'html_tag',
-      '#tag' => 'span',
-      '#value' => "",
-      '#attributes' => [
-        'class' => [
-          0 => 'icon',
-          1 => 'glyphicon',
-          2 => 'glyphicon-search',
-        ],
-        'aria-hidden' => TRUE,
-      ],
-    ];
+    unset($form['basic']['keys']['#title']);
+    $form['basic']['submit']['#icon'] = TRUE;
+  }
+  if ($form_id === 'search_block_form') {
+    $form['actions']['#type'] = 'submit';
+    $form['keys']['#placeholder'] = 'Search';
+    $form['actions']['#icon'] = TRUE;
+    unset($form['actions']['submit']);
   }
 }
 
@@ -356,6 +351,11 @@ function dxpr_theme_preprocess_input(&$variables) {
   if (isset($element['#icon'])) {
     $variables['icon'] = $element['#icon'];
   }
+  if (isset($element['#id'])) {
+    if ($element['#id'] === 'full_screen_search') {
+      $variables['icon'] = TRUE;
+    }
+  }
   $variables['#attached']['library'][] = 'dxpr_theme/drupal-search';
 }
 
@@ -364,4 +364,11 @@ function dxpr_theme_preprocess_input(&$variables) {
  */
 function dxpr_theme_preprocess_details(&$variables) {
   $variables['attributes']['class'][] = 'form-item';
+}
+
+/**
+ * Implements template_theme_suggestions_form_alter()
+ */
+function dxpr_theme_theme_suggestions_form_alter(array &$suggestions, array $variables) {
+  $suggestions[] = 'form__' . $variables['element']['#form_id'];
 }
