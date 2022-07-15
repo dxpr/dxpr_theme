@@ -371,6 +371,7 @@ blockquote footer, blockquote small, blockquote .small {
         margin: 0;
         border: none;
         pointer-events: auto;
+        line-height: 1.42857143;
       }
       &.active {
         bottom: auto !important;
