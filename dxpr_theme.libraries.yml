@@ -125,6 +125,11 @@ drupal-search:
     theme:
       css/vendor-extensions/drupal-search.css: { minified: true }
 
+drupal-status-message:
+  css:
+    theme:
+      css/vendor-extensions/drupal-status-message.css: { minified: true }
+
 cms-bootstrap-core:
   css:
     theme:
