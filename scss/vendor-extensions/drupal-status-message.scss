@@ -1,0 +1,58 @@
+//
+// Author: Jurriaan Roelofs for DXPR. Copyright DXPR.
+//
+
+// Status message
+@import "../includes/variables";
+
+.alert {
+  padding: 0.75rem 1.25rem;
+}
+
+.alert-dismissible {
+  .close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 2;
+    padding: 0.75rem 1.25rem;
+    float: right;
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1;
+    color: $black;
+    text-shadow: 0 1px 0 $white;
+    opacity: 0.5;
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.75;
+    }
+  }
+}
+
+.alert-success {
+  color: $state-success-text;
+  background-color: $state-success-bg;
+  border-color: $state-success-border;
+}
+
+.alert-info {
+  color: $state-info-text;
+  background-color: $state-info-bg;
+  border-color: $state-info-border;
+}
+
+.alert-warning {
+  color: $state-warning-text;
+  background-color: $state-warning-bg;
+  border-color: $state-warning-border;
+}
+
+.alert-danger {
+  color: $state-danger-text;
+  background-color: $state-danger-bg;
+  border-color: $state-danger-border;
+}
