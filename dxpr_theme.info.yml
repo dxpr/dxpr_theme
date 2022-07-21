@@ -1,6 +1,6 @@
 type: theme
 core_version_requirement: ^8 || ^9 || ^10
-base theme: bootstrap4
+base theme: bootstrap5
 
 name: 'DXPR Theme'
 description: 'Low code framework theme by DXPR.'
