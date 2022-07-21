@@ -391,21 +391,21 @@ $nav-tabs-link-hover-border-color:          $gray-lighter;
 // Form states and alerts
 // -------------------------
 
-//$state-success-text:             #468847;
-//$state-success-bg:               #dff0d8;
-//$state-success-border:           darken(adjust-hue($state-success-bg, -10), 5%);
+$state-success-text:             #004800;
+$state-success-bg:               #cce8cc;
+$state-success-border:           #b8deb8;
 
-//$state-info-text:                #3a87ad;
-//$state-info-bg:                  #d9edf7;
-//$state-info-border:              darken(adjust-hue($state-info-bg, -10), 7%);
+$state-info-text:                #00323a;
+$state-info-bg:                  #ccdfe2;
+$state-info-border:              #b8d3d7;
 
-//$state-warning-text:             #c09853;
-//$state-warning-bg:               #fcf8e3;
-//$state-warning-border:           darken(adjust-hue($state-warning-bg, -10), 5%);
+$state-warning-text:             #856404;
+$state-warning-bg:               #fff3cd;
+$state-warning-border:           #ffeeba;
 
-//$state-danger-text:              #b94a48;
-//$state-danger-bg:                #f2dede;
-//$state-danger-border:            darken(adjust-hue($state-danger-bg, -10), 5%);
+$state-danger-text:              #721c24;
+$state-danger-bg:                #f8d7da;
+$state-danger-border:            #f5c6cb;
 
 // Tooltips
 // -------------------------
