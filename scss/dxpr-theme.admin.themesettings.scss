@@ -551,6 +551,7 @@ $font_3: 'sans-serif';
       width: 54px;
       height: 27px;
       cursor: pointer;
+      appearance: auto;
       // Can't add the switcher div with #suffix and #prefix for some reason
       // So just using checkboxes again
       // opacity: 0;
@@ -562,6 +563,9 @@ $font_3: 'sans-serif';
           transform: translateX(-100%);
         }
       }
+    &:focus {
+      box-shadow: unset;
+    }
     }
     .switcher {
       cursor: pointer;
