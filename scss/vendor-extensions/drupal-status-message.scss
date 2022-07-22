@@ -5,10 +5,6 @@
 // Status message
 @import "../includes/variables";
 
-.alert {
-  padding: 0.75rem 1.25rem;
-}
-
 .alert-dismissible {
   .close {
     position: absolute;
@@ -21,7 +17,7 @@
     font-weight: 700;
     line-height: 1;
     color: $black;
-    text-shadow: 0 1px 0 $white;
+    text-shadow: 0 1px 0 $header-color;
     opacity: 0.5;
     background-color: transparent;
     border: 0;
@@ -31,28 +27,4 @@
       opacity: 0.75;
     }
   }
-}
-
-.alert-success {
-  color: $state-success-text;
-  background-color: $state-success-bg;
-  border-color: $state-success-border;
-}
-
-.alert-info {
-  color: $state-info-text;
-  background-color: $state-info-bg;
-  border-color: $state-info-border;
-}
-
-.alert-warning {
-  color: $state-warning-text;
-  background-color: $state-warning-bg;
-  border-color: $state-warning-border;
-}
-
-.alert-danger {
-  color: $state-danger-text;
-  background-color: $state-danger-bg;
-  border-color: $state-danger-border;
 }
