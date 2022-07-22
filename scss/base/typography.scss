@@ -103,6 +103,7 @@ a,
 
 a {
   transition: color 200ms;
+  text-decoration: none;
   &:hover,
   &:focus {
     outline: none;
