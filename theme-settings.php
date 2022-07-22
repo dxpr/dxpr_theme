@@ -84,6 +84,8 @@ function dxpr_theme_form_system_theme_settings_alter(&$form, &$form_state, $form
   unset($form['nav_details']);
   unset($form['footer_details']);
   unset($form['subtheme']);
+  unset($form['styleguide']);
+  unset($form['text_formats']);
 
   /**
    * DXPR Theme cache builder
