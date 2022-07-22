@@ -63,6 +63,8 @@ $font_3: 'sans-serif';
     clear: both;
     border-left: 4px solid #dce2e5;
     border-radius: 0;
+    margin-top: 0;
+    margin-bottom: 20px;
     .panel-heading {
       background: transparent;
       border: none;
@@ -84,6 +86,8 @@ $font_3: 'sans-serif';
     }
     summary {
       padding: 10px 15px;
+      --bs-bg-opacity: unset;
+      border: unset;
       .details-title {
         outline: none;
         text-decoration: none;
@@ -300,9 +304,6 @@ $font_3: 'sans-serif';
       padding: 10px 15px;
       .details-wrapper {
         padding: 15px;
-        .form-wrapper {
-          padding: 0 15px;
-        }
       }
     }
 
@@ -402,6 +403,8 @@ $font_3: 'sans-serif';
   }
   .form-item {
     padding-left: 0;
+    margin-top: 10px;
+    margin-bottom: 15px;
   }
   .form-item.form-type-vertical-tabs {
     margin-top: 0;
