@@ -1,0 +1,20 @@
+###############################################
+# An override compose file for using volume   #
+# mounts for either production or cloud tests #
+###############################################
+
+version: "3.7"
+
+services:
+
+  ### Populate the dxpr-theme volume
+  dxpr-theme:
+    image: dxpr/dxpr_theme:$DXPR_THEME_TAG
+    profiles: ["dxpr-theme"]
+    build:
+      context: .
+      args:
+        PHP_TAG: $PHP_TAG
+        DXPR_THEME_CONTAINER: $DXPR_THEME_CONTAINER
+    volumes:
+      - dxpr-theme:$DXPR_THEME_CONTAINER
