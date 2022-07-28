@@ -29,12 +29,12 @@
   {%- endif -%}
   <div class="details-wrapper card-body">
     {% if errors %}
-      <div class="alert alert-danger" role="alert">
+      <div class="form-item--error-message" role="alert">
         <strong>{{ errors }}</strong>
       </div>
     {% endif %}
     {%- if description -%}
-      <div class="alert alert-info">{{ description }}</div>
+      <div class="details-description">{{ description }}</div>
     {%- endif -%}
     {%- if children -%}
       {{ children }}
