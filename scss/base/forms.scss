@@ -83,3 +83,13 @@
 .cke_editable_themed {
   padding: 5px;
 }
+
+.js {
+  input {
+    &.ui-autocomplete-input {
+      &.ui-autocomplete-loading {
+        background-repeat: no-repeat;
+      }
+    }
+  }
+}
