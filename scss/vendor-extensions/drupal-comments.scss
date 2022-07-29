@@ -20,6 +20,10 @@
   }
   .float-left {
     margin-right: 25px;
+    float: left;
+  }
+  .float-right {
+    float: right;
   }
   .media-body {
     display: table-cell;
