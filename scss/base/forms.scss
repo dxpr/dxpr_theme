@@ -44,6 +44,9 @@
     appearance: none;
     background-size: 18px;
   }
+  #edit-multi-select {
+    height: unset;
+  }
   // This hides native dropdown button arrow in IE
   select::-ms-expand {
     display: none;
