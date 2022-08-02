@@ -167,6 +167,9 @@ $font_3: 'sans-serif';
     max-width: 100%;
     width: 400px;
   }
+  .fieldset-wrapper {
+    padding: 0;
+  }
   .form-text,
   .form-textarea {
     background: #e4e9ed;
@@ -407,8 +410,6 @@ $font_3: 'sans-serif';
   }
   .form-item {
     padding-left: 0;
-    margin-top: 10px;
-    margin-bottom: 15px;
     background-color: unset;
   }
   .form-item.form-type-vertical-tabs {
