@@ -83,7 +83,7 @@ function dxpr_theme_preprocess_html(&$variables) {
   }
 
   // Load Sooper Features Controllers.
-  foreach (\Drupal::service('file_system')->scanDirectory(drupal_get_path('theme', 'dxpr_theme') . '/features', '/controller.inc/i') as $file) {
+  foreach (\Drupal::service('file_system')->scanDirectory(\Drupal::service('extension.list.theme')->getPath('dxpr_theme') . '/features', '/controller.inc/i') as $file) {
     require_once $file->uri;
     $function_name = basename($file->filename, '.inc');
     $function_name = str_replace('-', '_', $function_name);

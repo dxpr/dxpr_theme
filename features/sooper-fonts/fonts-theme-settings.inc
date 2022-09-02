@@ -127,7 +127,7 @@ function dxpr_theme_local_webfonts() {
 
   $fonts = [];
   foreach ($theme_chain as $theme) {
-    $theme_path = drupal_get_path('theme', $theme);
+    $theme_path = \Drupal::service('extension.list.theme')->getPath($theme);
     if (!is_dir($theme_path . '/fonts')) {
       continue;
     }
@@ -216,7 +216,7 @@ function _dxpr_theme_font_previews() {
   $output .= '  <p>Check out <a href="http://www.google.com/webfonts">google.com/webfonts</a> for previews of google web fonts.</p>';
   $output .= '  <h3>Local fonts preview</h3>';
   $output .= '  <p>DXPR Theme will automatically detect and load any Fontsquirrel-generated @font-face package in the exmapletheme/fonts folder. See <a href="https://www.fontsquirrel.com/tools/webfont-generator">Fontsquirrel.com</a></p>';
-  foreach (dxpr_theme_local_webfonts(TRUE) as $key => $font_name) {
+  foreach (dxpr_theme_local_webfonts() as $key => $font_name) {
     $font = explode('|', $key);
     $local_name = $font[2];
     $output .= '  <div class="font-preview font-local" style="font-family:' . $local_name . '">';

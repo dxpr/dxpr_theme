@@ -118,6 +118,6 @@ EOT;
   }
 
   if ($background_image_path = theme_get_setting('background_image_path', $theme)) {
-    $css .= "body { background-image: url('" . file_url_transform_relative(file_create_url($background_image_path)) . "'); }\n\n";
+    $css .= "body { background-image: url('" . \Drupal::service('file_url_generator')->generateString($background_image_path) . "'); }\n\n";
   }
 }

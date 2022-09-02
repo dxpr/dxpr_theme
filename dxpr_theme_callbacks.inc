@@ -30,7 +30,7 @@ function _dxpr_theme_css_cache_file($theme) {
 function dxpr_theme_color_module_css_write($theme) {
   // Stuff copied from color module, because this code is not encapsulated
   // in a function other than theme submit.
-  module_load_include('module', 'color');
+  \Drupal::moduleHandler()->loadInclude('module', 'color');
   $info = color_get_info($theme);
   $palette = color_get_palette($theme);
   $config = \Drupal::configFactory()->getEditable('color.theme.' . $theme);
@@ -62,7 +62,7 @@ function dxpr_theme_color_module_css_write($theme) {
   }
   $paths['target'] = $paths['target'] . '/';
   $paths['id'] = $id;
-  $paths['source'] = drupal_get_path('theme', $theme) . '/';
+  $paths['source'] = \Drupal::service('extension.list.theme')->getPath($theme) . '/';
   $paths['files'] = $paths['map'] = [];
 
   // Save palette and logo location.
@@ -96,7 +96,7 @@ function dxpr_theme_color_module_css_write($theme) {
     }
 
     foreach ($files as $file) {
-      $css_optimizer = new CssOptimizer();
+      $css_optimizer = new CssOptimizer($file);
       // Aggregate @imports recursively for each configured top level CSS file
       // without optimization. Aggregation and optimization will be
       // handled by drupal_build_css_cache() only.
@@ -152,7 +152,7 @@ function dxpr_theme_css_cache_build($theme) {
   // Construct CSS file:
   $css = '';
   // Load Sooper Features CSS.
-  foreach (\Drupal::service('file_system')->scanDirectory(drupal_get_path('theme', 'dxpr_theme') . '/features', '/css.inc/i') as $file) {
+  foreach (\Drupal::service('file_system')->scanDirectory(\Drupal::service('extension.list.theme')->getPath('dxpr_theme') . '/features', '/css.inc/i') as $file) {
     require_once $file->uri;
     $function_name = basename($file->filename, '.inc');
     $function_name = str_replace('-', '_', $function_name);
@@ -160,8 +160,8 @@ function dxpr_theme_css_cache_build($theme) {
       $function_name($theme, $css, $palette);
     }
   }
-  $file_object = file_save_data($css, $dxpr_theme_css_file, FileSystemInterface::EXISTS_REPLACE);
-  if ($dir_writable && !empty($file_object)) {
+  $file_object = \Drupal::service('file.repository')->writeData($css, $dxpr_theme_css_file, FileSystemInterface::EXISTS_REPLACE);
+  if ($dir_writable && $file_object) {
     $message = t('DXPR Theme CSS file cache built for %theme', ['%theme' => $theme]);
     \Drupal::messenger()->addMessage($message);
     \Drupal::logger('dxpr_theme')->notice($message);
