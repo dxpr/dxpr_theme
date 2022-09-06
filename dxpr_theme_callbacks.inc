@@ -30,7 +30,7 @@ function _dxpr_theme_css_cache_file($theme) {
 function dxpr_theme_color_module_css_write($theme) {
   // Stuff copied from color module, because this code is not encapsulated
   // in a function other than theme submit.
-  module_load_include('module', 'color');
+  \Drupal::moduleHandler()->loadInclude('module', 'color');
   $info = color_get_info($theme);
   $palette = color_get_palette($theme);
   $config = \Drupal::configFactory()->getEditable('color.theme.' . $theme);
@@ -96,7 +96,7 @@ function dxpr_theme_color_module_css_write($theme) {
     }
 
     foreach ($files as $file) {
-      $css_optimizer = new CssOptimizer();
+      $css_optimizer = new CssOptimizer(file);
       // Aggregate @imports recursively for each configured top level CSS file
       // without optimization. Aggregation and optimization will be
       // handled by drupal_build_css_cache() only.
@@ -161,7 +161,7 @@ function dxpr_theme_css_cache_build($theme) {
     }
   }
   $file_object = \Drupal::service('file.repository')->writeData($css, $dxpr_theme_css_file, FileSystemInterface::EXISTS_REPLACE);
-  if ($dir_writable && !empty($file_object)) {
+  if ($dir_writable && $file_object) {
     $message = t('DXPR Theme CSS file cache built for %theme', ['%theme' => $theme]);
     \Drupal::messenger()->addMessage($message);
     \Drupal::logger('dxpr_theme')->notice($message);
