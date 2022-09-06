@@ -96,7 +96,7 @@ function dxpr_theme_color_module_css_write($theme) {
     }
 
     foreach ($files as $file) {
-      $css_optimizer = new CssOptimizer(file);
+      $css_optimizer = new CssOptimizer($file);
       // Aggregate @imports recursively for each configured top level CSS file
       // without optimization. Aggregation and optimization will be
       // handled by drupal_build_css_cache() only.
