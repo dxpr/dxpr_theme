@@ -89,6 +89,6 @@ EOT;
   }
 
   if ($page_title_image_path = theme_get_setting('page_title_image_path', $theme)) {
-    $css .= ".page-title-full-width-container:after { background-image: url('" . file_url_transform_relative(file_create_url($page_title_image_path)) . "'); }\n\n";
+    $css .= ".page-title-full-width-container:after { background-image: url('" . \Drupal::service('file_url_generator')->generateString($page_title_image_path) . "'); }\n\n";
   }
 }
