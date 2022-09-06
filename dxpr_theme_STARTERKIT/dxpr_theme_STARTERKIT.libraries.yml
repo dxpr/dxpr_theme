@@ -147,3 +147,8 @@ helper-classes:
   css:
     theme:
       css/helpers/helper-classes.css: { minified: true }
+
+drupal-search:
+  css:
+    theme:
+      css/vendor-extensions/drupal-search.css: { minified: true }
