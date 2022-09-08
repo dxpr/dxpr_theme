@@ -41,7 +41,6 @@ libraries-override:
   dxpr_theme/dxpr-theme-header--side: false
   dxpr_theme/dxpr-theme-header--mobile: false
   dxpr_theme/dxpr-theme-secondary-header: false
-  dxpr_theme/pager-prevnext: false
   dxpr_theme/dxpr-theme-admin: false
   dxpr_theme/cubeportfolio: false
   dxpr_theme/drupal-breadcrumbs: false

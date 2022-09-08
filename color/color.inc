@@ -77,7 +77,6 @@ $info = [
     'css/components/dxpr-theme-header--side.css',
     'css/components/dxpr-theme-header--mobile.css',
     'css/components/dxpr-theme-secondary-header.css',
-    'css/components/pager-prevnext.css',
     'css/components/dxpr-theme-admin.css',
     // Overrides.
     'css/vendor-extensions/bootstrap-3.css',
