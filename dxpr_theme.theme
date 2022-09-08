@@ -204,7 +204,6 @@ function dxpr_theme_preprocess_page(&$variables) {
     'dxpr_theme/typography',
     // DXPR THEME Components  //@todo: include only if needed.
     'dxpr_theme/dxpr-theme-header--side',
-    'dxpr_theme/pager-prevnext',
     'dxpr_theme/admin',
     // Overrides   //@todo: include only if needed.
     'dxpr_theme/drupal-webform',
