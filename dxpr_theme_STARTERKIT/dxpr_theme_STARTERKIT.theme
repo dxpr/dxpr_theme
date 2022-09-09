@@ -119,4 +119,12 @@ function dxpr_theme_STARTERKIT_preprocess_comment(&$variables) {
 function dxpr_theme_STARTERKIT_preprocess_pager(&$variables) {
   $variables['#attached']['library'][] = 'dxpr_theme_STARTERKIT/drupal-pager';
 }
+
+
+/**
+ * Implements template_preprocess_input()
+ */
+function dxpr_theme_STARTERKIT_preprocess_input(&$variables) {
+  $variables['#attached']['library'][] = 'dxpr_theme_STARTERKIT/drupal-search';
+}
 // phpcs:enable
