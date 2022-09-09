@@ -83,11 +83,6 @@ dxpr-theme-secondary-header:
     theme:
       css/components/dxpr-theme-secondary-header.css: { minified: true }
 
-pager-prevnext:
-  css:
-    theme:
-      css/components/pager-prevnext.css: { minified: true }
-
 dxpr-theme-admin:
   css:
     theme:
