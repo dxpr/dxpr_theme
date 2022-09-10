@@ -59,7 +59,7 @@ function block_design_theme_settings(array &$form, $theme) {
 
   $well_options = [
     '' => t('None'),
-    'card' => t('Well'),
+    'card card-body' => t('Well'),
     'card card-body bg-primary' => t('Well DXPR Theme Primary Color'),
     'card card-body dxpr-theme-util-background-accent1' => t('Well Accent 1 Color'),
     'card card-body dxpr-theme-util-background-accent2' => t('Well Accent 2 Color'),
