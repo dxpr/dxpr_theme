@@ -59,13 +59,13 @@ function block_design_theme_settings(array &$form, $theme) {
 
   $well_options = [
     '' => t('None'),
-    'well' => t('Well'),
-    'well bg-primary' => t('Well DXPR Theme Primary Color'),
-    'well dxpr-theme-util-background-accent1' => t('Well Accent 1 Color'),
-    'well dxpr-theme-util-background-accent2' => t('Well Accent 2 Color'),
-    'well dxpr-theme-util-background-black' => t('Well Black'),
-    'well dxpr-theme-util-background-white' => t('Well White'),
-    'well dxpr-theme-util-background-gray' => t('Well Gray'),
+    'card' => t('Well'),
+    'card card-body bg-primary' => t('Well DXPR Theme Primary Color'),
+    'card card-body dxpr-theme-util-background-accent1' => t('Well Accent 1 Color'),
+    'card card-body dxpr-theme-util-background-accent2' => t('Well Accent 2 Color'),
+    'card card-body dxpr-theme-util-background-black' => t('Well Black'),
+    'card card-body dxpr-theme-util-background-white' => t('Well White'),
+    'card card-body dxpr-theme-util-background-gray' => t('Well Gray'),
   ];
 
   $form['dxpr_theme_settings']['block']['block_advanced']['block_el']['block_well'] = [
