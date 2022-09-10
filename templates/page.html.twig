@@ -100,7 +100,7 @@
           theme.settings.header_top_layout ? 'dxpr-theme-header--' ~ theme.settings.header_top_layout|clean_class,
           theme.settings.header_style ? 'dxpr-theme-header--' ~ theme.settings.header_style|clean_class,
           theme.settings.menu_hover ? 'dxpr-theme-header--hover-' ~ theme.settings.menu_hover|clean_class,
-          theme.settings.header_top_fixed and theme.settings.header_top_sticky ? 'dxpr-theme-header--sticky',
+          theme.settings.header_top_fixed and theme.settings.header_top_sticky ? 'dxpr-theme-header--sticky affix',
           theme.settings.header_top_fixed and not theme.settings.header_top_sticky ? 'dxpr-theme-header--fixed',
         ]
       %}
