@@ -99,8 +99,6 @@ drupal-breadcrumbs:
   css:
     theme:
       css/vendor-extensions/drupal-breadcrumbs.css: { minified: true }
-  dependencies:
-    - core/once
 
 drupal-comments:
   css:
