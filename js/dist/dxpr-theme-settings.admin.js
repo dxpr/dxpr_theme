@@ -16,7 +16,7 @@
    */
   Drupal.behaviors.dxpr_themeSettingsControls = {
     attach(context) {
-      $("#system-theme-settings h2 > small").addClass("well form-header");
+      $("#system-theme-settings h2 > small").addClass("card form-header");
       var $input = "";
       // jQuery once is not working..
       $("#system-theme-settings .form-type-radio .control-label")
@@ -592,32 +592,32 @@
             $("#edit-block-border-color").val("text");
             break;
           case "block_well":
-            $("#edit-block-well").val("well");
+            $("#edit-block-well").val("card card-body");
             $("#edit-title-font-size-h3").prop("checked", true);
             break;
           case "title_inverted":
             $("#edit-title-background").val("text");
-            $("#edit-title-well").val("well dxpr-theme-util-background-gray");
+            $("#edit-title-well").val("card card-body dxpr-theme-util-background-gray");
             $("#edit-title-padding").bootstrapSlider("setValue", 10);
             $("#edit-title-font-size-h3").prop("checked", true);
             break;
           case "title_inverted_shape":
             $("#edit-title-background").val("text");
-            $("#edit-title-well").val("well dxpr-theme-util-background-gray");
+            $("#edit-title-well").val("card card-body dxpr-theme-util-background-gray");
             $("#edit-title-padding").bootstrapSlider("setValue", 10);
             $("#edit-title-border-radius").bootstrapSlider("setValue", 100);
             $("#edit-title-font-size-h4").prop("checked", true);
             $("#edit-title-align-center").prop("checked", true);
             break;
           case "title_sticker":
-            $("#edit-title-well").val("well dxpr-theme-util-background-gray");
+            $("#edit-title-well").val("card card-body dxpr-theme-util-background-gray");
             $("#edit-title-padding").bootstrapSlider("setValue", 10);
             $("#edit-title-font-size-body").prop("checked", true);
             break;
           case "title_sticker_color":
             $("#edit-title-font-size-body").prop("checked", true);
             $("#edit-title-padding").bootstrapSlider("setValue", 10);
-            $("#edit-title-well").val("well bg-primary");
+            $("#edit-title-well").val("card card-body bg-primary");
             break;
           case "title_outline":
             $("#edit-title-padding").bootstrapSlider("setValue", 15);
@@ -767,7 +767,7 @@
 
       $("#edit-block-well").change(function() {
         $(".block-preview .block").removeClass(
-          "well bg-primary dxpr-theme-util-background-accent1 dxpr-theme-util-background-accent2 dxpr-theme-util-background-black dxpr-theme-util-background-white dxpr-theme-util-background-gray"
+          "card card-body bg-primary dxpr-theme-util-background-accent1 dxpr-theme-util-background-accent2 dxpr-theme-util-background-black dxpr-theme-util-background-white dxpr-theme-util-background-gray"
         );
         $(".block-preview .block").addClass($(this).val());
       });
@@ -813,7 +813,7 @@
       // Block title
       $("#edit-title-well").change(function() {
         $(".block-preview .block-title").removeClass(
-          "well bg-primary dxpr-theme-util-background-accent1 dxpr-theme-util-background-accent2 dxpr-theme-util-background-black dxpr-theme-util-background-white dxpr-theme-util-background-gray"
+          "card card-body bg-primary dxpr-theme-util-background-accent1 dxpr-theme-util-background-accent2 dxpr-theme-util-background-black dxpr-theme-util-background-white dxpr-theme-util-background-gray"
         );
         $(".block-preview .block-title").addClass($(this).val());
       });
