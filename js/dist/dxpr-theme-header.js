@@ -337,7 +337,9 @@
 
       // Close/open menu function
       const closeMenu = function() {
-        $("#dxpr-theme-menu-toggle").toggleClass("navbar-toggle--active");
+        if (drupalSettings.dxpr_themeSettings.hamburgerAnimation === "cross") {
+          $("#dxpr-theme-menu-toggle").toggleClass("navbar-toggle--active");
+        }
         $(menuEl).toggleClass("menu--open");
         $("html").toggleClass("html--dxpr-theme-nav-mobile--open");
       };
