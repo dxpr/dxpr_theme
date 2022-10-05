@@ -4,7 +4,7 @@
  *
  * @see sass/styles.scss for more info
  */
-(function($, Drupal) {
+(function($, Drupal, once) {
   let dxpr_themeMenuState = "";
 
   // Create underscore debounce and throttle functions if they doesn't exist already
@@ -129,6 +129,11 @@
       _.throttle(
         $(window).scroll(() => {
           scroll = $(window).scrollTop();
+          if (scroll >= headerScroll) {
+            document.querySelector(".dxpr-theme-header--sticky").classList.add("affix");
+          } else {
+            document.querySelector(".dxpr-theme-header--sticky").classList.add("affix-top");
+          }
           if (scroll >= headerScroll && scroll <= headerScroll * 2) {
             document.getElementsByClassName(
               "wrap-containers"
@@ -476,4 +481,4 @@
       rect1.top > rect2.bottom
     );
   }
-})(jQuery, Drupal);
+})(jQuery, Drupal, once);
