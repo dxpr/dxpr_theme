@@ -447,6 +447,17 @@ function header_theme_settings(array &$form, $theme) {
     ],
   ];
 
+  $form['dxpr_theme_settings']['header']['header_side']['hamburger_animation'] = [
+    '#type' => 'radios',
+    '#title' => t('Hamburger Animation'),
+    '#description' => t('Hamburger Animation.'),
+    '#default_value' => ((theme_get_setting('hamburger_animation') !== NULL)) ? theme_get_setting('hamburger_animation') : 'cross',
+    '#options' => [
+      'none' => t('None'),
+      'cross' => t('Cross'),
+    ],
+  ];
+
   $form['dxpr_theme_settings']['header']['menu'] = [
     '#title' => t('Main Menu Links'),
     '#type' => 'details',
