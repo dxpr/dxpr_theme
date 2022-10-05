@@ -130,9 +130,9 @@
         $(window).scroll(() => {
           scroll = $(window).scrollTop();
           if (scroll >= headerScroll) {
-            $(".dxpr-theme-header--sticky").addClass("affix");
+            document.querySelector(".dxpr-theme-header--sticky").classList.add("affix");
           } else {
-            $(".dxpr-theme-header--sticky").addClass("affix-top");
+            document.querySelector(".dxpr-theme-header--sticky").classList.add("affix-top");
           }
           if (scroll >= headerScroll && scroll <= headerScroll * 2) {
             document.getElementsByClassName(
