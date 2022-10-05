@@ -156,7 +156,8 @@ html.js .kenburnimg img {
 // https://css-tricks.com/couple-takes-sticky-footer/
 .html--dxpr-theme-sticky-footer {
   height: 100%;
-  body {
+  body,
+  .dialog-off-canvas-main-canvas {
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -172,6 +173,9 @@ html.js .kenburnimg img {
   }
   .body--dxpr-theme-nav-desktop .dxpr-theme-header--top.affix {
     min-height: 60px;
+  }
+  footer {
+    flex-shrink: 0;
   }
 }
 
