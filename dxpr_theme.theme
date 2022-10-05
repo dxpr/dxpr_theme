@@ -137,6 +137,11 @@ function dxpr_theme_preprocess_html(&$variables) {
   if ($second_header_sticky = theme_get_setting('second_header_sticky')) {
     $variables['#attached']['drupalSettings']['dxpr_themeSettings']['secondHeaderSticky'] = $second_header_sticky;
   }
+
+  // Menu hamburger animation.
+  if ($header_hamburger_animation = theme_get_setting('hamburger_animation')) {
+    $variables['#attached']['drupalSettings']['dxpr_themeSettings']['hamburgerAnimation'] = $header_hamburger_animation;
+  }
 }
 
 /**
