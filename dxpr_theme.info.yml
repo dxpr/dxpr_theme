@@ -6,6 +6,10 @@ name: 'DXPR Theme'
 description: 'Low code framework theme by DXPR.'
 package: DXPR
 
+dependencies:
+  - dxpr_theme_helper:dxpr_theme_helper
+  - drupal:color
+
 regions:
   secondary_header: 'Secondary Header'
   navigation: 'Navigation'
