@@ -1,6 +1,6 @@
 core: 8.x
 type: theme
-core_version_requirement: ^8 || ^9
+core_version_requirement: ^8 || ^9 || ^10
 base theme: dxpr_theme
 
 name: 'THEMETITLE'
