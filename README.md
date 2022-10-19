@@ -6,6 +6,12 @@ https://app.sooperthemes.com/hc/documentation
 For development documentation and support please check:
 https://app.sooperthemes.com/hc/documentation/internal
 
+Branches:
+
+* 1.x = Bootstrap 3
+* 2.x = Bootstrap 4
+* 5.x = Bootstrap 5
+
 ## Contributing Guidelines
 
 Before you write any code for this project please also check https://github.com/dxpr/dxpr_maven/blob/main/CONTRIBUTING.md
