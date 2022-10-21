@@ -4,7 +4,7 @@
  *
  * @see sass/styles.scss for more info
  */
-(function($, Drupal) {
+(function($, Drupal, once) {
   let dxpr_themeMenuState = "";
 
   // Create underscore debounce and throttle functions if they doesn't exist already
@@ -338,11 +338,10 @@
       };
 
       // mobile menu toggle
-      $("#dxpr-theme-menu-toggle")
-        .once("dxpr_themeMenuToggle")
-        .click(() => {
-          closeMenu();
-        });
+      $(once("dxpr_themeMenuToggle", "#dxpr-theme-menu-toggle"))
+      .click(() => {
+        closeMenu();
+      });
       $("#dxpr-theme-main-menu")
         .css("position", "fixed")
         .show();
@@ -477,4 +476,4 @@
       rect1.top > rect2.bottom
     );
   }
-})(jQuery, Drupal);
+})(jQuery, Drupal, once);

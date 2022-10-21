@@ -5,7 +5,7 @@ global-styling:
     js/minified/dxpr-theme-header.min.js: { minified: true }
   dependencies:
     - core/jquery
-    - core/jquery.once
+    - core/once
     - core/modernizr
 
 bootstrap-3:
@@ -53,7 +53,7 @@ dxpr-theme-full-screen-search:
     js/minified/dxpr-theme-full-screen-search.min.js: { minified: true }
   dependencies:
     - core/jquery
-    - core/jquery.once
+    - core/once
   css:
     theme:
       css/components/dxpr-theme-full-screen-search.css: { minified: true }
@@ -188,7 +188,7 @@ admin.themesettings:
       css/dxpr-theme.admin.themesettings.css: {}
   dependencies:
     - core/jquery
-    - core/jquery.once
+    - core/once
 
 ilightbox:
   js:
