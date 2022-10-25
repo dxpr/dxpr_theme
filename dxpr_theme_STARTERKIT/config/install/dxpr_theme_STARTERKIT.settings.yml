@@ -142,6 +142,7 @@ header_side_align: left
 header_side_direction: left
 header_side_width: '300'
 hamburger_menu: 'three-dash'
+hamburger_animation: 'cross'
 menu_type: uppercase
 menu_hover: opacity
 menu_border_position: bottom
