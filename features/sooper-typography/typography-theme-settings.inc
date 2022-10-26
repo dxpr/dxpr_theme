@@ -141,6 +141,14 @@ function typography_theme_settings(array &$form, $theme) {
     '#maxlength' => 9,
   ];
 
+  $form['dxpr_theme_settings']['typography']['advanced_type']['headings_bold'] = [
+    '#type' => 'checkbox',
+    '#title' => t('Headings Bold'),
+    '#default_value' => ((theme_get_setting('headings_bold') !== NULL)) ? theme_get_setting('headings_bold') : FALSE,
+    '#size' => 9,
+    '#maxlength' => 9,
+  ];
+
   $form['dxpr_theme_settings']['typography']['advanced_type']['mobile_type'] = [
     '#title' => t('Mobile Type Controls'),
     '#type' => 'details',
