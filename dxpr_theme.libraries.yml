@@ -4,6 +4,7 @@ global-styling:
     js/minified/dxpr-theme-multilevel-mobile-nav.min.js: { minified: true }
     js/minified/dxpr-theme-header.min.js: { minified: true }
   dependencies:
+    - core/drupal
     - core/jquery
     - core/once
     - core/modernizr
@@ -100,6 +101,7 @@ drupal-breadcrumbs:
     theme:
       css/vendor-extensions/drupal-breadcrumbs.css: { minified: true }
   dependencies:
+    - core/drupal
     - core/once
 
 drupal-comments:
@@ -194,6 +196,7 @@ admin.themesettings:
       vendor/bootstrap-slider/bootstrap-slider.min.css: {}
       css/dxpr-theme.admin.themesettings.css: {}
   dependencies:
+    - core/drupal
     - core/jquery
     - core/once
 
