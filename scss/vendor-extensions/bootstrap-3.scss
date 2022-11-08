@@ -78,7 +78,6 @@ div.lead {
 
 // 3d effect
 // Fake submit is media browser button
-.btn,
 .fake-submit {
   border: none;
   border-bottom: 3px solid rgba(0, 0, 0, 0.12);
@@ -119,6 +118,7 @@ $btn-primary-border: $primary;
 .btn-group > .btn-primary,
 .html .fake-submit {
   background: $primary;
+  border-color: $primary;
   color: white;
   a {
     color: white;
@@ -138,6 +138,7 @@ $btn-primary-border: $primary;
 a.bg-primary:hover,
 a.bg-primary:focus {
   background-color: $accent1;
+  border-color: $accent1;
   color: white;
   a {
     color: white;
