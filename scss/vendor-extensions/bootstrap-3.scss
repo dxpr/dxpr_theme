@@ -274,8 +274,9 @@ blockquote footer, blockquote small, blockquote .small {
         color: $gray-lighter;
       }
     }
-    &.active,
-    &.ui-tabs-active {
+
+    &.ui-tabs-active,
+    & > a.active {
       position: relative;
       // added !important below because bootstrap? is adding inline JS bottom:0
       bottom: -1px !important; // more reliable than margin-bottom. e.g. in sooperthemes checkout form
