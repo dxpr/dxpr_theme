@@ -35,15 +35,16 @@ function dxpr_theme_color_module_css_write($theme) {
   $palette = color_get_palette($theme);
   $config = \Drupal::configFactory()->getEditable('color.theme.' . $theme);
 
+  $file_system = \Drupal::service('file_system');
   // Delete old files.
   $files = $config->get('files');
   if (isset($files)) {
     foreach ($files as $file) {
-      \Drupal::service('file_system')->unlink($file);
+      @$file_system->unlink($file);
     }
   }
   if (isset($file) && $file = dirname($file)) {
-    \Drupal::service('file_system')->rmdir($file);
+    @\Drupal::service('file_system')->rmdir($file);
   }
 
   // No change in color config, use the standard theme from color.inc.
@@ -56,9 +57,10 @@ function dxpr_theme_color_module_css_write($theme) {
   $id = $theme . '-' . substr(hash('sha256', serialize($palette) . microtime()), 0, 8);
   $paths['color'] = 'public://color';
   $paths['target'] = $paths['color'] . '/' . $id;
+  /** @var \Drupal\Core\File\FileSystemInterface $file_system */
+  $file_system = \Drupal::service('file_system');
   foreach ($paths as $path) {
-    \Drupal::service('file_system')
-      ->prepareDirectory($path, FileSystemInterface::CREATE_DIRECTORY);
+    $file_system->prepareDirectory($path, FileSystemInterface::CREATE_DIRECTORY);
   }
   $paths['target'] = $paths['target'] . '/';
   $paths['id'] = $id;
@@ -72,11 +74,17 @@ function dxpr_theme_color_module_css_write($theme) {
     ->save();
 
   // Copy over neutral images.
+  /** @var \Drupal\Core\File\FileSystemInterface $file_system */
+  $file_system = \Drupal::service('file_system');
   foreach ($info['copy'] as $file) {
-    $base = \Drupal::service('file_system')->basename($file);
+    $base = $file_system->basename($file);
     $source = $paths['source'] . $file;
-    $filepath = \Drupal::service('file_system')
-      ->copy($source, $paths['target'] . $base);
+    try {
+      $filepath = $file_system->copy($source, $paths['target'] . $base);
+    }
+    catch (FileException $e) {
+      $filepath = FALSE;
+    }
     $paths['map'][$file] = $base;
     $paths['files'][] = $filepath;
   }
@@ -96,7 +104,7 @@ function dxpr_theme_color_module_css_write($theme) {
     }
 
     foreach ($files as $file) {
-      $css_optimizer = new CssOptimizer($file);
+      $css_optimizer = new CssOptimizer(\Drupal::service('file_url_generator'));
       // Aggregate @imports recursively for each configured top level CSS file
       // without optimization. Aggregation and optimization will be
       // handled by drupal_build_css_cache() only.
@@ -107,15 +115,11 @@ function dxpr_theme_color_module_css_write($theme) {
       $css_optimizer->rewriteFileURIBasePath = base_path() . dirname($paths['source'] . $file) . '/';
 
       // Prefix all paths within this CSS file, ignoring absolute paths.
-      $style = preg_replace_callback(
-          '/url\([\'"]?(?![a-z]+:|\/+)([^\'")]+)[\'"]?\)/i',
-          [$css_optimizer, 'rewriteFileURI'],
-          $style
-      );
+      $style = preg_replace_callback('/url\([\'"]?(?![a-z]+:|\/+)([^\'")]+)[\'"]?\)/i', [$css_optimizer, 'rewriteFileURI'], $style);
 
       // Rewrite stylesheet with new colors.
       $style = _color_rewrite_stylesheet($theme, $info, $paths, $palette, $style);
-      $base_file = \Drupal::service('file_system')->basename($file);
+      $base_file = $file_system->basename($file);
       $css[] = $paths['target'] . $base_file;
       _color_save_stylesheet($paths['target'] . $base_file, $style, $paths);
     }
