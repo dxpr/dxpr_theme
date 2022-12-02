@@ -3,7 +3,7 @@
 
 .body--dxpr-theme-header-side.body--dxpr-theme-nav-desktop .dxpr-theme-header--side {
   padding: 40px 20px;
-  z-index: 1000;
+  z-index: 100;
   .navbar-container {
     padding-left: 0;
     padding-right: 0;
@@ -26,7 +26,7 @@
     color: $header-side-text-color;
     padding: 40px 20px;
     position: fixed;
-    z-index: 4060;
+    z-index: 406;
     top: 0;
     left: 0;
     width: 300px;
@@ -61,7 +61,7 @@
     background: $header-side-color;
     position: fixed;
     display: block;
-    z-index: 4051;
+    z-index: 406;
     top: 80px;
     height: 100%;
     height: calc(100vh - 80px);
@@ -163,7 +163,7 @@
   .menu__back {
     font-size: 1.05em;
     position: absolute;
-    z-index: 4051;
+    z-index: 406;
     top: 0;
     right: 2.25em;
     margin: 0;
@@ -214,7 +214,7 @@
     }
   }
   &.body--dxpr-theme-header-side.body--full-screen-search .dxpr-theme-header--side .navbar-header {
-    z-index: 4060;
+    z-index: 406;
   }
 }
 
