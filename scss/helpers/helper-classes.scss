@@ -186,7 +186,7 @@
   // Color helper classes
   .dxpr-theme-util-background-body { background-color: $body-background; }
   .dxpr-theme-util-background-gray { background-color: $text; }
-  .dxpr-theme-util-background-primary, .bg-primary { background-color: $primary; }
+  .dxpr-theme-util-background-primary, .bg-primary { background-color: $primary !important; }
   .dxpr-theme-util-background-accent1 { background-color: $accent1; }
   .dxpr-theme-util-background-accent2 { background-color: $accent2; }
   .dxpr-theme-util-background-well-text { background-color: $well-text; }

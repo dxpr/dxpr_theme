@@ -375,6 +375,19 @@
       });
 
       // Main Menu Hover Border Thickness
+      $input = $("#edit-dropdown-width");
+      $input.bootstrapSlider({
+        step: 5,
+        min: 100,
+        max: 400,
+        tooltip: "show",
+        formatter(value) {
+          return `${value}px`;
+        },
+        value: parseFloat($input.val())
+      });
+
+      // Main Menu Hover Border Thickness
       $input = $("#edit-menu-border-size");
       $input.bootstrapSlider({
         step: 1,
