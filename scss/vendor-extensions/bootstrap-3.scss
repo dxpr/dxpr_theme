@@ -227,6 +227,9 @@ blockquote footer, blockquote small, blockquote .small {
       margin: 0;
       padding: 10px 15px;
       background-color: transparent;
+      &:hover {
+        color: $gray-lighter;
+      }
     }
     &.active,
     &.ui-tabs-active {
