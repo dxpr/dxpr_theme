@@ -29,7 +29,7 @@ function block_design_theme_settings(array &$form, $theme) {
       '' => t('None (Theme Defaults)'),
       'block_boxed' => t('Block Boxed'),
       'block_outline' => t('Block Outline'),
-      'block_well' => t('Block Well Style'),
+      'block_card' => t('Block Card Style'),
       'title_inverted' => t('Title Inverted'),
       'title_inverted_shape' => t('Title Inverted Pill'),
       'title_sticker' => t('Title Sticker'),
@@ -57,22 +57,22 @@ function block_design_theme_settings(array &$form, $theme) {
     '#collapsed' => TRUE,
   ];
 
-  $well_options = [
+  $card_options = [
     '' => t('None'),
-    'card card-body' => t('Well'),
-    'card card-body bg-primary' => t('Well DXPR Theme Primary Color'),
-    'card card-body dxpr-theme-util-background-accent1' => t('Well Accent 1 Color'),
-    'card card-body dxpr-theme-util-background-accent2' => t('Well Accent 2 Color'),
-    'card card-body dxpr-theme-util-background-black' => t('Well Black'),
-    'card card-body dxpr-theme-util-background-white' => t('Well White'),
-    'card card-body dxpr-theme-util-background-gray' => t('Well Gray'),
+    'card card-body' => t('Card'),
+    'card card-body bg-primary' => t('Card DXPR Theme Primary Color'),
+    'card card-body dxpr-theme-util-background-accent1' => t('Card Accent 1 Color'),
+    'card card-body dxpr-theme-util-background-accent2' => t('Card Accent 2 Color'),
+    'card card-body dxpr-theme-util-background-black' => t('Card Black'),
+    'card card-body dxpr-theme-util-background-white' => t('Card White'),
+    'card card-body dxpr-theme-util-background-gray' => t('Card Gray'),
   ];
 
-  $form['dxpr_theme_settings']['block']['block_advanced']['block_el']['block_well'] = [
+  $form['dxpr_theme_settings']['block']['block_advanced']['block_el']['block_card'] = [
     '#type' => 'select',
-    '#title' => t('Block Well Style'),
-    '#default_value' => theme_get_setting('block_well'),
-    '#options' => $well_options,
+    '#title' => t('Block Card Style'),
+    '#default_value' => theme_get_setting('block_card'),
+    '#options' => $card_options,
   ];
 
   $form['dxpr_theme_settings']['block']['block_advanced']['block_el']['block_background'] = [
@@ -175,11 +175,11 @@ function block_design_theme_settings(array &$form, $theme) {
     ],
   ];
 
-  $form['dxpr_theme_settings']['block']['block_advanced']['title_el']['title_well'] = [
+  $form['dxpr_theme_settings']['block']['block_advanced']['title_el']['title_card'] = [
     '#type' => 'select',
-    '#title' => t('Title Well Style'),
-    '#default_value' => theme_get_setting('title_well'),
-    '#options' => $well_options,
+    '#title' => t('Title Card Style'),
+    '#default_value' => theme_get_setting('title_card'),
+    '#options' => $card_options,
   ];
 
   $form['dxpr_theme_settings']['block']['block_advanced']['title_el']['title_background'] = [
@@ -403,13 +403,13 @@ function block_design_theme_settings(array &$form, $theme) {
  * Generate block preview markup.
  */
 function _dxpr_theme_block_preview() {
-  $block_well = theme_get_setting('block_well');
-  $title_well = theme_get_setting('title_well');
+  $block_card = theme_get_setting('block_card');
+  $title_card = theme_get_setting('title_card');
   $output = <<<EOT
 <div class="blocks-preview">
   <div class="region region-sidebar-second">
-    <section class="block block-tagclouds clearfix {$block_well}" id="block-tagclouds-2">
-      <div class="wrap-block-title"><h2 class="block-title {$title_well}">Tags in Tags</h2></div>
+    <section class="block block-tagclouds clearfix {$block_card}" id="block-tagclouds-2">
+      <div class="wrap-block-title"><h2 class="block-title {$title_card}">Tags in Tags</h2></div>
       <hr class="block-hr">
       <span class=
       "tagclouds-term"><a class="tagclouds level1" href="#" title=
@@ -421,9 +421,9 @@ function _dxpr_theme_block_preview() {
       "">Secrets</a></span> <span class="tagclouds-term"><a class=
       "tagclouds level5" href="#" title="">Travel</a></span>
     </section>
-    <section class="block block-views clearfix {$block_well}" id=
+    <section class="block block-views clearfix {$block_card}" id=
     "block-views-cms-blog-cat-blog-categories">
-      <div class="wrap-block-title"><h2 class="block-title {$title_well}">Categories</h2></div>
+      <div class="wrap-block-title"><h2 class="block-title {$title_card}">Categories</h2></div>
       <hr class="block-hr">
       <div class=
       "view view-cms-blog-cat view-id-cms_blog_cat view-display-id-blog_categories view-dom-id-414e72d6e00d6259852916a789bc63e5 ">

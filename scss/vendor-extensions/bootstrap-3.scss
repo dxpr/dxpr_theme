@@ -159,13 +159,13 @@ a.text-primary:focus {
 }
 
 .card, .jumbotron {
-  background-color: $well;
-  color: $well-text;
+  background-color: $card;
+  color: $card-text;
   a {
-    color: $well-text;
+    color: $card-text;
   }
   h1, h2, h3, h4, h5, h6 {
-    color: $well-text;
+    color: $card-text;
   }
   .nav > li > a {
     .glyphicon {
@@ -223,7 +223,7 @@ blockquote footer, blockquote small, blockquote .small {
 // Tabs
 // -------------------------
 
-// Style Tabs as well as override jQuery ui tabs styling
+// Style Tabs as card as override jQuery ui tabs styling
 .html .nav-tabs {
   border: none;
   border-radius: 0;
