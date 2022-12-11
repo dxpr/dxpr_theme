@@ -113,6 +113,23 @@ a.text-primary:focus {
   color: $accent1;
 }
 
+
+.text-white {
+  h1, h2, h3, h4, h5, h6, th {
+    color: #fff !important;
+  }
+}
+.text-primary {
+  h1, h2, h3, h4, h5, h6, th {
+    color: $accent1 !important;
+  }
+}
+.text-secondary {
+  h1, h2, h3, h4, h5, h6, th {
+    color: $accent2 !important;
+  }
+}
+
 .wrap-containers .nav {
   > li {
     > a.is-active {
