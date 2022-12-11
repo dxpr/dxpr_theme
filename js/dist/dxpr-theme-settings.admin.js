@@ -604,33 +604,33 @@
             $("#edit-block-border").bootstrapSlider("setValue", 1);
             $("#edit-block-border-color").val("text");
             break;
-          case "block_well":
-            $("#edit-block-well").val("card card-body");
+          case "block_card":
+            $("#edit-block-card").val("card card-body");
             $("#edit-title-font-size-h3").prop("checked", true);
             break;
           case "title_inverted":
             $("#edit-title-background").val("text");
-            $("#edit-title-well").val("card card-body dxpr-theme-util-background-gray");
+            $("#edit-title-card").val("card card-body dxpr-theme-util-background-gray");
             $("#edit-title-padding").bootstrapSlider("setValue", 10);
             $("#edit-title-font-size-h3").prop("checked", true);
             break;
           case "title_inverted_shape":
             $("#edit-title-background").val("text");
-            $("#edit-title-well").val("card card-body dxpr-theme-util-background-gray");
+            $("#edit-title-card").val("card card-body dxpr-theme-util-background-gray");
             $("#edit-title-padding").bootstrapSlider("setValue", 10);
             $("#edit-title-border-radius").bootstrapSlider("setValue", 100);
             $("#edit-title-font-size-h4").prop("checked", true);
             $("#edit-title-align-center").prop("checked", true);
             break;
           case "title_sticker":
-            $("#edit-title-well").val("card card-body dxpr-theme-util-background-gray");
+            $("#edit-title-card").val("card card-body dxpr-theme-util-background-gray");
             $("#edit-title-padding").bootstrapSlider("setValue", 10);
             $("#edit-title-font-size-body").prop("checked", true);
             break;
           case "title_sticker_color":
             $("#edit-title-font-size-body").prop("checked", true);
             $("#edit-title-padding").bootstrapSlider("setValue", 10);
-            $("#edit-title-well").val("card card-body bg-primary");
+            $("#edit-title-card").val("card card-body bg-primary");
             break;
           case "title_outline":
             $("#edit-title-padding").bootstrapSlider("setValue", 15);
@@ -778,7 +778,7 @@
         $("#edit-block-preset").val("custom");
       });
 
-      $("#edit-block-well").change(function() {
+      $("#edit-block-card").change(function() {
         $(".block-preview .block").removeClass(
           "card card-body bg-primary dxpr-theme-util-background-accent1 dxpr-theme-util-background-accent2 dxpr-theme-util-background-black dxpr-theme-util-background-white dxpr-theme-util-background-gray"
         );
@@ -824,7 +824,7 @@
         );
       });
       // Block title
-      $("#edit-title-well").change(function() {
+      $("#edit-title-card").change(function() {
         $(".block-preview .block-title").removeClass(
           "card card-body bg-primary dxpr-theme-util-background-accent1 dxpr-theme-util-background-accent2 dxpr-theme-util-background-black dxpr-theme-util-background-white dxpr-theme-util-background-gray"
         );

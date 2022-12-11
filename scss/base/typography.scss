@@ -140,7 +140,7 @@ h1, h2, h3, h4, h5, h6, .navbar-brand, th, .nav-tabs > li > a {
 
 hr {
   height: 0;
-  border-top: 4px solid $well;
+  border-top: 4px solid $card;
   margin-bottom: 20px;
   margin-top: 20px;
 }
@@ -154,7 +154,7 @@ hr {
 }
 .card hr,
 .jumbotron hr {
-  border-top-color: $well-text; // well text color
+  border-top-color: $card-text; // card text color
 }
 
 .submitted {

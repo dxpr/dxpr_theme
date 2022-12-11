@@ -73,7 +73,7 @@ blockquote_font_face_selector: 'blockquote, blockquote p'
 portfolio_details: top
 portfolio_sidebar: '4'
 portfolio_images: sidecaption
-region_wells:
+region_cards:
   secondary_header: ''
   navigation: ''
   navigation_collapsible: ''
@@ -159,7 +159,7 @@ custom_css_site: ''
 custom_javascript_site: ''
 stlink: 0
 block_preset: ''
-block_well: ''
+block_card: ''
 block_background: ''
 block_background_custom: '#eeeeee'
 block_padding: '0'
@@ -169,7 +169,7 @@ block_border_color: ''
 block_border_color_custom: '#eeeeee'
 title_font_size: h3
 title_align: left
-title_well: ''
+title_card: ''
 title_background: ''
 title_background_custom: '#eeeeee'
 title_padding: '0'

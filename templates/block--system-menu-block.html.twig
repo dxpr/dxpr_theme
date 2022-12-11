@@ -37,13 +37,13 @@
     'block-' ~ configuration.provider|clean_class,
     'block-' ~ plugin_id|clean_class,
     'clearfix',
-    theme.settings.block_well and region in designRegions ? theme.settings.block_well,
+    theme.settings.block_card and region in designRegions ? theme.settings.block_card,
   ]
 %}
 {%
   set title_classes = [
     'block-title',
-    theme.settings.title_well and region in designRegions ? theme.settings.title_well,
+    theme.settings.title_card and region in designRegions ? theme.settings.title_card,
   ]
 %}
 

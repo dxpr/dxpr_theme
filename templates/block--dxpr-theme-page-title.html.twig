@@ -53,7 +53,7 @@
 {% endfor %}
 {% set title_classes = [
     'block-title',
-    theme.settings.title_well and region in designRegions ? theme.settings.title_well,
+    theme.settings.title_card and region in designRegions ? theme.settings.title_card,
 ] %}
 {{ title_prefix }}
 {% if theme.settings.title_sticker and region in designRegions %}
