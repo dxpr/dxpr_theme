@@ -138,43 +138,7 @@
       z-index: -1;
     }
   }
-  .dxpr-theme-util-overlay-20:after,.dxpr-theme-util-overlay-20 .YTPOverlay { opacity: 0.20; }
-  .dxpr-theme-util-overlay-40:after,.dxpr-theme-util-overlay-40 .YTPOverlay { opacity: 0.40; }
-  .dxpr-theme-util-overlay-60:after,.dxpr-theme-util-overlay-60 .YTPOverlay { opacity: 0.60; }
-  .dxpr-theme-util-overlay-80:after,.dxpr-theme-util-overlay-80 .YTPOverlay { opacity: 0.80; }
-
-  .dxpr-theme-util-overlay-primary,
-  .dxpr-theme-util-overlay-accent1,
-  .dxpr-theme-util-overlay-accent2,
-  .dxpr-theme-util-overlay-black,
-  .dxpr-theme-util-overlay-gray,
-  .dxpr-theme-util-background-accent2,
-  .dxpr-theme-util-background-accent1,
-  .dxpr-theme-util-background-primary,
-  .dxpr-theme-util-background-gray,
-  .dxpr-theme-util-background-black,
-  .bg-primary {
-    color: white;
-    h1,h2,h3,h4,a,.form-control {
-      color: white;
-    }
-    hr {
-      border-top-color: white;
-    }
-    .form-control {
-      border-color: white;
-    }
-    ::placeholder  {
-      color: rgba(255,255,255,0.8);
-    }
-  }
-  .bg-primary,
-  .dxpr-theme-util-overlay-primary,
-  .dxpr-theme-util-background-primary {
-    a {
-      color: white;
-    }
-  }
+  
   .YTPOverlay { opacity: 0.9; }
   .dxpr-theme-util-overlay-primary:after,.dxpr-theme-util-overlay-primary .YTPOverlay { background-color: $primary; }
   .dxpr-theme-util-overlay-accent1:after,.dxpr-theme-util-overlay-accent1 .YTPOverlay { background-color: $accent1; }
@@ -189,6 +153,7 @@
   .dxpr-theme-util-background-primary, .bg-primary { background-color: $primary !important; }
   .dxpr-theme-util-background-accent1 { background-color: $accent1; }
   .dxpr-theme-util-background-accent2 { background-color: $accent2; }
+  .dxpr-theme-util-background-card { background-color: $card; }
   .dxpr-theme-util-background-card-text { background-color: $card-text; }
   .dxpr-theme-util-background-white { background-color: white; }
   .dxpr-theme-util-background-black { background-color: #000; }
@@ -200,14 +165,15 @@
   .dxpr-theme-util-border-white { border-color: white; }
   .dxpr-theme-util-border-black { border-color: #000; }
   .dxpr-theme-util-border-silver { border-color: $silver; }
-  .dxpr-theme-util-color-gray { color: $text; }
-  .dxpr-theme-util-color-primary,.text-primary { color: $primary; }
-  .dxpr-theme-util-color-accent1 { color: $accent1; }
-  .dxpr-theme-util-color-accent2 { color: $accent2; }
-  .dxpr-theme-util-color-card-text { color: $card-text; }
-  .dxpr-theme-util-color-white { color: white; }
-  .dxpr-theme-util-color-black { color: #000; }
-  .dxpr-theme-util-color-silver { color: $silver; }
+  .dxpr-theme-util-color-gray * { color: $text; }
+  .dxpr-theme-util-color-primary,.text-primary * { color: $primary; }
+  .dxpr-theme-util-color-accent1 * { color: $accent1; }
+  .dxpr-theme-util-color-accent2 * { color: $accent2; }
+  .dxpr-theme-util-color-card * { color: $card; }
+  .dxpr-theme-util-color-card-text * { color: $card-text; }
+  .dxpr-theme-util-color-white * { color: white; }
+  .dxpr-theme-util-color-black * { color: #000; }
+  .dxpr-theme-util-color-silver * { color: $silver; }
   .dxpr-theme-util-hover-background-primary:hover { background-color: $primary; }
   .dxpr-theme-util-hover-background-white:hover { background-color: white; }
   .dxpr-theme-util-hover-background-black:hover { background-color: #000; }
