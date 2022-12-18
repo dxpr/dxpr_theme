@@ -127,7 +127,7 @@ $font_3: 'sans-serif';
   .form-item {
     clear: both;
     min-height: 3em;
-    .form-type-radio {
+    .js-form-type-radio {
       min-height: 20px;
     }
   }
@@ -338,7 +338,7 @@ $font_3: 'sans-serif';
     label {
       width: auto;
     }
-    .form-radios {
+    // .form-radios {
       // label.option,
       input ~ label.option,
       input ~ span {
@@ -371,7 +371,7 @@ $font_3: 'sans-serif';
           font-size: 24px;
         }
       }
-    }
+    // }
   }
   .form-type-checkboxes {
     > label {
@@ -549,7 +549,7 @@ $font_3: 'sans-serif';
     // overflow: auto;
     white-space: pre;
   }
-  .form-type-checkbox {
+  .js-form-type-checkbox {
   position: relative;
   input[type=checkbox] {
       position: absolute;
