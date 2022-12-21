@@ -23,6 +23,6 @@
         }
     ],
     "require": {
-        "drupal/bootstrap": "^3.21"
+        "drupal/bootstrap5": "3.0.x-dev@dev"
     }
 }
