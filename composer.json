@@ -23,6 +23,6 @@
         }
     ],
     "require": {
-        "drupal/bootstrap": "^3.21"
+        "drupal/bootstrap4": "^2"
     }
 }
