@@ -49,7 +49,7 @@ function _dxpr_theme_add_goog_font($font, array &$variables) {
   $element = [
     '#tag' => 'link',
     '#attributes' => [
-      'href' => '//fonts.googleapis.com/css?family=' . $font,
+      'href' => '//fonts.googleapis.com/css?family=' . $font . '&display=swap',
       'rel' => 'stylesheet',
       'type' => 'text/css',
     ],
