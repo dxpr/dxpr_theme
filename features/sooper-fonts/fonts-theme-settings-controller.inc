@@ -46,11 +46,21 @@ function fonts_theme_settings_controller(array &$variables) {
  */
 function _dxpr_theme_add_goog_font($font, array &$variables) {
   $font = substr($font, 1);
+  $preload_element = [
+    '#tag' => 'link',
+    '#attributes' => [
+      'rel' => 'preload',
+      'href' => '//fonts.googleapis.com/css?family=' . $font . '&display=swap',
+      'as' => 'style',
+    ],
+  ];
+  $variables['#attached']['html_head'][] = [$preload_element, $font . '_preload'];
+
   $element = [
     '#tag' => 'link',
     '#attributes' => [
-      'href' => '//fonts.googleapis.com/css?family=' . $font . '&display=swap',
       'rel' => 'stylesheet',
+      'href' => '//fonts.googleapis.com/css?family=' . $font . '&display=swap',
       'type' => 'text/css',
     ],
   ];
@@ -81,16 +91,15 @@ function _dxpr_theme_add_local_font($font, array &$variables) {
       '#tag' => 'link',
       '#attributes' => [
         'href' => $base_url . '/' . $path,
-        'rel' => 'stylesheet',
+        'rel' => 'stylesheet preload',
         'type' => 'text/css',
       ],
     ];
     $variables['#attached']['html_head'][] = [$element, $font[2]];
     $added_stylesheets[$path] = $path;
   }
-  if (theme_get_setting('preload_local_fonts')) {
-    _dxpr_theme_add_local_font_preload_link($path, $font[2], $variables);
-  }
+
+  _dxpr_theme_add_local_font_preload_link($path, $font[2], $variables);
 }
 
 /**
