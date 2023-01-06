@@ -5,6 +5,8 @@
  * Theme fonts settings.
  */
 
+use Drupal\Core\Render\Markup;
+
 /**
  * Add font options to the theme settings form.
  *
@@ -226,5 +228,5 @@ function _dxpr_theme_font_previews() {
     $output .= '  </div>';
   }
   $output .= '</div>';
-  return $output;
+  return Markup::create($output);
 }
