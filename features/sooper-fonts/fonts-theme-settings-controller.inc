@@ -134,7 +134,7 @@ function _dxpr_theme_cache_google_font(string $font, string $font_family_uri) {
     $response = $http_client->get($font_source);
     $google_font_source = $response->getBody()->getContents();
 
-    $file_name = $font_family_uri . '/google_font_source_' . $key . '.ttf';
+    $file_name = $font_family_uri . '/' . $font . '-' . $key . '.ttf';
     $file_repository->writeData($google_font_source, $file_name, FileSystemInterface::EXISTS_REPLACE);
 
     // Update font-face to use local links.
