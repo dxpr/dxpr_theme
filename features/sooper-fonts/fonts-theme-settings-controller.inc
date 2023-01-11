@@ -81,14 +81,14 @@ function _dxpr_theme_add_google_font($font, array &$variables) {
 
   if ($wrapper = \Drupal::service('stream_wrapper_manager')->getViaUri($font_family_uri . '/' . 'font-face.css')) {
     $absolute_file_source = $wrapper->getExternalUrl();
-
     $preload_element = [
+      '#type' => 'html_tag',
       '#tag' => 'link',
       '#attributes' => [
         'rel' => 'preload',
-        'href' => $absolute_file_source . '&display=swap',
-        'type' => 'text/css',
+        'href' => $absolute_file_source,
         'as' => 'style',
+        'crossorigin' => TRUE,
       ],
     ];
 
@@ -97,8 +97,8 @@ function _dxpr_theme_add_google_font($font, array &$variables) {
     $element = [
       '#tag' => 'link',
       '#attributes' => [
-        'rel' => 'stylesheet',
-        'href' => $absolute_file_source . '&display=swap',
+        'href' => $absolute_file_source,
+        'rel' => 'stylesheet preload',
         'type' => 'text/css',
       ],
     ];
@@ -161,8 +161,9 @@ function _dxpr_theme_remove_unused_cached_fonts($requested_fonts) {
   $iterator = new RecursiveDirectoryIterator($path_to_theme, RecursiveDirectoryIterator::SKIP_DOTS);
   foreach ($iterator as $font_family) {
     if ($font_family->isDir()) {
-      if (!in_array('0' . $font_family->getFilename(), $requested_fonts)) {
-        \Drupal::service('file_system')->rmdir($path_to_theme . '/' . $font_family->getFilename());
+      $filename = $font_family->getFilename();
+      if (!in_array('0' . $filename, $requested_fonts) && $filename !== 'css') {
+        \Drupal::service('file_system')->deleteRecursive($path_to_theme . '/' . $font_family->getFilename());
       }
     }
   }
