@@ -93,13 +93,6 @@ function fonts_theme_settings(array &$form, $theme) {
     '#default_value' => ((theme_get_setting('blockquote_font_face_selector') !== NULL)) ? theme_get_setting('blockquote_font_face_selector') : 'blockquote, blockquote p',
   ];
 
-  $form['dxpr_theme_settings']['fonts']['preload_local_fonts'] = [
-    '#type' => 'checkbox',
-    '#title' => t('Preload local fonts'),
-    '#default_value' => theme_get_setting('preload_local_fonts'),
-    '#description' => t('Add preload links to the header for the local fonts.'),
-  ];
-
   $form['dxpr_theme_settings']['fonts']['font_preview'] = [
     '#title' => t('Browse & View Fonts'),
     '#type' => 'details',

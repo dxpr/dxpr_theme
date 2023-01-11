@@ -82,15 +82,26 @@ function _dxpr_theme_add_google_font($font, array &$variables) {
   if ($wrapper = \Drupal::service('stream_wrapper_manager')->getViaUri($font_family_uri . '/' . 'font-face.css')) {
     $absolute_file_source = $wrapper->getExternalUrl();
 
-    $element = [
+    $preload_element = [
       '#tag' => 'link',
       '#attributes' => [
-        'href' => $absolute_file_source,
-        'rel' => 'stylesheet',
+        'rel' => 'preload',
+        'href' => $absolute_file_source . '&display=swap',
         'type' => 'text/css',
+        'as' => 'style',
       ],
     ];
 
+    $variables['#attached']['html_head'][] = [$preload_element, $font . '_preload'];
+
+    $element = [
+      '#tag' => 'link',
+      '#attributes' => [
+        'rel' => 'stylesheet',
+        'href' => $absolute_file_source . '&display=swap',
+        'type' => 'text/css',
+      ],
+    ];
     $variables['#attached']['html_head'][] = [$element, $font];
   }
 }
@@ -181,16 +192,15 @@ function _dxpr_theme_add_local_font($font, array &$variables) {
       '#tag' => 'link',
       '#attributes' => [
         'href' => $base_url . '/' . $path,
-        'rel' => 'stylesheet',
+        'rel' => 'stylesheet preload',
         'type' => 'text/css',
       ],
     ];
     $variables['#attached']['html_head'][] = [$element, $font[2]];
     $added_stylesheets[$path] = $path;
   }
-  if (theme_get_setting('preload_local_fonts')) {
-    _dxpr_theme_add_local_font_preload_link($path, $font[2], $variables);
-  }
+
+  _dxpr_theme_add_local_font_preload_link($path, $font[2], $variables);
 }
 
 /**
