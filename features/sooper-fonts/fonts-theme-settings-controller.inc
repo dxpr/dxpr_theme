@@ -73,7 +73,7 @@ function _dxpr_theme_add_google_font($font, array &$variables) {
     _dxpr_theme_cache_google_font($font, $font_family_uri);
   }
 
-  // - Check if font needs update.
+  // Check if font needs update.
   if (time() > \Drupal::state()->get($font)) {
     // Request font to store in files.
     _dxpr_theme_cache_google_font($font, $font_family_uri);
@@ -134,7 +134,8 @@ function _dxpr_theme_cache_google_font(string $font, string $font_family_uri) {
     $response = $http_client->get($font_source);
     $google_font_source = $response->getBody()->getContents();
 
-    $file_name = $font_family_uri . '/' . $font . '-' . $key . '.ttf';
+    preg_match('/\.[0-9a-z]+$/i', $font_source, $file_type);
+    $file_name = $font_family_uri . '/' . $font . '-' . $key . $file_type[0];
     $file_repository->writeData($google_font_source, $file_name, FileSystemInterface::EXISTS_REPLACE);
 
     // Update font-face to use local links.
@@ -145,7 +146,7 @@ function _dxpr_theme_cache_google_font(string $font, string $font_family_uri) {
   }
 
   $file_repository->writeData($font_face, $font_family_uri . '/' . 'font-face.css', FileSystemInterface::EXISTS_REPLACE);
-  \Drupal::state()->set($font, strtotime("-1 week"));
+  \Drupal::state()->set($font, strtotime("+1 week"));
 }
 
 /**
