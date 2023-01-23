@@ -125,7 +125,11 @@ function _dxpr_theme_cache_google_font(string $font, string $font_family_uri) {
   $font_sources = $font_sources ?? [];
 
   // Store font-face css file.
-  $response = $http_client->get('//fonts.googleapis.com/css?family=' . $font);
+  $response = $http_client->request('GET', '//fonts.googleapis.com/css?family=' . $font, [
+    'headers' => [
+      'User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.82 Safari/537.36',
+    ],
+  ]);
   $font_face = $response->getBody()->getContents();
 
   // Store font-face source.
