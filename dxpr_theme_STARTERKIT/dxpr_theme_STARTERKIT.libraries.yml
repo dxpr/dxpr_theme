@@ -1,7 +1,7 @@
 global-styling:
   css:
     theme:
-      css/dxpr_theme_subtheme.css: {weight: 4}
+      css/dxpr_theme_subtheme.css: {weight: 6}
 
 bootstrap-3:
   css:
