@@ -118,7 +118,7 @@ function fonts_theme_settings(array &$form, $theme) {
 /**
  * Helper function to get list of locally hosted fonts.
  */
-function dxpr_theme_local_webfonts($load_fonts = FALSE) {
+function dxpr_theme_local_webfonts() {
   global $base_url;
   $theme = \Drupal::service('theme.manager')->getActiveTheme();
   $theme_chain = [$theme->getName()];
