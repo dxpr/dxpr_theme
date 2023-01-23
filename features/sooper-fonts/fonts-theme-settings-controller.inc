@@ -54,7 +54,10 @@ function _dxpr_theme_add_goog_font($font, array &$variables) {
       'as' => 'style',
     ],
   ];
-  $variables['#attached']['html_head'][] = [$preload_element, $font . '_preload'];
+  $variables['#attached']['html_head'][] = [
+    $preload_element,
+    $font . '_preload',
+  ];
 
   $element = [
     '#tag' => 'link',

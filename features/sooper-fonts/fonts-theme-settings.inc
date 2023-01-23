@@ -5,6 +5,8 @@
  * Theme fonts settings.
  */
 
+use Drupal\Core\Render\Markup;
+
 /**
  * Add font options to the theme settings form.
  *
@@ -106,12 +108,18 @@ function fonts_theme_settings(array &$form, $theme) {
     '#type' => 'markup',
     '#markup' => _dxpr_theme_font_previews(),
   ];
+
+  // Load local fonts to use in preview.
+  foreach (dxpr_theme_local_webfonts() as $key => $font_name) {
+    _dxpr_theme_add_preview_font($key, $form);
+  }
 }
 
 /**
  * Helper function to get list of locally hosted fonts.
  */
-function dxpr_theme_local_webfonts() {
+function dxpr_theme_local_webfonts($load_fonts = FALSE) {
+  global $base_url;
   $theme = \Drupal::service('theme.manager')->getActiveTheme();
   $theme_chain = [$theme->getName()];
   if (!empty($theme->getExtension()->base_themes)) {
@@ -124,6 +132,7 @@ function dxpr_theme_local_webfonts() {
     if (!is_dir($theme_path . '/fonts')) {
       continue;
     }
+
     foreach (\Drupal::service('file_system')->scanDirectory($theme_path . '/fonts', '/.css/i') as $file) {
       $font_path = str_replace($theme_path, '', $file->uri);
       $css = file_get_contents($file->uri);
@@ -219,5 +228,35 @@ function _dxpr_theme_font_previews() {
     $output .= '  </div>';
   }
   $output .= '</div>';
-  return $output;
+  return Markup::create($output);
+}
+
+/**
+ * Loads font to use in preview form.
+ *
+ * @param string $font
+ *   Requested font.
+ * @param array $form
+ *   An associative array containing the structure of the form.
+ */
+function _dxpr_theme_add_preview_font($font, array &$form) {
+  global $base_url;
+
+  $added_stylesheets = &drupal_static(__FUNCTION__);
+  $added_stylesheets = $added_stylesheets ?? [];
+
+  $font = explode('|', substr($font, 1));
+  $path = \Drupal::service('extension.list.theme')->getPath($font[0]) . $font[1];
+  if (empty($added_stylesheets[$path])) {
+    $element = [
+      '#tag' => 'link',
+      '#attributes' => [
+        'href' => $base_url . '/' . $path,
+        'rel' => 'stylesheet',
+        'type' => 'text/css',
+      ],
+    ];
+    $form['#attached']['html_head'][] = [$element, $font[2]];
+    $added_stylesheets[$path] = $path;
+  }
 }
