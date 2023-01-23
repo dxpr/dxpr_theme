@@ -92,7 +92,10 @@ function _dxpr_theme_add_google_font($font, array &$variables) {
       ],
     ];
 
-    $variables['#attached']['html_head'][] = [$preload_element, $font . '_preload'];
+    $variables['#attached']['html_head'][] = [
+      $preload_element,
+      $font . '_preload',
+    ];
 
     $element = [
       '#tag' => 'link',
