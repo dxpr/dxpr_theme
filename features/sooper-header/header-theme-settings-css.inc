@@ -250,6 +250,17 @@ EOT;
    * MENU OPTIONS
    */
 
+  if ($dropdown_width = theme_get_setting('dropdown_width', $theme)) {
+    $css .= <<<EOT
+.dropdown-menu, .dropdown-menu li {
+  min-width: {$dropdown_width}px;
+}
+
+EOT;
+
+  }
+
+
   if (theme_get_setting('menu_type', $theme) == 'uppercase') {
     $css .= <<<EOT
 .dxpr-theme-header .menu a {
