@@ -460,6 +460,15 @@ function header_theme_settings(array &$form, $theme) {
     '#default_value' => ((theme_get_setting('mark_menu_with_children') !== NULL)) ? theme_get_setting('mark_menu_with_children') : FALSE,
   ];
 
+  $form['dxpr_theme_settings']['header']['menu']['dropdown_width'] = [
+    '#type' => 'textfield',
+    '#title' => t('Dropdown width'),
+    '#default_value' => ((theme_get_setting('dropdown_width') !== NULL)) ? theme_get_setting('dropdown_width') : '160',
+    '#type' => 'textfield',
+    '#size' => 9,
+    '#maxlength' => 9,
+  ];
+
   $form['dxpr_theme_settings']['header']['menu']['menu_type'] = [
     '#type' => 'radios',
     '#title' => t('Font Style'),
