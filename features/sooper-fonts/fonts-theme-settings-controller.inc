@@ -83,7 +83,6 @@ function _dxpr_theme_add_google_font($font, array &$variables) {
         'rel' => 'preload',
         'href' => $absolute_file_source,
         'as' => 'style',
-        'crossorigin' => TRUE,
       ],
     ];
 
@@ -228,7 +227,6 @@ function _dxpr_theme_add_local_font_preload_link($path, $font_family, array $var
         'href' => '/' . dirname($path) . '/' . $font_families[$font_family]['url'],
         'as' => 'font',
         'type' => 'font/' . $font_families[$font_family]['format'],
-        'crossorigin' => TRUE,
       ],
     ];
     $variables['#attached']['html_head'][] = [
