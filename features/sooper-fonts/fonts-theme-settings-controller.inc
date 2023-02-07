@@ -28,11 +28,7 @@ function fonts_theme_settings_controller(array &$variables) {
 
   foreach ($dxpr_theme_fonts as $dxpr_theme_font) {
     if (isset($dxpr_theme_font[0]) && $dxpr_theme_font[0] === '0') {
-      // If the font is loaded without a weight or style specified
-      // try to load a complete set.
-      if (substr($dxpr_theme_font, -1) == ':') {
-        $dxpr_theme_font .= '400italic,700italic,400,700';
-      }
+      $dxpr_theme_font = trim(substr($dxpr_theme_font, 1), ':');
       _dxpr_theme_add_google_font($dxpr_theme_font, $variables);
       $requested_google_fonts[] = preg_replace('/[^\p{L}\p{N}]+/u', '-', $dxpr_theme_font);
     }
@@ -60,24 +56,22 @@ function _dxpr_theme_add_google_font($font, array &$variables) {
   /** @var \Drupal\Core\File\FileSystemInterface $file_system */
   $file_system = \Drupal::service('file_system');
 
-  $font = substr($font, 1);
-  $font_name = preg_replace('/[^\p{L}\p{N}]+/u', '-', $font);
-
   $path_to_theme = 'public://' . $active_theme->getName();
-  $font_family_uri = $path_to_theme . '/' . $font_name;
+  $font_family_name = preg_replace('/[^\p{L}\p{N}]+/u', '-', $font);
+  $font_family_uri = $path_to_theme . '/' . $font_family_name;
 
   $file_system->prepareDirectory($font_family_uri, FileSystemInterface::CREATE_DIRECTORY);
   // Check if requested font exists in font folder.
   $font_family_exists = file_exists($font_family_uri . '/font-face.css');
 
   if (!$font_family_exists) {
-    _dxpr_theme_cache_google_font($font, $font_name, $font_family_uri);
+    _dxpr_theme_cache_google_font($font, $font_family_uri);
   }
 
   // Check if font needs update.
   if (time() > \Drupal::state()->get($font)) {
     // Request font to store in files.
-    _dxpr_theme_cache_google_font($font, $font_name, $font_family_uri);
+    _dxpr_theme_cache_google_font($font, $font_family_uri);
   }
 
   if ($wrapper = \Drupal::service('stream_wrapper_manager')->getViaUri($font_family_uri . '/' . 'font-face.css')) {
@@ -113,14 +107,12 @@ function _dxpr_theme_add_google_font($font, array &$variables) {
 /**
  * @param string $font
  *   The font-family name.
- * @param string $font_name
- *   The font-family sanitized name.
  * @param string $font_family_uri
  *   Path to "cached" font-family location.
  *
  * @throws \Drupal\Core\Entity\EntityStorageException
  */
-function _dxpr_theme_cache_google_font(string $font, string $font_name, string $font_family_uri) {
+function _dxpr_theme_cache_google_font(string $font, string $font_family_uri) {
   /** @var \GuzzleHttp\ClientInterface $http_client */
   $http_client = \Drupal::httpClient();
   /** @var \Drupal\file\FileRepositoryInterface $file_repository */
@@ -144,8 +136,8 @@ function _dxpr_theme_cache_google_font(string $font, string $font_name, string $
     $response = $http_client->get($font_source);
     $google_font_source = $response->getBody()->getContents();
 
-    preg_match('/\.[0-9a-z]+$/i', $font_source, $file_type);
-    $file_name = $font_family_uri . '/' . $font_name . '-' . $key . $file_type[0];
+    preg_match('/[A-Za-z0-9_\-\.]+\.[A-Za-z0-9]+$/i', $font_source, $font_name);
+    $file_name = $font_family_uri . '/' . $font_name[0];
     $file_repository->writeData($google_font_source, $file_name, FileSystemInterface::EXISTS_REPLACE);
 
     // Update font-face to use local links.
@@ -173,7 +165,7 @@ function _dxpr_theme_remove_unused_cached_fonts($requested_fonts) {
   foreach ($iterator as $font_family) {
     if ($font_family->isDir()) {
       $filename = $font_family->getFilename();
-      if (!in_array('0' . $filename, $requested_fonts) && $filename !== 'css') {
+      if (!in_array($filename, $requested_fonts) && $filename !== 'css') {
         \Drupal::service('file_system')->deleteRecursive($path_to_theme . '/' . $font_family->getFilename());
       }
     }
