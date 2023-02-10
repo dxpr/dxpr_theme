@@ -182,7 +182,7 @@ function dxpr_theme_font_list() {
   $fonts['Google webfonts'] = dxpr_theme_google_webfonts();
 
   return $fonts;
-}
+}https://fonts.googleapis.com/css2?family=ABeeZee&family=Abhaya+Libre:wght@700&family=ZCOOL+XiaoWei&family=ABeeZee:ital@1&display=swap
 
 /**
  * Helper function to get list of google web fonts.
@@ -195,12 +195,26 @@ function dxpr_theme_google_webfonts() {
   $fonts = [];
   foreach ($webfonts as $font_family) {
     $fam_name = $font_family->family;
-    foreach ($font_family->variants as $font) {
-      if ($font == 'regular') {
-        $font = '';
+    foreach ($font_family->variants as $variant) {
+      $font = '';
+
+      if ($variant == 'regular') {
+        $variant = '';
       }
-      $font_name = $fam_name . ' ' . $font;
-      $font_name_safe = str_replace(' ', '+', $fam_name) . ':' . $font;
+      else if ($variant === 'italic') {
+        $font = ':ital@1';
+      }
+      else if (is_numeric($variant)) {
+        $font = ':wght@' . $variant;
+      }
+      else {
+        preg_match_all('/\d+/', $variant, $matches);
+        $font_weight = $matches[0][0];
+        $font = ':ital,wght@1,' . $font_weight;
+      }
+
+      $font_name = $fam_name . ' ' . $variant;
+      $font_name_safe = str_replace(' ', '+', $fam_name) . $font;
       $font_name_key = '0' . $font_name_safe;
       $fonts[$font_name_key] = $font_name;
     }
