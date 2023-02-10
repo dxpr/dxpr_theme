@@ -140,18 +140,30 @@ function _dxpr_theme_cache_google_fonts(array $google_fonts, string $fonts_folde
   }
 
   // Store font-face css file.
-  $response = $http_client->request('GET', '//fonts.googleapis.com/css2?' . $fonts_url . 'display=swap', [
-    'headers' => [
-      'User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.82 Safari/537.36',
-    ],
-  ]);
-  $font_face = $response->getBody()->getContents();
+  try {
+    $response = $http_client->request('GET', '//fonts.googleapis.com/css2?' . $fonts_url . 'display=swap', [
+      'headers' => [
+        'User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.82 Safari/537.36',
+      ],
+    ]);
+    $font_face = $response->getBody()->getContents();
+  }
+  catch (\Exception $exception) {
+    \Drupal::logger('default')->error($exception->getMessage());
+    return;
+  }
 
   // Store font-face source.
   preg_match_all('/src[\s]*:[\s]*url\([\'"]*(.+?)[\'"]*\)[\s]*format\([\'"]*(.+?)[\'"]*\)/i', $font_face, $font_source_matches);
   foreach ($font_source_matches[1] as $key => $font_source) {
-    $response = $http_client->get($font_source);
-    $google_font_source = $response->getBody()->getContents();
+    try {
+      $response = $http_client->get($font_source);
+      $google_font_source = $response->getBody()->getContents();
+    }
+    catch (\Exception $exception) {
+      \Drupal::logger('default')->error($exception->getMessage());
+      continue;
+    }
 
     preg_match('/[A-Za-z0-9_\-\.]+\.[A-Za-z0-9]+$/i', $font_source, $font_name);
     $file_name = $fonts_folder_uri . '/' . $font_name[0];
