@@ -129,14 +129,7 @@ function _dxpr_theme_cache_google_fonts(array $google_fonts, string $fonts_folde
 
   // Build url to request Google fonts.
   foreach ($google_fonts as $google_font) {
-    $italic_style = strpos($google_font, 'ital');
-
-    if ($italic_style !== false) {
-      $fonts_url .= 'family=' . str_replace(':italic', ':ital@0;1', $google_font) . '&';
-    }
-    else {
-      $fonts_url .= 'family=' . $google_font . '&';
-    }
+    $fonts_url .= 'family=' . $google_font . '&';
   }
 
   // Store font-face css file.
