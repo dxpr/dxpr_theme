@@ -129,7 +129,22 @@ function _dxpr_theme_cache_google_fonts(array $google_fonts, string $fonts_folde
 
   // Build url to request Google fonts.
   foreach ($google_fonts as $google_font) {
-    $fonts_url .= 'family=' . $google_font . '&';
+    $font_params = explode(':', $google_font);
+
+    if (!isset($font_params[1])) {
+      $fonts_url .= 'family=' . $google_font . '&';
+    }
+    else if (is_numeric($font_params[1])) {
+      $fonts_url .= 'family=' . $font_params[0] . ':wght@' . $font_params[1] . '&';
+    }
+    else if ($font_params[1] === 'italic') {
+      $fonts_url .= 'family=' . $font_params[0] . ':ital@0;1&';
+    }
+    else {
+      preg_match_all('/\d+/', $font_params[1], $matches);
+      $font_weight = $matches[0][0];
+      $fonts_url .= 'family=' . $font_params[0] . ':ital,wght@1,' . $font_weight . '&';
+    }
   }
 
   // Store font-face css file.
