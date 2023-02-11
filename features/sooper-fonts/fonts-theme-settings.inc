@@ -182,7 +182,7 @@ function dxpr_theme_font_list() {
   $fonts['Google webfonts'] = dxpr_theme_google_webfonts();
 
   return $fonts;
-}https://fonts.googleapis.com/css2?family=ABeeZee&family=Abhaya+Libre:wght@700&family=ZCOOL+XiaoWei&family=ABeeZee:ital@1&display=swap
+}
 
 /**
  * Helper function to get list of google web fonts.
