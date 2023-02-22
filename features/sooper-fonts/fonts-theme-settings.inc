@@ -118,8 +118,7 @@ function fonts_theme_settings(array &$form, $theme) {
 /**
  * Helper function to get list of locally hosted fonts.
  */
-function dxpr_theme_local_webfonts($load_fonts = FALSE) {
-  global $base_url;
+function dxpr_theme_local_webfonts() {
   $theme = \Drupal::service('theme.manager')->getActiveTheme();
   $theme_chain = [$theme->getName()];
   if (!empty($theme->getExtension()->base_themes)) {
@@ -200,6 +199,7 @@ function dxpr_theme_google_webfonts() {
       if ($font == 'regular') {
         $font = '';
       }
+
       $font_name = $fam_name . ' ' . $font;
       $font_name_safe = str_replace(' ', '+', $fam_name) . ':' . $font;
       $font_name_key = '0' . $font_name_safe;
