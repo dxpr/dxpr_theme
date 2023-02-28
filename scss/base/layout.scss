@@ -76,10 +76,6 @@ body.full-width-content {
   margin-bottom: 0;
 }
 
-// responsive image. This sometimes sucks because images cannot over overscan their base size to save bytes.
-img {
-  max-width: 100%; // can't remove this because then image will overflow parent elements.
-}
 // exception for revolution slider kenburns effect
 html.js .kenburnimg img {
   max-width: none;
