@@ -298,6 +298,7 @@ function dxpr_theme_preprocess_breadcrumb(&$variables) {
  */
 function dxpr_theme_preprocess_comment(&$variables) {
   if ($variables['elements']['#comment']) {
+    $variables['#attached']['library'][] = 'bootstrap4/indented';
     $variables['#attached']['library'][] = 'dxpr_theme/drupal-comments';
   }
 }
