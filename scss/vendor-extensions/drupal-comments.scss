@@ -48,4 +48,13 @@
   .title.comment-form {
     margin-top: 30px;
   }
+
+}
+
+.indented {
+  margin-left: 25px; /* LTR */
+}
+[dir="rtl"] .indented {
+  margin-right: 25px;
+  margin-left: 0;
 }
