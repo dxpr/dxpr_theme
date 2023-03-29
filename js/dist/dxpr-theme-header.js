@@ -130,11 +130,19 @@
         $(window).scroll(() => {
           scroll = $(window).scrollTop();
           if (scroll >= headerScroll) {
-            document.querySelector(".dxpr-theme-header--sticky").classList.add("affix");
-            document.querySelector(".dxpr-theme-header--sticky").classList.remove("affix-top");
+            document
+              .querySelector(".dxpr-theme-header--sticky")
+              .classList.add("affix");
+            document
+              .querySelector(".dxpr-theme-header--sticky")
+              .classList.remove("affix-top");
           } else {
-            document.querySelector(".dxpr-theme-header--sticky").classList.add("affix-top");
-            document.querySelector(".dxpr-theme-header--sticky").classList.remove("affix");
+            document
+              .querySelector(".dxpr-theme-header--sticky")
+              .classList.add("affix-top");
+            document
+              .querySelector(".dxpr-theme-header--sticky")
+              .classList.remove("affix");
           }
           if (scroll >= headerScroll && scroll <= headerScroll * 2) {
             document.getElementsByClassName(
@@ -273,7 +281,9 @@
               "cssText",
               `top:${secHeaderRect.bottom}px !important;`
             );
-            $("#secondary-header").addClass("dxpr-theme-secondary-header--sticky");
+            $("#secondary-header").addClass(
+              "dxpr-theme-secondary-header--sticky"
+            );
           } else {
             if ($("#toolbar-bar").length > 0) {
               $("#navbar.dxpr-theme-header--overlay").css(
@@ -308,7 +318,9 @@
       ).removeAttr("style");
       $("#dxpr-theme-main-menu .menu").addClass("menu__level");
       $("#dxpr-theme-main-menu .menu .dropdown-menu").addClass("menu__level");
-      $("#dxpr-theme-main-menu .menu .dxpr-theme-megamenu").addClass("menu__level");
+      $("#dxpr-theme-main-menu .menu .dxpr-theme-megamenu").addClass(
+        "menu__level"
+      );
       $("#dxpr-theme-main-menu .menu a").addClass("menu__link");
       $("#dxpr-theme-main-menu .menu li").addClass("menu__item");
       // Set up data attributes
@@ -318,14 +330,14 @@
           .next()
           .attr("data-menu", $(this).text());
       });
-      $("#dxpr-theme-main-menu .menu a.dxpr-theme-megamenu__heading").each(function(
-        index
-      ) {
-        $(this)
-          .attr("data-submenu", $(this).text())
-          .next()
-          .attr("data-menu", $(this).text());
-      });
+      $("#dxpr-theme-main-menu .menu a.dxpr-theme-megamenu__heading").each(
+        function(index) {
+          $(this)
+            .attr("data-submenu", $(this).text())
+            .next()
+            .attr("data-menu", $(this).text());
+        }
+      );
 
       const bc = $("#dxpr-theme-main-menu .menu .dropdown-menu").length > 0;
       const menuEl = document.getElementById("dxpr-theme-main-menu");
@@ -347,10 +359,9 @@
       };
 
       // mobile menu toggle
-        $(once("dxpr_themeMenuToggle", "#dxpr-theme-menu-toggle"))
-        .click(() => {
-          closeMenu();
-        });
+      $(once("dxpr_themeMenuToggle", "#dxpr-theme-menu-toggle")).click(() => {
+        closeMenu();
+      });
       $("#dxpr-theme-main-menu")
         .css("position", "fixed")
         .show();
@@ -369,7 +380,9 @@
       } else {
         var brandingBottom = 0;
       }
-      const $lastBlock = $("#dxpr-theme-main-menu .block:not(.block-menu)").last();
+      const $lastBlock = $(
+        "#dxpr-theme-main-menu .block:not(.block-menu)"
+      ).last();
 
       // Show menu after completing setup
       // See if blocks overlap menu and apply correction
@@ -432,8 +445,6 @@
     $("#secondary-header").css("margin-top", +headerHeight);
   }
 
-
-
   $(document).ready(() => {
     if ($("#dxpr-theme-main-menu .menu").length > 0) {
       dxpr_themeMenuGovernorBodyClass();
@@ -457,7 +468,7 @@
     }
   }
 
-  function dpxr_themeMenuOnResize(){
+  function dpxr_themeMenuOnResize() {
     // Mobile menu open direction.
     if (
       drupalSettings.dxpr_themeSettings.headerSideDirection === "right" &&

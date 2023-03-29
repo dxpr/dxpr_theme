@@ -610,20 +610,26 @@
             break;
           case "title_inverted":
             $("#edit-title-background").val("text");
-            $("#edit-title-card").val("card card-body dxpr-theme-util-background-gray");
+            $("#edit-title-card").val(
+              "card card-body dxpr-theme-util-background-gray"
+            );
             $("#edit-title-padding").bootstrapSlider("setValue", 10);
             $("#edit-title-font-size-h3").prop("checked", true);
             break;
           case "title_inverted_shape":
             $("#edit-title-background").val("text");
-            $("#edit-title-card").val("card card-body dxpr-theme-util-background-gray");
+            $("#edit-title-card").val(
+              "card card-body dxpr-theme-util-background-gray"
+            );
             $("#edit-title-padding").bootstrapSlider("setValue", 10);
             $("#edit-title-border-radius").bootstrapSlider("setValue", 100);
             $("#edit-title-font-size-h4").prop("checked", true);
             $("#edit-title-align-center").prop("checked", true);
             break;
           case "title_sticker":
-            $("#edit-title-card").val("card card-body dxpr-theme-util-background-gray");
+            $("#edit-title-card").val(
+              "card card-body dxpr-theme-util-background-gray"
+            );
             $("#edit-title-padding").bootstrapSlider("setValue", 10);
             $("#edit-title-font-size-body").prop("checked", true);
             break;

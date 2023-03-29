@@ -115,8 +115,8 @@ function dxpr_theme_color_module_css_write($theme) {
       $css_optimizer->rewriteFileURIBasePath = base_path() . dirname($paths['source'] . $file) . '/';
 
       // Prefix all paths within this CSS file, ignoring absolute paths.
-      $style = preg_replace_callback('/url\([\'"]?(?![a-z]+:|\/+)([^\'")]+)[\'"]?\)/i', [$css_optimizer, 'rewriteFileURI'], $style);
-
+      $style = preg_replace_callback('/url\([\'"]?(?![a-z]+:|\/+)([^\'")]+)[\'"]?\)/i',
+      [$css_optimizer, 'rewriteFileURI'], $style);
       // Rewrite stylesheet with new colors.
       $style = _color_rewrite_stylesheet($theme, $info, $paths, $palette, $style);
       $base_file = $file_system->basename($file);
