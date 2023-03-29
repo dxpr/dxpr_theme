@@ -117,11 +117,13 @@
 
     for (let i = 0, len = this.menusArr.length; i < len; ++i) {
       this.menusArr[i].menuItems.forEach((item, pos) => {
-        if(item.querySelector("a")) {
+        if (item.querySelector("a")) {
           item.querySelector("a").addEventListener("click", ev => {
             const submenu = ev.target.getAttribute("data-submenu");
             const itemName = ev.target.innerHTML;
-            const subMenuEl = self.el.querySelector(`ul[data-menu="${submenu}"]`);
+            const subMenuEl = self.el.querySelector(
+              `ul[data-menu="${submenu}"]`
+            );
 
             // check if there's a sub menu for this item
             if (submenu && subMenuEl) {
@@ -133,8 +135,8 @@
               const currentlink = self.el.querySelector(".menu__link--current");
               if (currentlink) {
                 classie.remove(
-                    self.el.querySelector(".menu__link--current"),
-                    "menu__link--current"
+                  self.el.querySelector(".menu__link--current"),
+                  "menu__link--current"
                 );
               }
               classie.add(ev.target, "menu__link--current");
