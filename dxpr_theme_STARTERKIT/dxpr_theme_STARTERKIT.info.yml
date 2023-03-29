@@ -41,16 +41,9 @@ libraries-override:
   dxpr_theme/dxpr-theme-header--mobile: false
   dxpr_theme/dxpr-theme-secondary-header: false
   dxpr_theme/dxpr-theme-admin: false
-  dxpr_theme/cubeportfolio: false
   dxpr_theme/drupal-breadcrumbs: false
   dxpr_theme/drupal-comments: false
   dxpr_theme/drupal-pager: false
   dxpr_theme/drupal-webform: false
-  dxpr_theme/cms-bootstrap-core: false
-  dxpr_theme/cms-bootstrap-blog: false
-  dxpr_theme/cms-bootstrap-events: false
-  dxpr_theme/cms-bootstrap-news: false
-  dxpr_theme/cms-bootstrap-portfolio: false
-  dxpr_theme/sooperthemes-premium-elements: false
   dxpr_theme/dxpr-theme-builder: false
   dxpr_theme/helper-classes: false

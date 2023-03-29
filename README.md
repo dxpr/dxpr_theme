@@ -1,10 +1,10 @@
 # DXPR Theme
 
 For user documentation and support please check:
-https://app.sooperthemes.com/hc/documentation
+https://app.dxpr.com/hc/documentation
 
 For development documentation and support please check:
-https://app.sooperthemes.com/hc/documentation/internal
+https://app.dxpr.com/hc/documentation/internal
 
 ## Contributing Guidelines
 
