@@ -163,7 +163,7 @@ function _dxpr_theme_cache_google_fonts(array $google_fonts, string $fonts_folde
 
   // Store font-face source.
   preg_match_all('/src[\s]*:[\s]*url\([\'"]*(.+?)[\'"]*\)[\s]*format\([\'"]*(.+?)[\'"]*\)/i', $font_face, $font_source_matches);
-  foreach ($font_source_matches[1] as $key => $font_source) {
+  foreach ($font_source_matches[1] as $font_source) {
     try {
       $response = $http_client->get($font_source);
       $google_font_source = $response->getBody()->getContents();
