@@ -332,26 +332,26 @@ function dxpr_theme_theme_suggestions_form_element_alter(array &$suggestions, ar
 }
 
 /**
- * Implements hook_form_alter()
- *
- * Theming search forms.
+ * Implements hook_form_FORM_ID_alter().
  */
-function dxpr_theme_form_alter(&$form, FormStateInterface $form_state, $form_id) {
-  if ($form_id === 'search_form') {
-    $form['basic']['#attributes']['class'] = [
-      0 => 'form-group',
-      1 => 'input-group',
-    ];
-    $form['basic']['keys']['#placeholder'] = $form['basic']['keys']['#title'];
-    unset($form['basic']['keys']['#title']);
-    $form['basic']['submit']['#icon'] = TRUE;
-  }
-  if ($form_id === 'search_block_form') {
-    $form['actions']['#type'] = 'submit';
-    $form['keys']['#placeholder'] = 'Search';
-    $form['actions']['#icon'] = TRUE;
-    unset($form['actions']['submit']);
-  }
+function dxpr_theme_form_search_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  $form['basic']['#attributes']['class'] = [
+    0 => 'form-group',
+    1 => 'input-group',
+  ];
+  $form['basic']['keys']['#placeholder'] = $form['basic']['keys']['#title'];
+  unset($form['basic']['keys']['#title']);
+  $form['basic']['submit']['#icon'] = TRUE;
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function dxpr_theme_form_search_block_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  $form['actions']['#type'] = 'submit';
+  $form['keys']['#placeholder'] = 'Search';
+  $form['actions']['#icon'] = TRUE;
+  unset($form['actions']['submit']);
 }
 
 /**
