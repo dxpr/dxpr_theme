@@ -134,10 +134,10 @@ function _dxpr_theme_cache_google_fonts(array $google_fonts, string $fonts_folde
     if (!isset($font_params[1])) {
       $fonts_url .= 'family=' . $google_font . '&';
     }
-    else if (is_numeric($font_params[1])) {
+    elseif (is_numeric($font_params[1])) {
       $fonts_url .= 'family=' . $font_params[0] . ':wght@' . $font_params[1] . '&';
     }
-    else if ($font_params[1] === 'italic') {
+    elseif ($font_params[1] === 'italic') {
       $fonts_url .= 'family=' . $font_params[0] . ':ital@0;1&';
     }
     else {
