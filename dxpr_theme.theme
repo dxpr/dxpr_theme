@@ -244,6 +244,7 @@ function dxpr_theme_preprocess_block(&$variables) {
   // Include DXPR Theme full search block css library.
   if ($variables['plugin_id'] === 'full_screen_search') {
     $variables['#attached']['library'][] = 'dxpr_theme/dxpr-theme-full-screen-search';
+    $variables['#attached']['library'][] = 'dxpr_theme/dxpr-theme-full-screen-search-js';
   }
 }
 
@@ -290,6 +291,7 @@ function dxpr_theme_preprocess_breadcrumb(&$variables) {
       ];
     }
     $variables['#attached']['library'][] = 'dxpr_theme/drupal-breadcrumbs';
+    $variables['#attached']['library'][] = 'dxpr_theme/drupal-breadcrumbs-js';
   }
 }
 
