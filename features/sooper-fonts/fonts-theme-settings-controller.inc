@@ -59,9 +59,9 @@ function _dxpr_theme_add_google_fonts(array $google_fonts) {
       '#type' => 'html_tag',
       '#tag' => 'link',
       '#attributes' => array(
-        'rel' => 'preload',
+        'rel' => 'stylesheet',
         'href' => $absolute_file_source,
-        'as' => 'style',
+        'preload' => 'preload',
       ),
     );
 
@@ -71,7 +71,7 @@ function _dxpr_theme_add_google_fonts(array $google_fonts) {
       '#tag' => 'link',
       '#attributes' => array(
         'href' => $absolute_file_source,
-        'rel' => 'stylesheet preload',
+        'rel' => 'stylesheet',
         'type' => 'text/css',
       ),
     );
