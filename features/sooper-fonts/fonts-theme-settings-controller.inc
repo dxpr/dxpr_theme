@@ -55,25 +55,10 @@ function _dxpr_theme_add_google_fonts(array $google_fonts) {
 
   if (file_exists($fonts_folder_uri . '/font-face.css')) {
     $absolute_file_source = file_create_url($fonts_folder_uri . '/font-face.css');
-    $preload_element = array(
-      '#type' => 'html_tag',
-      '#tag' => 'link',
-      '#attributes' => array(
-        'rel' => 'stylesheet',
-        'href' => $absolute_file_source,
-        'preload' => 'preload',
-      ),
-    );
-
-    drupal_add_html_head($preload_element, 'dxpr_theme_google_fonts_preload');
 
     $element = array(
-      '#tag' => 'link',
-      '#attributes' => array(
-        'href' => $absolute_file_source,
-        'rel' => 'stylesheet',
-        'type' => 'text/css',
-      ),
+      '#tag' => 'style',
+      '#value' => file_get_contents($absolute_file_source),
     );
 
     drupal_add_html_head($element, 'dxpr_theme_google_fonts');
