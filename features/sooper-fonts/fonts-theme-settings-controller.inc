@@ -234,9 +234,8 @@ function _dxpr_theme_add_local_font($font, array &$variables) {
     $variables['#attached']['html_head'][] = [$element, $font[2]];
     $added_stylesheets[$path] = $path;
   }
-  if (theme_get_setting('preload_local_fonts')) {
-    _dxpr_theme_add_local_font_preload_link($path, $font[2], $variables);
-  }
+
+  _dxpr_theme_add_local_font_preload_link($path, $font[2], $variables);
 }
 
 /**
