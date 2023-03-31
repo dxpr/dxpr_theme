@@ -78,28 +78,10 @@ function _dxpr_theme_add_google_fonts(array $google_fonts, array &$variables) {
 
   if ($wrapper = \Drupal::service('stream_wrapper_manager')->getViaUri($fonts_folder_uri . '/' . 'font-face.css')) {
     $absolute_file_source = $wrapper->getExternalUrl();
-    $preload_element = [
-      '#type' => 'html_tag',
-      '#tag' => 'link',
-      '#attributes' => [
-        'rel' => 'preload',
-        'href' => $absolute_file_source,
-        'as' => 'style',
-      ],
-    ];
-
-    $variables['#attached']['html_head'][] = [
-      $preload_element,
-      'dxpr_theme_google_fonts_preload',
-    ];
 
     $element = [
-      '#tag' => 'link',
-      '#attributes' => [
-        'href' => $absolute_file_source,
-        'rel' => 'stylesheet preload',
-        'type' => 'text/css',
-      ],
+      '#tag' => 'style',
+      '#value' => file_get_contents($absolute_file_source),
     ];
 
     $variables['#attached']['html_head'][] = [
