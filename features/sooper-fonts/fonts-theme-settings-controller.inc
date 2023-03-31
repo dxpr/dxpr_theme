@@ -208,8 +208,8 @@ function _dxpr_theme_add_local_font($font, array &$variables) {
       '#tag' => 'link',
       '#attributes' => [
         'href' => $base_url . '/' . $path,
-        'rel' => 'stylesheet preload',
-        'type' => 'text/css',
+        'rel' => 'stylesheet',
+        'preload' => 'preload',
       ],
     ];
     $variables['#attached']['html_head'][] = [$element, $font[2]];
@@ -229,7 +229,7 @@ function _dxpr_theme_add_local_font($font, array &$variables) {
  * @param array $variables
  *   Variables array.
  */
-function _dxpr_theme_add_local_font_preload_link($path, $font_family, array $variables) {
+function _dxpr_theme_add_local_font_preload_link($path, $font_family, array &$variables) {
   $font_families = _dxpr_theme_add_local_font_parse_font_families($path);
   if (!empty($font_families[$font_family])) {
     $element = [
