@@ -251,8 +251,7 @@ function _dxpr_theme_add_preview_font($font, array &$form) {
   $added_stylesheets = $added_stylesheets ?? [];
 
   $font = explode('|', substr($font, 1));
-  $path = \Drupal::service('extension.list.theme')
-      ->getPath($font[0]) . $font[1];
+  $path = \Drupal::service('extension.list.theme')->getPath($font[0]) . $font[1];
   if (empty($added_stylesheets[$path])) {
     $element = [
       '#tag' => 'link',
