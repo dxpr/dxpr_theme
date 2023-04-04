@@ -114,6 +114,10 @@
 
   dpxr_themeMenuOnResize();
 
+  const isPageScrollable = () => {
+    return document.documentElement.scrollHeight > window.innerHeight;
+  };
+
   var navBreak =
     "dxpr_themeNavBreakpoint" in window ? window.dxpr_themeNavBreakpoint : 1200;
   if (
@@ -130,9 +134,13 @@
         $(window).scroll(() => {
           scroll = $(window).scrollTop();
           if (scroll >= headerScroll && scroll <= headerScroll * 2) {
+            const scrollMargin = isPageScrollable() ?
+              Number(headerHeight) + Number(headerScroll) :
+              Number(headerHeight);
+
             document.getElementsByClassName(
               "wrap-containers"
-            )[0].style.cssText = `margin-top:${+headerHeight}px`;
+            )[0].style.cssText = `margin-top:${scrollMargin}px`;
           } else if (scroll < headerScroll) {
             document.getElementsByClassName(
               "wrap-containers"
