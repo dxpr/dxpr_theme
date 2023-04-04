@@ -83,6 +83,7 @@ function dxpr_theme_STARTERKIT_preprocess_region(&$variables) {
     case 'secondary_header':
       $variables['#attached']['library'][] = 'dxpr_theme_STARTERKIT/dxpr-theme-secondary-header';
     case 'navigation':
+    case 'navigation_collapsible':
       $variables['#attached']['library'][] = 'dxpr_theme_STARTERKIT/dxpr-theme-header';
       $variables['#attached']['library'][] = 'dxpr_theme_STARTERKIT/dxpr-theme-header--top';
       $variables['#attached']['library'][] = 'dxpr_theme_STARTERKIT/dxpr-theme-header--mobile';
