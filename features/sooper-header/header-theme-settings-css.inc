@@ -260,7 +260,6 @@ EOT;
 
   }
 
-
   if (theme_get_setting('menu_type', $theme) == 'uppercase') {
     $css .= <<<EOT
 .dxpr-theme-header .menu a {

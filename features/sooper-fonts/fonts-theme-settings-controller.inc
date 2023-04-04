@@ -41,7 +41,6 @@ function fonts_theme_settings_controller(array &$variables) {
   }
 }
 
-
 /**
  * Helper function to add google fonts to the page.
  *
@@ -135,10 +134,10 @@ function _dxpr_theme_cache_google_fonts(array $google_fonts, string $fonts_folde
     if (!isset($font_params[1])) {
       $fonts_url .= 'family=' . $google_font . '&';
     }
-    else if (is_numeric($font_params[1])) {
+    elseif (is_numeric($font_params[1])) {
       $fonts_url .= 'family=' . $font_params[0] . ':wght@' . $font_params[1] . '&';
     }
-    else if ($font_params[1] === 'italic') {
+    elseif ($font_params[1] === 'italic') {
       $fonts_url .= 'family=' . $font_params[0] . ':ital@0;1&';
     }
     else {
@@ -164,7 +163,7 @@ function _dxpr_theme_cache_google_fonts(array $google_fonts, string $fonts_folde
 
   // Store font-face source.
   preg_match_all('/src[\s]*:[\s]*url\([\'"]*(.+?)[\'"]*\)[\s]*format\([\'"]*(.+?)[\'"]*\)/i', $font_face, $font_source_matches);
-  foreach ($font_source_matches[1] as $key => $font_source) {
+  foreach ($font_source_matches[1] as $font_source) {
     try {
       $response = $http_client->get($font_source);
       $google_font_source = $response->getBody()->getContents();
