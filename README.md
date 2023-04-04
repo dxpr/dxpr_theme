@@ -1,4 +1,4 @@
-# DXPR Theme
+# DXPR Theme CI/CD
 
 For user documentation and support please check:
 https://app.sooperthemes.com/hc/documentation
