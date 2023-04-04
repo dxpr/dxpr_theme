@@ -55,25 +55,10 @@ function _dxpr_theme_add_google_fonts(array $google_fonts) {
 
   if (file_exists($fonts_folder_uri . '/font-face.css')) {
     $absolute_file_source = file_create_url($fonts_folder_uri . '/font-face.css');
-    $preload_element = array(
-      '#type' => 'html_tag',
-      '#tag' => 'link',
-      '#attributes' => array(
-        'rel' => 'preload',
-        'href' => $absolute_file_source,
-        'as' => 'style',
-      ),
-    );
-
-    drupal_add_html_head($preload_element, 'dxpr_theme_google_fonts_preload');
 
     $element = array(
-      '#tag' => 'link',
-      '#attributes' => array(
-        'href' => $absolute_file_source,
-        'rel' => 'stylesheet preload',
-        'type' => 'text/css',
-      ),
+      '#tag' => 'style',
+      '#value' => file_get_contents($absolute_file_source),
     );
 
     drupal_add_html_head($element, 'dxpr_theme_google_fonts');
@@ -196,9 +181,8 @@ function _dxpr_theme_add_local_font($font) {
     drupal_add_html_head($element, $font[2]);
     $added_stylesheets[$path] = $path;
   }
-  if (theme_get_setting('preload_local_fonts')) {
-    _dxpr_theme_add_local_font_preload_link($path, $font[2]);
-  }
+
+  _dxpr_theme_add_local_font_preload_link($path, $font[2]);
 }
 
 /**
