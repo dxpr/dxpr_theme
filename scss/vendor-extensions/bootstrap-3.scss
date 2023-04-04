@@ -320,6 +320,7 @@ blockquote footer, blockquote small, blockquote .small {
       border: none;
       a {
         background-color: white;
+        color: black;
         padding: 8px;
         text-transform: uppercase;
         font-size: 12px;
@@ -403,4 +404,11 @@ blockquote footer, blockquote small, blockquote .small {
   background-color: $primary;
   line-height: 4px;
   box-shadow: none;
+}
+
+// Utilities
+// -------------------------
+
+.bg-light {
+  background-color: $gray-light !important;
 }
