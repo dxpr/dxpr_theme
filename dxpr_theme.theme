@@ -255,6 +255,7 @@ function dxpr_theme_preprocess_region(&$variables) {
     case 'secondary_header':
       $variables['#attached']['library'][] = 'dxpr_theme/dxpr-theme-secondary-header';
     case 'navigation':
+    case 'navigation_collapsible':
       $variables['#attached']['library'][] = 'dxpr_theme/dxpr-theme-header';
       $variables['#attached']['library'][] = 'dxpr_theme/dxpr-theme-header--top';
       $variables['#attached']['library'][] = 'dxpr_theme/dxpr-theme-header--mobile';
