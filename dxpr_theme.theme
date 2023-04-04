@@ -145,7 +145,7 @@ function dxpr_theme_preprocess_html(&$variables) {
 }
 
 /**
- * Implements template_preprocess_page()
+ * Implements template_preprocess_page().
  */
 function dxpr_theme_preprocess_page(&$variables) {
   $variables['navbar_attributes'] = [
@@ -222,7 +222,7 @@ function dxpr_theme_preprocess_page(&$variables) {
 }
 
 /**
- * Implements template_menu_local_tasks()
+ * Implements template_menu_local_tasks().
  */
 function dxpr_theme_preprocess_menu_local_tasks(&$variables) {
   if ($variables['secondary']) {
@@ -232,7 +232,7 @@ function dxpr_theme_preprocess_menu_local_tasks(&$variables) {
 }
 
 /**
- * Implements template_preprocess_block()
+ * Implements template_preprocess_block().
  */
 function dxpr_theme_preprocess_block(&$variables) {
   if (isset($variables['elements']['#id'])) {
@@ -249,7 +249,7 @@ function dxpr_theme_preprocess_block(&$variables) {
 }
 
 /**
- * Implements template_preprocess_links()
+ * Implements template_preprocess_links().
  */
 function dxpr_theme_preprocess_links__language_block(&$variables) {
   $variables['attributes']['class'][] = 'nav';
@@ -257,7 +257,7 @@ function dxpr_theme_preprocess_links__language_block(&$variables) {
 }
 
 /**
- * Implements template_preprocess_region()
+ * Implements template_preprocess_region().
  */
 function dxpr_theme_preprocess_region(&$variables) {
   switch ($variables['region']) {
@@ -276,7 +276,7 @@ function dxpr_theme_preprocess_region(&$variables) {
 }
 
 /**
- * Implements template_preprocess_breadcrumb()
+ * Implements template_preprocess_breadcrumb().
  */
 function dxpr_theme_preprocess_breadcrumb(&$variables) {
   if ($variables['breadcrumb']) {
@@ -296,7 +296,7 @@ function dxpr_theme_preprocess_breadcrumb(&$variables) {
 }
 
 /**
- * Implements template_preprocess_comment()
+ * Implements template_preprocess_comment().
  */
 function dxpr_theme_preprocess_comment(&$variables) {
   if ($variables['elements']['#comment']) {
@@ -306,21 +306,21 @@ function dxpr_theme_preprocess_comment(&$variables) {
 }
 
 /**
- * Implements template_preprocess_pager()
+ * Implements template_preprocess_pager().
  */
 function dxpr_theme_preprocess_pager(&$variables) {
   $variables['#attached']['library'][] = 'dxpr_theme/drupal-pager';
 }
 
 /**
- * Implements template_preprocess_views_mini_pager()
+ * Implements template_preprocess_views_mini_pager().
  */
 function dxpr_theme_preprocess_views_mini_pager(&$variables) {
   $variables['#attached']['library'][] = 'dxpr_theme/drupal-pager';
 }
 
 /**
- * Implements template_theme_suggestions_form_element_alter()
+ * Implements template_theme_suggestions_form_element_alter().
  */
 function dxpr_theme_theme_suggestions_form_element_alter(array &$suggestions, array $variables, $hook) {
   if (isset($variables['element']['#type'])) {
@@ -330,28 +330,30 @@ function dxpr_theme_theme_suggestions_form_element_alter(array &$suggestions, ar
 }
 
 /**
- * Implements hook_form_alter()
+ * Implements hook_form_FORM_ID_alter().
  */
-function dxpr_theme_form_alter(&$form, FormStateInterface $form_state, $form_id) {
-  if ($form_id === 'search_form') {
-    $form['basic']['#attributes']['class'] = [
-      0 => 'form-group',
-      1 => 'input-group',
-    ];
-    $form['basic']['keys']['#placeholder'] = $form['basic']['keys']['#title'];
-    unset($form['basic']['keys']['#title']);
-    $form['basic']['submit']['#icon'] = TRUE;
-  }
-  if ($form_id === 'search_block_form') {
-    $form['actions']['#type'] = 'submit';
-    $form['keys']['#placeholder'] = 'Search';
-    $form['actions']['#icon'] = TRUE;
-    unset($form['actions']['submit']);
-  }
+function dxpr_theme_form_search_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  $form['basic']['#attributes']['class'] = [
+    0 => 'form-group',
+    1 => 'input-group',
+  ];
+  $form['basic']['keys']['#placeholder'] = $form['basic']['keys']['#title'];
+  unset($form['basic']['keys']['#title']);
+  $form['basic']['submit']['#icon'] = TRUE;
 }
 
 /**
- * Implements template_preprocess_input()
+ * Implements hook_form_FORM_ID_alter().
+ */
+function dxpr_theme_form_search_block_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  $form['actions']['#type'] = 'submit';
+  $form['keys']['#placeholder'] = 'Search';
+  $form['actions']['#icon'] = TRUE;
+  unset($form['actions']['submit']);
+}
+
+/**
+ * Implements template_preprocess_input().
  */
 function dxpr_theme_preprocess_input(&$variables) {
   $element = $variables['element'];
@@ -367,14 +369,14 @@ function dxpr_theme_preprocess_input(&$variables) {
 }
 
 /**
- * Implements template_preprocess_details()
+ * Implements template_preprocess_details().
  */
 function dxpr_theme_preprocess_details(&$variables) {
   $variables['attributes']['class'][] = 'form-item';
 }
 
 /**
- * Implements template_theme_suggestions_form_alter()
+ * Implements template_theme_suggestions_form_alter().
  */
 function dxpr_theme_theme_suggestions_form_alter(array &$suggestions, array $variables) {
   $suggestions[] = 'form__' . $variables['element']['#form_id'];
