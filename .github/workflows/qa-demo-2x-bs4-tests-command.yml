@@ -13,7 +13,7 @@ env:
 
   ### DXPR_BUILDER SETUP
   ### DXPR Builder image tage to use
-  DXPR_BUILDER_TAG: latest
+  DXPR_BUILDER_TAG: 2.x
   # This is where to mount the DXPR Builder volume inside the container
   DXPR_BUILDER_CONTAINER: /usr/src/dxpr_builder
   # FOR LOCAL DEVELOPMENT
