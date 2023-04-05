@@ -28,11 +28,11 @@ chmod 755 docroot/sites/default/
 cp docroot/sites/default/default.settings.php docroot/sites/default/settings.php && chmod 777 docroot/sites/default/settings.php
 mkdir -p docroot/sites/default/files && chmod -R 777 docroot/sites/default/files
 
-# echo "Removing the dxpr builder module..."
-# rm -rf docroot/modules/contrib/dxpr_builder
+echo "Removing the dxpr builder module..."
+rm -rf docroot/modules/contrib/dxpr_builder
 
-# echo "Linking to the dxpr builder module..."
-# ln -s $DXPR_BUILDER_CONTAINER docroot/modules/contrib/dxpr_builder
+echo "Linking to the dxpr builder module..."
+ln -s $DXPR_BUILDER_CONTAINER docroot/modules/contrib/dxpr_builder
 
 echo "Removing the dxpr theme module..."
 rm -rf docroot/themes/contrib/dxpr_theme

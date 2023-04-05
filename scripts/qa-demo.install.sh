@@ -39,6 +39,17 @@ else
   fi
 fi
 
+### Pulling the DXPR Builder and populating the dxpr-builder volume.
+### Run the dxpr-builder service separately to avoid shutting
+### down the stack after the service stops.
+echo "Puling the dxpr/dxpr_builder image..."
+docker-compose \
+  -f docker-compose.yml \
+  -f docker-compose.prod.yml pull dxpr-builder && docker-compose \
+  -f docker-compose.yml \
+  -f docker-compose.prod.yml \
+  up dxpr-builder
+
 ### Enforce building the grunt images.
 docker-compose \
   -f docker-compose.yml \
