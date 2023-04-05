@@ -20,4 +20,6 @@ jobs:
         issue-number: ${{ github.event.client_payload.github.payload.issue.number }}
         body: |
             @${{ github.event.client_payload.github.payload.comment.user.login }} Please comment on any issue with:
+            - `/qa-demo-2x-bs3-tests` to run QA tests with BS3 theme setup
+            - `/qa-demo-2x-bs4-tests` to run QA tests with BS4 theme setup
             - `/qa-demo-2x-bs5-tests` to run QA tests with BS5 theme setup
