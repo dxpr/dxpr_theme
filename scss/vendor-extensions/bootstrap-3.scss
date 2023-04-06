@@ -320,7 +320,6 @@ blockquote footer, blockquote small, blockquote .small {
       a {
         background-color: white;
         color: #333;
-        color: black;
         padding: 8px;
         text-transform: uppercase;
         font-size: 12px;
@@ -332,12 +331,8 @@ blockquote footer, blockquote small, blockquote .small {
           color: #777;
         }
       }
-      &.active {
-        bottom: auto !important;
+      &.active a {
         color: $primary;
-        a {
-          border: none;
-        }
       }
     }
   }
