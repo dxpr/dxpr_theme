@@ -331,6 +331,12 @@ blockquote footer, blockquote small, blockquote .small {
           color: #777;
         }
       }
+      &.active {
+        bottom: auto !important;
+        a {
+          border: none;
+        }
+      }
       &.active a {
         color: $primary;
       }
