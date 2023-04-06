@@ -319,6 +319,7 @@ blockquote footer, blockquote small, blockquote .small {
       border: none;
       a {
         background-color: white;
+        color: #333;
         color: black;
         padding: 8px;
         text-transform: uppercase;
@@ -326,9 +327,14 @@ blockquote footer, blockquote small, blockquote .small {
         margin: 0;
         border: none;
         pointer-events: auto;
+        &:hover,
+        &:focus {
+          color: #777;
+        }
       }
       &.active {
         bottom: auto !important;
+        color: $primary;
         a {
           border: none;
         }
