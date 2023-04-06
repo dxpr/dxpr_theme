@@ -374,16 +374,16 @@ blockquote footer, blockquote small, blockquote .small {
   padding: 20px;
 }
 
-.html .tabs-left .nav-tabs .active>a {
+.html .tabs-left > .nav-tabs .active>a {
   border-right-color: $body-background;
 }
-.dxpr-theme-boxed-container .tabs-left .nav-tabs .active>a {
+.dxpr-theme-boxed-container .tabs-left > .nav-tabs .active>a {
   border-right-color: white;
 }
-.html .tabs-right .nav-tabs .active>a {
+.html .tabs-right > .nav-tabs .active>a {
   border-left-color: $body-background;
 }
-.dxpr-theme-boxed-container .tabs-right .nav-tabs .active>a {
+.dxpr-theme-boxed-container .tabs-right > .nav-tabs .active>a {
   border-left-color: white;
 }
 
