@@ -19,8 +19,8 @@ function layout_theme_settings_css($theme, &$css, array $palette) {
   if (theme_get_setting('boxed_layout', $theme) && ($cnt_bg = theme_get_setting('boxed_layout_boxbg', $theme))) {
     $css .= ".dxpr-theme-boxed-container { background: $cnt_bg; }\n\n";
     $css .= ".dxpr-theme-boxed-container .nav-tabs >li.active a { border-bottom-color: $cnt_bg; }\n\n";
-    $css .= ".dxpr-theme-boxed-container .tabs-left .nav-tabs .active>a { border-right-color: $cnt_bg; }\n\n";
-    $css .= ".dxpr-theme-boxed-container .tabs-right .nav-tabs .active>a { border-left-color: $cnt_bg; }\n\n";
+    $css .= ".dxpr-theme-boxed-container .tabs-left > .nav-tabs .active>a { border-right-color: $cnt_bg; }\n\n";
+    $css .= ".dxpr-theme-boxed-container .tabs-right > .nav-tabs .active>a { border-left-color: $cnt_bg; }\n\n";
   }
 
   $box_width = theme_get_setting('box_max_width', $theme);
