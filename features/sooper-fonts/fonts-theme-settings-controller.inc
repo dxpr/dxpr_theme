@@ -80,7 +80,7 @@ function _dxpr_theme_add_google_fonts(array $google_fonts, array &$variables) {
 
     $element = [
       '#tag' => 'style',
-      '#value' => file_get_contents($absolute_file_source),
+      '#value' => str_replace(["\r", "\n"], '', file_get_contents($absolute_file_source)),
     ];
 
     $variables['#attached']['html_head'][] = [
