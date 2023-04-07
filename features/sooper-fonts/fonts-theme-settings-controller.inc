@@ -76,17 +76,22 @@ function _dxpr_theme_add_google_fonts(array $google_fonts, array &$variables) {
   }
 
   if ($wrapper = \Drupal::service('stream_wrapper_manager')->getViaUri($fonts_folder_uri . '/' . 'font-face.css')) {
-    $absolute_file_source = $wrapper->getExternalUrl();
+    $local_path = $wrapper->realpath();
 
-    $element = [
-      '#tag' => 'style',
-      '#value' => str_replace(["\r", "\n"], '', file_get_contents($absolute_file_source)),
-    ];
+    if (!empty($local_path)) {
+      $file_content = file_get_contents($local_path);
+      $file_content = str_replace(["\r", "\n"], '', $file_content);
 
-    $variables['#attached']['html_head'][] = [
-      $element,
-      'dxpr_theme_google_fonts',
-    ];
+      $element = [
+        '#tag' => 'style',
+        '#value' => $file_content,
+      ];
+
+      $variables['#attached']['html_head'][] = [
+        $element,
+        'dxpr_theme_google_fonts',
+      ];
+    }
   }
 }
 
@@ -263,16 +268,19 @@ function _dxpr_theme_add_local_font_parse_font_families($path) {
   $font_families = $font_families ?? [];
   if (!isset($font_families[$path])) {
     $font_families[$path] = [];
-    $content = file_get_contents($path);
-    preg_match_all('/@font-face\s*{([\s\S]*?)}/i', $content, $font_faces);
-    foreach ($font_faces[1] as $font_face) {
-      if (preg_match('/font-family: [\'"](.*?)[\'"]/i', $font_face, $font_family)) {
-        $font_families[$path][$font_family[1]] = [];
-        if (preg_match('/src[\s]*:[\s]*url\([\'"]*(.+?)[\'"]*\)[\s]*format\([\'"]*(.+?)[\'"]*\)/i', $font_face, $matches)) {
-          $font_families[$path][$font_family[1]] = [
-            'url' => $matches[1],
-            'format' => $matches[2],
-          ];
+    if ($wrapper = \Drupal::service('stream_wrapper_manager')->getViaUri($path)) {
+      $local_path = $wrapper->realpath();
+      $content = file_get_contents($local_path);
+      preg_match_all('/@font-face\s*{([\s\S]*?)}/i', $content, $font_faces);
+      foreach ($font_faces[1] as $font_face) {
+        if (preg_match('/font-family: [\'"](.*?)[\'"]/i', $font_face, $font_family)) {
+          $font_families[$path][$font_family[1]] = [];
+          if (preg_match('/src[\s]*:[\s]*url\([\'"]*(.+?)[\'"]*\)[\s]*format\([\'"]*(.+?)[\'"]*\)/i', $font_face, $matches)) {
+            $font_families[$path][$font_family[1]] = [
+              'url' => $matches[1],
+              'format' => $matches[2],
+            ];
+          }
         }
       }
     }
