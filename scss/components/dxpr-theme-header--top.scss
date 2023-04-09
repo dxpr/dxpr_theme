@@ -202,7 +202,8 @@
         height: 100%;
         float: left;
       }
-      > li > a {
+      > li > a,
+      > li > span {
         font-size: $font-size-large;
         display: table-cell;
         vertical-align: middle;
@@ -211,7 +212,8 @@
       }
       .dropdown-menu li {
         width: 100%;
-        > a {
+        > a,
+        > span {
           font-size: $font-size-base;
           font-weight: normal;
           padding: 10px 20px;
