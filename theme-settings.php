@@ -50,7 +50,7 @@ function dxpr_theme_form_system_theme_settings_alter(&$form, &$form_state, $form
   $dxpr_theme_theme_path = \Drupal::service('extension.list.theme')->getPath('dxpr_theme') . '/';
   $themes = \Drupal::service('theme_handler')->listInfo();
 
-  $img = '<img style="width:35px;margin-right:5px;" src="' . $base_path . $dxpr_theme_theme_path . 'dxpr-logo-white.svg" />';
+  $img = '<img width="100" height="37" src="' . $base_path . $dxpr_theme_theme_path . 'dxpr-logo-white.svg" />';
   if (!empty($themes[$subject_theme]->info['version'])) {
     $version = $themes[$subject_theme]->info['version'];
   }
