@@ -166,9 +166,9 @@ function _dxpr_theme_cache_google_fonts(array $google_fonts, string $fonts_folde
 
     // Update font-face to use local links.
     if ($wrapper = \Drupal::service('stream_wrapper_manager')->getViaUri($file_name)) {
-      $absolute_file_source = \Drupal::service('file_url_generator')
+      $relative_file_source = \Drupal::service('file_url_generator')
         ->transformRelative($wrapper->getExternalUrl());
-      $font_face = str_replace($font_source, $absolute_file_source, $font_face);
+      $font_face = str_replace($font_source, $relative_file_source, $font_face);
     }
   }
 
