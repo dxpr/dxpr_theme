@@ -171,7 +171,7 @@ EOT;
   height: {$header_top_height}px;
 }
 .body--dxpr-theme-nav-desktop .dxpr-theme-header--top.affix .nav > li > a,
-.body--dxpr-theme-nav-desktop .dxpr-theme-header--top .nav > li > span,
+.body--dxpr-theme-nav-desktop .dxpr-theme-header--top.affix .nav > li > span,
 .body--dxpr-theme-nav-desktop .dxpr-theme-header--top.affix .navbar-header .wrap-branding,
 .body--dxpr-theme-nav-desktop .dxpr-theme-header--top.affix .block-dxpr-theme-helper  {
   height: {$header_top_height_scroll}px;
