@@ -78,7 +78,7 @@ function _dxpr_theme_add_google_fonts(array $google_fonts) {
   */
 function _dxpr_theme_cache_google_fonts(array $google_fonts, string $fonts_folder_uri) {
   $fonts_url = '';
-  global $base_url;
+  global $base_url, $base_path;
 
   // Build url to request Google fonts.
   foreach ($google_fonts as $google_font) {
@@ -133,7 +133,10 @@ function _dxpr_theme_cache_google_fonts(array $google_fonts, string $fonts_folde
 
     // Update font-face to use local links.
     $absolute_file_source = file_create_url($fonts_folder_uri . '/' . $font_name[0]);
-    $font_face = str_replace($font_source, $absolute_file_source, $font_face);
+    // We need to rtrim to prevent mismatch between $base_path and $base_url.
+    $root_path = str_replace(rtrim($base_path, '/'), '', $base_url);
+    $root_relative_source = str_replace($root_path, '', $absolute_file_source);
+    $font_face = str_replace($font_source, $root_relative_source, $font_face);
   }
 
   file_save_data($font_face, $fonts_folder_uri . '/' . 'font-face.css', FILE_EXISTS_REPLACE);
