@@ -84,6 +84,14 @@ $font_3: 'sans-serif';
         }
       }
     }
+    .card, .card-body {
+      color: #354051;
+    }
+    .card-header {
+      border: none;
+      background: transparent;
+      font-size: inherit;
+    }
     summary {
       padding: 10px 15px;
       --bs-bg-opacity: unset;
@@ -310,6 +318,7 @@ $font_3: 'sans-serif';
     }
     .vertical-tabs__panes {
       padding: 10px 15px;
+      color: #354051;
       .details-wrapper {
         padding: 15px;
       }
