@@ -54,14 +54,17 @@ function _dxpr_theme_add_google_fonts(array $google_fonts) {
   }
 
   if (file_exists($fonts_folder_uri . '/font-face.css')) {
-    $absolute_file_source = file_create_url($fonts_folder_uri . '/font-face.css');
+    $wrapper = file_stream_wrapper_get_instance_by_uri($fonts_folder_uri . '/' . 'font-face.css');
+    if ($wrapper) {
+      $local_path = $wrapper->realpath();
 
-    $element = array(
-      '#tag' => 'style',
-      '#value' => file_get_contents($absolute_file_source),
-    );
+      $element = array(
+        '#tag' => 'style',
+        '#value' => file_get_contents($local_path),
+      );
 
-    drupal_add_html_head($element, 'dxpr_theme_google_fonts');
+      drupal_add_html_head($element, 'dxpr_theme_google_fonts');
+    }
   }
 }
 
@@ -223,7 +226,8 @@ function _dxpr_theme_add_local_font_parse_font_families($path) {
   $font_families = isset($font_families) ? $font_families : array();
   if (!isset($font_families[$path])) {
     $font_families[$path] = array();
-    $content = file_get_contents($path);
+    $local_path = realpath($path);
+    $content = file_get_contents($local_path);
     preg_match_all('/@font-face\s*{([\s\S]*?)}/i', $content, $font_faces);
     foreach ($font_faces[1] as $font_face) {
       if (preg_match('/font-family: [\'"](.*?)[\'"]/i', $font_face, $font_family)) {
