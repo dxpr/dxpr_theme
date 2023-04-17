@@ -58,6 +58,10 @@ $font_3: 'sans-serif';
 
   }
   div.form-wrapper {
+    .panel-body {
+      background: transparent;
+      color: #354051;
+    }
     background: transparent;
     clear: both;
     border-left: 4px solid #dce2e5;

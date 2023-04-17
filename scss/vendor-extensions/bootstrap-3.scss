@@ -318,8 +318,8 @@ blockquote footer, blockquote small, blockquote .small {
       padding: 0;
       border: none;
       a {
-        background-color: white;
-        color: rgba(51,51,51,0.999999); // this hack is to prevent SASS from converting to #333, and we don't want #333 because color module will replace it with the headings color in the palette.
+        background-color: $header-color;
+        color: $header-text-color;
         padding: 8px;
         text-transform: uppercase;
         font-size: 12px;
@@ -338,7 +338,7 @@ blockquote footer, blockquote small, blockquote .small {
         }
       }
       &.active a {
-        color: rgba(51,51,51,0.999999);
+        color: $primary;
       }
     }
   }
