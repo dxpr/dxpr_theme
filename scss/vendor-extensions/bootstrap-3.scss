@@ -298,6 +298,9 @@ blockquote footer, blockquote small, blockquote .small {
 .dxpr-theme-boxed-container .nav-tabs >li.active a {
   border-bottom-color: white;
 }
+.az-tabs .nav-tabs > li.active > a[role="tab"] {
+  background-color: #ffffff;
+}
 
 .region-content nav.tabs:after {
   content:" ";

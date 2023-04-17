@@ -93,6 +93,10 @@ html.js {
 .panel {
   background-color: $header-color;
   color: $header-text-color;
+  &.panel-default > .panel-heading {
+    background-color: $well;
+    color: $well-text;
+  }
   .panel-body { 
     background-color: transparent;
     color: $header-text-color;
