@@ -310,7 +310,7 @@ blockquote footer, blockquote small, blockquote .small {
         }
       }
       &.active a {
-        color: $primary;
+        color: rgba(51,51,51,0.999999);
       }
     }
   }
