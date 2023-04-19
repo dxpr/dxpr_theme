@@ -35,17 +35,15 @@ html.js {
   }
 
   .form-item .input-group-addon {
+    background-color: $well;
     .glyphicon {
-      color: $gray-light;
+      color: $well-text;
       opacity: .5;
       transition: 150ms color, 150ms opacity;
       &.glyphicon-spin {
         color: $primary;
         opacity: 1;
       }
-    }
-    .input-group-addon {
-      background-color: rgb(255, 255, 255);
     }
   }
 
@@ -92,15 +90,30 @@ html.js {
 /**
  * Panel styling.
  */
-.panel-title {
-  display: block;
-  margin: -10px -15px;
-  padding: 10px 15px;
-  &, &:hover, &:focus, &:hover:focus {
-    color: inherit;
+.panel {
+  background-color: $header-color;
+  color: $header-text-color;
+  &.panel-default > .panel-heading {
+    background-color: $well;
+    color: $well-text;
   }
-  &:focus, &:hover {
-    text-decoration: none;
+  .panel-body { 
+    background-color: transparent;
+    color: $header-text-color;
+    h1,h2,h3,h4,h5,h6,label,.field--label {
+      color: $header-text-color;
+    }
+  }
+  .panel-title {
+    display: block;
+    margin: -10px -15px;
+    padding: 10px 15px;
+    &, &:hover, &:focus, &:hover:focus {
+      color: inherit;
+    }
+    &:focus, &:hover {
+      text-decoration: none;
+    }
   }
 }
 
@@ -137,6 +150,16 @@ html.js {
     float: right;
     margin: -0.4em -0.4em -0.4em 0.2em;
     padding: 0.42em 0.6em 0.42em 0;
+  }
+}
+
+.table-striped>tbody>tr:nth-of-type(odd) {
+  background: $well;
+  color: $well-text;
+}
+.table-hover {
+  > tbody > tr:hover {
+    background-color: $page-title-color;
   }
 }
 

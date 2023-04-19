@@ -48,7 +48,9 @@
   select::-ms-expand {
     display: none;
   }
-
+  .form-control {
+    color: $text;
+  }
   .form-control.form-file {
     padding: 8px;
   }
