@@ -140,6 +140,17 @@ html.js {
   }
 }
 
+.table.table-striped>tbody>tr:nth-of-type(odd) > * {
+  background: $card;
+  --bs-table-accent-bg: #eeeeee; // variable does not work after this custom property
+  color: $card-text;
+}
+.table.table-hover {
+  > tbody > tr:hover {
+    background-color: $page-title-color;
+  }
+}
+
 /**
  * Tabs and local action styles.
  */
