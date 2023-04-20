@@ -90,18 +90,40 @@ html.js {
 }
 
 /**
+ * Accordion item styling.
+ */
+/**
  * Panel styling.
  */
-.panel-title {
-  display: block;
-  margin: -10px -15px;
-  padding: 10px 15px;
-  &, &:hover, &:focus, &:hover:focus {
-    color: inherit;
+.accordion-item {
+  background-color: $header-color;
+  color: $header-text-color;
+  .accordion-button {
+    background: $header-color;
+    color: $header-text-color;
+    &:not(.collapsed) {
+      background: $card;
+      color: $primary;
+    }
   }
-  &:focus, &:hover {
-    text-decoration: none;
+  .accordion-body { 
+    background-color: transparent;
+    color: $header-text-color;
+    h1,h2,h3,h4,h5,h6,label,.field--label {
+      color: $header-text-color;
+    }
   }
+  // .panel-title {
+  //   display: block;
+  //   margin: -10px -15px;
+  //   padding: 10px 15px;
+  //   &, &:hover, &:focus, &:hover:focus {
+  //     color: inherit;
+  //   }
+  //   &:focus, &:hover {
+  //     text-decoration: none;
+  //   }
+  // }
 }
 
 /**
@@ -137,6 +159,17 @@ html.js {
     float: right;
     margin: -0.4em -0.4em -0.4em 0.2em;
     padding: 0.42em 0.6em 0.42em 0;
+  }
+}
+
+.table.table-striped>tbody>tr:nth-of-type(odd) > * {
+  background: $card;
+  --bs-table-accent-bg: #eeeeee; // variable does not work after this custom property
+  color: $card-text;
+}
+.table.table-hover {
+  > tbody > tr:hover {
+    background-color: $page-title-color;
   }
 }
 
