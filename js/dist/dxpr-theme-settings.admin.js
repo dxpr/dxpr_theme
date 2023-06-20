@@ -16,7 +16,7 @@
    */
   Drupal.behaviors.dxpr_themeSettingsControls = {
     attach(context) {
-      $("#system-theme-settings h2 > small").addClass("card form-header");
+      $("#system-theme-settings h2 > small").addClass("form-header");
       var $input = "";
       // jQuery once is not working..
       $("#system-theme-settings .form-type-radio .control-label")
@@ -946,12 +946,14 @@
         );
       });
       $(".js-form-type-textfield").each(function() {
-        const divs = $(this).find(".slider-horizontal,.form-text");
+        const divs = $(this).find(".slider-horizontal,.form-text")
+        .not(".dxpr_themeProcessed");
         if (divs.length >= 2) {
           for (let i = 0; i < divs.length; i += 2) {
             divs
               .slice(i, i + 2)
-              .wrapAll("<div class='slider-input-wrapper'></div>");
+              .wrapAll("<div class='slider-input-wrapper'></div>")
+              .addClass("dxpr_themeProcessed");
           }
         }
       });
