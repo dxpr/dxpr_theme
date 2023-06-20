@@ -122,6 +122,11 @@ $textLight: rgba(86,86,86,.6);
   .form-item {
     clear: both;
     min-height: 3em;
+    &:after{
+      content: "";
+      display: table;
+      clear: both;
+    }
     .js-form-type-radio {
       min-height: 20px;
     }
