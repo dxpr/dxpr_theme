@@ -171,7 +171,8 @@ $textLight: rgba(86,86,86,.6);
     padding: 0;
   }
   .form-text,
-  .form-textarea {
+  .form-textarea,
+  .form-file {
     border: none;
     box-shadow: none;
     border: 1px solid $text;
@@ -313,13 +314,7 @@ $textLight: rgba(86,86,86,.6);
   }
 
   .form-select {
-    color: $primary;
-    font-size: 14px;
     width: 250px;
-    option {
-      // background: white;
-      // color: #354051;
-    }
   }
 
   .form-composite {
