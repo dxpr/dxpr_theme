@@ -1,29 +1,8 @@
 @charset "UTF-8";
 //colors
-$black: #000;
-$color_pink_swan: #bbb;
-$color_mine_shaft: #333;
-$white: white;
-$color_alabaster: #f9fafc;
-$color_outer_space_5: rgba(40, 50, 60, 0.05);
-$white_50: rgba(255, 255, 255, 0.5);
-$seashell: #f1f1f1;
-$color_outer_space_30: rgba(40, 50, 60, 0.3);
-$color_outer_space_60: rgba(40, 50, 60, 0.6);
-$color_outer_space_10: rgba(40, 50, 60, 0.1);
-$color_gallery: #ddd;
-$color_alto: #dddddd;
-$alabaster: #fafafa;
-$white_5: rgba(255, 255, 255, 0.05);
-$black_5: rgba(0, 0, 0, 0.05);
-$color_suva_gray: #888;
-$color_silver_chalice: #aaa;
-$color_steel_blue: #337ab7;
-$color_curious_blue: #284ed9;
-$color_lochmara: #0480be;
-$color_romance: #fdfdfd;
-$color_storm_dust: #666;
-$color_celeste: #ccc;
+$primary: #0550e6;
+$text: #222330;
+$textLight: rgba(86,86,86,.6);
 
 //fonts
 $font_0: 'Helvetica Neue';
@@ -181,7 +160,7 @@ $font_3: 'sans-serif';
   .form-text,
   .form-textarea {
     background: #e4e9ed;
-    color: $color_curious_blue;
+    color: $primary;
     font-size: 18px;
     border: none;
     box-shadow: none;
@@ -232,7 +211,7 @@ $font_3: 'sans-serif';
     display: block;
     width: 100%;
     margin-bottom: 0;
-    background: $color_curious_blue;
+    background: $primary;
     color: white;
     padding: 20px;
     font-size: 20px;
@@ -294,7 +273,7 @@ $font_3: 'sans-serif';
         }
       }
       .is-selected {
-        background: $color_curious_blue;
+        background: $primary;
         color: white;
         a {
           color: white;
@@ -327,7 +306,7 @@ $font_3: 'sans-serif';
   }
 
   .form-select {
-    color: $color_curious_blue;
+    color: $primary;
     font-size: 14px;
     width: 250px;
     option {
@@ -360,7 +339,7 @@ $font_3: 'sans-serif';
 
         &:before {
           content: '__';
-          color: $color_curious_blue;
+          color: $primary;
           opacity: 0.3;
           font-size: 18px;
           display: inline-block;
@@ -377,7 +356,7 @@ $font_3: 'sans-serif';
         &:before {
           content: '✓';
           opacity: 1;
-          color: $color_curious_blue;
+          color: $primary;
           font-size: 24px;
         }
       }
@@ -576,7 +555,7 @@ $font_3: 'sans-serif';
       // opacity: 0;
       // appearance: none;
       &:checked + .switcher {
-        background: $color_curious_blue;
+        background: $primary;
         &:after {
           left: calc(100% - 3px);
           transform: translateX(-100%);
@@ -597,7 +576,7 @@ $font_3: 'sans-serif';
       width: 54px;
       height: 27px;
       border-radius: 20px;
-      background: $color_suva_gray;
+      background: #888;
       display: block;
       &:after {
         content: '';
