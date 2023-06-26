@@ -156,7 +156,6 @@ header_mobile_height: '60'
 secondary_header_hide: hidden_none
 custom_css_site: ''
 custom_javascript_site: ''
-stlink: 0
 block_preset: ''
 block_card: ''
 block_background: ''

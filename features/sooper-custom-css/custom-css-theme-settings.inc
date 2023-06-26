@@ -38,10 +38,4 @@ function custom_css_theme_settings(array &$form, $theme) {
     '#rows' => 15,
   ];
 
-  $form['dxpr_theme_settings']['custom_css']['stlink'] = [
-    '#type' => 'checkbox',
-    '#description' => t('DXPR attribution homeopage link in footer.'),
-    '#title' => t('DXPR Link'),
-    '#default_value' => ((theme_get_setting('stlink') !== NULL)) ? theme_get_setting('stlink') : 0,
-  ];
 }
