@@ -93,39 +93,30 @@ function header_theme_settings_css($theme, &$css, array $palette) {
 EOT;
   if ($align == 'right') {
     $css .= <<<EOT
-  #dxpr-theme-main-menu .menu__link  {
-    padding: 10px 70px 10px 20px;
-  }
+    .dxpr-theme-header--side #dxpr-theme-main-menu .menu__link::after {
+      right: auto;
+      left: 20px;
+    }
 
 EOT;
   }
 
   $css .= <<<EOT
-.dxpr-theme-header--side .dxpr-theme-main-menu {
-  width: {$header_side_width}px;
+.body--dxpr-theme-nav-desktop.body--dxpr-theme-header-side #navbar.dxpr-theme-header {
+  text-align: $align;
 }
+html.js .body--dxpr-theme-nav-desktop.body--dxpr-theme-header-side {
+  padding-left: calc({$header_side_width}px + var(--gin-toolbar-x-offset, 256px));
+}
+.body--dxpr-theme-nav-desktop .dxpr-theme-header--side,
+.body--dxpr-theme-nav-mobile .dxpr-theme-header--side #dxpr-theme-main-menu,
 .dxpr-theme-header--side .menu__level {
   width: {$header_side_width}px;
 }
 
 EOT;
 
-  if (theme_get_setting('header_position', $theme)) {
-    $css .= <<<EOT
-.body--dxpr-theme-nav-desktop.body--dxpr-theme-header-side #navbar.dxpr-theme-header {
-  text-align: $align;
-}
-.body--dxpr-theme-nav-desktop.body--dxpr-theme-header-side {
-  padding-left: {$header_side_width}px;
-}
-.body--dxpr-theme-nav-desktop .dxpr-theme-header--side {
-  width: {$header_side_width}px;
-}
-
-EOT;
-
-  }
-  else {
+  if (!theme_get_setting('header_position', $theme)) {
     $header_top_rgba = $header_top_scroll_rgba = $header_top_scroll_rgba = $palette['header'] ?? '';
     if (theme_get_setting('header_top_sticky', $theme) && theme_get_setting('header_top_sticky_show', $theme) == 'after_scroll') {
       $header_top_opacity = 0;
@@ -185,6 +176,9 @@ EOT;
 }
 .body--dxpr-theme-nav-desktop .dxpr-theme-header--top.affix .nav-child-fixed-width {
   top: $header_top_height_scroll;
+}
+html.js .body--dxpr-theme-nav-desktop.gin--vertical-toolbar.toolbar-fixed.toolbar-horizontal.body--dxpr-theme-header-fixed.body--dxpr-theme-header-top {
+  padding-top: {$header_top_height}px !important;
 }
 
 EOT;
