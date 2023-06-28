@@ -5,9 +5,9 @@
  * DXPR Theme settings.
  */
 
-use Drupal\node\Entity\NodeType;
-use Drupal\Core\File\FileSystemInterface;
 use Drupal\Core\File\Exception\FileException;
+use Drupal\Core\File\FileSystemInterface;
+use Drupal\node\Entity\NodeType;
 
 /**
  * Implements hook_form_FORM_ID_alter().
