@@ -267,6 +267,10 @@ html.js .body--dxpr-theme-nav-desktop {
   &.toolbar-fixed.toolbar-horizontal.toolbar-tray-open.toolbar-horizontal .dxpr-theme-header--top.affix {
     top: 80px!important;
   }
+  &.gin--vertical-toolbar.toolbar-fixed.toolbar-horizontal .dxpr-theme-header--top.dxpr-theme-header--fixed,
+  &.gin--vertical-toolbar.toolbar-fixed.toolbar-horizontal .dxpr-theme-header--top.affix {
+    top: 0!important;
+  }
 
   &.body--dxpr-theme-header-fixed.toolbar-fixed.toolbar-horizontal.toolbar-tray-open.toolbar-horizontal.body--dxpr-theme-header-not-overlay {
     padding-top: 180px!important;
@@ -274,4 +278,12 @@ html.js .body--dxpr-theme-nav-desktop {
   &.body--dxpr-theme-header-fixed.toolbar-fixed.toolbar-horizontal.body--dxpr-theme-header-not-overlay {
     padding-top: 139px!important;
   }
+  &.gin--vertical-toolbar.toolbar-fixed.toolbar-horizontal.body--dxpr-theme-header-fixed.body--dxpr-theme-header-top {
+    padding-top: 90px !important;
+  }
+}
+
+html.js .gin--vertical-toolbar .dxpr-theme-header--fixed {
+  left: var(--gin-toolbar-x-offset, 256px);
+  width: calc(100% - var(--gin-toolbar-x-offset, 256px));
 }

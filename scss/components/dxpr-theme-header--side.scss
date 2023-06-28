@@ -2,7 +2,7 @@
 @import "../includes/variables";
 
 .body--dxpr-theme-header-side.body--dxpr-theme-nav-desktop .dxpr-theme-header--side {
-  padding: 40px 20px;
+  padding: 20px;
   z-index: 100;
   .navbar-container {
     padding-left: 0;
@@ -24,23 +24,21 @@
   .dxpr-theme-main-menu {
     background: $header-side-color;
     color: $header-side-text-color;
-    padding: 40px 20px;
-    position: fixed;
-    z-index: 406;
-    top: 0;
-    left: 0;
-    width: 300px;
     overflow-x: hidden;
     overflow-y: auto;
     height: 100%;
     a {
       color: $header-side-text-color;
+      padding-left: 0; // undo bs5 base theme styles
+      padding-right: 0;
       &:hover,
       &:focus {
         color: $header-side-text-color;
       }
     }
-
+    .full-screen-search-button {
+      padding-left: 0;
+    }
   }
   .dxpr-theme-main-menu.dxpr-theme-main-menu--to-left {
     left: auto;
@@ -52,6 +50,8 @@
   }
   .block {
     margin-bottom: 20px;
+    float: none !important;
+    width: 100%;
   }
   .navbar-collapse {
     padding: 70px 0 0 0;
@@ -67,9 +67,8 @@
     height: calc(100vh - 80px);
     left: 0;
     visibility: hidden;
-     overflow: hidden;
-     overflow-y: auto;
-    //overflow-y: scroll;
+    overflow: hidden;
+    overflow-y: auto;
     width: 300px;
     margin: 0;
     padding:  0;
@@ -91,13 +90,12 @@
       line-height: 25px;
     }
   }
-  .menu__link {
+  #dxpr-theme-main-menu .menu__link {
     position: relative;
     cursor: pointer;
     display: block;
-    padding: 7px 20px !important;
-    line-height: 25px !important;
-    -webkit-transition: color 0.1s;
+    padding: 7px 20px;
+    line-height: 25px;
     transition: color .5s;
     white-space: normal;
   }
@@ -106,7 +104,7 @@
     position: absolute;
     right: 20px;
     font-size: 1.4em;
-    line-height: 1em;
+    line-height: 1.4em;
     top: 0;
     opacity: 0.7;
   }
@@ -132,6 +130,7 @@
     position: fixed;
     top: 60px;
     padding-left: 20px;
+    padding-right: 20px;
     left: 0;
   }
 
@@ -189,10 +188,11 @@
     padding-left:300px;
   }
   .dxpr-theme-header--side {
+    width: 300px;
+    background: $header-side-color;
     position: fixed;
     left: 0;
     top: 0;
-    width: 300px;
     height: 100%;
     .navbar-header {
       float: none;
@@ -201,6 +201,9 @@
       .logo,
       .navbar-brand {
         display: block;
+      }
+      #logo {
+        max-height: 30px;
       }
     }
     .menu__breadcrumbs {
@@ -215,6 +218,14 @@
   }
   &.body--dxpr-theme-header-side.body--full-screen-search .dxpr-theme-header--side .navbar-header {
     z-index: 406;
+  }
+  // Gin vertical toolbar compatibility
+  &.gin--vertical-toolbar {
+    .dxpr-theme-header--side,
+    .menu__level,
+    .menu__breadcrumbs {
+      left: var(--gin-toolbar-x-offset, 256px) !important;
+    }
   }
 }
 
@@ -246,20 +257,6 @@
     left: auto;
     right: -100%;
     transition: right 0.3s;
-  }
-}
-
-// Mobile-Small styles
-@media screen and (max-width: 768px) {
-  .action--open,
-  .action--close {
-    display: block;
-  }
-  #dxpr-theme-main-menu,
-  #dxpr-theme-main-menu .menu__breadcrumbs,
-  #dxpr-theme-main-menu .menu__level {
-    width: 100%;
-    text-align: center;
   }
 }
 

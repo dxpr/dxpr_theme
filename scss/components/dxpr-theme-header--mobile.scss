@@ -34,6 +34,9 @@ html.html--dxpr-theme-nav-mobile--open {
         }
       }
     }
+    .block {
+      padding: 20px;
+    }
     .block-dxpr-theme-helper {
       height: 60px;
       line-height: 60px;
@@ -166,7 +169,24 @@ html.html--dxpr-theme-nav-mobile--open {
 // Fix for FOUC on mobile menu.
 @media all and (max-width: 1200px) {
   #dxpr-theme-main-menu {
-    position: absolute;
+    position: fixed;
+    top: 0;
+    height: 100%;
+    width: 300px;
+  }
+}
+
+// Mobile-Small styles
+@media screen and (max-width: 768px) {
+  .action--open,
+  .action--close {
+    display: block;
+  }
+  #dxpr-theme-main-menu,
+  #dxpr-theme-main-menu .menu__breadcrumbs,
+  #dxpr-theme-main-menu .menu__level {
+    width: 100% !important;
+    text-align: center;
   }
 }
 
