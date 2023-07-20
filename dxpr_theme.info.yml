@@ -38,6 +38,10 @@ libraries-override:
       component:
         css/components/collapse-processed.css: false
 
+libraries-extend:
+  gin/gin_toolbar:
+    - dxpr_theme/gin_toolbar
+
 config:
   install:
     - dxpr_theme.settings

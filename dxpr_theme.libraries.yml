@@ -173,3 +173,9 @@ dxpr-theme-animatecss-custom:
   css:
     component:
       vendor/animate.css/animate.min.css: { minified: true }
+
+gin_toolbar:
+  version: 1.x
+  css:
+    theme:
+      css/vendor-extensions/gin-toolbar.css: {}
