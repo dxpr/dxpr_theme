@@ -18,6 +18,7 @@
       var $searchForm = $(".full-screen-search-form");
       var $searchFormInput = $searchForm.find(".search-query");
       const escapeCode = 27;
+      $(once('search-icon', $searchButton)).addClass('glyphicon glyphicon-search');
       $(once('search-button', $searchButton)).on("touchstart click", event => {
         event.preventDefault(),
           $searchForm.toggleClass("invisible"),
