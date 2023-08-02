@@ -271,11 +271,18 @@ blockquote footer, blockquote small, blockquote .small {
 }
 
 .html .dxpr-theme-mini-tabs-wrapper {
-  pointer-events: none;
   display: block;
-  float: left;
+  display:inline-block;
+  float: none;
+  left: 50%;
   margin-bottom: 10px;
+  margin-top: 2px;
+  pointer-events: none;
+  position: absolute;
+  z-index: 470;
   .tabs--primary {
+    position: relative;
+    left: -50%;
     border: none;
     box-shadow: 0 3px 10px 0 rgba(50, 50, 50, 0.23);
     li {
@@ -307,21 +314,6 @@ blockquote footer, blockquote small, blockquote .small {
         color: $primary;
       }
     }
-  }
-}
-.body--primary-tabs-float .region-content nav.tabs:after {
-  display: none;
-}
-.body--primary-tabs-float .dxpr-theme-mini-tabs-wrapper {
-  display:inline-block;
-  float: none;
-  position: absolute;
-  margin-top: 2px;
-  left: 50%;
-  z-index: 470;
-  .tabs--primary {
-    position: relative;
-    left: -50%;
   }
 }
 .html .tabs--secondary {

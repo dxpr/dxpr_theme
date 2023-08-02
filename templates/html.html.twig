@@ -62,7 +62,6 @@
     not theme.settings.header_position and theme.settings.header_style != 'overlay' ? 'body--dxpr-theme-header-not-overlay',
     not theme.settings.header_position ? 'body--dxpr-theme-header-' ~ theme.settings.header_style|clean_class,
     not theme.settings.header_position and not theme.settings.header_top_sticky and theme.settings.header_top_fixed ? 'body--dxpr-theme-header-fixed',
-    page_title in node.field_dth_hide_regions.getValue|keys ? 'body--primary-tabs-float',
   ]
 %}
 {% if body_bg_image_path %}
