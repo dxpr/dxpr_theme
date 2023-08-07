@@ -71,12 +71,12 @@ function _dxpr_theme_add_google_fonts(array $google_fonts) {
 /**
   * Cache requested Google fonts in public folder.
   *
-  * @param array $google_fonts
+  * @param $google_fonts
   *   Requested Google fonts.
-  * @param string $fonts_folder_uri
+  * @param $fonts_folder_uri
   *   Path to "cached" Google fonts.
   */
-function _dxpr_theme_cache_google_fonts(array $google_fonts, string $fonts_folder_uri) {
+function _dxpr_theme_cache_google_fonts($google_fonts, $fonts_folder_uri) {
   $fonts_url = '';
   global $base_url, $base_path;
 
