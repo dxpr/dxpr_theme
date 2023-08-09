@@ -371,7 +371,7 @@
         closeMenu();
       });
       $("#dxpr-theme-main-menu")
-        // .css("position", "fixed")
+        .css("position", "fixed")
         .show();
 
       // Close menu with click on anchor link
