@@ -7,7 +7,7 @@
 /**
  * Override menu link to support multilevel dropdowns.
  *
- * @param array $variables
+ * @param $variables
  *   An associative array containing:
  *   - element: Structured array data for a menu link.
  *
@@ -18,7 +18,7 @@
  *
  * @ingroup theme_functions
  */
-function dxpr_theme_menu_link(array $variables) {
+function dxpr_theme_menu_link($variables) {
   global $theme;
   // Global $theme_path variable is buggy so we create our own vars
   // @see https://github.com/dxpr/dxpr_theme/issues/170

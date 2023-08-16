@@ -31,10 +31,10 @@ if (!empty($requested_google_fonts)) {
 /**
  * Helper function to add google fonts to the page.
  *
- * @param array $google_fonts
+ * @param $google_fonts
  *   Requested Google fonts.
  */
-function _dxpr_theme_add_google_fonts(array $google_fonts) {
+function _dxpr_theme_add_google_fonts($google_fonts) {
   $planned_fonts_update = variable_get('dxpr_theme_fonts_update', 0);
   $stored_fonts = variable_get('dxpr_theme_stored_fonts', '');
 
