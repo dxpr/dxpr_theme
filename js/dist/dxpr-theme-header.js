@@ -104,7 +104,7 @@
 
   $(window).resize(
     _.debounce(() => {
-      if ($("#dxpr-theme-main-menu .menu").length > 0) {
+      if ($("#dxpr-theme-main-menu .nav").length > 0) {
         dxpr_themeMenuGovernorBodyClass();
         dxpr_themeMenuGovernor(document);
       }
@@ -453,7 +453,7 @@
   }
 
   $(document).ready(() => {
-    if ($("#dxpr-theme-main-menu .menu").length > 0) {
+    if ($("#dxpr-theme-main-menu .nav").length > 0) {
       dxpr_themeMenuGovernorBodyClass();
       dxpr_themeMenuGovernor(document);
     }
