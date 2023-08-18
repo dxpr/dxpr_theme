@@ -5,7 +5,7 @@
  * Other unused parts are also edited out
  */
 
-(function($) {
+(function ($) {
   Drupal.behaviors.color = {
     attach(context, settings) {
       let i;
@@ -63,7 +63,7 @@
       // }
 
       // Set up colorScheme selector.
-      $("#edit-scheme", form).change(function() {
+      $("#edit-scheme", form).change(function () {
         const { schemes } = settings.color;
         const colorScheme = this.options[this.selectedIndex].value;
         if (colorScheme != "" && schemes[colorScheme]) {
@@ -77,7 +77,7 @@
               true
             );
           }
-          // preview();
+          // Preview();
         }
       });
 
@@ -139,7 +139,7 @@
         // Set background/foreground colors.
         $(input).css({
           backgroundColor: color,
-          color: farb.RGBToHSL(farb.unpack(color))[2] > 0.5 ? "#000" : "#fff"
+          color: farb.RGBToHSL(farb.unpack(color))[2] > 0.5 ? "#000" : "#fff",
         });
 
         // Change input value.
@@ -175,7 +175,7 @@
        * Resets the color scheme selector.
        */
       function resetScheme() {
-        $("#edit-scheme", form).each(function() {
+        $("#edit-scheme", form).each(function () {
           this.selectedIndex = this.options.length - 1;
         });
       }
@@ -196,7 +196,7 @@
 
         // Add new bindings.
         focused = this;
-        farb.linkTo(color => {
+        farb.linkTo((color) => {
           callback(input, color, true, false);
         });
         farb.setColor(this.value);
@@ -210,7 +210,7 @@
 
       // Initialize color fields.
       $("#palette input.form-text", form)
-        .each(function() {
+        .each(function () {
           // Extract palette field name
           this.key = this.id.substring(13);
 
@@ -265,6 +265,6 @@
 
       // Render preview.
       // preview();
-    }
+    },
   };
 })(jQuery);
