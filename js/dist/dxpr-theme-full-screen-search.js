@@ -4,7 +4,7 @@
  *
  * @see sass/styles.scss for more info
  */
-(function($, Drupal, once) {
+(function ($, Drupal, once) {
   Drupal.behaviors.fullScreenSearch = {
     attach(context, settings) {
       function clearSearchForm() {
@@ -18,24 +18,27 @@
       var $searchForm = $(".full-screen-search-form");
       var $searchFormInput = $searchForm.find(".search-query");
       const escapeCode = 27;
-      $(once("search-button", $searchButton)).on("touchstart click", event => {
-        event.preventDefault(),
-          $searchForm.toggleClass("invisible"),
-          $("body").toggleClass("body--full-screen-search"),
-          $searchFormInput.focus();
-      }),
+      $(once("search-button", $searchButton)).on(
+        "touchstart click",
+        (event) => {
+          event.preventDefault(),
+            $searchForm.toggleClass("invisible"),
+            $("body").toggleClass("body--full-screen-search"),
+            $searchFormInput.focus();
+        }
+      ),
         $(once("search-form", $searchForm)).on(
           "touchstart click",
-          $searchButton => {
+          ($searchButton) => {
             $($searchButton.target).hasClass("search-query") ||
               clearSearchForm();
           }
         ),
-        $(document).keydown(event => {
+        $(document).keydown((event) => {
           event.which === escapeCode &&
             !$searchForm.hasClass("invisible") &&
             clearSearchForm();
         });
-    }
+    },
   };
 })(jQuery, Drupal, once);

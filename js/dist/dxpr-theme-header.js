@@ -4,22 +4,22 @@
  *
  * @see sass/styles.scss for more info
  */
-(function($, Drupal, once) {
+(function ($, Drupal, once) {
   let dxpr_themeMenuState = "";
 
   // Create underscore debounce and throttle functions if they doesn't exist already
   if (typeof _ != "function") {
     window._ = {};
-    window._.debounce = function(func, wait, immediate) {
+    window._.debounce = function (func, wait, immediate) {
       let timeout;
       let result;
 
-      const later = function(context, args) {
+      const later = function (context, args) {
         timeout = null;
         if (args) result = func.apply(context, args);
       };
 
-      const debounced = restArgs(function(args) {
+      const debounced = restArgs(function (args) {
         const callNow = immediate && !timeout;
         if (timeout) clearTimeout(timeout);
         if (callNow) {
@@ -32,16 +32,16 @@
         return result;
       });
 
-      debounced.cancel = function() {
+      debounced.cancel = function () {
         clearTimeout(timeout);
         timeout = null;
       };
 
       return debounced;
     };
-    var restArgs = function(func, startIndex) {
+    var restArgs = function (func, startIndex) {
       startIndex = startIndex == null ? func.length - 1 : +startIndex;
-      return function() {
+      return function () {
         const length = Math.max(arguments.length - startIndex, 0);
         const rest = Array(length);
         for (var index = 0; index < length; index++) {
@@ -67,20 +67,20 @@
       setTimeout(() => func.apply(null, args), wait)
     );
 
-    window._.throttle = function(func, wait, options) {
+    window._.throttle = function (func, wait, options) {
       let context;
       let args;
       let result;
       let timeout = null;
       let previous = 0;
       if (!options) options = {};
-      const later = function() {
+      const later = function () {
         previous = options.leading === false ? 0 : _.now();
         timeout = null;
         result = func.apply(context, args);
         if (!timeout) context = args = null;
       };
-      return function() {
+      return function () {
         const now = _.now();
         if (!previous && options.leading === false) previous = now;
         const remaining = wait - (now - previous);
@@ -114,9 +114,8 @@
 
   dpxr_themeMenuOnResize();
 
-  const isPageScrollable = () => {
-    return document.documentElement.scrollHeight > window.innerHeight;
-  };
+  const isPageScrollable = () =>
+    document.documentElement.scrollHeight > window.innerHeight;
 
   var navBreak =
     "dxpr_themeNavBreakpoint" in window ? window.dxpr_themeNavBreakpoint : 1200;
@@ -149,9 +148,9 @@
               .classList.remove("affix");
           }
           if (scroll >= headerScroll && scroll <= headerScroll * 2) {
-            const scrollMargin = isPageScrollable() ?
-              Number(headerHeight) + Number(headerScroll) :
-              Number(headerHeight);
+            const scrollMargin = isPageScrollable()
+              ? Number(headerHeight) + Number(headerScroll)
+              : Number(headerHeight);
 
             document.getElementsByClassName(
               "wrap-containers"
@@ -198,54 +197,56 @@
 
       const bodyWidth = $("body").innerWidth();
       const margin = 10;
-      $("#dxpr-theme-main-menu .menu .dropdown-menu", context).each(function() {
-        const width = $(this).width();
-        if ($(this).find(".dxpr-theme-megamenu__heading").length > 0) {
-          var columns = $(this).find(".dxpr-theme-megamenu__heading").length;
-        } else {
-          var columns = Math.floor($(this).find("li").length / 8) + 1;
-        }
-        if (columns > 2) {
-          $(this)
-            .css({
-              width: "100%", // Full Width Mega Menu
-              "left:": "0"
-            })
-            .parent()
-            .css({
-              position: "static"
-            })
-            .find(".dropdown-menu >li")
-            .css({
-              width: `${100 / columns}%`
-            });
-        } else {
-          const $this = $(this);
-          if (columns > 1) {
-            // Accounts for 1px border.
-            $this
-              .css("min-width", width * columns + 2)
-              .find(">li")
-              .css("width", width);
+      $("#dxpr-theme-main-menu .menu .dropdown-menu", context).each(
+        function () {
+          const width = $(this).width();
+          if ($(this).find(".dxpr-theme-megamenu__heading").length > 0) {
+            var columns = $(this).find(".dxpr-theme-megamenu__heading").length;
+          } else {
+            var columns = Math.floor($(this).find("li").length / 8) + 1;
           }
-          // Workaround for drop down overlapping.
-          // See https://github.com/twbs/bootstrap/issues/13477.
-          const $topLevelItem = $this.parent();
-          // Set timeout to let the rendering threads catch up.
-          setTimeout(() => {
-            const delta = Math.round(
-              bodyWidth -
-                $topLevelItem.offset().left -
-                $this.outerWidth() -
-                margin
-            );
-            // Only fix items that went out of screen.
-            if (delta < 0) {
-              $this.css("left", `${delta}px`);
+          if (columns > 2) {
+            $(this)
+              .css({
+                width: "100%", // Full Width Mega Menu
+                "left:": "0",
+              })
+              .parent()
+              .css({
+                position: "static",
+              })
+              .find(".dropdown-menu >li")
+              .css({
+                width: `${100 / columns}%`,
+              });
+          } else {
+            const $this = $(this);
+            if (columns > 1) {
+              // Accounts for 1px border.
+              $this
+                .css("min-width", width * columns + 2)
+                .find(">li")
+                .css("width", width);
             }
-          }, 0);
+            // Workaround for drop down overlapping.
+            // See https://github.com/twbs/bootstrap/issues/13477.
+            const $topLevelItem = $this.parent();
+            // Set timeout to let the rendering threads catch up.
+            setTimeout(() => {
+              const delta = Math.round(
+                bodyWidth -
+                  $topLevelItem.offset().left -
+                  $this.outerWidth() -
+                  margin
+              );
+              // Only fix items that went out of screen.
+              if (delta < 0) {
+                $this.css("left", `${delta}px`);
+              }
+            }, 0);
+          }
         }
-      });
+      );
       dxpr_themeMenuState = "top";
       // Hit Detection for Header
       if ($(".tabs--primary").length > 0 && $("#navbar").length > 0) {
@@ -332,14 +333,14 @@
       $("#dxpr-theme-main-menu .menu a").addClass("menu__link");
       $("#dxpr-theme-main-menu .menu li").addClass("menu__item");
       // Set up data attributes
-      $("#dxpr-theme-main-menu .menu a.dropdown-toggle").each(function(index) {
+      $("#dxpr-theme-main-menu .menu a.dropdown-toggle").each(function (index) {
         $(this)
           .attr("data-submenu", $(this).text())
           .next()
           .attr("data-menu", $(this).text());
       });
       $("#dxpr-theme-main-menu .menu a.dxpr-theme-megamenu__heading").each(
-        function(index) {
+        function (index) {
           $(this)
             .attr("data-submenu", $(this).text())
             .next()
@@ -350,15 +351,15 @@
       const bc = $("#dxpr-theme-main-menu .menu .dropdown-menu").length > 0;
       const menuEl = document.getElementById("dxpr-theme-main-menu");
       const mlmenu = new MLMenu(menuEl, {
-        breadcrumbsCtrl: bc, // show breadcrumbs
-        initialBreadcrumb: "menu", // initial breadcrumb text
-        backCtrl: false, // show back button
-        itemsDelayInterval: 10 // delay between each menu item sliding animation
+        breadcrumbsCtrl: bc, // Show breadcrumbs
+        initialBreadcrumb: "menu", // Initial breadcrumb text
+        backCtrl: false, // Show back button
+        itemsDelayInterval: 10, // Delay between each menu item sliding animation
         // onItemClick: loadDummyData // callback: item that doesn´t have a submenu gets clicked - onItemClick([event], [inner HTML of the clicked item])
       });
 
       // Close/open menu function
-      const closeMenu = function() {
+      const closeMenu = function () {
         if (drupalSettings.dxpr_themeSettings.hamburgerAnimation === "cross") {
           $("#dxpr-theme-menu-toggle").toggleClass("navbar-toggle--active");
         }
@@ -366,16 +367,14 @@
         $("html").toggleClass("html--dxpr-theme-nav-mobile--open");
       };
 
-      // mobile menu toggle
+      // Mobile menu toggle
       $(once("dxpr_themeMenuToggle", "#dxpr-theme-menu-toggle")).click(() => {
         closeMenu();
       });
-      $("#dxpr-theme-main-menu")
-        .css("position", "fixed")
-        .show();
+      $("#dxpr-theme-main-menu").css("position", "fixed").show();
 
       // Close menu with click on anchor link
-      $(".menu__link").click(function() {
+      $(".menu__link").click(function () {
         if (!$(this).attr("data-submenu")) {
           closeMenu();
         }
@@ -383,8 +382,8 @@
 
       // See if logo  or block content overlaps menu and apply correction
       if ($(".wrap-branding").length > 0) {
-        var brandingBottom = $(".wrap-branding")[0].getBoundingClientRect()
-          .bottom;
+        var brandingBottom =
+          $(".wrap-branding")[0].getBoundingClientRect().bottom;
       } else {
         var brandingBottom = 0;
       }

@@ -1,11 +1,11 @@
-(function($, Drupal) {
+(function ($, Drupal) {
   /* global jQuery:false */
   /* global Drupal:false */
 
   "use strict";
 
   $(window).on("load", () => {
-    // remove color module locks, they are broken when bootstrap theme loads
+    // Remove color module locks, they are broken when bootstrap theme loads
     $(".color-palette__lock, .color-palette__hook").remove();
   });
 
@@ -18,17 +18,13 @@
     attach(context) {
       $("#system-theme-settings h2 > small").addClass("form-header");
       var $input = "";
-      // jQuery once is not working..
+      // JQuery once is not working..
       $("#system-theme-settings .form-type-radio .control-label")
         .not(".dxpr_themeProcessed")
-        .each(function() {
+        .each(function () {
           $(this).addClass("dxpr_themeProcessed");
-          $input = $(this)
-            .find("input")
-            .remove();
-          $(this)
-            .wrapInner('<span class="dxpr-theme-label">')
-            .prepend($input);
+          $input = $(this).find("input").remove();
+          $(this).wrapInner('<span class="dxpr-theme-label">').prepend($input);
         });
 
       function dxpr_theme_map_color(color) {
@@ -45,21 +41,21 @@
         "#edit-header-top-bg-opacity-scroll, #edit-header-top-bg-opacity, #edit-header-side-bg-opacity, #edit-side-header-background-opacity,#edit-page-title-image-opacity,#edit-header-top-opacity,#edit-header-top-opacity-scroll,#edit-menu-full-screen-opacity"
       );
       var startValue = 1;
-      $opacitySliders.each(function() {
+      $opacitySliders.each(function () {
         startValue = $(this).val();
         $(this).bootstrapSlider({
           step: 0.01,
           min: 0,
           max: 1,
           tooltip: "show",
-          value: parseFloat(startValue)
+          value: parseFloat(startValue),
         });
       });
 
       // Line Height Sliders
       var $lhSliders = $(".line-height-slider");
       var startValue = 1;
-      $lhSliders.each(function() {
+      $lhSliders.each(function () {
         startValue = $(this).val();
         $(this).bootstrapSlider({
           step: 0.1,
@@ -69,14 +65,14 @@
           formatter(value) {
             return `${value}em`;
           },
-          value: parseFloat(startValue)
+          value: parseFloat(startValue),
         });
       });
 
       // Border Size Sliders
       var $lhSliders = $(".border-size-slider");
       var startValue = 1;
-      $lhSliders.each(function() {
+      $lhSliders.each(function () {
         startValue = $(this).val();
         $(this).bootstrapSlider({
           step: 1,
@@ -86,14 +82,14 @@
           formatter(value) {
             return `${value}px`;
           },
-          value: parseFloat(startValue)
+          value: parseFloat(startValue),
         });
       });
 
       // Border Radius Sliders
       var $lhSliders = $(".border-radius-slider");
       var startValue = 1;
-      $lhSliders.each(function() {
+      $lhSliders.each(function () {
         startValue = $(this).val();
         $(this).bootstrapSlider({
           step: 1,
@@ -103,7 +99,7 @@
           formatter(value) {
             return `${value}px`;
           },
-          value: parseFloat(startValue)
+          value: parseFloat(startValue),
         });
       });
 
@@ -117,7 +113,7 @@
         formatter(value) {
           return `${value}px`;
         },
-        value: parseFloat($input.val())
+        value: parseFloat($input.val()),
       });
 
       // Nav Font Size
@@ -130,7 +126,7 @@
         formatter(value) {
           return `${value}px`;
         },
-        value: parseFloat($input.val())
+        value: parseFloat($input.val()),
       });
 
       // Body Mobile Font Size
@@ -143,7 +139,7 @@
         formatter(value) {
           return `${value}px`;
         },
-        value: parseFloat($input.val())
+        value: parseFloat($input.val()),
       });
 
       // Nav Mobile Font Size
@@ -156,13 +152,13 @@
         formatter(value) {
           return `${value}px`;
         },
-        value: parseFloat($input.val())
+        value: parseFloat($input.val()),
       });
 
       // Other Font Sizes
       const $fsSliders = $(".font-size-slider");
       var startValue = 1;
-      $fsSliders.each(function() {
+      $fsSliders.each(function () {
         startValue = $(this).val();
         $(this).bootstrapSlider({
           step: 1,
@@ -172,7 +168,7 @@
           formatter(value) {
             return `${value}px`;
           },
-          value: parseFloat(startValue)
+          value: parseFloat(startValue),
         });
       });
 
@@ -183,7 +179,7 @@
         min: 1,
         max: 2,
         tooltip: "show",
-        value: parseFloat($input.val())
+        value: parseFloat($input.val()),
       });
 
       // Divider Thickness
@@ -196,7 +192,7 @@
         formatter(value) {
           return `${value}px`;
         },
-        value: parseFloat($input.val())
+        value: parseFloat($input.val()),
       });
 
       // Divider Thickness
@@ -209,7 +205,7 @@
         formatter(value) {
           return `${value}px`;
         },
-        value: parseFloat($input.val())
+        value: parseFloat($input.val()),
       });
 
       // Divider Length
@@ -222,7 +218,7 @@
         formatter(value) {
           return `${value}px`;
         },
-        value: parseFloat($input.val())
+        value: parseFloat($input.val()),
       });
 
       // Divider Length
@@ -235,7 +231,7 @@
         formatter(value) {
           return `${value}px`;
         },
-        value: parseFloat($input.val())
+        value: parseFloat($input.val()),
       });
 
       function formatPosition(pos) {
@@ -254,7 +250,7 @@
         selection: "none",
         tooltip: "show",
         formatter: formatPosition,
-        value: parseFloat($input.val())
+        value: parseFloat($input.val()),
       });
 
       // Headings letter spacing
@@ -267,7 +263,7 @@
         formatter(value) {
           return `${value}em`;
         },
-        value: parseFloat($input.val())
+        value: parseFloat($input.val()),
       });
 
       // Block Design Divider Spacing
@@ -280,7 +276,7 @@
         formatter(value) {
           return `${value}px`;
         },
-        value: parseFloat($input.val())
+        value: parseFloat($input.val()),
       });
 
       // Page Title height
@@ -293,7 +289,7 @@
         formatter(value) {
           return `${value}px`;
         },
-        value: parseFloat($input.val())
+        value: parseFloat($input.val()),
       });
 
       // Header height slider
@@ -306,7 +302,7 @@
         formatter(value) {
           return `${value}px`;
         },
-        value: parseFloat($input.val())
+        value: parseFloat($input.val()),
       });
 
       // Header Mobile Breakpoint slider
@@ -319,7 +315,7 @@
         formatter(value) {
           return `${value}px`;
         },
-        value: parseFloat($input.val())
+        value: parseFloat($input.val()),
       });
 
       // Header Mobile height slider
@@ -332,7 +328,7 @@
         formatter(value) {
           return `${value}px`;
         },
-        value: parseFloat($input.val())
+        value: parseFloat($input.val()),
       });
 
       // Header after-scroll height slider
@@ -345,7 +341,7 @@
         formatter(value) {
           return `${value}px`;
         },
-        value: parseFloat($input.val())
+        value: parseFloat($input.val()),
       });
 
       // Sticky header scroll offset
@@ -358,7 +354,7 @@
         formatter(value) {
           return `${value}px`;
         },
-        value: parseFloat($input.val())
+        value: parseFloat($input.val()),
       });
 
       // Side Header after-scroll height slider
@@ -371,7 +367,7 @@
         formatter(value) {
           return `${value}px`;
         },
-        value: parseFloat($input.val())
+        value: parseFloat($input.val()),
       });
 
       // Main Menu Hover Border Thickness
@@ -384,7 +380,7 @@
         formatter(value) {
           return `${value}px`;
         },
-        value: parseFloat($input.val())
+        value: parseFloat($input.val()),
       });
 
       // Main Menu Hover Border Thickness
@@ -397,7 +393,7 @@
         formatter(value) {
           return `${value}px`;
         },
-        value: parseFloat($input.val())
+        value: parseFloat($input.val()),
       });
 
       // Main Menu Hover Border Position Offset
@@ -410,7 +406,7 @@
         formatter(value) {
           return `${value}px`;
         },
-        value: parseFloat($input.val())
+        value: parseFloat($input.val()),
       });
 
       // Main Menu Hover Border Position Offset Sticky
@@ -423,7 +419,7 @@
         formatter(value) {
           return `${value}px`;
         },
-        value: parseFloat($input.val())
+        value: parseFloat($input.val()),
       });
 
       // Layout max width
@@ -436,7 +432,7 @@
         formatter(value) {
           return `${value}px`;
         },
-        value: parseFloat($input.val())
+        value: parseFloat($input.val()),
       });
 
       // Box max width
@@ -449,7 +445,7 @@
         formatter(value) {
           return `${value}px`;
         },
-        value: parseFloat($input.val())
+        value: parseFloat($input.val()),
       });
 
       // Layout Gutter Horizontal
@@ -462,7 +458,7 @@
         formatter(value) {
           return `${value}px`;
         },
-        value: parseFloat($input.val())
+        value: parseFloat($input.val()),
       });
 
       // Layout Gutter Vertical
@@ -475,7 +471,7 @@
         formatter(value) {
           return `${value}px`;
         },
-        value: parseFloat($input.val())
+        value: parseFloat($input.val()),
       });
 
       // Layout Gutter Vertical
@@ -488,7 +484,7 @@
         formatter(value) {
           return `${value}px`;
         },
-        value: parseFloat($input.val())
+        value: parseFloat($input.val()),
       });
 
       // Layout Gutter Horizontal Mobile
@@ -501,7 +497,7 @@
         formatter(value) {
           return `${value}px`;
         },
-        value: parseFloat($input.val())
+        value: parseFloat($input.val()),
       });
 
       // Layout Gutter Vertical Mobile
@@ -514,7 +510,7 @@
         formatter(value) {
           return `${value}px`;
         },
-        value: parseFloat($input.val())
+        value: parseFloat($input.val()),
       });
 
       // Layout Gutter Vertical
@@ -527,7 +523,7 @@
         formatter(value) {
           return `${value}px`;
         },
-        value: parseFloat($input.val())
+        value: parseFloat($input.val()),
       });
 
       // Reflow layout when showing a tab
@@ -548,7 +544,7 @@
       // Typographic Scale Master Slider
       let base = 14;
       let factor = 1.25;
-      $("#edit-scale-factor").change(function() {
+      $("#edit-scale-factor").change(function () {
         base = $("#edit-body-font-size").val();
         factor = $(this).bootstrapSlider("getValue");
         $("#edit-h1-font-size, #edit-h1-mobile-font-size")
@@ -569,7 +565,7 @@
 
       // Block Design Preset Loader
       let preset = "";
-      $("#edit-block-preset").bind("keyup change", function() {
+      $("#edit-block-preset").bind("keyup change", function () {
         // Reset defaults
         $("#edit-block-advanced .slider + .form-text").bootstrapSlider(
           "setValue",
@@ -662,25 +658,25 @@
 
       // TYPOGRAPHY LIVE PREVIEW
 
-      $("#edit-body-line-height").change(function() {
+      $("#edit-body-line-height").change(function () {
         $(".type-preview, .type-preview p").css(
           "line-height",
           $(this).bootstrapSlider("getValue")
         );
       });
-      $("#edit-headings-line-height").change(function() {
+      $("#edit-headings-line-height").change(function () {
         $(
           ".type-preview h1, .type-preview h2, .type-preview h3, .type-preview h4"
         ).css("line-height", $(this).bootstrapSlider("getValue"));
       });
-      $("#edit-divider-thickness").change(function() {
+      $("#edit-divider-thickness").change(function () {
         $(".type-preview hr").css(
           "height",
           $(this).bootstrapSlider("getValue")
         );
       });
       let width = "";
-      $("#edit-divider-length").change(function() {
+      $("#edit-divider-length").change(function () {
         width = $(this).bootstrapSlider("getValue");
         if (width == 0) {
           $(".type-preview hr").css("width", "100%");
@@ -690,7 +686,7 @@
       });
       const position = "";
       let $hr = false;
-      $("#edit-divider-position").change(function() {
+      $("#edit-divider-position").change(function () {
         const position = $(this).bootstrapSlider("getValue");
         $hr = $(".type-preview hr");
         if (position == 1) {
@@ -703,22 +699,22 @@
           $hr.css({ "margin-left": "auto", "margin-right": "0" });
         }
       });
-      $("#edit-divider-color").change(function() {
+      $("#edit-divider-color").change(function () {
         $(".type-preview hr").css(
           "background-color",
           dxpr_theme_map_color($(this).val())
         );
       });
-      $("#edit-divider-color-custom").bind("keyup change", function() {
+      $("#edit-divider-color-custom").bind("keyup change", function () {
         $(".type-preview hr").css("background-color", $(this).val());
       });
-      $("#edit-blockquote-line-height").change(function() {
+      $("#edit-blockquote-line-height").change(function () {
         $(".type-preview blockquote, .type-preview blockquote p").css(
           "line-height",
           $(this).bootstrapSlider("getValue")
         );
       });
-      $("#edit-body-font-size").change(function() {
+      $("#edit-body-font-size").change(function () {
         $(".type-preview, .type-preview p").css(
           "font-size",
           `${$(this).bootstrapSlider("getValue")}px`
@@ -726,47 +722,47 @@
         $(".lead").css("font-size", "21px");
         $("#edit-scale-factor").change();
       });
-      $("#edit-nav-font-size").change(function() {
+      $("#edit-nav-font-size").change(function () {
         $(
           ".dxpr-theme-header--top #dxpr-theme-main-menu .nav > li > a, .dxpr-theme-header--side #dxpr-theme-main-menu .nav a"
         ).css("font-size", `${$(this).bootstrapSlider("getValue")}px`);
       });
-      $("#edit-h1-font-size").change(function() {
+      $("#edit-h1-font-size").change(function () {
         $(".type-preview h1").css(
           "font-size",
           `${$(this).bootstrapSlider("getValue")}px`
         );
       });
-      $("#edit-h2-font-size").change(function() {
+      $("#edit-h2-font-size").change(function () {
         $(".type-preview h2").css(
           "font-size",
           `${$(this).bootstrapSlider("getValue")}px`
         );
       });
-      $("#edit-h3-font-size").change(function() {
+      $("#edit-h3-font-size").change(function () {
         $(".type-preview h3").css(
           "font-size",
           `${$(this).bootstrapSlider("getValue")}px`
         );
       });
-      $("#edit-h4-font-size").change(function() {
+      $("#edit-h4-font-size").change(function () {
         $(".type-preview h4").css(
           "font-size",
           `${$(this).bootstrapSlider("getValue")}px`
         );
       });
-      $("#edit-blockquote-font-size").change(function() {
+      $("#edit-blockquote-font-size").change(function () {
         $(".type-preview blockquote, .type-preview blockquote p").css(
           "font-size",
           `${$(this).bootstrapSlider("getValue")}px`
         );
       });
-      $("#edit-headings-letter-spacing").change(function() {
+      $("#edit-headings-letter-spacing").change(function () {
         $(
           ".type-preview h1, .type-preview h2, .type-preview h3, .type-preview h4"
         ).css("letter-spacing", `${$(this).bootstrapSlider("getValue")}em`);
       });
-      $("#edit-headings-uppercase").click(function() {
+      $("#edit-headings-uppercase").click(function () {
         if ($(this).prop("checked") == true) {
           $(
             ".type-preview h1, .type-preview h2, .type-preview h3, .type-preview h4"
@@ -784,28 +780,28 @@
         $("#edit-block-preset").val("custom");
       });
 
-      $("#edit-block-card").change(function() {
+      $("#edit-block-card").change(function () {
         $(".block-preview .block").removeClass(
           "card card-body bg-primary dxpr-theme-util-background-accent1 dxpr-theme-util-background-accent2 dxpr-theme-util-background-black dxpr-theme-util-background-white dxpr-theme-util-background-gray"
         );
         $(".block-preview .block").addClass($(this).val());
       });
-      $("#edit-block-background").change(function() {
+      $("#edit-block-background").change(function () {
         $(".block-preview .block").css(
           "background-color",
           dxpr_theme_map_color($(this).val())
         );
       });
-      $("#edit-block-background-custom").change(function() {
+      $("#edit-block-background-custom").change(function () {
         $(".block-preview .block").css("background-color", $(this).val());
       });
-      $("#edit-block-padding").bind("keyup change", function() {
+      $("#edit-block-padding").bind("keyup change", function () {
         $(".block-preview .block").css(
           "padding",
           `${$(this).bootstrapSlider("getValue")}px`
         );
       });
-      $("#edit-block-border").change(function() {
+      $("#edit-block-border").change(function () {
         $(".block-preview .block").css(
           "border-width",
           `${$(this).bootstrapSlider("getValue")}px`
@@ -814,68 +810,64 @@
           $(".block-preview .block").css("border-style", "solid");
         }
       });
-      $("#edit-block-border-color").change(function() {
+      $("#edit-block-border-color").change(function () {
         $(".block-preview .block").css(
           "border-color",
           dxpr_theme_map_color($(this).val())
         );
       });
-      $("#edit-block-border-color-custom").bind("keyup change", function() {
+      $("#edit-block-border-color-custom").bind("keyup change", function () {
         $(".block-preview .block").css("border-color", $(this).val());
       });
-      $("#edit-block-border-radius").change(function() {
+      $("#edit-block-border-radius").change(function () {
         $(".block-preview .block").css(
           "border-radius",
           `${$(this).bootstrapSlider("getValue")}px`
         );
       });
       // Block title
-      $("#edit-title-card").change(function() {
+      $("#edit-title-card").change(function () {
         $(".block-preview .block-title").removeClass(
           "card card-body bg-primary dxpr-theme-util-background-accent1 dxpr-theme-util-background-accent2 dxpr-theme-util-background-black dxpr-theme-util-background-white dxpr-theme-util-background-gray"
         );
         $(".block-preview .block-title").addClass($(this).val());
       });
-      $("#edit-title-font-size").change(function() {
+      $("#edit-title-font-size").change(function () {
         // Retrieve the matching font size from the typography settings
-        value = $(this)
-          .find(":checked")
-          .val();
+        value = $(this).find(":checked").val();
         value = `#edit-${value}-font-size`;
         value = $(value).val();
         $(".block-preview .block-title").css("font-size", `${value}px`);
       });
-      $("#edit-title-align").change(function() {
+      $("#edit-title-align").change(function () {
         $(".block-preview .block-title").css(
           "text-align",
-          $(this)
-            .find(":checked")
-            .val()
+          $(this).find(":checked").val()
         );
       });
-      $("#edit-title-background").change(function() {
+      $("#edit-title-background").change(function () {
         $(".block-preview .block-title").css(
           "background-color",
           dxpr_theme_map_color($(this).val())
         );
       });
-      $("#edit-title-background-custom").bind("keyup change", function() {
+      $("#edit-title-background-custom").bind("keyup change", function () {
         $(".block-preview .block-title").css("background-color", $(this).val());
       });
-      $("#edit-title-sticker").click(function() {
+      $("#edit-title-sticker").click(function () {
         if ($(this).prop("checked") == true) {
           $(".block-preview .block-title").css("display", "inline-block");
         } else {
           $(".block-preview .block-title").css("display", "block");
         }
       });
-      $("#edit-title-padding").change(function() {
+      $("#edit-title-padding").change(function () {
         $(".block-preview .block-title").css(
           "padding",
           `${$(this).bootstrapSlider("getValue")}px`
         );
       });
-      $("#edit-title-border").change(function() {
+      $("#edit-title-border").change(function () {
         $(".block-preview .block-title").css(
           "border-width",
           `${$(this).bootstrapSlider("getValue")}px`
@@ -884,48 +876,48 @@
           $(".block-preview .block-title").css("border-style", "solid");
         }
       });
-      $("#edit-title-border-radius").change(function() {
+      $("#edit-title-border-radius").change(function () {
         $(".block-preview .block-title").css(
           "border-radius",
           `${$(this).bootstrapSlider("getValue")}px`
         );
       });
-      $("#edit-title-border-color").change(function() {
+      $("#edit-title-border-color").change(function () {
         $(".block-preview .block-title").css(
           "border-color",
           dxpr_theme_map_color($(this).val())
         );
       });
-      $("#edit-title-border-color-custom").bind("keyup change", function() {
+      $("#edit-title-border-color-custom").bind("keyup change", function () {
         $(".block-preview .block-title").css("border-color", $(this).val());
       });
       // Block divider
       if ($("#edit-block-divider:checked").length == 0) {
         $(".block-preview hr").hide();
       }
-      $("#edit-block-divider").click(function() {
+      $("#edit-block-divider").click(function () {
         if ($(this).prop("checked") == true) {
           $(".block-preview hr").show();
         } else {
           $(".block-preview hr").hide();
         }
       });
-      $("#edit-block-divider-color").change(function() {
+      $("#edit-block-divider-color").change(function () {
         $(".block-preview hr").css(
           "background-color",
           dxpr_theme_map_color($(this).val())
         );
       });
-      $("#edit-block-divider-color-custom").bind("keyup change", function() {
+      $("#edit-block-divider-color-custom").bind("keyup change", function () {
         $(".block-preview hr").css("background-color", $(this).val());
       });
-      $("#edit-block-divider-thickness").change(function() {
+      $("#edit-block-divider-thickness").change(function () {
         $(".block-preview hr").css(
           "height",
           `${$(this).bootstrapSlider("getValue")}px`
         );
       });
-      $("#edit-block-divider-length").change(function() {
+      $("#edit-block-divider-length").change(function () {
         if ($(this).bootstrapSlider("getValue") > 0) {
           $(".block-preview hr").css(
             "width",
@@ -935,7 +927,7 @@
           $(".block-preview hr").css("width", "100%");
         }
       });
-      $("#edit-block-divider-spacing").change(function() {
+      $("#edit-block-divider-spacing").change(function () {
         $(".block-preview hr").css(
           "margin-top",
           `${$(this).bootstrapSlider("getValue")}px`
@@ -945,9 +937,10 @@
           `${$(this).bootstrapSlider("getValue")}px`
         );
       });
-      $(".js-form-type-textfield").each(function() {
-        const divs = $(this).find(".slider-horizontal,.form-text")
-        .not(".dxpr_themeProcessed");
+      $(".js-form-type-textfield").each(function () {
+        const divs = $(this)
+          .find(".slider-horizontal,.form-text")
+          .not(".dxpr_themeProcessed");
         if (divs.length >= 2) {
           for (let i = 0; i < divs.length; i += 2) {
             divs
@@ -957,7 +950,7 @@
           }
         }
       });
-    }
+    },
   };
 
   /**

@@ -4,7 +4,7 @@
  *
  * @see sass/styles.scss for more info
  */
-(function($, Drupal, once) {
+(function ($, Drupal, once) {
   Drupal.behaviors.dxpr_theme_breadcrumbs = {
     attach(context, settings) {
       // Breadcrumbs
@@ -28,6 +28,6 @@
           )
         ).after(' <span class="dxpr-theme-breadcrumb-spacer">/</span> ');
       }
-    }
+    },
   };
 })(jQuery, Drupal, once);
