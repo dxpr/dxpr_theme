@@ -9,6 +9,7 @@ jobs:
 
   drupal-lint:
     runs-on: ubuntu-latest
+    timeout-minutes: 60
     steps:
     - uses: actions/checkout@v2
 
@@ -18,16 +19,16 @@ jobs:
 
   eslint:
     runs-on: ubuntu-latest
+    timeout-minutes: 60
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
 
     - name: Lint with eslint
       run: |
-        docker-compose up dev
-        REPORT_ENABLED=true docker-compose up --exit-code-from eslint eslint
+        REPORT_ENABLED=true docker-compose run --rm eslint
 
     - name: Archive eslint html report
-      uses: actions/upload-artifact@v1
+      uses: actions/upload-artifact@v3
       if: always()
       with:
         name: eslint-report
