@@ -10,6 +10,7 @@ BRIEFLY_DESCRIBE_YOUR_PULL_REQUEST_HERE
 
 <!--- Put an `x` in all the boxes that apply: -->
 - [ ] I have read the [CONTRIBUTING.md](https://github.com/dxpr/dxpr_builder/blob/1.x/CONTRIBUTING.md) document.
+- [ ] My commit messages follow the contributing standards and style of this project.
 - [ ] My code follows the coding standards and style of this project.
 - [ ] Bug fix (non-breaking change which fixes an issue)
 - [ ] New feature (non-breaking change which adds functionality)
