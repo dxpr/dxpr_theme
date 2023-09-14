@@ -4,6 +4,13 @@
 html.html--dxpr-theme-nav-mobile--open {
   overflow: hidden; // let's hope this new fix stop the body and menu toggle from scrolling without breaking stuff elsewehere
   height: 100%;
+  // Add z-index property for prevent error in toggle mobile menu.
+  .dxpr-theme-main-menu.menu--open {
+    z-index: 4060;
+  }
+  .dxpr-theme-header #dxpr-theme-menu-toggle {
+    z-index: 4100;
+  }
 }
 
 .body--dxpr-theme-nav-mobile {
