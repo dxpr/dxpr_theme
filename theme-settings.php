@@ -113,11 +113,12 @@ function dxpr_theme_form_system_theme_settings_alter(&$form, &$form_state, $form
   }
   $form['#attached']['library'][] = 'dxpr_theme/admin.themesettings';
 
-  if ((\Drupal::moduleHandler()->moduleExists('color')) && ($palette = color_get_palette($subject_theme))) {
-    // dxpr_themeSetting vs dxpr_theme namespace otherwise
-    // if deletes other .dxpr_theme data.
-    $form['#attached']['drupalSettings']['dxpr_themeSettings'] = ['palette' => $palette];
-  }
+// @todo: Deprecated
+//  if ($palette = color_get_palette($subject_theme)) {
+//    // dxpr_themeSetting vs dxpr_theme namespace otherwise
+//    // if deletes other .dxpr_theme data.
+//    $form['#attached']['drupalSettings']['dxpr_themeSettings'] = ['palette' => $palette];
+//  }
 
   array_unshift($form['#submit'], 'dxpr_theme_form_system_theme_settings_submit');
   array_unshift($form['#validate'], 'dxpr_theme_form_system_theme_settings_validate');
@@ -254,6 +255,17 @@ function dxpr_theme_form_system_theme_settings_submit(&$form, &$form_state) {
     $path = _dxpr_theme_validate_path($form_state->getValue('background_image_path'));
     $form_state->setValue('background_image_path', $path);
   }
+
+  // Handle color palette values.
+  $color_palette = [];
+  foreach ($form_state->getValues() as $key => $value) {
+    if ($key !== 'color_scheme' && strpos($key, 'color_') === 0) {
+      $hex = preg_match('/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/', $value) ? $value : '';
+      $color_palette[str_replace('color_', '', $key)] = $hex;
+    }
+  }
+
+  $form_state->setValue('color_palette', serialize($color_palette));
 }
 
 /**
@@ -281,6 +293,29 @@ function _dxpr_theme_get_color_names($theme = NULL) {
   else {
     return [];
   }
+}
+
+/**
+ * Returns the color schemes from color.inc.
+ *
+ * @param $theme
+ *
+ * @return array
+ */
+function _dxpr_theme_get_color_schemes($theme = NULL): array {
+  if (empty($theme)) {
+    $theme = \Drupal::config('system.theme')->get('default') ?? '';
+  }
+
+  $path = \Drupal::service('extension.list.theme')->getPath($theme);
+  $filepath = sprintf('%s/%s/color/color.inc', DRUPAL_ROOT, $path);
+
+  if ($path && file_exists($filepath)) {
+    include $filepath;
+    return $info['schemes'] ?? []; // @phpstan-ignore-line
+  }
+
+  return [];
 }
 
 /**
