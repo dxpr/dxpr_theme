@@ -16,9 +16,15 @@
 function colors_theme_settings(array &$form, $theme) {
   $schemes = _dxpr_theme_get_color_schemes($theme);
   $colors = _dxpr_theme_get_color_names($theme);
+
   $scheme_options = array_filter(array_combine(array_keys($schemes), array_column($schemes, 'title')));
-  $scheme_options = array_merge($scheme_options, ['custom' => 'Custom']);
-  $palette = unserialize(theme_get_setting('color_palette')) ?: ($schemes['default']['colors'] ?? []);
+  $scheme_options = array_merge($scheme_options, [
+    'custom' => t('Custom'),
+    'current' => t('Revert to saved'),
+  ]);
+
+  $palette = unserialize(theme_get_setting('color_palette'), ['allowed_classes' => FALSE]);
+  $palette = $palette ?: ($schemes['default']['colors'] ?? []);
 
   // Attach palette and schemes.
   $form['#attached']['drupalSettings']['dxpr_themeSettings']['new_colors'] = [
