@@ -4,10 +4,85 @@
 
   "use strict";
 
+  // @todo Remove
   $(window).on("load", () => {
     // Remove color module locks, they are broken when bootstrap theme loads
     $(".color-palette__lock, .color-palette__hook").remove();
   });
+
+  /**
+   * Handles the 'Colors' theme settings page.
+   */
+  Drupal.behaviors.dxpr_themeSettingsColors = {
+    attach(context) {
+      let colors = drupalSettings.dxpr_themeSettings.new_colors ?? [];
+
+      // Populate color fields with selected palette.
+      function populateColorFields(selectedScheme) {
+        // Keep current values on custom.
+        if (selectedScheme === 'custom' || !colors) {
+          return;
+        }
+
+        const schemePalette = selectedScheme === 'current'
+          ? colors.palette
+          : colors.schemes[selectedScheme].colors;
+
+        if (schemePalette) {
+          for (const key in schemePalette) {
+            if (schemePalette.hasOwnProperty(key)) {
+              let hexcolor = schemePalette[key];
+              const colorField = document.getElementById(`edit-color-palette-${key}`);
+
+              if (colorField) {
+                colorField.value = hexcolor;
+                colorField.style.background = hexcolor;
+                colorField.style.color = getContrastTextColor(hexcolor);
+              }
+            }
+          }
+          updateActivePalette(schemePalette);
+        }
+      }
+
+      // Update active color scheme.
+      // @todo Should only happen on 'custom', other values uses saved scheme.
+      function updateActivePalette(palette) {
+        let root = document.documentElement;
+
+        if (palette) {
+          for (const key in palette) {
+            if (palette.hasOwnProperty(key)) {
+              root.style.setProperty(`--dxpr-color-${key}`, String(palette[key]));
+            }
+          }
+        }
+      }
+
+      // Returns recommended contrast color.
+      function getContrastTextColor(hexColor) {
+        const r = parseInt(hexColor.slice(1, 3), 16);
+        const g = parseInt(hexColor.slice(3, 5), 16);
+        const b = parseInt(hexColor.slice(5, 7), 16);
+        const luminance = 0.299 * r + 0.587 * g + 0.114 * b;
+        return (luminance > 128) ? '#000000' : '#ffffff';
+      }
+
+      const selectList = document.getElementById('edit-color-scheme');
+
+      selectList.addEventListener('change', (e) => {
+        const selectedScheme = e.target.value;
+        populateColorFields(selectedScheme);
+
+        if (selectedScheme === 'current') {
+          e.target.value = 'custom';
+        }
+      });
+
+      // Initialize with the current scheme.
+      populateColorFields('current');
+    }
+  }
 
   // Drupal.attachBehaviors('#system-theme-settings');
 
