@@ -259,9 +259,9 @@ function dxpr_theme_form_system_theme_settings_submit(&$form, &$form_state) {
   // Handle color palette values.
   $color_palette = [];
   foreach ($form_state->getValues() as $key => $value) {
-    if ($key !== 'color_scheme' && strpos($key, 'color_') === 0) {
+    if (strpos($key, 'color_palette_') === 0) {
       $hex = preg_match('/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/', $value) ? $value : '';
-      $color_palette[str_replace('color_', '', $key)] = $hex;
+      $color_palette[str_replace('color_palette_', '', $key)] = $hex;
     }
   }
 

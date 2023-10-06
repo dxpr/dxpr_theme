@@ -47,7 +47,7 @@ function colors_theme_settings(array &$form, $theme) {
   ];
 
   foreach ($colors as $key => $title) {
-    $form['dxpr_theme_settings']['colors']['palette']['color_' . $key] = [
+    $form['dxpr_theme_settings']['colors']['palette']['color_palette_' . $key] = [
       '#type' => 'textfield',
       '#title' => t('@name', ['@name' => $title]),
       '#default_value' => $palette[$key] ?? '',
