@@ -10,14 +10,15 @@
     $(".color-palette__lock, .color-palette__hook").remove();
   });
 
+  // Define constants.
+  const rootClassPrefix = 'dxpr-scheme-';
+  const cssVariablesPrefix = '--dxpr-color-';
+
   /**
    * Handles the 'Colors' theme settings page.
    */
   Drupal.behaviors.dxpr_themeSettingsColors = {
     attach(context) {
-      const rootClassPrefix = 'dxpr-scheme-';
-      const cssVariablesPrefix = '--dxpr-color-';
-
       const colors = drupalSettings.dxpr_themeSettings.colors ?? [];
       const schemeSelect = document.getElementById('edit-color-scheme');
       const colorPalette = document.querySelector('#color-palette');
@@ -217,8 +218,8 @@
         });
 
       function dxpr_theme_map_color(color) {
-        if (color in drupalSettings.dxpr_themeSettings.palette) {
-          color = drupalSettings.dxpr_themeSettings.palette[color];
+        if (color in drupalSettings.dxpr_themeSettings.colors.palette) {
+          color = `var(${cssVariablesPrefix + color})`;
         }
         return color;
       }
