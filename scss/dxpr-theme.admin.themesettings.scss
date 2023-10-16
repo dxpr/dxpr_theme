@@ -11,7 +11,7 @@ $textLight: rgba(86,86,86,.6);
   font-size: 15px;
   margin-top: 60px;
   // Header
-  * { 
+  *:not(.reinvented-color-wheel *) {
     box-sizing: border-box;
     border-radius: 0;
     color: $text;
@@ -378,7 +378,10 @@ $textLight: rgba(86,86,86,.6);
   .color-form {
     max-width: 740px;
     .form-item {
-      height: auto;
+      margin: 0 0 1.5rem;
+    }
+    .details-wrapper {
+      display: flex;
     }
     .form-text {
       padding: 3px;
@@ -410,20 +413,21 @@ $textLight: rgba(86,86,86,.6);
     margin-top: 0;
   }
   .color-placeholder {
-    position: absolute;
-    right: 3px;
+    padding: 0 1.5rem;
+    height: 0;
+    top: 90px;
   }
   .color-palette {
-    margin-top: 2em;
+    margin-top: 4rem;
     label {
-      line-height: 42px;
-      margin: 0;
+      line-height: 1.2;
+      padding: 0;
     }
     .form-item {
       padding: 0;
-      margin: 0 0 2px 0;
-      width: auto;
       min-height: 0;
+      display: flex;
+      align-items: center;
     }
     .item-selected {
       background: none;
@@ -437,6 +441,12 @@ $textLight: rgba(86,86,86,.6);
     }
     .form-text {
       padding: 5px;
+
+      &.active {
+        box-shadow: 0 0 0 3px rgba(50,200,50,1);
+        border-radius: 4px;
+        font-weight: bold;
+      }
     }
   }
   .font-preview {

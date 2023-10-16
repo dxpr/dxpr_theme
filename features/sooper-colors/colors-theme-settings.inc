@@ -27,7 +27,7 @@ function colors_theme_settings(array &$form, $theme) {
   $palette = $palette ?: ($schemes['default']['colors'] ?? []);
 
   // Attach palette and schemes.
-  $form['#attached']['drupalSettings']['dxpr_themeSettings']['new_colors'] = [
+  $form['#attached']['drupalSettings']['dxpr_themeSettings']['colors'] = [
     'palette' => $palette,
     'schemes' => $schemes,
   ];
@@ -37,29 +37,53 @@ function colors_theme_settings(array &$form, $theme) {
     '#title' => t('Colors'),
     '#type' => 'details',
     '#group' => 'dxpr_theme_settings',
+    '#attributes' => [
+      'class' => ['color-form'],
+    ],
   ];
 
-  $form['dxpr_theme_settings']['colors']['color_scheme'] = [
+  $form['dxpr_theme_settings']['colors']['wrapper'] = [
+    '#type' => 'html_tag',
+    '#tag' => 'div',
+    '#attributes' => [
+      'class' => ['color-palette-wrapper'],
+    ],
+  ];
+
+  $form['dxpr_theme_settings']['colors']['wrapper']['color_scheme'] = [
     '#type' => 'select',
     '#title' => t('Color set'),
     '#default_value' => theme_get_setting('color_scheme'),
     '#options' => $scheme_options,
   ];
 
-  $form['dxpr_theme_settings']['colors']['color_palette'] = [
+  $form['dxpr_theme_settings']['colors']['wrapper']['color_palette'] = [
     '#type' => 'html_tag',
     '#tag' => 'div',
-    '#attributes' => ['class' => ['color-palette']],
+    '#attributes' => [
+      'id' => ['color-palette'],
+      'class' => ['color-palette'],
+    ],
   ];
 
   foreach ($colors as $key => $title) {
-    $form['dxpr_theme_settings']['colors']['palette']['color_palette_' . $key] = [
+    $form['dxpr_theme_settings']['colors']['wrapper']['color_palette']['color_palette_' . $key] = [
       '#type' => 'textfield',
       '#title' => t('@name', ['@name' => $title]),
       '#default_value' => $palette[$key] ?? '',
       '#size' => 8,
       '#maxlength' => 8,
+      '#attributes' => ['data-original' => $palette[$key] ?? ''],
     ];
   }
+
+  $form['dxpr_theme_settings']['colors']['color_picker'] = [
+    '#type' => 'html_tag',
+    '#tag' => 'div',
+    '#attributes' => [
+      'id' => ['color-picker-placeholder'],
+      'class' => ['color-placeholder', 'sticky-top'],
+    ],
+  ];
 
 }
