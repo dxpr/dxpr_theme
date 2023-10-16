@@ -269,53 +269,55 @@ function dxpr_theme_form_system_theme_settings_submit(&$form, &$form_state) {
 }
 
 /**
- * Retrieves the Color module information for a particular theme.
- */
-function _dxpr_theme_get_color_names($theme = NULL) {
-  static $theme_info = [];
-  if (!isset($theme)) {
-    $theme = \Drupal::config('system.theme');
-  }
-
-  if (isset($theme_info[$theme])) {
-    return $theme_info[$theme];
-  }
-
-  $path = \Drupal::service('extension.list.theme')->getPath($theme);
-  $file = DRUPAL_ROOT . '/' . $path . '/color/color.inc';
-  if ($path && file_exists($file)) {
-    include $file;
-    // phpcs:disable
-    $theme_info[$theme] = $info['fields']; // @phpstan-ignore-line
-    return $info['fields']; // @phpstan-ignore-line
-    // phpcs:enable
-  }
-  else {
-    return [];
-  }
-}
-
-/**
- * Returns the color schemes from color.inc.
+ * Returns data from the color.inc file.
  *
- * @param $theme
+ * @param string|null $theme
+ * @param string|null $key
+ *   [fields|scheme|css]
  *
  * @return array
  */
-function _dxpr_theme_get_color_schemes($theme = NULL): array {
+function _dxpr_theme_get_color_inc(string $theme = NULL, string $key = NULL): array {
   if (empty($theme)) {
     $theme = \Drupal::config('system.theme')->get('default') ?? '';
   }
 
+  $data = [];
   $path = \Drupal::service('extension.list.theme')->getPath($theme);
   $filepath = sprintf('%s/%s/color/color.inc', DRUPAL_ROOT, $path);
 
   if ($path && file_exists($filepath)) {
     include $filepath;
-    return $info['schemes'] ?? []; // @phpstan-ignore-line
+    $local_info = $info ?? [];
+
+    if ($local_info) {
+      $data = $key ? ($local_info[$key] ?? []) : $local_info;
+    }
   }
 
-  return [];
+  return $data;
+}
+
+/**
+ * Returns the color fields from color.inc.
+ *
+ * @param string|null $theme
+ *
+ * @return array
+ */
+function _dxpr_theme_get_color_names(string $theme = NULL): array {
+  return _dxpr_theme_get_color_inc($theme, 'fields');
+}
+
+/**
+ * Returns the color schemes from color.inc.
+ *
+ * @param string|null $theme
+ *
+ * @return array
+ */
+function _dxpr_theme_get_color_schemes(string $theme = NULL): array {
+  return _dxpr_theme_get_color_inc($theme, 'schemes');
 }
 
 /**
