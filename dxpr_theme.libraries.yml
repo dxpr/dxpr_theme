@@ -34,6 +34,11 @@ forms:
     theme:
       css/base/forms.css: { minified: true }
 
+css-variables:
+  css:
+    theme:
+      css/base/css-variables.css: { minified: true }
+
 layout:
   css:
     theme:
