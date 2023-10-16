@@ -15,9 +15,84 @@
    */
   Drupal.behaviors.dxpr_themeSettingsColors = {
     attach(context) {
-      let colors = drupalSettings.dxpr_themeSettings.new_colors ?? [];
+      const rootClassPrefix = 'dxpr-scheme-';
+      const cssVariablesPrefix = '--dxpr-color-';
 
-      // Populate color fields with selected palette.
+      const colors = drupalSettings.dxpr_themeSettings.colors ?? [];
+      const schemeSelect = document.getElementById('edit-color-scheme');
+      const colorPalette = document.querySelector('#color-palette');
+
+      // Create Color picker.
+      let colorWheel = new ReinventedColorWheel({
+        appendTo: document.getElementById("color-picker-placeholder"),
+        hex: colorPalette.querySelector('.form-text').value,
+        wheelDiameter: 190,
+        wheelReflectsSaturation: false,
+        onChange: function (color) {
+          const el = colorPalette.querySelector('.form-text.active');
+
+          if (el) {
+            updateColorField(el, color.hex);
+          }
+        },
+      });
+      colorWheel.onChange(colorWheel);
+
+      // Handler for color fields.
+      if (colorPalette) {
+        const colorFields = colorPalette.querySelectorAll('.form-text');
+
+        const colorFieldHandler = (ev) => {
+          if (ev.key === 'Backspace' || ev.keyCode === 8) {
+            return;
+          }
+          setActiveField(ev.target);
+          colorWheel.hex = ev.target.value;
+        };
+
+        colorFields.forEach((el) => {
+          el.addEventListener('focus', colorFieldHandler);
+          el.addEventListener('change', colorFieldHandler);
+          el.addEventListener('keyup', colorFieldHandler);
+        });
+      }
+
+      // Handle color select.
+      schemeSelect.addEventListener('change', (ev) => {
+        let selectedScheme = ev.target.value;
+        populateColorFields(selectedScheme);
+        setActiveField(null);
+
+        if (selectedScheme === 'current') {
+          selectedScheme = 'custom';
+        }
+
+        setDocumentScheme(selectedScheme);
+        setDocumentPalette(null);
+        ev.target.value = selectedScheme;
+      });
+
+      // Initialize with the current scheme.
+      populateColorFields('current');
+
+      /**
+       * Set field as active.
+       */
+      function setActiveField(el) {
+        const colorFields = colorPalette.querySelectorAll('.form-text');
+
+        colorFields.forEach((el) => {
+          el.classList.remove('active');
+        });
+
+        if (el) {
+          el.classList.add('active');
+        }
+      }
+
+      /**
+       * Populate color fields with selected palette.
+       */
       function populateColorFields(selectedScheme) {
         // Keep current values on custom.
         if (selectedScheme === 'custom' || !colors) {
@@ -31,56 +106,95 @@
         if (schemePalette) {
           for (const key in schemePalette) {
             if (schemePalette.hasOwnProperty(key)) {
-              let hexcolor = schemePalette[key];
+              let hexColor = schemePalette[key];
               const colorField = document.getElementById(`edit-color-palette-${key}`);
-
-              if (colorField) {
-                colorField.value = hexcolor;
-                colorField.style.background = hexcolor;
-                colorField.style.color = getContrastTextColor(hexcolor);
-              }
+              updateColorField(colorField, hexColor, true);
             }
           }
-          updateActivePalette(schemePalette);
+          setDocumentPalette(schemePalette);
         }
       }
 
-      // Update active color scheme.
-      // @todo Should only happen on 'custom', other values uses saved scheme.
-      function updateActivePalette(palette) {
+      /**
+       * Update Color input field.
+       */
+      function updateColorField(elField, hexColor, setOriginal) {
+        if (!elField) {
+          return;
+        }
+
+        elField.value = hexColor;
+        elField.style.background = hexColor ? hexColor : '';
+        elField.style.color = hexColor ? getContrastTextColor(hexColor) : '';
+
+        if (setOriginal) {
+          elField.dataset.original = hexColor;
+        }
+        else {
+          // Set select to 'custom' if color is not from palette.
+          if (schemeSelect.value !== 'custom' && hexColor !== elField.dataset.original) {
+            schemeSelect.value = 'custom';
+          }
+
+          // Update active palette.
+          let key = elField.id.replace('edit-color-palette-', '');
+          const palette = {};
+          palette[key] = hexColor;
+          setDocumentPalette(palette);
+        }
+      }
+
+      /**
+       * Update active color scheme.
+       *
+       * @param palette
+       *   Array of colors. Passing null removes set colors.
+       */
+      function setDocumentPalette(palette) {
         let root = document.documentElement;
 
-        if (palette) {
+        if (palette && schemeSelect.value === 'custom') {
           for (const key in palette) {
             if (palette.hasOwnProperty(key)) {
-              root.style.setProperty(`--dxpr-color-${key}`, String(palette[key]));
+              root.style.setProperty(cssVariablesPrefix + key, String(palette[key]));
+            }
+          }
+        }
+
+        if (palette === null) {
+          for (let i = root.style.length - 1; i >= 0; i--) {
+            const propertyName = root.style[i];
+            if (propertyName.startsWith(cssVariablesPrefix)) {
+              root.style.removeProperty(propertyName);
             }
           }
         }
       }
 
-      // Returns recommended contrast color.
+      /**
+       * Update active scheme.
+       */
+      function setDocumentScheme(scheme) {
+        let root = document.documentElement;
+        let regx = new RegExp('\\b' + rootClassPrefix + '(.*)?\\b', 'g');
+        root.className = root.className.replace(regx, '');
+        root.classList.add(rootClassPrefix + scheme);
+      }
+
+      /**
+       * Returns recommended contrast color.
+       */
       function getContrastTextColor(hexColor) {
+        if (hexColor.length === 4) {
+          hexColor = '#' + hexColor.slice(1).split('').map(char => char + char).join('');
+        }
         const r = parseInt(hexColor.slice(1, 3), 16);
         const g = parseInt(hexColor.slice(3, 5), 16);
         const b = parseInt(hexColor.slice(5, 7), 16);
         const luminance = 0.299 * r + 0.587 * g + 0.114 * b;
-        return (luminance > 128) ? '#000000' : '#ffffff';
+        return (luminance > 128) ? '#000' : '#fff';
       }
 
-      const selectList = document.getElementById('edit-color-scheme');
-
-      selectList.addEventListener('change', (e) => {
-        const selectedScheme = e.target.value;
-        populateColorFields(selectedScheme);
-
-        if (selectedScheme === 'current') {
-          e.target.value = 'custom';
-        }
-      });
-
-      // Initialize with the current scheme.
-      populateColorFields('current');
     }
   }
 
