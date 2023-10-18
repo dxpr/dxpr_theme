@@ -46,6 +46,44 @@ $card-text:              #{'#444444'};
 $black:                  #{'#111111'};
 $silver:                 #{'#f1f1f1'};
 
+// Default color scheme map.
+$default-color-map: (
+  base: $primary,
+  link: $primary,   // @todo
+  accent1: $accent1,
+  accent2: $accent2,
+  body: $body-background,
+  header: $header-color,
+  headertext: $header-text-color,
+  headerside: $header-side-color,
+  headersidetext: $header-side-text-color,
+  pagetitle: $page-title-color,
+  pagetitletext: $page-title-text-color,
+  text: $text,
+  headings: $text-headings,
+  footer: $footer,
+  footertext: $footer-text,
+  secheader: $secondary-header,
+  secheadertext: $secondary-header-text,
+  graylight: $gray-light,
+  graylighter: $gray-lighter,
+  card: $card,
+  cardtext: $card-text,
+  silver: $silver
+);
+
+// Returns a css color variable assignment for given key.
+@function dxpr-color($key) {
+  @if map-has-key($default-color-map, $key) {
+    $value: map-get($default-color-map, $key);
+    @return unquote("var(--dxpr-color-#{$key})");
+  }
+  @else {
+    @warn "Invalid color key.";
+    @return unquote("inherit");
+  }
+}
+
 // Brand colors
 // -------------------------
 

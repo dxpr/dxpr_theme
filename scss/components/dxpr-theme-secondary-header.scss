@@ -6,13 +6,13 @@
   padding-top: 10px;
   padding-bottom: 10px;
   line-height: 1.2em;
-  background: $secondary-header;
-  color: $secondary-header-text;
+  background: dxpr-color('secheader');
+  color: dxpr-color('secheadertext');
   a {
-    color: $secondary-header-text;
+    color: dxpr-color('secheadertext');
     &:hover,
     &:focus {
-      color: $secondary-header-text;
+      color: dxpr-color('secheadertext');
     }
   }
   .block,

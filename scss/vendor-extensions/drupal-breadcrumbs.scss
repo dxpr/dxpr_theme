@@ -24,7 +24,7 @@
       text-decoration: none;
       &:hover,
       &:focus {
-        color: $primary;
+        color: dxpr-color('base');
       }
       // Hide UUID Redirector breadcrumb
       &[href$="/uuid"],

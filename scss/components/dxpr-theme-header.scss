@@ -48,24 +48,24 @@
     display: block;
   }
   // override bootstrap styling
-  background: $header-color;
-  color: $header-text-color;
+  background: dxpr-color('header');
+  color: dxpr-color('headertext');
   a {
-    color: $header-text-color;
+    color: dxpr-color('headertext');
     &.active,
     &:hover,
     &:focus {
-      color: $header-text-color;
+      color: dxpr-color('headertext');
     }
   }
   .dxpr-theme-main-menu {
     a {
-      color: $header-text-color;
+      color: dxpr-color('headertext');
       text-decoration: none;
       &.active,
       &:hover,
       &:focus {
-        color: $header-text-color;
+        color: dxpr-color('headertext');
       }
     }
     .menu a {
@@ -100,7 +100,7 @@
     }
   }
   .dropdown-menu {
-    background: $header-color;
+    background: dxpr-color('header');
     border-top-left-radius: 0;
     border-top-right-radius: 0;
     margin-top: 0;
@@ -174,7 +174,7 @@
   a:hover .menu a:focus,
   a.is-active {
     color: white;
-    background-color: $primary;
+    background-color: dxpr-color('base');
   }
 }
 
@@ -183,7 +183,7 @@
   a:hover,
   a:focus,
   a.is-active {
-    color: $primary;
+    color: dxpr-color('base');
   }
 }
 
@@ -209,7 +209,7 @@
   // Default settings
   height: 2px;
   bottom: 0;
-  background: $primary;
+  background: dxpr-color('base');
 }
 .body--dxpr-theme-header-side .dxpr-theme-header--side.dxpr-theme-header--hover-border .nav > li.active > a:before,
 .body--dxpr-theme-header-side .dxpr-theme-header--side.dxpr-theme-header--hover-border .nav > li > a:hover:before,

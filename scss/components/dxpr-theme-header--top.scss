@@ -57,7 +57,7 @@
     }
     &.dxpr-theme-header--navbar-pull-down {
       .container-row > .col-sm-12 {
-        background: $header-color;
+        background: dxpr-color('header');
       }
     }
     &.affix {
@@ -191,7 +191,7 @@
           padding: 10px 20px;
           display: block;
           line-height: unset;
-          color: $header-text-color;
+          color: dxpr-color('headertext');
         }
       }
     }

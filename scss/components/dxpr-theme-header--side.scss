@@ -12,28 +12,28 @@
 
 .dxpr-theme-header--side {
   h1, h2, h3, h4, h5, h6 {
-    color: $header-side-text-color;
+    color: dxpr-color(headertext);
   }
   a {
-    color: $header-side-text-color;
+    color: dxpr-color('headersidetext');
     &:hover,
     &:focus {
-      color: $header-side-text-color;
+      color: dxpr-color('headersidetext');
     }
   }
   .dxpr-theme-main-menu {
-    background: $header-side-color;
-    color: $header-side-text-color;
+    background: dxpr-color('headersvide');
+    color: dxpr-color('headersidetext');
     overflow-x: hidden;
     overflow-y: auto;
     height: 100%;
     a {
-      color: $header-side-text-color;
+      color: dxpr-color('headersidetext');
       padding-left: 0; // undo bs5 base theme styles
       padding-right: 0;
       &:hover,
       &:focus {
-        color: $header-side-text-color;
+        color: dxpr-color('headersidetext');
       }
     }
     .full-screen-search-button {
@@ -58,7 +58,7 @@
   }
   .menu__level {
     box-shadow: none;
-    background: $header-side-color;
+    background: dxpr-color('headerside');
     position: fixed;
     display: block;
     z-index: 406;
@@ -85,7 +85,7 @@
     span {
       padding: 7px 20px;
       pointer-events: none;
-      color: $header-side-text-color;
+      color: dxpr-color('headersidetext');
       display: block;
       line-height: 25px;
     }
@@ -189,7 +189,7 @@
   }
   .dxpr-theme-header--side {
     width: 300px;
-    background: $header-side-color;
+    background: dxpr-color('headerside');
     position: fixed;
     left: 0;
     top: 0;
