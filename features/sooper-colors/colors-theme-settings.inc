@@ -71,8 +71,8 @@ function colors_theme_settings(array &$form, $theme) {
       '#type' => 'textfield',
       '#title' => t('@name', ['@name' => $title]),
       '#default_value' => $palette[$key] ?? '',
-      '#size' => 8,
-      '#maxlength' => 8,
+      '#size' => 7,
+      '#maxlength' => 7,
       '#attributes' => ['data-original' => $palette[$key] ?? ''],
     ];
   }

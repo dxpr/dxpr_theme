@@ -196,6 +196,20 @@ function dxpr_theme_form_system_theme_settings_validate(&$form, &$form_state) {
       }
     }
   }
+
+  // Handle custom color validation.
+  // Only accepts valid hex color values.
+  foreach ($form_state->getValues() as $key => $value) {
+    if (strpos($key, 'color_palette_') === 0) {
+      if (!preg_match('/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/', $value)) {
+        $color_names = _dxpr_theme_get_color_names();
+        $form_state->setErrorByName($key, t('The %name field contains an invalid color value.', [
+          '%name' => $color_names[str_replace('color_palette_', '', $key)] ?? t('Unknown'),
+        ]));
+      }
+    }
+  }
+
 }
 
 /**
