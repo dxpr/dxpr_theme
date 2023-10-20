@@ -207,7 +207,6 @@ function dxpr_theme_preprocess_page(&$variables) {
   // @todo include only if needed.
     'dxpr_theme/jquery-ui',
     // DXPR THEME BASE.
-    'dxpr_theme/css-variables',
     'dxpr_theme/forms',
     'dxpr_theme/layout',
     'dxpr_theme/page-title',

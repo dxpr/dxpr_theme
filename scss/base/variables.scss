@@ -1,0 +1,10 @@
+//
+// Default color scheme.
+//
+@import "../includes/variables";
+
+:root {
+  @each $key, $color in $default-color-map {
+    --dxpr-color-#{$key}:#{$color};
+  }
+}

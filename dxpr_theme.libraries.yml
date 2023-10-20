@@ -34,10 +34,10 @@ forms:
     theme:
       css/base/forms.css: { minified: true }
 
-css-variables:
+variables:
   css:
     theme:
-      css/base/css-variables.css: { minified: true }
+      css/base/variables.css: { minified: true, weight: -30 }
 
 layout:
   css:
