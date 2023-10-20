@@ -26,8 +26,12 @@ function _dxpr_theme_css_cache_file($theme) {
  *
  * @param string $theme
  *   Theme machine name.
+ *
+ * @deprecated This function should no longer be needed.
  */
 function dxpr_theme_color_module_css_write($theme) {
+  return; // @todo Deprecated function.
+
   // Stuff copied from color module, because this code is not encapsulated
   // in a function other than theme submit.
   \Drupal::moduleHandler()->loadInclude('module', 'color');
@@ -141,18 +145,16 @@ function dxpr_theme_color_module_css_write($theme) {
  * @param string $theme
  *   Theme name.
  */
-function dxpr_theme_css_cache_build($theme) {
+function dxpr_theme_css_cache_build(string $theme) {
   $dxpr_theme_css_file = _dxpr_theme_css_cache_file($theme);
   $dir = 'public://dxpr_theme/css/';
   $dir_writable = \Drupal::service('file_system')
     ->prepareDirectory($dir, FileSystemInterface::CREATE_DIRECTORY);
 
-  if (\Drupal::moduleHandler()->moduleExists('color')) {
-    $palette = color_get_palette($theme);
-  }
-  else {
-    $palette = [];
-  }
+  $palette = unserialize(theme_get_setting('color_palette', $theme), [
+    'allowed_classes' => FALSE,
+  ]) ?: [];
+
   // Construct CSS file:
   $css = '';
   // Load Sooper Features CSS.
