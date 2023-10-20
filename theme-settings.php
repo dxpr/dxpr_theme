@@ -113,13 +113,6 @@ function dxpr_theme_form_system_theme_settings_alter(&$form, &$form_state, $form
   }
   $form['#attached']['library'][] = 'dxpr_theme/admin.themesettings';
 
-// @todo Deprecated
-//  if ($palette = color_get_palette($subject_theme)) {
-//    // dxpr_themeSetting vs dxpr_theme namespace otherwise
-//    // if deletes other .dxpr_theme data.
-//    $form['#attached']['drupalSettings']['dxpr_themeSettings'] = ['palette' => $palette];
-//  }
-//
   array_unshift($form['#submit'], 'dxpr_theme_form_system_theme_settings_submit');
   array_unshift($form['#validate'], 'dxpr_theme_form_system_theme_settings_validate');
 

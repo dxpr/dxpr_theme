@@ -277,36 +277,6 @@ $info = [
       ],
     ],        
   ],
-
-  // CSS files (excluding @import) to rewrite with new color scheme.
-  'css' => [
-    // DXPR THEME BASE.
-    'css/base/footer-menu.css',
-    'css/base/forms.css',
-    'css/base/layout.css',
-    'css/base/page-title.css',
-    'css/base/typography.css',
-    // DXPR THEME Components.
-    'css/components/dxpr-theme-full-screen-search.css',
-    'css/components/dxpr-theme-header.css',
-    'css/components/dxpr-theme-header--top.css',
-    'css/components/dxpr-theme-header--side.css',
-    'css/components/dxpr-theme-header--mobile.css',
-    'css/components/dxpr-theme-secondary-header.css',
-    'css/components/dxpr-theme-admin.css',
-    // Overrides.
-    'css/vendor-extensions/bootstrap-3.css',
-    'css/vendor-extensions/bootstrap-theme.css',
-    'css/vendor-extensions/jquery-ui.css',
-    'css/vendor-extensions/drupal-breadcrumbs.css',
-    'css/vendor-extensions/drupal-comments.css',
-    'css/vendor-extensions/drupal-pager.css',
-    'css/vendor-extensions/drupal-webform.css',
-    'css/vendor-extensions/dxpr-theme-builder.css',
-    // HELPERS.
-    'css/helpers/helper-classes.css',
-  ],
-
   // Files to copy.
   'copy' => [
     'logo.svg',

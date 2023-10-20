@@ -4,12 +4,6 @@
 
   "use strict";
 
-  // @todo Remove
-  $(window).on("load", () => {
-    // Remove color module locks, they are broken when bootstrap theme loads
-    $(".color-palette__lock, .color-palette__hook").remove();
-  });
-
   // Define constants.
   const cssVariablesPrefix = '--dxpr-color-';
 
