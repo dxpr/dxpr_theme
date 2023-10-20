@@ -11,7 +11,6 @@
   });
 
   // Define constants.
-  const rootClassPrefix = 'dxpr-scheme-';
   const cssVariablesPrefix = '--dxpr-color-';
 
   /**
@@ -68,8 +67,6 @@
           selectedScheme = 'custom';
         }
 
-        setDocumentScheme(selectedScheme);
-        setDocumentPalette(null);
         ev.target.value = selectedScheme;
       });
 
@@ -124,9 +121,14 @@
           return;
         }
 
+        if (elField.classList.contains('error')) {
+          elField.classList.remove('error');
+          return;
+        }
+
         elField.value = hexColor;
         elField.style.background = hexColor ? hexColor : '';
-        elField.style.color = hexColor ? getContrastTextColor(hexColor) : '';
+        elField.style.color = hexColor ? getContrastColor(hexColor) : '';
 
         if (setOriginal) {
           elField.dataset.original = hexColor;
@@ -154,7 +156,7 @@
       function setDocumentPalette(palette) {
         let root = document.documentElement;
 
-        if (palette && schemeSelect.value === 'custom') {
+        if (palette) {
           for (const key in palette) {
             if (palette.hasOwnProperty(key)) {
               root.style.setProperty(cssVariablesPrefix + key, String(palette[key]));
@@ -173,19 +175,9 @@
       }
 
       /**
-       * Update active scheme.
-       */
-      function setDocumentScheme(scheme) {
-        let root = document.documentElement;
-        let regx = new RegExp('\\b' + rootClassPrefix + '(.*)?\\b', 'g');
-        root.className = root.className.replace(regx, '');
-        root.classList.add(rootClassPrefix + scheme);
-      }
-
-      /**
        * Returns recommended contrast color.
        */
-      function getContrastTextColor(hexColor) {
+      function getContrastColor(hexColor) {
         if (hexColor.length === 4) {
           hexColor = '#' + hexColor.slice(1).split('').map(char => char + char).join('');
         }
