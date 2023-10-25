@@ -142,7 +142,7 @@
 
         // Update active palette.
         const key = elField.id.replace("edit-color-palette-", "");
-        const palette = {[key]: hexColor};
+        const palette = { [key]: hexColor };
         this.setDocumentPalette(palette);
       }
     },
@@ -180,12 +180,12 @@
       // Expand shorthand color values.
       if (hexColor.length === 4) {
         hexColor =
-          "#" + hexColor
+          "#" +
+          hexColor
             .slice(1)
             .split("")
-            .map(char => "" + char + char)
-            .join("")
-        ;
+            .map((char) => char + char)
+            .join("");
       }
       const r = parseInt(hexColor.slice(1, 3), 16);
       const g = parseInt(hexColor.slice(3, 5), 16);
