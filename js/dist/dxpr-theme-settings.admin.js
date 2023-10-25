@@ -1,6 +1,4 @@
 (function ($, Drupal) {
-  /* global jQuery:false */
-  /* global Drupal:false */
   /* global ReinventedColorWheel */
 
   "use strict";
@@ -27,7 +25,7 @@
         hex: colorPalette.querySelector(".form-text").value,
         wheelDiameter: 190,
         wheelReflectsSaturation: false,
-        onChange: function(color) {
+        onChange(color) {
           const el = colorPalette.querySelector(".form-text.active");
 
           if (el) {
@@ -48,7 +46,7 @@
             }
             pt.setActiveField(ev.target);
             colorWheel.hex = ev.target.value;
-          }
+          },
         };
 
         colorFields.forEach((el) => {
@@ -77,7 +75,7 @@
     /**
      * Set field as active.
      */
-    setActiveField: function (el) {
+    setActiveField(el) {
       const colorFields = this.elColorPalette.querySelectorAll(".form-text");
 
       colorFields.forEach((field) => {
@@ -91,18 +89,19 @@
     /**
      * Populate color fields with selected palette.
      */
-    populateColorFields: function (selectedScheme) {
+    populateColorFields(selectedScheme) {
       // Keep current values on custom.
       if (selectedScheme === "custom" || !this.colorSettings) {
         return;
       }
 
-      const schemePalette = (selectedScheme === "current")
-        ? this.colorSettings.palette
-        : this.colorSettings.schemes[selectedScheme].colors;
+      const schemePalette =
+        selectedScheme === "current"
+          ? this.colorSettings.palette
+          : this.colorSettings.schemes[selectedScheme].colors;
 
       if (schemePalette) {
-        Object.keys(schemePalette).forEach(key => {
+        Object.keys(schemePalette).forEach((key) => {
           const hexColor = schemePalette[key];
           const colorField = document.getElementById(
             `edit-color-palette-${key}`
@@ -115,7 +114,7 @@
     /**
      * Update Color input field.
      */
-    updateColorField: function (elField, hexColor, setOriginal) {
+    updateColorField(elField, hexColor, setOriginal) {
       if (!elField) {
         return;
       }
@@ -127,23 +126,23 @@
       }
 
       elField.value = hexColor;
-      elField.style.background = hexColor ? hexColor : '';
-      elField.style.color = hexColor ? this.getContrastColor(hexColor) : '';
+      elField.style.background = hexColor;
+      elField.style.color = hexColor ? this.getContrastColor(hexColor) : "";
 
       if (setOriginal) {
         elField.dataset.original = hexColor;
-      }
-      else {
+      } else {
         // Set select to 'custom' if color is not from palette.
         if (
           this.elSchemeSelect.value !== "custom" &&
-          hexColor !== elField.dataset.original) {
+          hexColor !== elField.dataset.original
+        ) {
           this.elSchemeSelect.value = "custom";
         }
 
         // Update active palette.
         const key = elField.id.replace("edit-color-palette-", "");
-        const palette = { [key]: hexColor };
+        const palette = {[key]: hexColor};
         this.setDocumentPalette(palette);
       }
     },
@@ -153,15 +152,15 @@
      * @param palette
      *   Array of colors. Passing null removes set colors.
      */
-    setDocumentPalette: function (palette) {
+    setDocumentPalette(palette) {
       const root = document.documentElement;
 
       if (palette) {
-        Object.keys(palette).forEach(key => {
+        Object.keys(palette).forEach((key) => {
           root.style.setProperty(
             cssVariablesPrefix + key,
-            String(palette[key]))
-          ;
+            String(palette[key])
+          );
         });
       }
 
@@ -177,19 +176,23 @@
     /**
      * Returns recommended contrast color.
      */
-    getContrastColor: function (hexColor) {
+    getContrastColor(hexColor) {
       // Expand shorthand color values.
       if (hexColor.length === 4) {
-        hexColor = "#" + hexColor.slice(1).split("").map(
-          char => "" + char + char
-        ).join("");
+        hexColor =
+          "#" + hexColor
+            .slice(1)
+            .split("")
+            .map(char => "" + char + char)
+            .join("")
+        ;
       }
       const r = parseInt(hexColor.slice(1, 3), 16);
       const g = parseInt(hexColor.slice(3, 5), 16);
       const b = parseInt(hexColor.slice(5, 7), 16);
       const luminance = 0.299 * r + 0.587 * g + 0.114 * b;
       return luminance > 128 ? "#000" : "#fff";
-    }
+    },
   };
 
   // Drupal.attachBehaviors('#system-theme-settings');
