@@ -279,10 +279,12 @@ function dxpr_theme_form_system_theme_settings_submit(&$form, &$form_state) {
  * Returns data from the color.inc file.
  *
  * @param string|null $theme
+ *   Theme machine name.
  * @param string|null $key
- *   [fields|scheme|css]
+ *   Key index in color.inc $info array.
  *
  * @return array
+ *   Array containing requested data.
  */
 function _dxpr_theme_get_color_inc(string $theme = NULL, string $key = NULL): array {
   if (empty($theme)) {
@@ -309,8 +311,10 @@ function _dxpr_theme_get_color_inc(string $theme = NULL, string $key = NULL): ar
  * Returns the color fields from color.inc.
  *
  * @param string|null $theme
+ *   Theme machine name.
  *
  * @return array
+ *   The 'fields' sub-array.
  */
 function _dxpr_theme_get_color_names(string $theme = NULL): array {
   return _dxpr_theme_get_color_inc($theme, 'fields');
@@ -320,8 +324,10 @@ function _dxpr_theme_get_color_names(string $theme = NULL): array {
  * Returns the color schemes from color.inc.
  *
  * @param string|null $theme
+ *   Theme machine name.
  *
  * @return array
+ *   The 'schemes' sub-array.
  */
 function _dxpr_theme_get_color_schemes(string $theme = NULL): array {
   return _dxpr_theme_get_color_inc($theme, 'schemes');
