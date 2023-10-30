@@ -70,10 +70,10 @@ function dxpr_theme_preprocess_html(&$variables) {
     }
   }
 
-  // Use default color scheme if none is set.
-  if (empty(theme_get_setting('color_scheme'))) {
-    $variables['#attached']['library'][] = 'dxpr_theme/variables';
-  }
+  // Include CSS variables and set color scheme class.
+  $variables['#attached']['library'][] = 'dxpr_theme/variables';
+  $variables['html_attributes']
+    ->setAttribute('class', 'dxpr-scheme-' . theme_get_setting('color_scheme') ?? 'default');
 
   // Body background image.
   if (array_key_exists('node', $variables)) {

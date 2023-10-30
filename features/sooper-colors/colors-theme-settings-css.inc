@@ -27,6 +27,6 @@ function colors_theme_settings_css($theme, &$css, array $palette) {
   ));
 
   if ($css_variables) {
-    $css .= ":root{\n" . $css_variables . ";\n}\n\n";
+    $css .= ":root.dxpr-scheme-custom{\n" . $css_variables . ";\n}\n\n";
   }
 }
