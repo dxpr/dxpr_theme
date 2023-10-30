@@ -25,13 +25,12 @@ function _dxpr_theme_css_cache_file($theme) {
  *
  * @param string $theme
  *   Theme machine name.
- *
- * @deprecated
- *   This function should no longer be needed. Kept for legacy reasons.
- *
- * @see Changelog.
+ * phpcs:ignore
+ * @deprecated This function is no longer needed. Kept for legacy reasons.
  */
-function dxpr_theme_color_module_css_write($theme) {}
+function dxpr_theme_color_module_css_write($theme) {
+
+}
 
 /**
  * Theme CSS generator from DXPR Theme-settings.php.
