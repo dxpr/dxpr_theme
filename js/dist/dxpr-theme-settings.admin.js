@@ -196,6 +196,7 @@
   /**
    * Provide vertical tab summaries for Bootstrap settings.
    */
+  /* eslint-disable */
   Drupal.behaviors.dxpr_themeSettingsControls = {
     attach(context) {
       $("#system-theme-settings h2 > small").addClass("form-header");
@@ -1134,6 +1135,7 @@
       });
     },
   };
+  /* eslint-enable */
 
   /**
    * Provide vertical tab summaries for Bootstrap settings.
