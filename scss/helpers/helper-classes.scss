@@ -70,7 +70,7 @@
       margin: 0!important;
       padding: 0!important;
     }
-    > div {
+    > * {
       padding: 0!important;
       margin: 0!important;
     }
@@ -79,7 +79,7 @@
 
   .dxpr-theme-util-no-spacer,
   .dxpr-theme-util-no-spacer .row {
-    > div {
+    > * {
       margin-bottom: 0;
     }
   }

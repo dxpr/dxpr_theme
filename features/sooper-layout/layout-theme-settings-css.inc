@@ -48,7 +48,7 @@ function layout_theme_settings_css($theme, &$css, array $palette) {
   margin-left: -{$gutter_horizontal}px;
   margin-right: -{$gutter_horizontal}px;
 }
-.row > div {
+.row > * {
   padding-left: {$gutter_horizontal}px;
   padding-right: {$gutter_horizontal}px;
   margin-bottom: {$gutter_vertical}px;
@@ -84,7 +84,7 @@ EOT;
     margin-left: -{$gutter_horizontal}px;
     margin-right: -{$gutter_horizontal}px;
   }
-  .row > div {
+  .row > * {
     padding-left: {$gutter_horizontal}px;
     padding-right: {$gutter_horizontal}px;
   }
