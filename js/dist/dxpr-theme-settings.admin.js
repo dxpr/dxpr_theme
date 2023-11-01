@@ -179,12 +179,11 @@
     getContrastColor(hexColor) {
       // Expand shorthand color values.
       if (hexColor.length === 4) {
-        hexColor = `#${
-          hexColor
-            .slice(1)
-            .split("")
-            .map((char) => char + char)
-            .join("")
+        hexColor = `#${hexColor
+          .slice(1)
+          .split("")
+          .map((char) => char + char)
+          .join("")
         }`;
       }
       const r = parseInt(hexColor.slice(1, 3), 16);
