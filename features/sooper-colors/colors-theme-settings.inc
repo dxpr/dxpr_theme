@@ -23,7 +23,7 @@ function colors_theme_settings(array &$form, $theme) {
     'current' => t('Revert to saved'),
   ]);
 
-  $palette = unserialize(theme_get_setting('color_palette'), ['allowed_classes' => FALSE]);
+  $palette = unserialize(theme_get_setting('color_palette') ?? '', ['allowed_classes' => FALSE]);
   $palette = $palette ?: ($schemes['default']['colors'] ?? []);
 
   // Attach palette and schemes.
@@ -53,7 +53,7 @@ function colors_theme_settings(array &$form, $theme) {
   $form['dxpr_theme_settings']['colors']['wrapper']['color_scheme'] = [
     '#type' => 'select',
     '#title' => t('Color set'),
-    '#default_value' => theme_get_setting('color_scheme'),
+    '#default_value' => theme_get_setting('color_scheme') ?? 'default',
     '#options' => $scheme_options,
   ];
 

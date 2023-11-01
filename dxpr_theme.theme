@@ -73,7 +73,7 @@ function dxpr_theme_preprocess_html(&$variables) {
   // Include CSS variables and set color scheme class.
   $variables['#attached']['library'][] = 'dxpr_theme/variables';
   $variables['html_attributes']
-    ->setAttribute('class', 'dxpr-scheme-' . theme_get_setting('color_scheme') ?? 'default');
+    ->setAttribute('class', 'dxpr-scheme-' . (theme_get_setting('color_scheme') ?? 'default'));
 
   // Body background image.
   if (array_key_exists('node', $variables)) {
