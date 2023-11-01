@@ -10,17 +10,15 @@
   .pager__item, li {
     > a,
     > span {
-      color: $gray-light;
+      color: $text;
       background-color: transparent;
-      border-color: $silver;
-      opacity: 0.6;
+      border-color: $text;
       padding: 1em 1.4em;
       &:hover,
       &:focus {
-        color: $gray-light;
+        color: $text;
         background-color: transparent;
-        border-color: $silver;
-        opacity: 1;
+        border-color: $text;
       }
     }
     &:first-child {
@@ -40,10 +38,10 @@
       &,
       &:hover,
       &:focus {
-        color: $gray-light;
+        color: $text;
         background-color: transparent;
-        border-color:  $silver;
-        opacity: 1;
+        border-color:  $text;
+        text-decoration: underline;
       }
     }
     &.disabled {
@@ -53,9 +51,40 @@
       > a,
       > a:hover,
       > a:focus {
-        color:  $gray-lighter;
-        background-color: $gray-light;
+        color:  $text;
+        background-color: $text;
         border-color: transparent;
+      }
+    }
+  }
+
+  .page-item {
+    .page-link {
+      border-radius: 0;
+    }
+
+    &.active {
+      .page-link  {
+        color: $text;
+        background-color: transparent;
+        border-color: $text;
+      }
+    }
+  }
+
+  &.pagination-sm {
+    .page-item {
+      .page-link  {
+        padding: 1em 1.4em;
+        font-size: 12px;
+      }
+
+      &.active {
+        .page-link  {
+          color: $text;
+          background-color: transparent;
+          border-color: $text;
+        }
       }
     }
   }
@@ -67,15 +96,16 @@
 .pager {
   li > a,
   li > span {
-    background: transparent;
-    border-color: $gray-light;
-    color: $gray-light;
-    border-radius: 3px;
-    padding: 4px 8px;
+    display: inline-block;
+    background: white;
+    border: 1px solid $text;
+    border-radius: 15px;
+    padding: 5px 14px;
     font-style: normal;
     &:hover,
     &:focus {
       background: transparent;
+      text-decoration: none;
     }
     &:active {
       ouline: none;
