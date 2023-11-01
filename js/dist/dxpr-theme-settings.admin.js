@@ -16,6 +16,11 @@
     colorSettings: drupalSettings.dxpr_themeSettings.colors ?? [],
     // Methods.
     attach(context) {
+      if (once('dxpr-color-init', 'html').length) {
+        this.init();
+      }
+    },
+    init () {
       const pt = this;
       const colorPalette = this.elColorPalette;
 
