@@ -10,17 +10,15 @@
   .pager__item, li {
     > a,
     > span {
-      color: $gray-light;
+      color: $text;
       background-color: transparent;
-      border-color: $silver;
-      opacity: 0.6;
+      border-color: $text;
       padding: 1em 1.4em;
       &:hover,
       &:focus {
-        color: $gray-light;
+        color: $text;
         background-color: transparent;
-        border-color: $silver;
-        opacity: 1;
+        border-color: $text;
       }
     }
     &:first-child {
@@ -37,13 +35,12 @@
     }
     &.active > a,
     &.active > span {
-      &,
       &:hover,
       &:focus {
-        color: $gray-light;
+        color: $text;
         background-color: transparent;
-        border-color:  $silver;
-        opacity: 1;
+        border-color:  $text;
+        text-decoration: underline;
       }
     }
     &.disabled {
@@ -53,8 +50,8 @@
       > a,
       > a:hover,
       > a:focus {
-        color:  $gray-lighter;
-        background-color: $gray-light;
+        color:  $text;
+        background-color: $text;
         border-color: transparent;
       }
     }
@@ -68,8 +65,8 @@
   li > a,
   li > span {
     background: transparent;
-    border-color: $gray-light;
-    color: $gray-light;
+    border-color: $text;
+    color: $text;
     border-radius: 3px;
     padding: 4px 8px;
     font-style: normal;
@@ -78,7 +75,7 @@
       background: transparent;
     }
     &:active {
-      ouline: none;
+      outline: none;
     }
   }
 }
