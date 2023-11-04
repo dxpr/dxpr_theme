@@ -16,11 +16,11 @@
     colorSettings: drupalSettings.dxpr_themeSettings.colors ?? [],
     // Methods.
     attach(context) {
-      if (once('dxpr-color-init', 'html').length) {
+      if (once("dxpr-color-init", "html").length) {
         this.init();
       }
     },
-    init () {
+    init() {
       const pt = this;
       const colorPalette = this.elColorPalette;
 
@@ -188,8 +188,7 @@
           .slice(1)
           .split("")
           .map((char) => char + char)
-          .join("")
-        }`;
+          .join("")}`;
       }
       const r = parseInt(hexColor.slice(1, 3), 16);
       const g = parseInt(hexColor.slice(3, 5), 16);
