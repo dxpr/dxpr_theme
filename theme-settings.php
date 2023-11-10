@@ -63,14 +63,11 @@ function dxpr_theme_form_system_theme_settings_alter(&$form, &$form_state, $form
     '#weight' => -20,
     '#prefix' => '<h2><small>' . $img . ' ' . $themes[$subject_theme]->info['name'] . ' ' . $version . ' <span class="small">(' . $themes['bootstrap5']->info['name'] . ' base theme ' . $themes['bootstrap5']->info['version'] . ')</span>' . '</small></h2>',
   ];
-  // $form['color']['#group'] = 'dxpr_theme_settings';
+
   if (!empty($form['update'])) {
     $form['update']['#group'] = 'global';
   }
-  if (!empty($form['color'])) {
-    $form['color']['#group'] = 'dxpr_theme_settings';
-    $form['color']['#title'] = t('Colors');
-  }
+
   $form['core_theme_settings'] = [
     '#type' => 'vertical_tabs',
     '#weight' => -20,
