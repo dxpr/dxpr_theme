@@ -47,9 +47,9 @@ function dxpr_theme_css_cache_build(string $theme) {
   $dir_writable = \Drupal::service('file_system')
     ->prepareDirectory($dir, FileSystemInterface::CREATE_DIRECTORY);
 
-  $palette = unserialize(theme_get_setting('color_palette', $theme), [
+  $palette = unserialize((theme_get_setting('color_palette', $theme) ?? ''), [
     'allowed_classes' => FALSE,
-  ]) ?: [];
+  ]) ?: theme_get_setting('color_palette', 'dxpr_theme');
 
   // Construct CSS file:
   $css = '';
