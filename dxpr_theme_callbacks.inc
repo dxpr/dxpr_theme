@@ -49,7 +49,7 @@ function dxpr_theme_css_cache_build(string $theme) {
 
   $palette = unserialize((theme_get_setting('color_palette', $theme) ?? ''), [
     'allowed_classes' => FALSE,
-  ]) ?: theme_get_setting('color_palette', 'dxpr_theme');
+  ]) ?: _dxpr_theme_get_color_scheme();
 
   // Construct CSS file:
   $css = '';

@@ -14,11 +14,6 @@
  *   Theme machine name.
  */
 function block_design_theme_settings(array &$form, $theme) {
-
-  // Remove the Color module's settings page.
-  $form['color']['#access'] = FALSE;
-
-  // Build color page.
   $form['dxpr_theme_settings']['block'] = [
     '#title' => t('Block Design'),
     '#type' => 'details',

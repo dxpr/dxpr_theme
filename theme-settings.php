@@ -5,6 +5,7 @@
  * DXPR Theme settings.
  */
 
+use Drupal\Component\Serialization\Json;
 use Drupal\Core\File\Exception\FileException;
 use Drupal\Core\File\FileSystemInterface;
 use Drupal\node\Entity\NodeType;
@@ -273,61 +274,62 @@ function dxpr_theme_form_system_theme_settings_submit(&$form, &$form_state) {
 }
 
 /**
- * Returns data from the color.inc file.
+ * Returns data from the color-settings.json file.
  *
- * @param string|null $theme
- *   Theme machine name.
  * @param string|null $key
  *   Key index in color.inc $info array.
  *
  * @return array
  *   Array containing requested data.
  */
-function _dxpr_theme_get_color_inc(string $theme = NULL, string $key = NULL): array {
-  if (empty($theme)) {
-    $theme = \Drupal::config('system.theme')->get('default') ?? '';
-  }
-
-  $data = [];
-  $path = \Drupal::service('extension.list.theme')->getPath($theme);
-  $filepath = sprintf('%s/%s/color/color.inc', DRUPAL_ROOT, $path);
+function _dxpr_theme_get_color_inc(string $key = NULL): array {
+  $path = \Drupal::service('extension.list.theme')->getPath('dxpr_theme');
+  $filepath = sprintf('%s/%s/features/sooper-colors/color-settings.json', DRUPAL_ROOT, $path);
 
   if ($path && file_exists($filepath)) {
-    include $filepath;
-    $local_info = $info ?? [];
+    $json = file_get_contents($filepath);
+    $settings = Json::decode($json);
 
-    if ($local_info) {
-      $data = $key ? ($local_info[$key] ?? []) : $local_info;
+    if ($settings) {
+      $data = $key ? ($settings[$key] ?? []) : $settings;
     }
   }
 
-  return $data;
+  return $data ?? [];
 }
 
 /**
- * Returns the color fields from color.inc.
- *
- * @param string|null $theme
- *   Theme machine name.
+ * Returns the color field keys.
  *
  * @return array
  *   The 'fields' sub-array.
  */
-function _dxpr_theme_get_color_names(string $theme = NULL): array {
-  return _dxpr_theme_get_color_inc($theme, 'fields');
+function _dxpr_theme_get_color_names(): array {
+  return _dxpr_theme_get_color_inc('fields');
 }
 
 /**
- * Returns the color schemes from color.inc.
- *
- * @param string|null $theme
- *   Theme machine name.
+ * Returns the color schemes.
  *
  * @return array
  *   The 'schemes' sub-array.
  */
-function _dxpr_theme_get_color_schemes(string $theme = NULL): array {
-  return _dxpr_theme_get_color_inc($theme, 'schemes');
+function _dxpr_theme_get_color_schemes(): array {
+  return _dxpr_theme_get_color_inc('schemes');
+}
+
+/**
+ * Returns the specified color scheme, defaults to 'default'.
+ *
+ * @param string $scheme
+ *   The color scheme machine name.
+ *
+ * @return array
+ *   The specified color scheme indexed by color machine names.
+ */
+function _dxpr_theme_get_color_scheme(string $scheme = 'default'): array {
+  $schemes = _dxpr_theme_get_color_schemes();
+  return $schemes['default'] ?? [];
 }
 
 /**
