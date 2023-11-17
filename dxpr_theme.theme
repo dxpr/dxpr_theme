@@ -205,17 +205,19 @@ function dxpr_theme_preprocess_page(&$variables) {
     // Bootstrap TAILORING.
     'dxpr_theme/bootstrap-3',
     'dxpr_theme/bootstrap-theme',
-  // @todo include only if needed.
+    // @todo include only if needed.
     'dxpr_theme/jquery-ui',
     // DXPR THEME BASE.
     'dxpr_theme/forms',
     'dxpr_theme/layout',
     'dxpr_theme/page-title',
     'dxpr_theme/typography',
-    // DXPR THEME Components  //@todo: include only if needed.
+    // DXPR THEME Components
+    // @todo: include only if needed.
     'dxpr_theme/dxpr-theme-header--side',
     'dxpr_theme/admin',
-    // Overrides   //@todo: include only if needed.
+    // Overrides
+    // @todo: include only if needed.
     'dxpr_theme/drupal-webform',
     'dxpr_theme/dxpr-theme-builder',
     // HELPERS.
