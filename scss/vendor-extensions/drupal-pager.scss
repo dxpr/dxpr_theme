@@ -15,15 +15,15 @@
   .pager__item, li {
     > a,
     > span {
-      color: $text;
+      color: dxpr-color('text');
       background-color: transparent;
-      border-color: $text;
+      border-color: dxpr-color('text');
       padding: 1em 1.4em;
       &:hover,
       &:focus {
-        color: $text;
+        color: dxpr-color('text');
         background-color: transparent;
-        border-color: $text;
+        border-color: dxpr-color('text');
       }
     }
     &:first-child {
@@ -43,9 +43,9 @@
       &,
       &:hover,
       &:focus {
-        color: $text;
+        color: dxpr-color('text');
         background-color: transparent;
-        border-color:  $text;
+        border-color:  dxpr-color('text');
         text-decoration: underline;
       }
     }
@@ -56,8 +56,8 @@
       > a,
       > a:hover,
       > a:focus {
-        color:  $text;
-        background-color: $text;
+        color:  dxpr-color('text');
+        background-color: dxpr-color('text');
         border-color: transparent;
       }
     }
@@ -70,9 +70,9 @@
 
     &.active {
       .page-link  {
-        color: $text;
+        color: dxpr-color('text');
         background-color: transparent;
-        border-color: $text;
+        border-color: dxpr-color('text');
       }
     }
   }
@@ -86,9 +86,9 @@
 
       &.active {
         .page-link  {
-          color: $text;
+          color: dxpr-color('text');
           background-color: transparent;
-          border-color: $text;
+          border-color: dxpr-color('text');
         }
       }
     }
@@ -103,7 +103,7 @@
   li > span {
     display: inline-block;
     background: white;
-    border: 1px solid $text;
+    border: 1px solid dxpr-color('text');
     border-radius: 15px;
     padding: 5px 14px;
     font-style: normal;

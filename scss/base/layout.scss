@@ -9,7 +9,7 @@ html {
 }
 
 body {
-  background: $body-background;
+  background: dxpr-color('body');
   background-size: cover;
   background-attachment: fixed;
   background-position: center center;
@@ -114,22 +114,22 @@ html.js .kenburnimg img {
 
 // FOOTER
 .dxpr-theme-footer {
-  background-color: $footer;
-  color: $footer-text;
-  border-color: $footer-text;
+  background-color: dxpr-color('footer');
+  color: dxpr-color('footertext');
+  border-color: dxpr-color('footertext');
   padding: 0;
   .footer-container {
     padding-top: 15px;
     padding-bottom: 0;
   }
   h1, h2, h3, h4, h5, h6 {
-    color: $footer-text;
+    color: dxpr-color('footertext');
   }
   a {
-    color: $footer-text;
+    color: dxpr-color('footertext');
     &:hover,
     &:focus {
-      color: $footer-text;
+      color: dxpr-color('footertext');
     }
   }
   ul.contact-info {

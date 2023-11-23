@@ -34,6 +34,11 @@ forms:
     theme:
       css/base/forms.css: { minified: true }
 
+variables:
+  css:
+    theme:
+      css/base/variables.css: { minified: true, weight: -30 }
+
 layout:
   css:
     theme:
@@ -158,11 +163,13 @@ admin.themesettings:
   js:
     vendor/bootstrap-switch/bootstrap-switch.min.js: {}
     vendor/bootstrap-slider/bootstrap-slider.min.js: {}
+    vendor/color-wheel/reinvented-color-wheel.min.js: { minified: true }
     js/minified/dxpr-theme-settings.admin.min.js: {}
   css:
     component:
       vendor/bootstrap-switch/bootstrap-switch.min.css: {}
       vendor/bootstrap-slider/bootstrap-slider.min.css: {}
+      vendor/color-wheel/reinvented-color-wheel.min.css: { minified: true}
       css/dxpr-theme.admin.themesettings.css: {}
   dependencies:
     - core/drupal

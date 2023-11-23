@@ -81,8 +81,8 @@ div.lead {
 .btn-primary,
 .btn-group > .btn-primary,
 .html .fake-submit {
-  background: $primary;
-  border-color: $primary;
+  background: dxpr-color('base');
+  border-color: dxpr-color('base');
   color: white;
   a {
     color: white;
@@ -101,8 +101,8 @@ div.lead {
 .btn-primary.active,
 a.bg-primary:hover,
 a.bg-primary:focus {
-  background-color: $accent1;
-  border-color: $accent1;
+  background-color: dxpr-color('accent1');
+  border-color: dxpr-color('accent1');
   color: white;
   a {
     color: white;
@@ -110,7 +110,7 @@ a.bg-primary:focus {
 }
 a.text-primary:hover,
 a.text-primary:focus {
-  color: $accent1;
+  color: dxpr-color('accent1');
 }
 
 
@@ -121,12 +121,12 @@ a.text-primary:focus {
 }
 .text-primary {
   h1, h2, h3, h4, h5, h6, th {
-    color: $accent1 !important;
+    color: dxpr-color('accent1') !important;
   }
 }
 .text-secondary {
   h1, h2, h3, h4, h5, h6, th {
-    color: $accent2 !important;
+    color: dxpr-color('accent2') !important;
   }
 }
 
@@ -134,7 +134,7 @@ a.text-primary:focus {
   > li {
     > a.is-active {
       background-color: #eeeeee;
-      color: $primary;
+      color: dxpr-color('base');
       text-decoration: none;
     }
   }
@@ -159,26 +159,26 @@ a.text-primary:focus {
 }
 
 .card, .jumbotron {
-  background-color: $card;
-  color: $card-text;
+  background-color: dxpr-color('card');
+  color: dxpr-color('cardtext');
   a {
-    color: $card-text;
+    color: dxpr-color('cardtext');
   }
   h1, h2, h3, h4, h5, h6 {
-    color: $card-text;
+    color: dxpr-color('cardtext');
   }
   .nav > li > a {
     .glyphicon {
-      color: $accent1;
+      color: dxpr-color('accent1');
     }
   }
   .nav > li > a:hover,
   .nav > li > a:focus,
   .nav > li > a.is-active {
-    color: $silver;
-    background: $primary;
+    color: dxpr-color('silver');
+    background: dxpr-color('base');
     .glyphicon {
-      color: $silver;
+      color: dxpr-color('silver');
     }
   }
 }
@@ -206,14 +206,14 @@ a.text-primary:focus {
 }
 
 blockquote {
-  border-color: $silver;
+  border-color: dxpr-color('silver');
 }
 blockquote footer, blockquote small, blockquote .small {
   color: inherit;
 }
 
 .img-circle, .img-rounded, .img-thumbnail {
-  border: 3px solid $gray-lighter;
+  border: 3px solid dxpr-color('graylighter');
 }
 
 .center-block {
@@ -227,7 +227,7 @@ blockquote footer, blockquote small, blockquote .small {
 .html .nav-tabs {
   border: none;
   border-radius: 0;
-  border-bottom: 1px solid $gray-lighter;
+  border-bottom: 1px solid dxpr-color('graylighter');
   margin: 0;
   padding: 0;
   > li {
@@ -242,17 +242,17 @@ blockquote footer, blockquote small, blockquote .small {
       padding: 10px 15px;
       background-color: transparent;
       &:hover {
-        color: $gray-lighter;
+        color: dxpr-color('graylighter');
       }
       &.active {
-        color: $primary;
+        color: dxpr-color('base');
         cursor: pointer;
-        border: 1px solid $gray-lighter;
-        border-bottom-color: $body-background;
+        border: 1px solid dxpr-color('graylighter');
+        border-bottom-color: dxpr-color('body');
         background-color: transparent;
         &:hover,
         &:focus {
-          color: $primary;
+          color: dxpr-color('base');
           cursor: default;
           outline: none;
         }
@@ -283,8 +283,8 @@ blockquote footer, blockquote small, blockquote .small {
       padding: 0;
       border: none;
       a {
-        background-color: $header-color;
-        color: $header-text-color;
+        background-color: dxpr-color('header');
+        color: dxpr-color('headertext');
         padding: 8px;
         text-transform: uppercase;
         font-size: 12px;
@@ -304,7 +304,7 @@ blockquote footer, blockquote small, blockquote .small {
         }
       }
       &.active a {
-        color: $primary;
+        color: dxpr-color('base');
       }
     }
   }
@@ -359,7 +359,7 @@ blockquote footer, blockquote small, blockquote .small {
 }
 
 .progress-bar {
-  background-color: $primary;
+  background-color: dxpr-color('base');
   line-height: 4px;
   box-shadow: none;
 }
@@ -368,5 +368,5 @@ blockquote footer, blockquote small, blockquote .small {
 // -------------------------
 
 .bg-light {
-  background-color: $gray-light !important;
+  background-color: dxpr-color('graylight') !important;
 }

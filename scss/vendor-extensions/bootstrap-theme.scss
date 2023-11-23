@@ -96,21 +96,21 @@ html.js {
  * Panel styling.
  */
 .accordion-item {
-  background-color: $header-color;
-  color: $header-text-color;
+  background-color: dxpr-color('header');
+  color: dxpr-color('headertext');
   .accordion-button {
-    background: $header-color;
-    color: $header-text-color;
+    background: dxpr-color('header');
+    color: dxpr-color('headertext');
     &:not(.collapsed) {
-      background: $card;
-      color: $primary;
+      background: dxpr-color('card');
+      color: dxpr-color('base');
     }
   }
   .accordion-body { 
     background-color: transparent;
-    color: $header-text-color;
+    color: dxpr-color('headertext');
     h1,h2,h3,h4,h5,h6,label,.field--label {
-      color: $header-text-color;
+      color: dxpr-color('headertext');
     }
   }
   // .panel-title {
@@ -138,7 +138,7 @@ html.js {
   overflow: hidden;
 }
 .tabledrag-handle {
-  color: $gray-light;
+  color: dxpr-color('graylight');
   cursor: move;
   float: left;
   font-size: 125%;
@@ -146,7 +146,7 @@ html.js {
   margin: -10px 0 0 -10px;
   padding: 10px;
   &:hover, &:focus {
-    color: $primary;
+    color: dxpr-color('base');
   }
 }
 .indentation {
@@ -163,13 +163,13 @@ html.js {
 }
 
 .table.table-striped>tbody>tr:nth-of-type(odd) > * {
-  background: $card;
+  background: dxpr-color('card');
   --bs-table-accent-bg: #eeeeee; // variable does not work after this custom property
-  color: $card-text;
+  color: dxpr-color('cardtext');
 }
 .table.table-hover {
   > tbody > tr:hover {
-    background-color: $page-title-color;
+    background-color: dxpr-color('pagetitle');
   }
 }
 

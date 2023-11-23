@@ -8,7 +8,6 @@ package: DXPR
 
 dependencies:
   - dxpr_theme_helper:dxpr_theme_helper
-  - drupal:color
 
 regions:
   secondary_header: 'Secondary Header'

@@ -38,7 +38,7 @@ blockquote, blockquote p {
 // Typography
 
 body, html {
-  color: $text;
+  color: dxpr-color('text');
   font-size: $font-size-base;
 }
 
@@ -89,16 +89,16 @@ h3.field--label + ul {
     // }
   }
   a {
-    color: $text;
+    color: dxpr-color('text');
   }
 }
 
 a,
 .btn-link,
 .nav-link {
-  color: $primary;
+  color: dxpr-color('base');
   svg {
-    fill: $primary;
+    fill: dxpr-color('base');
   }
 }
 
@@ -117,20 +117,20 @@ a {
 a:hover, a:focus,
 .btn-link:hover, .btn-link:focus  {
   text-decoration: underline;
-  color: $accent1;
+  color: dxpr-color('accent1');
   svg {
-    fill: $accent1;
+    fill: dxpr-color('accent1');
   }
 }
 
 h1, h2, h3, h4, h5, h6, .navbar-brand, th, .nav-tabs > li > a {
-  color: $text-headings;
+  color: dxpr-color('headings');
   a {
-    color: $text-headings;
+    color: dxpr-color('headings');
     &:hover,
     &:focus {
       text-decoration: none;
-      color: $primary;
+      color: dxpr-color('base');
     }
   }
 }
@@ -141,7 +141,7 @@ h1, h2, h3, h4, h5, h6, .navbar-brand, th, .nav-tabs > li > a {
 
 hr {
   height: 0;
-  border-top: 4px solid $card;
+  border-top: 4px solid dxpr-color('card');
   margin-bottom: 20px;
   margin-top: 20px;
 }
@@ -151,17 +151,17 @@ hr {
   margin-bottom: 10px;
 }
 .dxpr-theme-footer hr {
-  border-top-color: $footer-text;
+  border-top-color: dxpr-color('footertext');
 }
 .card hr,
 .jumbotron hr {
-  border-top-color: $card-text; // card text color
+  border-top-color: dxpr-color('cardtext'); // card text color
 }
 
 .submitted {
-  color: $gray-light;
+  color: dxpr-color('graylight');
   a {
-    color: $gray-light;
+    color: dxpr-color('graylight');
     text-decoration: underline;
     &:hover, &:focus {
       text-decoration: none;
@@ -187,8 +187,8 @@ hr {
 
 .region-sidebar-first,
 .region-sidebar-second {
-  color: $gray-light;
+  color: dxpr-color('graylight');
   a {
-    color: $text;
+    color: dxpr-color('text');
   }
 }

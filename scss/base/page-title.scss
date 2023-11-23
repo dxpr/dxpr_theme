@@ -2,11 +2,11 @@
 @import "../includes/variables";
 
 .page-title-full-width-container {
-  background: $page-title-color;
+  background: dxpr-color('pagetitle');
   &#page-title-full-width-container {
-    color: $page-title-text-color;
+    color: dxpr-color('pagetitletext');
     li, a, h1, h2, h3, h4, h5, h6 {
-      color: $page-title-text-color;
+      color: dxpr-color('pagetitletext');
     }
   }
   position: relative;

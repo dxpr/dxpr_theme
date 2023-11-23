@@ -23,14 +23,14 @@
     box-shadow: none;
     border-radius: 3px;
     background: transparent;
-    border: 1px solid $gray-lighter;
+    border: 1px solid dxpr-color('graylighter');
     height: auto;
     padding: 12px;
     line-height: inherit;
     &:focus {
       box-shadow: none;
       outline: none;
-      border-color: $primary;
+      border-color: dxpr-color('base');
     }
   }
   select,

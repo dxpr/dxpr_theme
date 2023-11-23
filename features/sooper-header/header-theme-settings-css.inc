@@ -139,6 +139,14 @@ EOT;
       if (theme_get_setting('header_style') === 'normal') {
         $header_top_scroll_rgba = _dxpr_theme_hex2rgba($color, $opacity);
       }
+
+      // Use css variables if there's no opacity change.
+      if ($header_top_opacity === 1) {
+        $header_top_rgba = 'var(--dxpr-color-header)';
+      }
+      if ($header_top_opacity_scroll === 1) {
+        $header_top_scroll_rgba = 'var(--dxpr-color-header)';
+      }
     }
     $css .= <<<EOT
 

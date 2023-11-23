@@ -5,6 +5,7 @@
  * DXPR Theme settings.
  */
 
+use Drupal\Component\Serialization\Json;
 use Drupal\Core\File\Exception\FileException;
 use Drupal\Core\File\FileSystemInterface;
 use Drupal\node\Entity\NodeType;
@@ -63,14 +64,11 @@ function dxpr_theme_form_system_theme_settings_alter(&$form, &$form_state, $form
     '#weight' => -20,
     '#prefix' => '<h2><small>' . $img . ' ' . $themes[$subject_theme]->info['name'] . ' ' . $version . ' <span class="small">(' . $themes['bootstrap5']->info['name'] . ' base theme ' . $themes['bootstrap5']->info['version'] . ')</span>' . '</small></h2>',
   ];
-  // $form['color']['#group'] = 'dxpr_theme_settings';
+
   if (!empty($form['update'])) {
     $form['update']['#group'] = 'global';
   }
-  if (!empty($form['color'])) {
-    $form['color']['#group'] = 'dxpr_theme_settings';
-    $form['color']['#title'] = t('Colors');
-  }
+
   $form['core_theme_settings'] = [
     '#type' => 'vertical_tabs',
     '#weight' => -20,
@@ -112,12 +110,6 @@ function dxpr_theme_form_system_theme_settings_alter(&$form, &$form_state, $form
     }
   }
   $form['#attached']['library'][] = 'dxpr_theme/admin.themesettings';
-
-  if ((\Drupal::moduleHandler()->moduleExists('color')) && ($palette = color_get_palette($subject_theme))) {
-    // dxpr_themeSetting vs dxpr_theme namespace otherwise
-    // if deletes other .dxpr_theme data.
-    $form['#attached']['drupalSettings']['dxpr_themeSettings'] = ['palette' => $palette];
-  }
 
   array_unshift($form['#submit'], 'dxpr_theme_form_system_theme_settings_submit');
   array_unshift($form['#validate'], 'dxpr_theme_form_system_theme_settings_validate');
@@ -195,6 +187,20 @@ function dxpr_theme_form_system_theme_settings_validate(&$form, &$form_state) {
       }
     }
   }
+
+  // Handle custom color validation.
+  // Only accepts valid hex color values.
+  foreach ($form_state->getValues() as $key => $value) {
+    if (strpos($key, 'color_palette_') === 0) {
+      if (!preg_match('/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/', $value)) {
+        $color_names = _dxpr_theme_get_color_names();
+        $form_state->setErrorByName($key, t('The %name field contains an invalid color value.', [
+          '%name' => $color_names[str_replace('color_palette_', '', $key)] ?? t('Unknown'),
+        ]));
+      }
+    }
+  }
+
 }
 
 /**
@@ -254,33 +260,76 @@ function dxpr_theme_form_system_theme_settings_submit(&$form, &$form_state) {
     $path = _dxpr_theme_validate_path($form_state->getValue('background_image_path'));
     $form_state->setValue('background_image_path', $path);
   }
+
+  // Handle color palette values.
+  $color_palette = [];
+  foreach ($form_state->getValues() as $key => $value) {
+    if (strpos($key, 'color_palette_') === 0) {
+      $hex = preg_match('/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/', $value) ? $value : '';
+      $color_palette[str_replace('color_palette_', '', $key)] = $hex;
+    }
+  }
+
+  $form_state->setValue('color_palette', serialize($color_palette));
 }
 
 /**
- * Retrieves the Color module information for a particular theme.
+ * Returns data from the color-settings.json file.
+ *
+ * @param string|null $key
+ *   Key index in color.inc $info array.
+ *
+ * @return array
+ *   Array containing requested data.
  */
-function _dxpr_theme_get_color_names($theme = NULL) {
-  static $theme_info = [];
-  if (!isset($theme)) {
-    $theme = \Drupal::config('system.theme');
+function _dxpr_theme_get_color_inc(string $key = NULL): array {
+  $path = \Drupal::service('extension.list.theme')->getPath('dxpr_theme');
+  $filepath = sprintf('%s/%s/features/sooper-colors/color-settings.json', DRUPAL_ROOT, $path);
+
+  if ($path && file_exists($filepath)) {
+    $json = file_get_contents($filepath);
+    $settings = Json::decode($json);
+
+    if ($settings) {
+      $data = $key ? ($settings[$key] ?? []) : $settings;
+    }
   }
 
-  if (isset($theme_info[$theme])) {
-    return $theme_info[$theme];
-  }
+  return $data ?? [];
+}
 
-  $path = \Drupal::service('extension.list.theme')->getPath($theme);
-  $file = DRUPAL_ROOT . '/' . $path . '/color/color.inc';
-  if ($path && file_exists($file)) {
-    include $file;
-    // phpcs:disable
-    $theme_info[$theme] = $info['fields']; // @phpstan-ignore-line
-    return $info['fields']; // @phpstan-ignore-line
-    // phpcs:enable
-  }
-  else {
-    return [];
-  }
+/**
+ * Returns the color field keys.
+ *
+ * @return array
+ *   The 'fields' sub-array.
+ */
+function _dxpr_theme_get_color_names(): array {
+  return _dxpr_theme_get_color_inc('fields');
+}
+
+/**
+ * Returns the color schemes.
+ *
+ * @return array
+ *   The 'schemes' sub-array.
+ */
+function _dxpr_theme_get_color_schemes(): array {
+  return _dxpr_theme_get_color_inc('schemes');
+}
+
+/**
+ * Returns the specified color scheme, defaults to 'default'.
+ *
+ * @param string $scheme
+ *   The color scheme machine name.
+ *
+ * @return array
+ *   The specified color scheme indexed by color machine names.
+ */
+function _dxpr_theme_get_color_scheme(string $scheme = 'default'): array {
+  $schemes = _dxpr_theme_get_color_schemes();
+  return $schemes['default'] ?? [];
 }
 
 /**

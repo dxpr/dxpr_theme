@@ -9,7 +9,6 @@ module.exports = function(grunt) {
       },
       dist: {
         files: {
-          'js/minified/color.min.js': 'js/dist/color.js',
           'js/minified/dxpr-theme-breadcrumbs.min.js': 'js/dist/dxpr-theme-breadcrumbs.js',
           'js/minified/dxpr-theme-full-screen-search.min.js': 'js/dist/dxpr-theme-full-screen-search.js',
           'js/minified/dxpr-theme-header.min.js': 'js/dist/dxpr-theme-header.js',
@@ -25,7 +24,6 @@ module.exports = function(grunt) {
       main: {
         files: {
           'js/minified/classie.min.js': ['vendor/classie.js'],
-          'js/minified/color.min.js': ['js/minified/color.min.js'],
           'js/minified/dxpr-theme-breadcrumbs.min.js': ['js/minified/dxpr-theme-breadcrumbs.min.js'],
           'js/minified/dxpr-theme-full-screen-search.min.js': ['js/minified/dxpr-theme-full-screen-search.min.js'],
           'js/minified/dxpr-theme-header.min.js': ['js/minified/dxpr-theme-header.min.js'],

@@ -7,7 +7,7 @@
 
 .comment {
   clear: both;
-  border: 3px solid $gray-lighter;
+  border: 3px solid dxpr-color('graylighter');
   padding: 25px;
   margin-bottom: 25px*1.618;
   .user-picture a {
@@ -29,7 +29,7 @@
   }
   .indented {
     padding-left: 74px;
-    border-left: 1px solid $gray-lighter;
+    border-left: 1px solid dxpr-color('graylighter');
     margin-top: -25px;
   }
   h3 {
@@ -55,7 +55,7 @@
   }
   .comment,
   #comment-form {
-    border: 3px solid $gray-lighter;
+    border: 3px solid dxpr-color('graylighter');
     padding: 25px;
     margin-bottom: 25px*1.618;
   }
@@ -68,9 +68,9 @@
       padding-right: 5px;
     }
     a {
-      color: $text;
+      color: dxpr-color('text');
       &:hover {
-        color: $text;
+        color: dxpr-color('text');
       }
     }
   }
