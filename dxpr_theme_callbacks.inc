@@ -5,6 +5,7 @@
  * DXPR Theme helper functions.
  */
 
+use Drupal\Component\Serialization\Json;
 use Drupal\Core\File\FileSystemInterface;
 
 /**
@@ -49,7 +50,23 @@ function dxpr_theme_css_cache_build(string $theme) {
 
   $palette = unserialize((theme_get_setting('color_palette', $theme) ?? ''), [
     'allowed_classes' => FALSE,
-  ]) ?: _dxpr_theme_get_color_scheme();
+  ]) ?: NULL;
+
+  // Fetch default palette.
+  if (empty($palette)) {
+    $path = \Drupal::service('extension.list.theme')->getPath('dxpr_theme');
+    $filepath = sprintf('%s/%s/features/sooper-colors/color-settings.json', DRUPAL_ROOT, $path);
+
+    if ($path && file_exists($filepath)) {
+      $json = file_get_contents($filepath);
+      $settings = Json::decode($json);
+      $palette = $settings['schemes']['default']['colors'] ?? [];
+    }
+
+    if (empty($palette)) {
+      \Drupal::messenger()->addWarning(t('Could not create theme styles; please resave theme settings.'));
+    }
+  }
 
   // Construct CSS file:
   $css = '';
