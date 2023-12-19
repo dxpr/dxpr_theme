@@ -773,10 +773,6 @@
           ).css("text-transform", "none");
         }
       });
-      $("#edit-headings-bold").click(function () {
-        $(".type-preview h1, .type-preview h2, .type-preview h3, .type-preview h4")
-          .css("font-weight", $(this).prop("checked") ? "bold" : "");
-      });
 
       let value = "";
       // BLOCK DESIGN LIVE PREVIEW
