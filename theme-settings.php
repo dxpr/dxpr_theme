@@ -353,6 +353,51 @@ function _dxpr_theme_color_options($theme) {
 }
 
 /**
+ * Returns a settings value.
+ *
+ * @param string $key
+ *   Key index in color.inc $info array.
+ *
+ * @return mixed
+ *   Value for the given setting.
+ */
+function _dxpr_theme_get_const(string $key): mixed {
+  $settings = &drupal_static(__FUNCTION__, []);
+
+  if (empty($settings)) {
+    $path = \Drupal::service('extension.list.theme')->getPath('dxpr_theme');
+    $filepath = sprintf('%s/%s/features/sooper-settings/theme-settings.json', DRUPAL_ROOT, $path);
+
+    if ($path && file_exists($filepath)) {
+      $json = file_get_contents($filepath);
+      $settings = Json::decode($json);
+    }
+  }
+
+  return $settings[$key] ?? NULL;
+}
+
+/**
+ * Adds the specified theme setting as a css variable for give property.
+ *
+ * @param string $setting
+ *   Theme setting machine name.
+ * @param string $property
+ *   CSS property to add.
+ *
+ * @return false|string
+ *   CSS formatted property and value for given setting, or FALSE.
+ */
+function _dxpr_theme_settings_add_css(string $setting, string $property): bool|string {
+  if (theme_get_setting($setting)) {
+    $css_var = str_replace('_', '-', $setting);
+    $prefix = _dxpr_theme_get_const('cssSettingPrefix');
+    return sprintf("  %s: var(%s%s);\n", $property, $prefix, $css_var);
+  }
+  return FALSE;
+}
+
+/**
  * Get available node bundles.
  *
  * @return array
