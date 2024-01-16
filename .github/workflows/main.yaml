@@ -20,7 +20,7 @@ jobs:
 
     - name: Lint Drupal
       run: |
-        TARGET_DRUPAL_CORE_VERSION=$TARGET_DRUPAL_CORE_VERSION docker-compose run --rm drupal-lint
+        TARGET_DRUPAL_CORE_VERSION=$TARGET_DRUPAL_CORE_VERSION docker compose run --rm drupal-lint
 
   drupal-check:
     runs-on: ubuntu-latest
@@ -30,7 +30,7 @@ jobs:
 
     - name: Drupal Deprecations and Analysis Check
       run: |
-        docker-compose run --rm drupal-check
+        docker compose run --rm drupal-check
     env:
       DRUPAL_RECOMMENDED_PROJECT: ${{ secrets.DRUPAL_RECOMMENDED_PROJECT }}
 
@@ -42,7 +42,7 @@ jobs:
 
     - name: Lint with eslint
       run: |
-        REPORT_ENABLED=true docker-compose run --rm eslint
+        REPORT_ENABLED=true docker compose run --rm eslint
 
     - name: Archive eslint html report
       uses: actions/upload-artifact@v1
@@ -58,7 +58,7 @@ jobs:
 
     - name: Build artifacts
       run: |
-        docker-compose run --rm dev
+        docker compose run --rm dev
 
         BRANCH_NAME=$(echo ${GITHUB_REF} | sed -e "s/refs\/heads\///g")
         echo "BRANCH_NAME=$BRANCH_NAME" >> $GITHUB_ENV
