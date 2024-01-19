@@ -15,86 +15,62 @@
  * @param array $palette
  *   Theme palette array.
  */
-function fonts_theme_settings_css($theme, &$css, array $palette) {
-  if (
-    theme_get_setting('headings_font_face', $theme)
-    || theme_get_setting('body_font_face', $theme)
-    || theme_get_setting('nav_font_face', $theme)
-    || theme_get_setting('sitename_font_face', $theme)) {
+function fonts_theme_settings_css(string $theme, &$css, array $palette) {
 
-    $font = theme_get_setting('body_font_face', $theme);
-    $style = (strpos($font, 'italic')) ? 'italic' : 'normal';
-    $weight = (preg_match('/[0-9]{3}/', $font, $matches)) ? $matches[0] : '400';
-    $font = _dxpr_theme_get_font($font, $theme);
-    $selector = theme_get_setting('body_font_face_selector', $theme);
-    $css .= <<<EOT
+  // Font theme settings keys.
+  $fonts = [
+    'body_font_face',
+    'nav_font_face',
+    'headings_font_face',
+    'sitename_font_face',
+    'blockquote_font_face',
+  ];
 
-$selector, .toooltip {
-  font-family: $font;
-  font-weight: $weight;
-  font-style: $style;
-}
+  foreach ($fonts as $font_key) {
+    if ($font = theme_get_setting($font_key, $theme)) {
+      $style = _dxpr_theme_font_get_style($font);
+      $weight = _dxpr_theme_font_get_weight($font);
+      $selector = theme_get_setting($font_key . '_selector', $theme);
 
-EOT;
-    $font = theme_get_setting('headings_font_face', $theme);
-    $style = (strpos($font, 'italic')) ? 'italic' : 'normal';
-    $weight = (preg_match('/[0-9]{3}/', $font, $matches)) ? $matches[0] : '400';
-    $font = _dxpr_theme_get_font($font, $theme);
-    $selector = theme_get_setting('headings_font_face_selector', $theme);
-    $css .= <<<EOT
+      // Add additional selector for the body font.
+      if ($font_key === 'body_font_face') {
+        $selector .= ', .tooltip';
+      }
 
-$selector {
-  font-family: $font;
-  font-weight: $weight;
-  font-style: $style;
-}
-
-EOT;
-    $font = theme_get_setting('nav_font_face', $theme);
-    $style = (strpos($font, 'italic')) ? 'italic' : 'normal';
-    $weight = (preg_match('/[0-9]{3}/', $font, $matches)) ? $matches[0] : '400';
-    $font = _dxpr_theme_get_font($font, $theme);
-    $selector = theme_get_setting('nav_font_face_selector', $theme);
-    $css .= <<<EOT
-
-$selector {
-  font-family: $font;
-  font-weight: $weight;
-  font-style: $style;
-}
-
-EOT;
-    $font = theme_get_setting('sitename_font_face', $theme);
-    $style = (strpos($font, 'italic')) ? 'italic' : 'normal';
-    $weight = (preg_match('/[0-9]{3}/', $font, $matches)) ? $matches[0] : '400';
-    $font = _dxpr_theme_get_font($font, $theme);
-    $selector = theme_get_setting('sitename_font_face_selector', $theme);
-    $css .= <<<EOT
-
-$selector {
-  font-family: $font;
-  font-weight: $weight;
-  font-style: $style;
-}
-
-EOT;
-    $font = theme_get_setting('blockquote_font_face', $theme);
-    $style = (strpos($font, 'italic')) ? 'italic' : 'normal';
-    $weight = (preg_match('/[0-9]{3}/', $font, $matches)) ? $matches[0] : '400';
-    $font = _dxpr_theme_get_font($font, $theme);
-    $selector = theme_get_setting('blockquote_font_face_selector', $theme);
-    $css .= <<<EOT
-
-$selector {
-  font-family: $font;
-  font-weight: $weight;
-  font-style: $style;
-}
-
-
-EOT;
-
+      $css .= "/* " . str_replace('_', ' ', $font_key) . " */\n";
+      $css .= $selector . " {\n";
+      $css .= _dxpr_theme_settings_add_css($font_key, 'font-family');
+      $css .= "  font-style: $style;\n";
+      $css .= "  font-weight: $weight;\n";
+      $css .= "}\n\n";
+    }
   }
+}
+
+/**
+ * Helper function for getting font style from font theme setting.
+ *
+ * @param string $font
+ *   Theme setting font value.
+ *
+ * @return string
+ *   Font style value.
+ */
+function _dxpr_theme_font_get_style($font): string {
+  return (strpos($font, 'italic')) ? 'italic' : 'normal';
+}
+
+/**
+ * Helper function for getting font weight form font theme setting.
+ *
+ * @param string $font
+ *   Theme setting font value.
+ *
+ * @return string
+ *   Font weight value.
+ */
+function _dxpr_theme_font_get_weight($font): string {
+  return (preg_match('/[0-9]{3}/', $font, $matches)) ? $matches[0] : '400';
 }
 
 /**

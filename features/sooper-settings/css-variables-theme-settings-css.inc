@@ -155,7 +155,6 @@ function _dxpr_theme_get_css_settings(): array {
   return [
     'background_image_attachment' => [],
     'background_image_position' => [],
-    'background_image_style' => [],
     'block_background' => [],
     'block_border' => ['suffix' => 'px'],
     'block_border_color' => [],
