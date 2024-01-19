@@ -378,7 +378,7 @@ function _dxpr_theme_get_const(string $key): mixed {
 }
 
 /**
- * Adds the specified theme setting as a css variable for give property.
+ * Adds the specified theme setting as a css variable for given property.
  *
  * @param string $setting
  *   Theme setting machine name.
@@ -389,12 +389,30 @@ function _dxpr_theme_get_const(string $key): mixed {
  *   CSS formatted property and value for given setting, or FALSE.
  */
 function _dxpr_theme_settings_add_css(string $setting, string $property): bool|string {
+  if ($css_var = _dxpr_theme_setting_get_css_var($setting)) {
+    return sprintf("  %s: %s;\n", $property, $css_var);
+  }
+  return FALSE;
+}
+
+/**
+ * Returns the CSS variable corresponding to given theme setting.
+ *
+ * Note that this only works for theme settings and not colors.
+ *
+ * @param string $setting
+ *   Theme setting machine name.
+ *
+ * @return string
+ *   CSS variable, e.g. "var(--prefix-name)".
+ */
+function _dxpr_theme_setting_get_css_var(string $setting): string {
   if (theme_get_setting($setting)) {
     $css_var = str_replace('_', '-', $setting);
     $prefix = _dxpr_theme_get_const('cssSettingPrefix');
-    return sprintf("  %s: var(%s%s);\n", $property, $prefix, $css_var);
+    return sprintf("var(%s%s)", $prefix, $css_var);
   }
-  return FALSE;
+  return '';
 }
 
 /**
