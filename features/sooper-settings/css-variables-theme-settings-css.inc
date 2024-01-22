@@ -74,7 +74,7 @@ function _dxpr_theme_is_css_variable(string $key): bool {
  * @return string
  *   A value suitable for use as a CSS variable value.
  */
-function _dxpr_theme_massage_values(string $key, mixed $value, string $theme, array $submitted): string {
+function _dxpr_theme_massage_values(string $key, $value, string $theme, array $submitted): string {
   $prefix = $suffix = '';
   $settings = _dxpr_theme_get_css_settings();
 
