@@ -33,7 +33,7 @@ html.html--dxpr-theme-nav-mobile--open {
       .wrap-branding {
         display: table;
         float:left;
-        height: 60px;
+        height: var(--dxpr-setting-header-mobile-height);
         .logo,
         .navbar-brand {
           display: table-cell;
@@ -41,12 +41,15 @@ html.html--dxpr-theme-nav-mobile--open {
         }
       }
     }
+    .navbar-toggle {
+      height: var(--dxpr-setting-header-mobile-height);
+    }
     .block {
       padding: 20px;
     }
     .block-dxpr-theme-helper {
-      height: 60px;
-      line-height: 60px;
+      height: var(--dxpr-setting-header-mobile-height);
+      line-height: var(--dxpr-setting-header-mobile-height);
     }
     .navbar-left,.navbar-right {
         float: none !important;

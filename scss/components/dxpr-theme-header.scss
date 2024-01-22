@@ -12,6 +12,10 @@
     position: relative;
     z-index: 405;
   }
+
+  .nav-child-fixed-width {
+    top: var(--dxpr-setting-header-top-height);
+  }
 }
 .navbar.container, .navbar.container-fluid {
   margin-top: 0;
@@ -166,6 +170,12 @@
   }
 }
 
+/* Header Styles */
+#dxpr-theme-main-menu, /* N/A */
+#dxpr-theme-main-menu .menu__breadcrumbs,
+#dxpr-theme-main-menu .menu__level {
+  text-align: var(--dxpr-setting-header-side-align);
+}
 
 // MENU BORDER HOVER EFFECT
 #navbar.dxpr-theme-header--hover-background .menu {

@@ -33,6 +33,7 @@ blockquote, blockquote p {
   font-family: "Source Sans Pro Light Italic", "Source Sans Pro";
   font-weight: 300;
   font-style: italic;
+  font-size: var(--dxpr-setting-blockquote-font-face);
 }
 
 // Typography
@@ -43,24 +44,28 @@ body, html {
 }
 
 body, p, .lead {
-  line-height: 1.6;
+  line-height:  var(--dxpr-setting-body-line-height);
 }
 
 h1, h2, h3, h4, h5, h6 {
-  margin-top: 0;
+  font-weight: var(--dxpr-setting-headings-bold);
+  letter-spacing: var(--dxpr-setting-headings-letter-spacing);
+  line-height: var(--dxpr-setting-headings-line-height);
   margin-bottom: 10px;
+  margin-top: 0;
+  text-transform: var(--dxpr-setting-headings-uppercase);
 }
 h1 {
-  font-size: $font-size-h1;
+  font-size: var(--dxpr-setting-h1-font-size)
 }
 h2 {
-  font-size: $font-size-h2;
+  font-size: var(--dxpr-setting-h2-font-size)
 }
 h3, .block-title {
-  font-size: $font-size-h3;
+  font-size: var(--dxpr-setting-h3-font-size)
 }
 h4 {
-  font-size: $font-size-h4;
+  font-size: var(--dxpr-setting-h4-font-size)
 }
 h5 {
   font-size: $font-size-h5;
@@ -144,6 +149,9 @@ hr {
   border-top: 4px solid dxpr-color('card');
   margin-bottom: 20px;
   margin-top: 20px;
+  border-top-width: var(--dxpr-setting-divider-thickness);
+  background-color: var(--dxpr-setting-divider-color);
+  width: var(--dxpr-setting-divider-length);
 }
 .region-sidebar-first hr,
 .region-sidebar-second hr {
@@ -190,5 +198,18 @@ hr {
   color: dxpr-color('graylight');
   a {
     color: dxpr-color('text');
+  }
+}
+
+@media screen and (max-width: 768px) {
+  body, p {
+    font-size:  var(--dxpr-setting-body-mobile-font-size);
+  }
+  h1 { font-size: var(--dxpr-setting-h1-mobile-font-size) }
+  h2 { font-size: var(--dxpr-setting-h2-mobile-font-size) }
+  h3 { font-size: var(--dxpr-setting-h3-mobile-font-size) }
+  h4 { font-size: var(--dxpr-setting-h4-mobile-font-size) }
+  blockquote, .blockquote p {
+    font-size: var(--dxpr-setting-blockquote-mobile-font-size);
   }
 }

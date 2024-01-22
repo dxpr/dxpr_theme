@@ -85,7 +85,7 @@
   }
 
   .dxpr-theme-util-gutter-bottom {
-    margin-bottom: 30px;
+    margin-bottom: var(--dxpr-setting-gutter-vertical);
   }
 
   @media (max-width: 768px) {
@@ -139,7 +139,7 @@
       z-index: -1;
     }
   }
-  
+
   .YTPOverlay { opacity: 0.9; }
   .dxpr-theme-util-overlay-primary:after,.dxpr-theme-util-overlay-primary .YTPOverlay { background-color: dxpr-color('base'); }
   .dxpr-theme-util-overlay-accent1:after,.dxpr-theme-util-overlay-accent1 .YTPOverlay { background-color: dxpr-color('accent1'); }
