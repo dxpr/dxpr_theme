@@ -130,14 +130,14 @@ function _dxpr_theme_get_const(string $key): mixed {
  * @param string $property
  *   CSS property to add.
  *
- * @return false|string
+ * @return string
  *   CSS formatted property and value for given setting, or FALSE.
  */
-function _dxpr_theme_settings_add_css(string $setting, string $property): bool|string {
+function _dxpr_theme_settings_add_css(string $setting, string $property): string {
   if ($css_var = _dxpr_theme_setting_get_css_var($setting)) {
     return sprintf("  %s: %s;\n", $property, $css_var);
   }
-  return FALSE;
+  return '';
 }
 
 /**
