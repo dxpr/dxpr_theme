@@ -106,7 +106,7 @@ function dxpr_theme_css_cache_build(string $theme) {
  * @return mixed
  *   Value for the given setting.
  */
-function _dxpr_theme_get_const(string $key): mixed {
+function _dxpr_theme_get_const(string $key) {
   $settings = &drupal_static(__FUNCTION__, []);
 
   if (empty($settings)) {
