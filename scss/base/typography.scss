@@ -150,7 +150,7 @@ hr {
   margin-bottom: 20px;
   margin-top: 20px;
   border-top-width: var(--dxpr-setting-divider-thickness);
-  background-color: var(--dxpr-setting-divider-color);
+  border-top-color: var(--dxpr-setting-divider-color);
   width: var(--dxpr-setting-divider-length);
 }
 .region-sidebar-first hr,
