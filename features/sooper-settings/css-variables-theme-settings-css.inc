@@ -107,7 +107,7 @@ function _dxpr_theme_massage_values(string $key, $value, string $theme, array $s
     case 'divider_length':
       if (empty($value)) {
         $value = 100;
-        $s = '%'; // Override px value.
+        $s = '%';
       }
       break;
 
