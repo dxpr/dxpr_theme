@@ -86,7 +86,7 @@ services:
       - qa-demo
 
   # to watch and build files, use:
-  # DEV_WATCH=true docker-compose up -d dev && docker-compose logs -f dev
+  # DEV_WATCH=true docker compose up -d dev && docker compose logs -f dev
   dev:
     image: ${NODE_IMAGE:-node:14}
     profiles: ["lint"]

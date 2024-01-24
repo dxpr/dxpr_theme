@@ -8,20 +8,20 @@ source "${BASH_SOURCE%/*}/qa-demo.cleanup.sh"
 source .env
 
 ### Enforce building the grunt images.
-docker-compose \
+docker compose \
   -f docker-compose.yml \
   -f docker-compose.dev.yml \
   build dxpr-theme-grunt
 
 ### Run with latest dxpr theme.
-docker-compose \
+docker compose \
   -f docker-compose.yml \
   -f docker-compose.dev.yml \
   --profile qa-demo \
   up -d
 
 ### Follow logs.
-docker-compose \
+docker compose \
   -f docker-compose.yml \
   -f docker-compose.dev.yml \
-  logs -f
+  logs -f ${SERVICES_WATCH_LIST:-dxpr-builder-grunt}
