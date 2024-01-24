@@ -105,6 +105,14 @@ function _dxpr_theme_massage_values(string $key, $value, string $theme, array $s
       $value = !empty($value) ? 'inline-block' : 'block';
       break;
 
+    // Divider; 0 = full width.
+    case 'divider_length':
+      if (empty($value)) {
+        $value = 100;
+        $s = '%'; // Override px value.
+      }
+      break;
+
     // Handle Font settings.
     case 'body_font_face':
     case 'blockquote_font_face':
