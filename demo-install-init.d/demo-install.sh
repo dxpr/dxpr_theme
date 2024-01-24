@@ -21,7 +21,7 @@ if [[ "$PHP_TAG" =~ .*"8.0".* ]]; then
 fi
 
 # Install the enterprise package
-composer require dxpr/dxpr_builder_e
+composer require 'dxpr/dxpr_builder_e:0.0.2'
 
 # Create the settings.php file
 chmod 755 docroot/sites/default/
@@ -54,7 +54,7 @@ drush site-install lightning_dxpr lightning_dxpr_demo_select.demo_select=$DXPR_D
 # Allow accessing website assets
 chmod -R 777 docroot/sites/default/files
 
-drush -y config-set --input-format=yaml dxpr_builder.settings json_web_token eyJhbGciOiJQUzI1NiIsImtpZCI6IjR6RGRXS1pGNGRfbXprcVVMc2tYb3ItcE96bGRITFN0WGI1Q1pUX3d4UnMifQ.eyJpc3MiOiJodHRwczpcL1wvZHhwci5jb20iLCJzdWIiOiIyMDYzNiIsImF1ZCI6Imh0dHBzOlwvXC9wYWNrYWdlcy5keHByLmNvbSIsInNjb3BlIjoiZHhwclwvZHhwcl9idWlsZGVyIiwiZHhwcl90aWVyIjoiZW50ZXJwcmlzZSIsImp0aSI6IjgxYjZlNGNkMWFiMDIxZjRlZmExZDcwZDJiM2MyNWUzYjJlMjZiMTc5NjRlODRjMWM5OTY1M2UxN2FmNzVjNzQifQ.XnigBuLA24dbACFUhYGUSxFWYnt2ukiWM23T0b-Ig_mZKZQEBJeBbcFMJ2DjtH5G2Ape6fXS4fw8xDjBCTkaghEos-S8r_LcoZA27RiqTZz61w2235vvGNqtkR5uBY1awED4BLV5Zq26FRVa6A6ifgQd_coAxGZeuWG7KaVe8S9_7QECAtmBOr28KGxvZe4BHJDrd60XcljyPRHe1uLPfdSgmVeeLyWV6Oc2PQw0eHWuMg764s9hApmDkrwgKY4IA4u5yJn0cTF9Lel_rHTseXEHl-tnJZFngareR6W9hCbwlqNemvXoi7KGASpm56B4mimWhjzKLfEHH9uDsdxMbPyYGbq_5SO05qMnjNOTlqPF9a8qBBKMtWKzaEcSxDnJN0He6Rjm0JT3tMwtcd09r3hbAeDn3fTc42VO9Ykf6bo8ViH8QR85sHp0TZuGWn5NMQiT9p1YFGPay1k_Wn7YdD0NxnOydkVgG27DBN8DPK0BvKvuze1KHySNJSzcu0t7pdG8gnBML6QUfwo7L7POE6ZyqkpaKgz4qD2I8zo-gJn1omXGhOH2vuvPxS53CVErWwjsQPhAVhT6C6yzFkfIpJRGR73_-hr35eSKBzIS19_OpWUW-G56wu1Oi85FPaeFYBx87pgULarF34rnYGQXxlm1xi-ifGnCx_xWHoxy3bI
+drush -y config-set --input-format=yaml dxpr_builder.settings json_web_token eyJhbGciOiJQUzI1NiIsImtpZCI6IjR6RGRXS1pGNGRfbXprcVVMc2tYb3ItcE96bGRITFN0WGI1Q1pUX3d4UnMifQ.eyJpc3MiOiJodHRwczpcL1wvZHhwci5jb20iLCJzdWIiOiIyMDAyNiIsImF1ZCI6Imh0dHBzOlwvXC9wYWNrYWdlcy5keHByLmNvbSIsInNjb3BlIjoiZHhwclwvZHhwcl9idWlsZGVyIiwiZHhwcl90aWVyIjoiYnVzaW5lc3MiLCJqdGkiOiIyZWU5NTAxZTMxMzc3NDIzOTAyNzMxMTdmZTFmZWIxMTUzOTA5NjEzMDJmZmQxY2U5YjIwMjBjZWM5YjUzNTIwIn0.BXnpSvUCeJl-yBIEpNkncAmTRgm-I9GD0bq0Tu_bH1cXGSNScmLLKEPxA5sndY4VKjQiKg9IN_sUuXZ1Xn3N3NC4ABofYkhOWCYzObh9MOleSGa-AuqYuig4ZAZNJSg-98Q1ULX98hVUSl1EcJx266EDF7cf49cC_AOmq7j9nKLDdaWvXydtTh6p6pYiXaeazw5rqYVnX7IKw9g2IJQ2PI79NjFPLgjtR-sUgEfDP72oaMbOPjBhrwPsmjFWWX2Gh8denebcDJuDGDC3LlGwHDVJ5yY0QCxShBHp_CS0LTkBZPNeubRlaoFhSQ0_R-NS_GDKQN1EYgKCc5tjfabzSb5IRd2vq0FwzyEaacIzpsPrV86KvOPWWm3YNHUGmtC241y5SSyl88DmUL4AppbFV9lL871DGsEBkdmJuN-VxTw3y0aM4-9h-_iBtsZXK9mxshGm3lIgi6BXfsG4nsQJmDt9lQ6jOwYQ87Vm_m73JIhtG3oypnXGw50DTKHCf6meXzcto4pympnV_M9kT-EfSZCAUHNttAI-jlf0KOkkoGZuVOCEDlXhZvPp19LsmDwN6jvKKcMX7MKMggdphbwIaJAGYhPPOaDy4uRQ7wKMg67Z4MSmW_7PnTOAMZ3OcrQGywaHhr7l8BYR8Z6dilBBZlk08EG4C4UK53vxuan9nh4
 
 ### Enable the DXPR analytics
 if [ "$DXPR_RECORD_ANALYTICS" = true ] ; then
@@ -63,6 +63,15 @@ if [ "$DXPR_RECORD_ANALYTICS" = true ] ; then
 else
   echo "Disabling DXPR analytics..."
   drush -y config-set --input-format=yaml dxpr_builder.settings record_analytics false
+fi
+
+### Enable the DXPR analytics
+if [ "$DXPR_HIDE_REMINDERS" = true ] ; then
+  echo "Enabling DXPR Hide Reminders..."
+  drush -y config-set --input-format=yaml dxpr_builder.settings hide_reminders true
+else
+  echo "Disabling DXPR Hide Reminders..."
+  drush -y config-set --input-format=yaml dxpr_builder.settings hide_reminders false
 fi
 
 ### Disable the DXPR notifications
@@ -74,8 +83,11 @@ else
   drush -y config-set --input-format=yaml dxpr_builder.settings notifications false
 fi
 
+### Enable system messages so we fail visual tests on warnings.errors
+drush config-set system.logging error_level verbose
+
 # Load editor assets from local (minified) files.
-drush -y config-set --input-format=yaml dxpr_builder.settings editor_assets_source 1
+drush -y config-set --input-format=yaml dxpr_builder.settings editor_assets_source 2
 drush cr
 
 # Remove the DXPR access token from the container composer config for security
