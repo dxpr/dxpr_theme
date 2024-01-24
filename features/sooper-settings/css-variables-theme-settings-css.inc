@@ -30,9 +30,7 @@ function css_variables_theme_settings_css(string $theme, string &$css) {
   $css_variables = [];
   foreach ($theme_settings as $k => $v) {
     if (_dxpr_theme_is_css_variable($k)) {
-      $v = trim($v);
-
-      if ($v && $value = _dxpr_theme_massage_values($k, $v, $theme, $theme_settings)) {
+      if ($value = _dxpr_theme_massage_values($k, $v, $theme, $theme_settings)) {
         $var_name = str_replace('_', '-', $k);
         $prefix = _dxpr_theme_get_const('cssSettingPrefix');
         $css_variables[] = '  ' . $prefix . $var_name . ': ' . $value;
