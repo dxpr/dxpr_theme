@@ -244,7 +244,7 @@ $schemes: (
   --dxpr-setting-block-divider-thickness: 4px;
   --dxpr-setting-block-padding: 0px;
   --dxpr-setting-blockquote-font-face: "Source Sans Pro Light Italic", "Source Sans Pro";
-  --dxpr-setting-blockquote-font-size: 21px;
+  --dxpr-setting-blockquote-font-size: 20px;
   --dxpr-setting-blockquote-line-height: 1.5;
   --dxpr-setting-blockquote-mobile-font-size: 18px;
   --dxpr-setting-body-font-face: "Source Sans Pro";
@@ -253,7 +253,7 @@ $schemes: (
   --dxpr-setting-body-mobile-font-size: 14px;
   --dxpr-setting-box-max-width: 1580px;
   --dxpr-setting-boxed-layout-boxbg: #ffffff;
-  --dxpr-setting-divider-color: inherit;
+  --dxpr-setting-divider-color: var(--dxpr-color-card);
   --dxpr-setting-divider-length: 100%;
   --dxpr-setting-divider-thickness: 4px;
   --dxpr-setting-dropdown-background: var(--dxpr-color-header);
