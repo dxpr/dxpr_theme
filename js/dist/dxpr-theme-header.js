@@ -121,12 +121,17 @@
     !$(".dxpr-theme-header--overlay").length &&
     $(window).width() > navBreak
   ) {
-    const headerHeight = parseFloat(drupalSettings.dxpr_themeSettings.headerHeight);
-    const headerScroll = parseFloat(drupalSettings.dxpr_themeSettings.headerOffset);
+    const headerHeight = parseFloat(
+      drupalSettings.dxpr_themeSettings.headerHeight
+    );
+    const headerScroll = parseFloat(
+      drupalSettings.dxpr_themeSettings.headerOffset
+    );
 
     if (headerHeight && headerScroll) {
-      let elHeader = document.querySelector(".dxpr-theme-header--sticky");
-      let wrapContainer = document.getElementsByClassName("wrap-containers")[0];
+      const elHeader = document.querySelector(".dxpr-theme-header--sticky");
+      const wrapContainer =
+        document.getElementsByClassName("wrap-containers")[0];
 
       _.throttle(
         $(window).scroll(() => {
@@ -136,8 +141,7 @@
             elHeader.classList.add("affix");
             elHeader.classList.remove("affix-top");
             wrapContainer.style.marginTop = `${headerHeight}px`;
-          }
-          else {
+          } else {
             elHeader.classList.add("affix-top");
             elHeader.classList.remove("affix");
             wrapContainer.style.marginTop = 0;
