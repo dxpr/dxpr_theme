@@ -114,9 +114,6 @@
 
   dpxr_themeMenuOnResize();
 
-  const isPageScrollable = () =>
-    document.documentElement.scrollHeight > window.innerHeight;
-
   var navBreak =
     "dxpr_themeNavBreakpoint" in window ? window.dxpr_themeNavBreakpoint : 1200;
   if (
@@ -124,41 +121,26 @@
     !$(".dxpr-theme-header--overlay").length &&
     $(window).width() > navBreak
   ) {
-    var { headerHeight } = drupalSettings.dxpr_themeSettings;
-    const headerScroll = drupalSettings.dxpr_themeSettings.headerOffset;
-    let scroll = 0;
+    const headerHeight = parseFloat(drupalSettings.dxpr_themeSettings.headerHeight);
+    const headerScroll = parseFloat(drupalSettings.dxpr_themeSettings.headerOffset);
 
     if (headerHeight && headerScroll) {
+      let elHeader = document.querySelector(".dxpr-theme-header--sticky");
+      let wrapContainer = document.getElementsByClassName("wrap-containers")[0];
+
       _.throttle(
         $(window).scroll(() => {
-          scroll = $(window).scrollTop();
-          if (scroll >= headerScroll) {
-            document
-              .querySelector(".dxpr-theme-header--sticky")
-              .classList.add("affix");
-            document
-              .querySelector(".dxpr-theme-header--sticky")
-              .classList.remove("affix-top");
-          } else {
-            document
-              .querySelector(".dxpr-theme-header--sticky")
-              .classList.add("affix-top");
-            document
-              .querySelector(".dxpr-theme-header--sticky")
-              .classList.remove("affix");
-          }
-          if (scroll >= headerScroll && scroll <= headerScroll * 2) {
-            const scrollMargin = isPageScrollable()
-              ? Number(headerHeight) + Number(headerScroll)
-              : Number(headerHeight);
+          const scroll = $(window).scrollTop();
 
-            document.getElementsByClassName(
-              "wrap-containers"
-            )[0].style.cssText = `margin-top:${scrollMargin}px`;
-          } else if (scroll < headerScroll) {
-            document.getElementsByClassName(
-              "wrap-containers"
-            )[0].style.cssText = "margin-top:0";
+          if (scroll >= headerScroll) {
+            elHeader.classList.add("affix");
+            elHeader.classList.remove("affix-top");
+            wrapContainer.style.marginTop = `${headerHeight}px`;
+          }
+          else {
+            elHeader.classList.add("affix-top");
+            elHeader.classList.remove("affix");
+            wrapContainer.style.marginTop = 0;
           }
         }),
         100
