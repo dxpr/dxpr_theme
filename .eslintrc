@@ -92,7 +92,7 @@
     "Drupal": true,
     "drupalSettings": true,
     "drupalTranslations": true,
-    "DXPRBuilder": true,
+    "DXPRtheme": true,
     "dxprTemplates": true,
     "DXPRTextEditor": true,
     "fetch": true,
