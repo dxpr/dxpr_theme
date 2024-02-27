@@ -10,34 +10,6 @@
     "plugin:jquery/deprecated",
     "prettier"
   ],
-  "globals": {
-    "_": true,
-    "analytics": true,
-    "Backbone": true,
-    "bootstrapVersion": true,
-    "CKEDITOR": true,
-    "classie": true,
-    "document": true,
-    "domready": true,
-    "Drupal": true,
-    "drupalSettings": true,
-    "drupalTranslations": true,
-    "DXPRBuilder": true,
-    "dxprTemplates": true,
-    "DXPRTextEditor": true,
-    "fetch": true,
-    "getBootstrapBreakPoints": true,
-    "jQuery": true,
-    "liveEditingManager": true,
-    "matchMedia": true,
-    "Modernizr": true,
-    "MLMenu": true,
-    "once": true,
-    "preview": true,
-    "Twig": true,
-    "window": true,
-    "WOW": true
-  },
   "rules": {
     "camelcase": 0,
     "capitalized-comments": ["error", "always", {
@@ -107,5 +79,33 @@
         "minLength": 3
       }
     ]
-  }
+  },
+  "globals": {
+    "_": true,
+    "analytics": true,
+    "Backbone": true,
+    "bootstrapVersion": true,
+    "CKEDITOR": true,
+    "classie": true,
+    "document": true,
+    "domready": true,
+    "Drupal": true,
+    "drupalSettings": true,
+    "drupalTranslations": true,
+    "DXPRBuilder": true,
+    "dxprTemplates": true,
+    "DXPRTextEditor": true,
+    "fetch": true,
+    "getBootstrapBreakPoints": true,
+    "jQuery": true,
+    "liveEditingManager": true,
+    "matchMedia": true,
+    "Modernizr": true,
+    "MLMenu": true,
+    "once": true,
+    "preview": true,
+    "Twig": true,
+    "window": true,
+    "WOW": true
+  },
 }
