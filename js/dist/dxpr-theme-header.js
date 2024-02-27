@@ -19,6 +19,36 @@
         if (args) result = func.apply(context, args);
       };
 
+      const restArgs = function (funct, startIndex) {
+        startIndex = startIndex == null ? funct.length - 1 : +startIndex;
+        return function () {
+          const length = Math.max(arguments.length - startIndex, 0);
+          const rest = Array(length);
+          let index;
+          for (index = 0; index < length; index++) {
+            rest[index] = arguments[index + startIndex];
+          }
+          switch (startIndex) {
+            case 0:
+              return funct.call(this, rest);
+            case 1:
+              return funct.call(this, arguments[0], rest);
+            case 2:
+              return funct.call(this, arguments[0], arguments[1], rest);
+            default:
+          }
+          const args = Array(startIndex + 1);
+          for (index = 0; index < startIndex; index++) {
+            args[index] = arguments[index];
+          }
+          args[startIndex] = rest;
+          return funct.apply(this, args);
+        };
+      };
+      _.delay = restArgs((func, wait, args) =>
+        setTimeout(() => func.apply(null, args), wait)
+      );
+
       const debounced = restArgs(function (args) {
         const callNow = immediate && !timeout;
         if (timeout) clearTimeout(timeout);
@@ -39,33 +69,6 @@
 
       return debounced;
     };
-    var restArgs = function (func, startIndex) {
-      startIndex = startIndex == null ? func.length - 1 : +startIndex;
-      return function () {
-        const length = Math.max(arguments.length - startIndex, 0);
-        const rest = Array(length);
-        for (var index = 0; index < length; index++) {
-          rest[index] = arguments[index + startIndex];
-        }
-        switch (startIndex) {
-          case 0:
-            return func.call(this, rest);
-          case 1:
-            return func.call(this, arguments[0], rest);
-          case 2:
-            return func.call(this, arguments[0], arguments[1], rest);
-        }
-        const args = Array(startIndex + 1);
-        for (index = 0; index < startIndex; index++) {
-          args[index] = arguments[index];
-        }
-        args[startIndex] = rest;
-        return func.apply(this, args);
-      };
-    };
-    _.delay = restArgs((func, wait, args) =>
-      setTimeout(() => func.apply(null, args), wait)
-    );
 
     window._.throttle = function (func, wait, options) {
       let context;
@@ -481,20 +484,25 @@
       drupalSettings.dxpr_themeSettings.headerSideDirection === "right" &&
       $(window).width() <= window.dxpr_themeNavBreakpoint
     ) {
-      $("#dxpr-theme-main-menu").addClass("dxpr-theme-main-menu--to-left");
+      document
+        .getElementById("dxpr-theme-main-menu")
+        .classList.add("dxpr-theme-main-menu--to-left");
     } else {
-      $("#dxpr-theme-main-menu").removeClass("dxpr-theme-main-menu--to-left");
+      document
+        .getElementById("dxpr-theme-main-menu")
+        .classList.remove("dxpr-theme-main-menu--to-left");
     }
-    // Fix bug with unstyled content on page load.
+    // Fix bug with not styled content on page load.
     if (
       $(window).width() > window.dxpr_themeNavBreakpoint &&
       $(".dxpr-theme-header--side").length === 0
     ) {
-      $("#dxpr-theme-main-menu").css("position", "relative");
+      document.getElementById("dxpr-theme-main-menu").style.position =
+        "relative";
     }
   }
 
-  // Accepts 2 getBoundingClientRect objects
+  // Accepts 2 getBoundingClientReact objects
   function dxpr_themeHit(rect1, rect2) {
     return !(
       rect1.right < rect2.left ||
