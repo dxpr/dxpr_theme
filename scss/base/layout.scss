@@ -49,8 +49,8 @@ body {
 
 @media screen and (max-width: 1200px) {
   .container {
-    padding-left: calc(var(--dxpr-setting-gutter-horizontal-mobile) / 2);
-    padding-right: calc(var(--dxpr-setting-gutter-horizontal-mobile) / 2);
+    padding-left: calc(var(--dxpr-setting-gutter-container-mobile) / 2);
+    padding-right: calc(var(--dxpr-setting-gutter-container-mobile) / 2);
   }
   .navbar-container.dxpr-theme-fluid,
   .page-title-container.dxpr-theme-fluid,
@@ -65,6 +65,7 @@ body {
   .row > * {
     padding-left: calc(var(--dxpr-setting-gutter-horizontal-mobile) / 2);
     padding-right: calc(var(--dxpr-setting-gutter-horizontal-mobile) / 2);
+    margin-bottom: var(--dxpr-setting-gutter-vertical-mobile);
   }
 }
 
