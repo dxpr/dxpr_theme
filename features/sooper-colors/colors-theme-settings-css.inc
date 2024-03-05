@@ -16,7 +16,7 @@
  *   Theme palette array.
  */
 function colors_theme_settings_css($theme, &$css, array $palette) {
-  $color_prefix = '--dxpr-color-';
+  $color_prefix = _dxpr_theme_get_const('cssColorPrefix');
 
   $css_variables = implode(";\n", array_map(
     function ($key, $value) use ($color_prefix) {
@@ -27,6 +27,6 @@ function colors_theme_settings_css($theme, &$css, array $palette) {
   ));
 
   if ($css_variables) {
-    $css .= ":root.dxpr-scheme-custom{\n" . $css_variables . ";\n}\n\n";
+    $css .= ":root.dxpr-scheme-custom {\n" . $css_variables . ";\n}\n\n";
   }
 }

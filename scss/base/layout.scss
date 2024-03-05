@@ -13,18 +13,29 @@ body {
   background-size: cover;
   background-attachment: fixed;
   background-position: center center;
+  font-size:  var(--dxpr-setting-body-font-size);
 }
 
 .dxpr-theme-boxed-container {
   background: white;
   margin: 0 auto;
-  max-width: 1580px;
+  max-width: var(--dxpr-setting-box-max-width);
+}
+
+.row {
+  margin-left: calc(-1 * var(--dxpr-setting-gutter-horizontal) / 2);
+  margin-right: calc(-1 * var(--dxpr-setting-gutter-horizontal) / 2);
+}
+.row > * {
+  padding-left: calc(var(--dxpr-setting-gutter-horizontal) / 2);
+  padding-right: calc(var(--dxpr-setting-gutter-horizontal) / 2);
+  margin-bottom: var(--dxpr-setting-gutter-vertical);
 }
 
 .container {
-  padding-left: 60px;
-  padding-right: 60px;
-  max-width: 1280px;
+  padding-left: var(--dxpr-setting-gutter-container);
+  padding-right: var(--dxpr-setting-gutter-container);
+  max-width: var(--dxpr-setting-layout-max-width);
 }
 
 // navbar and page-title padding is not user-controlled and should be kept
@@ -32,18 +43,29 @@ body {
 .navbar-container.dxpr-theme-fluid,
 .page-title-container.dxpr-theme-fluid,
 .container-fluid {
-  padding-left: 60px;
-  padding-right: 60px;
+  padding-left: calc(var(--dxpr-setting-gutter-horizontal) / 2);
+  padding-right: calc(var(--dxpr-setting-gutter-horizontal) / 2);
 }
 
 @media screen and (max-width: 1200px) {
   .container {
-    padding-left: 30px;
-    padding-right: 30px;
+    padding-left: calc(var(--dxpr-setting-gutter-container-mobile) / 2);
+    padding-right: calc(var(--dxpr-setting-gutter-container-mobile) / 2);
   }
+  .navbar-container.dxpr-theme-fluid,
+  .page-title-container.dxpr-theme-fluid,
   .container-fluid {
-    padding-left: 30px;
-    padding-right: 30px;
+    padding-left: calc(var(--dxpr-setting-gutter-horizontal-mobile) / 2);
+    padding-right: calc(var(--dxpr-setting-gutter-horizontal-mobile) / 2);
+  }
+  .row {
+    margin-left: calc(-1 * var(--dxpr-setting-gutter-horizontal-mobile) / 2);
+    margin-right: calc(-1 * var(--dxpr-setting-gutter-horizontal-mobile) / 2);
+  }
+  .row > * {
+    padding-left: calc(var(--dxpr-setting-gutter-horizontal-mobile) / 2);
+    padding-right: calc(var(--dxpr-setting-gutter-horizontal-mobile) / 2);
+    margin-bottom: var(--dxpr-setting-gutter-vertical-mobile);
   }
 }
 
@@ -66,7 +88,7 @@ body.full-width-content {
 
 .region-sidebar-first .block,
 .region-sidebar-second .block {
-  margin-bottom: 30px;
+  margin-bottom: var(--dxpr-setting-gutter-vertical);
 }
 #block-system-help {
   margin-bottom: 0;
