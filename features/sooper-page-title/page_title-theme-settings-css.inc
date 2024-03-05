@@ -16,79 +16,82 @@
  *   Theme palette array.
  */
 function page_title_theme_settings_css($theme, &$css, array $palette) {
-  $gutter_container = theme_get_setting('gutter_container', $theme);
-  $breadcrumb_align = theme_get_setting('page_title_breadcrumbs_align', $theme);
-  if ($breadcrumb_align == 'right') {
-    $css .= ".page-title-full-width-container .breadcrumb { right: {$gutter_container}px; left: auto; } \n\n";
-  }
-  elseif ($breadcrumb_align == 'left') {
-    $css .= ".page-title-full-width-container .breadcrumb { left: {$gutter_container}px; right: auto; } \n\n";
-  }
-  elseif ($breadcrumb_align == 'center') {
-    $css .= ".page-title-full-width-container .breadcrumb { left: 0; right: 0;width:100%;text-align:center; } \n\n";
+  $css .= "/* Page Title Styles */\n";
+
+  if ($page_title_breadcrumb_align = theme_get_setting('page_title_breadcrumbs_align', $theme)) {
+    $gutter_container = _dxpr_theme_setting_get_css_var('gutter_container');
+
+    $page_title_bc = match ($page_title_breadcrumb_align) {
+      'right'  => "  right: $gutter_container;\n  left: auto;\n",
+      'left'   => "  left: $gutter_container;\n  right: auto;\n",
+      'center' => "  left: 0;\n  right: 0;\n  width:100%;\n  text-align:center;\n",
+    };
+
+    if ($page_title_bc) {
+      $css .= ".page-title-full-width-container .breadcrumb {\n";
+      $css .= $page_title_bc;
+      $css .= "}\n\n";
+    }
   }
 
-  $css .= "#page-title { text-align:  " . theme_get_setting('page_title_align', $theme) . " } \n\n";
+  $css .= "#page-title {\n";
+  $css .= _dxpr_theme_settings_add_css('page_title_align', 'text-align');
+  $css .= "}\n\n";
 
   /*
-   * TITLE OPTIONS
+   * Page Title.
    */
-  if (theme_get_setting('title_type', $theme)['uppercase']) {
-    $css .= <<<EOT
-#page-title .page-title {
-  text-transform: uppercase;
-}
+  $title_type = theme_get_setting('title_type', $theme);
 
-EOT;
-  }
-  if (theme_get_setting('title_type', $theme)['bold']) {
-    $css .= <<<EOT
-#page-title .page-title {
-  font-weight: bold;
-}
+  $css .= "#page-title .page-title {\n";
 
-EOT;
-  }
-  if (theme_get_setting('title_type', $theme)['italic']) {
-    $css .= <<<EOT
-#page-title .page-title {
-  font-style: italic;
-}
+  $title_type_styles = [
+    'uppercase' => 'text-transform: uppercase;',
+    'bold'      => 'font-weight: bold;',
+    'italic'    => 'font-style: italic;',
+  ];
 
-EOT;
+  foreach ($title_type as $type) {
+    if (isset($title_type_styles[$type])) {
+      $css .= "  " . $title_type_styles[$type] . "\n";
+    }
   }
 
-  $css .= "#page-title .page-title { height:  " . theme_get_setting('page_title_height', $theme) . "px } \n\n";
+  $css .= _dxpr_theme_settings_add_css('page_title_height', 'height');
+  $css .= "}\n\n";
 
-  $css .= ".page-title-full-width-container:after { opacity:  " . theme_get_setting('page_title_image_opacity', $theme) . " } \n\n";
+  // Page Title container.
+  $css .= ".page-title-full-width-container:after {\n";
+  $css .= _dxpr_theme_settings_add_css('page_title_image_opacity', 'opacity');
 
-  if ($position = theme_get_setting('page_title_image_position')) {
-    $position = str_replace('_', ' ', $position);
-    $css .= ".page-title-full-width-container:after { background-position: $position; }\n\n";
+  if ($page_title_img_pos = _dxpr_theme_settings_add_css('page_title_image_position', 'background-position')) {
+    $css .= $page_title_img_pos;
   }
 
   if (theme_get_setting('page_title_image_mode') == 'fixed') {
-    $position = str_replace('_', ' ', $position);
-    $css .= ".page-title-full-width-container:after { background-attachment: fixed; }\n\n";
+    $css .= "  background-attachment: fixed;\n";
   }
 
-  if ($bgstyle = theme_get_setting('page_title_image_style')) {
-    switch ($bgstyle) {
+  if ($page_title_image_style = theme_get_setting('page_title_image_style')) {
+    switch ($page_title_image_style) {
       case 'no_repeat':
-        $css .= ".page-title-full-width-container:after { background-size: auto;background-repeat: no-repeat; }\n\n";
+        $css .= "  background-size: auto; background-repeat: no-repeat;\n";
         break;
 
       case 'repeat':
-        $css .= ".page-title-full-width-container:after { background-size: auto; }\n\n";
+        $css .= "  background-size: auto;\n";
         break;
 
       case 'contain':
-        $css .= ".page-title-full-width-container:after { background-size: contain; }\n\n";
+        $css .= "  background-size: contain;\n";
         break;
     }
   }
 
   if ($page_title_image_path = theme_get_setting('page_title_image_path', $theme)) {
-    $css .= ".page-title-full-width-container:after { background-image: url('" . \Drupal::service('file_url_generator')->generateString($page_title_image_path) . "'); }\n\n";
+    $css .= "  background-image: url('" . \Drupal::service('file_url_generator')->generateString($page_title_image_path) . "');\n";
   }
+
+  $css .= "}\n\n";
+
 }

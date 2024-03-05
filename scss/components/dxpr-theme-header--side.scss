@@ -69,7 +69,7 @@
     visibility: hidden;
     overflow: hidden;
     overflow-y: auto;
-    width: 300px;
+    width: var(--dxpr-setting-header-side-width);
     margin: 0;
     padding:  0;
     float:none;
@@ -186,9 +186,16 @@
 .body--dxpr-theme-nav-desktop {
   &.body--dxpr-theme-header-side {
     padding-left:300px;
+
+    html.js & {
+      padding-left: calc(var(--dxpr-setting-header-side-width) + var(--gin-toolbar-x-offset, 256px));
+    }
+    #navbar.dxpr-theme-header {
+      text-align: var(--dxpr-setting-header-side-align);
+    }
   }
   .dxpr-theme-header--side {
-    width: 300px;
+    width: var(--dxpr-setting-header-side-width);
     background: dxpr-color('headerside');
     position: fixed;
     left: 0;
@@ -257,6 +264,12 @@
     left: auto;
     right: -100%;
     transition: right 0.3s;
+  }
+
+  .dxpr-theme-header--side {
+    #dxpr-theme-main-menu {
+      width: var(--dxpr-setting-header-side-width);
+    }
   }
 }
 

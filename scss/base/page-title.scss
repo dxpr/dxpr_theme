@@ -10,7 +10,7 @@
     }
   }
   position: relative;
-  margin-bottom: 30px;
+  margin-bottom: var(--dxpr-setting-gutter-vertical);
   &.dxpr-theme-no-margin {
     margin-bottom: 0;
   }
@@ -37,6 +37,7 @@
   .page-title {
     border: none;
     display: table-cell;
+    font-size: var(--dxpr-setting-h1-font-size);
     height: 180px;
     vertical-align: middle;
     padding-top: 0;
@@ -60,6 +61,6 @@
     height: auto;
     padding-top: 3%;
     padding-bottom: 3%;
-    font-size: 35px;
+    font-size: var(--dxpr-setting-h1-mobile-font-size)
   }
 }
