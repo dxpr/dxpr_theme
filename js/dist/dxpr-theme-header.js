@@ -21,28 +21,28 @@
 
       const restArgs = function (funct, startIndex) {
         startIndex = startIndex == null ? funct.length - 1 : +startIndex;
-        return function (argus) {
-          const length = Math.max(argus.length - startIndex, 0);
+        return function (...args) {
+          const length = Math.max(args.length - startIndex, 0);
           const rest = Array(length);
           let index;
           for (index = 0; index < length; index++) {
-            rest[index] = argus[index + startIndex];
+            rest[index] = args[index + startIndex];
           }
           switch (startIndex) {
             case 0:
               return funct.call(this, rest);
             case 1:
-              return funct.call(this, argus[0], rest);
+              return funct.call(this, args[0], rest);
             case 2:
-              return funct.call(this, argus[0], argus[1], rest);
+              return funct.call(this, args[0], args[1], rest);
             default:
           }
-          const args = Array(startIndex + 1);
+          const argsData = Array(startIndex + 1);
           for (index = 0; index < startIndex; index++) {
-            args[index] = argus[index];
+            argsData[index] = args[index];
           }
-          args[startIndex] = rest;
-          return funct.apply(this, args);
+          argsData[startIndex] = rest;
+          return funct.apply(this, argsData);
         };
       };
       _.delay = restArgs((func, waitValue, args) =>
@@ -91,7 +91,7 @@
         if (!previous && options.leading === false) previous = now;
         const remaining = wait - (now - previous);
         context = this;
-        args = argus;
+        args = arguments;
         if (remaining <= 0 || remaining > wait) {
           if (timeout) {
             clearTimeout(timeout);
@@ -186,22 +186,35 @@
       if (dxpr_themeMenuState === "top") {
         return false;
       }
-      document
-        .querySelector(".html--dxpr-theme-nav-mobile--open")
-        .classList.remove("html--dxpr-theme-nav-mobile--open");
-      document
-        .querySelector(".dxpr-theme-header--side")
-        .classList.add("dxpr-theme-header--top");
-      document
-        .querySelector(".dxpr-theme-header--side")
-        .classList.remove("dxpr-theme-header--side");
+      const elementNavMobileOpen = document.querySelector(
+        ".html--dxpr-theme-nav-mobile--open"
+      );
+      if (elementNavMobileOpen) {
+        elementNavMobileOpen.classList.remove(
+          "html--dxpr-theme-nav-mobile--open"
+        );
+      }
+      const elementHeaderSide = document.querySelector(
+        ".dxpr-theme-header--side"
+      );
+      if (elementHeaderSide) {
+        elementHeaderSide.classList.add("dxpr-theme-header--top");
+        elementHeaderSide.classList.remove("dxpr-theme-header--side");
+      }
 
       $("#dxpr-theme-main-menu .menu__breadcrumbs").remove();
-      document.querySelector(".menu__level").classList.remove("menu__level");
-      document.getElementsByClassName("menu__level").style.top = "100%";
-      document.getElementsByClassName("menu__level").style.marginTop = 0;
-      document.getElementsByClassName("menu__level").style.height = "auto";
-      document.querySelector(".menu__item").classList.remove("menu__item");
+      const elementMenuLevel = document.querySelector(".menu__level");
+      if (elementMenuLevel) {
+        elementMenuLevel.classList.remove("menu__level");
+        document.getElementsByClassName("menu__level").style.top = "100%";
+        document.getElementsByClassName("menu__level").style.marginTop = 0;
+        document.getElementsByClassName("menu__level").style.height = "auto";
+      }
+
+      const elementMenuItem = document.querySelector(".menu__item");
+      if (elementMenuItem) {
+        elementMenuItem.classList.remove("menu__item");
+      }
       $("[data-submenu]").removeAttr("data-submenu");
       $("[data-menu]").removeAttr("data-menu");
 
@@ -212,25 +225,21 @@
         function () {
           const width = $(this).width();
           if (
-            this.dom_element[0].querySelectorAll(
-              ".dxpr-theme-megamenu__heading"
-            ).length > 0
+            document.querySelectorAll(".dxpr-theme-megamenu__heading").length >
+            0
           ) {
-            columns = this.dom_element[0].querySelectorAll(
+            columns = document.querySelectorAll(
               ".dxpr-theme-megamenu__heading"
             ).length;
           } else {
             columns =
-              Math.floor(
-                this.dom_element[0].querySelectorAll("li").length / 8
-              ) + 1;
+              Math.floor(document.querySelectorAll("li").length / 8) + 1;
           }
           if (columns > 2) {
-            $(this)
-              .css({
-                width: "100%", // Full Width Mega Menu
-                "left:": "0",
-              })
+            $(this).css({
+              width: "100%", // Full Width Mega Menu
+              "left:": "0",
+            })
               .parent()
               .css({
                 position: "static",
@@ -277,18 +286,14 @@
             "#navbar .container-col"
           )[0].getBoundingClientRect();
           if (dxpr_themeHit(pullDownRect, tabsRect)) {
-            $(".tabs--primary").css(
-              "margin-top",
-              pullDownRect.bottom - tabsRect.top + 6
-            );
+            document.querySelector(".tabs--primary").style.marginTop =
+              pullDownRect.bottom - tabsRect.top + 6;
           }
         } else {
           const navbarRect = $("#navbar")[0].getBoundingClientRect();
           if (dxpr_themeHit(navbarRect, tabsRect)) {
-            $(".tabs--primary").css(
-              "margin-top",
-              navbarRect.bottom - tabsRect.top + 6
-            );
+            document.querySelector(".tabs--primary").style.marginTop =
+              navbarRect.bottom - tabsRect.top + 6;
           }
         }
       }
@@ -304,10 +309,9 @@
           )
         ) {
           if (drupalSettings.dxpr_themeSettings.secondHeaderSticky) {
-            $("#navbar.dxpr-theme-header--overlay").css(
-              "cssText",
-              `top:${secHeaderRect.bottom}px !important;`
-            );
+            document.querySelector(
+              "#navbar.dxpr-theme-header--overlay"
+            ).style.cssText = `top:${secHeaderRect.bottom}px !important;`;
             document
               .querySelector("#secondary-header")
               .classList.remove("dxpr-theme-secondary-header--sticky");
@@ -364,20 +368,20 @@
         .querySelector("#dxpr-theme-main-menu .menu li")
         .classList.add("menu__item");
       // Set up data attributes
-      $("#dxpr-theme-main-menu .menu a.dropdown-toggle").each(function (index) {
-        const nextElement = this.nextElementSibling;
-        this.setAttribute("data-submenu", this.textContent);
-        nextElement.setAttribute("data-menu", this.textContent);
-      });
-      $("#dxpr-theme-main-menu .menu a.dxpr-theme-megamenu__heading").each(
-        function (index) {
-          const nextMegaElement = this.nextElementSibling;
-          this.setAttribute("data-submenu", this.textContent);
-          nextMegaElement.setAttribute("data-menu", this.textContent);
+      Array.from($("#dxpr-theme-main-menu .menu a.dropdown-toggle")).forEach(
+        (element) => {
+          const nextElement = element.nextElementSibling;
+          element.setAttribute("data-submenu", element.textContent);
+          nextElement.setAttribute("data-menu", element.textContent);
         }
       );
-
-      const menuEl = document.getElementById("dxpr-theme-main-menu");
+      Array.from(
+        $("#dxpr-theme-main-menu .menu a.dxpr-theme-megamenu__heading")
+      ).forEach((element) => {
+        const nextMegaElement = element.nextElementSibling;
+        element.setAttribute("data-submenu", element.textContent);
+        nextMegaElement.setAttribute("data-menu", element.textContent);
+      });
 
       // Close/open menu function
       const closeMenu = function () {
@@ -386,7 +390,9 @@
             .querySelector("#dxpr-theme-menu-toggle")
             .classList.toggle("navbar-toggle--active");
         }
-        document.querySelector(menuEl).classList.toggle("menu--open");
+        document
+          .querySelector("#dxpr-theme-main-menu")
+          .classList.toggle("menu--open");
         document
           .querySelector("html")
           .classList.toggle("html--dxpr-theme-nav-mobile--open");
@@ -428,27 +434,38 @@
         document.getElementById("dxpr-theme-main-menu").style.paddingTop =
           brandingBottom + 40;
       }
+      const menuBreadcrumbs = document.querySelector(".menu__breadcrumbs");
+      const menuLevels = document.querySelector(".menu__level");
+      const menuSideLevels = document.querySelector(
+        ".dxpr-theme-header--side .menu__level"
+      );
       if ($lastBlock.length > 0) {
         const lastBlockBottom = $lastBlock[0].getBoundingClientRect().bottom;
-        $(".menu__breadcrumbs").css("top", lastBlockBottom + 20);
-        $(".menu__level").css("top", lastBlockBottom + 40);
+        if (menuBreadcrumbs) {
+          menuBreadcrumbs.style.top = lastBlockBottom + 20;
+        }
+        if (menuLevels) {
+          menuLevels.style.top = lastBlockBottom + 40;
+        }
         const offsetBlockBottom = 40 + lastBlockBottom;
-        $(".dxpr-theme-header--side .menu__level").css(
-          "height",
-          `calc(100vh - ${offsetBlockBottom}px)`
-        );
+        if (menuSideLevels) {
+          menuSideLevels.style.height = `calc(100vh - ${offsetBlockBottom}px)`;
+        }
       } else if (
         $(".body--dxpr-theme-header-side").length > 0 &&
         $(".wrap-branding").length > 0 &&
         brandingBottom > 120
       ) {
-        $(".menu__breadcrumbs").css("top", brandingBottom + 20);
-        $(".menu__level").css("top", brandingBottom + 40);
+        if (menuBreadcrumbs) {
+          menuBreadcrumbs.style.top = brandingBottom + 20;
+        }
+        if (menuLevels) {
+          menuLevels.style.top = brandingBottom + 40;
+        }
         const offsetBrandingBottom = 40 + brandingBottom;
-        $(".dxpr-theme-header--side .menu__level").css(
-          "height",
-          `calc(100vh - ${offsetBrandingBottom}px)`
-        );
+        if (menuSideLevels) {
+          menuSideLevels.style.height = `calc(100vh - ${offsetBrandingBottom}px)`;
+        }
       }
       dxpr_themeMenuState = "side";
     }
@@ -474,10 +491,13 @@
     } else {
       navbarElement.classList.remove("header-mobile-admin-fixed-active");
     }
-    $(".dxpr-theme-boxed-container").css("overflow", "hidden");
-    $("#toolbar-bar").addClass("header-mobile-fixed");
-    $("#navbar").addClass("header-mobile-fixed");
-    $("#secondary-header").css("margin-top", +headerMobileHeight);
+    document.getElementsByClassName(
+      "dxpr-theme-boxed-container"
+    ).style.overflow = "hidden";
+    document.querySelector("#toolbar-bar").classList.add("header-mobile-fixed");
+    navbarElement.classList.add("header-mobile-fixed");
+    document.getElementById("secondary-header").style.marginTop =
+      headerMobileHeight;
   }
 
   function dxpr_themeMenuGovernorBodyClass() {
@@ -486,19 +506,21 @@
       navBreakMenu = window.dxpr_themeNavBreakpoint;
     }
     if ($(window).width() > navBreakMenu) {
-      // Const element = document.querySelector(".body--dxpr-theme-nav-mobile");
-      // element.classList.remove("body--dxpr-theme-nav-mobile");
-      // element.classList.add("body--dxpr-theme-nav-desktop");
-      $(".body--dxpr-theme-nav-mobile")
-        .removeClass("body--dxpr-theme-nav-mobile")
-        .addClass("body--dxpr-theme-nav-desktop");
+      const elementNavMobile = document.querySelector(
+        ".body--dxpr-theme-nav-mobile"
+      );
+      if (elementNavMobile) {
+        elementNavMobile.classList.add("body--dxpr-theme-nav-desktop");
+        elementNavMobile.classList.remove("body--dxpr-theme-nav-mobile");
+      }
     } else {
-      // Const element = document.querySelector(".body--dxpr-theme-nav-desktop");
-      // element.classList.remove("body--dxpr-theme-nav-desktop");
-      // element.classList.add("body--dxpr-theme-nav-mobile");
-      $(".body--dxpr-theme-nav-desktop")
-        .removeClass("body--dxpr-theme-nav-desktop")
-        .addClass("body--dxpr-theme-nav-mobile");
+      const elementNavDesktop = document.querySelector(
+        ".body--dxpr-theme-nav-desktop"
+      );
+      if (elementNavDesktop) {
+        elementNavDesktop.classList.add("body--dxpr-theme-nav-mobile");
+        elementNavDesktop.classList.remove("body--dxpr-theme-nav-desktop");
+      }
     }
   }
 

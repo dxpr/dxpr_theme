@@ -7,35 +7,33 @@
 (function ($, Drupal, once) {
   Drupal.behaviors.fullScreenSearch = {
     attach(context, settings) {
-      const $searchButton = $(".full-screen-search-button");
-      const $searchForm = $(".full-screen-search-form");
-      const $searchFormInput = $searchForm.find(".search-query");
+      const searchButton = $(".full-screen-search-button");
+      const searchForm = $(".full-screen-search-form");
+      const searchFormInput = searchForm.find(".search-query");
       const escapeCode = 27;
       function clearSearchForm() {
-        $searchForm.toggleClass("invisible");
-        $("body").toggleClass("body--full-screen-search");
+        searchForm.toggleClass("invisible");
+        document
+          .querySelector("body")
+          .classList.toggle("body--full-screen-search");
         setTimeout(() => {
-          $searchFormInput.val("");
+          searchFormInput.val("");
         }, 350);
       }
-      $(once("search-button", $searchButton)).on(
-        "touchstart click",
-        (event) => {
-          event.preventDefault();
-          $searchForm.toggleClass("invisible");
-          $("body").toggleClass("body--full-screen-search");
-          $searchFormInput.focus();
-        }
-      );
-      $(once("search-form", $searchForm)).on(
-        "touchstart click",
-        (searchButton) => {
-          $(searchButton.target).hasClass("search-query") || clearSearchForm();
-        }
-      );
+      $(once("search-button", searchButton)).on("touchstart click", (event) => {
+        event.preventDefault();
+        searchForm.toggleClass("invisible");
+        document
+          .querySelector("body")
+          .classList.toggle("body--full-screen-search");
+        searchFormInput.focus();
+      });
+      $(once("search-form", searchForm)).on("touchstart click", (ele) => {
+        $(ele.target).hasClass("search-query") || clearSearchForm();
+      });
       $(document).keydown((event) => {
         event.which === escapeCode &&
-          !$searchForm.hasClass("invisible") &&
+          !searchForm.hasClass("invisible") &&
           clearSearchForm();
       });
     },
