@@ -29,12 +29,17 @@
         searchFormInput.focus();
       });
       $(once("search-form", searchForm)).on("touchstart click", (ele) => {
-        $(ele.target).hasClass("search-query") || clearSearchForm();
+        if (!ele.target.classList.contains("search-query")) {
+          clearSearchForm();
+        }
       });
       $(document).keydown((event) => {
-        event.which === escapeCode &&
-          !searchForm.hasClass("invisible") &&
+        if (
+          event.which === escapeCode &&
+          !searchForm.classList.contains("invisible")
+        ) {
           clearSearchForm();
+        }
       });
     },
   };

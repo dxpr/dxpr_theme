@@ -122,7 +122,7 @@
             const submenu = ev.target.getAttribute("data-submenu");
             const itemName = ev.target.innerHTML;
             const subMenuEl = self.el.querySelector(
-              `ul[data-menu="${submenu}"]`
+              `ul[data-menu="${submenu}"]`,
             );
 
             // Check if there's a sub menu for this item
@@ -136,7 +136,7 @@
               if (currentlink) {
                 classie.remove(
                   self.el.querySelector(".menu__link--current"),
-                  "menu__link--current"
+                  "menu__link--current",
                 );
               }
               classie.add(ev.target, "menu__link--current");
@@ -160,7 +160,7 @@
   MLMenu.prototype._openSubMenu = function (
     subMenuEl,
     clickPosition,
-    subMenuName
+    subMenuName,
   ) {
     if (this.isAnimating) {
       return false;
@@ -207,7 +207,7 @@
         ? `${parseInt(pos * self.options.itemsDelayInterval, 10)}ms`
         : `${parseInt(
             Math.abs(clickPosition - pos) * self.options.itemsDelayInterval,
-            10
+            10,
           )}ms`;
       item.style.WebkitAnimationDelay = delayValue;
       item.style.animationDelay = delayValue;
@@ -216,12 +216,12 @@
     if (this.options.direction === "r2l") {
       classie.add(
         currentMenu,
-        !isBackNavigation ? "animate-outToLeft" : "animate-outToRight"
+        !isBackNavigation ? "animate-outToLeft" : "animate-outToRight",
       );
     } else {
       classie.add(
         currentMenu,
-        isBackNavigation ? "animate-outToLeft" : "animate-outToRight"
+        isBackNavigation ? "animate-outToLeft" : "animate-outToRight",
       );
     }
   };
@@ -243,7 +243,7 @@
         ? `${parseInt(pos * self.options.itemsDelayInterval, 10)}ms`
         : `${parseInt(
             Math.abs(clickPosition - pos) * self.options.itemsDelayInterval,
-            10
+            10,
           )}ms`;
       item.style.WebkitAnimationDelay = delayValue;
       item.style.animationDelay = delayValue;
@@ -262,20 +262,20 @@
           if (self.options.direction === "r2l") {
             classie.remove(
               currentMenu,
-              !isBackNavigation ? "animate-outToLeft" : "animate-outToRight"
+              !isBackNavigation ? "animate-outToLeft" : "animate-outToRight",
             );
             classie.remove(
               nextMenuEl,
-              !isBackNavigation ? "animate-inFromRight" : "animate-inFromLeft"
+              !isBackNavigation ? "animate-inFromRight" : "animate-inFromLeft",
             );
           } else {
             classie.remove(
               currentMenu,
-              isBackNavigation ? "animate-outToLeft" : "animate-outToRight"
+              isBackNavigation ? "animate-outToLeft" : "animate-outToRight",
             );
             classie.remove(
               nextMenuEl,
-              isBackNavigation ? "animate-inFromRight" : "animate-inFromLeft"
+              isBackNavigation ? "animate-inFromRight" : "animate-inFromLeft",
             );
           }
           classie.remove(currentMenu, "menu__level--current");
@@ -308,12 +308,12 @@
     if (this.options.direction === "r2l") {
       classie.add(
         nextMenuEl,
-        !isBackNavigation ? "animate-inFromRight" : "animate-inFromLeft"
+        !isBackNavigation ? "animate-inFromRight" : "animate-inFromLeft",
       );
     } else {
       classie.add(
         nextMenuEl,
-        isBackNavigation ? "animate-inFromRight" : "animate-inFromLeft"
+        isBackNavigation ? "animate-inFromRight" : "animate-inFromLeft",
       );
     }
   };

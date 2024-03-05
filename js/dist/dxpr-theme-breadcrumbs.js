@@ -14,18 +14,18 @@
           once(
             "dxpr_theme",
             ".page-title-full-width-container .breadcrumb a",
-            context
-          )
+            context,
+          ),
         ).after(
-          ` <span class="dxpr-theme-breadcrumb-spacer">${breadcrumbsSeparator}</span> `
+          ` <span class="dxpr-theme-breadcrumb-spacer">${breadcrumbsSeparator}</span> `,
         );
       } else {
         $(
           once(
             "dxpr_theme",
             ".page-title-full-width-container .breadcrumb a",
-            context
-          )
+            context,
+          ),
         ).after(' <span class="dxpr-theme-breadcrumb-spacer">/</span> ');
       }
     },
