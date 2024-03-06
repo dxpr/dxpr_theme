@@ -191,9 +191,9 @@
       const elementMenuLevel = document.querySelector(".menu__level");
       if (elementMenuLevel) {
         elementMenuLevel.classList.remove("menu__level");
-        document.getElementsByClassName("menu__level").style.top = "100%";
-        document.getElementsByClassName("menu__level").style.marginTop = 0;
-        document.getElementsByClassName("menu__level").style.height = "auto";
+        elementMenuLevel.style.top = "100%";
+        elementMenuLevel.style.marginTop = 0;
+        elementMenuLevel.style.height = "auto";
       }
       const elementMenuItem = document.querySelector(".menu__item");
       if (elementMenuItem) {
@@ -297,13 +297,12 @@
               .classList.remove("dxpr-theme-secondary-header--sticky");
           } else {
             if ($("#toolbar-bar").length > 0) {
-              document.getElementsByClassName(
-                "dxpr-theme-header--overlay",
-              ).style.top = secHeaderRect.bottom;
+              document.querySelector("dxpr-theme-header--overlay").style.top =
+                secHeaderRect.bottom;
             } else {
-              document.getElementsByClassName(
-                "dxpr-theme-header--overlay",
-              ).style.top = "";
+              document.querySelector(
+                "dxpr-theme-header--overlay"
+              ).style.top = 0;
             }
             document
               .querySelector("#secondary-header")
