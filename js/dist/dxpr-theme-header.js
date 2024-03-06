@@ -37,7 +37,7 @@
       };
     };
     _.delay = restArgs((func, waitValue, args) =>
-      setTimeout(() => func(...args), waitValue)
+      setTimeout(() => func(...args), waitValue),
     );
 
     window._.debounce = function (func, wait, immediate) {
@@ -119,10 +119,10 @@
     $(window).width() > navBreak
   ) {
     const headerHeight = parseFloat(
-      drupalSettings.dxpr_themeSettings.headerHeight
+      drupalSettings.dxpr_themeSettings.headerHeight,
     );
     const headerScroll = parseFloat(
-      drupalSettings.dxpr_themeSettings.headerOffset
+      drupalSettings.dxpr_themeSettings.headerOffset,
     );
 
     if (headerHeight && headerScroll) {
@@ -144,7 +144,7 @@
             wrapContainer.style.marginTop = 0;
           }
         }),
-        100
+        100,
       );
     }
   }
@@ -173,15 +173,15 @@
         return false;
       }
       const elementNavMobileOpen = document.querySelector(
-        ".html--dxpr-theme-nav-mobile--open"
+        ".html--dxpr-theme-nav-mobile--open",
       );
       if (elementNavMobileOpen) {
         elementNavMobileOpen.classList.remove(
-          "html--dxpr-theme-nav-mobile--open"
+          "html--dxpr-theme-nav-mobile--open",
         );
       }
       const elementHeaderSide = document.querySelector(
-        ".dxpr-theme-header--side"
+        ".dxpr-theme-header--side",
       );
       if (elementHeaderSide) {
         elementHeaderSide.classList.add("dxpr-theme-header--top");
@@ -206,7 +206,7 @@
       const margin = 10;
       let columns;
       const mainMenuList = document.querySelectorAll(
-        "#dxpr-theme-main-menu .menu .dropdown-menu"
+        "#dxpr-theme-main-menu .menu .dropdown-menu",
       );
       mainMenuList.forEach(function (menu) {
         const width = menu.offsetWidth;
@@ -214,7 +214,7 @@
           document.querySelectorAll(".dxpr-theme-megamenu__heading").length > 0
         ) {
           columns = document.querySelectorAll(
-            ".dxpr-theme-megamenu__heading"
+            ".dxpr-theme-megamenu__heading",
           ).length;
         } else {
           columns = Math.floor(document.querySelectorAll("li").length / 8) + 1;
@@ -226,7 +226,7 @@
           Array.from(menu.querySelectorAll(".dropdown-menu > li")).forEach(
             (li) => {
               li.style.width = `${100 / columns}%`;
-            }
+            },
           );
         } else {
           if (columns > 1) {
@@ -290,7 +290,7 @@
         ) {
           if (drupalSettings.dxpr_themeSettings.secondHeaderSticky) {
             document.querySelector(
-              "#navbar.dxpr-theme-header--overlay"
+              "#navbar.dxpr-theme-header--overlay",
             ).style.cssText = `top:${secHeaderRect.bottom}px !important;`;
             document
               .querySelector("#secondary-header")
@@ -298,11 +298,11 @@
           } else {
             if ($("#toolbar-bar").length > 0) {
               document.getElementsByClassName(
-                "dxpr-theme-header--overlay"
+                "dxpr-theme-header--overlay",
               ).style.top = secHeaderRect.bottom;
             } else {
               document.getElementsByClassName(
-                "dxpr-theme-header--overlay"
+                "dxpr-theme-header--overlay",
               ).style.top = "";
             }
             document
@@ -352,10 +352,10 @@
           const nextElement = element.nextElementSibling;
           element.setAttribute("data-submenu", element.textContent);
           nextElement.setAttribute("data-menu", element.textContent);
-        }
+        },
       );
       Array.from(
-        $("#dxpr-theme-main-menu .menu a.dxpr-theme-megamenu__heading")
+        $("#dxpr-theme-main-menu .menu a.dxpr-theme-megamenu__heading"),
       ).forEach((element) => {
         const nextMegaElement = element.nextElementSibling;
         element.setAttribute("data-submenu", element.textContent);
@@ -399,7 +399,7 @@
         brandingBottom = 0;
       }
       const $lastBlock = $(
-        "#dxpr-theme-main-menu .block:not(.block-menu)"
+        "#dxpr-theme-main-menu .block:not(.block-menu)",
       ).last();
 
       // Show menu after completing setup
@@ -416,7 +416,7 @@
       const menuBreadcrumbs = document.querySelector(".menu__breadcrumbs");
       const menuLevels = document.querySelector(".menu__level");
       const menuSideLevels = document.querySelector(
-        ".dxpr-theme-header--side .menu__level"
+        ".dxpr-theme-header--side .menu__level",
       );
       if ($lastBlock.length > 0) {
         const lastBlockBottom = $lastBlock[0].getBoundingClientRect().bottom;
@@ -472,7 +472,7 @@
       navbarElement.classList.remove("header-mobile-admin-fixed-active");
     }
     document.getElementsByClassName(
-      "dxpr-theme-boxed-container"
+      "dxpr-theme-boxed-container",
     ).style.overflow = "hidden";
     document.querySelector("#toolbar-bar").classList.add("header-mobile-fixed");
     navbarElement.classList.add("header-mobile-fixed");
@@ -487,7 +487,7 @@
     }
     if ($(window).width() > navBreakMenu) {
       const elementNavMobile = document.querySelector(
-        ".body--dxpr-theme-nav-mobile"
+        ".body--dxpr-theme-nav-mobile",
       );
       if (elementNavMobile) {
         elementNavMobile.classList.add("body--dxpr-theme-nav-desktop");
@@ -495,7 +495,7 @@
       }
     } else {
       const elementNavDesktop = document.querySelector(
-        ".body--dxpr-theme-nav-desktop"
+        ".body--dxpr-theme-nav-desktop",
       );
       if (elementNavDesktop) {
         elementNavDesktop.classList.add("body--dxpr-theme-nav-mobile");
@@ -535,7 +535,7 @@
         dxpr_themeMenuGovernor(document);
       }
       dpxr_themeMenuOnResize();
-    }, 50)
+    }, 50),
   );
 
   dpxr_themeMenuOnResize();
