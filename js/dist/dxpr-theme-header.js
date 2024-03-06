@@ -300,9 +300,8 @@
               document.querySelector("dxpr-theme-header--overlay").style.top =
                 secHeaderRect.bottom;
             } else {
-              document.querySelector(
-                "dxpr-theme-header--overlay"
-              ).style.top = 0;
+              document.querySelector("dxpr-theme-header--overlay").style.top =
+                0;
             }
             document
               .querySelector("#secondary-header")
