@@ -10,6 +10,36 @@
   // Create underscore debounce and throttle functions if they doesn't exist already
   if (typeof _ != "function") {
     window._ = {};
+    const restArgs = function (func, startIndex) {
+      startIndex = startIndex == null ? func.length - 1 : +startIndex;
+      return function (...args) {
+        const length = Math.max(args.length - startIndex, 0);
+        const rest = Array(length);
+        let index;
+        for (index = 0; index < length; index++) {
+          rest[index] = args[index + startIndex];
+        }
+        switch (startIndex) {
+          case 0:
+            return func.call(this, rest);
+          case 1:
+            return func.call(this, args[0], rest);
+          case 2:
+            return func.call(this, args[0], args[1], rest);
+          default:
+        }
+        const argsData = Array(startIndex + 1);
+        for (index = 0; index < startIndex; index++) {
+          argsData[index] = args[index];
+        }
+        argsData[startIndex] = rest;
+        return func.apply(this, argsData);
+      };
+    };
+    _.delay = restArgs((func, waitValue, args) =>
+      setTimeout(() => func(...args), waitValue)
+    );
+
     window._.debounce = function (func, wait, immediate) {
       let timeout;
       let result;
@@ -18,36 +48,6 @@
         timeout = null;
         if (args) result = func.apply(context, args);
       };
-
-      const restArgs = function (funct, startIndex) {
-        startIndex = startIndex == null ? funct.length - 1 : +startIndex;
-        return function (...args) {
-          const length = Math.max(args.length - startIndex, 0);
-          const rest = Array(length);
-          let index;
-          for (index = 0; index < length; index++) {
-            rest[index] = args[index + startIndex];
-          }
-          switch (startIndex) {
-            case 0:
-              return funct.call(this, rest);
-            case 1:
-              return funct.call(this, args[0], rest);
-            case 2:
-              return funct.call(this, args[0], args[1], rest);
-            default:
-          }
-          const argsData = Array(startIndex + 1);
-          for (index = 0; index < startIndex; index++) {
-            argsData[index] = args[index];
-          }
-          argsData[startIndex] = rest;
-          return funct.apply(this, argsData);
-        };
-      };
-      _.delay = restArgs((func, waitValue, args) =>
-        setTimeout(() => func(...args), waitValue),
-      );
 
       const debounced = restArgs(function (args) {
         const callNow = immediate && !timeout;
@@ -111,9 +111,6 @@
     };
   }
 
-  const isPageScrollable = () =>
-    document.documentElement.scrollHeight > window.innerHeight;
-
   const navBreak =
     "dxpr_themeNavBreakpoint" in window ? window.dxpr_themeNavBreakpoint : 1200;
   if (
@@ -121,44 +118,33 @@
     !$(".dxpr-theme-header--overlay").length &&
     $(window).width() > navBreak
   ) {
-    const { headerHeight } = drupalSettings.dxpr_themeSettings;
-    const headerScroll = drupalSettings.dxpr_themeSettings.headerOffset;
-    let scroll = 0;
+    const headerHeight = parseFloat(
+      drupalSettings.dxpr_themeSettings.headerHeight
+    );
+    const headerScroll = parseFloat(
+      drupalSettings.dxpr_themeSettings.headerOffset
+    );
 
     if (headerHeight && headerScroll) {
+      const elHeader = document.querySelector(".dxpr-theme-header--sticky");
+      const wrapContainer =
+        document.getElementsByClassName("wrap-containers")[0];
+
       _.throttle(
         $(window).scroll(() => {
-          scroll = $(window).scrollTop();
-          if (scroll >= headerScroll) {
-            document
-              .querySelector(".dxpr-theme-header--sticky")
-              .classList.add("affix");
-            document
-              .querySelector(".dxpr-theme-header--sticky")
-              .classList.remove("affix-top");
-          } else {
-            document
-              .querySelector(".dxpr-theme-header--sticky")
-              .classList.add("affix-top");
-            document
-              .querySelector(".dxpr-theme-header--sticky")
-              .classList.remove("affix");
-          }
-          if (scroll >= headerScroll && scroll <= headerScroll * 2) {
-            const scrollMargin = isPageScrollable()
-              ? Number(headerHeight) + Number(headerScroll)
-              : Number(headerHeight);
+          const scroll = $(window).scrollTop();
 
-            document.getElementsByClassName(
-              "wrap-containers",
-            )[0].style.cssText = `margin-top:${scrollMargin}px`;
-          } else if (scroll < headerScroll) {
-            document.getElementsByClassName(
-              "wrap-containers",
-            )[0].style.cssText = "margin-top:0";
+          if (scroll >= headerScroll) {
+            elHeader.classList.add("affix");
+            elHeader.classList.remove("affix-top");
+            wrapContainer.style.marginTop = `${headerHeight}px`;
+          } else {
+            elHeader.classList.add("affix-top");
+            elHeader.classList.remove("affix");
+            wrapContainer.style.marginTop = 0;
           }
         }),
-        100,
+        100
       );
     }
   }
@@ -187,21 +173,20 @@
         return false;
       }
       const elementNavMobileOpen = document.querySelector(
-        ".html--dxpr-theme-nav-mobile--open",
+        ".html--dxpr-theme-nav-mobile--open"
       );
       if (elementNavMobileOpen) {
         elementNavMobileOpen.classList.remove(
-          "html--dxpr-theme-nav-mobile--open",
+          "html--dxpr-theme-nav-mobile--open"
         );
       }
       const elementHeaderSide = document.querySelector(
-        ".dxpr-theme-header--side",
+        ".dxpr-theme-header--side"
       );
       if (elementHeaderSide) {
         elementHeaderSide.classList.add("dxpr-theme-header--top");
         elementHeaderSide.classList.remove("dxpr-theme-header--side");
       }
-
       $("#dxpr-theme-main-menu .menu__breadcrumbs").remove();
       const elementMenuLevel = document.querySelector(".menu__level");
       if (elementMenuLevel) {
@@ -210,7 +195,6 @@
         document.getElementsByClassName("menu__level").style.marginTop = 0;
         document.getElementsByClassName("menu__level").style.height = "auto";
       }
-
       const elementMenuItem = document.querySelector(".menu__item");
       if (elementMenuItem) {
         elementMenuItem.classList.remove("menu__item");
@@ -221,59 +205,55 @@
       const bodyWidth = $("body").innerWidth();
       const margin = 10;
       let columns;
-      $("#dxpr-theme-main-menu .menu .dropdown-menu", context).each(
-        function () {
-          const width = $(this).width();
-          if (
-            document.querySelectorAll(".dxpr-theme-megamenu__heading").length >
-            0
-          ) {
-            columns = document.querySelectorAll(
-              ".dxpr-theme-megamenu__heading",
-            ).length;
-          } else {
-            columns =
-              Math.floor(document.querySelectorAll("li").length / 8) + 1;
-          }
-          if (columns > 2) {
-            $(this).css({
-              width: "100%", // Full Width Mega Menu
-              "left:": "0",
-            })
-              .parent()
-              .css({
-                position: "static",
-              })
-              .find(".dropdown-menu >li")
-              .css({
-                width: `${100 / columns}%`,
-              });
-          } else {
-            if (columns > 1) {
-              // Accounts for 1px border.
-              this.css("min-width", width * columns + 2)
-                .find(">li")
-                .css("width", width);
-            }
-            // Workaround for drop down overlapping.
-            // See https://github.com/twbs/bootstrap/issues/13477.
-            const $topLevelItem = this.parent();
-            // Set timeout to let the rendering threads catch up.
-            setTimeout(() => {
-              const delta = Math.round(
-                bodyWidth -
-                  $topLevelItem.offset().left -
-                  this.outerWidth() -
-                  margin,
-              );
-              // Only fix items that went out of screen.
-              if (delta < 0) {
-                this.css("left", `${delta}px`);
-              }
-            }, 0);
-          }
-        },
+      const mainMenuList = document.querySelectorAll(
+        "#dxpr-theme-main-menu .menu .dropdown-menu"
       );
+      mainMenuList.forEach(function (menu) {
+        const width = menu.offsetWidth;
+        if (
+          document.querySelectorAll(".dxpr-theme-megamenu__heading").length > 0
+        ) {
+          columns = document.querySelectorAll(
+            ".dxpr-theme-megamenu__heading"
+          ).length;
+        } else {
+          columns = Math.floor(document.querySelectorAll("li").length / 8) + 1;
+        }
+        if (columns > 2) {
+          menu.style.width = "100%";
+          menu.style.left = "0";
+          menu.parentElement.style.position = "static";
+          Array.from(menu.querySelectorAll(".dropdown-menu > li")).forEach(
+            (li) => {
+              li.style.width = `${100 / columns}%`;
+            }
+          );
+        } else {
+          if (columns > 1) {
+            // Accounts for 1px border.
+            menu.style.minWidth = `${width * columns + 2}px`;
+            Array.from(menu.querySelectorAll("> li")).forEach((li) => {
+              li.style.width = `${width}px`;
+            });
+          }
+          // Workaround for drop down overlapping.
+          // See https://github.com/twbs/bootstrap/issues/13477.
+          const $topLevelItem = this.parent();
+          // Set timeout to let the rendering threads catch up.
+          setTimeout(() => {
+            const delta = Math.round(
+              bodyWidth -
+                $topLevelItem.offset().left -
+                this.outerWidth() -
+                margin,
+            );
+            // Only fix items that went out of screen.
+            if (delta < 0) {
+              menu.style.left = `${delta}px`;
+            }
+          }, 0);
+        }
+      });
       dxpr_themeMenuState = "top";
       // Hit Detection for Header
       if ($(".tabs--primary").length > 0 && $("#navbar").length > 0) {
@@ -310,7 +290,7 @@
         ) {
           if (drupalSettings.dxpr_themeSettings.secondHeaderSticky) {
             document.querySelector(
-              "#navbar.dxpr-theme-header--overlay",
+              "#navbar.dxpr-theme-header--overlay"
             ).style.cssText = `top:${secHeaderRect.bottom}px !important;`;
             document
               .querySelector("#secondary-header")
@@ -318,11 +298,11 @@
           } else {
             if ($("#toolbar-bar").length > 0) {
               document.getElementsByClassName(
-                "dxpr-theme-header--overlay",
+                "dxpr-theme-header--overlay"
               ).style.top = secHeaderRect.bottom;
             } else {
               document.getElementsByClassName(
-                "dxpr-theme-header--overlay",
+                "dxpr-theme-header--overlay"
               ).style.top = "";
             }
             document
@@ -347,7 +327,6 @@
       document
         .querySelector(".dxpr-theme-header--top")
         .classList.remove("dxpr-theme-header--top");
-
       // Remove split-mega menu columns
       $(
         "#dxpr-theme-main-menu .menu .dropdown-menu, #dxpr-theme-main-menu .menu .dropdown-menu li",
@@ -373,10 +352,10 @@
           const nextElement = element.nextElementSibling;
           element.setAttribute("data-submenu", element.textContent);
           nextElement.setAttribute("data-menu", element.textContent);
-        },
+        }
       );
       Array.from(
-        $("#dxpr-theme-main-menu .menu a.dxpr-theme-megamenu__heading"),
+        $("#dxpr-theme-main-menu .menu a.dxpr-theme-megamenu__heading")
       ).forEach((element) => {
         const nextMegaElement = element.nextElementSibling;
         element.setAttribute("data-submenu", element.textContent);
@@ -412,15 +391,15 @@
         }
       });
 
-      let brandingBottom;
       // See if logo  or block content overlaps menu and apply correction
+      let brandingBottom;
       if ($(".wrap-branding").length > 0) {
         brandingBottom = $(".wrap-branding")[0].getBoundingClientRect().bottom;
       } else {
         brandingBottom = 0;
       }
       const $lastBlock = $(
-        "#dxpr-theme-main-menu .block:not(.block-menu)",
+        "#dxpr-theme-main-menu .block:not(.block-menu)"
       ).last();
 
       // Show menu after completing setup
@@ -437,7 +416,7 @@
       const menuBreadcrumbs = document.querySelector(".menu__breadcrumbs");
       const menuLevels = document.querySelector(".menu__level");
       const menuSideLevels = document.querySelector(
-        ".dxpr-theme-header--side .menu__level",
+        ".dxpr-theme-header--side .menu__level"
       );
       if ($lastBlock.length > 0) {
         const lastBlockBottom = $lastBlock[0].getBoundingClientRect().bottom;
@@ -472,7 +451,8 @@
   }
 
   // Fixed header on mobile on tablet
-  const { headerMobileHeight } = drupalSettings.dxpr_themeSettings;
+  const { headerMobileHeight } =
+    drupalSettings.dxpr_themeSettings.headerMobileHeight;
   const headerFixed = drupalSettings.dxpr_themeSettings.headerMobileFixed;
   const navThemeBreak =
     "dxpr_themeNavBreakpoint" in window ? window.dxpr_themeNavBreakpoint : 1200;
@@ -492,7 +472,7 @@
       navbarElement.classList.remove("header-mobile-admin-fixed-active");
     }
     document.getElementsByClassName(
-      "dxpr-theme-boxed-container",
+      "dxpr-theme-boxed-container"
     ).style.overflow = "hidden";
     document.querySelector("#toolbar-bar").classList.add("header-mobile-fixed");
     navbarElement.classList.add("header-mobile-fixed");
@@ -507,7 +487,7 @@
     }
     if ($(window).width() > navBreakMenu) {
       const elementNavMobile = document.querySelector(
-        ".body--dxpr-theme-nav-mobile",
+        ".body--dxpr-theme-nav-mobile"
       );
       if (elementNavMobile) {
         elementNavMobile.classList.add("body--dxpr-theme-nav-desktop");
@@ -515,7 +495,7 @@
       }
     } else {
       const elementNavDesktop = document.querySelector(
-        ".body--dxpr-theme-nav-desktop",
+        ".body--dxpr-theme-nav-desktop"
       );
       if (elementNavDesktop) {
         elementNavDesktop.classList.add("body--dxpr-theme-nav-mobile");
@@ -555,7 +535,7 @@
         dxpr_themeMenuGovernor(document);
       }
       dpxr_themeMenuOnResize();
-    }, 50),
+    }, 50)
   );
 
   dpxr_themeMenuOnResize();
