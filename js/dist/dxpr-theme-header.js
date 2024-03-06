@@ -376,7 +376,7 @@
 
       const bc = $("#dxpr-theme-main-menu .menu .dropdown-menu").length > 0;
       const menuEl = document.getElementById("dxpr-theme-main-menu");
-      MLMenu(menuEl, {
+      new MLMenu(menuEl, {
         breadcrumbsCtrl: bc, // Show breadcrumbs
         initialBreadcrumb: "menu", // Initial breadcrumb text
         backCtrl: false, // Show back button
@@ -492,13 +492,15 @@
     } else {
       navbarElement.classList.remove("header-mobile-admin-fixed-active");
     }
-    document.getElementsByClassName(
-      "dxpr-theme-boxed-container",
-    ).style.overflow = "hidden";
+    document.querySelector(".dxpr-theme-boxed-container").style.overflow =
+      "hidden";
     document.querySelector("#toolbar-bar").classList.add("header-mobile-fixed");
     navbarElement.classList.add("header-mobile-fixed");
-    document.getElementById("secondary-header").style.marginTop =
-      headerMobileHeight;
+    const secondaryHeaderEle = document.querySelector("#secondary-header");
+    if (secondaryHeaderEle) {
+      document.querySelector("#secondary-header").style.marginTop =
+        headerMobileHeight;
+    }
   }
 
   function dxpr_themeMenuGovernorBodyClass() {
