@@ -86,12 +86,12 @@
           args = null;
         }
       };
-      return function () {
+      return function (...reArgs) {
         const now = _.now();
         if (!previous && options.leading === false) previous = now;
         const remaining = wait - (now - previous);
         context = this;
-        args = arguments;
+        args = reArgs;
         if (remaining <= 0 || remaining > wait) {
           if (timeout) {
             clearTimeout(timeout);
@@ -540,8 +540,9 @@
 
   dpxr_themeMenuOnResize();
 
-  $(document).ready(() => {
-    if ($("#dxpr-theme-main-menu .nav").length > 0) {
+  document.addEventListener("DOMContentLoaded", () => {
+    const mainMenuNav = document.querySelector("#dxpr-theme-main-menu .nav");
+    if (mainMenuNav) {
       dxpr_themeMenuGovernorBodyClass();
       dxpr_themeMenuGovernor(document);
     }
