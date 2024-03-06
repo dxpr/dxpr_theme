@@ -331,21 +331,33 @@
       $(
         "#dxpr-theme-main-menu .menu .dropdown-menu, #dxpr-theme-main-menu .menu .dropdown-menu li",
       ).removeAttr("style");
-      document
-        .querySelector("#dxpr-theme-main-menu .menu")
-        .classList.add("menu__item");
-      document
-        .querySelector("#dxpr-theme-main-menu .menu .dropdown-menu")
-        .classList.add("menu__item");
-      document
-        .querySelector("#dxpr-theme-main-menu .menu .dxpr-theme-megamenu")
-        .classList.add("menu__item");
-      document
-        .querySelector("#dxpr-theme-main-menu .menu a")
-        .classList.add("menu__item");
-      document
-        .querySelector("#dxpr-theme-main-menu .menu li")
-        .classList.add("menu__item");
+      const mainMenu = document.getElementById("dxpr-theme-main-menu");
+      if (mainMenu) {
+        const menuItems = mainMenu.querySelectorAll(".menu");
+        menuItems.forEach((menuItem) => {
+          menuItem.classList.add("menu__level");
+
+          const dropdownMenus = menuItem.querySelectorAll(".dropdown-menu");
+          dropdownMenus.forEach((dropdownMenu) => {
+            dropdownMenu.classList.add("menu__level");
+          });
+
+          const megamenus = menuItem.querySelectorAll(".dxpr-theme-megamenu");
+          megamenus.forEach((megamenu) => {
+            megamenu.classList.add("menu__level");
+          });
+
+          const links = menuItem.querySelectorAll("a");
+          links.forEach((link) => {
+            link.classList.add("menu__link");
+          });
+
+          const listItems = menuItem.querySelectorAll("li");
+          listItems.forEach((listItem) => {
+            listItem.classList.add("menu__item");
+          });
+        });
+      }
       // Set up data attributes
       Array.from($("#dxpr-theme-main-menu .menu a.dropdown-toggle")).forEach(
         (element) => {
@@ -360,6 +372,15 @@
         const nextMegaElement = element.nextElementSibling;
         element.setAttribute("data-submenu", element.textContent);
         nextMegaElement.setAttribute("data-menu", element.textContent);
+      });
+
+      const bc = $("#dxpr-theme-main-menu .menu .dropdown-menu").length > 0;
+      const menuEl = document.getElementById("dxpr-theme-main-menu");
+      MLMenu(menuEl, {
+        breadcrumbsCtrl: bc, // Show breadcrumbs
+        initialBreadcrumb: "menu", // Initial breadcrumb text
+        backCtrl: false, // Show back button
+        itemsDelayInterval: 10, // Delay between each menu item sliding animation
       });
 
       // Close/open menu function
