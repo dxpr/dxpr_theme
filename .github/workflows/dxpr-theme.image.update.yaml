@@ -24,7 +24,7 @@ jobs:
         with:
           context: .
           build-args: |
-            PHP_TAG=7.4-dev-4.24.0
+            PHP_TAG=8.1-dev-4.53.0
             DXPR_THEME_CONTAINER=/usr/src/dxpr_theme
           push: true
           tags: dxpr/dxpr_theme:6.x

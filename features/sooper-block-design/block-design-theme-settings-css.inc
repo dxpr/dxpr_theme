@@ -18,129 +18,63 @@
 function block_design_theme_settings_css($theme, &$css, array $palette) {
   if ((theme_get_setting('block_preset')) && ($regions = array_filter(theme_get_setting('block_design_regions')))) {
     // Block Styling.
-    $border_width = theme_get_setting('block_border', $theme);
-    ($border_width) ? $border_style = 'solid' : $border_style = 'none';
-    $border_radius = theme_get_setting('block_border_radius', $theme);
-
     $selector = _dxpr_theme_regions2selectors($regions, '.block');
-    $css .= <<<EOT
-$selector {
-  border-width: {$border_width}px;
-  border-style: $border_style;
-  border-radius: {$border_radius}px;
 
-EOT;
-    if ($value = theme_get_setting('block_padding', $theme)) {
-      $css .= "  padding:  {$value}px; \n";
-    }
+    $css .= "/* Block Styling */\n";
+    $css .= $selector . " {\n";
 
-    if ($value = theme_get_setting('block_background', $theme)) {
-      if (theme_get_setting('block_background', $theme) == 'custom') {
-        $value = theme_get_setting('block_background_custom', $theme);
-      }
-      elseif (isset($palette[$value])) {
-        $value = $palette[$value];
-      }
-      $css .= "  background-color:  $value; \n";
+    if ($border_width = _dxpr_theme_settings_add_css('block_border', 'border-width')) {
+      $css .= $border_width;
+      $css .= "  border-style: solid;\n";
     }
-
-    if ($value = theme_get_setting('block_border_color', $theme)) {
-      if (theme_get_setting('block_border_color', $theme) == 'custom') {
-        $value = theme_get_setting('block_border_color_custom', $theme);
-      }
-      elseif (isset($palette[$value])) {
-        $value = $palette[$value];
-      }
-      $css .= "  border-color:  $value; \n";
-    }
-    $css .= "} \n\n";
+    $css .= _dxpr_theme_settings_add_css('block_border_radius', 'border-radius');
+    $css .= _dxpr_theme_settings_add_css('block_padding', 'padding');
+    $css .= _dxpr_theme_settings_add_css('block_background', 'background-color');
+    $css .= _dxpr_theme_settings_add_css('block_border_color', 'border-color');
+    $css .= "}\n\n";
 
     // Block Title Styling.
     $selector = _dxpr_theme_regions2selectors($regions, '.block-title');
+    $title_elem = theme_get_setting('title_font_size');
 
-    $font_size = theme_get_setting('title_font_size', $theme);
-    $font_size_mobile = theme_get_setting($font_size . '_mobile_font_size', $theme);
-    $font_size = theme_get_setting($font_size . '_font_size', $theme);
-    $align = theme_get_setting('title_align', $theme);
-    $border_width = theme_get_setting('title_border', $theme);
-    ($border_width) ? $border_style = 'solid' : $border_style = 'none';
-    $border_radius = theme_get_setting('title_border_radius', $theme);
-    (theme_get_setting('title_sticker', $theme)) ? $display = 'inline-block' : $display = 'block';
+    $css .= "/* Block Title Styling */\n";
+    $css .= $selector . " {\n";
 
-    $css .= <<<EOT
-$selector {
-  font-size: {$font_size}px;
-  text-align: $align;
-  border-width: {$border_width}px;
-  border-style: $border_style;
-  border-radius: {$border_radius}px;
-  display: $display;
-
-EOT;
-
-    if ($value = theme_get_setting('title_padding', $theme)) {
-      $css .= "  padding:  {$value}px; \n";
+    if ($border_width = _dxpr_theme_settings_add_css('title_border', 'border-width')) {
+      $css .= $border_width;
+      $css .= "  border-style: solid;\n";
     }
+    $css .= _dxpr_theme_settings_add_css($title_elem . '_font_size', 'font-size');
+    $css .= _dxpr_theme_settings_add_css('title_align', 'text-align');
+    $css .= _dxpr_theme_settings_add_css('title_border_radius', 'border-radius');
+    $css .= _dxpr_theme_settings_add_css('title_sticker', 'display');
+    $css .= _dxpr_theme_settings_add_css('title_padding', 'padding');
+    $css .= _dxpr_theme_settings_add_css('title_background', 'background-color');
+    $css .= _dxpr_theme_settings_add_css('title_border_color', 'border-color');
+    $css .= "}\n\n";
 
-    if ($value = theme_get_setting('title_background', $theme)) {
-      if (theme_get_setting('title_background', $theme) == 'custom') {
-        $value = theme_get_setting('title_background_custom', $theme);
-      }
-      elseif (isset($palette[$value])) {
-        $value = $palette[$value];
-      }
-      $css .= "  background-color:  $value; \n";
-    }
-
-    if ($value = theme_get_setting('title_border_color', $theme)) {
-      if (theme_get_setting('title_border_color', $theme) == 'custom') {
-        $value = theme_get_setting('title_border_color_custom', $theme);
-      }
-      elseif (isset($palette[$value])) {
-        $value = $palette[$value];
-      }
-      $css .= "  border-color:  $value; \n";
-    }
-    $css .= "} \n\n";
-
-    $css .= "@media screen and (max-width: 768px) { \n";
-    $css .= "  $selector { font-size: {$font_size_mobile}px; } \n";
-    $css .= "} \n\n";
+    // Mobile.
+    $css .= "@media screen and (max-width: 768px) {\n  ";
+    $css .= $selector . " {\n  ";
+    $css .= _dxpr_theme_settings_add_css($title_elem . '_mobile_font_size', 'font-size');
+    $css .= "  }\n}\n\n";
 
     // Divider Styling.
     if (theme_get_setting('block_divider') && theme_get_setting('block_divider_custom')) {
       $selector = _dxpr_theme_regions2selectors($regions, '.block-hr');
-      if ($value = theme_get_setting('block_divider_color', $theme)) {
-        if (theme_get_setting('block_divider_color', $theme) == 'custom') {
-          $value = theme_get_setting('block_divider_color_custom', $theme);
-        }
-        elseif (isset($palette[$value])) {
-          $value = $palette[$value];
-        }
-        $css .= "$selector {  background-color:  $value; } \n";
+
+      $css .= "/* Divider Styling */\n";
+      $css .= $selector . " {\n";
+      $css .= _dxpr_theme_settings_add_css('block_divider_color', 'border-top-color');
+
+      if (theme_get_setting('block_divider_custom')) {
+        $css .= _dxpr_theme_settings_add_css('block_divider_thickness', 'border-top-width');
+        $css .= _dxpr_theme_settings_add_css('block_divider_length', 'width');
+        $css .= _dxpr_theme_settings_add_css('block_divider_spacing', 'margin-top');
+        $css .= _dxpr_theme_settings_add_css('block_divider_spacing', 'margin-bottom');
       }
-
-      if (theme_get_setting('block_divider_custom') && ($height = theme_get_setting('block_divider_thickness', $theme))) {
-        if ($width = theme_get_setting('block_divider_length', $theme)) {
-          $width = $width;
-        }
-        else {
-          $width = '100%';
-        }
-        $margin = theme_get_setting('block_divider_spacing', $theme);
-        $css .= <<<EOT
-$selector {
-  height: {$height}px;
-  width: {$width}px;
-  margin-top: {$margin}px;
-  margin-bottom: {$margin}px;
-}
-
-EOT;
-      }
-
+      $css .= "}\n\n";
     }
-
   }
 }
 
