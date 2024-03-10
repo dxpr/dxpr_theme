@@ -24,7 +24,7 @@ function dxpr_theme_post_update_n1_migrate_colors() {
   /** @var \Drupal\Core\Extension\Extension $theme */
   foreach ($theme_list as $theme) {
     $theme_name = $theme->getName();
-    if ('dxpr_theme' === ($theme->info['base theme'] ?? '') or 'dxpr_theme' === $theme_name) {
+    if ('dxpr_theme' === ($theme->info['base theme'] ?? '') OR 'dxpr_theme' === $theme_name) {
 
       $config = \Drupal::configFactory()
         ->getEditable($theme_name . '.settings');

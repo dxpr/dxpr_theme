@@ -205,55 +205,60 @@
       const bodyWidth = $("body").innerWidth();
       const margin = 10;
       let columns;
-      const mainMenuList = document.querySelectorAll(
-        "#dxpr-theme-main-menu .menu .dropdown-menu",
-      );
-      mainMenuList.forEach(function (menu) {
-        const width = menu.offsetWidth;
-        if (
-          document.querySelectorAll(".dxpr-theme-megamenu__heading").length > 0
-        ) {
-          columns = document.querySelectorAll(
-            ".dxpr-theme-megamenu__heading",
-          ).length;
-        } else {
-          columns = Math.floor(document.querySelectorAll("li").length / 8) + 1;
-        }
-        if (columns > 2) {
-          menu.style.width = "100%";
-          menu.style.left = "0";
-          menu.parentElement.style.position = "static";
-          Array.from(menu.querySelectorAll(".dropdown-menu > li")).forEach(
-            (li) => {
-              li.style.width = `${100 / columns}%`;
-            },
-          );
-        } else {
-          if (columns > 1) {
-            // Accounts for 1px border.
-            menu.style.minWidth = `${width * columns + 2}px`;
-            Array.from(menu.querySelectorAll("> li")).forEach((li) => {
-              li.style.width = `${width}px`;
-            });
+      $("#dxpr-theme-main-menu .menu .dropdown-menu", context)
+        .toArray()
+        .forEach((element) => {
+          const dropdownElement = $(element);
+          const width = dropdownElement.width();
+          if (
+            dropdownElement.find(".dxpr-theme-megamenu__heading").length > 0
+          ) {
+            columns = dropdownElement.find(
+              ".dxpr-theme-megamenu__heading",
+            ).length;
+          } else {
+            columns = Math.floor(dropdownElement.find("li").length / 8) + 1;
           }
-          // Workaround for drop down overlapping.
-          // See https://github.com/twbs/bootstrap/issues/13477.
-          const $topLevelItem = this.parent();
-          // Set timeout to let the rendering threads catch up.
-          setTimeout(() => {
-            const delta = Math.round(
-              bodyWidth -
-                $topLevelItem.offset().left -
-                this.outerWidth() -
-                margin,
-            );
-            // Only fix items that went out of screen.
-            if (delta < 0) {
-              menu.style.left = `${delta}px`;
+          if (columns > 2) {
+            dropdownElement
+              .css({
+                width: "100%", // Full Width Mega Menu
+                "left:": "0",
+              })
+              .parent()
+              .css({
+                position: "static",
+              })
+              .find(".dropdown-menu >li")
+              .css({
+                width: `${100 / columns}%`,
+              });
+          } else {
+            if (columns > 1) {
+              // Accounts for 1px border.
+              dropdownElement
+                .css("min-width", width * columns + 2)
+                .find(">li")
+                .css("width", width);
             }
-          }, 0);
-        }
-      });
+            // Workaround for drop down overlapping.
+            // See https://github.com/twbs/bootstrap/issues/13477.
+            const topLevelItem = dropdownElement.parent();
+            // Set timeout to let the rendering threads catch up.
+            setTimeout(() => {
+              const delta = Math.round(
+                bodyWidth -
+                  topLevelItem.offsetLeft -
+                  dropdownElement.outerWidth() -
+                  margin,
+              );
+              // Only fix items that went out of screen.
+              if (delta < 0) {
+                dropdownElement.css("left", `${delta}px`);
+              }
+            }, 0);
+          }
+        });
       dxpr_themeMenuState = "top";
       // Hit Detection for Header
       if ($(".tabs--primary").length > 0 && $("#navbar").length > 0) {
