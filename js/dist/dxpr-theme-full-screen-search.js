@@ -7,38 +7,40 @@
 (function ($, Drupal, once) {
   Drupal.behaviors.fullScreenSearch = {
     attach(context, settings) {
-      function clearSearchForm() {
-        $searchForm.toggleClass("invisible"),
-          $("body").toggleClass("body--full-screen-search"),
-          setTimeout(() => {
-            $searchFormInput.val("");
-          }, 350);
-      }
-      const $searchButton = $(".full-screen-search-button");
-      var $searchForm = $(".full-screen-search-form");
-      var $searchFormInput = $searchForm.find(".search-query");
+      const searchButton = $(".full-screen-search-button");
+      const searchForm = $(".full-screen-search-form");
+      const searchFormInput = searchForm.find(".search-query");
       const escapeCode = 27;
-      $(once("search-button", $searchButton)).on(
-        "touchstart click",
-        (event) => {
-          event.preventDefault(),
-            $searchForm.toggleClass("invisible"),
-            $("body").toggleClass("body--full-screen-search"),
-            $searchFormInput.focus();
+      function clearSearchForm() {
+        searchForm.toggleClass("invisible");
+        document
+          .querySelector("body")
+          .classList.toggle("body--full-screen-search");
+        setTimeout(() => {
+          searchFormInput.val("");
+        }, 350);
+      }
+      $(once("search-button", searchButton)).on("touchstart click", (event) => {
+        event.preventDefault();
+        searchForm.toggleClass("invisible");
+        document
+          .querySelector("body")
+          .classList.toggle("body--full-screen-search");
+        searchFormInput.focus();
+      });
+      $(once("search-form", searchForm)).on("touchstart click", (ele) => {
+        if (!ele.target.classList.contains("search-query")) {
+          clearSearchForm();
         }
-      ),
-        $(once("search-form", $searchForm)).on(
-          "touchstart click",
-          ($searchButton) => {
-            $($searchButton.target).hasClass("search-query") ||
-              clearSearchForm();
-          }
-        ),
-        $(document).keydown((event) => {
+      });
+      $(document).keydown((event) => {
+        if (
           event.which === escapeCode &&
-            !$searchForm.hasClass("invisible") &&
-            clearSearchForm();
-        });
+          !searchForm.classList.contains("invisible")
+        ) {
+          clearSearchForm();
+        }
+      });
     },
   };
 })(jQuery, Drupal, once);
