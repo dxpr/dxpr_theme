@@ -109,7 +109,7 @@
         Object.keys(schemePalette).forEach((key) => {
           const hexColor = schemePalette[key];
           const colorField = document.getElementById(
-            `edit-color-palette-${key}`
+            `edit-color-palette-${key}`,
           );
           this.updateColorField(colorField, hexColor, true);
         });
@@ -164,7 +164,7 @@
         Object.keys(palette).forEach((key) => {
           root.style.setProperty(
             cssVariablesPrefix + key,
-            String(palette[key])
+            String(palette[key]),
           );
         });
       }

@@ -20,9 +20,9 @@
   };
   const animEndEventName = animEndEventNames[Modernizr.prefixed("animation")];
   const onEndAnimation = function (el, callback) {
-    var onEndCallbackFn = function (ev) {
+    const onEndCallbackFn = function (ev) {
       if (support.animations) {
-        if (ev.target != this) return;
+        if (ev.target !== this) return;
         this.removeEventListener(animEndEventName, onEndCallbackFn);
       }
       if (callback && typeof callback === "function") {
@@ -37,11 +37,11 @@
   };
 
   function extend(a, b) {
-    for (const key in b) {
-      if (b.hasOwnProperty(key)) {
+    Object.keys(b).forEach((key) => {
+      if (Object.prototype.hasOwnProperty.call(b, key)) {
         a[key] = b[key];
       }
-    }
+    });
     return a;
   }
 
@@ -69,7 +69,7 @@
     itemsDelayInterval: 60,
     // Direction
     direction: "r2l",
-    // Callback: item that doesn´t have a submenu gets clicked
+    // Callback: item that does not have a sub menu gets clicked
     // onItemClick([event], [inner HTML of the clicked item])
     onItemClick(ev, itemName) {
       return false;
@@ -122,7 +122,7 @@
             const submenu = ev.target.getAttribute("data-submenu");
             const itemName = ev.target.innerHTML;
             const subMenuEl = self.el.querySelector(
-              `ul[data-menu="${submenu}"]`
+              `ul[data-menu="${submenu}"]`,
             );
 
             // Check if there's a sub menu for this item
@@ -136,7 +136,7 @@
               if (currentlink) {
                 classie.remove(
                   self.el.querySelector(".menu__link--current"),
-                  "menu__link--current"
+                  "menu__link--current",
                 );
               }
               classie.add(ev.target, "menu__link--current");
@@ -160,7 +160,7 @@
   MLMenu.prototype._openSubMenu = function (
     subMenuEl,
     clickPosition,
-    subMenuName
+    subMenuName,
   ) {
     if (this.isAnimating) {
       return false;
@@ -173,7 +173,7 @@
     this.menusArr[this.menus.indexOf(subMenuEl)].name = subMenuName;
     // Current menu slides out
     this._menuOut(clickPosition);
-    // Next menu (submenu) slides in
+    // Next menu (sub menu) slides in
     this._menuIn(subMenuEl, clickPosition);
   };
 
@@ -203,23 +203,25 @@
 
     // Slide out current menu items - first, set the delays for the items
     this.menusArr[this.current].menuItems.forEach((item, pos) => {
-      item.style.WebkitAnimationDelay = item.style.animationDelay =
-        isBackNavigation
-          ? `${parseInt(pos * self.options.itemsDelayInterval)}ms`
-          : `${parseInt(
-              Math.abs(clickPosition - pos) * self.options.itemsDelayInterval
-            )}ms`;
+      const delayValue = isBackNavigation
+        ? `${parseInt(pos * self.options.itemsDelayInterval, 10)}ms`
+        : `${parseInt(
+            Math.abs(clickPosition - pos) * self.options.itemsDelayInterval,
+            10,
+          )}ms`;
+      item.style.WebkitAnimationDelay = delayValue;
+      item.style.animationDelay = delayValue;
     });
     // Animation class
     if (this.options.direction === "r2l") {
       classie.add(
         currentMenu,
-        !isBackNavigation ? "animate-outToLeft" : "animate-outToRight"
+        !isBackNavigation ? "animate-outToLeft" : "animate-outToRight",
       );
     } else {
       classie.add(
         currentMenu,
-        isBackNavigation ? "animate-outToLeft" : "animate-outToRight"
+        isBackNavigation ? "animate-outToLeft" : "animate-outToRight",
       );
     }
   };
@@ -237,12 +239,14 @@
 
     // Slide in next menu items - first, set the delays for the items
     nextMenuItems.forEach((item, pos) => {
-      item.style.WebkitAnimationDelay = item.style.animationDelay =
-        isBackNavigation
-          ? `${parseInt(pos * self.options.itemsDelayInterval)}ms`
-          : `${parseInt(
-              Math.abs(clickPosition - pos) * self.options.itemsDelayInterval
-            )}ms`;
+      const delayValue = isBackNavigation
+        ? `${parseInt(pos * self.options.itemsDelayInterval, 10)}ms`
+        : `${parseInt(
+            Math.abs(clickPosition - pos) * self.options.itemsDelayInterval,
+            10,
+          )}ms`;
+      item.style.WebkitAnimationDelay = delayValue;
+      item.style.animationDelay = delayValue;
 
       // We need to reset the classes once the last item animates in
       // the "last item" is the farthest from the clicked item
@@ -258,20 +262,20 @@
           if (self.options.direction === "r2l") {
             classie.remove(
               currentMenu,
-              !isBackNavigation ? "animate-outToLeft" : "animate-outToRight"
+              !isBackNavigation ? "animate-outToLeft" : "animate-outToRight",
             );
             classie.remove(
               nextMenuEl,
-              !isBackNavigation ? "animate-inFromRight" : "animate-inFromLeft"
+              !isBackNavigation ? "animate-inFromRight" : "animate-inFromLeft",
             );
           } else {
             classie.remove(
               currentMenu,
-              isBackNavigation ? "animate-outToLeft" : "animate-outToRight"
+              isBackNavigation ? "animate-outToLeft" : "animate-outToRight",
             );
             classie.remove(
               nextMenuEl,
-              isBackNavigation ? "animate-inFromRight" : "animate-inFromLeft"
+              isBackNavigation ? "animate-inFromRight" : "animate-inFromLeft",
             );
           }
           classie.remove(currentMenu, "menu__level--current");
@@ -304,12 +308,12 @@
     if (this.options.direction === "r2l") {
       classie.add(
         nextMenuEl,
-        !isBackNavigation ? "animate-inFromRight" : "animate-inFromLeft"
+        !isBackNavigation ? "animate-inFromRight" : "animate-inFromLeft",
       );
     } else {
       classie.add(
         nextMenuEl,
-        isBackNavigation ? "animate-inFromRight" : "animate-inFromLeft"
+        isBackNavigation ? "animate-inFromRight" : "animate-inFromLeft",
       );
     }
   };
@@ -342,9 +346,10 @@
       self._menuIn(nextMenu);
 
       // Remove breadcrumbs that are ahead
-      let siblingNode;
-      while ((siblingNode = bc.nextSibling)) {
+      let siblingNode = bc.nextSibling;
+      while (siblingNode) {
         self.breadcrumbsCtrl.removeChild(siblingNode);
+        siblingNode = bc.nextSibling;
       }
     });
   };
