@@ -226,6 +226,9 @@ $schemes: (
       &#{$name} {
         @each $key, $color in $scheme {
           --dxpr-color-#{$key}:#{$color};
+          @if ($key == "header") {
+            --dxpr-color-#{$key}-rgb:#{red($color),green($color),blue($color)};
+          }
         }
       }
     }

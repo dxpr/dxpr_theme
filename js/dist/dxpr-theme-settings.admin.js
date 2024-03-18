@@ -166,6 +166,14 @@
             cssVariablesPrefix + key,
             String(palette[key])
           );
+
+          if (key === "header") {
+            const [r, g, b] = this.getHexToRgb(palette[key]);
+            root.style.setProperty(
+              `${cssVariablesPrefix}${key}-rgb`,
+              `${r},${g},${b}`
+            );
+          }
         });
       }
 
@@ -182,6 +190,17 @@
      * Returns recommended contrast color.
      */
     getContrastColor(hexColor) {
+      const [r, g, b] = this.getHexToRgb(hexColor);
+      const luminance = 0.299 * r + 0.587 * g + 0.114 * b;
+      return luminance > 128 ? "#000" : "#fff";
+    },
+    /**
+     * Returns an array with r,g,b color values from given hex value.
+     *
+     * @param hexColor
+     * @returns {number[]}
+     */
+    getHexToRgb(hexColor) {
       // Expand shorthand color values.
       if (hexColor.length === 4) {
         hexColor = `#${hexColor
@@ -193,8 +212,7 @@
       const r = parseInt(hexColor.slice(1, 3), 16);
       const g = parseInt(hexColor.slice(3, 5), 16);
       const b = parseInt(hexColor.slice(5, 7), 16);
-      const luminance = 0.299 * r + 0.587 * g + 0.114 * b;
-      return luminance > 128 ? "#000" : "#fff";
+      return [r, g, b];
     },
   };
 

@@ -5,6 +5,8 @@
  * CSS color variable styles.
  */
 
+use Drupal\Component\Utility\Color;
+
 /**
  * Generate css color variables css styles.
  *
@@ -17,6 +19,9 @@
  */
 function colors_theme_settings_css($theme, &$css, array $palette) {
   $color_prefix = _dxpr_theme_get_const('cssColorPrefix');
+
+  // Add RGB CSS variable.
+  $palette['header-rgb'] = implode(',', Color::hexToRgb($palette['header']));
 
   $css_variables = implode(";\n", array_map(
     function ($key, $value) use ($color_prefix) {
