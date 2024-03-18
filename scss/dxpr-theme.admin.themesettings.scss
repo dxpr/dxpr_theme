@@ -1,32 +1,22 @@
 @charset "UTF-8";
-//colors
-$primary: #0550e6;
-$highlight: #e6eefd;
-$text: #222330;
-$textLight: rgba(86,86,86,.6);
+
+$border-color: #222330;
 
 #system-theme-settings {
-  background: white;
-  color: $text;
   font-size: 15px;
   margin-top: 60px;
   // Header
   *:not(.reinvented-color-wheel *) {
     box-sizing: border-box;
     border-radius: 0;
-    color: $text;
-    font-weight: normal;
-    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol" !important;
   }
   #edit-actions {
     border: none;
-    border-top: 1px solid $textLight;
+    border-top: 1px solid $border-color;
     margin: 40px 0 0 0;
   }
   #edit-submit {
-    background: $primary;
     border: none;
-    color: white;
     font-size: 18px;
     padding: 20px;
     margin: 20px;
@@ -52,7 +42,7 @@ $textLight: rgba(86,86,86,.6);
   div.form-wrapper {
     background: transparent;
     clear: both;
-    border-left: 1px solid $text;
+    border-left: 1px solid $border-color;
     border-radius: 0;
     margin-top: 0;
     margin-bottom: 20px;
@@ -72,12 +62,8 @@ $textLight: rgba(86,86,86,.6);
         &:active {
           outline: none;
           text-decoration: none;
-          background: $highlight;
         }
       }
-    }
-    .card, .card-body {
-      color: #354051;
     }
     .card-header {
       border: none;
@@ -103,7 +89,6 @@ $textLight: rgba(86,86,86,.6);
       }
     }
     .description {
-      color: $textLight;
       font-size: 12px;
       padding: 5px 0;
       margin: 0;
@@ -131,12 +116,6 @@ $textLight: rgba(86,86,86,.6);
     .js-form-type-radio {
       min-height: 20px;
     }
-  }
-  .form-control {
-    border-color: $text;
-  }
-  .form-type-select::after {
-    color: $textLight;
   }
   // selects fix
   .form-item-field-settings-granularity {
@@ -174,9 +153,8 @@ $textLight: rgba(86,86,86,.6);
   .form-text,
   .form-textarea,
   .form-file {
-    border: none;
     box-shadow: none;
-    border: 1px solid $text;
+    border: 1px solid $border-color;
   }
   .description,
   .help-block {
@@ -199,19 +177,16 @@ $textLight: rgba(86,86,86,.6);
   }
   .slider-track {
     height: 5px;
-    background: #dadfe7;
     box-shadow: none;
   }
   .slider-selection {
     box-shadow: none;
-    background: $primary;
   }
   .slider {
     position: relative;
     display: block;
   }
   .slider-handle {
-    background: white;
     box-shadow: 0px 1px 2px rgba(16,24,40,.09), 0px 1px 3px rgba(16,24,40,.15);
     width: 20px;
     height: 20px;
@@ -223,7 +198,7 @@ $textLight: rgba(86,86,86,.6);
     margin-top: 0;
   }
   .form-header {
-    border-bottom: 1px solid $text;
+    border-bottom: 1px solid $border-color;
     display: block;
     width: 100%;
     margin-bottom: 0;
@@ -237,12 +212,10 @@ $textLight: rgba(86,86,86,.6);
   .vertical-tabs {
     display: table;
     position: relative;
-    width: 100%;    
+    width: 100%;
     margin: 0;
 
     .vertical-tabs__menu {
-      
-      color: $text;
       float: none;
       display: table-cell;
       vertical-align: top;
@@ -252,7 +225,7 @@ $textLight: rgba(86,86,86,.6);
       top: 0;
       left: 0;
       height: 100%;
-      padding-top: 30px;      
+      padding-top: 30px;
       margin: 0;
       border: none;
       .vertical-tabs__menu-item {
@@ -266,8 +239,6 @@ $textLight: rgba(86,86,86,.6);
           &:hover,
           &:active {
             border: none;
-            color: $primary !important;
-            background: $highlight !important;
             outline: none;
             text-decoration: none;
           }
@@ -286,24 +257,11 @@ $textLight: rgba(86,86,86,.6);
       }
       .is-selected {
         a {
-          color: white;
-          background: $highlight;
           border: none;
-          &:hover,
-          &:focus {
-            color: $primary !important;
-            background: $highlight !important;
-          }
           .vertical-tabs__menu-item-title {
-            color: $primary;
+            color: var(--dxpr-color-accent1);
           }
         }
-        .summary {
-          color: $textLight;
-        }
-      }
-      .summary {
-        color: $textLight;
       }
     }
     .vertical-tabs__panes {
@@ -344,7 +302,6 @@ $textLight: rgba(86,86,86,.6);
 
         &:before {
           content: '__';
-          color: $primary;
           opacity: 0.3;
           font-size: 18px;
           display: inline-block;
@@ -361,7 +318,6 @@ $textLight: rgba(86,86,86,.6);
         &:before {
           content: '✓';
           opacity: 1;
-          color: $primary;
           font-size: 24px;
         }
       }
@@ -522,14 +478,10 @@ $textLight: rgba(86,86,86,.6);
       width: 20%;
     }
   }
-  .block-design-wrapper {
-    // background: white;
-  }
   .block-design-settings {
     width: 50%;
     float:left;
-    padding: 60px;
-    padding-right: 0
+    padding: 60px 0 60px 60px;
   }
   .block-preview {
     width:50%;
@@ -570,7 +522,6 @@ $textLight: rgba(86,86,86,.6);
       // opacity: 0;
       // appearance: none;
       &:checked + .switcher {
-        background: $primary;
         &:after {
           left: calc(100% - 3px);
           transform: translateX(-100%);
@@ -591,7 +542,6 @@ $textLight: rgba(86,86,86,.6);
       width: 54px;
       height: 27px;
       border-radius: 20px;
-      background: #888;
       display: block;
       &:after {
         content: '';
@@ -600,7 +550,6 @@ $textLight: rgba(86,86,86,.6);
         left: 3px;
         width: 21px;
         height: 21px;
-        background: #fff;
         border-radius: 50%;
         transition: 0.3s;
       }
@@ -609,8 +558,6 @@ $textLight: rgba(86,86,86,.6);
 }
 
 .type-preview {
-  // background: #fefffe;
-  // color: #555555;
   clear: both;
   .type-container {
     padding: 40px 80px;
