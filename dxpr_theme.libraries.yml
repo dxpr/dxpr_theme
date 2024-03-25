@@ -104,10 +104,6 @@ drupal-breadcrumbs:
     - core/drupal
     - core/once
 
-drupal-breadcrumbs-js:
-  js:
-    js/minified/dxpr-theme-breadcrumbs.min.js: { minified: true }
-
 drupal-comments:
   css:
     theme:

@@ -18,22 +18,6 @@
 function page_title_theme_settings_css($theme, &$css, array $palette) {
   $css .= "/* Page Title Styles */\n";
 
-  if ($page_title_breadcrumb_align = theme_get_setting('page_title_breadcrumbs_align', $theme)) {
-    $gutter_container = _dxpr_theme_setting_get_css_var('gutter_container');
-
-    $page_title_bc = match ($page_title_breadcrumb_align) {
-      'right'  => "  right: $gutter_container;\n  left: auto;\n",
-      'left'   => "  left: $gutter_container;\n  right: auto;\n",
-      'center' => "  left: 0;\n  right: 0;\n  width:100%;\n  text-align:center;\n",
-    };
-
-    if ($page_title_bc) {
-      $css .= ".page-title-full-width-container .breadcrumb {\n";
-      $css .= $page_title_bc;
-      $css .= "}\n\n";
-    }
-  }
-
   $css .= "#page-title {\n";
   $css .= _dxpr_theme_settings_add_css('page_title_align', 'text-align');
   $css .= "}\n\n";

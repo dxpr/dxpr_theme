@@ -229,6 +229,8 @@
     init() {
       const settings = this.getCssVariables();
 
+      this.toggleElement('page_title_breadcrumbs', 'header ol.breadcrumb');
+
       Object.keys(settings).forEach((setting) => {
         let inputId = setting
           .replace(cssVarSettingsPrefix, "")
@@ -277,6 +279,10 @@
      */
     massageValue(setting, value) {
       switch (setting) {
+        // Generic: Add Quotes
+        case "page_title_breadcrumbs_separator":
+          value = `"${value}"`;
+          break;
         case "title_sticker":
           value = value === "1" ? 'inline-block' : 'block';
           break;

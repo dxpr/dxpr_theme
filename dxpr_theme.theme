@@ -303,7 +303,11 @@ function dxpr_theme_preprocess_breadcrumb(&$variables) {
       ];
     }
     $variables['#attached']['library'][] = 'dxpr_theme/drupal-breadcrumbs';
-    $variables['#attached']['library'][] = 'dxpr_theme/drupal-breadcrumbs-js';
+
+    // Always load breadcrumb on settings page.
+    if (\Drupal::routeMatch()->getRouteName() === 'dxpr_theme_helper.settings') {
+      $variables['theme']['settings']['page_title_breadcrumbs'] = TRUE;
+    }
   }
 }
 
