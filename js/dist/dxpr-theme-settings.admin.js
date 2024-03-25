@@ -4,7 +4,8 @@
   "use strict";
 
   // Define constants.
-  const cssVariablesPrefix = "--dxpr-color-";
+  const cssVarColorsPrefix = "--dxpr-color-";
+  const cssVarSettingsPrefix = "--dxpr-setting-";
 
   /**
    * Handles the 'Colors' theme settings page.
@@ -163,15 +164,15 @@
       if (palette) {
         Object.keys(palette).forEach((key) => {
           root.style.setProperty(
-            cssVariablesPrefix + key,
+            cssVarColorsPrefix + key,
             String(palette[key]),
           );
 
           if (key === "header") {
             const [r, g, b] = this.getHexToRgb(palette[key]);
             root.style.setProperty(
-              `${cssVariablesPrefix}${key}-rgb`,
-              `${r},${g},${b}`
+              `${cssVarColorsPrefix}${key}-rgb`,
+              `${r},${g},${b}`,
             );
           }
         });
@@ -180,7 +181,7 @@
       if (palette === null) {
         for (let i = root.style.length - 1; i >= 0; i--) {
           const propertyName = root.style[i];
-          if (propertyName.startsWith(cssVariablesPrefix)) {
+          if (propertyName.startsWith(cssVarColorsPrefix)) {
             root.style.removeProperty(propertyName);
           }
         }
@@ -216,6 +217,106 @@
     },
   };
 
+  /**
+   * Handle dynamic theme settings.
+   */
+  Drupal.behaviors.dxpr_themeSettingsDynamic = {
+    attach(context) {
+      if (once("dxpr-settings-init", "html").length) {
+        this.init();
+      }
+    },
+    init() {
+      const settings = this.getCssVariables();
+
+      Object.keys(settings).forEach((setting) => {
+        let inputId = setting
+          .replace(cssVarSettingsPrefix, "")
+          .replace(/-/g, "_");
+        const els = document.querySelectorAll(`[name="${inputId}"]`);
+
+        // Use jQuery to handle bootstrapSlider events.
+        els.forEach((el) => {
+          $(el).on("change", (e) => {
+            this.fieldHandler(e);
+          });
+        });
+      })
+    },
+    /**
+     * Handles the change event for form fields.
+     *
+     * @param event
+     */
+    fieldHandler(event) {
+      const root = document.documentElement;
+      const setting = event.target.name;
+      const textValue = event.target.parentElement.textContent;
+      let value = event.target.value;
+
+      // Use textValue if possible as it includes the unit suffix.
+      if (textValue.startsWith(value)) {
+        value = textValue;
+      }
+
+      value = this.massageValue(setting, value);
+
+      // Override CSS variable.
+      root.style.setProperty(
+        cssVarSettingsPrefix + setting.replace(/_/g, "-"),
+        String(value)
+      );
+
+    },
+    /**
+     * Tweak certain settings to valid values.
+     *
+     * @param setting
+     * @param value
+     * @returns {string}
+     */
+    massageValue(setting, value) {
+      switch (setting) {
+        case "title_sticker":
+          value = value === "1" ? 'inline-block' : 'block';
+          break;
+      }
+      return value;
+    },
+    /**
+     * Returns all dxpr settings CSS variables.
+     *
+     * @returns {{}}
+     */
+    getCssVariables() {
+      const styles = getComputedStyle(document.documentElement);
+      const cssVariables = {};
+      for (let i = 0; i < styles.length; i++) {
+        const property = styles[i];
+        if (property.startsWith(cssVarSettingsPrefix)) {
+          cssVariables[property] = styles.getPropertyValue(property);
+        }
+      }
+      return cssVariables;
+    },
+    /**
+     * Toggles show/hide of an element based on a field status.
+     *
+     * @param toggle    Field name to use as toggle.
+     * @param selector  CSS Selector for element to toggle.
+     */
+    toggleElement(toggle, selector) {
+      const cb = document.querySelector(`input[name="${toggle}"]`);
+      const el = document.querySelector(selector);
+
+      el.style.display = cb.checked ? 'block' : 'none';
+
+      cb.addEventListener('change', function() {
+        el.style.display = cb.checked ? 'block' : 'none';
+      });
+    }
+  };
+
   // Drupal.attachBehaviors('#system-theme-settings');
 
   /**
@@ -237,7 +338,7 @@
 
       function dxpr_theme_map_color(color) {
         if (color in drupalSettings.dxpr_themeSettings.colors.palette) {
-          color = `var(${cssVariablesPrefix + color})`;
+          color = `var(${cssVarColorsPrefix + color})`;
         }
         return color;
       }
