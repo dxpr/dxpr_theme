@@ -18,32 +18,6 @@
 function page_title_theme_settings_css($theme, &$css, array $palette) {
   $css .= "/* Page Title Styles */\n";
 
-  $css .= "#page-title {\n";
-  $css .= _dxpr_theme_settings_add_css('page_title_align', 'text-align');
-  $css .= "}\n\n";
-
-  /*
-   * Page Title.
-   */
-  $title_type = theme_get_setting('title_type', $theme);
-
-  $css .= "#page-title .page-title {\n";
-
-  $title_type_styles = [
-    'uppercase' => 'text-transform: uppercase;',
-    'bold'      => 'font-weight: bold;',
-    'italic'    => 'font-style: italic;',
-  ];
-
-  foreach ($title_type as $type) {
-    if (isset($title_type_styles[$type])) {
-      $css .= "  " . $title_type_styles[$type] . "\n";
-    }
-  }
-
-  $css .= _dxpr_theme_settings_add_css('page_title_height', 'height');
-  $css .= "}\n\n";
-
   // Page Title container.
   $css .= ".page-title-full-width-container:after {\n";
   $css .= _dxpr_theme_settings_add_css('page_title_image_opacity', 'opacity');

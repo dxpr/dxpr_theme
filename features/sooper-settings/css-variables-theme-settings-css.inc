@@ -26,14 +26,23 @@ function css_variables_theme_settings_css(string $theme, string &$css) {
   }
 
   ksort($theme_settings);
+  $prefix = _dxpr_theme_get_const('cssSettingPrefix');
 
   $css_variables = [];
   foreach ($theme_settings as $k => $v) {
     if (_dxpr_theme_is_css_variable($k)) {
       if ($value = _dxpr_theme_massage_values($k, $v, $theme, $theme_settings)) {
-        $var_name = str_replace('_', '-', $k);
-        $prefix = _dxpr_theme_get_const('cssSettingPrefix');
-        $css_variables[] = '  ' . $prefix . $var_name . ': ' . $value;
+
+        if (is_array($value)) {
+          foreach ($value as $name => $val) {
+            $var_name = str_replace('_', '-', $k . '_' . $name);
+            $css_variables[] = '  ' . $prefix . $var_name . ': ' . $val;
+          }
+        }
+        else {
+          $var_name = str_replace('_', '-', $k);
+          $css_variables[] = '  ' . $prefix . $var_name . ': ' . $value;
+        }
       }
     }
   }
@@ -69,10 +78,10 @@ function _dxpr_theme_is_css_variable(string $key): bool {
  * @param array $submitted
  *   Array of submitted values.
  *
- * @return string
+ * @return string|array
  *   A value suitable for use as a CSS variable value.
  */
-function _dxpr_theme_massage_values(string $key, $value, string $theme, array $submitted): string {
+function _dxpr_theme_massage_values(string $key, $value, string $theme, array $submitted): string|array {
   $prefix = $suffix = '';
   $settings = _dxpr_theme_get_css_settings();
 
@@ -143,8 +152,8 @@ function _dxpr_theme_massage_values(string $key, $value, string $theme, array $s
     }
   }
 
-  // Only add prefixes/suffixes if there's a value.
-  if (!empty($value)) {
+  // Add prefixes/suffixes for non-empty string values.
+  if (!empty($value) && is_string($value)) {
     $value = $prefix . $p . $value . $s . $suffix;
   }
 
@@ -248,5 +257,6 @@ function _dxpr_theme_get_css_settings(): array {
     'title_border_radius' => ['suffix' => 'px'],
     'title_padding' => ['suffix' => 'px'],
     'title_sticker' => [],
+    'title_type' => [],
   ];
 }

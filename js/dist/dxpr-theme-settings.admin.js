@@ -232,9 +232,7 @@
       this.toggleElement('page_title_breadcrumbs', 'header ol.breadcrumb');
 
       Object.keys(settings).forEach((setting) => {
-        let inputId = setting
-          .replace(cssVarSettingsPrefix, "")
-          .replace(/-/g, "_");
+        const inputId = this.getInputId(setting);
         const els = document.querySelectorAll(`[name="${inputId}"]`);
 
         // Use jQuery to handle bootstrapSlider events.
@@ -244,6 +242,21 @@
           });
         });
       })
+    },
+    getInputId(setting) {
+      let inputId = setting.replace(cssVarSettingsPrefix, "").replace(/-/g, "_");
+
+      // Fix id's containing brackets.
+      switch (inputId) {
+        case 'title_type_italic':
+        case 'title_type_bold':
+        case 'title_type_uppercase':
+          const [p1, p2, p3] = inputId.split('_');
+          inputId = `${p1}_${p2}[${p3}]`;
+          break;
+      }
+
+      return inputId;
     },
     /**
      * Handles the change event for form fields.
@@ -256,6 +269,10 @@
       const textValue = event.target.parentElement.textContent;
       let value = event.target.value;
 
+      if (event.target.type === 'checkbox') {
+        value = event.target.checked;
+      }
+
       // Use textValue if possible as it includes the unit suffix.
       if (textValue.startsWith(value)) {
         value = textValue;
@@ -265,7 +282,7 @@
 
       // Override CSS variable.
       root.style.setProperty(
-        cssVarSettingsPrefix + setting.replace(/_/g, "-"),
+        cssVarSettingsPrefix + setting.replace(/\[|_/g, "-").replace("]", ""),
         String(value)
       );
 
@@ -284,7 +301,16 @@
           value = `"${value}"`;
           break;
         case "title_sticker":
-          value = value === "1" ? 'inline-block' : 'block';
+          value = value === "1" ? "inline-block" : "block";
+          break;
+        case "title_type[uppercase]":
+          value = value ? "uppercase" : "normal";
+          break;
+        case "title_type[bold]":
+          value = value ? "bold" : "normal";
+          break;
+        case "title_type[italic]":
+          value = value ? "italic" : "normal";
           break;
       }
       return value;
