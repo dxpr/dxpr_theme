@@ -229,7 +229,7 @@
     init() {
       const settings = this.getCssVariables();
 
-      this.toggleElement('page_title_breadcrumbs', 'header ol.breadcrumb');
+      this.toggleElement("page_title_breadcrumbs", "header ol.breadcrumb");
 
       Object.keys(settings).forEach((setting) => {
         const inputId = this.getInputId(setting);
@@ -241,19 +241,23 @@
             this.fieldHandler(e);
           });
         });
-      })
+      });
     },
     getInputId(setting) {
-      let inputId = setting.replace(cssVarSettingsPrefix, "").replace(/-/g, "_");
+      let inputId = setting
+        .replace(cssVarSettingsPrefix, "").replace(/-/g, "_");
+      const [p1, p2, p3] = "";
 
       // Fix id's containing brackets.
       switch (inputId) {
-        case 'title_type_italic':
-        case 'title_type_bold':
-        case 'title_type_uppercase':
-          const [p1, p2, p3] = inputId.split('_');
+        case "title_type_italic":
+        case "title_type_bold":
+        case "title_type_uppercase":
+          [p1, p2, p3] = inputId.split("_");
           inputId = `${p1}_${p2}[${p3}]`;
           break;
+        default:
+          // Pass-through.
       }
 
       return inputId;
@@ -265,11 +269,10 @@
      */
     fieldHandler(event) {
       const root = document.documentElement;
-      const setting = event.target.name;
-      const textValue = event.target.parentElement.textContent;
-      let value = event.target.value;
+      const { name: setting, parentElement: { textContent: textValue } } = event.target;
+      let { value } = event.target;
 
-      if (event.target.type === 'checkbox') {
+      if (event.target.type === "checkbox") {
         value = event.target.checked;
       }
 
@@ -283,9 +286,8 @@
       // Override CSS variable.
       root.style.setProperty(
         cssVarSettingsPrefix + setting.replace(/\[|_/g, "-").replace("]", ""),
-        String(value)
+        String(value),
       );
-
     },
     /**
      * Tweak certain settings to valid values.
@@ -312,6 +314,8 @@
         case "title_type[italic]":
           value = value ? "italic" : "normal";
           break;
+        default:
+          // Pass-through
       }
       return value;
     },
@@ -321,7 +325,7 @@
      * @returns {{}}
      */
     getCssVariables() {
-      const styles = getComputedStyle(document.documentElement);
+      const styles = window.getComputedStyle(document.documentElement);
       const cssVariables = {};
       for (let i = 0; i < styles.length; i++) {
         const property = styles[i];
@@ -341,12 +345,12 @@
       const cb = document.querySelector(`input[name="${toggle}"]`);
       const el = document.querySelector(selector);
 
-      el.style.display = cb.checked ? 'block' : 'none';
+      el.style.display = cb.checked ? "block" : "none";
 
-      cb.addEventListener('change', function() {
-        el.style.display = cb.checked ? 'block' : 'none';
+      cb.addEventListener("change", function() {
+        el.style.display = cb.checked ? "block" : "none";
       });
-    }
+    },
   };
 
   // Drupal.attachBehaviors('#system-theme-settings');
