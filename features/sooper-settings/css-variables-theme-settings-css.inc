@@ -99,12 +99,12 @@ function _dxpr_theme_massage_values(string $key, $value, string $theme, array $s
 
     // Generic: Bold.
     case 'headings_bold':
-      $value = !empty($value) ? 'bold' : 'inherit';
+      $value = !empty($value) ? 'bold' : 'normal';
       break;
 
     // Generic: Uppercase.
     case 'headings_uppercase':
-      $value = !empty($value) ? 'uppercase' : 'inherit';
+      $value = !empty($value) ? 'uppercase' : 'none';
       break;
 
     // Generic: Display style.
@@ -117,6 +117,20 @@ function _dxpr_theme_massage_values(string $key, $value, string $theme, array $s
       if (empty($value)) {
         $value = 100;
         $s = '%';
+      }
+      break;
+
+    case 'divider_position':
+      switch ($value) {
+        case 1:
+          $value = '0';
+          break;
+        case 2:
+          $value = 'auto';
+          break;
+        case 3:
+          $value = 'calc(100% - var(--dxpr-setting-divider-length))';
+          break;
       }
       break;
 
@@ -191,6 +205,7 @@ function _dxpr_theme_get_css_settings(): array {
     'boxed_layout_boxbg' => [],
     'divider_color' => [],
     'divider_length' => ['suffix' => 'px'],
+    'divider_position' => [],
     'divider_thickness' => ['suffix' => 'px'],
     'dropdown_background' => [],
     'dropdown_hover_background' => [],

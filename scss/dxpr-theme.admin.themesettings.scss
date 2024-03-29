@@ -3,7 +3,6 @@
 $border-color: #222330;
 
 #system-theme-settings {
-  font-size: 15px;
   margin-top: 60px;
   // Header
   *:not(.reinvented-color-wheel *) {
@@ -132,6 +131,7 @@ $border-color: #222330;
     display: flex;
     width: 100%;
     height: 40px;
+    padding: 0 10px;
     .slider {
       flex: 0 1 80%;
     }
@@ -450,6 +450,7 @@ $border-color: #222330;
       width: 33%;
       padding-top: 0;
       margin-bottom: 0;
+      overflow: hidden;
       label {
         width: 100%;
       }

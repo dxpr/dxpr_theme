@@ -245,8 +245,9 @@
     },
     getInputId(setting) {
       let inputId = setting
-        .replace(cssVarSettingsPrefix, "").replace(/-/g, "_");
-      const [p1, p2, p3] = "";
+        .replace(cssVarSettingsPrefix, "")
+        .replace(/-/g, "_");
+      let [p1, p2, p3] = "";
 
       // Fix id's containing brackets.
       switch (inputId) {
@@ -257,7 +258,6 @@
           inputId = `${p1}_${p2}[${p3}]`;
           break;
         default:
-          // Pass-through.
       }
 
       return inputId;
@@ -269,7 +269,10 @@
      */
     fieldHandler(event) {
       const root = document.documentElement;
-      const { name: setting, parentElement: { textContent: textValue } } = event.target;
+      const {
+        name: setting,
+        parentElement: { textContent: textValue }
+      } = event.target;
       let { value } = event.target;
 
       if (event.target.type === "checkbox") {
@@ -302,20 +305,44 @@
         case "page_title_breadcrumbs_separator":
           value = `"${value}"`;
           break;
+        // Generic: Inline/Block display
         case "title_sticker":
           value = value === "1" ? "inline-block" : "block";
           break;
+        // Generic: Uppercase
+        case "headings_uppercase":
         case "title_type[uppercase]":
           value = value ? "uppercase" : "normal";
           break;
+        // Generic: Bold
+        case "headings_bold":
         case "title_type[bold]":
           value = value ? "bold" : "normal";
           break;
+        // Generic: Italic
         case "title_type[italic]":
           value = value ? "italic" : "normal";
           break;
+        case "divider_length":
+          value = value === "0px" ? "100%" : value;
+          break;
+        case "divider_position":
+          switch (value) {
+            case "1":
+              value = "0";
+              break;
+            case "2":
+              value = "auto";
+              break;
+            case "3":
+              value = "calc(100% - var(--dxpr-setting-divider-length))";
+              break;
+            default:
+              break;
+          }
+          break;
         default:
-          // Pass-through
+          break;
       }
       return value;
     },
@@ -347,13 +374,11 @@
 
       el.style.display = cb.checked ? "block" : "none";
 
-      cb.addEventListener("change", function() {
+      cb.addEventListener("change", () => {
         el.style.display = cb.checked ? "block" : "none";
       });
     },
   };
-
-  // Drupal.attachBehaviors('#system-theme-settings');
 
   /**
    * Provide vertical tab summaries for Bootstrap settings.
@@ -1001,126 +1026,22 @@
         $(this).val(preset);
       });
 
-      // TYPOGRAPHY LIVE PREVIEW
+      /**
+       * Typography Preview
+       */
+      const typoDividerColor = document.querySelector("#edit-divider-color");
+      const typoDividerColorCustom = document.querySelector("#edit-divider-color-custom");
+      const typoDividerPreviewEl = document.querySelector(".type-preview hr");
 
-      $("#edit-body-line-height").change(function () {
-        $(".type-preview, .type-preview p").css(
-          "line-height",
-          $(this).bootstrapSlider("getValue")
-        );
+      typoDividerColor.addEventListener("change", () => {
+        typoDividerPreviewEl.style.borderTopColor = dxpr_theme_map_color(typoDividerColor.value);
       });
-      $("#edit-headings-line-height").change(function () {
-        $(
-          ".type-preview h1, .type-preview h2, .type-preview h3, .type-preview h4"
-        ).css("line-height", $(this).bootstrapSlider("getValue"));
-      });
-      $("#edit-divider-thickness").change(function () {
-        $(".type-preview hr").css(
-          "height",
-          $(this).bootstrapSlider("getValue")
-        );
-      });
-      let width = "";
-      $("#edit-divider-length").change(function () {
-        width = $(this).bootstrapSlider("getValue");
-        if (width == 0) {
-          $(".type-preview hr").css("width", "100%");
-        } else {
-          $(".type-preview hr").css("width", width);
-        }
-      });
-      const position = "";
-      let $hr = false;
-      $("#edit-divider-position").change(function () {
-        const position = $(this).bootstrapSlider("getValue");
-        $hr = $(".type-preview hr");
-        if (position == 1) {
-          $hr.css({ "margin-left": "0", "margin-right": "auto" });
-        }
-        if (position == 2) {
-          $hr.css({ "margin-left": "auto", "margin-right": "auto" });
-        }
-        if (position == 3) {
-          $hr.css({ "margin-left": "auto", "margin-right": "0" });
-        }
-      });
-      $("#edit-divider-color").change(function () {
-        $(".type-preview hr").css(
-          "background-color",
-          dxpr_theme_map_color($(this).val())
-        );
-      });
-      $("#edit-divider-color-custom").bind("keyup change", function () {
-        $(".type-preview hr").css("background-color", $(this).val());
-      });
-      $("#edit-blockquote-line-height").change(function () {
-        $(".type-preview blockquote, .type-preview blockquote p").css(
-          "line-height",
-          $(this).bootstrapSlider("getValue")
-        );
-      });
-      $("#edit-body-font-size").change(function () {
-        $(".type-preview, .type-preview p").css(
-          "font-size",
-          `${$(this).bootstrapSlider("getValue")}px`
-        );
-        $(".lead").css("font-size", "21px");
-        $("#edit-scale-factor").change();
-      });
-      $("#edit-nav-font-size").change(function () {
-        $(
-          ".dxpr-theme-header--top #dxpr-theme-main-menu .nav > li > a, .dxpr-theme-header--side #dxpr-theme-main-menu .nav a"
-        ).css("font-size", `${$(this).bootstrapSlider("getValue")}px`);
-      });
-      $("#edit-h1-font-size").change(function () {
-        $(".type-preview h1").css(
-          "font-size",
-          `${$(this).bootstrapSlider("getValue")}px`
-        );
-      });
-      $("#edit-h2-font-size").change(function () {
-        $(".type-preview h2").css(
-          "font-size",
-          `${$(this).bootstrapSlider("getValue")}px`
-        );
-      });
-      $("#edit-h3-font-size").change(function () {
-        $(".type-preview h3").css(
-          "font-size",
-          `${$(this).bootstrapSlider("getValue")}px`
-        );
-      });
-      $("#edit-h4-font-size").change(function () {
-        $(".type-preview h4").css(
-          "font-size",
-          `${$(this).bootstrapSlider("getValue")}px`
-        );
-      });
-      $("#edit-blockquote-font-size").change(function () {
-        $(".type-preview blockquote, .type-preview blockquote p").css(
-          "font-size",
-          `${$(this).bootstrapSlider("getValue")}px`
-        );
-      });
-      $("#edit-headings-letter-spacing").change(function () {
-        $(
-          ".type-preview h1, .type-preview h2, .type-preview h3, .type-preview h4"
-        ).css("letter-spacing", `${$(this).bootstrapSlider("getValue")}em`);
-      });
-      $("#edit-headings-uppercase").click(function () {
-        if ($(this).prop("checked") == true) {
-          $(
-            ".type-preview h1, .type-preview h2, .type-preview h3, .type-preview h4"
-          ).css("text-transform", "uppercase");
-        } else {
-          $(
-            ".type-preview h1, .type-preview h2, .type-preview h3, .type-preview h4"
-          ).css("text-transform", "none");
-        }
+      typoDividerColorCustom.addEventListener("keyup change", () => {
+        typoDividerPreviewEl.style.borderTopColor = typoDividerColorCustom.value;
       });
 
-      let value = "";
       // BLOCK DESIGN LIVE PREVIEW
+      let value = "";
       $("#edit-block-advanced").bind("keyup change", () => {
         $("#edit-block-preset").val("custom");
       });

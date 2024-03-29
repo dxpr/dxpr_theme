@@ -258,6 +258,7 @@ $schemes: (
   --dxpr-setting-boxed-layout-boxbg: #ffffff;
   --dxpr-setting-divider-color: var(--dxpr-color-card);
   --dxpr-setting-divider-length: 100%;
+  --dxpr-setting-divider-position: auto;
   --dxpr-setting-divider-thickness: 4px;
   --dxpr-setting-dropdown-background: var(--dxpr-color-header);
   --dxpr-setting-dropdown-hover-background: inherit;
@@ -290,11 +291,11 @@ $schemes: (
   --dxpr-setting-header-top-height-scroll: 50px;
   --dxpr-setting-header-top-height-sticky-offset: 60px;
   --dxpr-setting-header-top-height: 100px;
-  --dxpr-setting-headings-bold: inherit;
+  --dxpr-setting-headings-bold: normal;
   --dxpr-setting-headings-font-face: "Source Sans Pro Light", "Source Sans Pro";
   --dxpr-setting-headings-letter-spacing: 0em;
   --dxpr-setting-headings-line-height: 1.1;
-  --dxpr-setting-headings-uppercase: inherit;
+  --dxpr-setting-headings-uppercase: none;
   --dxpr-setting-layout-max-width: 1280px;
   --dxpr-setting-menu-background: inherit;
   --dxpr-setting-menu-border-color: inherit;
