@@ -281,8 +281,10 @@
      */
     fieldHandler(event) {
       const {
+
         name: setting,
-        parentElement: { textContent: textValue },
+        parentElement: { textContent: textValue }
+     ,
       } = event.target;
       const unit = textValue.replace(/[^a-z]/gi, "");
       const validUnits = ["px", "em", "rem"];
