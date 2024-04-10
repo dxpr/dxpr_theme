@@ -125,9 +125,11 @@ function _dxpr_theme_massage_values(string $key, $value, string $theme, array $s
         case 1:
           $value = '0';
           break;
+
         case 2:
           $value = 'auto';
           break;
+
         case 3:
           $value = 'calc(100% - var(--dxpr-setting-divider-length))';
           break;
@@ -141,6 +143,11 @@ function _dxpr_theme_massage_values(string $key, $value, string $theme, array $s
     case 'nav_font_face':
     case 'sitename_font_face':
       $value = _dxpr_theme_get_font($value, $theme);
+      break;
+
+    case 'title_font_size':
+      $prefix = 'var(' . _dxpr_theme_get_const('cssColorPrefix');
+      $suffix = '-font-size)';
       break;
   }
 
@@ -270,6 +277,7 @@ function _dxpr_theme_get_css_settings(): array {
     'title_border' => ['suffix' => 'px'],
     'title_border_color' => [],
     'title_border_radius' => ['suffix' => 'px'],
+    'title_font_size' => [],
     'title_padding' => ['suffix' => 'px'],
     'title_sticker' => [],
     'title_type' => [],

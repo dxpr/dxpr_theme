@@ -44,7 +44,7 @@ function block_design_theme_settings_css($theme, &$css, array $palette) {
       $css .= $border_width;
       $css .= "  border-style: solid;\n";
     }
-    $css .= _dxpr_theme_settings_add_css($title_elem . '_font_size', 'font-size');
+    $css .= _dxpr_theme_settings_add_css('title_font_size', 'font-size');
     $css .= _dxpr_theme_settings_add_css('title_align', 'text-align');
     $css .= _dxpr_theme_settings_add_css('title_border_radius', 'border-radius');
     $css .= _dxpr_theme_settings_add_css('title_sticker', 'display');

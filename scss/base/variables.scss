@@ -237,11 +237,11 @@ $schemes: (
   --dxpr-setting-background-image-attachment: fixed;
   --dxpr-setting-background-image-position: center center;
   --dxpr-setting-background-image-style: cover;
-  --dxpr-setting-block-background: inherit;
-  --dxpr-setting-block-border-color: inherit;
+  --dxpr-setting-block-background: transparent;
+  --dxpr-setting-block-border-color: var(--bs-card-border-color);
   --dxpr-setting-block-border-radius: 0px;
   --dxpr-setting-block-border: 0px;
-  --dxpr-setting-block-divider-color: inherit;
+  --dxpr-setting-block-divider-color: var(--dxpr-color-cardtext);
   --dxpr-setting-block-divider-length: 10px;
   --dxpr-setting-block-divider-spacing: 20px;
   --dxpr-setting-block-divider-thickness: 4px;
@@ -319,10 +319,11 @@ $schemes: (
   --dxpr-setting-scale-factor: 1.34;
   --dxpr-setting-sitename-font-face: "Source Sans Pro Light", "Source Sans Pro";
   --dxpr-setting-title-align: left;
-  --dxpr-setting-title-background: ;
-  --dxpr-setting-title-border-color: inherit;
+  --dxpr-setting-title-background: transparent;
+  --dxpr-setting-title-border-color: transparent;
   --dxpr-setting-title-border-radius: 0px;
   --dxpr-setting-title-border: 0px;
+  --dxpr-setting-title-font-size: var(--dxpr-setting-h3-font-size);
   --dxpr-setting-title-padding: 0px;
   --dxpr-setting-title-sticker: block;
   --dxpr-setting-title-type-uppercase: uppercase;

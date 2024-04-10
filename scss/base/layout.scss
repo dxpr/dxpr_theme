@@ -86,10 +86,40 @@ body.full-width-content {
   margin-bottom: 0; // Don't add defaulting margin to these structural columns
 }
 
+// BLOCKS
+
 .region-sidebar-first .block,
 .region-sidebar-second .block {
   margin-bottom: var(--dxpr-setting-gutter-vertical);
 }
+
+.region-block-design .block,
+.blocks-preview .block {
+  padding: var(--dxpr-setting-block-padding);
+  border-color: var(--dxpr-setting-block-border-color);
+  border-radius: var(--dxpr-setting-block-border-radius);
+  background-color: var(--dxpr-setting-block-background);
+}
+.region-block-design .block-title,
+.blocks-preview .block-title {
+  background-color: var(--dxpr-setting-title-background);
+  border-color: var(--dxpr-setting-title-border-color);
+  border-width: var(--dxpr-setting-title-border);
+  border-style: solid;
+  font-size: var(--dxpr-setting-title-font-size);
+  text-align: var(--dxpr-setting-title-align);
+  border-radius: var(--dxpr-setting-title-border-radius);
+  padding: var(--dxpr-setting-title-padding);
+}
+.region-block-design .block-hr,
+.blocks-preview .block-hr {
+  border-top-color: var(--dxpr-setting-block-divider-color);
+  border-top-width: var(--dxpr-setting-block-divider-thickness);
+  width: var(--dxpr-setting-block-divider-length);
+  margin-top: var(--dxpr-setting-block-divider-spacing);
+  margin-bottom: var(--dxpr-setting-block-divider-spacing);
+}
+
 #block-system-help {
   margin-bottom: 0;
 }

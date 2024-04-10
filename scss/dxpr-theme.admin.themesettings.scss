@@ -7,7 +7,6 @@ $border-color: #222330;
   // Header
   *:not(.reinvented-color-wheel *) {
     box-sizing: border-box;
-    border-radius: 0;
   }
   #edit-actions {
     border: none;
@@ -192,6 +191,7 @@ $border-color: #222330;
     height: 20px;
     margin-top: -3px;
     cursor: pointer;
+    border-radius: 0;
   }
   h2 {
     margin-bottom: 0;
