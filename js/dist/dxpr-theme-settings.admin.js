@@ -231,6 +231,7 @@
       const settings = this.getCssVariables();
 
       this.toggleElement("page_title_breadcrumbs", "header ol.breadcrumb");
+      this.toggleElement("block_divider", ".block-preview hr");
 
       Object.values(settings).forEach((setting) => {
         const inputId = this.getInputId(setting);
