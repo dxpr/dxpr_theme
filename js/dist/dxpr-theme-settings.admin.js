@@ -244,7 +244,9 @@
           });
 
           // Add handler also to potential "_custom" fields.
-          const customField = document.querySelector(`[name="${inputId}_custom"]`);
+          const customField = document.querySelector(
+            `[name="${inputId}_custom"]`,
+          );
 
           if (customField) {
             $(customField).on("change keyup", (e) => {
@@ -281,7 +283,7 @@
     fieldHandler(event) {
       const {
         name: setting,
-        parentElement: { textContent: textValue }
+        parentElement: { textContent: textValue },
       } = event.target;
       let { value } = event.target;
 
@@ -297,13 +299,16 @@
       value = this.massageValue(setting, value);
 
       // Create CSS variable name.
-      let cssVarName = setting
+      const cssVarName = setting
         .replace("_custom", "")
-        .replace(/[\[_]/g, "-")
+        .replace(/[[_]/g, "-")
         .replace("]", "");
 
       // Override CSS variable.
-      this.root.style.setProperty(cssVarSettingsPrefix + cssVarName, String(value));
+      this.root.style.setProperty(
+        cssVarSettingsPrefix + cssVarName,
+        String(value),
+      );
     },
     /**
      * Tweak certain settings to valid values.
@@ -366,19 +371,17 @@
         case "block_border_color":
         case "title_border_color":
         case "block_divider_color":
-          // TODO: Consider taking the palette from somewhere else.
           if (value in drupalSettings.dxpr_themeSettings.colors.palette) {
             value = `var(${cssVarColorsPrefix + value})`;
-          }
-          else if (value === 'custom') {
-            const customField = document.querySelector(`[name="${setting}_custom"]`);
+          } else if (value === "custom") {
+            const customField = document.querySelector(
+              `[name="${setting}_custom"]`,
+            );
             value = customField.value;
-          }
-          else if (value === 'white') {
+          } else if (value === "white") {
             value = "#ffffff";
-          }
-          else {
-            value = '';
+          } else {
+            value = "";
           }
           break;
         default:
