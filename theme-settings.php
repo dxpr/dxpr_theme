@@ -75,7 +75,7 @@ function dxpr_theme_form_system_theme_settings_alter(&$form, &$form_state, $form
     '#prefix' => '<h2><small>' . t('Core theme settings') . '</small></h2>',
     '#attributes' => [
       'class' => [
-        'core-theme-settings'
+        'core-theme-settings',
       ],
     ],
   ];
