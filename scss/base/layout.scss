@@ -98,6 +98,8 @@ body.full-width-content {
   padding: var(--dxpr-setting-block-padding);
   border-color: var(--dxpr-setting-block-border-color);
   border-radius: var(--dxpr-setting-block-border-radius);
+  border-style: solid;
+  border-width: var(--dxpr-setting-block-border);
   background-color: var(--dxpr-setting-block-background);
 }
 .region-block-design .block-title,

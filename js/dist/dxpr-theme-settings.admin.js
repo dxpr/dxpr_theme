@@ -366,6 +366,7 @@
           }
           break;
         // Handle color fields.
+        case "divider_color":
         case "block_background":
         case "title_background":
         case "block_border_color":
@@ -466,7 +467,7 @@
           step   : 0.01,
           min    : 0,
           max    : 1,
-          tooltip: "show",
+          tooltip: "hide",
           value  : parseFloat(startValue),
         });
       });
@@ -478,7 +479,7 @@
           step   : 0.1,
           min    : 0,
           max    : 3,
-          tooltip: "show",
+          tooltip: "hide",
           formatter(value) {
             return `${value}em`;
           },
@@ -493,7 +494,7 @@
           step   : 1,
           min    : 0,
           max    : 30,
-          tooltip: "show",
+          tooltip: "hide",
           formatter(value) {
             return `${value}px`;
           },
@@ -508,7 +509,7 @@
           step   : 1,
           min    : 0,
           max    : 100,
-          tooltip: "show",
+          tooltip: "hide",
           formatter(value) {
             return `${value}px`;
           },
@@ -524,7 +525,7 @@
         step   : 1,
         min    : 8,
         max    : 30,
-        tooltip: "show",
+        tooltip: "hide",
         formatter(value) {
           return `${value}px`;
         },
@@ -537,7 +538,7 @@
         step   : 1,
         min    : 8,
         max    : 30,
-        tooltip: "show",
+        tooltip: "hide",
         formatter(value) {
           return `${value}px`;
         },
@@ -550,7 +551,7 @@
         step   : 1,
         min    : 8,
         max    : 30,
-        tooltip: "show",
+        tooltip: "hide",
         formatter(value) {
           return `${value}px`;
         },
@@ -563,7 +564,7 @@
         step   : 1,
         min    : 8,
         max    : 30,
-        tooltip: "show",
+        tooltip: "hide",
         formatter(value) {
           return `${value}px`;
         },
@@ -577,7 +578,7 @@
           step   : 1,
           min    : 8,
           max    : 100,
-          tooltip: "show",
+          tooltip: "hide",
           formatter(value) {
             return `${value}px`;
           },
@@ -591,7 +592,7 @@
         step   : 0.01,
         min    : 1,
         max    : 2,
-        tooltip: "show",
+        tooltip: "hide",
         value  : parseFloat($input.val()),
       });
 
@@ -601,7 +602,7 @@
         step   : 1,
         min    : 0,
         max    : 20,
-        tooltip: "show",
+        tooltip: "hide",
         formatter(value) {
           return `${value}px`;
         },
@@ -614,7 +615,7 @@
         step   : 1,
         min    : 0,
         max    : 20,
-        tooltip: "show",
+        tooltip: "hide",
         formatter(value) {
           return `${value}px`;
         },
@@ -627,7 +628,7 @@
         step   : 10,
         min    : 0,
         max    : 500,
-        tooltip: "show",
+        tooltip: "hide",
         formatter(value) {
           return `${value}px`;
         },
@@ -640,7 +641,7 @@
         step   : 10,
         min    : 0,
         max    : 500,
-        tooltip: "show",
+        tooltip: "hide",
         formatter(value) {
           return `${value}px`;
         },
@@ -672,7 +673,7 @@
         step   : 0.01,
         min    : -0.1,
         max    : 0.3,
-        tooltip: "show",
+        tooltip: "hide",
         formatter(value) {
           return `${value}em`;
         },
@@ -685,7 +686,7 @@
         step   : 1,
         min    : 0,
         max    : 100,
-        tooltip: "show",
+        tooltip: "hide",
         formatter(value) {
           return `${value}px`;
         },
@@ -698,7 +699,7 @@
         step   : 5,
         min    : 50,
         max    : 500,
-        tooltip: "show",
+        tooltip: "hide",
         formatter(value) {
           return `${value}px`;
         },
@@ -711,7 +712,7 @@
         step   : 1,
         min    : 10,
         max    : 200,
-        tooltip: "show",
+        tooltip: "hide",
         formatter(value) {
           return `${value}px`;
         },
@@ -724,7 +725,7 @@
         step   : 10,
         min    : 480,
         max    : 4100,
-        tooltip: "show",
+        tooltip: "hide",
         formatter(value) {
           return `${value}px`;
         },
@@ -737,7 +738,7 @@
         step   : 1,
         min    : 10,
         max    : 200,
-        tooltip: "show",
+        tooltip: "hide",
         formatter(value) {
           return `${value}px`;
         },
@@ -750,7 +751,7 @@
         step   : 1,
         min    : 10,
         max    : 200,
-        tooltip: "show",
+        tooltip: "hide",
         formatter(value) {
           return `${value}px`;
         },
@@ -763,7 +764,7 @@
         step   : 10,
         min    : 0,
         max    : 2096,
-        tooltip: "show",
+        tooltip: "hide",
         formatter(value) {
           return `${value}px`;
         },
@@ -776,7 +777,7 @@
         step   : 5,
         min    : 50,
         max    : 500,
-        tooltip: "show",
+        tooltip: "hide",
         formatter(value) {
           return `${value}px`;
         },
@@ -789,7 +790,7 @@
         step   : 5,
         min    : 100,
         max    : 400,
-        tooltip: "show",
+        tooltip: "hide",
         formatter(value) {
           return `${value}px`;
         },
@@ -802,7 +803,7 @@
         step   : 1,
         min    : 1,
         max    : 20,
-        tooltip: "show",
+        tooltip: "hide",
         formatter(value) {
           return `${value}px`;
         },
@@ -815,7 +816,7 @@
         step   : 1,
         min    : 0,
         max    : 100,
-        tooltip: "show",
+        tooltip: "hide",
         formatter(value) {
           return `${value}px`;
         },
@@ -828,7 +829,7 @@
         step   : 1,
         min    : 0,
         max    : 100,
-        tooltip: "show",
+        tooltip: "hide",
         formatter(value) {
           return `${value}px`;
         },
@@ -841,7 +842,7 @@
         step   : 10,
         min    : 480,
         max    : 4100,
-        tooltip: "show",
+        tooltip: "hide",
         formatter(value) {
           return `${value}px`;
         },
@@ -854,7 +855,7 @@
         step   : 10,
         min    : 480,
         max    : 4100,
-        tooltip: "show",
+        tooltip: "hide",
         formatter(value) {
           return `${value}px`;
         },
@@ -867,7 +868,7 @@
         step   : 1,
         min    : 0,
         max    : 100,
-        tooltip: "show",
+        tooltip: "hide",
         formatter(value) {
           return `${value}px`;
         },
@@ -880,7 +881,7 @@
         step   : 1,
         min    : 0,
         max    : 100,
-        tooltip: "show",
+        tooltip: "hide",
         formatter(value) {
           return `${value}px`;
         },
@@ -893,7 +894,7 @@
         step   : 1,
         min    : 0,
         max    : 500,
-        tooltip: "show",
+        tooltip: "hide",
         formatter(value) {
           return `${value}px`;
         },
@@ -906,7 +907,7 @@
         step   : 1,
         min    : 0,
         max    : 100,
-        tooltip: "show",
+        tooltip: "hide",
         formatter(value) {
           return `${value}px`;
         },
@@ -919,7 +920,7 @@
         step   : 1,
         min    : 0,
         max    : 100,
-        tooltip: "show",
+        tooltip: "hide",
         formatter(value) {
           return `${value}px`;
         },
@@ -932,7 +933,7 @@
         step   : 1,
         min    : 0,
         max    : 500,
-        tooltip: "show",
+        tooltip: "hide",
         formatter(value) {
           return `${value}px`;
         },
@@ -1005,20 +1006,6 @@
             textField.appendChild(wrapper);
           }
         }
-      });
-
-      /**
-       * Typography Preview
-       */
-      const typoDividerColor = document.querySelector("#edit-divider-color");
-      const typoDividerColorCustom = document.querySelector("#edit-divider-color-custom");
-      const typoDividerPreviewEl = document.querySelector(".type-preview hr");
-
-      typoDividerColor.addEventListener("change", () => {
-        typoDividerPreviewEl.style.borderTopColor = dxpr_theme_map_color(typoDividerColor.value);
-      });
-      typoDividerColorCustom.addEventListener("keyup change", () => {
-        typoDividerPreviewEl.style.borderTopColor = typoDividerColorCustom.value;
       });
 
       document.addEventListener("change", handleDocumentEvents);

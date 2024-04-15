@@ -92,12 +92,12 @@ $border-color: #222330;
       margin: 0;
     }
   }
-  label,
+  label:not(.option),
   legend {
     width: 200px;
     float: left;
     display: block;
-    padding: 0 0 5px 0;
+    padding: 0 1rem 5px 0;
     border: none;
     outline: none;
     font-size: 18px;
@@ -157,7 +157,6 @@ $border-color: #222330;
   }
   .description,
   .help-block {
-    float: left;
     clear: both;
   }
   // BOOTSTRAP SLIDER
@@ -274,7 +273,8 @@ $border-color: #222330;
   }
 
   .form-select {
-    width: 250px;
+    max-width: 100%;
+    width: auto;
   }
 
   .form-composite {
@@ -455,7 +455,7 @@ $border-color: #222330;
         width: 100%;
       }
     }
-    .form-text {
+    .form-text:not([name="divider_color_custom"]) {
       width: 27%;
     }
     .slider {
@@ -482,12 +482,12 @@ $border-color: #222330;
   .block-design-settings {
     width: 50%;
     float:left;
-    padding: 60px 0 60px 60px;
+    padding: 0 0 60px 0;
   }
   .block-preview {
     width:50%;
     float:left;
-    padding: 60px;
+    padding: 90px 0 0 60px;
   }
   .form-item[class$="invoke"] .form-text {
     max-width: none;
