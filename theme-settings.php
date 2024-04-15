@@ -73,6 +73,11 @@ function dxpr_theme_form_system_theme_settings_alter(&$form, &$form_state, $form
     '#type' => 'vertical_tabs',
     '#weight' => -20,
     '#prefix' => '<h2><small>' . t('Core theme settings') . '</small></h2>',
+    '#attributes' => [
+      'class' => [
+        'core-theme-settings'
+      ],
+    ],
   ];
   $form['theme_settings']['#group'] = 'core_theme_settings';
   $form['logo']['#group'] = 'core_theme_settings';

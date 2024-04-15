@@ -556,6 +556,12 @@ $border-color: #222330;
       }
     }
   }
+  .core-theme-settings {
+    .js-form-type-checkbox input[type="checkbox"] {
+      left: auto;
+      right: 0;
+    }
+  }
 }
 
 .type-preview {
