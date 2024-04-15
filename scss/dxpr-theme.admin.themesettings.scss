@@ -93,7 +93,7 @@ $border-color: #222330;
       opacity: .7;
     }
   }
-  label,
+  label:not(.option),
   legend {
     width: 200px;
     float: left;
