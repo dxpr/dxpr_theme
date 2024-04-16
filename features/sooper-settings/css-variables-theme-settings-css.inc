@@ -149,6 +149,11 @@ function _dxpr_theme_massage_values(string $key, $value, string $theme, array $s
       $prefix = 'var(' . _dxpr_theme_get_const('cssColorPrefix');
       $suffix = '-font-size)';
       break;
+
+    case 'page_title_breadcrumbs_separator':
+      $str = str_replace(['\\', '"'], ['\\\\', '\\"'], $value);
+      $value = htmlspecialchars($str, ENT_QUOTES, 'UTF-8');
+      break;
   }
 
   // Handle custom color fields with an associated '*_custom' field.

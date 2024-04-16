@@ -319,10 +319,6 @@
      */
     massageValue(setting, value) {
       switch (setting) {
-        // Generic: Add Quotes
-        case "page_title_breadcrumbs_separator":
-          value = `"${value}"`;
-          break;
         // Generic: Inline/Block display
         case "title_sticker":
           value = value === "1" ? "inline-block" : "block";
@@ -340,6 +336,10 @@
         // Generic: Italic
         case "title_type[italic]":
           value = value ? "italic" : "normal";
+          break;
+        // Breadcrumb separator
+        case "page_title_breadcrumbs_separator":
+          value = `"${value.replace(/\\/g, "\\\\").replace(/"/g, '\\"')}"`;
           break;
         // Title font
         case "title_font_size":
