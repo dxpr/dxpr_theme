@@ -285,15 +285,16 @@
         name: setting,
         parentElement: { textContent: textValue },
       } = event.target;
+      const unit = textValue.replace(/[^a-z]/gi, "");
       let { value } = event.target;
 
       if (event.target.type === "checkbox") {
         value = event.target.checked;
       }
 
-      // Use textValue if possible to include unit suffix.
-      if (textValue.startsWith(value)) {
-        value = textValue;
+      // Append unit if value is numeric.
+      if (!Number.isNaN(parseFloat(value))) {
+        value += unit;
       }
 
       value = this.massageValue(setting, value);
