@@ -179,18 +179,20 @@ $border-color: #222330;
   }
   .slider-selection {
     box-shadow: none;
+    background: var(--dxpr-color-base);
   }
   .slider {
     position: relative;
     display: block;
   }
   .slider-handle {
+    background: #fff;
     box-shadow: 0px 1px 2px rgba(16,24,40,.09), 0px 1px 3px rgba(16,24,40,.15);
     width: 20px;
     height: 20px;
     margin-top: -3px;
     cursor: pointer;
-    border-radius: 0;
+    border-radius: 2px;
   }
   h2 {
     margin-bottom: 0;
