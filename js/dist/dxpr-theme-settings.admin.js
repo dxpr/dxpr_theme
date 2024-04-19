@@ -233,7 +233,7 @@
       this.toggleElement("page_title_breadcrumbs", "header ol.breadcrumb");
       this.toggleElement("block_divider", ".block-preview hr");
 
-      Object.keys(settings).forEach((setting) => {
+      Object.values(settings).forEach((setting) => {
         const inputId = this.getInputId(setting);
         const els = document.querySelectorAll(`[name="${inputId}"]`);
 
@@ -393,18 +393,30 @@
     /**
      * Returns all dxpr settings CSS variables.
      *
-     * @returns {{}}
+     * @returns array
      */
     getCssVariables() {
-      const styles = window.getComputedStyle(document.documentElement);
-      const cssVariables = {};
-      for (let i = 0; i < styles.length; i++) {
-        const property = styles[i];
-        if (property.startsWith(cssVarSettingsPrefix)) {
-          cssVariables[property] = styles.getPropertyValue(property);
-        }
-      }
-      return cssVariables;
+      return [...document.styleSheets]
+        .filter(
+          (styleSheet) =>
+            !styleSheet.href ||
+            styleSheet.href.startsWith(window.location.origin)
+        )
+        .reduce((finalArr, sheet) => {
+          const propKeySet = new Set(finalArr);
+          [...sheet.cssRules]
+            .filter((rule) => rule.type === 1)
+            .forEach((rule) => {
+              [...rule.style].forEach((propName) => {
+                propName = propName.trim();
+
+                if (propName.indexOf(cssVarSettingsPrefix) === 0) {
+                  propKeySet.add(propName);
+                }
+              });
+            });
+          return Array.from(propKeySet);
+        }, []);
     },
     /**
      * Toggles show/hide of all matching elements based on a field status.
