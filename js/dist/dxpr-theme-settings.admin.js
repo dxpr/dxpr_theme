@@ -286,7 +286,7 @@
         parentElement: { textContent: textValue },
       } = event.target;
       const unit = textValue.replace(/[^a-z]/gi, "");
-      const validUnits = ['px', 'em', 'rem'];
+      const validUnits = ["px", "em", "rem"];
       let { value } = event.target;
 
       if (event.target.type === "checkbox") {
@@ -319,7 +319,7 @@
           value = "calc(100% - var(--dxpr-setting-block-divider-length))";
         }
         this.root.style.setProperty(
-          cssVarSettingsPrefix + cssVarName + "-block",
+          `${cssVarSettingsPrefix}${cssVarName}-block`,
           String(value),
         );
       }
@@ -414,7 +414,7 @@
         .filter(
           (styleSheet) =>
             !styleSheet.href ||
-            styleSheet.href.startsWith(window.location.origin)
+            styleSheet.href.startsWith(window.location.origin),
         )
         .reduce((finalArr, sheet) => {
           const propKeySet = new Set(finalArr);
