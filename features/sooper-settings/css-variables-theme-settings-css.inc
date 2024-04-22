@@ -35,7 +35,7 @@ function css_variables_theme_settings_css(string $theme, string &$css) {
 
         if (is_array($value)) {
           foreach ($value as $name => $val) {
-            $var_name = str_replace('_', '-', $k . '_' . $name);
+            $var_name = trim(str_replace('_', '-', $k . '_' . $name), '-');
             $css_variables[] = '  ' . $prefix . $var_name . ': ' . $val;
           }
         }
@@ -120,18 +120,31 @@ function _dxpr_theme_massage_values(string $key, $value, string $theme, array $s
       }
       break;
 
+    // Divider: Position = margin-left value.
+    // Also adds a divider-position-block variable that uses the
+    // same values except for the right-aligned value which uses the block
+    // divider length.
     case 'divider_position':
       switch ($value) {
         case 1:
-          $value = '0';
+          $value = [
+            '' => '0',
+            'block' => '0',
+          ];
           break;
 
         case 2:
-          $value = 'auto';
+          $value = [
+            '' => 'auto',
+            'block' => 'auto',
+          ];
           break;
 
         case 3:
-          $value = 'calc(100% - var(--dxpr-setting-divider-length))';
+          $value = [
+            '' => 'calc(100% - var(--dxpr-setting-divider-length))',
+            'block' => 'calc(100% - var(--dxpr-setting-block-divider-length))',
+          ];
           break;
       }
       break;

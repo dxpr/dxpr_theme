@@ -286,6 +286,7 @@
         parentElement: { textContent: textValue },
       } = event.target;
       const unit = textValue.replace(/[^a-z]/gi, "");
+      const validUnits = ['px', 'em', 'rem'];
       let { value } = event.target;
 
       if (event.target.type === "checkbox") {
@@ -293,7 +294,7 @@
       }
 
       // Append unit if value is numeric.
-      if (!Number.isNaN(parseFloat(value))) {
+      if (validUnits.includes(unit) && !Number.isNaN(parseFloat(value))) {
         value += unit;
       }
 
@@ -310,6 +311,18 @@
         cssVarSettingsPrefix + cssVarName,
         String(value),
       );
+
+      // Workaround for block divider position.
+      // Adds a divider-position-block CSS variable.
+      if (setting === "divider_position") {
+        if (event.target.value === "3") {
+          value = "calc(100% - var(--dxpr-setting-block-divider-length))";
+        }
+        this.root.style.setProperty(
+          cssVarSettingsPrefix + cssVarName + "-block",
+          String(value),
+        );
+      }
     },
     /**
      * Tweak certain settings to valid values.
@@ -675,7 +688,7 @@
         min      : 1,
         max      : 3,
         selection: "none",
-        tooltip  : "show",
+        tooltip  : "hide",
         formatter: formatPosition,
         value    : parseFloat($input.val()),
       });
