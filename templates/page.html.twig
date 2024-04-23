@@ -57,6 +57,12 @@
  * @see html.html.twig
  */
 #}
+{%- macro hasContent(region) -%}
+  {%- set keep_tags = '<drupal-render-placeholder><form><embed><hr><iframe><img><input><link><object><script><source><style><video>' -%}
+  {%- set content = region|render|replace({"\n": "", "\r": "", "\t": ""})|striptags(keep_tags)|trim -%}
+  {{- content ? 'TRUE' -}}
+{%- endmacro -%}
+
 {% if not node.field_dth_page_layout.getString() and theme.settings.boxed_layout
   or node.field_dth_page_layout.getString() == 'boxed' %}
 <div class="dxpr-theme-boxed-container">
@@ -185,17 +191,20 @@
 
 {# Main #}
 {% block main %}
+  {% set has_sidebar_first  = _self.hasContent(page.sidebar_first) %}
+  {% set has_sidebar_second = _self.hasContent(page.sidebar_second) %}
   {% set container = theme.settings.full_width_containers.cnt_content
   or node.field_dth_main_content_width.getString() == 'dxpr-theme-util-full-width-content'
   or node and attribute(theme.settings.full_width_content_types, node.getType)
-  and not page.sidebar_first|render|striptags|trim
-  and not page.sidebar_second|render|striptags|trim ? '' : 'container' %}
+  and not has_sidebar_first
+  and not has_sidebar_second ? '' : 'container' %}
+
   <div role="main" class="main-container {{ container }} js-quickedit-main-content clearfix">
     {% if container != '' %}
     <div class="row">
     {% endif %}
       {# Sidebar First #}
-      {% if page.sidebar_first|render|striptags|trim %}
+      {% if has_sidebar_first %}
         {% block sidebar_first %}
           <aside class="col-sm-3" role="complementary">
             {{ page.sidebar_first }}
@@ -207,10 +216,10 @@
       {% if not node.field_dth_main_content_width.getString() %}
         {%
           set content_classes = [
-            page.sidebar_first|render|striptags|trim and page.sidebar_second|render|striptags|trim ? 'col-sm-6',
-            page.sidebar_first|render|striptags|trim and page.sidebar_second|render|striptags|trim is empty ? 'col-sm-9',
-            page.sidebar_second|render|striptags|trim and page.sidebar_first|render|striptags|trim is empty ? 'col-sm-9',
-            container != '' and page.sidebar_first|render|striptags|trim is empty and page.sidebar_second|render|striptags|trim is empty ? 'col-sm-12'
+            has_sidebar_first and has_sidebar_second ? 'col-sm-6',
+            has_sidebar_first and not has_sidebar_second ? 'col-sm-9',
+            has_sidebar_second and not has_sidebar_first ? 'col-sm-9',
+            container != '' and not has_sidebar_first and not has_sidebar_second ? 'col-sm-12'
           ]
         %}
       {% else %}
@@ -249,7 +258,7 @@
       </section>
 
       {# Sidebar Second #}
-      {% if page.sidebar_second|render|striptags|trim %}
+      {% if has_sidebar_second %}
         {% block sidebar_second %}
           <aside class="col-sm-3" role="complementary">
             {{ page.sidebar_second }}
