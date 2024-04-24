@@ -386,6 +386,18 @@
         case "block_border_color":
         case "title_border_color":
         case "block_divider_color":
+        case "menu_border_color":
+        case "navbar_background":
+        case "header_block_background":
+        case "header_block_text_color":
+        case "menu_background":
+        case "menu_text_color":
+        case "menu_hover_background":
+        case "menu_hover_text_color":
+        case "dropdown_background":
+        case "dropdown_text_color":
+        case "dropdown_hover_background":
+        case "dropdown_hover_text_color":
           if (value in drupalSettings.dxpr_themeSettings.colors.palette) {
             value = `var(${cssVarColorsPrefix + value})`;
           } else if (value === "custom") {
