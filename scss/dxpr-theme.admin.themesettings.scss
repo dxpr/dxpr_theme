@@ -90,9 +90,10 @@ $border-color: #222330;
       font-size: 12px;
       padding: 5px 0;
       margin: 0;
+      opacity: .7;
     }
   }
-  label:not(.option),
+  label,
   legend {
     width: 200px;
     float: left;
@@ -558,7 +559,7 @@ $border-color: #222330;
       }
     }
   }
-  .core-theme-settings {
+  .core-theme-settings, .form-checkboxes {
     .js-form-type-checkbox input[type="checkbox"] {
       left: auto;
       right: 0;
