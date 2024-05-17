@@ -246,6 +246,13 @@ function dxpr_theme_preprocess_block(&$variables) {
     $block = Block::load($variables['elements']['#id']);
     if ($block) {
       $variables['region'] = $block->getRegion();
+
+      // If exists, add 'content_class' from block settings to content's CSS classes.
+      if ($block_classes = $block->getThirdPartySettings('block_classes')) {
+        if (!empty($block_classes['content_class'])) {
+          $variables['content']['#attributes']['class'][] = $block_classes['content_class'];
+        }
+      }
     }
   }
   // Include DXPR Theme full search block css library.
