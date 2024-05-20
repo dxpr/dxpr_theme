@@ -21,7 +21,9 @@ html.html--dxpr-theme-nav-mobile--open {
     padding-top: 0;
   }
   #logo {
-    max-height: 30px;
+    display: block;
+    height: calc(var(--dxpr-setting-header-mobile-height) - 30px);
+    min-height: 10px;
   }
   .dxpr-theme-header {
     position: static;
