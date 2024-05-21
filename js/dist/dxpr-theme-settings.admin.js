@@ -325,7 +325,7 @@
 
       // Add mobile title font size variable.
       if (setting === "title_font_size") {
-        value = value.replace('-font-size', '-mobile-font-size');
+        value = value.replace("-font-size", "-mobile-font-size");
 
         this.root.style.setProperty(
           `${cssVarSettingsPrefix}${cssVarName}-mobile`,
