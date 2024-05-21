@@ -93,8 +93,7 @@ body.full-width-content {
   margin-bottom: var(--dxpr-setting-gutter-vertical);
 }
 
-.region-block-design .block,
-.blocks-preview .block {
+.region-block-design .block {
   padding: var(--dxpr-setting-block-padding);
   border-color: var(--dxpr-setting-block-border-color);
   border-radius: var(--dxpr-setting-block-border-radius);
@@ -102,8 +101,7 @@ body.full-width-content {
   border-width: var(--dxpr-setting-block-border);
   background-color: var(--dxpr-setting-block-background);
 }
-.region-block-design .block-title,
-.blocks-preview .block-title {
+.region-block-design .block-title {
   background-color: var(--dxpr-setting-title-background);
   border-color: var(--dxpr-setting-title-border-color);
   border-width: var(--dxpr-setting-title-border);
@@ -113,8 +111,7 @@ body.full-width-content {
   border-radius: var(--dxpr-setting-title-border-radius);
   padding: var(--dxpr-setting-title-padding);
 }
-.region-block-design .block-hr,
-.blocks-preview .block-hr {
+.region-block-design .block-hr {
   border-top-color: var(--dxpr-setting-block-divider-color);
   border-top-width: var(--dxpr-setting-block-divider-thickness);
   width: var(--dxpr-setting-block-divider-length);
@@ -123,6 +120,12 @@ body.full-width-content {
     auto
     var(--dxpr-setting-block-divider-spacing)
     var(--dxpr-setting-divider-position-block);
+}
+
+@media screen and (max-width: 768px) {
+  .region-block-design .block-title {
+    font-size: var(--dxpr-setting-title-font-size-mobile);
+  }
 }
 
 #block-system-help {

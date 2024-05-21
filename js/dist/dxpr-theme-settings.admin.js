@@ -231,7 +231,7 @@
       const settings = this.getCssVariables();
 
       this.toggleElement("page_title_breadcrumbs", "header ol.breadcrumb");
-      this.toggleElement("block_divider", ".block-preview hr");
+      this.toggleElement("block_divider", ".region-block-design hr");
 
       Object.values(settings).forEach((setting) => {
         const inputId = this.getInputId(setting);
@@ -320,6 +320,16 @@
         }
         this.root.style.setProperty(
           `${cssVarSettingsPrefix}${cssVarName}-block`,
+          String(value),
+        );
+      }
+
+      // Add mobile title font size variable.
+      if (setting === "title_font_size") {
+        value = value.replace('-font-size', '-mobile-font-size');
+
+        this.root.style.setProperty(
+          `${cssVarSettingsPrefix}${cssVarName}-mobile`,
           String(value),
         );
       }
@@ -1061,8 +1071,9 @@
        */
       function handleDocumentEvents(event) {
         const el = event.target;
-        const id = el.id;
-        const value = el.value;
+        const id = el?.id ?? '';
+        const value = el?.value ?? '';
+        const elName = el?.name ?? '';
 
         // Set Block Preset to Custom if any value is changed.
         if (el.closest('#edit-block-advanced')) {
@@ -1076,6 +1087,7 @@
             "block_border": 0,
             "block_border_color": "",
             "block_card": "",
+            "block_divider_length": 0,
             "block_divider_thickness": 0,
             "block_padding": 0,
             "title_align": "left",
@@ -1169,27 +1181,61 @@
           });
         }
 
+        const presetClassesRemove = [
+          'card', 'card-body', 'bg-primary',
+          'dxpr-theme-util-background-accent1',
+          'dxpr-theme-util-background-accent2',
+          'dxpr-theme-util-background-black',
+          'dxpr-theme-util-background-white',
+          'dxpr-theme-util-background-gray'
+        ];
+
         // Block Card Style.
         if (id === 'edit-block-card' || id === 'edit-title-card') {
           const presetClasses = value.trim().split(/\s+/);
           const target = (id === 'edit-title-card') ? '.block-title' : '.block';
 
-          document.querySelectorAll('.block-preview ' + target).forEach(block => {
-            block.classList.remove(
-              'card', 'card-body', 'bg-primary',
-              'dxpr-theme-util-background-accent1',
-              'dxpr-theme-util-background-accent2',
-              'dxpr-theme-util-background-black',
-              'dxpr-theme-util-background-white',
-              'dxpr-theme-util-background-gray'
-            );
+          document.querySelectorAll('.region-block-design ' + target).forEach(block => {
+            block.classList.remove(...presetClassesRemove);
             block.classList.add(...presetClasses.filter(className => className !== ''));
           });
         }
 
+        // Block Regions.
+        if (elName.startsWith('block_design_regions[')) {
+          let blockDesignClass = 'region-block-design';
+          let regionClass = '.region-' + value.replace('_', '-');
+          let elRegion = document.querySelector(regionClass);
+          if (!elRegion) return;
+
+          if (el.checked) {
+            elRegion.classList.add(blockDesignClass);
+
+            // Trigger the change event for block and block title card so that
+            // classes gets reapplied.
+            const elements = document.querySelectorAll('#edit-block-card, #edit-title-card');
+            const changeEvent = new Event('change', {
+              bubbles: true,
+              cancelable: true,
+            });
+            elements.forEach(el => {
+              el.dispatchEvent(changeEvent);
+            });
+          }
+          else {
+            elRegion.classList.remove(blockDesignClass);
+
+            // Remove all applied block and block title classes.
+            let selectors = regionClass + ' .block,' + regionClass + ' .block-title';
+            document.querySelectorAll(selectors).forEach(block => {
+              block.classList.remove(...presetClassesRemove);
+            });
+          }
+        }
+
         // Title Sticker Mode.
         if (id === 'edit-title-sticker') {
-          const blockTitles = document.querySelectorAll('.block-preview .block-title');
+          const blockTitles = document.querySelectorAll('.region-block-design .block-title');
 
           blockTitles.forEach(title => {
             title.style.display = el.checked ? 'inline-block' : '';

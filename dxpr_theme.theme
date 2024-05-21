@@ -285,6 +285,13 @@ function dxpr_theme_preprocess_region(&$variables) {
       $variables['#attached']['library'][] = 'dxpr_theme/footer-menu';
       break;
   }
+
+  // Apply class to block design regions.
+  if ($block_design_regions = array_keys(array_filter(theme_get_setting('block_design_regions')))) {
+    if (in_array($variables['region'], $block_design_regions)) {
+      $variables['attributes']['class'][] = 'region-block-design';
+    }
+  }
 }
 
 /**

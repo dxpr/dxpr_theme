@@ -159,8 +159,10 @@ function _dxpr_theme_massage_values(string $key, $value, string $theme, array $s
       break;
 
     case 'title_font_size':
-      $prefix = 'var(' . _dxpr_theme_get_const('cssColorPrefix');
-      $suffix = '-font-size)';
+      $value = [
+        '' => 'var(' . _dxpr_theme_get_const('cssSettingPrefix') . $value . '-font-size)',
+        'mobile' => 'var(' . _dxpr_theme_get_const('cssSettingPrefix') . $value . '-mobile-font-size)',
+      ];
       break;
 
     case 'page_title_breadcrumbs_separator':

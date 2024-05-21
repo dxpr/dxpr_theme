@@ -407,7 +407,7 @@ function _dxpr_theme_block_preview() {
   $title_card = theme_get_setting('title_card');
   $output = <<<EOT
 <div class="blocks-preview">
-  <div class="region region-sidebar-second">
+  <div class="region-block-design region region-sidebar-second">
     <section class="block block-tagclouds clearfix {$block_card}" id="block-tagclouds-2">
       <div class="wrap-block-title"><h2 class="block-title {$title_card}">Tags in Tags</h2></div>
       <hr class="block-hr">
