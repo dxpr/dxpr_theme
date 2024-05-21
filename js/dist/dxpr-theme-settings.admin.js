@@ -231,7 +231,6 @@
       const settings = this.getCssVariables();
 
       this.toggleElement("page_title_breadcrumbs", "header ol.breadcrumb");
-      this.toggleElement("block_divider", ".region-block-design hr");
 
       Object.values(settings).forEach((setting) => {
         const inputId = this.getInputId(setting);
@@ -1087,8 +1086,11 @@
             "block_border": 0,
             "block_border_color": "",
             "block_card": "",
+            "block_divider": false,
+            "block_divider_custom": false,
             "block_divider_length": 0,
             "block_divider_thickness": 0,
+            "block_divider_spacing": 0,
             "block_padding": 0,
             "title_align": "left",
             "title_background": "",
@@ -1098,6 +1100,7 @@
             "title_card": "",
             "title_font_size": "h3",
             "title_padding": 0,
+
           };
 
           let set = {};
@@ -1162,9 +1165,18 @@
                 "title_padding": 15,
               };
               break;
+            case "default_divider":
+              set = {
+                "block_divider": true,
+                "block_divider_thickness": 4,
+                "block_divider_spacing": 15,
+              }
+              break;
             case "hairline_divider":
               set = {
+                "block_divider": true,
                 "block_divider_thickness": 1,
+                "block_divider_spacing": 15,
               };
               break;
           }
@@ -1253,6 +1265,18 @@
             ].forEach((key) => {
               const cssVarName = key.replace(/[\[_]/g, '-');
               document.documentElement.style.removeProperty(cssVarSettingsPrefix + cssVarName);
+            });
+          }
+
+          // Set default divider values.
+          if (id === 'edit-block-divider' && el.checked) {
+            let set = {
+              "block_divider_length": 0,
+              "block_divider_thickness": 4,
+              "block_divider_spacing": 15,
+            }
+            Object.keys(set).forEach((key) => {
+              self.setFieldValue(key, set[key]);
             });
           }
         }

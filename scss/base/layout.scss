@@ -87,6 +87,9 @@ body.full-width-content {
 }
 
 // BLOCKS
+.block-hr {
+  display: none;
+}
 
 .region-sidebar-first .block,
 .region-sidebar-second .block {
@@ -112,6 +115,7 @@ body.full-width-content {
   padding: var(--dxpr-setting-title-padding);
 }
 .region-block-design .block-hr {
+  display: block;
   border-top-color: var(--dxpr-setting-block-divider-color);
   border-top-width: var(--dxpr-setting-block-divider-thickness);
   width: var(--dxpr-setting-block-divider-length);
