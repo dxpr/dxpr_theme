@@ -34,13 +34,14 @@ blockquote, blockquote p {
   font-weight: 300;
   font-style: italic;
   font-size: var(--dxpr-setting-blockquote-font-size);
+  line-height: var(--dxpr-setting-blockquote-line-height);
 }
 
 // Typography
 
 body, html {
   color: dxpr-color('text');
-  font-size: $font-size-base;
+  font-size: var(--dxpr-setting-body-font-size);
 }
 
 body, p, .lead {
@@ -48,7 +49,8 @@ body, p, .lead {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-weight: var(--dxpr-setting-headings-bold);
+  // Use !important to override default font-family weight.
+  font-weight: var(--dxpr-setting-headings-bold) !important;
   letter-spacing: var(--dxpr-setting-headings-letter-spacing);
   line-height: var(--dxpr-setting-headings-line-height);
   margin-bottom: 10px;
@@ -144,11 +146,10 @@ h1, h2, h3, h4, h5, h6, .navbar-brand, th, .nav-tabs > li > a {
   max-width: 100%;
 }
 
-hr {
+hr, .card hr {
   height: 0;
   border-top: 4px solid dxpr-color('card');
-  margin-bottom: 20px;
-  margin-top: 20px;
+  margin: 20px auto 20px var(--dxpr-setting-divider-position);
   border-top-width: var(--dxpr-setting-divider-thickness);
   border-top-color: var(--dxpr-setting-divider-color);
   width: var(--dxpr-setting-divider-length);
@@ -161,7 +162,7 @@ hr {
 .dxpr-theme-footer hr {
   border-top-color: dxpr-color('footertext');
 }
-.card hr,
+
 .jumbotron hr {
   border-top-color: dxpr-color('cardtext'); // card text color
 }

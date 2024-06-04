@@ -27,6 +27,8 @@
     overflow-x: hidden;
     overflow-y: auto;
     height: 100%;
+    width: calc(var(--dxpr-setting-header-side-width) - 20px);
+    padding-right: 20px;
     a {
       color: dxpr-color('headersidetext');
       padding-left: 0; // undo bs5 base theme styles
@@ -215,6 +217,7 @@
     }
     .menu__breadcrumbs {
       top: 160px;
+      width: var(--dxpr-setting-header-side-width);
     }
     .menu__level {
       top: 180px;

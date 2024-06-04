@@ -113,10 +113,6 @@ function dxpr_theme_preprocess_html(&$variables) {
     '#markup' => '<div class="hidden" id="dxpr-theme-js-seed">sfy39587stp18</div>',
   ];
 
-  if ($breadcrumbs_separator = theme_get_setting('page_title_breadcrumbs_separator')) {
-    $variables['#attached']['drupalSettings']['dxpr_themeSettings']['breadcrumbsSeparator'] = $breadcrumbs_separator;
-  }
-
   if ($header_height = theme_get_setting('header_top_height')) {
     $variables['#attached']['drupalSettings']['dxpr_themeSettings']['headerHeight'] = $header_height;
   }
@@ -289,6 +285,13 @@ function dxpr_theme_preprocess_region(&$variables) {
       $variables['#attached']['library'][] = 'dxpr_theme/footer-menu';
       break;
   }
+
+  // Apply class to block design regions.
+  if ($block_design_regions = array_keys(array_filter(theme_get_setting('block_design_regions')))) {
+    if (in_array($variables['region'], $block_design_regions)) {
+      $variables['attributes']['class'][] = 'region-block-design';
+    }
+  }
 }
 
 /**
@@ -311,7 +314,11 @@ function dxpr_theme_preprocess_breadcrumb(&$variables) {
       ];
     }
     $variables['#attached']['library'][] = 'dxpr_theme/drupal-breadcrumbs';
-    $variables['#attached']['library'][] = 'dxpr_theme/drupal-breadcrumbs-js';
+
+    // Always load breadcrumb on settings page.
+    if ($route_match->getRouteName() === 'dxpr_theme_helper.settings') {
+      $variables['theme']['settings']['page_title_breadcrumbs'] = TRUE;
+    }
   }
 }
 

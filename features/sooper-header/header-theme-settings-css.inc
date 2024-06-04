@@ -5,31 +5,6 @@
  * Header settings css styles.
  */
 
-use Drupal\Component\Utility\Color;
-
-/**
- * Convert hexadecimal color string to rgb(a) string.
- *
- * @param string $hex
- *   Hexadecimal color value.
- * @param int|float $alpha
- *   Alpha value between 0 and 1.
- *
- * @return string
- *   An rgb() or rgba() color value.
- */
-function _dxpr_theme_hex2rgba(string $hex, int|float $alpha = 1): string {
-  if (!Color::validateHex($hex)) {
-    $hex = '#000000';
-  }
-
-  $rgb = Color::hexToRgb($hex);
-  $clr = implode(',', $rgb);
-
-  return $alpha >= 0 && $alpha < 1
-    ? sprintf('rgba(%s, %s)', $clr, $alpha) : sprintf('rgb(%s)', $clr);
-}
-
 /**
  * Generate header theme css styles.
  *
@@ -45,7 +20,6 @@ function header_theme_settings_css(string $theme, string &$css, array $palette) 
 
   // Header Vars.
   $header_position = theme_get_setting('header_position', $theme);
-  $header_top_opacity = $header_top_opacity_scroll = 1;
   $header_top_height_var = _dxpr_theme_setting_get_css_var('header_top_height');
 
   if (theme_get_setting('header_side_align', $theme) === 'right') {
@@ -56,45 +30,41 @@ function header_theme_settings_css(string $theme, string &$css, array $palette) 
   }
 
   if (!$header_position) {
-    $header_top_rgba = $header_top_scroll_rgba = $palette['header'] ?? '';
+    $header_var = $header_scroll_var = 'var(' . _dxpr_theme_get_const('cssColorPrefix') . 'header)';
 
-    if (theme_get_setting('header_top_sticky', $theme) && theme_get_setting('header_top_sticky_show', $theme) == 'after_scroll') {
-      $header_top_opacity = 0;
-    }
+    // Check if menu should be initially hidden and shown after scroll.
+    $show_after_scroll =
+      theme_get_setting('header_top_sticky', $theme) &&
+      theme_get_setting('header_top_sticky_show', $theme) == 'after_scroll';
 
     if (in_array(theme_get_setting('header_style', $theme), [
       'normal',
       'overlay',
     ])) {
+      $color_header_var = 'var(' . _dxpr_theme_get_const('cssColorPrefix') . 'header-rgb)';
 
-      $color = $palette['header'] ?: '#ffffff';
-      $opacity = theme_get_setting('header_top_bg_opacity', $theme);
-      $opacity_scroll = theme_get_setting('header_top_bg_opacity_scroll', $theme);
-      $header_top_rgba = _dxpr_theme_hex2rgba($color, $opacity);
-      $header_top_scroll_rgba = _dxpr_theme_hex2rgba($color, $opacity_scroll);
-      $color_header_var = 'var(' . _dxpr_theme_get_const('cssColorPrefix') . 'header)';
-
-      if (theme_get_setting('header_style') === 'normal') {
-        $header_top_scroll_rgba = _dxpr_theme_hex2rgba($color, $opacity);
-      }
-
-      // Use css variables if there's no opacity change.
-      if ($header_top_opacity === 1) {
-        $header_top_rgba = $color_header_var;
-      }
-      if ($opacity_scroll === 1) {
-        $header_top_scroll_rgba = $color_header_var;
-      }
+      $header_var = sprintf("rgba(%s, %s)",
+        $color_header_var,
+        _dxpr_theme_setting_get_css_var('header_top_bg_opacity'),
+      );
+      $header_scroll_var = sprintf("rgba(%s, %s)",
+        $color_header_var,
+        _dxpr_theme_setting_get_css_var('header_top_bg_opacity_scroll'),
+      );
     }
 
     $css .= ".body--dxpr-theme-nav-desktop #navbar.dxpr-theme-header--top {\n";
-    $css .= "  background-color: $header_top_rgba;\n";
-    $css .= "  opacity: $header_top_opacity;\n";
+    $css .= "  background-color: $header_var;\n";
+    if ($show_after_scroll) {
+      $css .= "  opacity: 0;\n";
+    }
     $css .= "}\n";
 
     $css .= ".body--dxpr-theme-nav-desktop #navbar.dxpr-theme-header--top.affix {\n";
-    $css .= "  background-color: $header_top_scroll_rgba;\n";
-    $css .= "  opacity: $header_top_opacity_scroll;\n";
+    $css .= "  background-color: $header_scroll_var;\n";
+    if ($show_after_scroll) {
+      $css .= "  opacity: 1;\n";
+    }
     $css .= "}\n\n";
 
     if (theme_get_setting('header_style', $theme) == 'overlay') {
