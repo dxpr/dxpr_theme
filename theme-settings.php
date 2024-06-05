@@ -50,19 +50,39 @@ function dxpr_theme_form_system_theme_settings_alter(&$form, &$form_state, $form
   $dxpr_theme_theme_path = \Drupal::service('extension.list.theme')->getPath('dxpr_theme') . '/';
   $themes = \Drupal::service('theme_handler')->listInfo();
 
-  $img = '<img width="40" height="15" src="' . $base_path . $dxpr_theme_theme_path . 'images/dxpr-logo-dark.svg" />';
   if (!empty($themes[$subject_theme]->info['version'])) {
     $version = $themes[$subject_theme]->info['version'];
   }
-  else {
-    $version = 'dev';
-  }
+
+  $form['dxpr_theme_settings_header'] = [
+    '#type' => 'inline_template',
+    '#template' => '
+      <h2>
+        <small class="form-header">
+          {{ image|raw }} {{ name }} {{ version }}
+          <span class="small">({{ bs5_name }} base theme {{ bs5_version }})</span>
+        </small>
+      </h2>
+      <div class="no-preview-info">
+        <span class="no-preview">&nbsp;</span>{{ preview_text }}
+      </div>
+    ',
+    '#context' => [
+      'image' => '<img width="40" height="15" src="' . $base_path . $dxpr_theme_theme_path . 'images/dxpr-logo-dark.svg" />',
+      'name' => $themes[$subject_theme]->info['name'],
+      'version' => $version ?? 'dev',
+      'bs5_name' => $themes['bootstrap5']->info['name'],
+      'bs5_version' => $themes['bootstrap5']->info['version'],
+      'preview_text' => t('No preview. Save to view changes.'),
+    ],
+    '#weight' => -100,
+  ];
+
   $form['dxpr_theme_settings'] = [
     // SETTING TYPE TO DETAILS OR VERTICAL_TABS
     // STOPS RENDERING OF ALL ELEMENTS INSIDE.
     '#type' => 'vertical_tabs',
     '#weight' => -20,
-    '#prefix' => '<h2><small>' . $img . ' ' . $themes[$subject_theme]->info['name'] . ' ' . $version . ' <span class="small">(' . $themes['bootstrap5']->info['name'] . ' base theme ' . $themes['bootstrap5']->info['version'] . ')</span>' . '</small></h2>',
   ];
 
   if (!empty($form['update'])) {
