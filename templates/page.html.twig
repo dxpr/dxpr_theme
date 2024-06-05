@@ -226,10 +226,10 @@
         {% set col = node.field_dth_main_content_width.getString() %}
         {%
           set content_classes = [
-            col == 'dxpr-theme-util-content-center-4-col' ? 'col-md-4 col-md-offset-4',
-            col == 'dxpr-theme-util-content-center-6-col' ? 'col-md-6 col-md-offset-3',
-            col == 'dxpr-theme-util-content-center-8-col' ? 'col-md-8 col-md-offset-2',
-            col == 'dxpr-theme-util-content-center-10-col' ? 'col-md-10 col-md-offset-1',
+            col == 'dxpr-theme-util-content-center-4-col' ? 'col-md-4 offset-md-4',
+            col == 'dxpr-theme-util-content-center-6-col' ? 'col-md-6 offset-md-3',
+            col == 'dxpr-theme-util-content-center-8-col' ? 'col-md-8 offset-md-2',
+            col == 'dxpr-theme-util-content-center-10-col' ? 'col-md-10 offset-md-1',
           ]
         %}
       {% endif %}
