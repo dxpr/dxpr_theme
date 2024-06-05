@@ -582,17 +582,20 @@
         )
         .reduce((finalArr, sheet) => {
           const propKeySet = new Set(finalArr);
-          [...sheet.cssRules]
-            .filter((rule) => rule.type === 1)
-            .forEach((rule) => {
-              [...rule.style].forEach((propName) => {
-                propName = propName.trim();
-
-                if (propName.indexOf(cssVarSettingsPrefix) === 0) {
-                  propKeySet.add(propName);
-                }
-              });
+          try {
+            [...sheet.cssRules].forEach((rule) => {
+              if (rule.type === 1) { // CSSStyleRule
+                [...rule.style].forEach((propName) => {
+                  propName = propName.trim();
+                  if (propName.indexOf(cssVarSettingsPrefix) === 0) {
+                    propKeySet.add(propName);
+                  }
+                });
+              }
             });
+          } catch (e) {
+            // Could not access cssRules for stylesheet.
+          }
           return Array.from(propKeySet);
         }, []);
     },
