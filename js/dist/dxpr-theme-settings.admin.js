@@ -264,7 +264,6 @@
         .querySelector(".system-theme-settings")
         .querySelectorAll("input, select, textarea")
         .forEach((input) => {
-
           // Skip adding no-preview class for these fields.
           const skip = [
             "color_scheme",
