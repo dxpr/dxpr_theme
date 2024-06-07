@@ -261,9 +261,9 @@
     setNoPreview() {
       // Mark all fields with a no-preview icon.
       document
-        .querySelector('.system-theme-settings')
-        .querySelectorAll('input, select, textarea')
-        .forEach(input => {
+        .querySelector(".system-theme-settings")
+        .querySelectorAll("input, select, textarea")
+        .forEach((input) => {
 
           // Skip adding no-preview class for these fields.
           const skip = [
@@ -281,7 +281,7 @@
             "block_divider_custom",
           ];
 
-          if (!skip.some(name => input.name.startsWith(name))) {
+          if (!skip.some((name) => input.name.startsWith(name))) {
             this.setPreviewClass(input, true);
           }
         });
@@ -292,7 +292,7 @@
       }
 
       // Handled fields with no preview.
-      let aNoPreviewFields = [
+      const aNoPreviewFields = [
         "background_image_style",
         "background_image_position",
         "background_image_attachment",
@@ -322,27 +322,29 @@
 
       // Set dependency array as fieldName => requiredField.
       const oDependent = {
-        "boxed_layout_boxbg": "boxed_layout",
-        "layout_max_width": "boxed_layout",
-        "header_top_height_scroll": "header_top_sticky",
-        "header_top_bg_opacity_scroll": "header_top_sticky",
-        "nav_font_size": "menu_type",
-        "nav_mobile_font_size": "menu_type",
-      }
+        boxed_layout_boxbg: "boxed_layout",
+        layout_max_width: "boxed_layout",
+        header_top_height_scroll: "header_top_sticky",
+        header_top_bg_opacity_scroll: "header_top_sticky",
+        nav_font_size: "menu_type",
+        nav_mobile_font_size: "menu_type",
+      };
 
       // Iterate dependent fields.
       let processed = false;
       Object.entries(oDependent).forEach(([fieldName, depFieldName]) => {
         if (fieldName === name) {
           processed = true;
-          let elDep = document.querySelector(`[name="${depFieldName}"]`);
+          const elDep = document.querySelector(`[name="${depFieldName}"]`);
 
           if (elDep.type === "checkbox" && elDep.checked) {
             this.setPreviewClass(input, false);
           }
 
           if (name === "nav_font_size" || name === "nav_mobile_font_size") {
-            const radio = document.querySelector(`[name="${depFieldName}"]:checked`);
+            const radio = document.querySelector(
+              `[name="${depFieldName}"]:checked`,
+            );
             if (radio.value !== "lead") {
               this.setPreviewClass(input, false);
             }
@@ -351,12 +353,16 @@
       });
 
       // Handle "box_max_width" additional rule.
-      if (name === 'box_max_width') {
+      if (name === "box_max_width") {
         processed = true;
-        const isBoxed = document.querySelector(`[name="boxed_layout"]`)?.checked;
-        const maxWidthValue = document.querySelector(`[name="layout_max_width"]`)?.value;
+        const isBoxed = document.querySelector(
+          `[name="boxed_layout"]`,
+        )?.checked;
+        const maxWidthValue = document.querySelector(
+          `[name="layout_max_width"]`,
+        )?.value;
 
-        if (isBoxed && parseInt(maxWidthValue) <= 1200) {
+        if (isBoxed && parseInt(maxWidthValue, 10) <= 1200) {
           this.setPreviewClass(input, false);
         }
       }
@@ -372,25 +378,24 @@
 
       if (action === true) {
         label.classList.add("no-preview");
-      }
-      else {
-        label.classList.remove('no-preview');
+      } else {
+        label.classList.remove("no-preview");
       }
     },
     getLabel(elInputOrName) {
       let label = null;
 
-      if (typeof elInputOrName === 'string') {
+      if (typeof elInputOrName === "string") {
         elInputOrName = document.querySelector(`[name="${elInputOrName}"]`);
       }
 
       if (elInputOrName) {
-        // Get legend for grouped fieldset items.
-        label = elInputOrName.closest('fieldset')?.querySelector('legend');
+        // Get legend for grouped field items.
+        label = elInputOrName.closest("fieldset")?.querySelector("legend");
 
         // If no legend, get first available form item wrapper label.
         if (!label) {
-          label = elInputOrName.closest('.form-item')?.querySelector('label');
+          label = elInputOrName.closest(".form-item")?.querySelector("label");
         }
       }
 
@@ -422,10 +427,8 @@
      */
     fieldHandler(event) {
       const {
-
         name: setting,
-        parentElement: { textContent: textValue }
-     ,
+        parentElement: { textContent: textValue },
       } = event.target;
       const unit = textValue.replace(/[^a-z]/gi, "");
       const validUnits = ["px", "em", "rem"];
@@ -584,7 +587,7 @@
           const propKeySet = new Set(finalArr);
           try {
             [...sheet.cssRules].forEach((rule) => {
-              if (rule.type === 1) { // CSSStyleRule
+              if (rule.type === 1) {
                 [...rule.style].forEach((propName) => {
                   propName = propName.trim();
                   if (propName.indexOf(cssVarSettingsPrefix) === 0) {
