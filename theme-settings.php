@@ -57,14 +57,14 @@ function dxpr_theme_form_system_theme_settings_alter(&$form, &$form_state, $form
   $form['dxpr_theme_settings_header'] = [
     '#type' => 'inline_template',
     '#template' => '
-      <h2>
-        <small class="form-header">
+      <div class="form-header">
+        <h2>
           {{ image|raw }} {{ name }} {{ version }}
           <span class="small">({{ bs5_name }} base theme {{ bs5_version }})</span>
-        </small>
-      </h2>
-      <div class="no-preview-info">
-        <span class="no-preview">&nbsp;</span>{{ preview_text }}
+        </h2>
+        <div class="no-preview-info small">
+          <span class="no-preview">&nbsp;</span>{{ preview_text }}
+        </div>
       </div>
     ',
     '#context' => [
@@ -89,10 +89,22 @@ function dxpr_theme_form_system_theme_settings_alter(&$form, &$form_state, $form
     $form['update']['#group'] = 'global';
   }
 
+  $form['core_theme_settings_header'] = [
+    '#type' => 'inline_template',
+    '#template' => '
+      <div class="form-header">
+        <h2>{{ title }}</h2>
+      </div>
+    ',
+    '#context' => [
+      'title' => t('Core theme settings'),
+    ],
+    '#weight' => -10,
+  ];
+
   $form['core_theme_settings'] = [
     '#type' => 'vertical_tabs',
-    '#weight' => -20,
-    '#prefix' => '<h2><small>' . t('Core theme settings') . '</small></h2>',
+    '#weight' => 0,
     '#attributes' => [
       'class' => [
         'core-theme-settings',

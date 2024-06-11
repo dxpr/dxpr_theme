@@ -635,13 +635,6 @@
       }
     },
     init() {
-      const elSystemSettingsWrapper = document.getElementById('system-theme-settings');
-      const elFormTitles = elSystemSettingsWrapper.querySelectorAll('h2 > small');
-
-      elFormTitles.forEach(function(el) {
-        el.classList.add('form-header');
-      });
-
       /**
        * Bootstrap slider configuration.
        */

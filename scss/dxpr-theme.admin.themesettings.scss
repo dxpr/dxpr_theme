@@ -119,16 +119,19 @@ $border-color: #222330;
     }
   }
   .no-preview-info {
-    position: relative;
-    top: -2rem;
-    left: 0;
-    text-align: right;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    font-size: 13px;
+    line-height: 1.3;
 
     span.no-preview {
       display: inline-block;
-      margin-right: 2rem;
+      margin-right: 1.5em;
 
       &:after {
+        width: 1em;
+        height: 1em;
         margin-left: 0;
       }
     }
@@ -230,11 +233,12 @@ $border-color: #222330;
   }
   .form-header {
     border-bottom: 1px solid $border-color;
-    display: block;
-    width: 100%;
-    margin-bottom: 0;
     padding: 20px;
-    font-size: 20px;
+    position: relative;
+
+    h2 {
+      font-size: 20px;
+    }
     img {
       width: 40px;
       margin-right: 10px;
