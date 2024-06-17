@@ -23,9 +23,10 @@ function dxpr_theme_form_system_theme_settings_alter(&$form, &$form_state, $form
   // form_id is only present the second time around.
   if (!isset($form_id)) {
     return;
-  };
+  }
+
   if (theme_get_setting('boxed_layout') === 1) {
-    if (theme_get_setting('box_max_width') < '1200') {
+    if ((int) theme_get_setting('box_max_width') < 1200) {
       \Drupal::messenger()->addStatus('You set a Boxed Container Max Width of less than 1200px. To preserve the layout of the settings form we are overriding this setting specifically for this page. Your setting is applied on other pages.');
 
       $form['dxpr_theme_boxed_container_styles'] = [
@@ -35,7 +36,7 @@ function dxpr_theme_form_system_theme_settings_alter(&$form, &$form_state, $form
       ];
     }
   }
-  elseif (theme_get_setting('layout_max_width') < '1200') {
+  elseif ((int) theme_get_setting('layout_max_width') < 1200) {
     \Drupal::messenger()->addStatus('You set a Content Max Width of less than 1200px. To preserve the layout of the settings form we are overriding this setting specifically for this page. Your setting is applied on other pages.');
 
     $form['dxpr_theme_container_styles'] = [
