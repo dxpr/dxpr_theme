@@ -361,8 +361,19 @@
           `[name="layout_max_width"]`,
         )?.value;
 
-        if (isBoxed && parseInt(maxWidthValue, 10) <= 1200) {
-          this.setPreviewClass(input, false);
+        if (isBoxed) {
+          this.setPreviewClass(input, parseInt(input.value, 10) <= 1200);
+        }
+      }
+
+      if (name === "layout_max_width") {
+        processed = true;
+        const isBoxed = document.querySelector(
+          `[name="boxed_layout"]`,
+        )?.checked;
+
+        if (!isBoxed) {
+          this.setPreviewClass(input, parseInt(input.value, 10) <= 1200);
         }
       }
 
@@ -371,6 +382,9 @@
         this.setPreviewClass(input, false);
       }
     },
+    /**
+     * Set action to TRUE to add the no-preview class, and FALSE to remove it.
+     */
     setPreviewClass(input, action) {
       const label = this.getLabel(input);
       if (!label) return;
