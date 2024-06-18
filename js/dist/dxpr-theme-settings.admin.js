@@ -357,12 +357,9 @@
         const isBoxed = document.querySelector(
           `[name="boxed_layout"]`,
         )?.checked;
-        const maxWidthValue = document.querySelector(
-          `[name="layout_max_width"]`,
-        )?.value;
 
         if (isBoxed) {
-          this.setPreviewClass(input, parseInt(input.value, 10) <= 1200);
+          this.setPreviewClass(input, parseInt(input.value, 10) < 1200);
         }
       }
 
@@ -373,7 +370,7 @@
         )?.checked;
 
         if (!isBoxed) {
-          this.setPreviewClass(input, parseInt(input.value, 10) <= 1200);
+          this.setPreviewClass(input, parseInt(input.value, 10) < 1200);
         }
       }
 
