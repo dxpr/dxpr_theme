@@ -189,7 +189,7 @@
     padding-left:300px;
 
     html.js & {
-      padding-left: calc(var(--dxpr-setting-header-side-width) + var(--gin-toolbar-x-offset, 256px));
+      padding-left: calc(var(--dxpr-setting-header-side-width) + var(--gin-toolbar-x-offset, 0px));
     }
     #navbar.dxpr-theme-header {
       text-align: var(--dxpr-setting-header-side-align);
