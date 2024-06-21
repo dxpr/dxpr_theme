@@ -21,7 +21,9 @@
       }
     }
     #logo {
-      max-height: 30px;
+      display: inline;
+      height: var(--dxpr-setting-logo-height);
+      max-height: 100%;
     }
     &.dxpr-theme-header--fixed {
       position: fixed;
@@ -96,9 +98,7 @@
         display: table-cell;
         vertical-align: middle;
         padding-right: 15px;
-        img {
-          display: inline;
-        }
+        height: 100%;
       }
     }
     .navbar-collapse {
