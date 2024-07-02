@@ -322,7 +322,7 @@
       // Set dependency array as fieldName => requiredField.
       const oDependent = {
         boxed_layout_boxbg: "boxed_layout",
-        layout_max_width: "boxed_layout",
+        box_max_width: "boxed_layout",
         header_top_height_scroll: "header_top_sticky",
         header_top_bg_opacity_scroll: "header_top_sticky",
         nav_font_size: "menu_type",
@@ -350,29 +350,6 @@
           }
         }
       });
-
-      // Handle "box_max_width" additional rule.
-      if (name === "box_max_width") {
-        processed = true;
-        const isBoxed = document.querySelector(
-          `[name="boxed_layout"]`,
-        )?.checked;
-
-        if (isBoxed) {
-          this.setPreviewClass(input, parseInt(input.value, 10) < 1200);
-        }
-      }
-
-      if (name === "layout_max_width") {
-        processed = true;
-        const isBoxed = document.querySelector(
-          `[name="boxed_layout"]`,
-        )?.checked;
-
-        if (!isBoxed) {
-          this.setPreviewClass(input, parseInt(input.value, 10) < 1200);
-        }
-      }
 
       // If not been processed it has no dependency and icon can be removed.
       if (!processed) {
