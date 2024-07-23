@@ -92,11 +92,10 @@
       z-index: 405;
     }
     .wrap-branding {
-      display: table;
       .logo,
       .navbar-brand {
-        display: table-cell;
-        vertical-align: middle;
+        display: flex;
+        align-items: center;
         padding-right: 15px;
         height: 100%;
       }
