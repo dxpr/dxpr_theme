@@ -88,10 +88,10 @@ function header_theme_settings(array &$form, $theme) {
   $form['dxpr_theme_settings']['header']['header_top']['logo_height'] = [
     '#type' => 'textfield',
     '#title' => t('Logo Height'),
-    '#default_value' => theme_get_setting('logo_height') ?: '90',
+    '#default_value' => theme_get_setting('logo_height') ?: '35',
     '#size' => 9,
     '#maxlength' => 3,
-    '#description' => t('Height of the logo within the header. 10% - 100%. Default is 90%.'),
+    '#description' => t('Height of the logo within the header. 10% - 100%. Default is 35%.'),
   ];
 
   $form['dxpr_theme_settings']['header']['header_top']['header_top_fixed'] = [
