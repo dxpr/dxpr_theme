@@ -493,6 +493,10 @@
         case "title_type[italic]":
           value = value ? "italic" : "normal";
           break;
+        // Generic: Percentage
+        case "logo_height":
+          value = `${value}%`;
+          break;
         // Breadcrumb separator
         case "page_title_breadcrumbs_separator":
           value = `"${value.replace(/\\/g, "\\\\").replace(/"/g, '\\"')}"`;
@@ -895,6 +899,18 @@
         value: parseFloat($input.val()),
       });
 
+      $input = $("#edit-logo-height");
+      $input.bootstrapSlider({
+        step   : 1,
+        min    : 10,
+        max    : 100,
+        tooltip: "hide",
+        formatter(value) {
+          return `${value}%`;
+        },
+        value: parseFloat($input.val()),
+      });
+
       // Header Mobile Breakpoint slider
       $input = $("#edit-header-mobile-breakpoint");
       $input.bootstrapSlider({
@@ -952,6 +968,18 @@
       $input.bootstrapSlider({
         step   : 5,
         min    : 50,
+        max    : 500,
+        tooltip: "hide",
+        formatter(value) {
+          return `${value}px`;
+        },
+        value: parseFloat($input.val()),
+      });
+
+      $input = $("#edit-header-side-logo-height");
+      $input.bootstrapSlider({
+        step   : 1,
+        min    : 10,
         max    : 500,
         tooltip: "hide",
         formatter(value) {

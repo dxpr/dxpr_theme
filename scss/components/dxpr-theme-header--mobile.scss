@@ -21,23 +21,37 @@ html.html--dxpr-theme-nav-mobile--open {
     padding-top: 0;
   }
   #logo {
-    max-height: 30px;
+    display: inline;
+    height: var(--dxpr-setting-logo-height);
+    max-height: 100%;
   }
   .dxpr-theme-header {
     position: static;
     li {
       clear: both;
     }
-    .navbar-header {
+    .navbar-container {
+      display: block;
       float: none;
-      .wrap-branding {
-        display: table;
-        float:left;
-        height: var(--dxpr-setting-header-mobile-height);
-        .logo,
-        .navbar-brand {
-          display: table-cell;
-          vertical-align: middle;
+      height: 100%;
+
+      .navbar-header {
+        display: flex;
+        flex-wrap: nowrap;
+        height: 100%;
+
+        * {
+          height: 100%;
+        }
+
+        .region-navigation {
+          flex-grow: 1;
+        }
+
+        .logo {
+          display: flex;
+          height: 100%;
+          align-items: center;
         }
       }
     }
