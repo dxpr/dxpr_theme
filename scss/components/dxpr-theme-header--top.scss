@@ -122,14 +122,14 @@
     &.dxpr-theme-header--logo-center-menu-left {
       .menu,
       .block,
-      nav nav {
+      .navbar-nav {
         float: left;
       }
     }
     &.dxpr-theme-header--logo-right-menu-left {
       .menu,
       .block,
-      nav nav {
+      .navbar-nav {
         float: left;
       }
       .navbar-header,
@@ -149,7 +149,7 @@
       }
       .navbar-header,
       .block,
-      nav nav {
+      .navbar-nav {
         margin: 0 auto;
         text-align:center;
         float: none;
@@ -185,7 +185,7 @@
       }
     }
     .block,
-    nav nav {
+    .navbar-nav {
       float: right;
       position:static;
     }

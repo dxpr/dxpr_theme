@@ -34,11 +34,16 @@
   display: table;
   width: 100%;
   z-index: 1;
+  text-align: var(--dxpr-setting-page-title-align);
+
   .page-title {
     border: none;
     display: table-cell;
     font-size: var(--dxpr-setting-h1-font-size);
-    height: 180px;
+    font-style: var(--dxpr-setting-title-type-italic);
+    font-weight: var(--dxpr-setting-title-type-bold);
+    height: var(--dxpr-setting-page-title-height);
+    text-transform: var(--dxpr-setting-title-type-uppercase);
     vertical-align: middle;
     padding-top: 0;
     padding-bottom: 0;

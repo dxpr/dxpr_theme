@@ -26,14 +26,23 @@ function css_variables_theme_settings_css(string $theme, string &$css) {
   }
 
   ksort($theme_settings);
+  $prefix = _dxpr_theme_get_const('cssSettingPrefix');
 
   $css_variables = [];
   foreach ($theme_settings as $k => $v) {
     if (_dxpr_theme_is_css_variable($k)) {
       if ($value = _dxpr_theme_massage_values($k, $v, $theme, $theme_settings)) {
-        $var_name = str_replace('_', '-', $k);
-        $prefix = _dxpr_theme_get_const('cssSettingPrefix');
-        $css_variables[] = '  ' . $prefix . $var_name . ': ' . $value;
+
+        if (is_array($value)) {
+          foreach ($value as $name => $val) {
+            $var_name = trim(str_replace('_', '-', $k . '_' . $name), '-');
+            $css_variables[] = '  ' . $prefix . $var_name . ': ' . $val;
+          }
+        }
+        else {
+          $var_name = str_replace('_', '-', $k);
+          $css_variables[] = '  ' . $prefix . $var_name . ': ' . $value;
+        }
       }
     }
   }
@@ -69,10 +78,10 @@ function _dxpr_theme_is_css_variable(string $key): bool {
  * @param array $submitted
  *   Array of submitted values.
  *
- * @return string
+ * @return string|array
  *   A value suitable for use as a CSS variable value.
  */
-function _dxpr_theme_massage_values(string $key, $value, string $theme, array $submitted): string {
+function _dxpr_theme_massage_values(string $key, $value, string $theme, array $submitted): string|array {
   $prefix = $suffix = '';
   $settings = _dxpr_theme_get_css_settings();
 
@@ -90,12 +99,12 @@ function _dxpr_theme_massage_values(string $key, $value, string $theme, array $s
 
     // Generic: Bold.
     case 'headings_bold':
-      $value = !empty($value) ? 'bold' : 'inherit';
+      $value = !empty($value) ? 'bold' : 'normal';
       break;
 
     // Generic: Uppercase.
     case 'headings_uppercase':
-      $value = !empty($value) ? 'uppercase' : 'inherit';
+      $value = !empty($value) ? 'uppercase' : 'none';
       break;
 
     // Generic: Display style.
@@ -111,6 +120,35 @@ function _dxpr_theme_massage_values(string $key, $value, string $theme, array $s
       }
       break;
 
+    // Divider: Position = margin-left value.
+    // Also adds a divider-position-block variable that uses the
+    // same values except for the right-aligned value which uses the block
+    // divider length.
+    case 'divider_position':
+      switch ($value) {
+        case 1:
+          $value = [
+            '' => '0',
+            'block' => '0',
+          ];
+          break;
+
+        case 2:
+          $value = [
+            '' => 'auto',
+            'block' => 'auto',
+          ];
+          break;
+
+        case 3:
+          $value = [
+            '' => 'calc(100% - var(--dxpr-setting-divider-length))',
+            'block' => 'calc(100% - var(--dxpr-setting-block-divider-length))',
+          ];
+          break;
+      }
+      break;
+
     // Handle Font settings.
     case 'body_font_face':
     case 'blockquote_font_face':
@@ -118,6 +156,23 @@ function _dxpr_theme_massage_values(string $key, $value, string $theme, array $s
     case 'nav_font_face':
     case 'sitename_font_face':
       $value = _dxpr_theme_get_font($value, $theme);
+      break;
+
+    case 'title_font_size':
+      $value = [
+        '' => 'var(' . _dxpr_theme_get_const('cssSettingPrefix') . $value . '-font-size)',
+        'mobile' => 'var(' . _dxpr_theme_get_const('cssSettingPrefix') . $value . '-mobile-font-size)',
+      ];
+      break;
+
+    case 'page_title_breadcrumbs_separator':
+      $str = str_replace(['\\', '"'], ['\\\\', '\\"'], $value);
+      $value = htmlspecialchars($str, ENT_QUOTES, 'UTF-8');
+      break;
+
+    case 'page_title_breadcrumbs_separator':
+      $str = str_replace(['\\', '"'], ['\\\\', '\\"'], $value);
+      $value = htmlspecialchars($str, ENT_QUOTES, 'UTF-8');
       break;
   }
 
@@ -143,8 +198,8 @@ function _dxpr_theme_massage_values(string $key, $value, string $theme, array $s
     }
   }
 
-  // Only add prefixes/suffixes if there's a value.
-  if (!empty($value)) {
+  // Add prefixes/suffixes for non-empty string values.
+  if (!empty($value) && is_string($value)) {
     $value = $prefix . $p . $value . $s . $suffix;
   }
 
@@ -182,6 +237,7 @@ function _dxpr_theme_get_css_settings(): array {
     'boxed_layout_boxbg' => [],
     'divider_color' => [],
     'divider_length' => ['suffix' => 'px'],
+    'divider_position' => [],
     'divider_thickness' => ['suffix' => 'px'],
     'dropdown_background' => [],
     'dropdown_hover_background' => [],
@@ -246,7 +302,9 @@ function _dxpr_theme_get_css_settings(): array {
     'title_border' => ['suffix' => 'px'],
     'title_border_color' => [],
     'title_border_radius' => ['suffix' => 'px'],
+    'title_font_size' => [],
     'title_padding' => ['suffix' => 'px'],
     'title_sticker' => [],
+    'title_type' => [],
   ];
 }

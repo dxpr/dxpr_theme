@@ -183,8 +183,8 @@
   a:hover,
   a:hover .menu a:focus,
   a.is-active {
-    color: white;
-    background-color: dxpr-color('base');
+    color: var(--dxpr-setting-menu-hover-text-color, var(--dxpr-setting-menu-text-color));
+    background-color: var(--dxpr-setting-menu-hover-background, dxpr-color('base')) !important;
   }
 }
 
@@ -193,7 +193,7 @@
   a:hover,
   a:focus,
   a.is-active {
-    color: dxpr-color('base');
+    color: dxpr-color('base') !important;
   }
 }
 

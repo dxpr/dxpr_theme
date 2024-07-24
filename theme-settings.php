@@ -23,26 +23,6 @@ function dxpr_theme_form_system_theme_settings_alter(&$form, &$form_state, $form
   // form_id is only present the second time around.
   if (!isset($form_id)) {
     return;
-  };
-  if (theme_get_setting('boxed_layout') === 1) {
-    if (theme_get_setting('box_max_width') < '1200') {
-      \Drupal::messenger()->addStatus('You set a Boxed Container Max Width of less than 1200px. To preserve the layout of the settings form we are overriding this setting specifically for this page. Your setting is applied on other pages.');
-
-      $form['dxpr_theme_boxed_container_styles'] = [
-        '#type' => 'html_tag',
-        '#tag' => 'style',
-        '#value' => '.dxpr-theme-boxed-container { max-width: 1300px !important; }',
-      ];
-    }
-  }
-  elseif (theme_get_setting('layout_max_width') < '1200') {
-    \Drupal::messenger()->addStatus('You set a Content Max Width of less than 1200px. To preserve the layout of the settings form we are overriding this setting specifically for this page. Your setting is applied on other pages.');
-
-    $form['dxpr_theme_container_styles'] = [
-      '#type' => 'html_tag',
-      '#tag' => 'style',
-      '#value' => '.container { max-width: 1300px !important; }',
-    ];
   }
 
   $build_info = $form_state->getBuildInfo();
@@ -50,29 +30,66 @@ function dxpr_theme_form_system_theme_settings_alter(&$form, &$form_state, $form
   $dxpr_theme_theme_path = \Drupal::service('extension.list.theme')->getPath('dxpr_theme') . '/';
   $themes = \Drupal::service('theme_handler')->listInfo();
 
-  $img = '<img width="40" height="15" src="' . $base_path . $dxpr_theme_theme_path . 'images/dxpr-logo-dark.svg" />';
   if (!empty($themes[$subject_theme]->info['version'])) {
     $version = $themes[$subject_theme]->info['version'];
   }
-  else {
-    $version = 'dev';
-  }
+
+  $form['dxpr_theme_settings_header'] = [
+    '#type' => 'inline_template',
+    '#template' => '
+      <div class="form-header">
+        <h2>
+          {{ image|raw }} {{ name }} {{ version }}
+          <span class="small">({{ bs5_name }} base theme {{ bs5_version }})</span>
+        </h2>
+        <div class="no-preview-info small">
+          <span class="no-preview">&nbsp;</span>{{ preview_text }}
+        </div>
+      </div>
+    ',
+    '#context' => [
+      'image' => '<img width="40" height="15" src="' . $base_path . $dxpr_theme_theme_path . 'images/dxpr-logo-dark.svg" />',
+      'name' => $themes[$subject_theme]->info['name'],
+      'version' => $version ?? 'dev',
+      'bs5_name' => $themes['bootstrap5']->info['name'],
+      'bs5_version' => $themes['bootstrap5']->info['version'],
+      'preview_text' => t('No preview. Save to view changes.'),
+    ],
+    '#weight' => -100,
+  ];
+
   $form['dxpr_theme_settings'] = [
     // SETTING TYPE TO DETAILS OR VERTICAL_TABS
     // STOPS RENDERING OF ALL ELEMENTS INSIDE.
     '#type' => 'vertical_tabs',
     '#weight' => -20,
-    '#prefix' => '<h2><small>' . $img . ' ' . $themes[$subject_theme]->info['name'] . ' ' . $version . ' <span class="small">(' . $themes['bootstrap5']->info['name'] . ' base theme ' . $themes['bootstrap5']->info['version'] . ')</span>' . '</small></h2>',
   ];
 
   if (!empty($form['update'])) {
     $form['update']['#group'] = 'global';
   }
 
+  $form['core_theme_settings_header'] = [
+    '#type' => 'inline_template',
+    '#template' => '
+      <div class="form-header">
+        <h2>{{ title }}</h2>
+      </div>
+    ',
+    '#context' => [
+      'title' => t('Core theme settings'),
+    ],
+    '#weight' => -10,
+  ];
+
   $form['core_theme_settings'] = [
     '#type' => 'vertical_tabs',
-    '#weight' => -20,
-    '#prefix' => '<h2><small>' . t('Core theme settings') . '</small></h2>',
+    '#weight' => 0,
+    '#attributes' => [
+      'class' => [
+        'core-theme-settings',
+      ],
+    ],
   ];
   $form['theme_settings']['#group'] = 'core_theme_settings';
   $form['logo']['#group'] = 'core_theme_settings';

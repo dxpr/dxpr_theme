@@ -42,19 +42,4 @@ function typography_theme_settings_css($theme, &$css, array $palette) {
       "  }\n";
     $css .= "}\n\n";
   }
-
-  // Divider.
-  $divider_position = theme_get_setting('divider_position', $theme);
-  $margin_left = $margin_right = 'auto';
-
-  if ($divider_position == 1) {
-    $margin_left = 0;
-  }
-  elseif ($divider_position == 3) {
-    $margin_right = 0;
-  }
-
-  $css .= "hr {\n";
-  $css .= "  margin-left: $margin_left;\n  margin-right: $margin_right;\n";
-  $css .= "}\n";
 }

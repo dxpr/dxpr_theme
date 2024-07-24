@@ -86,10 +86,52 @@ body.full-width-content {
   margin-bottom: 0; // Don't add defaulting margin to these structural columns
 }
 
+// BLOCKS
+.block-hr {
+  display: none;
+}
+
 .region-sidebar-first .block,
 .region-sidebar-second .block {
   margin-bottom: var(--dxpr-setting-gutter-vertical);
 }
+
+.region-block-design .block {
+  padding: var(--dxpr-setting-block-padding);
+  border-color: var(--dxpr-setting-block-border-color);
+  border-radius: var(--dxpr-setting-block-border-radius);
+  border-style: solid;
+  border-width: var(--dxpr-setting-block-border);
+  background-color: var(--dxpr-setting-block-background);
+}
+.region-block-design .block-title {
+  background-color: var(--dxpr-setting-title-background);
+  border-color: var(--dxpr-setting-title-border-color);
+  border-width: var(--dxpr-setting-title-border);
+  border-style: solid;
+  font-size: var(--dxpr-setting-title-font-size);
+  text-align: var(--dxpr-setting-title-align);
+  border-radius: var(--dxpr-setting-title-border-radius);
+  padding: var(--dxpr-setting-title-padding);
+}
+.region-block-design .block-hr {
+  display: block;
+  border-top-color: var(--dxpr-setting-block-divider-color);
+  border-top-width: var(--dxpr-setting-block-divider-thickness);
+  width: var(--dxpr-setting-block-divider-length);
+  margin:
+    var(--dxpr-setting-block-divider-spacing)
+    auto
+    var(--dxpr-setting-block-divider-spacing)
+    var(--dxpr-setting-divider-position-block);
+}
+
+@media screen and (max-width: 768px) {
+  .region-block-design .block-title {
+    font-size: var(--dxpr-setting-title-font-size-mobile);
+  }
+}
+
 #block-system-help {
   margin-bottom: 0;
 }

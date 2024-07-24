@@ -12,12 +12,13 @@
     background: transparent;
     position: absolute;
     bottom: 0;
-    right: 60px;
-    text-align: right;
+    right: 0;
+    left: 0;
+    text-align: var(--dxpr-setting-page-title-breadcrumbs-align);
     font-style: italic;
     opacity: 0.85;
     margin: 0;
-    padding: 10px 0;
+    padding: 10px var(--dxpr-setting-gutter-container);
     display: block;
     a {
       font-style: normal;
@@ -39,6 +40,10 @@
     span {
       padding: 0 5px;
       font-size: 12px;
+
+      &:before {
+        content: var(--dxpr-setting-page-title-breadcrumbs-separator);
+      }
     }
   }
 }
