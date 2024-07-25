@@ -97,7 +97,7 @@ function header_theme_settings_css(string $theme, string &$css, array $palette) 
     }
   }
 
-  // Mobile Header.
+  // Sticky footer settings.
   if (theme_get_setting('sticky_footer', $theme)) {
     $header_top_height = $header_top_height_var;
 
@@ -109,7 +109,7 @@ function header_theme_settings_css(string $theme, string &$css, array $palette) 
     }
 
     $css .= ".html--dxpr-theme-sticky-footer .body--dxpr-theme-nav-desktop .dxpr-theme-header--top {\n";
-    $css .= "  min-height: $header_top_height;\n";
+    $css .= "  height: $header_top_height;\n";
     $css .= "}\n\n";
 
     $header_mobile_height_var = _dxpr_theme_setting_get_css_var('header_mobile_height');

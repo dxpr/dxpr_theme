@@ -169,6 +169,11 @@ function _dxpr_theme_massage_values(string $key, $value, string $theme, array $s
       $str = str_replace(['\\', '"'], ['\\\\', '\\"'], $value);
       $value = htmlspecialchars($str, ENT_QUOTES, 'UTF-8');
       break;
+
+    case 'page_title_breadcrumbs_separator':
+      $str = str_replace(['\\', '"'], ['\\\\', '\\"'], $value);
+      $value = htmlspecialchars($str, ENT_QUOTES, 'UTF-8');
+      break;
   }
 
   // Handle custom color fields with an associated '*_custom' field.
@@ -259,6 +264,7 @@ function _dxpr_theme_get_css_settings(): array {
     'header_mobile_height' => ['suffix' => 'px'],
     'header_side_align' => [],
     'header_side_direction' => [],
+    'header_side_logo_height' => ['suffix' => 'px'],
     'header_side_width' => ['suffix' => 'px'],
     'header_top_bg_opacity' => [],
     'header_top_bg_opacity_scroll' => [],
@@ -271,6 +277,7 @@ function _dxpr_theme_get_css_settings(): array {
     'headings_line_height' => [],
     'headings_uppercase' => [],
     'layout_max_width' => ['suffix' => 'px'],
+    'logo_height' => ['suffix' => '%'],
     'menu_background' => [],
     'menu_border_color' => [],
     'menu_border_position_offset' => ['suffix' => 'px'],

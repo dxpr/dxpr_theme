@@ -246,11 +246,11 @@ $schemes: (
   --dxpr-setting-block-divider-spacing: 0px;
   --dxpr-setting-block-divider-thickness: 0px;
   --dxpr-setting-block-padding: 0px;
-  --dxpr-setting-blockquote-font-face: "Source Sans Pro Light Italic", "Source Sans Pro";
+  --dxpr-setting-blockquote-font-face: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   --dxpr-setting-blockquote-font-size: 20px;
   --dxpr-setting-blockquote-line-height: 1.5;
   --dxpr-setting-blockquote-mobile-font-size: 18px;
-  --dxpr-setting-body-font-face: "Source Sans Pro";
+  --dxpr-setting-body-font-face:  -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   --dxpr-setting-body-font-size: 16px;
   --dxpr-setting-body-line-height: 1.6;
   --dxpr-setting-body-mobile-font-size: 14px;
@@ -286,6 +286,7 @@ $schemes: (
   --dxpr-setting-header-mobile-height: 60px;
   --dxpr-setting-header-side-align: left;
   --dxpr-setting-header-side-direction: left;
+  --dxpr-setting-header-side-logo-height: 30px;
   --dxpr-setting-header-side-width: 350px;
   --dxpr-setting-header-top-bg-opacity-scroll: 1;
   --dxpr-setting-header-top-bg-opacity: 1;
@@ -293,11 +294,12 @@ $schemes: (
   --dxpr-setting-header-top-height-sticky-offset: 60px;
   --dxpr-setting-header-top-height: 100px;
   --dxpr-setting-headings-bold: normal;
-  --dxpr-setting-headings-font-face: "Source Sans Pro Light", "Source Sans Pro";
+  --dxpr-setting-headings-font-face: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   --dxpr-setting-headings-letter-spacing: 0em;
   --dxpr-setting-headings-line-height: 1.1;
   --dxpr-setting-headings-uppercase: none;
   --dxpr-setting-layout-max-width: 1280px;
+  --dxpr-setting-logo-height: 35%;
   --dxpr-setting-menu-background: inherit;
   --dxpr-setting-menu-border-color: inherit;
   --dxpr-setting-menu-border-position-offset-sticky: 0px;
@@ -306,7 +308,7 @@ $schemes: (
   --dxpr-setting-menu-hover-background: inherit;
   --dxpr-setting-menu-hover-text-color: inherit;
   --dxpr-setting-menu-text-color: inherit;
-  --dxpr-setting-nav-font-face: "Source Sans Pro";
+  --dxpr-setting-nav-font-face: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   --dxpr-setting-nav-font-size: 16px;
   --dxpr-setting-nav-mobile-font-size: 14px;
   --dxpr-setting-navbar-background: inherit;
@@ -318,7 +320,7 @@ $schemes: (
   --dxpr-setting-page-title-image-position: center center;
   --dxpr-setting-page-title-image-style: cover;
   --dxpr-setting-scale-factor: 1.34;
-  --dxpr-setting-sitename-font-face: "Source Sans Pro Light", "Source Sans Pro";
+  --dxpr-setting-sitename-font-face: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   --dxpr-setting-title-align: left;
   --dxpr-setting-title-background: transparent;
   --dxpr-setting-title-border-color: transparent;

@@ -85,6 +85,15 @@ function header_theme_settings(array &$form, $theme) {
     '#description' => t('Initial height of the header. 10px - 200px. Default is 100.'),
   ];
 
+  $form['dxpr_theme_settings']['header']['header_top']['logo_height'] = [
+    '#type' => 'textfield',
+    '#title' => t('Logo Height'),
+    '#default_value' => theme_get_setting('logo_height') ?: '35',
+    '#size' => 9,
+    '#maxlength' => 3,
+    '#description' => t('Height of the logo within the header. 10% - 100%. Default is 35%.'),
+  ];
+
   $form['dxpr_theme_settings']['header']['header_top']['header_top_fixed'] = [
     '#type' => 'checkbox',
     '#title' => t('Fixed Position'),
@@ -423,6 +432,15 @@ function header_theme_settings(array &$form, $theme) {
     '#size' => 9,
     '#maxlength' => 9,
     '#description' => t('Width of the side-header. Default is 300.'),
+  ];
+
+  $form['dxpr_theme_settings']['header']['header_side']['header_side_logo_height'] = [
+    '#type' => 'textfield',
+    '#title' => t('Logo Height'),
+    '#default_value' => theme_get_setting('header_side_logo_height') ?: 30,
+    '#size' => 9,
+    '#maxlength' => 3,
+    '#description' => t('Height of the logo in the side-header. Default is 30px.'),
   ];
 
   $form['dxpr_theme_settings']['header']['header_side']['header_side_direction'] = [

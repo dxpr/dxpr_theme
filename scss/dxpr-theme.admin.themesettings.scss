@@ -98,11 +98,43 @@ $border-color: #222330;
     width: 200px;
     float: left;
     display: block;
-    padding: 0 1rem 5px 0;
+    padding: 0 1.7rem 5px 0;
     border: none;
     outline: none;
     font-size: 18px;
     background-color: unset;
+  }
+  .no-preview {
+    &:after {
+      content: '';
+      background-image: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20fill%3D%22none%22%20stroke%3D%22currentColor%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20class%3D%22feather%20feather-eye-off%22%3E%3Cpath%20d%3D%22M17.94%2017.94A10.07%2010.07%200%200%201%2012%2020c-7%200-11-8-11-8a18.45%2018.45%200%200%201%205.06-5.94M9.9%204.24A9.12%209.12%200%200%201%2012%204c7%200%2011%208%2011%208a18.5%2018.5%200%200%201-2.16%203.19m-6.72-1.07a3%203%200%201%201-4.24-4.24M1%201l22%2022%22%2F%3E%3C%2Fsvg%3E');
+      background-size: contain;
+      width: 1.2rem;
+      height: 1.2rem;
+      display: inline-block;
+      margin-top: .2em;
+      margin-left: .3em;
+      position: absolute;
+      filter: invert(100%) brightness(70%);
+    }
+  }
+  .no-preview-info {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    font-size: 13px;
+    line-height: 1.3;
+
+    span.no-preview {
+      display: inline-block;
+      margin-right: 1.5em;
+
+      &:after {
+        width: 1em;
+        height: 1em;
+        margin-left: 0;
+      }
+    }
   }
   .form-item {
     clear: both;
@@ -201,11 +233,12 @@ $border-color: #222330;
   }
   .form-header {
     border-bottom: 1px solid $border-color;
-    display: block;
-    width: 100%;
-    margin-bottom: 0;
     padding: 20px;
-    font-size: 20px;
+    position: relative;
+
+    h2 {
+      font-size: 20px;
+    }
     img {
       width: 40px;
       margin-right: 10px;
@@ -380,7 +413,7 @@ $border-color: #222330;
     margin-top: 4rem;
     label {
       line-height: 1.2;
-      padding: 0;
+      padding: 0 1.7rem 0 0;
     }
     .form-item {
       padding: 0;
