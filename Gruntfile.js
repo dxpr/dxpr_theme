@@ -52,7 +52,7 @@ module.exports = function(grunt) {
             processors: require('autoprefixer'),
         },
         dist: {
-            src: 'css/*.css',
+            src: 'css/**/*.css',
         },
     },
     watch: {
