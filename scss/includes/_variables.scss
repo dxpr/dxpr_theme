@@ -76,7 +76,7 @@ $default-color-map: (
 @function dxpr-color($key) {
   @if map-has-key($default-color-map, $key) {
     //$value: map-get($default-color-map, $key);
-    @return unquote("var(--dxpr-color-#{$key})");
+    @return unquote("var(--dxt-color-#{$key})");
   }
   @else {
     @warn "Invalid color key \"#{$key}\".";

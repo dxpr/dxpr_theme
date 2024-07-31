@@ -142,8 +142,8 @@ function _dxpr_theme_massage_values(string $key, $value, string $theme, array $s
 
         case 3:
           $value = [
-            '' => 'calc(100% - var(--dxpr-setting-divider-length))',
-            'block' => 'calc(100% - var(--dxpr-setting-block-divider-length))',
+            '' => 'calc(100% - var(--dxt-setting-divider-length))',
+            'block' => 'calc(100% - var(--dxt-setting-block-divider-length))',
           ];
           break;
       }

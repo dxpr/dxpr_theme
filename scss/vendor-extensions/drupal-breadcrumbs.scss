@@ -14,11 +14,11 @@
     bottom: 0;
     right: 0;
     left: 0;
-    text-align: var(--dxpr-setting-page-title-breadcrumbs-align);
+    text-align: var(--dxt-setting-page-title-breadcrumbs-align);
     font-style: italic;
     opacity: 0.85;
     margin: 0;
-    padding: 10px var(--dxpr-setting-gutter-container);
+    padding: 10px var(--dxt-setting-gutter-container);
     display: block;
     a {
       font-style: normal;
@@ -42,7 +42,7 @@
       font-size: 12px;
 
       &:before {
-        content: var(--dxpr-setting-page-title-breadcrumbs-separator);
+        content: var(--dxt-setting-page-title-breadcrumbs-separator);
       }
     }
   }

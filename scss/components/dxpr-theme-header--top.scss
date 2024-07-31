@@ -7,7 +7,7 @@
   .dxpr-theme-header--top {
     width: 100%;
     .dxpr-theme-main-menu {
-      height: var(--dxpr-setting-header-top-height);
+      height: var(--dxt-setting-header-top-height);
       position: relative;
       &.dxpr-theme-menu--has-children {
         a.dropdown-toggle:after {
@@ -22,7 +22,7 @@
     }
     #logo {
       display: inline;
-      height: var(--dxpr-setting-logo-height);
+      height: var(--dxt-setting-logo-height);
       max-height: 100%;
     }
     &.dxpr-theme-header--fixed {
@@ -74,15 +74,15 @@
       .nav > li > span,
       .wrap-branding,
       .block-dxpr-theme-helper  {
-        height: var(--dxpr-setting-header-top-height-scroll);
-        line-height: var(--dxpr-setting-header-top-height-scroll);
+        height: var(--dxt-setting-header-top-height-scroll);
+        line-height: var(--dxt-setting-header-top-height-scroll);
       }
 
       .dxpr-theme-main-menu {
-        height: var(--dxpr-setting-header-top-height-scroll);
+        height: var(--dxt-setting-header-top-height-scroll);
       }
       .nav-child-fixed-width {
-        top: var(--dxpr-setting-header-top-height-scroll);
+        top: var(--dxt-setting-header-top-height-scroll);
       }
     }
     .navbar-header {
@@ -217,8 +217,8 @@
         font-size: $font-size-large;
         display: table-cell;
         vertical-align: middle;
-        height: var(--dxpr-setting-header-top-height);
-        line-height: var(--dxpr-setting-header-top-height);
+        height: var(--dxt-setting-header-top-height);
+        line-height: var(--dxt-setting-header-top-height);
         padding: 0 15px 0 15px;
       }
       .dropdown-menu li {
@@ -249,8 +249,8 @@
     }
     .block-dxpr-theme-helper,
     .wrap-branding {
-      height: var(--dxpr-setting-header-top-height);
-      line-height: var(--dxpr-setting-header-top-height);
+      height: var(--dxt-setting-header-top-height);
+      line-height: var(--dxt-setting-header-top-height);
     }
   }
 }
@@ -290,7 +290,7 @@ html.js .body--dxpr-theme-nav-desktop {
     padding-top: 139px!important;
   }
   &.gin--vertical-toolbar.toolbar-fixed.toolbar-horizontal.body--dxpr-theme-header-fixed.body--dxpr-theme-header-top {
-    padding-top: var(--dxpr-setting-header-top-height) !important;
+    padding-top: var(--dxt-setting-header-top-height) !important;
   }
 }
 
@@ -301,53 +301,53 @@ html.js .gin--vertical-toolbar .dxpr-theme-header--fixed {
 
 /* Custom colors */
 .html #navbar.dxpr-theme-header--top .container-row > .col-sm-12 {
-  background-color: var(--dxpr-setting-navbar-background);
+  background-color: var(--dxt-setting-navbar-background);
 }
 
 #navbar.dxpr-theme-header--top .block {
-  background-color: var(--dxpr-setting-header-block-background);
+  background-color: var(--dxt-setting-header-block-background);
 }
 
 #navbar.dxpr-theme-header--top .block,
 #navbar.dxpr-theme-header--top .block a,
 #navbar.dxpr-theme-header--top .block .btn-link {
-  color: var(--dxpr-setting-header-block-text-color);
+  color: var(--dxt-setting-header-block-text-color);
 }
 
 #navbar.dxpr-theme-header--top .menu {
-  background-color: var(--dxpr-setting-menu-background);
+  background-color: var(--dxt-setting-menu-background);
 }
 
 #navbar.dxpr-theme-header--top .menu,
 #navbar.dxpr-theme-header--top .menu a {
-  color: var(--dxpr-setting-menu-text-color);
+  color: var(--dxt-setting-menu-text-color);
 }
 
 #navbar.dxpr-theme-header--top .menu a:hover,
 #navbar.dxpr-theme-header--top .menu a:focus {
-  background-color: var(--dxpr-setting-menu-hover-background);
+  background-color: var(--dxt-setting-menu-hover-background);
 }
 
 #navbar.dxpr-theme-header--top .menu a:hover,
 #navbar.dxpr-theme-header--top .menu a:focus {
-  color: var(--dxpr-setting-menu-hover-text-color);
+  color: var(--dxt-setting-menu-hover-text-color);
 }
 
 #navbar.dxpr-theme-header--top .dropdown-menu {
-  background-color: var(--dxpr-setting-dropdown-background);
+  background-color: var(--dxt-setting-dropdown-background);
 }
 
 #navbar.dxpr-theme-header--top .dropdown,
 #navbar.dxpr-theme-header--top .dropdown-menu a {
-  color: var(--dxpr-setting-dropdown-text-color);
+  color: var(--dxt-setting-dropdown-text-color);
 }
 
 #navbar.dxpr-theme-header--top .dropdown-menu a:hover,
 #navbar.dxpr-theme-header--top .dropdown-menu a:focus {
-  background-color: var(--dxpr-setting-dropdown-hover-background);
+  background-color: var(--dxt-setting-dropdown-hover-background);
 }
 
 #navbar.dxpr-theme-header--top .dropdown-menu a:hover,
 #navbar.dxpr-theme-header--top .dropdown-menu a:focus {
-  color: var(--dxpr-setting-dropdown-hover-text-color);
+  color: var(--dxt-setting-dropdown-hover-text-color);
 }

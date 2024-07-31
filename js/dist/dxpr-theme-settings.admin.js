@@ -4,8 +4,8 @@
   "use strict";
 
   // Define constants.
-  const cssVarColorsPrefix = "--dxpr-color-";
-  const cssVarSettingsPrefix = "--dxpr-setting-";
+  const cssVarColorsPrefix = "--dxt-color-";
+  const cssVarSettingsPrefix = "--dxt-setting-";
 
   /**
    * Handles the 'Colors' theme settings page.
@@ -448,7 +448,7 @@
       // Adds a divider-position-block CSS variable.
       if (setting === "divider_position") {
         if (event.target.value === "3") {
-          value = "calc(100% - var(--dxpr-setting-block-divider-length))";
+          value = "calc(100% - var(--dxt-setting-block-divider-length))";
         }
         this.root.style.setProperty(
           `${cssVarSettingsPrefix}${cssVarName}-block`,
@@ -503,7 +503,7 @@
           break;
         // Title font
         case "title_font_size":
-          value = `var(--dxpr-setting-${value}-font-size)`;
+          value = `var(--dxt-setting-${value}-font-size)`;
           break;
         // Dividers: 0px = 100%
         case "divider_length":
@@ -519,7 +519,7 @@
               value = "auto";
               break;
             case "3":
-              value = "calc(100% - var(--dxpr-setting-divider-length))";
+              value = "calc(100% - var(--dxt-setting-divider-length))";
               break;
             default:
               break;

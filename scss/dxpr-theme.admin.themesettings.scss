@@ -212,7 +212,7 @@ $border-color: #222330;
   }
   .slider-selection {
     box-shadow: none;
-    background: var(--dxpr-color-base);
+    background: var(--dxt-color-base);
   }
   .slider {
     position: relative;
@@ -294,7 +294,7 @@ $border-color: #222330;
         a {
           border: none;
           .vertical-tabs__menu-item-title {
-            color: var(--dxpr-color-accent1);
+            color: var(--dxt-color-accent1);
           }
         }
       }

@@ -13,29 +13,29 @@ body {
   background-size: cover;
   background-attachment: fixed;
   background-position: center center;
-  font-size:  var(--dxpr-setting-body-font-size);
+  font-size:  var(--dxt-setting-body-font-size);
 }
 
 .dxpr-theme-boxed-container {
   background: white;
   margin: 0 auto;
-  max-width: var(--dxpr-setting-box-max-width);
+  max-width: var(--dxt-setting-box-max-width);
 }
 
 .row {
-  margin-left: calc(-1 * var(--dxpr-setting-gutter-horizontal) / 2);
-  margin-right: calc(-1 * var(--dxpr-setting-gutter-horizontal) / 2);
+  margin-left: calc(-1 * var(--dxt-setting-gutter-horizontal) / 2);
+  margin-right: calc(-1 * var(--dxt-setting-gutter-horizontal) / 2);
 }
 .row > * {
-  padding-left: calc(var(--dxpr-setting-gutter-horizontal) / 2);
-  padding-right: calc(var(--dxpr-setting-gutter-horizontal) / 2);
-  margin-bottom: var(--dxpr-setting-gutter-vertical);
+  padding-left: calc(var(--dxt-setting-gutter-horizontal) / 2);
+  padding-right: calc(var(--dxt-setting-gutter-horizontal) / 2);
+  margin-bottom: var(--dxt-setting-gutter-vertical);
 }
 
 .container {
-  padding-left: var(--dxpr-setting-gutter-container);
-  padding-right: var(--dxpr-setting-gutter-container);
-  max-width: var(--dxpr-setting-layout-max-width);
+  padding-left: var(--dxt-setting-gutter-container);
+  padding-right: var(--dxt-setting-gutter-container);
+  max-width: var(--dxt-setting-layout-max-width);
 }
 
 // navbar and page-title padding is not user-controlled and should be kept
@@ -43,29 +43,29 @@ body {
 .navbar-container.dxpr-theme-fluid,
 .page-title-container.dxpr-theme-fluid,
 .container-fluid {
-  padding-left: calc(var(--dxpr-setting-gutter-horizontal) / 2);
-  padding-right: calc(var(--dxpr-setting-gutter-horizontal) / 2);
+  padding-left: calc(var(--dxt-setting-gutter-horizontal) / 2);
+  padding-right: calc(var(--dxt-setting-gutter-horizontal) / 2);
 }
 
 @media screen and (max-width: 1200px) {
   .container {
-    padding-left: calc(var(--dxpr-setting-gutter-container-mobile) / 2);
-    padding-right: calc(var(--dxpr-setting-gutter-container-mobile) / 2);
+    padding-left: calc(var(--dxt-setting-gutter-container-mobile) / 2);
+    padding-right: calc(var(--dxt-setting-gutter-container-mobile) / 2);
   }
   .navbar-container.dxpr-theme-fluid,
   .page-title-container.dxpr-theme-fluid,
   .container-fluid {
-    padding-left: calc(var(--dxpr-setting-gutter-horizontal-mobile) / 2);
-    padding-right: calc(var(--dxpr-setting-gutter-horizontal-mobile) / 2);
+    padding-left: calc(var(--dxt-setting-gutter-horizontal-mobile) / 2);
+    padding-right: calc(var(--dxt-setting-gutter-horizontal-mobile) / 2);
   }
   .row {
-    margin-left: calc(-1 * var(--dxpr-setting-gutter-horizontal-mobile) / 2);
-    margin-right: calc(-1 * var(--dxpr-setting-gutter-horizontal-mobile) / 2);
+    margin-left: calc(-1 * var(--dxt-setting-gutter-horizontal-mobile) / 2);
+    margin-right: calc(-1 * var(--dxt-setting-gutter-horizontal-mobile) / 2);
   }
   .row > * {
-    padding-left: calc(var(--dxpr-setting-gutter-horizontal-mobile) / 2);
-    padding-right: calc(var(--dxpr-setting-gutter-horizontal-mobile) / 2);
-    margin-bottom: var(--dxpr-setting-gutter-vertical-mobile);
+    padding-left: calc(var(--dxt-setting-gutter-horizontal-mobile) / 2);
+    padding-right: calc(var(--dxt-setting-gutter-horizontal-mobile) / 2);
+    margin-bottom: var(--dxt-setting-gutter-vertical-mobile);
   }
 }
 
@@ -93,42 +93,42 @@ body.full-width-content {
 
 .region-sidebar-first .block,
 .region-sidebar-second .block {
-  margin-bottom: var(--dxpr-setting-gutter-vertical);
+  margin-bottom: var(--dxt-setting-gutter-vertical);
 }
 
 .region-block-design .block {
-  padding: var(--dxpr-setting-block-padding);
-  border-color: var(--dxpr-setting-block-border-color);
-  border-radius: var(--dxpr-setting-block-border-radius);
+  padding: var(--dxt-setting-block-padding);
+  border-color: var(--dxt-setting-block-border-color);
+  border-radius: var(--dxt-setting-block-border-radius);
   border-style: solid;
-  border-width: var(--dxpr-setting-block-border);
-  background-color: var(--dxpr-setting-block-background);
+  border-width: var(--dxt-setting-block-border);
+  background-color: var(--dxt-setting-block-background);
 }
 .region-block-design .block-title {
-  background-color: var(--dxpr-setting-title-background);
-  border-color: var(--dxpr-setting-title-border-color);
-  border-width: var(--dxpr-setting-title-border);
+  background-color: var(--dxt-setting-title-background);
+  border-color: var(--dxt-setting-title-border-color);
+  border-width: var(--dxt-setting-title-border);
   border-style: solid;
-  font-size: var(--dxpr-setting-title-font-size);
-  text-align: var(--dxpr-setting-title-align);
-  border-radius: var(--dxpr-setting-title-border-radius);
-  padding: var(--dxpr-setting-title-padding);
+  font-size: var(--dxt-setting-title-font-size);
+  text-align: var(--dxt-setting-title-align);
+  border-radius: var(--dxt-setting-title-border-radius);
+  padding: var(--dxt-setting-title-padding);
 }
 .region-block-design .block-hr {
   display: block;
-  border-top-color: var(--dxpr-setting-block-divider-color);
-  border-top-width: var(--dxpr-setting-block-divider-thickness);
-  width: var(--dxpr-setting-block-divider-length);
+  border-top-color: var(--dxt-setting-block-divider-color);
+  border-top-width: var(--dxt-setting-block-divider-thickness);
+  width: var(--dxt-setting-block-divider-length);
   margin:
-    var(--dxpr-setting-block-divider-spacing)
+    var(--dxt-setting-block-divider-spacing)
     auto
-    var(--dxpr-setting-block-divider-spacing)
-    var(--dxpr-setting-divider-position-block);
+    var(--dxt-setting-block-divider-spacing)
+    var(--dxt-setting-divider-position-block);
 }
 
 @media screen and (max-width: 768px) {
   .region-block-design .block-title {
-    font-size: var(--dxpr-setting-title-font-size-mobile);
+    font-size: var(--dxt-setting-title-font-size-mobile);
   }
 }
 
