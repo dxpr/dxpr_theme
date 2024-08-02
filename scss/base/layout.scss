@@ -142,6 +142,7 @@ body.full-width-content {
 
 // responsive image. This sometimes sucks because images cannot over overscan their base size to save bytes.
 img {
+  height: auto;
   max-width: 100%; // can't remove this because then image will overflow parent elements.
 }
 // exception for revolution slider kenburns effect
