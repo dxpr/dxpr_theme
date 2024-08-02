@@ -154,7 +154,7 @@ function header_theme_settings_css(string $theme, string &$css, array $palette) 
 
       case 'lead':
         $menu_type_selector .= ",\n.dxpr-theme-header .menu span";
-        $menu_type_value = "font-size: 1,3125rem;\n  font-weight: 300;";
+        $menu_type_value = "font-size: 1.3125rem;\n  font-weight: 300;";
         break;
     }
 
