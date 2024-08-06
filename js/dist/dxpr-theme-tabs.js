@@ -11,9 +11,9 @@
    *   The DOM element containing the primary tabs.
    */
   function init(el) {
-    const tabs = el.querySelector('ul.tabs');
-    const expandedClass = 'is-expanded';
-    const activeTab = tabs.querySelector('li.active');
+    const tabs = el.querySelector("ul.tabs");
+    const expandedClass = "is-expanded";
+    const activeTab = tabs.querySelector("li.active");
 
     /**
      * Determines if primary tabs are expanded for mobile layouts.
@@ -22,7 +22,7 @@
      *   Whether the tabs trigger element is expanded.
      */
     function isTabsMobileLayout() {
-      return tabs.querySelector('.tabs__trigger').clientHeight > 0;
+      return tabs.querySelector(".tabs__trigger").clientHeight > 0;
     }
 
     /**
@@ -33,22 +33,22 @@
      */
     function handleTriggerClick(e) {
       e.currentTarget.setAttribute(
-        'aria-expanded',
+        "aria-expanded",
         !tabs.classList.contains(expandedClass),
       );
       tabs.classList.toggle(expandedClass);
     }
 
-    if (isTabsMobileLayout() && !activeTab.matches('.tabs__tab:first-child')) {
+    if (isTabsMobileLayout() && !activeTab.matches(".tabs__tab:first-child")) {
       const newActiveTab = activeTab.cloneNode(true);
-      const firstTab = tabs.querySelector('.tabs__tab:first-child');
+      const firstTab = tabs.querySelector(".tabs__tab:first-child");
       tabs.insertBefore(newActiveTab, firstTab);
       tabs.removeChild(activeTab);
     }
 
     tabs
-      .querySelector('.tabs__trigger')
-      .addEventListener('click', handleTriggerClick);
+      .querySelector(".tabs__trigger")
+      .addEventListener("click", handleTriggerClick);
   }
 
   /**
@@ -61,7 +61,7 @@
    */
   Drupal.behaviors.dxprPrimaryTabs = {
     attach(context) {
-      once('dxpr-tabs', '[data-drupal-nav-primary-tabs]', context).forEach(
+      once("dxpr-tabs", "[data-drupal-nav-primary-tabs]", context).forEach(
         init,
       );
     },
