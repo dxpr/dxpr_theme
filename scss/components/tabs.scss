@@ -1,5 +1,8 @@
 /**
- * Tabs - Local tasks.
+ * Tabs (Local tasks)
+ *
+ * This file contains styles for the tabbed navigation system used in the DXPR
+ * theme. It includes styles for both desktop and mobile views.
  */
 
 @import "../includes/variables";
@@ -8,7 +11,7 @@
 .html .nav-tabs {
   border: none;
   border-radius: 0;
-  border-bottom: 1px solid dxpr-color('graylighter');
+  border-bottom: 1px solid var(--dxt-color-graylighter);
   margin: 0;
   padding: 0;
 
@@ -26,19 +29,19 @@
       background-color: transparent;
 
       &:hover {
-        color: dxpr-color('graylighter');
+        color: var(--dxt-color-graylighter);
       }
 
       &.active {
-        color: dxpr-color('base');
+        color: var(--dxt-color-base);
         cursor: pointer;
-        border: 1px solid dxpr-color('graylighter');
-        border-bottom-color: dxpr-color('body');
+        border: 1px solid var(--dxt-color-graylighter);
+        border-bottom-color: var(--dxt-color-body);
         background-color: transparent;
 
         &:hover,
         &:focus {
-          color: dxpr-color('base');
+          color: var(--dxt-color-base);
           cursor: default;
           outline: none;
         }
@@ -73,8 +76,8 @@
       border: none;
 
       .tabs__link {
-        background-color: dxpr-color('header');
-        color: dxpr-color('headertext');
+        background-color: var(--dxt-color-header);
+        color: var(--dxt-color-headertext);
         padding: 8px;
         text-transform: uppercase;
         font-size: 12px;
@@ -98,7 +101,7 @@
       }
 
       &.active a {
-        color: dxpr-color('base');
+        color: var(--dxt-color-base);
       }
     }
   }
@@ -127,15 +130,18 @@
   }
 }
 
+//
+// Secondary tabs.
+//
 .html .tabs--secondary {
   float: left;
   clear: both;
-  margin-bottom: 10px;
+  margin: 10px 0 10px;
 }
 
-/**
- * Mobile layout.
- */
+//
+// Mobile layout.
+//
 @media screen and (max-width: 768px) {
   .user-logged-in nav.tabs {
     // Make space for contextual links.
