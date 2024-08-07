@@ -37,9 +37,9 @@ fi
 ### Run the dxpr-builder service separately to avoid shutting
 ### down the stack after the service stops.
 echo "Puling the dxpr/dxpr_builder image..."
-docker-compose \
+docker compose \
   -f docker-compose.yml \
-  -f docker-compose.prod.yml pull dxpr-builder && docker-compose \
+  -f docker-compose.prod.yml pull dxpr-builder && docker compose \
   -f docker-compose.yml \
   -f docker-compose.prod.yml \
   up dxpr-builder
@@ -48,13 +48,13 @@ docker-compose \
 ### Run the dxpr-theme service separately to avoid shutting
 ### down the stack after the service stops.
 echo "Building the dxpr/dxpr_theme image..."
-docker-compose \
+docker compose \
   -f docker-compose.yml \
   -f docker-compose.prod.yml \
   up --build dxpr-theme
 
 ### Starting the build and test profiles and stop the stack on the maven service exit code.
-docker-compose \
+docker compose \
   -f docker-compose.yml \
   -f docker-compose.install.yml \
   -f docker-compose.prod.yml \
