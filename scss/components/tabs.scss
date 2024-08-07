@@ -7,59 +7,9 @@
 
 @import "../includes/variables";
 
-// Style Tabs as card as override jQuery ui tabs styling
-.html .nav-tabs {
-  border: none;
-  border-radius: 0;
-  border-bottom: 1px solid var(--dxt-color-graylighter);
-  margin: 0;
-  padding: 0;
-
-  > li {
-    border: none;
-    border-radius: 0;
-    margin: 0;
-    padding: 0;
-
-    > a {
-      border: 1px solid transparent;
-      border-radius: 0;
-      margin: 0;
-      padding: 10px 15px;
-      background-color: transparent;
-
-      &:hover {
-        color: var(--dxt-color-graylighter);
-      }
-
-      &.active {
-        color: var(--dxt-color-base);
-        cursor: pointer;
-        border: 1px solid var(--dxt-color-graylighter);
-        border-bottom-color: var(--dxt-color-body);
-        background-color: transparent;
-
-        &:hover,
-        &:focus {
-          color: var(--dxt-color-base);
-          cursor: default;
-          outline: none;
-        }
-      }
-    }
-  }
-}
-
-.az-tabs .nav-tabs > li > a.active[role="tab"] {
-  background-color: #ffffff;
-}
-
-.region-content nav.tabs:after {
-  content: " ";
-  display: table;
-  clear: both;
-}
-
+//
+// Primary tabs
+//
 .html .dxpr-theme-mini-tabs-wrapper {
   pointer-events: none;
   display: block;
@@ -112,24 +62,6 @@
   }
 }
 
-.body--primary-tabs-float .region-content nav.tabs:after {
-  display: none;
-}
-
-.body--primary-tabs-float .dxpr-theme-mini-tabs-wrapper {
-  display: inline-block;
-  float: none;
-  position: absolute;
-  margin-top: 2px;
-  left: 50%;
-  z-index: 470;
-
-  .tabs--primary {
-    position: relative;
-    left: -50%;
-  }
-}
-
 //
 // Secondary tabs.
 //
@@ -143,7 +75,7 @@
 // Mobile layout.
 //
 @media screen and (max-width: 768px) {
-  .user-logged-in nav.tabs {
+  .html.user-logged-in .block-local-tasks-block nav.tabs {
     // Make space for contextual links.
     padding-top: 2rem;
   }
