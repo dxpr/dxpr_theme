@@ -228,3 +228,31 @@
 .dxpr-theme-header--top.dxpr-theme-header--hover-border .menu a.is-active:before {
   transform: scale(1, 1) translate(10px, 0);
 }
+
+//
+// Skip to content link
+//
+.skip-link {
+  background: #ff0;
+  border-radius: 0 0 .5rem .5rem;
+  border: 1px solid #333;
+  box-shadow: 0 0 10px rgba(0,0,0,.25);
+  color: #333 !important;
+  display: inline-block;
+  font-size: 12px;
+  font-weight: bold;
+  left: 1rem;
+  letter-spacing: .1rem;
+  padding: 1rem;
+  position: absolute;
+  text-decoration: none !important;
+  text-transform: uppercase;
+  top: 0;
+  transform: translateY(-110%);
+  transition: transform 0.3s;
+  z-index: 1000;
+
+  &:focus {
+    transform: translateY(0%);
+  }
+}
