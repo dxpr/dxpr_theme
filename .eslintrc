@@ -1,14 +1,14 @@
 {
   "parser": "@babel/eslint-parser",
   "plugins": [
-    "jquery",
     "prettier",
-    "spellcheck"
+    "spellcheck",
+    "no-jquery"
   ],
   "extends": [
     "airbnb",
-    "plugin:jquery/deprecated",
-    "prettier"
+    "prettier",
+    "plugin:no-jquery/all"
   ],
   "rules": {
     "camelcase": 0,
