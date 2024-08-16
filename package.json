@@ -8,7 +8,7 @@
     "@babel/core": "^7",
     "@babel/eslint-parser": "^7",
     "@babel/preset-env": "^7",
-    "autoprefixer": "^9",
+    "autoprefixer": "^10.4.20",
     "babel-eslint": "^10",
     "browserslist": "^4",
     "eslint": "^7.0.0",
@@ -31,6 +31,7 @@
     "grunt-postcss": "^0",
     "grunt-sass": "^3",
     "grunt-terser": "^2",
+    "postcss-pxtorem": "^6.1.0",
     "prettier": "^3",
     "sass": "^1",
     "terser": "^5"
