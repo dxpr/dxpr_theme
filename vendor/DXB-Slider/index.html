@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DXB Slider Demo</title>
+    <link rel="stylesheet" href="dxb-slider.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+        }
+        .dxb-slider-container {
+            width: 350px;
+        }
+    </style>
+</head>
+<body>
+    <h1>DXB Slider Demo</h1>
+
+    <h2>LTR (Left-to-Right) Mode</h2>
+    <div class="dxb-slider-container">
+        <label id="fontSizeLabel" for="fontSize">Font size</label>
+        <div class="dxb-slider-wrapper">
+            <div class="dxb-slider-track">
+                <input type="range" id="fontSize" class="dxb-slider" 
+                       min="1" max="100" value="51" step="1" 
+                       data-dxb-slider
+                       aria-labelledby="fontSizeLabel">
+            </div>
+        </div>
+    </div>
+
+    <div class="dxb-slider-container">
+        <label id="dropShadowLabel" for="dropShadow">Drop shadow</label>
+        <div class="dxb-slider-wrapper">
+            <div class="dxb-slider-track">
+                <input type="range" id="dropShadow" class="dxb-slider" 
+                       min="1" max="5" value="3" step="1" 
+                       data-dxb-slider
+                       aria-labelledby="dropShadowLabel">
+            </div>
+        </div>
+    </div>
+
+    <h2>RTL (Right-to-Left) Mode</h2>
+    <div class="dxb-slider-container" dir="rtl" lang="ar">
+        <label id="fontSizeLabelRTL" for="fontSizeRTL">حجم الخط</label>
+        <div class="dxb-slider-wrapper">
+            <div class="dxb-slider-track">
+                <input type="range" id="fontSizeRTL" class="dxb-slider" 
+                       min="1" max="100" value="51" step="1" 
+                       data-dxb-slider
+                       aria-labelledby="fontSizeLabelRTL">
+            </div>
+        </div>
+    </div>
+
+    <div class="dxb-slider-container" dir="rtl" lang="ar">
+        <label id="dropShadowLabelRTL" for="dropShadowRTL">تأثير الظل</label>
+        <div class="dxb-slider-wrapper">
+            <div class="dxb-slider-track">
+                <input type="range" id="dropShadowRTL" class="dxb-slider" 
+                       min="1" max="5" value="3" step="1" 
+                       data-dxb-slider
+                       aria-labelledby="dropShadowLabelRTL">
+            </div>
+        </div>
+    </div>
+
+    <script src="dxb-slider.js"></script>
+</body>
+</html>

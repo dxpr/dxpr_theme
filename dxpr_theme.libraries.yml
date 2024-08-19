@@ -182,3 +182,11 @@ gin_toolbar:
   css:
     theme:
       css/vendor-extensions/gin-toolbar.css: {}
+
+dxb_slider:
+  version: 1.x
+  js:
+    vendor/DXB-Slider/dxb-slider.js: {}
+  css:
+    theme:
+      vendor/DXB-Slider/dxb-slider.css: {}

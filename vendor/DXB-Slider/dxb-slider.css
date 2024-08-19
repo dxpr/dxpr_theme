@@ -1,0 +1,140 @@
+/* dxb-slider.css */
+
+.dxb-slider-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.dxb-slider-container label {
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.dxb-slider-wrapper {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.dxb-slider-track {
+    flex: 1;
+}
+
+.dxb-slider {
+    -webkit-appearance: none;
+    width: calc(100% - 20px); /* Adjust based on thumb size and margins */
+    height: 5px;
+    background: transparent;
+    outline: none;
+}
+
+.dxb-slider::-webkit-slider-runnable-track {
+    height: 5px;
+    background-image: linear-gradient(#0550e6, #0550e6), linear-gradient(#dadfe7, #dadfe7);
+    background-size: calc(var(--value-percent) - 10px) 5px, 100% 5px;
+    background-repeat: no-repeat;
+    background-position: left center;
+}
+
+.dxb-slider::-moz-range-track {
+    height: 5px;
+    background-image: linear-gradient(#0550e6, #0550e6), linear-gradient(#dadfe7, #dadfe7);
+    background-size: calc(var(--value-percent) - 10px) 5px, 100% 5px;
+    background-repeat: no-repeat;
+    background-position: left center;
+}
+
+.dxb-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: white;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    box-shadow: 0 0.0625rem 0.125rem rgba(16,24,40,.06), 0 0.0625rem 0.1875rem rgba(16,24,40,.1);
+    margin-top: -8px;
+    border-radius: 0;
+    transition: background 0.3s, transform 0.3s;
+}
+
+.dxb-slider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: white;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    box-shadow: 0 0.0625rem 0.125rem rgba(16,24,40,.06), 0 0.0625rem 0.1875rem rgba(16,24,40,.1);
+    margin-top: -8px;
+    border-radius: 0;
+    transition: background 0.3s, transform 0.3s;
+}
+
+.dxb-slider:hover::-webkit-slider-thumb,
+.dxb-slider:hover::-moz-range-thumb {
+    background: #e0e0e0;
+    transform: scale(1.1);
+}
+
+.dxb-slider:focus::-webkit-slider-thumb,
+.dxb-slider:focus::-moz-range-thumb {
+    background: #c0c0c0;
+    transform: scale(1.1);
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+}
+
+.dxb-slider-value {
+    width: 60px;
+    text-align: center;
+    margin-inline-start: 10px;
+    border: 1px solid #ddd;
+    border-radius: 0;
+    height: 24px;
+    font-size: 1em;
+    box-shadow: 0 0.0625rem 0.125rem rgba(16,24,40,.06), 0 0.0625rem 0.1875rem rgba(16,24,40,.1);
+}
+
+/* RTL Support */
+[dir="rtl"] .dxb-slider-wrapper {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .dxb-slider {
+    direction: rtl;
+}
+
+[dir="rtl"] .dxb-slider::-webkit-slider-runnable-track {
+    background-position: right center;
+}
+
+[dir="rtl"] .dxb-slider::-moz-range-track {
+    background-position: right center;
+}
+
+[dir="rtl"] .dxb-slider-value {
+    margin-inline-start: 10px;
+    margin-inline-end: 0;
+    order: -1; /* This will move the number input to the left side in RTL mode */
+}
+
+[lang="ar"] .dxb-slider-value {
+    font-variant-numeric: arabic-indic;
+}
+
+[lang="fa"] .dxb-slider-value {
+    font-variant-numeric: persian;
+}
+
+[lang="bn"] .dxb-slider-value {
+    font-variant-numeric: bengali;
+}
+
+[lang="hi"], [lang="mr"], [lang="ne"] .dxb-slider-value {
+    font-variant-numeric: devanagari;
+}
