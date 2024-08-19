@@ -62,8 +62,8 @@ function dxpr_theme_post_update_n2_settings_update() {
   $theme_list = $theme_handler->listInfo();
 
   require_once $theme_handler
-      ->getTheme('dxpr_theme')
-      ->getPath() . '/dxpr_theme_callbacks.inc';
+    ->getTheme('dxpr_theme')
+    ->getPath() . '/dxpr_theme_callbacks.inc';
 
   /** @var \Drupal\Core\Extension\Extension $theme */
   foreach ($theme_list as $theme) {
