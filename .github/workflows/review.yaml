@@ -15,7 +15,7 @@ jobs:
 
     - name: Lint Drupal
       run: |
-        TARGET_DRUPAL_CORE_VERSION=$TARGET_DRUPAL_CORE_VERSION docker-compose run --rm drupal-lint
+        TARGET_DRUPAL_CORE_VERSION=$TARGET_DRUPAL_CORE_VERSION docker compose run --rm drupal-lint
 
   eslint:
     runs-on: ubuntu-latest
@@ -25,7 +25,7 @@ jobs:
 
     - name: Lint with eslint
       run: |
-        REPORT_ENABLED=true docker-compose run --rm eslint
+        REPORT_ENABLED=true docker compose run --rm eslint
 
     - name: Archive eslint html report
       uses: actions/upload-artifact@v3
