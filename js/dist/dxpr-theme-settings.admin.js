@@ -1,4 +1,4 @@
-(function ( Drupal, once) {
+(function (Drupal, once) {
   /* global ReinventedColorWheel */
 
   "use strict";
@@ -220,400 +220,411 @@
   /**
    * Handle dynamic theme settings.
    */
-  // Drupal.behaviors.dxpr_themeSettingsDynamic = {
-  //   root: document.documentElement,
-  //   attach(context) {
-  //     if (once("dxpr-settings-init", "html", context).length) {
-  //       this.init();
-  //     }
-  //   },
-  //   init() {
-  //     this.setNoPreview();
-  //     const settings = this.getCssVariables();
-  //
-  //     this.toggleElement("page_title_breadcrumbs", "header ol.breadcrumb");
-  //     this.toggleElement("block_divider", ".block-preview hr");
-  //
-  //     Object.values(settings).forEach((setting) => {
-  //       const inputName = this.getInputName(setting);
-  //       const els = document.querySelectorAll(`[name="${inputName}"]`);
-  //       this.setPreview(inputName, els[0] ?? null);
-  //
-  //       // Use jQuery to handle bootstrapSlider events.
-  //       els.forEach((el) => {
-  //         $(el).on("change", (e) => {
-  //           this.fieldHandler(e);
-  //         });
-  //
-  //         // Add handler also to potential "_custom" fields.
-  //         const customField = document.querySelector(
-  //           `[name="${inputName}_custom"]`,
-  //         );
-  //
-  //         if (customField) {
-  //           $(customField).on("change keyup", (e) => {
-  //             this.fieldHandler(e);
-  //           });
-  //         }
-  //       });
-  //     });
-  //   },
-  //   setNoPreview() {
-  //     // Mark all fields with a no-preview icon.
-  //     document
-  //       .querySelector(".system-theme-settings")
-  //       .querySelectorAll("input, select, textarea")
-  //       .forEach((input) => {
-  //         // Skip adding no-preview class for these fields.
-  //         const skip = [
-  //           "color_scheme",
-  //           "color_palette",
-  //           "headings_font_face_selector",
-  //           "nav_font_face_selector",
-  //           "sitename_font_face_selector",
-  //           "blockquote_font_face_selector",
-  //           "block_preset",
-  //           "block_card",
-  //           "title_card",
-  //           "block_design_regions",
-  //           "block_divider",
-  //           "block_divider_custom",
-  //         ];
-  //
-  //         if (!skip.some((name) => input.name.startsWith(name))) {
-  //           this.setPreviewClass(input, true);
-  //         }
-  //       });
-  //   },
-  //   setPreview(name, input) {
-  //     if (!name || !input) {
-  //       return;
-  //     }
-  //
-  //     // Handled fields with no preview.
-  //     const aNoPreviewFields = [
-  //       "background_image_style",
-  //       "background_image_position",
-  //       "background_image_attachment",
-  //       "header_top_height_sticky_offset",
-  //       "header_side_direction",
-  //       "hamburger_menu",
-  //       "hamburger_animation",
-  //       "menu_border_position_offset",
-  //       "menu_border_position_offset_sticky",
-  //       "menu_border_size",
-  //       "menu_border_color",
-  //       "header_mobile_breakpoint",
-  //       "page_title_image_opacity",
-  //       "page_title_image_style",
-  //       "page_title_image_position",
-  //       // Fonts.
-  //       "body_font_face",
-  //       "headings_font_face",
-  //       "nav_font_face",
-  //       "sitename_font_face",
-  //       "blockquote_font_face",
-  //     ];
-  //
-  //     if (aNoPreviewFields.includes(name)) {
-  //       return;
-  //     }
-  //
-  //     // Set dependency array as fieldName => requiredField.
-  //     const oDependent = {
-  //       boxed_layout_boxbg: "boxed_layout",
-  //       box_max_width: "boxed_layout",
-  //       header_top_height_scroll: "header_top_sticky",
-  //       header_top_bg_opacity_scroll: "header_top_sticky",
-  //       nav_font_size: "menu_type",
-  //       nav_mobile_font_size: "menu_type",
-  //     };
-  //
-  //     // Iterate dependent fields.
-  //     let processed = false;
-  //     Object.entries(oDependent).forEach(([fieldName, depFieldName]) => {
-  //       if (fieldName === name) {
-  //         processed = true;
-  //         const elDep = document.querySelector(`[name="${depFieldName}"]`);
-  //
-  //         if (elDep.type === "checkbox" && elDep.checked) {
-  //           this.setPreviewClass(input, false);
-  //         }
-  //
-  //         if (name === "nav_font_size" || name === "nav_mobile_font_size") {
-  //           const radio = document.querySelector(
-  //             `[name="${depFieldName}"]:checked`,
-  //           );
-  //           if (radio.value !== "lead") {
-  //             this.setPreviewClass(input, false);
-  //           }
-  //         }
-  //       }
-  //     });
-  //
-  //     // If not been processed it has no dependency and icon can be removed.
-  //     if (!processed) {
-  //       this.setPreviewClass(input, false);
-  //     }
-  //   },
-  //   /**
-  //    * Set action to TRUE to add the no-preview class, and FALSE to remove it.
-  //    */
-  //   setPreviewClass(input, action) {
-  //     const label = this.getLabel(input);
-  //     if (!label) return;
-  //
-  //     if (action === true) {
-  //       label.classList.add("no-preview");
-  //     } else {
-  //       label.classList.remove("no-preview");
-  //     }
-  //   },
-  //   getLabel(elInputOrName) {
-  //     let label = null;
-  //
-  //     if (typeof elInputOrName === "string") {
-  //       elInputOrName = document.querySelector(`[name="${elInputOrName}"]`);
-  //     }
-  //
-  //     if (elInputOrName) {
-  //       // Get legend for grouped field items.
-  //       label = elInputOrName.closest("fieldset")?.querySelector("legend");
-  //
-  //       // If no legend, get first available form item wrapper label.
-  //       if (!label) {
-  //         label = elInputOrName.closest(".form-item")?.querySelector("label");
-  //       }
-  //     }
-  //
-  //     return label;
-  //   },
-  //   getInputName(setting) {
-  //     let inputId = setting
-  //       .replace(cssVarSettingsPrefix, "")
-  //       .replace(/-/g, "_");
-  //     let [p1, p2, p3] = "";
-  //
-  //     // Fix id's containing brackets.
-  //     switch (inputId) {
-  //       case "title_type_italic":
-  //       case "title_type_bold":
-  //       case "title_type_uppercase":
-  //         [p1, p2, p3] = inputId.split("_");
-  //         inputId = `${p1}_${p2}[${p3}]`;
-  //         break;
-  //       default:
-  //     }
-  //
-  //     return inputId;
-  //   },
-  //   /**
-  //    * Handles the change event for form fields.
-  //    *
-  //    * @param event
-  //    */
-  //   fieldHandler(event) {
-  //     const {
-  //       name: setting,
-  //       parentElement: { textContent: textValue },
-  //     } = event.target;
-  //     const unit = textValue.replace(/[^a-z]/gi, "");
-  //     const validUnits = ["px", "em", "rem"];
-  //     let { value } = event.target;
-  //
-  //     if (event.target.type === "checkbox") {
-  //       value = event.target.checked;
-  //     }
-  //
-  //     // Append unit if value is numeric.
-  //     if (validUnits.includes(unit) && !Number.isNaN(parseFloat(value))) {
-  //       value += unit;
-  //     }
-  //
-  //     value = this.massageValue(setting, value);
-  //
-  //     // Create CSS variable name.
-  //     const cssVarName = setting
-  //       .replace("_custom", "")
-  //       .replace(/[[_]/g, "-")
-  //       .replace("]", "");
-  //
-  //     // Override CSS variable.
-  //     this.root.style.setProperty(
-  //       cssVarSettingsPrefix + cssVarName,
-  //       String(value),
-  //     );
-  //
-  //     // Workaround for block divider position.
-  //     // Adds a divider-position-block CSS variable.
-  //     if (setting === "divider_position") {
-  //       if (event.target.value === "3") {
-  //         value = "calc(100% - var(--dxt-setting-block-divider-length))";
-  //       }
-  //       this.root.style.setProperty(
-  //         `${cssVarSettingsPrefix}${cssVarName}-block`,
-  //         String(value),
-  //       );
-  //     }
-  //
-  //     // Add mobile title font size variable.
-  //     if (setting === "title_font_size") {
-  //       value = value.replace("-font-size", "-mobile-font-size");
-  //
-  //       this.root.style.setProperty(
-  //         `${cssVarSettingsPrefix}${cssVarName}-mobile`,
-  //         String(value),
-  //       );
-  //     }
-  //   },
-  //   /**
-  //    * Tweak certain settings to valid values.
-  //    *
-  //    * @param setting
-  //    * @param value
-  //    * @returns {string}
-  //    */
-  //   massageValue(setting, value) {
-  //     switch (setting) {
-  //       // Generic: Inline/Block display
-  //       case "title_sticker":
-  //         value = value === "1" ? "inline-block" : "block";
-  //         break;
-  //       // Generic: Uppercase
-  //       case "headings_uppercase":
-  //       case "title_type[uppercase]":
-  //         value = value ? "uppercase" : "normal";
-  //         break;
-  //       // Generic: Bold
-  //       case "headings_bold":
-  //       case "title_type[bold]":
-  //         value = value ? "bold" : "normal";
-  //         break;
-  //       // Generic: Italic
-  //       case "title_type[italic]":
-  //         value = value ? "italic" : "normal";
-  //         break;
-  //       // Generic: Percentage
-  //       case "logo_height":
-  //         value = `${value}%`;
-  //         break;
-  //       // Breadcrumb separator
-  //       case "page_title_breadcrumbs_separator":
-  //         value = `"${value.replace(/\\/g, "\\\\").replace(/"/g, '\\"')}"`;
-  //         break;
-  //       // Title font
-  //       case "title_font_size":
-  //         value = `var(--dxt-setting-${value}-font-size)`;
-  //         break;
-  //       // Dividers: 0px = 100%
-  //       case "divider_length":
-  //       case "block_divider_length":
-  //         value = value === "0px" ? "100%" : value;
-  //         break;
-  //       case "divider_position":
-  //         switch (value) {
-  //           case "1":
-  //             value = "0";
-  //             break;
-  //           case "2":
-  //             value = "auto";
-  //             break;
-  //           case "3":
-  //             value = "calc(100% - var(--dxt-setting-divider-length))";
-  //             break;
-  //           default:
-  //             break;
-  //         }
-  //         break;
-  //       // Handle color fields.
-  //       case "divider_color":
-  //       case "block_background":
-  //       case "title_background":
-  //       case "block_border_color":
-  //       case "title_border_color":
-  //       case "block_divider_color":
-  //       case "menu_border_color":
-  //       case "navbar_background":
-  //       case "header_block_background":
-  //       case "header_block_text_color":
-  //       case "menu_background":
-  //       case "menu_text_color":
-  //       case "menu_hover_background":
-  //       case "menu_hover_text_color":
-  //       case "dropdown_background":
-  //       case "dropdown_text_color":
-  //       case "dropdown_hover_background":
-  //       case "dropdown_hover_text_color":
-  //         if (value in drupalSettings.dxpr_themeSettings.colors.palette) {
-  //           value = `var(${cssVarColorsPrefix + value})`;
-  //         } else if (value === "custom") {
-  //           const customField = document.querySelector(
-  //             `[name="${setting}_custom"]`,
-  //           );
-  //           value = customField.value;
-  //         } else if (value === "white") {
-  //           value = "#ffffff";
-  //         } else {
-  //           value = "";
-  //         }
-  //         break;
-  //       default:
-  //         break;
-  //     }
-  //     return value;
-  //   },
-  //   /**
-  //    * Returns all dxpr settings CSS variables.
-  //    *
-  //    * @returns array
-  //    */
-  //   getCssVariables() {
-  //     return [...document.styleSheets]
-  //       .filter(
-  //         (styleSheet) =>
-  //           !styleSheet.href ||
-  //           styleSheet.href.startsWith(window.location.origin),
-  //       )
-  //       .reduce((finalArr, sheet) => {
-  //         const propKeySet = new Set(finalArr);
-  //         try {
-  //           [...sheet.cssRules].forEach((rule) => {
-  //             if (rule.type === 1) {
-  //               [...rule.style].forEach((propName) => {
-  //                 propName = propName.trim();
-  //                 if (propName.indexOf(cssVarSettingsPrefix) === 0) {
-  //                   propKeySet.add(propName);
-  //                 }
-  //               });
-  //             }
-  //           });
-  //         } catch (e) {
-  //           // Could not access cssRules for stylesheet.
-  //         }
-  //         return Array.from(propKeySet);
-  //       }, []);
-  //   },
-  //   /**
-  //    * Toggles show/hide of all matching elements based on a field status.
-  //    *
-  //    * @param toggle    Field name to use as toggle.
-  //    * @param selector  CSS Selector for element to toggle.
-  //    */
-  //   toggleElement(toggle, selector) {
-  //     const cb = document.querySelector(`input[name="${toggle}"]`);
-  //     const els = document.querySelectorAll(selector);
-  //
-  //     els.forEach((el) => {
-  //       el.style.display = cb.checked ? "block" : "none";
-  //     });
-  //
-  //     cb.addEventListener("change", () => {
-  //       els.forEach((el) => {
-  //         el.style.display = cb.checked ? "block" : "none";
-  //       });
-  //     });
-  //   },
-  // };
+  Drupal.behaviors.dxpr_themeSettingsDynamic = {
+    root: document.documentElement,
+    attach(context) {
+      if (once("dxpr-settings-init", "html", context).length) {
+        this.init();
+      }
+    },
+    init() {
+      this.setNoPreview();
+      const settings = this.getCssVariables();
+
+      this.toggleElement("page_title_breadcrumbs", "header ol.breadcrumb");
+      this.toggleElement("block_divider", ".block-preview hr");
+
+      Object.values(settings).forEach((setting) => {
+        const inputName = this.getInputName(setting);
+        const els = document.querySelectorAll(`[name="${inputName}"]`);
+        this.setPreview(inputName, els[0] ?? null);
+
+        els.forEach((el) => {
+          el.addEventListener("change", (e) => {
+            this.fieldHandler(e);
+          });
+
+          // Add handler also to potential "_custom" fields.
+          const customField = document.querySelector(
+            `[name="${inputName}_custom"]`,
+          );
+
+          if (customField) {
+            customField.addEventListener("change", (e) => {
+              this.fieldHandler(e);
+            });
+
+            customField.addEventListener("keyup", (e) => {
+              this.fieldHandler(e);
+            });
+          }
+        });
+      });
+    },
+    setNoPreview() {
+      // Mark all fields with a no-preview icon.
+      const systemThemeSettings = document.querySelector(".system-theme-settings");
+      if (systemThemeSettings) {
+        const inputs = systemThemeSettings.querySelectorAll("input, select, textarea");
+        inputs.forEach((input) => {
+          // Skip adding no-preview class for these fields.
+          const skip = [
+            "color_scheme",
+            "color_palette",
+            "headings_font_face_selector",
+            "nav_font_face_selector",
+            "sitename_font_face_selector",
+            "blockquote_font_face_selector",
+            "block_preset",
+            "block_card",
+            "title_card",
+            "block_design_regions",
+            "block_divider",
+            "block_divider_custom",
+          ];
+
+          if (!skip.some((name) => input.name.startsWith(name))) {
+            this.setPreviewClass(input, true);
+          }
+        });
+      }
+    },
+    setPreview(name, input) {
+      if (!name || !input) {
+        return;
+      }
+
+      // Handled fields with no preview.
+      const noPreviewFields = [
+        "background_image_style",
+        "background_image_position",
+        "background_image_attachment",
+        "header_top_height_sticky_offset",
+        "header_side_direction",
+        "hamburger_menu",
+        "hamburger_animation",
+        "menu_border_position_offset",
+        "menu_border_position_offset_sticky",
+        "menu_border_size",
+        "menu_border_color",
+        "header_mobile_breakpoint",
+        "page_title_image_opacity",
+        "page_title_image_style",
+        "page_title_image_position",
+        // Fonts.
+        "body_font_face",
+        "headings_font_face",
+        "nav_font_face",
+        "sitename_font_face",
+        "blockquote_font_face",
+      ];
+
+      if (noPreviewFields.includes(name)) {
+        return;
+      }
+
+      // Set dependency array as fieldName => requiredField.
+      const oDependent = {
+        boxed_layout_boxbg: "boxed_layout",
+        box_max_width: "boxed_layout",
+        header_top_height_scroll: "header_top_sticky",
+        header_top_bg_opacity_scroll: "header_top_sticky",
+        nav_font_size: "menu_type",
+        nav_mobile_font_size: "menu_type",
+      };
+
+      // Iterate dependent fields.
+      let processed = false;
+      Object.entries(oDependent).forEach(([fieldName, depFieldName]) => {
+        if (fieldName === name) {
+          processed = true;
+          const elDep = document.querySelector(`[name="${depFieldName}"]`);
+
+          if (elDep && elDep.type === "checkbox" && elDep.checked) {
+            this.setPreviewClass(input, false);
+          }
+
+          if (name === "nav_font_size" || name === "nav_mobile_font_size") {
+            const radio = document.querySelector(`[name="${depFieldName}"]:checked`);
+            if (radio && radio.value !== "lead") {
+              this.setPreviewClass(input, false);
+            }
+          }
+        }
+      });
+
+      // If not processed, it has no dependency, and the icon can be removed.
+      if (!processed) {
+        this.setPreviewClass(input, false);
+      }
+    },
+    /**
+     * Set action to TRUE to add the no-preview class, and FALSE to remove it.
+     */
+    setPreviewClass(input, action) {
+      const label = this.getLabel(input);
+      if (!label) return;
+
+      if (action) {
+        label.classList.add("no-preview");
+      } else {
+        label.classList.remove("no-preview");
+      }
+    },
+    getLabel(elInputOrName) {
+      let label = null;
+
+      if (typeof elInputOrName === "string") {
+        elInputOrName = document.querySelector(`[name="${elInputOrName}"]`);
+      }
+
+      if (elInputOrName) {
+        // Get legend for grouped field items.
+        const fieldset = elInputOrName.closest("fieldset");
+        if (fieldset) {
+          label = fieldset.querySelector("legend");
+        }
+
+        // If no legend, get first available form item wrapper label.
+        if (!label) {
+          const formItem = elInputOrName.closest(".form-item");
+          if (formItem) {
+            label = formItem.querySelector("label");
+          }
+        }
+      }
+
+      return label;
+    },
+
+    getInputName(setting) {
+      let inputId = setting
+        .replace(cssVarSettingsPrefix, "")
+        .replace(/-/g, "_");
+
+      let p1, p2, p3;
+
+      // Fix id's containing brackets.
+      switch (inputId) {
+        case "title_type_italic":
+        case "title_type_bold":
+        case "title_type_uppercase":
+          [p1, p2, p3] = inputId.split("_");
+          inputId = `${p1}_${p2}[${p3}]`;
+          break;
+        default:
+          break;
+      }
+
+      return inputId;
+    },
+    /**
+     * Handles the change event for form fields.
+     *
+     * @param event
+     */
+    fieldHandler(event) {
+      const {
+        name: setting,
+        parentElement: { textContent: textValue },
+      } = event.target;
+      const unit = textValue.replace(/[^a-z]/gi, "");
+      const validUnits = ["px", "em", "rem"];
+      let { value } = event.target;
+
+      if (event.target.type === "checkbox") {
+        value = event.target.checked;
+      }
+
+      // Append unit if value is numeric.
+      if (validUnits.includes(unit) && !Number.isNaN(parseFloat(value))) {
+        value += unit;
+      }
+
+      value = this.massageValue(setting, value);
+
+      // Create CSS variable name.
+      const cssVarName = setting
+        .replace("_custom", "")
+        .replace(/[[_]/g, "-")
+        .replace("]", "");
+
+      // Override CSS variable.
+      this.root.style.setProperty(
+        cssVarSettingsPrefix + cssVarName,
+        String(value),
+      );
+
+      // Workaround for block divider position.
+      // Adds a divider-position-block CSS variable.
+      if (setting === "divider_position") {
+        if (event.target.value === "3") {
+          value = "calc(100% - var(--dxt-setting-block-divider-length))";
+        }
+        this.root.style.setProperty(
+          `${cssVarSettingsPrefix}${cssVarName}-block`,
+          String(value),
+        );
+      }
+
+      // Add mobile title font size variable.
+      if (setting === "title_font_size") {
+        value = value.replace("-font-size", "-mobile-font-size");
+
+        this.root.style.setProperty(
+          `${cssVarSettingsPrefix}${cssVarName}-mobile`,
+          String(value),
+        );
+      }
+    },
+    /**
+     * Tweak certain settings to valid values.
+     *
+     * @param setting
+     * @param value
+     * @returns {string}
+     */
+    massageValue(setting, value) {
+      switch (setting) {
+        // Generic: Inline/Block display
+        case "title_sticker":
+          value = value === "1" ? "inline-block" : "block";
+          break;
+        // Generic: Uppercase
+        case "headings_uppercase":
+        case "title_type[uppercase]":
+          value = value ? "uppercase" : "normal";
+          break;
+        // Generic: Bold
+        case "headings_bold":
+        case "title_type[bold]":
+          value = value ? "bold" : "normal";
+          break;
+        // Generic: Italic
+        case "title_type[italic]":
+          value = value ? "italic" : "normal";
+          break;
+        // Generic: Percentage
+        case "logo_height":
+          value = `${value}%`;
+          break;
+        // Breadcrumb separator
+        case "page_title_breadcrumbs_separator":
+          value = `"${value.replace(/\\/g, "\\\\").replace(/"/g, '\\"')}"`;
+          break;
+        // Title font
+        case "title_font_size":
+          value = `var(--dxt-setting-${value}-font-size)`;
+          break;
+        // Dividers: 0px = 100%
+        case "divider_length":
+        case "block_divider_length":
+          value = value === "0px" ? "100%" : value;
+          break;
+        case "divider_position":
+          switch (value) {
+            case "1":
+              value = "0";
+              break;
+            case "2":
+              value = "auto";
+              break;
+            case "3":
+              value = "calc(100% - var(--dxt-setting-divider-length))";
+              break;
+            default:
+              break;
+          }
+          break;
+        // Handle color fields.
+        case "divider_color":
+        case "block_background":
+        case "title_background":
+        case "block_border_color":
+        case "title_border_color":
+        case "block_divider_color":
+        case "menu_border_color":
+        case "navbar_background":
+        case "header_block_background":
+        case "header_block_text_color":
+        case "menu_background":
+        case "menu_text_color":
+        case "menu_hover_background":
+        case "menu_hover_text_color":
+        case "dropdown_background":
+        case "dropdown_text_color":
+        case "dropdown_hover_background":
+        case "dropdown_hover_text_color":
+          if (value in drupalSettings.dxpr_themeSettings.colors.palette) {
+            value = `var(${cssVarColorsPrefix + value})`;
+          } else if (value === "custom") {
+            const customField = document.querySelector(
+              `[name="${setting}_custom"]`,
+            );
+            value = customField.value;
+          } else if (value === "white") {
+            value = "#ffffff";
+          } else {
+            value = "";
+          }
+          break;
+        default:
+          break;
+      }
+      return value;
+    },
+    /**
+     * Returns all dxpr settings CSS variables.
+     *
+     * @returns array
+     */
+    getCssVariables() {
+      return [...document.styleSheets]
+        .filter(
+          (styleSheet) =>
+            !styleSheet.href ||
+            styleSheet.href.startsWith(window.location.origin),
+        )
+        .reduce((finalArr, sheet) => {
+          const propKeySet = new Set(finalArr);
+          try {
+            [...sheet.cssRules].forEach((rule) => {
+              if (rule.type === 1) {
+                [...rule.style].forEach((propName) => {
+                  propName = propName.trim();
+                  if (propName.indexOf(cssVarSettingsPrefix) === 0) {
+                    propKeySet.add(propName);
+                  }
+                });
+              }
+            });
+          } catch (e) {
+            // Could not access cssRules for stylesheet.
+          }
+          return Array.from(propKeySet);
+        }, []);
+    },
+    /**
+     * Toggles show/hide of all matching elements based on a field status.
+     *
+     * @param toggle    Field name to use as toggle.
+     * @param selector  CSS Selector for element to toggle.
+     */
+    toggleElement(toggle, selector) {
+      const cb = document.querySelector(`input[name="${toggle}"]`);
+      const els = document.querySelectorAll(selector);
+
+      els.forEach((el) => {
+        el.style.display = cb.checked ? "block" : "none";
+      });
+
+      cb.addEventListener("change", () => {
+        els.forEach((el) => {
+          el.style.display = cb.checked ? "block" : "none";
+        });
+      });
+    },
+  };
 
   /**
    * Provide vertical tab summaries for Bootstrap settings.
