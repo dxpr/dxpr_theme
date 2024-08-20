@@ -600,19 +600,18 @@
      * @param selector  CSS Selector for element to toggle.
      */
     toggleElement(toggle, selector) {
-      const cb = document.querySelector(`input[name="${toggle}"]`);
-      const els = document.querySelectorAll(selector);
+      const checkbox = document.querySelector(`input[name="${toggle}"]`);
+      const elements = document.querySelectorAll(selector);
 
-      els.forEach((el) => {
-        el.style.display = cb.checked ? "block" : "none";
-      });
-
-      cb.addEventListener("change", () => {
-        els.forEach((el) => {
-          el.style.display = cb.checked ? "block" : "none";
+      const toggleDisplay = () => {
+        elements.forEach((element) => {
+          element.style.display = checkbox.checked ? "block" : "none";
         });
-      });
-    },
+      };
+      toggleDisplay();
+
+      checkbox.addEventListener("change", toggleDisplay);
+    }
   };
 
   /**
