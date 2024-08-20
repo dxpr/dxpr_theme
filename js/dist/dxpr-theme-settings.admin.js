@@ -568,18 +568,17 @@
      * @returns array
      */
     getCssVariables() {
-      return [...document.styleSheets]
+      return Array.from(document.styleSheets)
         .filter(
           (styleSheet) =>
-            !styleSheet.href ||
-            styleSheet.href.startsWith(window.location.origin),
+            !styleSheet.href || styleSheet.href.startsWith(window.location.origin)
         )
         .reduce((finalArr, sheet) => {
           const propKeySet = new Set(finalArr);
           try {
-            [...sheet.cssRules].forEach((rule) => {
+            Array.from(sheet.cssRules).forEach((rule) => {
               if (rule.type === 1) {
-                [...rule.style].forEach((propName) => {
+                Array.from(rule.style).forEach((propName) => {
                   propName = propName.trim();
                   if (propName.indexOf(cssVarSettingsPrefix) === 0) {
                     propKeySet.add(propName);
@@ -588,11 +587,12 @@
               }
             });
           } catch (e) {
-            // Could not access cssRules for stylesheet.
+            // Could not access cssRules for this stylesheet
           }
           return Array.from(propKeySet);
         }, []);
     },
+
     /**
      * Toggles show/hide of all matching elements based on a field status.
      *
