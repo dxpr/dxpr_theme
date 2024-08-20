@@ -424,13 +424,11 @@
      * @param event
      */
     fieldHandler(event) {
-      const {
-        name: setting,
-        parentElement: { textContent: textValue },
-      } = event.target;
+      const setting = event.target.name;
+      const textValue = event.target.parentElement.textContent;
       const unit = textValue.replace(/[^a-z]/gi, "");
       const validUnits = ["px", "em", "rem"];
-      let { value } = event.target;
+      let value = event.target.value;
 
       if (event.target.type === "checkbox") {
         value = event.target.checked;
@@ -450,10 +448,7 @@
         .replace("]", "");
 
       // Override CSS variable.
-      this.root.style.setProperty(
-        cssVarSettingsPrefix + cssVarName,
-        String(value),
-      );
+      this.root.style.setProperty(`${cssVarSettingsPrefix}${cssVarName}`, String(value));
 
       // Workaround for block divider position.
       // Adds a divider-position-block CSS variable.
@@ -461,20 +456,13 @@
         if (event.target.value === "3") {
           value = "calc(100% - var(--dxt-setting-block-divider-length))";
         }
-        this.root.style.setProperty(
-          `${cssVarSettingsPrefix}${cssVarName}-block`,
-          String(value),
-        );
+        this.root.style.setProperty(`${cssVarSettingsPrefix}${cssVarName}-block`, String(value));
       }
 
       // Add mobile title font size variable.
       if (setting === "title_font_size") {
         value = value.replace("-font-size", "-mobile-font-size");
-
-        this.root.style.setProperty(
-          `${cssVarSettingsPrefix}${cssVarName}-mobile`,
-          String(value),
-        );
+        this.root.style.setProperty(`${cssVarSettingsPrefix}${cssVarName}-mobile`, String(value));
       }
     },
     /**
@@ -555,13 +543,13 @@
         case "dropdown_text_color":
         case "dropdown_hover_background":
         case "dropdown_hover_text_color":
-          if (value in drupalSettings.dxpr_themeSettings.colors.palette) {
+          if (drupalSettings.dxpr_themeSettings.colors.palette.hasOwnProperty(value)) {
             value = `var(${cssVarColorsPrefix + value})`;
           } else if (value === "custom") {
-            const customField = document.querySelector(
-              `[name="${setting}_custom"]`,
-            );
-            value = customField.value;
+            const customField = document.querySelector(`[name="${setting}_custom"]`);
+            if (customField) {
+              value = customField.value;
+            }
           } else if (value === "white") {
             value = "#ffffff";
           } else {
@@ -573,6 +561,7 @@
       }
       return value;
     },
+
     /**
      * Returns all dxpr settings CSS variables.
      *
