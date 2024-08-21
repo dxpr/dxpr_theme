@@ -620,8 +620,9 @@
   /* eslint-disable */
   Drupal.behaviors.dxpr_themeSettingsControls = {
     attach: function (context, settings) {
-      // Opacity Sliders
-      once('dxpr-opacity-sliders', 'html', context).forEach(function () {
+      // Select all target inputs once when the page loads.
+      once('dxpr-settings-controls', 'html', context).forEach(function () {
+        // Opacity Sliders
         const opacitySelectors = [
           "#edit-header-top-bg-opacity-scroll",
           "#edit-header-top-bg-opacity",
@@ -639,17 +640,210 @@
             transformToDXBSlider(originalInput, 'opacity');
           }
         });
-      });
 
-      // Line Height Sliders
-      once('dxpr-line-height-sliders', 'html', context).forEach(function () {
+        // Line Height Sliders
         const lineHeightSelectors = document.querySelectorAll('.line-height-slider');
+        lineHeightSelectors.forEach(function (originalInput) {
+          transformToDXBSlider(originalInput, 'line-height');
+        });
 
-        lineHeightSelectors.forEach(function (selector) {
-          if (selector) {
-            transformToDXBSlider(selector, 'line-height');
+        // Border Radius Sliders
+        const borderRadiusSelectors = document.querySelectorAll('.border-radius-slider');
+        borderRadiusSelectors.forEach(function (originalInput) {
+          transformToDXBSlider(originalInput, 'border-radius');
+        });
+
+        // Body Font Size Slider
+        const bodyFontSizeInput = document.querySelector('#edit-body-font-size');
+        if (bodyFontSizeInput) {
+          transformToDXBSlider(bodyFontSizeInput, 'font-size');
+        }
+
+        // Nav Font Size Slider
+        const navFontSizeInput = document.querySelector('#edit-nav-font-size');
+        if (navFontSizeInput) {
+          transformToDXBSlider(navFontSizeInput, 'font-size');
+        }
+
+        // Body Mobile Font Size Slider
+        const bodyMobileFontSizeInput = document.querySelector('#edit-body-mobile-font-size');
+        if (bodyMobileFontSizeInput) {
+          transformToDXBSlider(bodyMobileFontSizeInput, 'font-size');
+        }
+
+        // Nav Mobile Font Size Slider
+        const navMobileFontSizeInput = document.querySelector('#edit-nav-mobile-font-size');
+        if (navMobileFontSizeInput) {
+          transformToDXBSlider(navMobileFontSizeInput, 'font-size');
+        }
+
+        // Other Font Sizes Sliders
+        const fontSizeSelectors = document.querySelectorAll('.font-size-slider');
+        fontSizeSelectors.forEach(function (originalInput) {
+          transformToDXBSlider(originalInput, 'font-size');
+        });
+
+        // Scale Factor Slider
+        const scaleFactorInput = document.querySelector('#edit-scale-factor');
+        if (scaleFactorInput) {
+          transformToDXBSlider(scaleFactorInput, 'scale-factor');
+        }
+
+        // Divider Thickness Sliders
+        const dividerThicknessSelectors = [
+          '#edit-divider-thickness',
+          '#edit-block-divider-thickness'
+        ];
+        dividerThicknessSelectors.forEach(function (selector) {
+          const originalInput = document.querySelector(selector);
+          if (originalInput) {
+            transformToDXBSlider(originalInput, 'divider-thickness');
           }
         });
+
+        // Divider Length Sliders
+        const dividerLengthSelectors = [
+          '#edit-divider-length',
+          '#edit-block-divider-length'
+        ];
+        dividerLengthSelectors.forEach(function (selector) {
+          const originalInput = document.querySelector(selector);
+          if (originalInput) {
+            transformToDXBSlider(originalInput, 'divider-length');
+          }
+        });
+
+        // Divider Position Slider
+        const dividerPositionInput = document.querySelector('#edit-divider-position');
+        if (dividerPositionInput) {
+          transformToDXBSlider(dividerPositionInput, 'divider-position');
+        }
+
+        // Headings Letter Spacing Slider
+        const headingsLetterSpacingInput = document.querySelector('#edit-headings-letter-spacing');
+        if (headingsLetterSpacingInput) {
+          transformToDXBSlider(headingsLetterSpacingInput, 'letter-spacing');
+        }
+
+        // Block Design Divider Spacing Slider
+        const blockDividerSpacingInput = document.querySelector('#edit-block-divider-spacing');
+        if (blockDividerSpacingInput) {
+          transformToDXBSlider(blockDividerSpacingInput, 'block-divider-spacing');
+        }
+
+        // Page Title Height Slider
+        const pageTitleHeightInput = document.querySelector('#edit-page-title-height');
+        if (pageTitleHeightInput) {
+          transformToDXBSlider(pageTitleHeightInput, 'page-title-height');
+        }
+
+        // Header Height Slider
+        const headerTopHeightInput = document.querySelector('#edit-header-top-height');
+        if (headerTopHeightInput) {
+          transformToDXBSlider(headerTopHeightInput, 'header-height');
+        }
+
+        // Logo Height Slider
+        const logoHeightInput = document.querySelector('#edit-logo-height');
+        if (logoHeightInput) {
+          transformToDXBSlider(logoHeightInput, 'logo-height');
+        }
+
+        // Header Mobile Breakpoint Slider
+        const headerMobileBreakpointInput = document.querySelector('#edit-header-mobile-breakpoint');
+        if (headerMobileBreakpointInput) {
+          transformToDXBSlider(headerMobileBreakpointInput, 'header-mobile-breakpoint');
+        }
+
+        // Header Mobile Height Slider
+        const headerMobileHeightInput = document.querySelector('#edit-header-mobile-height');
+        if (headerMobileHeightInput) {
+          transformToDXBSlider(headerMobileHeightInput, 'header-mobile-height');
+        }
+
+        // Header After-Scroll Height Slider
+        const headerTopHeightScrollInput = document.querySelector('#edit-header-top-height-scroll');
+        if (headerTopHeightScrollInput) {
+          transformToDXBSlider(headerTopHeightScrollInput, 'header-scroll-height');
+        }
+
+        // Sticky Header Scroll Offset Slider
+        const stickyOffsetInput = document.querySelector('#edit-header-top-height-sticky-offset');
+        if (stickyOffsetInput) {
+          transformToDXBSlider(stickyOffsetInput, 'sticky-offset');
+        }
+
+        // Side Header Width Slider
+        const headerSideWidthInput = document.querySelector('#edit-header-side-width');
+        if (headerSideWidthInput) {
+          transformToDXBSlider(headerSideWidthInput, 'side-header-width');
+        }
+
+        // Side Header Logo Height Slider
+        const headerSideLogoHeightInput = document.querySelector('#edit-header-side-logo-height');
+        if (headerSideLogoHeightInput) {
+          transformToDXBSlider(headerSideLogoHeightInput, 'side-header-logo-height');
+        }
+
+        // Main Menu Hover Border Thickness Slider
+        const menuBorderSizeInput = document.querySelector('#edit-menu-border-size');
+        if (menuBorderSizeInput) {
+          transformToDXBSlider(menuBorderSizeInput, 'menu-border-size');
+        }
+
+        // Main Menu Hover Border Position Offset Slider
+        const menuBorderPositionOffsetInput = document.querySelector('#edit-menu-border-position-offset');
+        if (menuBorderPositionOffsetInput) {
+          transformToDXBSlider(menuBorderPositionOffsetInput, 'menu-border-offset');
+        }
+
+        // Layout Max Width Slider
+        const layoutMaxWidthInput = document.querySelector('#edit-layout-max-width');
+        if (layoutMaxWidthInput) {
+          transformToDXBSlider(layoutMaxWidthInput, 'layout-max-width');
+        }
+
+        // Box Max Width Slider
+        const boxMaxWidthInput = document.querySelector('#edit-box-max-width');
+        if (boxMaxWidthInput) {
+          transformToDXBSlider(boxMaxWidthInput, 'box-max-width');
+        }
+
+        // Layout Gutter Horizontal Slider
+        const gutterHorizontalInput = document.querySelector('#edit-gutter-horizontal');
+        if (gutterHorizontalInput) {
+          transformToDXBSlider(gutterHorizontalInput, 'gutter-horizontal');
+        }
+
+        // Layout Gutter Vertical Slider
+        const gutterVerticalInput = document.querySelector('#edit-gutter-vertical');
+        if (gutterVerticalInput) {
+          transformToDXBSlider(gutterVerticalInput, 'gutter-vertical');
+        }
+
+        // Layout Gutter Container Slider
+        const gutterContainerInput = document.querySelector('#edit-gutter-container');
+        if (gutterContainerInput) {
+          transformToDXBSlider(gutterContainerInput, 'gutter-container');
+        }
+
+        // Layout Gutter Horizontal Mobile Slider
+        const gutterHorizontalMobileInput = document.querySelector('#edit-gutter-horizontal-mobile');
+        if (gutterHorizontalMobileInput) {
+          transformToDXBSlider(gutterHorizontalMobileInput, 'gutter-horizontal-mobile');
+        }
+
+        // Layout Gutter Vertical Mobile Slider
+        const gutterVerticalMobileInput = document.querySelector('#edit-gutter-vertical-mobile');
+        if (gutterVerticalMobileInput) {
+          transformToDXBSlider(gutterVerticalMobileInput, 'gutter-vertical-mobile');
+        }
+
+        // Layout Gutter Container Mobile Slider
+        const gutterContainerMobileInput = document.querySelector('#edit-gutter-container-mobile');
+        if (gutterContainerMobileInput) {
+          transformToDXBSlider(gutterContainerMobileInput, 'gutter-container-mobile');
+        }
       });
 
       function transformToDXBSlider(inputElement, type) {
@@ -661,23 +855,215 @@
         track.classList.add('dxb-slider-track');
 
         // Set attributes on the input
+        // Opacity Sliders attributes
         if (type === 'opacity') {
           inputElement.setAttribute('min', '0');
           inputElement.setAttribute('max', '1');
           inputElement.setAttribute('step', '0.01');
           inputElement.setAttribute('aria-labelledby', 'fontSizeLabel');
-        } else if (type === 'line-height') {
+        }
+        // Line Height Sliders attributes
+        else if (type === 'line-height') {
           inputElement.setAttribute('min', '0');
           inputElement.setAttribute('max', '3');
           inputElement.setAttribute('step', '0.1');
           inputElement.setAttribute('aria-labelledby', 'lineHeightLabel');
         }
+        // Border Radius Sliders attributes
+        else if (type === 'border-radius') {
+          inputElement.setAttribute('min', '0');
+          inputElement.setAttribute('max', '100');
+          inputElement.setAttribute('step', '1');
+          inputElement.setAttribute('aria-labelledby', 'borderRadiusLabel');
+        }
+        // Font Size Sliders attributes
+        else if (type === 'font-size') {
+          inputElement.setAttribute('min', '8');
+          inputElement.setAttribute('max', '30');
+          inputElement.setAttribute('step', '1');
+          inputElement.setAttribute('aria-labelledby', 'fontSizeLabel');
+        }
+        // Scale Factor Slider attributes
+        else if (type === 'scale-factor') {
+          inputElement.setAttribute('min', '1');
+          inputElement.setAttribute('max', '2');
+          inputElement.setAttribute('step', '0.01');
+          inputElement.setAttribute('aria-labelledby', 'scaleFactorLabel');
+        }
+        // Divider Thickness Sliders attributes
+        else if (type === 'divider-thickness') {
+          inputElement.setAttribute('min', '0');
+          inputElement.setAttribute('max', '20');
+          inputElement.setAttribute('step', '1');
+          inputElement.setAttribute('aria-labelledby', 'dividerThicknessLabel');
+        }
+        // Divider Length Sliders attributes
+        else if (type === 'divider-length') {
+          inputElement.setAttribute('min', '0');
+          inputElement.setAttribute('max', '500');
+          inputElement.setAttribute('step', '10');
+          inputElement.setAttribute('aria-labelledby', 'dividerLengthLabel');
+        }
+        // Divider Position Slider attributes
+        else if (type === 'divider-position') {
+          inputElement.setAttribute('min', '1');
+          inputElement.setAttribute('max', '3');
+          inputElement.setAttribute('step', '1');
+          inputElement.setAttribute('aria-labelledby', 'dividerPositionLabel');
+        }
+        // Letter Spacing Slider attributes
+        else if (type === 'letter-spacing') {
+          inputElement.setAttribute('min', '-0.1');
+          inputElement.setAttribute('max', '0.3');
+          inputElement.setAttribute('step', '0.01');
+          inputElement.setAttribute('aria-labelledby', 'letterSpacingLabel');
+        }
+        // Block Divider Spacing Slider attributes
+        else if (type === 'block-divider-spacing') {
+          inputElement.setAttribute('min', '0');
+          inputElement.setAttribute('max', '100');
+          inputElement.setAttribute('step', '1');
+          inputElement.setAttribute('aria-labelledby', 'blockDividerSpacingLabel');
+        }
+        // Page Title Height Slider attributes
+        else if (type === 'page-title-height') {
+          inputElement.setAttribute('min', '50');
+          inputElement.setAttribute('max', '500');
+          inputElement.setAttribute('step', '5');
+          inputElement.setAttribute('aria-labelledby', 'pageTitleHeightLabel');
+        }
+        // Header Height Slider attributes
+        else if (type === 'header-height') {
+          inputElement.setAttribute('min', '10');
+          inputElement.setAttribute('max', '200');
+          inputElement.setAttribute('step', '1');
+          inputElement.setAttribute('aria-labelledby', 'headerHeightLabel');
+        }
+        // Logo Height Slider attributes
+        else if (type === 'logo-height') {
+          inputElement.setAttribute('min', '10');
+          inputElement.setAttribute('max', '100');
+          inputElement.setAttribute('step', '1');
+          inputElement.setAttribute('aria-labelledby', 'logoHeightLabel');
+        }
+        // Header Mobile Breakpoint Slider attributes
+        else if (type === 'header-mobile-breakpoint') {
+          inputElement.setAttribute('min', '480');
+          inputElement.setAttribute('max', '4100');
+          inputElement.setAttribute('step', '10');
+          inputElement.setAttribute('aria-labelledby', 'headerMobileBreakpointLabel');
+        }
+        // Header Mobile Height Slider attributes
+        else if (type === 'header-mobile-height') {
+          inputElement.setAttribute('min', '10');
+          inputElement.setAttribute('max', '200');
+          inputElement.setAttribute('step', '1');
+          inputElement.setAttribute('aria-labelledby', 'headerMobileHeightLabel');
+        }
+        // Header After-Scroll Height Slider attributes
+        else if (type === 'header-scroll-height') {
+          inputElement.setAttribute('min', '10');
+          inputElement.setAttribute('max', '200');
+          inputElement.setAttribute('step', '1');
+          inputElement.setAttribute('aria-labelledby', 'headerScrollHeightLabel');
+        }
+        // Sticky Offset Slider attributes
+        else if (type === 'sticky-offset') {
+          inputElement.setAttribute('min', '0');
+          inputElement.setAttribute('max', '2096');
+          inputElement.setAttribute('step', '10');
+          inputElement.setAttribute('aria-labelledby', 'stickyOffsetLabel');
+        }
+        // Side Header Width Slider attributes
+        else if (type === 'side-header-width') {
+          inputElement.setAttribute('min', '50');
+          inputElement.setAttribute('max', '500');
+          inputElement.setAttribute('step', '5');
+          inputElement.setAttribute('aria-labelledby', 'sideHeaderWidthLabel');
+        }
+        // Side Header Logo Height Slider attributes
+        else if (type === 'side-header-logo-height') {
+          inputElement.setAttribute('min', '10');
+          inputElement.setAttribute('max', '500');
+          inputElement.setAttribute('step', '1');
+          inputElement.setAttribute('aria-labelledby', 'sideHeaderLogoHeightLabel');
+        }
+        // Main Menu Border Size Slider attributes
+        else if (type === 'menu-border-size') {
+          inputElement.setAttribute('min', '1');
+          inputElement.setAttribute('max', '20');
+          inputElement.setAttribute('step', '1');
+          inputElement.setAttribute('aria-labelledby', 'menuBorderSizeLabel');
+        }
+        // Main Menu Border Position Offset Slider attributes
+        else if (type === 'menu-border-offset') {
+          inputElement.setAttribute('min', '0');
+          inputElement.setAttribute('max', '100');
+          inputElement.setAttribute('step', '1');
+          inputElement.setAttribute('aria-labelledby', 'menuBorderOffsetLabel');
+        }
+        // Layout Max Width Slider attributes
+        else if (type === 'layout-max-width') {
+          inputElement.setAttribute('min', '480');
+          inputElement.setAttribute('max', '4100');
+          inputElement.setAttribute('step', '10');
+          inputElement.setAttribute('aria-labelledby', 'layoutMaxWidthLabel');
+        }
+        // Box Max Width Slider attributes
+        else if (type === 'box-max-width') {
+          inputElement.setAttribute('min', '480');
+          inputElement.setAttribute('max', '4100');
+          inputElement.setAttribute('step', '10');
+          inputElement.setAttribute('aria-labelledby', 'boxMaxWidthLabel');
+        }
+        // Gutter Horizontal Slider attributes
+        else if (type === 'gutter-horizontal') {
+          inputElement.setAttribute('min', '0');
+          inputElement.setAttribute('max', '100');
+          inputElement.setAttribute('step', '1');
+          inputElement.setAttribute('aria-labelledby', 'gutterHorizontalLabel');
+        }
+        // Gutter Vertical Slider attributes
+        else if (type === 'gutter-vertical') {
+          inputElement.setAttribute('min', '0');
+          inputElement.setAttribute('max', '100');
+          inputElement.setAttribute('step', '1');
+          inputElement.setAttribute('aria-labelledby', 'gutterVerticalLabel');
+        }
+        // Gutter Container Slider attributes
+        else if (type === 'gutter-container') {
+          inputElement.setAttribute('min', '0');
+          inputElement.setAttribute('max', '500');
+          inputElement.setAttribute('step', '1');
+          inputElement.setAttribute('aria-labelledby', 'gutterContainerLabel');
+        }
+        // Gutter Horizontal Mobile Slider attributes
+        else if (type === 'gutter-horizontal-mobile') {
+          inputElement.setAttribute('min', '0');
+          inputElement.setAttribute('max', '100');
+          inputElement.setAttribute('step', '1');
+          inputElement.setAttribute('aria-labelledby', 'gutterHorizontalMobileLabel');
+        }
+        // Gutter Vertical Mobile Slider attributes
+        else if (type === 'gutter-vertical-mobile') {
+          inputElement.setAttribute('min', '0');
+          inputElement.setAttribute('max', '100');
+          inputElement.setAttribute('step', '1');
+          inputElement.setAttribute('aria-labelledby', 'gutterVerticalMobileLabel');
+        }
+        // Gutter Container Mobile Slider attributes
+        else if (type === 'gutter-container-mobile') {
+          inputElement.setAttribute('min', '0');
+          inputElement.setAttribute('max', '500');
+          inputElement.setAttribute('step', '1');
+          inputElement.setAttribute('aria-labelledby', 'gutterContainerMobileLabel');
+        }
 
         inputElement.type = 'range';
         inputElement.classList.add('dxb-slider');
         inputElement.setAttribute('data-dxb-slider', '');
-        inputElement.setAttribute('aria-valuemin', inputElement.getAttribute('min'));
-        inputElement.setAttribute('aria-valuemax', inputElement.getAttribute('max'));
+        inputElement.setAttribute('aria-valuemin', inputElement.min);
+        inputElement.setAttribute('aria-valuemax', inputElement.max);
         inputElement.setAttribute('aria-valuenow', inputElement.value);
 
         // Create number input for displaying value
@@ -688,9 +1074,9 @@
         numberInput.setAttribute('tabindex', '-1');
         numberInput.setAttribute('pattern', '[0-9]*');
         numberInput.setAttribute('inputmode', 'decimal');
-        numberInput.min = inputElement.getAttribute('min');
-        numberInput.max = inputElement.getAttribute('max');
-        numberInput.step = inputElement.getAttribute('step');
+        numberInput.min = inputElement.min;
+        numberInput.max = inputElement.max;
+        numberInput.step = inputElement.step;
         numberInput.value = inputElement.value;
 
         // Wrap the input in the wrapper
@@ -707,13 +1093,13 @@
           const percent = (val - min) / (max - min) * 100;
 
           inputElement.style.setProperty('--value-percent', `${percent}%`);
-          numberInput.value = type === 'line-height' ? `${val}em` : val;
+          numberInput.value = val;
           inputElement.setAttribute('aria-valuenow', val);
         }
 
         inputElement.addEventListener('input', updateValue);
         numberInput.addEventListener('input', () => {
-          inputElement.value = numberInput.value.replace('em', ''); // Remove the unit for calculation
+          inputElement.value = numberInput.value;
           updateValue();
         });
 
@@ -724,532 +1110,6 @@
   };
 
 
-
-// Drupal.behaviors.dxpr_themeSettingsControls = {
-  //   attach(context) {
-  //     if (once("dxpr-settings-controls", "html", context).length) {
-  //       this.init();
-  //       this.handleFields();
-  //     }
-  //   },
-  //   init() {
-  //     /**
-  //      * Bootstrap slider configuration.
-  //      */
-  //     // Opacity Sliders
-  //     const $opacitySliders = $(
-  //       "#edit-header-top-bg-opacity-scroll," +
-  //       "#edit-header-top-bg-opacity," +
-  //       "#edit-header-side-bg-opacity," +
-  //       "#edit-side-header-background-opacity," +
-  //       "#edit-page-title-image-opacity," +
-  //       "#edit-header-top-opacity," +
-  //       "#edit-header-top-opacity-scroll," +
-  //       "#edit-menu-full-screen-opacity"
-  //     );
-  //     $opacitySliders.each(function() {
-  //       const startValue = $(this).val();
-  //       $(this).bootstrapSlider({
-  //         step   : 0.01,
-  //         min    : 0,
-  //         max    : 1,
-  //         tooltip: "hide",
-  //         value  : parseFloat(startValue),
-  //       });
-  //     });
-  //
-  //     // Line Height Sliders
-  //     $(".line-height-slider").each(function() {
-  //       const startValue = $(this).val();
-  //       $(this).bootstrapSlider({
-  //         step   : 0.1,
-  //         min    : 0,
-  //         max    : 3,
-  //         tooltip: "hide",
-  //         formatter(value) {
-  //           return `${value}em`;
-  //         },
-  //         value: parseFloat(startValue),
-  //       });
-  //     });
-  //
-  //     // Border Size Sliders
-  //     $(".border-size-slider").each(function() {
-  //       const startValue = $(this).val();
-  //       $(this).bootstrapSlider({
-  //         step   : 1,
-  //         min    : 0,
-  //         max    : 30,
-  //         tooltip: "hide",
-  //         formatter(value) {
-  //           return `${value}px`;
-  //         },
-  //         value: parseFloat(startValue),
-  //       });
-  //     });
-  //
-  //     // Border Radius Sliders
-  //     $(".border-radius-slider").each(function() {
-  //       const startValue = $(this).val();
-  //       $(this).bootstrapSlider({
-  //         step   : 1,
-  //         min    : 0,
-  //         max    : 100,
-  //         tooltip: "hide",
-  //         formatter(value) {
-  //           return `${value}px`;
-  //         },
-  //         value: parseFloat(startValue),
-  //       });
-  //     });
-  //
-  //     let $input;
-  //
-  //     // Body Font Size
-  //     $input = $("#edit-body-font-size");
-  //     $input.bootstrapSlider({
-  //       step   : 1,
-  //       min    : 8,
-  //       max    : 30,
-  //       tooltip: "hide",
-  //       formatter(value) {
-  //         return `${value}px`;
-  //       },
-  //       value: parseFloat($input.val()),
-  //     });
-  //
-  //     // Nav Font Size
-  //     $input = $("#edit-nav-font-size");
-  //     $input.bootstrapSlider({
-  //       step   : 1,
-  //       min    : 8,
-  //       max    : 30,
-  //       tooltip: "hide",
-  //       formatter(value) {
-  //         return `${value}px`;
-  //       },
-  //       value: parseFloat($input.val()),
-  //     });
-  //
-  //     // Body Mobile Font Size
-  //     $input = $("#edit-body-mobile-font-size");
-  //     $input.bootstrapSlider({
-  //       step   : 1,
-  //       min    : 8,
-  //       max    : 30,
-  //       tooltip: "hide",
-  //       formatter(value) {
-  //         return `${value}px`;
-  //       },
-  //       value: parseFloat($input.val()),
-  //     });
-  //
-  //     // Nav Mobile Font Size
-  //     $input = $("#edit-nav-mobile-font-size");
-  //     $input.bootstrapSlider({
-  //       step   : 1,
-  //       min    : 8,
-  //       max    : 30,
-  //       tooltip: "hide",
-  //       formatter(value) {
-  //         return `${value}px`;
-  //       },
-  //       value: parseFloat($input.val()),
-  //     });
-  //
-  //     // Other Font Sizes
-  //     $(".font-size-slider").each(function() {
-  //       const startValue = $(this).val();
-  //       $(this).bootstrapSlider({
-  //         step   : 1,
-  //         min    : 8,
-  //         max    : 100,
-  //         tooltip: "hide",
-  //         formatter(value) {
-  //           return `${value}px`;
-  //         },
-  //         value: parseFloat(startValue),
-  //       });
-  //     });
-  //
-  //     // Scale Factor
-  //     $input = $("#edit-scale-factor");
-  //     $input.bootstrapSlider({
-  //       step   : 0.01,
-  //       min    : 1,
-  //       max    : 2,
-  //       tooltip: "hide",
-  //       value  : parseFloat($input.val()),
-  //     });
-  //
-  //     // Divider Thickness
-  //     $input = $("#edit-divider-thickness");
-  //     $input.bootstrapSlider({
-  //       step   : 1,
-  //       min    : 0,
-  //       max    : 20,
-  //       tooltip: "hide",
-  //       formatter(value) {
-  //         return `${value}px`;
-  //       },
-  //       value: parseFloat($input.val()),
-  //     });
-  //
-  //     // Divider Thickness
-  //     $input = $("#edit-block-divider-thickness");
-  //     $input.bootstrapSlider({
-  //       step   : 1,
-  //       min    : 0,
-  //       max    : 20,
-  //       tooltip: "hide",
-  //       formatter(value) {
-  //         return `${value}px`;
-  //       },
-  //       value: parseFloat($input.val()),
-  //     });
-  //
-  //     // Divider Length
-  //     $input = $("#edit-divider-length");
-  //     $input.bootstrapSlider({
-  //       step   : 10,
-  //       min    : 0,
-  //       max    : 500,
-  //       tooltip: "hide",
-  //       formatter(value) {
-  //         return `${value}px`;
-  //       },
-  //       value: parseFloat($input.val()),
-  //     });
-  //
-  //     // Divider Length
-  //     $input = $("#edit-block-divider-length");
-  //     $input.bootstrapSlider({
-  //       step   : 10,
-  //       min    : 0,
-  //       max    : 500,
-  //       tooltip: "hide",
-  //       formatter(value) {
-  //         return `${value}px`;
-  //       },
-  //       value: parseFloat($input.val()),
-  //     });
-  //
-  //     function formatPosition(pos) {
-  //       let label = Drupal.t("Left");
-  //       if (pos === 2) label = Drupal.t("Center");
-  //       if (pos === 3) label = Drupal.t("Right");
-  //       return label;
-  //     }
-  //
-  //     // Divider Position
-  //     $input = $("#edit-divider-position");
-  //     $input.bootstrapSlider({
-  //       step     : 1,
-  //       min      : 1,
-  //       max      : 3,
-  //       selection: "none",
-  //       tooltip  : "hide",
-  //       formatter: formatPosition,
-  //       value    : parseFloat($input.val()),
-  //     });
-  //
-  //     // Headings letter spacing
-  //     $input = $("#edit-headings-letter-spacing");
-  //     $input.bootstrapSlider({
-  //       step   : 0.01,
-  //       min    : -0.1,
-  //       max    : 0.3,
-  //       tooltip: "hide",
-  //       formatter(value) {
-  //         return `${value}em`;
-  //       },
-  //       value: parseFloat($input.val()),
-  //     });
-  //
-  //     // Block Design Divider Spacing
-  //     $input = $("#edit-block-divider-spacing");
-  //     $input.bootstrapSlider({
-  //       step   : 1,
-  //       min    : 0,
-  //       max    : 100,
-  //       tooltip: "hide",
-  //       formatter(value) {
-  //         return `${value}px`;
-  //       },
-  //       value: parseFloat($input.val()),
-  //     });
-  //
-  //     // Page Title height
-  //     $input = $("#edit-page-title-height");
-  //     $input.bootstrapSlider({
-  //       step   : 5,
-  //       min    : 50,
-  //       max    : 500,
-  //       tooltip: "hide",
-  //       formatter(value) {
-  //         return `${value}px`;
-  //       },
-  //       value: parseFloat($input.val()),
-  //     });
-  //
-  //     // Header height slider
-  //     $input = $("#edit-header-top-height");
-  //     $input.bootstrapSlider({
-  //       step   : 1,
-  //       min    : 10,
-  //       max    : 200,
-  //       tooltip: "hide",
-  //       formatter(value) {
-  //         return `${value}px`;
-  //       },
-  //       value: parseFloat($input.val()),
-  //     });
-  //
-  //     $input = $("#edit-logo-height");
-  //     $input.bootstrapSlider({
-  //       step   : 1,
-  //       min    : 10,
-  //       max    : 100,
-  //       tooltip: "hide",
-  //       formatter(value) {
-  //         return `${value}%`;
-  //       },
-  //       value: parseFloat($input.val()),
-  //     });
-  //
-  //     // Header Mobile Breakpoint slider
-  //     $input = $("#edit-header-mobile-breakpoint");
-  //     $input.bootstrapSlider({
-  //       step   : 10,
-  //       min    : 480,
-  //       max    : 4100,
-  //       tooltip: "hide",
-  //       formatter(value) {
-  //         return `${value}px`;
-  //       },
-  //       value: parseFloat($input.val()),
-  //     });
-  //
-  //     // Header Mobile height slider
-  //     $input = $("#edit-header-mobile-height");
-  //     $input.bootstrapSlider({
-  //       step   : 1,
-  //       min    : 10,
-  //       max    : 200,
-  //       tooltip: "hide",
-  //       formatter(value) {
-  //         return `${value}px`;
-  //       },
-  //       value: parseFloat($input.val()),
-  //     });
-  //
-  //     // Header after-scroll height slider
-  //     $input = $("#edit-header-top-height-scroll");
-  //     $input.bootstrapSlider({
-  //       step   : 1,
-  //       min    : 10,
-  //       max    : 200,
-  //       tooltip: "hide",
-  //       formatter(value) {
-  //         return `${value}px`;
-  //       },
-  //       value: parseFloat($input.val()),
-  //     });
-  //
-  //     // Sticky header scroll offset
-  //     $input = $("#edit-header-top-height-sticky-offset");
-  //     $input.bootstrapSlider({
-  //       step   : 10,
-  //       min    : 0,
-  //       max    : 2096,
-  //       tooltip: "hide",
-  //       formatter(value) {
-  //         return `${value}px`;
-  //       },
-  //       value: parseFloat($input.val()),
-  //     });
-  //
-  //     // Side Header after-scroll height slider
-  //     $input = $("#edit-header-side-width");
-  //     $input.bootstrapSlider({
-  //       step   : 5,
-  //       min    : 50,
-  //       max    : 500,
-  //       tooltip: "hide",
-  //       formatter(value) {
-  //         return `${value}px`;
-  //       },
-  //       value: parseFloat($input.val()),
-  //     });
-  //
-  //     $input = $("#edit-header-side-logo-height");
-  //     $input.bootstrapSlider({
-  //       step   : 1,
-  //       min    : 10,
-  //       max    : 500,
-  //       tooltip: "hide",
-  //       formatter(value) {
-  //         return `${value}px`;
-  //       },
-  //       value: parseFloat($input.val()),
-  //     });
-  //
-  //     // Main Menu Hover Border Thickness
-  //     $input = $("#edit-dropdown-width");
-  //     $input.bootstrapSlider({
-  //       step   : 5,
-  //       min    : 100,
-  //       max    : 400,
-  //       tooltip: "hide",
-  //       formatter(value) {
-  //         return `${value}px`;
-  //       },
-  //       value: parseFloat($input.val()),
-  //     });
-  //
-  //     // Main Menu Hover Border Thickness
-  //     $input = $("#edit-menu-border-size");
-  //     $input.bootstrapSlider({
-  //       step   : 1,
-  //       min    : 1,
-  //       max    : 20,
-  //       tooltip: "hide",
-  //       formatter(value) {
-  //         return `${value}px`;
-  //       },
-  //       value: parseFloat($input.val()),
-  //     });
-  //
-  //     // Main Menu Hover Border Position Offset
-  //     $input = $("#edit-menu-border-position-offset");
-  //     $input.bootstrapSlider({
-  //       step   : 1,
-  //       min    : 0,
-  //       max    : 100,
-  //       tooltip: "hide",
-  //       formatter(value) {
-  //         return `${value}px`;
-  //       },
-  //       value: parseFloat($input.val()),
-  //     });
-  //
-  //     // Main Menu Hover Border Position Offset Sticky
-  //     $input = $("#edit-menu-border-position-offset-sticky");
-  //     $input.bootstrapSlider({
-  //       step   : 1,
-  //       min    : 0,
-  //       max    : 100,
-  //       tooltip: "hide",
-  //       formatter(value) {
-  //         return `${value}px`;
-  //       },
-  //       value: parseFloat($input.val()),
-  //     });
-  //
-  //     // Layout max width
-  //     $input = $("#edit-layout-max-width");
-  //     $input.bootstrapSlider({
-  //       step   : 10,
-  //       min    : 480,
-  //       max    : 4100,
-  //       tooltip: "hide",
-  //       formatter(value) {
-  //         return `${value}px`;
-  //       },
-  //       value: parseFloat($input.val()),
-  //     });
-  //
-  //     // Box max width
-  //     $input = $("#edit-box-max-width");
-  //     $input.bootstrapSlider({
-  //       step   : 10,
-  //       min    : 480,
-  //       max    : 4100,
-  //       tooltip: "hide",
-  //       formatter(value) {
-  //         return `${value}px`;
-  //       },
-  //       value: parseFloat($input.val()),
-  //     });
-  //
-  //     // Layout Gutter Horizontal
-  //     $input = $("#edit-gutter-horizontal");
-  //     $input.bootstrapSlider({
-  //       step   : 1,
-  //       min    : 0,
-  //       max    : 100,
-  //       tooltip: "hide",
-  //       formatter(value) {
-  //         return `${value}px`;
-  //       },
-  //       value: parseFloat($input.val()),
-  //     });
-  //
-  //     // Layout Gutter Vertical
-  //     $input = $("#edit-gutter-vertical");
-  //     $input.bootstrapSlider({
-  //       step   : 1,
-  //       min    : 0,
-  //       max    : 100,
-  //       tooltip: "hide",
-  //       formatter(value) {
-  //         return `${value}px`;
-  //       },
-  //       value: parseFloat($input.val()),
-  //     });
-  //
-  //     // Layout Gutter Vertical
-  //     $input = $("#edit-gutter-container");
-  //     $input.bootstrapSlider({
-  //       step   : 1,
-  //       min    : 0,
-  //       max    : 500,
-  //       tooltip: "hide",
-  //       formatter(value) {
-  //         return `${value}px`;
-  //       },
-  //       value: parseFloat($input.val()),
-  //     });
-  //
-  //     // Layout Gutter Horizontal Mobile
-  //     $input = $("#edit-gutter-horizontal-mobile");
-  //     $input.bootstrapSlider({
-  //       step   : 1,
-  //       min    : 0,
-  //       max    : 100,
-  //       tooltip: "hide",
-  //       formatter(value) {
-  //         return `${value}px`;
-  //       },
-  //       value: parseFloat($input.val()),
-  //     });
-  //
-  //     // Layout Gutter Vertical Mobile
-  //     $input = $("#edit-gutter-vertical-mobile");
-  //     $input.bootstrapSlider({
-  //       step   : 1,
-  //       min    : 0,
-  //       max    : 100,
-  //       tooltip: "hide",
-  //       formatter(value) {
-  //         return `${value}px`;
-  //       },
-  //       value: parseFloat($input.val()),
-  //     });
-  //
-  //     // Layout Gutter Vertical
-  //     $input = $("#edit-gutter-container-mobile");
-  //     $input.bootstrapSlider({
-  //       step   : 1,
-  //       min    : 0,
-  //       max    : 500,
-  //       tooltip: "hide",
-  //       formatter(value) {
-  //         return `${value}px`;
-  //       },
-  //       value: parseFloat($input.val()),
-  //     });
-  //
   //     // Reflow layout when showing a tab
   //     // var $sliders = $('.slider + input');
   //     // $sliders.each( function() {
