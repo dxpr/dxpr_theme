@@ -620,8 +620,8 @@
   /* eslint-disable */
   Drupal.behaviors.dxpr_themeSettingsControls = {
     attach: function (context, settings) {
-      // Select all target inputs once when the page loads.
-      once('dxpr-settings-controls', 'html', context).forEach(function () {
+      // Opacity Sliders
+      once('dxpr-opacity-sliders', 'html', context).forEach(function () {
         const opacitySelectors = [
           "#edit-header-top-bg-opacity-scroll",
           "#edit-header-top-bg-opacity",
@@ -636,12 +636,23 @@
         opacitySelectors.forEach(function (selector) {
           const originalInput = document.querySelector(selector);
           if (originalInput) {
-            transformToDXBSlider(originalInput);
+            transformToDXBSlider(originalInput, 'opacity');
           }
         });
       });
 
-      function transformToDXBSlider(inputElement) {
+      // Line Height Sliders
+      once('dxpr-line-height-sliders', 'html', context).forEach(function () {
+        const lineHeightSelectors = document.querySelectorAll('.line-height-slider');
+
+        lineHeightSelectors.forEach(function (selector) {
+          if (selector) {
+            transformToDXBSlider(selector, 'line-height');
+          }
+        });
+      });
+
+      function transformToDXBSlider(inputElement, type) {
         // Create wrapper
         const wrapper = document.createElement('div');
         wrapper.classList.add('dxb-slider-wrapper');
@@ -650,15 +661,23 @@
         track.classList.add('dxb-slider-track');
 
         // Set attributes on the input
+        if (type === 'opacity') {
+          inputElement.setAttribute('min', '0');
+          inputElement.setAttribute('max', '1');
+          inputElement.setAttribute('step', '0.01');
+          inputElement.setAttribute('aria-labelledby', 'fontSizeLabel');
+        } else if (type === 'line-height') {
+          inputElement.setAttribute('min', '0');
+          inputElement.setAttribute('max', '3');
+          inputElement.setAttribute('step', '0.1');
+          inputElement.setAttribute('aria-labelledby', 'lineHeightLabel');
+        }
+
         inputElement.type = 'range';
         inputElement.classList.add('dxb-slider');
         inputElement.setAttribute('data-dxb-slider', '');
-        inputElement.setAttribute('min', '0');
-        inputElement.setAttribute('max', '1');
-        inputElement.setAttribute('step', '0.01');
-        inputElement.setAttribute('aria-labelledby', 'fontSizeLabel');
-        inputElement.setAttribute('aria-valuemin', '0');
-        inputElement.setAttribute('aria-valuemax', '1');
+        inputElement.setAttribute('aria-valuemin', inputElement.getAttribute('min'));
+        inputElement.setAttribute('aria-valuemax', inputElement.getAttribute('max'));
         inputElement.setAttribute('aria-valuenow', inputElement.value);
 
         // Create number input for displaying value
@@ -669,9 +688,9 @@
         numberInput.setAttribute('tabindex', '-1');
         numberInput.setAttribute('pattern', '[0-9]*');
         numberInput.setAttribute('inputmode', 'decimal');
-        numberInput.min = '0';
-        numberInput.max = '1';
-        numberInput.step = '0.01';
+        numberInput.min = inputElement.getAttribute('min');
+        numberInput.max = inputElement.getAttribute('max');
+        numberInput.step = inputElement.getAttribute('step');
         numberInput.value = inputElement.value;
 
         // Wrap the input in the wrapper
@@ -688,13 +707,13 @@
           const percent = (val - min) / (max - min) * 100;
 
           inputElement.style.setProperty('--value-percent', `${percent}%`);
-          numberInput.value = val;
+          numberInput.value = type === 'line-height' ? `${val}em` : val;
           inputElement.setAttribute('aria-valuenow', val);
         }
 
         inputElement.addEventListener('input', updateValue);
         numberInput.addEventListener('input', () => {
-          inputElement.value = numberInput.value;
+          inputElement.value = numberInput.value.replace('em', ''); // Remove the unit for calculation
           updateValue();
         });
 
@@ -705,6 +724,854 @@
   };
 
 
+
+// Drupal.behaviors.dxpr_themeSettingsControls = {
+  //   attach(context) {
+  //     if (once("dxpr-settings-controls", "html", context).length) {
+  //       this.init();
+  //       this.handleFields();
+  //     }
+  //   },
+  //   init() {
+  //     /**
+  //      * Bootstrap slider configuration.
+  //      */
+  //     // Opacity Sliders
+  //     const $opacitySliders = $(
+  //       "#edit-header-top-bg-opacity-scroll," +
+  //       "#edit-header-top-bg-opacity," +
+  //       "#edit-header-side-bg-opacity," +
+  //       "#edit-side-header-background-opacity," +
+  //       "#edit-page-title-image-opacity," +
+  //       "#edit-header-top-opacity," +
+  //       "#edit-header-top-opacity-scroll," +
+  //       "#edit-menu-full-screen-opacity"
+  //     );
+  //     $opacitySliders.each(function() {
+  //       const startValue = $(this).val();
+  //       $(this).bootstrapSlider({
+  //         step   : 0.01,
+  //         min    : 0,
+  //         max    : 1,
+  //         tooltip: "hide",
+  //         value  : parseFloat(startValue),
+  //       });
+  //     });
+  //
+  //     // Line Height Sliders
+  //     $(".line-height-slider").each(function() {
+  //       const startValue = $(this).val();
+  //       $(this).bootstrapSlider({
+  //         step   : 0.1,
+  //         min    : 0,
+  //         max    : 3,
+  //         tooltip: "hide",
+  //         formatter(value) {
+  //           return `${value}em`;
+  //         },
+  //         value: parseFloat(startValue),
+  //       });
+  //     });
+  //
+  //     // Border Size Sliders
+  //     $(".border-size-slider").each(function() {
+  //       const startValue = $(this).val();
+  //       $(this).bootstrapSlider({
+  //         step   : 1,
+  //         min    : 0,
+  //         max    : 30,
+  //         tooltip: "hide",
+  //         formatter(value) {
+  //           return `${value}px`;
+  //         },
+  //         value: parseFloat(startValue),
+  //       });
+  //     });
+  //
+  //     // Border Radius Sliders
+  //     $(".border-radius-slider").each(function() {
+  //       const startValue = $(this).val();
+  //       $(this).bootstrapSlider({
+  //         step   : 1,
+  //         min    : 0,
+  //         max    : 100,
+  //         tooltip: "hide",
+  //         formatter(value) {
+  //           return `${value}px`;
+  //         },
+  //         value: parseFloat(startValue),
+  //       });
+  //     });
+  //
+  //     let $input;
+  //
+  //     // Body Font Size
+  //     $input = $("#edit-body-font-size");
+  //     $input.bootstrapSlider({
+  //       step   : 1,
+  //       min    : 8,
+  //       max    : 30,
+  //       tooltip: "hide",
+  //       formatter(value) {
+  //         return `${value}px`;
+  //       },
+  //       value: parseFloat($input.val()),
+  //     });
+  //
+  //     // Nav Font Size
+  //     $input = $("#edit-nav-font-size");
+  //     $input.bootstrapSlider({
+  //       step   : 1,
+  //       min    : 8,
+  //       max    : 30,
+  //       tooltip: "hide",
+  //       formatter(value) {
+  //         return `${value}px`;
+  //       },
+  //       value: parseFloat($input.val()),
+  //     });
+  //
+  //     // Body Mobile Font Size
+  //     $input = $("#edit-body-mobile-font-size");
+  //     $input.bootstrapSlider({
+  //       step   : 1,
+  //       min    : 8,
+  //       max    : 30,
+  //       tooltip: "hide",
+  //       formatter(value) {
+  //         return `${value}px`;
+  //       },
+  //       value: parseFloat($input.val()),
+  //     });
+  //
+  //     // Nav Mobile Font Size
+  //     $input = $("#edit-nav-mobile-font-size");
+  //     $input.bootstrapSlider({
+  //       step   : 1,
+  //       min    : 8,
+  //       max    : 30,
+  //       tooltip: "hide",
+  //       formatter(value) {
+  //         return `${value}px`;
+  //       },
+  //       value: parseFloat($input.val()),
+  //     });
+  //
+  //     // Other Font Sizes
+  //     $(".font-size-slider").each(function() {
+  //       const startValue = $(this).val();
+  //       $(this).bootstrapSlider({
+  //         step   : 1,
+  //         min    : 8,
+  //         max    : 100,
+  //         tooltip: "hide",
+  //         formatter(value) {
+  //           return `${value}px`;
+  //         },
+  //         value: parseFloat(startValue),
+  //       });
+  //     });
+  //
+  //     // Scale Factor
+  //     $input = $("#edit-scale-factor");
+  //     $input.bootstrapSlider({
+  //       step   : 0.01,
+  //       min    : 1,
+  //       max    : 2,
+  //       tooltip: "hide",
+  //       value  : parseFloat($input.val()),
+  //     });
+  //
+  //     // Divider Thickness
+  //     $input = $("#edit-divider-thickness");
+  //     $input.bootstrapSlider({
+  //       step   : 1,
+  //       min    : 0,
+  //       max    : 20,
+  //       tooltip: "hide",
+  //       formatter(value) {
+  //         return `${value}px`;
+  //       },
+  //       value: parseFloat($input.val()),
+  //     });
+  //
+  //     // Divider Thickness
+  //     $input = $("#edit-block-divider-thickness");
+  //     $input.bootstrapSlider({
+  //       step   : 1,
+  //       min    : 0,
+  //       max    : 20,
+  //       tooltip: "hide",
+  //       formatter(value) {
+  //         return `${value}px`;
+  //       },
+  //       value: parseFloat($input.val()),
+  //     });
+  //
+  //     // Divider Length
+  //     $input = $("#edit-divider-length");
+  //     $input.bootstrapSlider({
+  //       step   : 10,
+  //       min    : 0,
+  //       max    : 500,
+  //       tooltip: "hide",
+  //       formatter(value) {
+  //         return `${value}px`;
+  //       },
+  //       value: parseFloat($input.val()),
+  //     });
+  //
+  //     // Divider Length
+  //     $input = $("#edit-block-divider-length");
+  //     $input.bootstrapSlider({
+  //       step   : 10,
+  //       min    : 0,
+  //       max    : 500,
+  //       tooltip: "hide",
+  //       formatter(value) {
+  //         return `${value}px`;
+  //       },
+  //       value: parseFloat($input.val()),
+  //     });
+  //
+  //     function formatPosition(pos) {
+  //       let label = Drupal.t("Left");
+  //       if (pos === 2) label = Drupal.t("Center");
+  //       if (pos === 3) label = Drupal.t("Right");
+  //       return label;
+  //     }
+  //
+  //     // Divider Position
+  //     $input = $("#edit-divider-position");
+  //     $input.bootstrapSlider({
+  //       step     : 1,
+  //       min      : 1,
+  //       max      : 3,
+  //       selection: "none",
+  //       tooltip  : "hide",
+  //       formatter: formatPosition,
+  //       value    : parseFloat($input.val()),
+  //     });
+  //
+  //     // Headings letter spacing
+  //     $input = $("#edit-headings-letter-spacing");
+  //     $input.bootstrapSlider({
+  //       step   : 0.01,
+  //       min    : -0.1,
+  //       max    : 0.3,
+  //       tooltip: "hide",
+  //       formatter(value) {
+  //         return `${value}em`;
+  //       },
+  //       value: parseFloat($input.val()),
+  //     });
+  //
+  //     // Block Design Divider Spacing
+  //     $input = $("#edit-block-divider-spacing");
+  //     $input.bootstrapSlider({
+  //       step   : 1,
+  //       min    : 0,
+  //       max    : 100,
+  //       tooltip: "hide",
+  //       formatter(value) {
+  //         return `${value}px`;
+  //       },
+  //       value: parseFloat($input.val()),
+  //     });
+  //
+  //     // Page Title height
+  //     $input = $("#edit-page-title-height");
+  //     $input.bootstrapSlider({
+  //       step   : 5,
+  //       min    : 50,
+  //       max    : 500,
+  //       tooltip: "hide",
+  //       formatter(value) {
+  //         return `${value}px`;
+  //       },
+  //       value: parseFloat($input.val()),
+  //     });
+  //
+  //     // Header height slider
+  //     $input = $("#edit-header-top-height");
+  //     $input.bootstrapSlider({
+  //       step   : 1,
+  //       min    : 10,
+  //       max    : 200,
+  //       tooltip: "hide",
+  //       formatter(value) {
+  //         return `${value}px`;
+  //       },
+  //       value: parseFloat($input.val()),
+  //     });
+  //
+  //     $input = $("#edit-logo-height");
+  //     $input.bootstrapSlider({
+  //       step   : 1,
+  //       min    : 10,
+  //       max    : 100,
+  //       tooltip: "hide",
+  //       formatter(value) {
+  //         return `${value}%`;
+  //       },
+  //       value: parseFloat($input.val()),
+  //     });
+  //
+  //     // Header Mobile Breakpoint slider
+  //     $input = $("#edit-header-mobile-breakpoint");
+  //     $input.bootstrapSlider({
+  //       step   : 10,
+  //       min    : 480,
+  //       max    : 4100,
+  //       tooltip: "hide",
+  //       formatter(value) {
+  //         return `${value}px`;
+  //       },
+  //       value: parseFloat($input.val()),
+  //     });
+  //
+  //     // Header Mobile height slider
+  //     $input = $("#edit-header-mobile-height");
+  //     $input.bootstrapSlider({
+  //       step   : 1,
+  //       min    : 10,
+  //       max    : 200,
+  //       tooltip: "hide",
+  //       formatter(value) {
+  //         return `${value}px`;
+  //       },
+  //       value: parseFloat($input.val()),
+  //     });
+  //
+  //     // Header after-scroll height slider
+  //     $input = $("#edit-header-top-height-scroll");
+  //     $input.bootstrapSlider({
+  //       step   : 1,
+  //       min    : 10,
+  //       max    : 200,
+  //       tooltip: "hide",
+  //       formatter(value) {
+  //         return `${value}px`;
+  //       },
+  //       value: parseFloat($input.val()),
+  //     });
+  //
+  //     // Sticky header scroll offset
+  //     $input = $("#edit-header-top-height-sticky-offset");
+  //     $input.bootstrapSlider({
+  //       step   : 10,
+  //       min    : 0,
+  //       max    : 2096,
+  //       tooltip: "hide",
+  //       formatter(value) {
+  //         return `${value}px`;
+  //       },
+  //       value: parseFloat($input.val()),
+  //     });
+  //
+  //     // Side Header after-scroll height slider
+  //     $input = $("#edit-header-side-width");
+  //     $input.bootstrapSlider({
+  //       step   : 5,
+  //       min    : 50,
+  //       max    : 500,
+  //       tooltip: "hide",
+  //       formatter(value) {
+  //         return `${value}px`;
+  //       },
+  //       value: parseFloat($input.val()),
+  //     });
+  //
+  //     $input = $("#edit-header-side-logo-height");
+  //     $input.bootstrapSlider({
+  //       step   : 1,
+  //       min    : 10,
+  //       max    : 500,
+  //       tooltip: "hide",
+  //       formatter(value) {
+  //         return `${value}px`;
+  //       },
+  //       value: parseFloat($input.val()),
+  //     });
+  //
+  //     // Main Menu Hover Border Thickness
+  //     $input = $("#edit-dropdown-width");
+  //     $input.bootstrapSlider({
+  //       step   : 5,
+  //       min    : 100,
+  //       max    : 400,
+  //       tooltip: "hide",
+  //       formatter(value) {
+  //         return `${value}px`;
+  //       },
+  //       value: parseFloat($input.val()),
+  //     });
+  //
+  //     // Main Menu Hover Border Thickness
+  //     $input = $("#edit-menu-border-size");
+  //     $input.bootstrapSlider({
+  //       step   : 1,
+  //       min    : 1,
+  //       max    : 20,
+  //       tooltip: "hide",
+  //       formatter(value) {
+  //         return `${value}px`;
+  //       },
+  //       value: parseFloat($input.val()),
+  //     });
+  //
+  //     // Main Menu Hover Border Position Offset
+  //     $input = $("#edit-menu-border-position-offset");
+  //     $input.bootstrapSlider({
+  //       step   : 1,
+  //       min    : 0,
+  //       max    : 100,
+  //       tooltip: "hide",
+  //       formatter(value) {
+  //         return `${value}px`;
+  //       },
+  //       value: parseFloat($input.val()),
+  //     });
+  //
+  //     // Main Menu Hover Border Position Offset Sticky
+  //     $input = $("#edit-menu-border-position-offset-sticky");
+  //     $input.bootstrapSlider({
+  //       step   : 1,
+  //       min    : 0,
+  //       max    : 100,
+  //       tooltip: "hide",
+  //       formatter(value) {
+  //         return `${value}px`;
+  //       },
+  //       value: parseFloat($input.val()),
+  //     });
+  //
+  //     // Layout max width
+  //     $input = $("#edit-layout-max-width");
+  //     $input.bootstrapSlider({
+  //       step   : 10,
+  //       min    : 480,
+  //       max    : 4100,
+  //       tooltip: "hide",
+  //       formatter(value) {
+  //         return `${value}px`;
+  //       },
+  //       value: parseFloat($input.val()),
+  //     });
+  //
+  //     // Box max width
+  //     $input = $("#edit-box-max-width");
+  //     $input.bootstrapSlider({
+  //       step   : 10,
+  //       min    : 480,
+  //       max    : 4100,
+  //       tooltip: "hide",
+  //       formatter(value) {
+  //         return `${value}px`;
+  //       },
+  //       value: parseFloat($input.val()),
+  //     });
+  //
+  //     // Layout Gutter Horizontal
+  //     $input = $("#edit-gutter-horizontal");
+  //     $input.bootstrapSlider({
+  //       step   : 1,
+  //       min    : 0,
+  //       max    : 100,
+  //       tooltip: "hide",
+  //       formatter(value) {
+  //         return `${value}px`;
+  //       },
+  //       value: parseFloat($input.val()),
+  //     });
+  //
+  //     // Layout Gutter Vertical
+  //     $input = $("#edit-gutter-vertical");
+  //     $input.bootstrapSlider({
+  //       step   : 1,
+  //       min    : 0,
+  //       max    : 100,
+  //       tooltip: "hide",
+  //       formatter(value) {
+  //         return `${value}px`;
+  //       },
+  //       value: parseFloat($input.val()),
+  //     });
+  //
+  //     // Layout Gutter Vertical
+  //     $input = $("#edit-gutter-container");
+  //     $input.bootstrapSlider({
+  //       step   : 1,
+  //       min    : 0,
+  //       max    : 500,
+  //       tooltip: "hide",
+  //       formatter(value) {
+  //         return `${value}px`;
+  //       },
+  //       value: parseFloat($input.val()),
+  //     });
+  //
+  //     // Layout Gutter Horizontal Mobile
+  //     $input = $("#edit-gutter-horizontal-mobile");
+  //     $input.bootstrapSlider({
+  //       step   : 1,
+  //       min    : 0,
+  //       max    : 100,
+  //       tooltip: "hide",
+  //       formatter(value) {
+  //         return `${value}px`;
+  //       },
+  //       value: parseFloat($input.val()),
+  //     });
+  //
+  //     // Layout Gutter Vertical Mobile
+  //     $input = $("#edit-gutter-vertical-mobile");
+  //     $input.bootstrapSlider({
+  //       step   : 1,
+  //       min    : 0,
+  //       max    : 100,
+  //       tooltip: "hide",
+  //       formatter(value) {
+  //         return `${value}px`;
+  //       },
+  //       value: parseFloat($input.val()),
+  //     });
+  //
+  //     // Layout Gutter Vertical
+  //     $input = $("#edit-gutter-container-mobile");
+  //     $input.bootstrapSlider({
+  //       step   : 1,
+  //       min    : 0,
+  //       max    : 500,
+  //       tooltip: "hide",
+  //       formatter(value) {
+  //         return `${value}px`;
+  //       },
+  //       value: parseFloat($input.val()),
+  //     });
+  //
+  //     // Reflow layout when showing a tab
+  //     // var $sliders = $('.slider + input');
+  //     // $sliders.each( function() {
+  //     //   $slider = $(this);
+  //     //   $('.vertical-tab-button').click(function() {
+  //     //     $slider.bootstrapSlider('relayout');
+  //     //   });
+  //     // });
+  //     $(".vertical-tab-button a").click(() => {
+  //       $(".slider + input").bootstrapSlider("relayout");
+  //     });
+  //     $('input[type="radio"]').change(() => {
+  //       $(".slider + input").bootstrapSlider("relayout");
+  //     });
+  //
+  //     // Typographic Scale Master Slider
+  //     $('#edit-scale-factor').change(function() {
+  //       const base   = $('#edit-body-font-size').val();
+  //       const factor = $(this).bootstrapSlider('getValue');
+  //
+  //       $('#edit-h1-font-size, #edit-h1-mobile-font-size').bootstrapSlider(
+  //         "setValue",
+  //         base * Math.pow(factor, 4),
+  //       ).change();
+  //
+  //       $('#edit-h2-font-size, #edit-h2-mobile-font-size').bootstrapSlider(
+  //         'setValue',
+  //         base * Math.pow(factor, 3),
+  //       ).change();
+  //
+  //       $('#edit-h3-font-size, #edit-h3-mobile-font-size').bootstrapSlider(
+  //         'setValue',
+  //         base * Math.pow(factor, 2),
+  //       ).change();
+  //
+  //       $('#edit-h4-font-size,' +
+  //         '#edit-h4-mobile-font-size,' +
+  //         '#edit-blockquote-font-size,' +
+  //         '#edit-blockquote-mobile-font-size'
+  //       ).bootstrapSlider(
+  //         'setValue',
+  //         base * factor,
+  //       ).change();
+  //     });
+  //   },
+  //   handleFields() {
+  //     const self = this;
+  //
+  //     // Add wrappers to sliders.
+  //     const textFields = document.querySelectorAll('.js-form-type-textfield');
+  //
+  //     textFields.forEach(textField => {
+  //       const divs = Array.from(textField.querySelectorAll('.slider-horizontal, .form-text:not(.dxpr_themeProcessed)'));
+  //
+  //       if (divs.length >= 2) {
+  //         for (let i = 0; i < divs.length; i += 2) {
+  //           const slice = divs.slice(i, i + 2);
+  //           const wrapper = document.createElement('div');
+  //           wrapper.classList.add('slider-input-wrapper');
+  //           slice.forEach(div => {
+  //             wrapper.appendChild(div);
+  //             div.classList.add('dxpr_themeProcessed');
+  //           });
+  //           textField.appendChild(wrapper);
+  //         }
+  //       }
+  //     });
+  //
+  //     document.addEventListener("change", handleDocumentEvents);
+  //     document.addEventListener("keyup", handleDocumentEvents);
+  //
+  //     // Add jQuery event handler for sliders.
+  //     document.querySelectorAll('.slider').forEach((el) => {
+  //       $(el).on('change', (e) => {
+  //         handleDocumentEvents(e);
+  //       });
+  //     });
+  //
+  //     /**
+  //      * Handle document changes.
+  //      */
+  //     function handleDocumentEvents(event) {
+  //       const el = event.target;
+  //       const id = el?.id ?? '';
+  //       const value = el?.value ?? '';
+  //       const elName = el?.name ?? '';
+  //
+  //       // Set Block Preset to Custom if any value is changed.
+  //       if (el.closest('#edit-block-advanced')) {
+  //         document.getElementById('edit-block-preset').value = "custom";
+  //       }
+  //
+  //       // Block Design Presets.
+  //       if (id === 'edit-block-preset') {
+  //         // Defaults.
+  //         const setDefaults = {
+  //           "block_border": 0,
+  //           "block_border_color": "",
+  //           "block_card": "",
+  //           "block_divider": false,
+  //           "block_divider_custom": false,
+  //           "block_divider_length": 0,
+  //           "block_divider_thickness": 0,
+  //           "block_divider_spacing": 0,
+  //           "block_padding": 0,
+  //           "title_align": "left",
+  //           "title_background": "",
+  //           "title_border": 0,
+  //           "title_border_color": "",
+  //           "title_border_radius": 0,
+  //           "title_card": "",
+  //           "title_font_size": "h3",
+  //           "title_padding": 0,
+  //
+  //         };
+  //
+  //         let set = {};
+  //         switch (value) {
+  //           case "block_boxed":
+  //             set = {
+  //               "block_border": 5,
+  //               "block_border_color": "text",
+  //               "block_padding": 15,
+  //             }
+  //             break;
+  //           case "block_outline":
+  //             set = {
+  //               "block_border": 1,
+  //               "block_border_color": "text",
+  //               "block_padding": 10,
+  //             }
+  //             break;
+  //           case "block_card":
+  //             set = {
+  //               "block_card": "card card-body",
+  //               "title_font_size": "h3",
+  //             };
+  //             break;
+  //           case "title_inverted":
+  //             set = {
+  //               "title_background": "text",
+  //               "title_card": "card card-body dxpr-theme-util-background-gray",
+  //               "title_font_size": "h3",
+  //               "title_padding": 10,
+  //             };
+  //             break;
+  //           case "title_inverted_shape":
+  //             set = {
+  //               "title_align": "center",
+  //               "title_background": "text",
+  //               "title_border_radius": 100,
+  //               "title_card": "card card-body dxpr-theme-util-background-gray",
+  //               "title_font_size": "h4",
+  //               "title_padding": 10,
+  //             };
+  //             break;
+  //           case "title_sticker":
+  //             set = {
+  //               "title_card": "card card-body dxpr-theme-util-background-gray",
+  //               "title_font_size": "body",
+  //               "title_padding": 10,
+  //             };
+  //             break;
+  //           case "title_sticker_color":
+  //             set = {
+  //               "title_card": "card card-body bg-primary",
+  //               "title_font_size": "body",
+  //               "title_padding": 10,
+  //             };
+  //             break;
+  //           case "title_outline":
+  //             set = {
+  //               "title_border": 1,
+  //               "title_border_color": "text",
+  //               "title_font_size": "h4",
+  //               "title_padding": 15,
+  //             };
+  //             break;
+  //           case "default_divider":
+  //             set = {
+  //               "block_divider": true,
+  //               "block_divider_thickness": 4,
+  //               "block_divider_spacing": 15,
+  //             }
+  //             break;
+  //           case "hairline_divider":
+  //             set = {
+  //               "block_divider": true,
+  //               "block_divider_thickness": 1,
+  //               "block_divider_spacing": 15,
+  //             };
+  //             break;
+  //         }
+  //
+  //         // Add missing properties.
+  //         for (let key in setDefaults) {
+  //           if (!(key in set)) {
+  //             set[key] = setDefaults[key];
+  //           }
+  //         }
+  //
+  //         Object.keys(set).forEach((key) => {
+  //           self.setFieldValue(key, set[key]);
+  //         });
+  //       }
+  //
+  //       const presetClassesRemove = [
+  //         'card', 'card-body', 'bg-primary',
+  //         'dxpr-theme-util-background-accent1',
+  //         'dxpr-theme-util-background-accent2',
+  //         'dxpr-theme-util-background-black',
+  //         'dxpr-theme-util-background-white',
+  //         'dxpr-theme-util-background-gray'
+  //       ];
+  //
+  //       // Block Card Style.
+  //       if (id === 'edit-block-card' || id === 'edit-title-card') {
+  //         const presetClasses = value.trim().split(/\s+/);
+  //         const target = (id === 'edit-title-card') ? '.block-title' : '.block';
+  //
+  //         document.querySelectorAll('.region-block-design ' + target).forEach(block => {
+  //           block.classList.remove(...presetClassesRemove);
+  //           block.classList.add(...presetClasses.filter(className => className !== ''));
+  //         });
+  //       }
+  //
+  //       // Block Regions.
+  //       if (elName.startsWith('block_design_regions[')) {
+  //         let blockDesignClass = 'region-block-design';
+  //         let regionClass = '.region-' + value.replace('_', '-');
+  //         let elRegion = document.querySelector(regionClass);
+  //         if (!elRegion) return;
+  //
+  //         if (el.checked) {
+  //           elRegion.classList.add(blockDesignClass);
+  //
+  //           // Trigger the change event for block and block title card so that
+  //           // classes gets reapplied.
+  //           const elements = document.querySelectorAll('#edit-block-card, #edit-title-card');
+  //           const changeEvent = new Event('change', {
+  //             bubbles: true,
+  //             cancelable: true,
+  //           });
+  //           elements.forEach(el => {
+  //             el.dispatchEvent(changeEvent);
+  //           });
+  //         }
+  //         else {
+  //           elRegion.classList.remove(blockDesignClass);
+  //
+  //           // Remove all applied block and block title classes.
+  //           let selectors = regionClass + ' .block,' + regionClass + ' .block-title';
+  //           document.querySelectorAll(selectors).forEach(block => {
+  //             block.classList.remove(...presetClassesRemove);
+  //           });
+  //         }
+  //       }
+  //
+  //       // Title Sticker Mode.
+  //       if (id === 'edit-title-sticker') {
+  //         const blockTitles = document.querySelectorAll('.region-block-design .block-title');
+  //
+  //         blockTitles.forEach(title => {
+  //           title.style.display = el.checked ? 'inline-block' : '';
+  //         });
+  //       }
+  //
+  //       // Remove CSS vars for Block divider if not in use.
+  //       if (id === 'edit-block-divider' || id === 'edit-block-divider-custom') {
+  //         if (!el.checked) {
+  //           [
+  //             'block_divider_color',
+  //             'block_divider_thickness',
+  //             'block_divider_length',
+  //             'block_divider_spacing',
+  //           ].forEach((key) => {
+  //             const cssVarName = key.replace(/[\[_]/g, '-');
+  //             document.documentElement.style.removeProperty(cssVarSettingsPrefix + cssVarName);
+  //           });
+  //         }
+  //
+  //         // Set default divider values.
+  //         if (id === 'edit-block-divider' && el.checked) {
+  //           let set = {
+  //             "block_divider_length": 0,
+  //             "block_divider_thickness": 4,
+  //             "block_divider_spacing": 15,
+  //           }
+  //           Object.keys(set).forEach((key) => {
+  //             self.setFieldValue(key, set[key]);
+  //           });
+  //         }
+  //       }
+  //     }
+  //
+  //   },
+  //   /**
+  //    * Update field value.
+  //    * Use jQuery due to bootstrapSlider compat.
+  //    */
+  //   setFieldValue(key, value) {
+  //     const field = `[name="${key}"]`;
+  //     let newVal  = value;
+  //
+  //     if ($(field).parent().is('.slider-input-wrapper')) {
+  //       $(field).bootstrapSlider('setValue', newVal).trigger('change');
+  //     }
+  //     else {
+  //       if ($(field).is(':checkbox')) {
+  //         $(field).prop('checked', newVal).trigger('change');
+  //       }
+  //       else if ($(field).is(':radio')) {
+  //         $(field).filter(`[value='${newVal}']`)
+  //           .prop('checked', true)
+  //           .trigger('change');
+  //       }
+  //       else {
+  //         $(field).val(newVal).trigger('change');
+  //       }
+  //     }
+  //   },
+  // };
 
 
 
