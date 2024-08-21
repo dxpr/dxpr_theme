@@ -620,7 +620,7 @@
   /* eslint-disable */
   Drupal.behaviors.dxpr_themeSettingsControls = {
     attach: function (context, settings) {
-      // Selektiranje svih ciljnih inputa jednom po učitavanju stranice.
+      // Select all target inputs once when the page loads.
       once('dxpr-settings-controls', 'html', context).forEach(function () {
         const opacitySelectors = [
           "#edit-header-top-bg-opacity-scroll",
@@ -642,14 +642,14 @@
       });
 
       function transformToDXBSlider(inputElement) {
-        // Kreiranje wrappera
+        // Create wrapper
         const wrapper = document.createElement('div');
         wrapper.classList.add('dxb-slider-wrapper');
 
         const track = document.createElement('div');
         track.classList.add('dxb-slider-track');
 
-        // Postavljanje atributa na input
+        // Set attributes on the input
         inputElement.type = 'range';
         inputElement.classList.add('dxb-slider');
         inputElement.setAttribute('data-dxb-slider', '');
@@ -661,7 +661,7 @@
         inputElement.setAttribute('aria-valuemax', '1');
         inputElement.setAttribute('aria-valuenow', inputElement.value);
 
-        // Kreiranje inputa za brojčanu vrijednost
+        // Create number input for displaying value
         const numberInput = document.createElement('input');
         numberInput.type = 'number';
         numberInput.className = 'dxb-slider-value';
@@ -674,18 +674,19 @@
         numberInput.step = '0.01';
         numberInput.value = inputElement.value;
 
-        // Omotavanje inputa u wrapper
+        // Wrap the input in the wrapper
         inputElement.parentNode.insertBefore(wrapper, inputElement);
         wrapper.appendChild(track);
         track.appendChild(inputElement);
         wrapper.appendChild(numberInput);
 
-        // Funkcija za ažuriranje vrijednosti
+        // Function to update values
         function updateValue() {
           const val = inputElement.value;
           const min = inputElement.min;
           const max = inputElement.max;
           const percent = (val - min) / (max - min) * 100;
+
           inputElement.style.setProperty('--value-percent', `${percent}%`);
           numberInput.value = val;
           inputElement.setAttribute('aria-valuenow', val);
@@ -697,11 +698,15 @@
           updateValue();
         });
 
-        // Inicijalno postavljanje vrijednosti
+        // Set the initial value
         updateValue();
       }
     }
   };
+
+
+
+
 
 
   /**
