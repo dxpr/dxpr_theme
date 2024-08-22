@@ -1107,7 +1107,7 @@
         updateValue();
       }
     }
-  };
+
 
 
   //     // Reflow layout when showing a tab
@@ -1433,7 +1433,7 @@
   //   },
   // };
 
-
+  };
 
 
   /**
