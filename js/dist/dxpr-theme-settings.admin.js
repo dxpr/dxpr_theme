@@ -1,4 +1,4 @@
-(function (Drupal, once) {
+(function ($, Drupal, once) {
   /* global ReinventedColorWheel */
 
   "use strict";
@@ -1106,334 +1106,350 @@
         // Set the initial value
         updateValue();
       }
+
+      // Reflow layout when showing a tab
+      // var $sliders = $('.slider + input');
+      // $sliders.each( function() {
+      //   $slider = $(this);
+      //   $('.vertical-tab-button').click(function() {
+      //     $slider.bootstrapSlider('relayout');
+      //   });
+      // });
+      // $(".vertical-tab-button a").click(() => {
+      //   $(".slider + input").bootstrapSlider("relayout");
+      // });
+      // Function to relayout the slider
+      function relayoutSlider(sliderElement) {
+        // Reset value and style
+        const val = parseFloat(sliderElement.value).toFixed(2);
+        const min = parseFloat(sliderElement.min);
+        const max = parseFloat(sliderElement.max);
+        const percent = ((val - min) / (max - min)) * 100;
+
+        sliderElement.style.setProperty('--value-percent', `${percent}%`);
+        sliderElement.setAttribute('aria-valuenow', val);
+      }
+
+      // Event listener for radio button change
+      document.querySelectorAll('input[type="radio"]').forEach(radioInput => {
+        radioInput.addEventListener('change', () => {
+          // Find all sliders that need a relayout
+          document.querySelectorAll('.dxb-slider').forEach(sliderElement => {
+            relayoutSlider(sliderElement);
+          });
+        });
+      });
+
+
+      // Typographic Scale Master Slider
+      $('#edit-scale-factor').change(function() {
+        const base   = $('#edit-body-font-size').val();
+        const factor = $(this).bootstrapSlider('getValue');
+
+        $('#edit-h1-font-size, #edit-h1-mobile-font-size').bootstrapSlider(
+          "setValue",
+          base * Math.pow(factor, 4),
+        ).change();
+
+        $('#edit-h2-font-size, #edit-h2-mobile-font-size').bootstrapSlider(
+          'setValue',
+          base * Math.pow(factor, 3),
+        ).change();
+
+        $('#edit-h3-font-size, #edit-h3-mobile-font-size').bootstrapSlider(
+          'setValue',
+          base * Math.pow(factor, 2),
+        ).change();
+
+        $('#edit-h4-font-size,' +
+          '#edit-h4-mobile-font-size,' +
+          '#edit-blockquote-font-size,' +
+          '#edit-blockquote-mobile-font-size'
+        ).bootstrapSlider(
+          'setValue',
+          base * factor,
+        ).change();
+      });
+    },
+    handleFields() {
+      const self = this;
+
+      // Add wrappers to sliders.
+      const textFields = document.querySelectorAll('.js-form-type-textfield');
+
+      textFields.forEach(textField => {
+        const divs = Array.from(textField.querySelectorAll('.slider-horizontal, .form-text:not(.dxpr_themeProcessed)'));
+
+        if (divs.length >= 2) {
+          for (let i = 0; i < divs.length; i += 2) {
+            const slice = divs.slice(i, i + 2);
+            const wrapper = document.createElement('div');
+            wrapper.classList.add('slider-input-wrapper');
+            slice.forEach(div => {
+              wrapper.appendChild(div);
+              div.classList.add('dxpr_themeProcessed');
+            });
+            textField.appendChild(wrapper);
+          }
+        }
+      });
+
+      document.addEventListener("change", handleDocumentEvents);
+      document.addEventListener("keyup", handleDocumentEvents);
+
+      // Add jQuery event handler for sliders.
+      document.querySelectorAll('.slider').forEach((el) => {
+        $(el).on('change', (e) => {
+          handleDocumentEvents(e);
+        });
+      });
+
+      /**
+       * Handle document changes.
+       */
+      function handleDocumentEvents(event) {
+        const el = event.target;
+        const id = el?.id ?? '';
+        const value = el?.value ?? '';
+        const elName = el?.name ?? '';
+
+        // Set Block Preset to Custom if any value is changed.
+        if (el.closest('#edit-block-advanced')) {
+          document.getElementById('edit-block-preset').value = "custom";
+        }
+
+        // Block Design Presets.
+        if (id === 'edit-block-preset') {
+          // Defaults.
+          const setDefaults = {
+            "block_border": 0,
+            "block_border_color": "",
+            "block_card": "",
+            "block_divider": false,
+            "block_divider_custom": false,
+            "block_divider_length": 0,
+            "block_divider_thickness": 0,
+            "block_divider_spacing": 0,
+            "block_padding": 0,
+            "title_align": "left",
+            "title_background": "",
+            "title_border": 0,
+            "title_border_color": "",
+            "title_border_radius": 0,
+            "title_card": "",
+            "title_font_size": "h3",
+            "title_padding": 0,
+
+          };
+
+          let set = {};
+          switch (value) {
+            case "block_boxed":
+              set = {
+                "block_border": 5,
+                "block_border_color": "text",
+                "block_padding": 15,
+              }
+              break;
+            case "block_outline":
+              set = {
+                "block_border": 1,
+                "block_border_color": "text",
+                "block_padding": 10,
+              }
+              break;
+            case "block_card":
+              set = {
+                "block_card": "card card-body",
+                "title_font_size": "h3",
+              };
+              break;
+            case "title_inverted":
+              set = {
+                "title_background": "text",
+                "title_card": "card card-body dxpr-theme-util-background-gray",
+                "title_font_size": "h3",
+                "title_padding": 10,
+              };
+              break;
+            case "title_inverted_shape":
+              set = {
+                "title_align": "center",
+                "title_background": "text",
+                "title_border_radius": 100,
+                "title_card": "card card-body dxpr-theme-util-background-gray",
+                "title_font_size": "h4",
+                "title_padding": 10,
+              };
+              break;
+            case "title_sticker":
+              set = {
+                "title_card": "card card-body dxpr-theme-util-background-gray",
+                "title_font_size": "body",
+                "title_padding": 10,
+              };
+              break;
+            case "title_sticker_color":
+              set = {
+                "title_card": "card card-body bg-primary",
+                "title_font_size": "body",
+                "title_padding": 10,
+              };
+              break;
+            case "title_outline":
+              set = {
+                "title_border": 1,
+                "title_border_color": "text",
+                "title_font_size": "h4",
+                "title_padding": 15,
+              };
+              break;
+            case "default_divider":
+              set = {
+                "block_divider": true,
+                "block_divider_thickness": 4,
+                "block_divider_spacing": 15,
+              }
+              break;
+            case "hairline_divider":
+              set = {
+                "block_divider": true,
+                "block_divider_thickness": 1,
+                "block_divider_spacing": 15,
+              };
+              break;
+          }
+
+          // Add missing properties.
+          for (let key in setDefaults) {
+            if (!(key in set)) {
+              set[key] = setDefaults[key];
+            }
+          }
+
+          Object.keys(set).forEach((key) => {
+            self.setFieldValue(key, set[key]);
+          });
+        }
+
+        const presetClassesRemove = [
+          'card', 'card-body', 'bg-primary',
+          'dxpr-theme-util-background-accent1',
+          'dxpr-theme-util-background-accent2',
+          'dxpr-theme-util-background-black',
+          'dxpr-theme-util-background-white',
+          'dxpr-theme-util-background-gray'
+        ];
+
+        // Block Card Style.
+        if (id === 'edit-block-card' || id === 'edit-title-card') {
+          const presetClasses = value.trim().split(/\s+/);
+          const target = (id === 'edit-title-card') ? '.block-title' : '.block';
+
+          document.querySelectorAll('.region-block-design ' + target).forEach(block => {
+            block.classList.remove(...presetClassesRemove);
+            block.classList.add(...presetClasses.filter(className => className !== ''));
+          });
+        }
+
+        // Block Regions.
+        if (elName.startsWith('block_design_regions[')) {
+          let blockDesignClass = 'region-block-design';
+          let regionClass = '.region-' + value.replace('_', '-');
+          let elRegion = document.querySelector(regionClass);
+          if (!elRegion) return;
+
+          if (el.checked) {
+            elRegion.classList.add(blockDesignClass);
+
+            // Trigger the change event for block and block title card so that
+            // classes gets reapplied.
+            const elements = document.querySelectorAll('#edit-block-card, #edit-title-card');
+            const changeEvent = new Event('change', {
+              bubbles: true,
+              cancelable: true,
+            });
+            elements.forEach(el => {
+              el.dispatchEvent(changeEvent);
+            });
+          }
+          else {
+            elRegion.classList.remove(blockDesignClass);
+
+            // Remove all applied block and block title classes.
+            let selectors = regionClass + ' .block,' + regionClass + ' .block-title';
+            document.querySelectorAll(selectors).forEach(block => {
+              block.classList.remove(...presetClassesRemove);
+            });
+          }
+        }
+
+        // Title Sticker Mode.
+        if (id === 'edit-title-sticker') {
+          const blockTitles = document.querySelectorAll('.region-block-design .block-title');
+
+          blockTitles.forEach(title => {
+            title.style.display = el.checked ? 'inline-block' : '';
+          });
+        }
+
+        // Remove CSS vars for Block divider if not in use.
+        if (id === 'edit-block-divider' || id === 'edit-block-divider-custom') {
+          if (!el.checked) {
+            [
+              'block_divider_color',
+              'block_divider_thickness',
+              'block_divider_length',
+              'block_divider_spacing',
+            ].forEach((key) => {
+              const cssVarName = key.replace(/[\[_]/g, '-');
+              document.documentElement.style.removeProperty(cssVarSettingsPrefix + cssVarName);
+            });
+          }
+
+          // Set default divider values.
+          if (id === 'edit-block-divider' && el.checked) {
+            let set = {
+              "block_divider_length": 0,
+              "block_divider_thickness": 4,
+              "block_divider_spacing": 15,
+            }
+            Object.keys(set).forEach((key) => {
+              self.setFieldValue(key, set[key]);
+            });
+          }
+        }
+      }
+
+    },
+    /**
+     * Update field value.
+     * Use jQuery due to bootstrapSlider compat.
+     */
+    setFieldValue(key, value) {
+      const field = `[name="${key}"]`;
+      let newVal  = value;
+
+      if ($(field).parent().is('.slider-input-wrapper')) {
+        $(field).bootstrapSlider('setValue', newVal).trigger('change');
+      }
+      else {
+        if ($(field).is(':checkbox')) {
+          $(field).prop('checked', newVal).trigger('change');
+        }
+        else if ($(field).is(':radio')) {
+          $(field).filter(`[value='${newVal}']`)
+            .prop('checked', true)
+            .trigger('change');
+        }
+        else {
+          $(field).val(newVal).trigger('change');
+        }
+      }
     }
-
-
-
-  //     // Reflow layout when showing a tab
-  //     // var $sliders = $('.slider + input');
-  //     // $sliders.each( function() {
-  //     //   $slider = $(this);
-  //     //   $('.vertical-tab-button').click(function() {
-  //     //     $slider.bootstrapSlider('relayout');
-  //     //   });
-  //     // });
-  //     $(".vertical-tab-button a").click(() => {
-  //       $(".slider + input").bootstrapSlider("relayout");
-  //     });
-  //     $('input[type="radio"]').change(() => {
-  //       $(".slider + input").bootstrapSlider("relayout");
-  //     });
-  //
-  //     // Typographic Scale Master Slider
-  //     $('#edit-scale-factor').change(function() {
-  //       const base   = $('#edit-body-font-size').val();
-  //       const factor = $(this).bootstrapSlider('getValue');
-  //
-  //       $('#edit-h1-font-size, #edit-h1-mobile-font-size').bootstrapSlider(
-  //         "setValue",
-  //         base * Math.pow(factor, 4),
-  //       ).change();
-  //
-  //       $('#edit-h2-font-size, #edit-h2-mobile-font-size').bootstrapSlider(
-  //         'setValue',
-  //         base * Math.pow(factor, 3),
-  //       ).change();
-  //
-  //       $('#edit-h3-font-size, #edit-h3-mobile-font-size').bootstrapSlider(
-  //         'setValue',
-  //         base * Math.pow(factor, 2),
-  //       ).change();
-  //
-  //       $('#edit-h4-font-size,' +
-  //         '#edit-h4-mobile-font-size,' +
-  //         '#edit-blockquote-font-size,' +
-  //         '#edit-blockquote-mobile-font-size'
-  //       ).bootstrapSlider(
-  //         'setValue',
-  //         base * factor,
-  //       ).change();
-  //     });
-  //   },
-  //   handleFields() {
-  //     const self = this;
-  //
-  //     // Add wrappers to sliders.
-  //     const textFields = document.querySelectorAll('.js-form-type-textfield');
-  //
-  //     textFields.forEach(textField => {
-  //       const divs = Array.from(textField.querySelectorAll('.slider-horizontal, .form-text:not(.dxpr_themeProcessed)'));
-  //
-  //       if (divs.length >= 2) {
-  //         for (let i = 0; i < divs.length; i += 2) {
-  //           const slice = divs.slice(i, i + 2);
-  //           const wrapper = document.createElement('div');
-  //           wrapper.classList.add('slider-input-wrapper');
-  //           slice.forEach(div => {
-  //             wrapper.appendChild(div);
-  //             div.classList.add('dxpr_themeProcessed');
-  //           });
-  //           textField.appendChild(wrapper);
-  //         }
-  //       }
-  //     });
-  //
-  //     document.addEventListener("change", handleDocumentEvents);
-  //     document.addEventListener("keyup", handleDocumentEvents);
-  //
-  //     // Add jQuery event handler for sliders.
-  //     document.querySelectorAll('.slider').forEach((el) => {
-  //       $(el).on('change', (e) => {
-  //         handleDocumentEvents(e);
-  //       });
-  //     });
-  //
-  //     /**
-  //      * Handle document changes.
-  //      */
-  //     function handleDocumentEvents(event) {
-  //       const el = event.target;
-  //       const id = el?.id ?? '';
-  //       const value = el?.value ?? '';
-  //       const elName = el?.name ?? '';
-  //
-  //       // Set Block Preset to Custom if any value is changed.
-  //       if (el.closest('#edit-block-advanced')) {
-  //         document.getElementById('edit-block-preset').value = "custom";
-  //       }
-  //
-  //       // Block Design Presets.
-  //       if (id === 'edit-block-preset') {
-  //         // Defaults.
-  //         const setDefaults = {
-  //           "block_border": 0,
-  //           "block_border_color": "",
-  //           "block_card": "",
-  //           "block_divider": false,
-  //           "block_divider_custom": false,
-  //           "block_divider_length": 0,
-  //           "block_divider_thickness": 0,
-  //           "block_divider_spacing": 0,
-  //           "block_padding": 0,
-  //           "title_align": "left",
-  //           "title_background": "",
-  //           "title_border": 0,
-  //           "title_border_color": "",
-  //           "title_border_radius": 0,
-  //           "title_card": "",
-  //           "title_font_size": "h3",
-  //           "title_padding": 0,
-  //
-  //         };
-  //
-  //         let set = {};
-  //         switch (value) {
-  //           case "block_boxed":
-  //             set = {
-  //               "block_border": 5,
-  //               "block_border_color": "text",
-  //               "block_padding": 15,
-  //             }
-  //             break;
-  //           case "block_outline":
-  //             set = {
-  //               "block_border": 1,
-  //               "block_border_color": "text",
-  //               "block_padding": 10,
-  //             }
-  //             break;
-  //           case "block_card":
-  //             set = {
-  //               "block_card": "card card-body",
-  //               "title_font_size": "h3",
-  //             };
-  //             break;
-  //           case "title_inverted":
-  //             set = {
-  //               "title_background": "text",
-  //               "title_card": "card card-body dxpr-theme-util-background-gray",
-  //               "title_font_size": "h3",
-  //               "title_padding": 10,
-  //             };
-  //             break;
-  //           case "title_inverted_shape":
-  //             set = {
-  //               "title_align": "center",
-  //               "title_background": "text",
-  //               "title_border_radius": 100,
-  //               "title_card": "card card-body dxpr-theme-util-background-gray",
-  //               "title_font_size": "h4",
-  //               "title_padding": 10,
-  //             };
-  //             break;
-  //           case "title_sticker":
-  //             set = {
-  //               "title_card": "card card-body dxpr-theme-util-background-gray",
-  //               "title_font_size": "body",
-  //               "title_padding": 10,
-  //             };
-  //             break;
-  //           case "title_sticker_color":
-  //             set = {
-  //               "title_card": "card card-body bg-primary",
-  //               "title_font_size": "body",
-  //               "title_padding": 10,
-  //             };
-  //             break;
-  //           case "title_outline":
-  //             set = {
-  //               "title_border": 1,
-  //               "title_border_color": "text",
-  //               "title_font_size": "h4",
-  //               "title_padding": 15,
-  //             };
-  //             break;
-  //           case "default_divider":
-  //             set = {
-  //               "block_divider": true,
-  //               "block_divider_thickness": 4,
-  //               "block_divider_spacing": 15,
-  //             }
-  //             break;
-  //           case "hairline_divider":
-  //             set = {
-  //               "block_divider": true,
-  //               "block_divider_thickness": 1,
-  //               "block_divider_spacing": 15,
-  //             };
-  //             break;
-  //         }
-  //
-  //         // Add missing properties.
-  //         for (let key in setDefaults) {
-  //           if (!(key in set)) {
-  //             set[key] = setDefaults[key];
-  //           }
-  //         }
-  //
-  //         Object.keys(set).forEach((key) => {
-  //           self.setFieldValue(key, set[key]);
-  //         });
-  //       }
-  //
-  //       const presetClassesRemove = [
-  //         'card', 'card-body', 'bg-primary',
-  //         'dxpr-theme-util-background-accent1',
-  //         'dxpr-theme-util-background-accent2',
-  //         'dxpr-theme-util-background-black',
-  //         'dxpr-theme-util-background-white',
-  //         'dxpr-theme-util-background-gray'
-  //       ];
-  //
-  //       // Block Card Style.
-  //       if (id === 'edit-block-card' || id === 'edit-title-card') {
-  //         const presetClasses = value.trim().split(/\s+/);
-  //         const target = (id === 'edit-title-card') ? '.block-title' : '.block';
-  //
-  //         document.querySelectorAll('.region-block-design ' + target).forEach(block => {
-  //           block.classList.remove(...presetClassesRemove);
-  //           block.classList.add(...presetClasses.filter(className => className !== ''));
-  //         });
-  //       }
-  //
-  //       // Block Regions.
-  //       if (elName.startsWith('block_design_regions[')) {
-  //         let blockDesignClass = 'region-block-design';
-  //         let regionClass = '.region-' + value.replace('_', '-');
-  //         let elRegion = document.querySelector(regionClass);
-  //         if (!elRegion) return;
-  //
-  //         if (el.checked) {
-  //           elRegion.classList.add(blockDesignClass);
-  //
-  //           // Trigger the change event for block and block title card so that
-  //           // classes gets reapplied.
-  //           const elements = document.querySelectorAll('#edit-block-card, #edit-title-card');
-  //           const changeEvent = new Event('change', {
-  //             bubbles: true,
-  //             cancelable: true,
-  //           });
-  //           elements.forEach(el => {
-  //             el.dispatchEvent(changeEvent);
-  //           });
-  //         }
-  //         else {
-  //           elRegion.classList.remove(blockDesignClass);
-  //
-  //           // Remove all applied block and block title classes.
-  //           let selectors = regionClass + ' .block,' + regionClass + ' .block-title';
-  //           document.querySelectorAll(selectors).forEach(block => {
-  //             block.classList.remove(...presetClassesRemove);
-  //           });
-  //         }
-  //       }
-  //
-  //       // Title Sticker Mode.
-  //       if (id === 'edit-title-sticker') {
-  //         const blockTitles = document.querySelectorAll('.region-block-design .block-title');
-  //
-  //         blockTitles.forEach(title => {
-  //           title.style.display = el.checked ? 'inline-block' : '';
-  //         });
-  //       }
-  //
-  //       // Remove CSS vars for Block divider if not in use.
-  //       if (id === 'edit-block-divider' || id === 'edit-block-divider-custom') {
-  //         if (!el.checked) {
-  //           [
-  //             'block_divider_color',
-  //             'block_divider_thickness',
-  //             'block_divider_length',
-  //             'block_divider_spacing',
-  //           ].forEach((key) => {
-  //             const cssVarName = key.replace(/[\[_]/g, '-');
-  //             document.documentElement.style.removeProperty(cssVarSettingsPrefix + cssVarName);
-  //           });
-  //         }
-  //
-  //         // Set default divider values.
-  //         if (id === 'edit-block-divider' && el.checked) {
-  //           let set = {
-  //             "block_divider_length": 0,
-  //             "block_divider_thickness": 4,
-  //             "block_divider_spacing": 15,
-  //           }
-  //           Object.keys(set).forEach((key) => {
-  //             self.setFieldValue(key, set[key]);
-  //           });
-  //         }
-  //       }
-  //     }
-  //
-  //   },
-  //   /**
-  //    * Update field value.
-  //    * Use jQuery due to bootstrapSlider compat.
-  //    */
-  //   setFieldValue(key, value) {
-  //     const field = `[name="${key}"]`;
-  //     let newVal  = value;
-  //
-  //     if ($(field).parent().is('.slider-input-wrapper')) {
-  //       $(field).bootstrapSlider('setValue', newVal).trigger('change');
-  //     }
-  //     else {
-  //       if ($(field).is(':checkbox')) {
-  //         $(field).prop('checked', newVal).trigger('change');
-  //       }
-  //       else if ($(field).is(':radio')) {
-  //         $(field).filter(`[value='${newVal}']`)
-  //           .prop('checked', true)
-  //           .trigger('change');
-  //       }
-  //       else {
-  //         $(field).val(newVal).trigger('change');
-  //       }
-  //     }
-  //   },
   // };
-
-  };
+  //
+  // };
 
 
   /**
@@ -1544,4 +1560,5 @@
   //     });
   //   }
   // };
-})(Drupal, once);
+  };
+})(jQuery, Drupal, once);
