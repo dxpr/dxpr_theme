@@ -1,4 +1,4 @@
-(function ($, Drupal, once) {
+(function (Drupal, once) {
   /* global ReinventedColorWheel */
 
   "use strict";
@@ -1118,6 +1118,7 @@
       // $(".vertical-tab-button a").click(() => {
       //   $(".slider + input").bootstrapSlider("relayout");
       // });
+
       // Function to relayout the slider
       function relayoutSlider(sliderElement) {
         // Reset value and style
@@ -1141,65 +1142,54 @@
       });
 
 
-      // Typographic Scale Master Slider
-      $('#edit-scale-factor').change(function() {
-        const base   = $('#edit-body-font-size').val();
-        const factor = $(this).bootstrapSlider('getValue');
+// Typographic Scale Master Slider
+      document.querySelector('#edit-scale-factor').addEventListener('change', function() {
+        const base = parseFloat(document.querySelector('#edit-body-font-size').value);
+        const factor = parseFloat(this.value); // Get value from the scale factor slider
 
-        $('#edit-h1-font-size, #edit-h1-mobile-font-size').bootstrapSlider(
-          "setValue",
-          base * Math.pow(factor, 4),
-        ).change();
+        function setFontSize(selector, exponent) {
+          document.querySelectorAll(selector).forEach(input => {
+            const newValue = base * Math.pow(factor, exponent);
+            input.value = newValue.toFixed(2); // Set new font size value
+            input.dispatchEvent(new Event('input')); // Trigger change event
+          });
+        }
 
-        $('#edit-h2-font-size, #edit-h2-mobile-font-size').bootstrapSlider(
-          'setValue',
-          base * Math.pow(factor, 3),
-        ).change();
-
-        $('#edit-h3-font-size, #edit-h3-mobile-font-size').bootstrapSlider(
-          'setValue',
-          base * Math.pow(factor, 2),
-        ).change();
-
-        $('#edit-h4-font-size,' +
-          '#edit-h4-mobile-font-size,' +
-          '#edit-blockquote-font-size,' +
-          '#edit-blockquote-mobile-font-size'
-        ).bootstrapSlider(
-          'setValue',
-          base * factor,
-        ).change();
+        setFontSize('#edit-h1-font-size, #edit-h1-mobile-font-size', 4);
+        setFontSize('#edit-h2-font-size, #edit-h2-mobile-font-size', 3);
+        setFontSize('#edit-h3-font-size, #edit-h3-mobile-font-size', 2);
+        setFontSize('#edit-h4-font-size, #edit-h4-mobile-font-size, #edit-blockquote-font-size, #edit-blockquote-mobile-font-size', 1);
       });
     },
     handleFields() {
       const self = this;
 
-      // Add wrappers to sliders.
-      const textFields = document.querySelectorAll('.js-form-type-textfield');
-
-      textFields.forEach(textField => {
-        const divs = Array.from(textField.querySelectorAll('.slider-horizontal, .form-text:not(.dxpr_themeProcessed)'));
-
-        if (divs.length >= 2) {
-          for (let i = 0; i < divs.length; i += 2) {
-            const slice = divs.slice(i, i + 2);
-            const wrapper = document.createElement('div');
-            wrapper.classList.add('slider-input-wrapper');
-            slice.forEach(div => {
-              wrapper.appendChild(div);
-              div.classList.add('dxpr_themeProcessed');
-            });
-            textField.appendChild(wrapper);
-          }
-        }
-      });
+      // // Add wrappers to sliders.
+      // const textFields = document.querySelectorAll('.js-form-type-textfield');
+      //
+      // textFields.forEach(textField => {
+      //   const divs = Array.from(textField.querySelectorAll('.slider-horizontal, .form-text:not(.dxpr_themeProcessed)'));
+      //
+      //   if (divs.length >= 2) {
+      //     for (let i = 0; i < divs.length; i += 2) {
+      //       const slice = divs.slice(i, i + 2);
+      //       const wrapper = document.createElement('div');
+      //       wrapper.classList.add('slider-input-wrapper');
+      //       slice.forEach(div => {
+      //         wrapper.appendChild(div);
+      //         div.classList.add('dxpr_themeProcessed');
+      //       });
+      //       textField.appendChild(wrapper);
+      //     }
+      //   }
+      // });
 
       document.addEventListener("change", handleDocumentEvents);
       document.addEventListener("keyup", handleDocumentEvents);
 
-      // Add jQuery event handler for sliders.
-      document.querySelectorAll('.slider').forEach((el) => {
-        $(el).on('change', (e) => {
+      // Add Vanilla JS event handler for DXB sliders.
+      document.querySelectorAll('[data-dxb-slider]').forEach((el) => {
+        el.addEventListener('input', (e) => {
           handleDocumentEvents(e);
         });
       });
@@ -1561,4 +1551,4 @@
   //   }
   // };
   };
-})(jQuery, Drupal, once);
+})(Drupal, once);
