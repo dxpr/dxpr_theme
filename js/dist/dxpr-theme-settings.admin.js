@@ -619,7 +619,8 @@
    */
   /* eslint-disable */
   Drupal.behaviors.dxpr_themeSettingsControls = {
-    attach: function (context, settings) {
+    attach: function (context) {
+      this.handleFields();
       // Select all target inputs once when the page loads.
       once('dxpr-settings-controls', 'html', context).forEach(function () {
         // Opacity Sliders
@@ -1164,32 +1165,13 @@
     handleFields() {
       const self = this;
 
-      // // Add wrappers to sliders.
-      // const textFields = document.querySelectorAll('.js-form-type-textfield');
-      //
-      // textFields.forEach(textField => {
-      //   const divs = Array.from(textField.querySelectorAll('.slider-horizontal, .form-text:not(.dxpr_themeProcessed)'));
-      //
-      //   if (divs.length >= 2) {
-      //     for (let i = 0; i < divs.length; i += 2) {
-      //       const slice = divs.slice(i, i + 2);
-      //       const wrapper = document.createElement('div');
-      //       wrapper.classList.add('slider-input-wrapper');
-      //       slice.forEach(div => {
-      //         wrapper.appendChild(div);
-      //         div.classList.add('dxpr_themeProcessed');
-      //       });
-      //       textField.appendChild(wrapper);
-      //     }
-      //   }
-      // });
-
+      // Listen for change and keyup events on the document to handle field changes.
       document.addEventListener("change", handleDocumentEvents);
       document.addEventListener("keyup", handleDocumentEvents);
 
-      // Add Vanilla JS event handler for DXB sliders.
-      document.querySelectorAll('[data-dxb-slider]').forEach((el) => {
-        el.addEventListener('input', (e) => {
+      // Add event listener for slider elements to handle their change events.
+      document.querySelectorAll('.slider').forEach((el) => {
+        el.addEventListener('change', (e) => {
           handleDocumentEvents(e);
         });
       });
@@ -1203,14 +1185,14 @@
         const value = el?.value ?? '';
         const elName = el?.name ?? '';
 
-        // Set Block Preset to Custom if any value is changed.
+        // Set Block Preset to Custom if any value within Block Advanced section is changed.
         if (el.closest('#edit-block-advanced')) {
           document.getElementById('edit-block-preset').value = "custom";
         }
 
-        // Block Design Presets.
+        // Handle Block Design Presets based on selected preset.
         if (id === 'edit-block-preset') {
-          // Defaults.
+          // Default settings for the Block Design Presets.
           const setDefaults = {
             "block_border": 0,
             "block_border_color": "",
@@ -1229,7 +1211,6 @@
             "title_card": "",
             "title_font_size": "h3",
             "title_padding": 0,
-
           };
 
           let set = {};
@@ -1310,13 +1291,14 @@
               break;
           }
 
-          // Add missing properties.
+          // Add missing properties from defaults if not present in set.
           for (let key in setDefaults) {
             if (!(key in set)) {
               set[key] = setDefaults[key];
             }
           }
 
+          // Apply the preset values to the corresponding fields.
           Object.keys(set).forEach((key) => {
             self.setFieldValue(key, set[key]);
           });
@@ -1331,7 +1313,7 @@
           'dxpr-theme-util-background-gray'
         ];
 
-        // Block Card Style.
+        // Apply classes to Block Card Style based on the selected card style.
         if (id === 'edit-block-card' || id === 'edit-title-card') {
           const presetClasses = value.trim().split(/\s+/);
           const target = (id === 'edit-title-card') ? '.block-title' : '.block';
@@ -1342,7 +1324,7 @@
           });
         }
 
-        // Block Regions.
+        // Apply or remove block design classes based on region selection.
         if (elName.startsWith('block_design_regions[')) {
           let blockDesignClass = 'region-block-design';
           let regionClass = '.region-' + value.replace('_', '-');
@@ -1352,8 +1334,7 @@
           if (el.checked) {
             elRegion.classList.add(blockDesignClass);
 
-            // Trigger the change event for block and block title card so that
-            // classes gets reapplied.
+            // Trigger change event for block and block title card to reapply classes.
             const elements = document.querySelectorAll('#edit-block-card, #edit-title-card');
             const changeEvent = new Event('change', {
               bubbles: true,
@@ -1362,8 +1343,7 @@
             elements.forEach(el => {
               el.dispatchEvent(changeEvent);
             });
-          }
-          else {
+          } else {
             elRegion.classList.remove(blockDesignClass);
 
             // Remove all applied block and block title classes.
@@ -1374,7 +1354,7 @@
           }
         }
 
-        // Title Sticker Mode.
+        // Toggle display of Title Sticker Mode based on checkbox state.
         if (id === 'edit-title-sticker') {
           const blockTitles = document.querySelectorAll('.region-block-design .block-title');
 
@@ -1383,7 +1363,7 @@
           });
         }
 
-        // Remove CSS vars for Block divider if not in use.
+        // Remove CSS variables related to Block Divider if not in use.
         if (id === 'edit-block-divider' || id === 'edit-block-divider-custom') {
           if (!el.checked) {
             [
@@ -1393,11 +1373,11 @@
               'block_divider_spacing',
             ].forEach((key) => {
               const cssVarName = key.replace(/[\[_]/g, '-');
-              document.documentElement.style.removeProperty(cssVarSettingsPrefix + cssVarName);
+              document.documentElement.style.removeProperty(`--${cssVarName}`);
             });
           }
 
-          // Set default divider values.
+          // Set default divider values if divider is checked.
           if (id === 'edit-block-divider' && el.checked) {
             let set = {
               "block_divider_length": 0,
@@ -1410,145 +1390,154 @@
           }
         }
       }
-
     },
+
+
     /**
      * Update field value.
-     * Use jQuery due to bootstrapSlider compat.
+     * Updated to use Vanilla JS.
      */
-    setFieldValue(key, value) {
-      const field = `[name="${key}"]`;
-      let newVal  = value;
 
-      if ($(field).parent().is('.slider-input-wrapper')) {
-        $(field).bootstrapSlider('setValue', newVal).trigger('change');
+    setFieldValue(key, value) {
+      // Select the field using the name attribute.
+      const field = document.querySelector(`[name="${key}"]`);
+      let newVal = value;
+
+      if (!field) {
+        return; // If the field does not exist, exit the function.
       }
-      else {
-        if ($(field).is(':checkbox')) {
-          $(field).prop('checked', newVal).trigger('change');
-        }
-        else if ($(field).is(':radio')) {
-          $(field).filter(`[value='${newVal}']`)
-            .prop('checked', true)
-            .trigger('change');
-        }
-        else {
-          $(field).val(newVal).trigger('change');
+
+      // Check if the field's parent has the class 'slider-input-wrapper'.
+      if (field.parentElement.classList.contains('slider-input-wrapper')) {
+        // Assuming you have a custom slider method in Vanilla JS.
+        // Replace 'bootstrapSlider' with the appropriate method for setting the slider value.
+        field.bootstrapSlider.setValue(newVal); // Update this line to your custom slider's set value method.
+        field.dispatchEvent(new Event('change'));
+      } else {
+        // Handle checkbox, radio, and other input types.
+        if (field.type === 'checkbox') {
+          field.checked = newVal;
+          field.dispatchEvent(new Event('change'));
+        } else if (field.type === 'radio') {
+          const radioField = document.querySelector(`[name="${key}"][value="${newVal}"]`);
+          if (radioField) {
+            radioField.checked = true;
+            radioField.dispatchEvent(new Event('change'));
+          }
+        } else {
+          field.value = newVal;
+          field.dispatchEvent(new Event('change'));
         }
       }
     }
-  // };
-  //
-  // };
 
+    /**
+     * Provide vertical tab summaries for Bootstrap settings.
+     *
+     * Since the number of settings categories has grown I decided to remove
+     * summaries as to lighten this navigation and clear it up.
+     */
+    // Drupal.behaviors.dxpr_themeSettingSummaries = {
+    //   attach: function (context) {
+    //     var $context = $(context);
 
-  /**
-   * Provide vertical tab summaries for Bootstrap settings.
-   *
-   * Since the number of settings categories has grown I decided to remove
-   * summaries as to lighten this navigation and clear it up.
-   */
-  // Drupal.behaviors.dxpr_themeSettingSummaries = {
-  //   attach: function (context) {
-  //     var $context = $(context);
+    //     // Page Title.
+    //     $context.find('#edit-page-title').drupalSetSummary(function () {
+    //       var summary = [];
 
-  //     // Page Title.
-  //     $context.find('#edit-page-title').drupalSetSummary(function () {
-  //       var summary = [];
+    //       var align = $context.find('input[name="page_title_align"]:checked');
+    //       if (align.val()) {
+    //         summary.push(Drupal.t('Align @align', {
+    //           '@align': align.find('+label').text()
+    //         }));
+    //       }
 
-  //       var align = $context.find('input[name="page_title_align"]:checked');
-  //       if (align.val()) {
-  //         summary.push(Drupal.t('Align @align', {
-  //           '@align': align.find('+label').text()
-  //         }));
-  //       }
+    //       var animate = $context.find('input[name="page_title_animate"]:checked');
+    //       if (animate.val()) {
+    //         summary.push(Drupal.t('@animate', {
+    //           '@animate': animate.find('+label').text()
+    //         }));
+    //       }
 
-  //       var animate = $context.find('input[name="page_title_animate"]:checked');
-  //       if (animate.val()) {
-  //         summary.push(Drupal.t('@animate', {
-  //           '@animate': animate.find('+label').text()
-  //         }));
-  //       }
+    //       if ($context.find(':input[name="page_title_breadcrumbs"]').is(':checked')) {
+    //         summary.push(Drupal.t('Crumbs'));
+    //       } else {
+    //         summary.push(Drupal.t('No Crumbs'));
+    //       }
+    //       return summary.join(', ');
 
-  //       if ($context.find(':input[name="page_title_breadcrumbs"]').is(':checked')) {
-  //         summary.push(Drupal.t('Crumbs'));
-  //       } else {
-  //         summary.push(Drupal.t('No Crumbs'));
-  //       }
-  //       return summary.join(', ');
+    //     });
 
-  //     });
+    //     // Menu.
+    //     $context.find('#edit-menu').drupalSetSummary(function () {
+    //       var summary = [];
 
-  //     // Menu.
-  //     $context.find('#edit-menu').drupalSetSummary(function () {
-  //       var summary = [];
+    //       var menu = $context.find('input[name="menu_type"]:checked');
+    //       if (menu.val()) {
+    //         summary.push(Drupal.t('@menu', {
+    //           '@menu': menu.find('+label').text()
+    //         }));
+    //       }
+    //       return summary.join(', ');
 
-  //       var menu = $context.find('input[name="menu_type"]:checked');
-  //       if (menu.val()) {
-  //         summary.push(Drupal.t('@menu', {
-  //           '@menu': menu.find('+label').text()
-  //         }));
-  //       }
-  //       return summary.join(', ');
+    //     });
 
-  //     });
+    //     // Colors.
+    //     $context.find('#color_scheme_form').drupalSetSummary(function () {
+    //       var summary = [];
 
-  //     // Colors.
-  //     $context.find('#color_scheme_form').drupalSetSummary(function () {
-  //       var summary = [];
+    //       var scheme = $context.find('select[name="scheme"] :selected');
+    //       if (scheme.val()) {
+    //         summary.push(Drupal.t('@scheme', {
+    //           '@scheme': scheme.text()
+    //         }));
+    //       }
+    //       return summary.join(', ');
 
-  //       var scheme = $context.find('select[name="scheme"] :selected');
-  //       if (scheme.val()) {
-  //         summary.push(Drupal.t('@scheme', {
-  //           '@scheme': scheme.text()
-  //         }));
-  //       }
-  //       return summary.join(', ');
+    //     });
 
-  //     });
+    //     // Layout.
+    //     $context.find('#edit-layout').drupalSetSummary(function () {
+    //       var summary = [];
 
-  //     // Layout.
-  //     $context.find('#edit-layout').drupalSetSummary(function () {
-  //       var summary = [];
+    //       var layoutWidth = $context.find('input[name="layout_max_width"]');
+    //       if (layoutWidth.length) {
+    //         summary.push(Drupal.t('@layoutWidth', {
+    //           '@layoutWidth': layoutWidth.val() + 'px'
+    //         }));
+    //       }
 
-  //       var layoutWidth = $context.find('input[name="layout_max_width"]');
-  //       if (layoutWidth.length) {
-  //         summary.push(Drupal.t('@layoutWidth', {
-  //           '@layoutWidth': layoutWidth.val() + 'px'
-  //         }));
-  //       }
+    //       return summary.join(', ');
 
-  //       return summary.join(', ');
+    //     });
 
-  //     });
+    //     // Header.
+    //     $context.find('#edit-header').drupalSetSummary(function () {
+    //       var summary = [];
 
-  //     // Header.
-  //     $context.find('#edit-header').drupalSetSummary(function () {
-  //       var summary = [];
+    //       if ($context.find(':input[name="header_position"]').is(':checked')) {
+    //         summary.push(Drupal.t('Side Header'));
+    //       } else {
+    //         summary.push(Drupal.t('Top Header'));
+    //       }
+    //       return summary.join(', ');
 
-  //       if ($context.find(':input[name="header_position"]').is(':checked')) {
-  //         summary.push(Drupal.t('Side Header'));
-  //       } else {
-  //         summary.push(Drupal.t('Top Header'));
-  //       }
-  //       return summary.join(', ');
+    //     });
 
-  //     });
+    //     // Typography.
+    //     $context.find('#edit-fonts').drupalSetSummary(function () {
+    //       var summary = [];
 
-  //     // Typography.
-  //     $context.find('#edit-fonts').drupalSetSummary(function () {
-  //       var summary = [];
+    //       var typography = $context.find('select[name="body_font_face"] :selected');
+    //       if (typography.val()) {
+    //         summary.push(Drupal.t('Base: @typography', {
+    //           '@typography': typography.text()
+    //         }));
+    //       }
+    //       return summary.join(', ');
 
-  //       var typography = $context.find('select[name="body_font_face"] :selected');
-  //       if (typography.val()) {
-  //         summary.push(Drupal.t('Base: @typography', {
-  //           '@typography': typography.text()
-  //         }));
-  //       }
-  //       return summary.join(', ');
-
-  //     });
-  //   }
-  // };
+    //     });
+    //   }
+    // };
   };
 })(Drupal, once);
