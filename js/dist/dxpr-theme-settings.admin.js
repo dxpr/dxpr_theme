@@ -434,9 +434,66 @@
         value = event.target.checked;
       }
 
-      // Append unit if value is numeric.
-      if (validUnits.includes(unit) && !Number.isNaN(parseFloat(value))) {
-        value += unit;
+      // Definišemo varijable koje očekuju "px".
+      const pxRequiredVars = [
+        "box_max_width",
+        "header_top_height",
+        "layout_max_width",
+        "gutter_horizontal",
+        "gutter_vertical",
+        "gutter_container",
+        "gutter_horizontal_mobile",
+        "gutter_vertical_mobile",
+        "gutter_container_mobile",
+        "header_side_width",
+        "header_side_logo_height",
+        "dropdown_width",
+        "menu_border_position_offset",
+        "menu_border_position_offset_sticky",
+        "menu_border_size",
+        "header_mobile_breakpoint",
+        "header_mobile_height",
+        "page_title_height",
+        "body_font_size",
+        "nav_font_size",
+        "h1_font_size",
+        "h2_font_size",
+        "h3_font_size",
+        "h4_font_size",
+        "blockquote_font_size",
+        "body_mobile_font_size",
+        "nav_mobile_font_size",
+        "h1_mobile_font_size",
+        "h2_mobile_font_size",
+        "h3_mobile_font_size",
+        "h4_mobile_font_size",
+        "blockquote_mobile_font_size",
+        "divider_thickness",
+        "divider_length",
+        "block_padding",
+        "block_border_radius",
+        "block_border",
+        "title_padding",
+        "title_border",
+        "title_border_radius",
+      ];
+
+      // Definišemo varijable koje očekuju "em".
+      const emRequiredVars = [
+        "body_line_height",
+        "headings_line_height",
+        "blockquote_line_height",
+        "headings_letter_spacing",
+      ];
+
+      // Ako vrednost nema jedinicu i ako varijabla očekuje 'px', dodajemo 'px'.
+      if (pxRequiredVars.some(varName => setting.includes(varName)) && !validUnits.some(unit => value.endsWith(unit)) && !isNaN(value)) {
+        value += "px";
+      }
+
+      // Ako vrednost nema jedinicu i ako varijabla očekuje 'em', dodajemo 'em'.
+      if (emRequiredVars.some(varName => setting.includes(varName)) && !validUnits.some(unit => value.endsWith(unit)) && !isNaN(value)) {
+        value += "em";
       }
 
       value = this.massageValue(setting, value);
@@ -845,6 +902,42 @@
         if (gutterContainerMobileInput) {
           transformToDXBSlider(gutterContainerMobileInput, 'gutter-container-mobile');
         }
+
+        // Dropdown Width Slider
+        const dropdownWidthInput = document.querySelector('#edit-dropdown-width');
+        if (dropdownWidthInput) {
+          transformToDXBSlider(dropdownWidthInput, 'dropdown-width');
+        }
+
+        // Menu Border Position Offset Sticky Slider
+        const menuBorderPositionOffsetStickyInput = document.querySelector('#edit-menu-border-position-offset-sticky');
+        if (menuBorderPositionOffsetStickyInput) {
+          transformToDXBSlider(menuBorderPositionOffsetStickyInput, 'menu-border-position-offset-sticky');
+        }
+
+        // Block Padding Slider
+        const blockPaddingInput = document.querySelector('#edit-block-padding');
+        if (blockPaddingInput) {
+          transformToDXBSlider(blockPaddingInput, 'block-padding');
+        }
+
+        // Block Border Slider
+        const blockBorderInput = document.querySelector('#edit-block-border');
+        if (blockBorderInput) {
+          transformToDXBSlider(blockBorderInput, 'block-border');
+        }
+
+        // Title Padding Slider
+        const titlePaddingInput = document.querySelector('#edit-title-padding');
+        if (titlePaddingInput) {
+          transformToDXBSlider(titlePaddingInput, 'title-padding');
+        }
+
+        // Title Border Slider
+        const titleBorderInput = document.querySelector('#edit-title-border');
+        if (titleBorderInput) {
+          transformToDXBSlider(titleBorderInput, 'title-border');
+        }
       });
 
       function transformToDXBSlider(inputElement, type) {
@@ -880,7 +973,7 @@
         // Font Size Sliders attributes
         else if (type === 'font-size') {
           inputElement.setAttribute('min', '8');
-          inputElement.setAttribute('max', '30');
+          inputElement.setAttribute('max', '100');
           inputElement.setAttribute('step', '1');
           inputElement.setAttribute('aria-labelledby', 'fontSizeLabel');
         }
@@ -1060,6 +1153,54 @@
           inputElement.setAttribute('aria-labelledby', 'gutterContainerMobileLabel');
         }
 
+        // Gutter Container Mobile Slider attributes
+        else if (type === 'dropdown-width') {
+          inputElement.setAttribute('min', '100');
+          inputElement.setAttribute('max', '400');
+          inputElement.setAttribute('step', '5');
+          inputElement.setAttribute('aria-labelledby', 'dropdownWidthLabel');
+        }
+
+        // Menu Border Position Offset Sticky attributes
+        else if (type === 'menu-border-position-offset-sticky') {
+          inputElement.setAttribute('min', '0');
+          inputElement.setAttribute('max', '100');
+          inputElement.setAttribute('step', '1');
+          inputElement.setAttribute('aria-labelledby', 'menuBorderPositionOffsetStickyLabel');
+        }
+
+        // Block Padding attributes
+        else if (type === 'block-padding') {
+          inputElement.setAttribute('min', '0');
+          inputElement.setAttribute('max', '30');
+          inputElement.setAttribute('step', '1');
+          inputElement.setAttribute('aria-labelledby', 'blockPaddingLabel');
+        }
+
+        // Block Border attributes
+        else if (type === 'block-border') {
+          inputElement.setAttribute('min', '0');
+          inputElement.setAttribute('max', '30');
+          inputElement.setAttribute('step', '1');
+          inputElement.setAttribute('aria-labelledby', 'blockBorderLabel');
+        }
+
+        // Title Padding attributes
+        else if (type === 'title-padding') {
+          inputElement.setAttribute('min', '0');
+          inputElement.setAttribute('max', '30');
+          inputElement.setAttribute('step', '1');
+          inputElement.setAttribute('aria-labelledby', 'titlePaddingLabel');
+        }
+
+        // Title Padding attributes
+        else if (type === 'title-border') {
+          inputElement.setAttribute('min', '0');
+          inputElement.setAttribute('max', '30');
+          inputElement.setAttribute('step', '1');
+          inputElement.setAttribute('aria-labelledby', 'titleBorderLabel');
+        }
+
         inputElement.type = 'range';
         inputElement.classList.add('dxb-slider');
         inputElement.setAttribute('data-dxb-slider', '');
@@ -1096,6 +1237,7 @@
           inputElement.style.setProperty('--value-percent', `${percent}%`);
           numberInput.value = val;
           inputElement.setAttribute('aria-valuenow', val);
+
         }
 
         inputElement.addEventListener('input', updateValue);
@@ -1143,7 +1285,7 @@
       });
 
 
-// Typographic Scale Master Slider
+      // Typographic Scale Master Slider
       document.querySelector('#edit-scale-factor').addEventListener('change', function() {
         const base = parseFloat(document.querySelector('#edit-body-font-size').value);
         const factor = parseFloat(this.value); // Get value from the scale factor slider
