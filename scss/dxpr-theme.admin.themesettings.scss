@@ -158,22 +158,9 @@ $border-color: #222330;
     margin-left: 0;
     position: static;
   }
-  // Slider input wrapper
-  .slider-input-wrapper {
-    display: flex;
-    width: 100%;
-    height: 40px;
-    padding: 0 10px;
-    .slider {
-      flex: 0 1 80%;
-    }
-    input {
-      flex: 0 1 20%;
-    }
-  }
+
   .form-text,
   .fieldset-wrapper,
-  .slider,
   .select-wrapper {
     float: left;
     max-width: 100%;
@@ -192,41 +179,7 @@ $border-color: #222330;
   .help-block {
     clear: both;
   }
-  // BOOTSTRAP SLIDER
-  .slider + input {
-    display: block !important;
-    width: 120px;
-    border: none;
-    background: transparent;
-    font-size: 15px;
-    position: relative;
-    bottom: 20px;
-    margin-left: 15px;
-    margin-top: 8px;
-    padding: 0;
-    height: 40px;
-  }
-  .slider-track {
-    height: 5px;
-    box-shadow: none;
-  }
-  .slider-selection {
-    box-shadow: none;
-    background: var(--dxt-color-base);
-  }
-  .slider {
-    position: relative;
-    display: block;
-  }
-  .slider-handle {
-    background: #fff;
-    box-shadow: 0px 1px 2px rgba(16,24,40,.09), 0px 1px 3px rgba(16,24,40,.15);
-    width: 20px;
-    height: 20px;
-    margin-top: -3px;
-    cursor: pointer;
-    border-radius: 2px;
-  }
+
   h2 {
     margin-bottom: 0;
     margin-top: 0;
@@ -494,9 +447,6 @@ $border-color: #222330;
     .form-text:not([name="divider_color_custom"]) {
       width: 27%;
     }
-    .slider {
-      width: 73%;
-    }
     .form-item-scale-factor {
       width: 66%;
     }
@@ -506,13 +456,9 @@ $border-color: #222330;
     }
   }
   #edit-block {
-    .slider,
     .form-type-select,
     .form-text {
       width: 80%;
-    }
-    .slider + input {
-      width: 20%;
     }
   }
   .block-design-settings {

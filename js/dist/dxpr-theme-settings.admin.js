@@ -1541,22 +1541,17 @@
      */
 
     setFieldValue(key, value) {
-      // Select the field using the name attribute.
       const field = document.querySelector(`[name="${key}"]`);
       let newVal = value;
 
       if (!field) {
-        return; // If the field does not exist, exit the function.
+        return;
       }
 
-      // Check if the field's parent has the class 'slider-input-wrapper'.
-      if (field.parentElement.classList.contains('slider-input-wrapper')) {
-        // Assuming you have a custom slider method in Vanilla JS.
-        // Replace 'bootstrapSlider' with the appropriate method for setting the slider value.
-        field.bootstrapSlider.setValue(newVal); // Update this line to your custom slider's set value method.
-        field.dispatchEvent(new Event('change'));
+      if (field.type === 'range' || field.classList.contains('dxb-slider')) {
+        field.value = newVal;
+        field.dispatchEvent(new Event('input'));
       } else {
-        // Handle checkbox, radio, and other input types.
         if (field.type === 'checkbox') {
           field.checked = newVal;
           field.dispatchEvent(new Event('change'));
@@ -1572,6 +1567,7 @@
         }
       }
     }
+
 
     /**
      * Provide vertical tab summaries for Bootstrap settings.
