@@ -104,6 +104,16 @@ drupal-breadcrumbs:
     - core/drupal
     - core/once
 
+drupal-tabs:
+  js:
+    js/minified/dxpr-theme-tabs.min.js: { minified: true }
+  css:
+    theme:
+      css/components/tabs.css: { minified: true }
+  dependencies:
+    - core/drupal
+    - core/once
+
 drupal-comments:
   css:
     theme:

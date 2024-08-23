@@ -270,45 +270,6 @@ blockquote footer, blockquote small, blockquote .small {
   clear:both;
 }
 
-.html .dxpr-theme-mini-tabs-wrapper {
-  pointer-events: none;
-  display: block;
-  float: left;
-  margin-bottom: 10px;
-  .tabs--primary {
-    border: none;
-    box-shadow: 0 3px 10px 0 rgba(50, 50, 50, 0.23);
-    li {
-      margin: 0;
-      padding: 0;
-      border: none;
-      a {
-        background-color: dxpr-color('header');
-        color: dxpr-color('headertext');
-        padding: 8px;
-        text-transform: uppercase;
-        font-size: 12px;
-        margin: 0;
-        border: none;
-        pointer-events: auto;
-        line-height: 1.42857143;
-        &:hover,
-        &:focus {
-          text-decoration: underline;
-        }
-      }
-      &.active {
-        bottom: auto !important;
-        a {
-          border: none;
-        }
-      }
-      &.active a {
-        color: dxpr-color('base');
-      }
-    }
-  }
-}
 .body--primary-tabs-float .region-content nav.tabs:after {
   display: none;
 }
@@ -323,11 +284,6 @@ blockquote footer, blockquote small, blockquote .small {
     position: relative;
     left: -50%;
   }
-}
-.html .tabs--secondary {
-  float: left;
-  clear: both;
-  margin-bottom: 10px;
 }
 
 // Tabbable tabs
