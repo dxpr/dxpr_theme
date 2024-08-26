@@ -161,11 +161,6 @@ admin.themesettings:
     - core/drupal
     - core/once
 
-dxpr-theme-animatecss-custom:
-  css:
-    component:
-      vendor/animate.css/animate.min.css: { minified: true }
-
 gin_toolbar:
   version: 1.x
   css:
@@ -180,3 +175,7 @@ dxb_slider:
     theme:
       vendor/DXB-Slider/dxb-slider.css: {}
 
+custom_animations:
+  css:
+    theme:
+      css/animations-dxpr.css: {}

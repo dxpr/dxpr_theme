@@ -99,18 +99,19 @@ function page_title_theme_settings(array &$form, $theme) {
     '#default_value' => ((theme_get_setting('page_title_animate') !== NULL)) ? theme_get_setting('page_title_animate') : '0',
     '#options' => [
       '0' => t('No Animation'),
-      'bounce' => t('Bounce'),
-      'flash' => t('Flash'),
-      'pulse' => t('Pulse'),
-      'fadeIn' => t('Fade in'),
-      'bounceInDown' => t('Bounce in down'),
-      'bounceInUp' => t('Bounce in up'),
-      'fadeInDown' => t('Fade in down'),
-      'fadeInUp' => t('Fade in up'),
+      'bounceDXPR' => t('Bounce'),
+      'flashDXPR' => t('Flash'),
+      'pulseDXPR' => t('Pulse'),
+      'fadeInDXPR' => t('Fade in'),
+      'bounceInDownDXPR' => t('Bounce in down'),
+      'bounceInUpDXPR' => t('Bounce in up'),
+      'fadeInDownDXPR' => t('Fade in down'),
+      'fadeInUpDXPR' => t('Fade in up'),
     ],
     '#prefix' => '<br class="clear-both"><br class="clear-both">',
-    '#description' => t('Choose <a target="_blank" href="@animatecss">animate.css</a> appear animation', ['@drupal-handbook' => 'https://daneden.github.io/animate.css/']),
+    '#description' => t('Choose an animation.'),
   ];
+
 
   $form['dxpr_theme_settings']['page_title']['background'] = [
     '#title' => t('Background Image'),
