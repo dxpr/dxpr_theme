@@ -1,12 +1,12 @@
 global-styling:
   js:
+    vendor/modernizr-custom-d8-dxpr-theme.js: {}
     vendor/classie.js: {}
     js/minified/dxpr-theme-multilevel-mobile-nav.min.js: { minified: true }
     js/minified/dxpr-theme-header.min.js: { minified: true }
   dependencies:
     - core/drupal
     - core/once
-    - core/modernizr
 
 bootstrap-3:
   css:
