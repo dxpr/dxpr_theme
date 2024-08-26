@@ -18,17 +18,20 @@ html body {
 .block:first-child h2.block-title {
     margin-top: 10px;
 }
+
 .region-sidebar-second .block:first-child h2.block-title,
 .region-sidebar-first .block:first-child h2.block-title {
     margin-top: 0;
 }
+
 p:last-child {
     margin-bottom: 10px;
 }
 
 .container {
-  width: 100%;
   max-width: 1600px;
+  width: 100%;
+
   .container {
     padding-left: 0;
     padding-right: 0;
@@ -39,12 +42,14 @@ p:last-child {
 .container-fluid {
   padding-left :0;
   padding-right: 0;
+
   .navbar-right,
   .navbar-left {
     margin-left: 0; //remove negative margins
     margin-right: 0;
   }
 }
+
 .dxpr-theme-fluid {
   .navbar-right,
   .navbar-left {
@@ -65,10 +70,11 @@ p:last-child {
 // @see dxpr-theme.js
 .dropdown-menu {
   min-width: 160px;
+
   li {
+    display: block;
     float: left;
     min-width: 160px;
-    display: block;
   }
 }
 
@@ -84,6 +90,7 @@ div.lead {
   background: dxpr-color('base');
   border-color: dxpr-color('base');
   color: white;
+
   a {
     color: white;
   }
@@ -104,10 +111,12 @@ a.bg-primary:focus {
   background-color: dxpr-color('accent1');
   border-color: dxpr-color('accent1');
   color: white;
+
   a {
     color: white;
   }
 }
+
 a.text-primary:hover,
 a.text-primary:focus {
   color: dxpr-color('accent1');
@@ -119,11 +128,13 @@ a.text-primary:focus {
     color: #fff !important;
   }
 }
+
 .text-primary {
   h1, h2, h3, h4, h5, h6, th {
     color: dxpr-color('accent1') !important;
   }
 }
+
 .text-secondary {
   h1, h2, h3, h4, h5, h6, th {
     color: dxpr-color('accent2') !important;
@@ -133,18 +144,21 @@ a.text-primary:focus {
 .wrap-containers .nav {
   > li {
     > a.is-active {
-      background-color: #eeeeee;
+      background-color: #eee;
       color: dxpr-color('base');
       text-decoration: none;
     }
   }
 }
+
 .region-sidebar-first .nav,
 .region-sidebar-second .nav {
   float: none;
+
   > li {
-    float: none;
     display: block;
+    float: none;
+
     > a.is-active {
       display: block;
     }
@@ -152,31 +166,36 @@ a.text-primary:focus {
 }
 
 .block .nav > li > a .glyphicon {
-  margin-left: -13px;
   display: inline-block;
   font-size: $font-size-small;
+  margin-left: -13px;
   padding-right: 4px;
 }
 
 .card, .jumbotron {
   background-color: dxpr-color('card');
   color: dxpr-color('cardtext');
+
   a {
     color: dxpr-color('cardtext');
   }
+
   h1, h2, h3, h4, h5, h6 {
     color: dxpr-color('cardtext');
   }
+
   .nav > li > a {
     .glyphicon {
       color: dxpr-color('accent1');
     }
   }
+
   .nav > li > a:hover,
   .nav > li > a:focus,
   .nav > li > a.is-active {
-    color: dxpr-color('silver');
     background: dxpr-color('base');
+    color: dxpr-color('silver');
+
     .glyphicon {
       color: dxpr-color('silver');
     }
@@ -186,20 +205,25 @@ a.text-primary:focus {
 .list-inline {
   margin: 0;
   padding: 0;
+
   > li {
     padding-left: 0;
   }
+
   a {
     color: inherit;
   }
 }
+
 .field.list-inline {
   div {
     display: inline-block;
   }
+
   .field--item::after {
     content: ', ';
   }
+
   .field--item:last-child::after {
     content: '';
   }
@@ -208,6 +232,7 @@ a.text-primary:focus {
 blockquote {
   border-color: dxpr-color('silver');
 }
+
 blockquote footer, blockquote small, blockquote .small {
   color: inherit;
 }
@@ -226,30 +251,35 @@ blockquote footer, blockquote small, blockquote .small {
 // Style Tabs as card as override jQuery ui tabs styling
 .html .nav-tabs {
   border: none;
-  border-radius: 0;
   border-bottom: 1px solid dxpr-color('graylighter');
+  border-radius: 0;
   margin: 0;
   padding: 0;
+
   > li {
     border: none;
     border-radius: 0;
     margin: 0;
     padding: 0;
+
     > a {
+      background-color: transparent;
       border: 1px solid transparent;
       border-radius: 0;
       margin: 0;
       padding: 10px 15px;
-      background-color: transparent;
+
       &:hover {
         color: dxpr-color('graylighter');
       }
+
       &.active {
-        color: dxpr-color('base');
-        cursor: pointer;
+        background-color: transparent;
         border: 1px solid dxpr-color('graylighter');
         border-bottom-color: dxpr-color('body');
-        background-color: transparent;
+        color: dxpr-color('base');
+        cursor: pointer;
+
         &:hover,
         &:focus {
           color: dxpr-color('base');
@@ -260,73 +290,85 @@ blockquote footer, blockquote small, blockquote .small {
     }
   }
 }
+
 .az-tabs .nav-tabs > li > a.active[role="tab"] {
-  background-color: #ffffff;
+  background-color: #fff;
 }
 
-.region-content nav.tabs:after {
+.region-content nav.tabs::after {
+  clear:both;
   content:" ";
   display:table;
-  clear:both;
 }
 
 .html .dxpr-theme-mini-tabs-wrapper {
-  pointer-events: none;
   display: block;
   float: left;
   margin-bottom: 10px;
+  pointer-events: none;
+
   .tabs--primary {
     border: none;
-    box-shadow: 0 3px 10px 0 rgba(50, 50, 50, 0.23);
+    box-shadow: 0 3px 10px 0 rgb(50 50 50 / 23%);
+
     li {
+      border: none;
       margin: 0;
       padding: 0;
-      border: none;
+
       a {
         background-color: dxpr-color('header');
-        color: dxpr-color('headertext');
-        padding: 8px;
-        text-transform: uppercase;
-        font-size: 12px;
-        margin: 0;
         border: none;
-        pointer-events: auto;
+        color: dxpr-color('headertext');
+        font-size: 12px;
         line-height: 1.42857143;
+        margin: 0;
+        padding: 8px;
+        pointer-events: auto;
+        text-transform: uppercase;
+
         &:hover,
         &:focus {
           text-decoration: underline;
         }
       }
+
       &.active {
         bottom: auto !important;
+
         a {
           border: none;
         }
       }
+
       &.active a {
         color: dxpr-color('base');
       }
     }
   }
 }
-.body--primary-tabs-float .region-content nav.tabs:after {
+
+.body--primary-tabs-float .region-content nav.tabs::after {
   display: none;
 }
+
 .body--primary-tabs-float .dxpr-theme-mini-tabs-wrapper {
   display:inline-block;
   float: none;
-  position: absolute;
-  margin-top: 2px;
   left: 50%;
+  margin-top: 2px;
+  position: absolute;
   z-index: 470;
+
   .tabs--primary {
-    position: relative;
     left: -50%;
+    position: relative;
   }
 }
+
 .html .tabs--secondary {
-  float: left;
   clear: both;
+  float: left;
   margin-bottom: 10px;
 }
 
@@ -338,6 +380,7 @@ blockquote footer, blockquote small, blockquote .small {
   > .tab-pane {
     display: none;
   }
+
   > .active {
     display: block;
   }
@@ -352,16 +395,16 @@ blockquote footer, blockquote small, blockquote .small {
 
 .progress {
   border-radius: 0;
+  box-shadow: none;
   height: 3px;
   margin-top: 2px;
   overflow: visible;
-  box-shadow: none;
 }
 
 .progress-bar {
   background-color: dxpr-color('base');
-  line-height: 4px;
   box-shadow: none;
+  line-height: 4px;
 }
 
 // Utilities
