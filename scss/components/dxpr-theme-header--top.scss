@@ -205,11 +205,6 @@
       }
     }
 
-    // @todo remove this when safari fixes their bug
-    // transform CSS forces a redraw of the element and this fixes a safari-only
-    // problem with box-shadow/border remaining visible with the menu @ display:none
-    .dropdown-menu {transform: translateZ(0);}
-
     li.dropdown:hover,
     li.dropdown:focus {
       .dropdown-menu {
@@ -231,6 +226,11 @@
     }
 
     .dropdown-menu {
+      // @todo remove this when safari fixes their bug
+      // transform CSS forces a redraw of the element and this fixes a safari-only
+      // problem with box-shadow/border remaining visible with the menu @ display:none
+      transform: translateZ(0);
+
       .dropdown {
         > span {
           color: dxpr-color('headertext');
@@ -379,10 +379,6 @@ html.js .gin--vertical-toolbar .dxpr-theme-header--fixed {
 #navbar.dxpr-theme-header--top .menu a:hover,
 #navbar.dxpr-theme-header--top .menu a:focus {
   background-color: var(--dxt-setting-menu-hover-background);
-}
-
-#navbar.dxpr-theme-header--top .menu a:hover,
-#navbar.dxpr-theme-header--top .menu a:focus {
   color: var(--dxt-setting-menu-hover-text-color);
 }
 
@@ -398,9 +394,5 @@ html.js .gin--vertical-toolbar .dxpr-theme-header--fixed {
 #navbar.dxpr-theme-header--top .dropdown-menu a:hover,
 #navbar.dxpr-theme-header--top .dropdown-menu a:focus {
   background-color: var(--dxt-setting-dropdown-hover-background);
-}
-
-#navbar.dxpr-theme-header--top .dropdown-menu a:hover,
-#navbar.dxpr-theme-header--top .dropdown-menu a:focus {
   color: var(--dxt-setting-dropdown-hover-text-color);
 }

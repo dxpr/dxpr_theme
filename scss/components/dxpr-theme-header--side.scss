@@ -132,10 +132,6 @@
     visibility: visible;
   }
 
-  .open > .dropdown-menu {
-
-  }
-
   // TB Mega Menu
   .tb-megamenu-column {
     width: 100%!important;
@@ -169,16 +165,10 @@
     pointer-events: none;
   }
 
-  .menu__breadcrumbs a:hover {
-  }
-
   .menu__breadcrumbs a:not(:last-child)::after {
     content: '>';
     display: inline-block;
     padding: 0 0.5em;
-  }
-
-  .menu__breadcrumbs a:not(:last-child):hover::after {
   }
 
   .menu__back {
@@ -307,32 +297,30 @@
 
 // Animations
 .animate-outToRight .menu__item {
-  animation: outToRight 0.1s both cubic-bezier(0.7, 0, 0.3, 1);
+  animation: out-to-right 0.1s both cubic-bezier(0.7, 0, 0.3, 1);
 }
 
-@keyframes outToRight {
+@keyframes out-to-right {
   to {
     margin-left: 100%;
   }
 }
 
 .animate-outToLeft .menu__item {
-  animation: outToLeft 0.6s both cubic-bezier(0.7, 0, 0.3, 1);
-  animation: outToLeft 0.6s both cubic-bezier(0.7, 0, 0.3, 1);
+  animation: out-to-left 0.6s both cubic-bezier(0.7, 0, 0.3, 1);
 }
 
-@keyframes outToLeft {
+@keyframes out-to-left {
   to {
     margin-left: -100%;
   }
 }
 
 .animate-inFromLeft .menu__item {
-  animation: inFromLeft 0.6s both cubic-bezier(0.7, 0, 0.3, 1);
-  animation: inFromLeft 0.1s both cubic-bezier(0.7, 0, 0.3, 1);
+  animation: in-from-left 0.1s both cubic-bezier(0.7, 0, 0.3, 1);
 }
 
-@keyframes inFromLeft {
+@keyframes in-from-left {
   from {
     margin-left: -100%;
     opacity: 0;
@@ -345,11 +333,10 @@
 }
 
 .animate-inFromRight .menu__item {
-  animation: inFromRight 0.6s both cubic-bezier(0.7, 0, 0.3, 1);
-  animation: inFromRight 0.6s both cubic-bezier(0.7, 0, 0.3, 1);
+  animation: in-from-right 0.6s both cubic-bezier(0.7, 0, 0.3, 1);
 }
 
-@keyframes inFromRight {
+@keyframes in-from-right {
   from {
     margin-left: 100%;
     opacity: 0;

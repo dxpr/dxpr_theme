@@ -203,13 +203,6 @@ hr, .card hr {
 .main-container .block-menu-block .nav {
   > li {
     float: none;
-
-    > a {
-      &:hover,
-      &:focus,
-      &.active {
-      }
-    }
   }
 }
 

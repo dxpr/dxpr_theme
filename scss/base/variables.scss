@@ -1,3 +1,5 @@
+@use "sass:color";
+
 //
 // Predefined color schemes.
 //
@@ -228,7 +230,7 @@ $schemes: (
           --dxt-color-#{$key}:#{$color};
 
           @if $key == "header" {
-            --dxt-color-#{$key}-rgb:#{red($color),green($color),blue($color)};
+            --dxt-color-#{$key}-rgb:#{color.red($color),color.green($color),color.blue($color)};
           }
         }
       }

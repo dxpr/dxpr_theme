@@ -35,8 +35,15 @@
   z-index: 405;
 
   a {
+    color: dxpr-color('headertext');
     cursor: pointer; // for "nolink" <a> tags
     outline: none;
+
+    &.active,
+    &:hover,
+    &:focus {
+      color: dxpr-color('headertext');
+    }
   }
 
   .navbar-container {
@@ -60,16 +67,6 @@
     display: block;
     margin-left: 0;
     margin-right: 0;
-  }
-
-  a {
-    color: dxpr-color('headertext');
-
-    &.active,
-    &:hover,
-    &:focus {
-      color: dxpr-color('headertext');
-    }
   }
 
   .dxpr-theme-main-menu {

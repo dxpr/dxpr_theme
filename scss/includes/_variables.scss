@@ -1,5 +1,9 @@
 // Override Bootstrap variables here (defaults copied from bootstrap-sass version 3.0.2.1):
 //
+@use 'sass:math';
+@use 'sass:string';
+@use 'sass:map';
+
 // Variables
 // --------------------------------------------------
 
@@ -74,12 +78,12 @@ $default-color-map: (
 
 // Returns a css color variable assignment for given key.
 @function dxpr-color($key) {
-  @if map-has-key($default-color-map, $key) {
+  @if map.has-key($default-color-map, $key) {
     //$value: map-get($default-color-map, $key);
-    @return unquote("var(--dxt-color-#{$key})");
+    @return string.unquote("var(--dxt-color-#{$key})");
   } @else {
     @warn "Invalid color key \"#{$key}\".";
-    @return unquote("inherit");
+    @return string.unquote("inherit");
   }
 }
 
@@ -113,15 +117,15 @@ $default-color-map: (
 //$font-family-base:        $font-family-sans-serif;
 
 $font-size-base: 16px;
-$font-size-large: ceil($font-size-base * 1.25); // ~18px
-$font-size-small: ceil($font-size-base * 0.85); // ~12px
+$font-size-large: math.ceil($font-size-base * 1.25); // ~18px
+$font-size-small: math.ceil($font-size-base * 0.85); // ~12px
 
-$font-size-h1: floor($font-size-base * 2.6); // ~36px
-$font-size-h2: floor($font-size-base * 2.15); // ~30px
-$font-size-h3: ceil($font-size-base * 1.7); // ~24px
-$font-size-h4: ceil($font-size-base * 1.25); // ~18px
+$font-size-h1: math.floor($font-size-base * 2.6); // ~36px
+$font-size-h2: math.floor($font-size-base * 2.15); // ~30px
+$font-size-h3: math.ceil($font-size-base * 1.7); // ~24px
+$font-size-h4: math.ceil($font-size-base * 1.25); // ~18px
 $font-size-h5: $font-size-base;
-$font-size-h6: ceil($font-size-base * 0.85); // ~12px
+$font-size-h6: math.ceil($font-size-base * 0.85); // ~12px
 
 //$line-height-base:        1.428571429; // 20/14
 //$line-height-computed:    floor($font-size-base * $line-height-base); // ~20px

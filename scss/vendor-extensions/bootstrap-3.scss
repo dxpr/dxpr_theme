@@ -321,7 +321,7 @@ blockquote footer, blockquote small, blockquote .small {
         border: none;
         color: dxpr-color('headertext');
         font-size: 12px;
-        line-height: 1.42857143;
+        line-height: 1.4286;
         margin: 0;
         padding: 8px;
         pointer-events: auto;
@@ -338,11 +338,8 @@ blockquote footer, blockquote small, blockquote .small {
 
         a {
           border: none;
+          color: dxpr-color('base');
         }
-      }
-
-      &.active a {
-        color: dxpr-color('base');
       }
     }
   }
