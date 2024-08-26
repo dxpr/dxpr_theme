@@ -5,7 +5,6 @@ global-styling:
     js/minified/dxpr-theme-header.min.js: { minified: true }
   dependencies:
     - core/drupal
-    - core/jquery
     - core/once
     - core/modernizr
 
@@ -18,11 +17,6 @@ bootstrap-theme:
   css:
     theme:
       css/vendor-extensions/bootstrap-theme.css: { minified: true }
-
-jquery-ui:
-  css:
-    theme:
-      css/vendor-extensions/jquery-ui.css: { minified: true }
 
 footer-menu:
   css:
@@ -63,7 +57,6 @@ dxpr-theme-full-screen-search-js:
   js:
     js/minified/dxpr-theme-full-screen-search.min.js: { minified: true }
   dependencies:
-    - core/jquery
     - core/once
 
 dxpr-theme-header:
@@ -146,7 +139,6 @@ bootstrap3:
   js:
     vendor/bootstrap3/js/bootstrap.min.js: { minified: true, weight: -20 }
   dependencies:
-    - core/jquery
 
 # Admin interface , styling theme settings form
 # Depends on DXPR Theme Helper module being installed
@@ -157,19 +149,16 @@ admin:
 
 admin.themesettings:
   js:
-    vendor/bootstrap-switch/bootstrap-switch.min.js: {}
     vendor/color-wheel/reinvented-color-wheel.min.js: { minified: true }
     js/minified/dxpr-theme-settings.admin.min.js: {}
     vendor/DXB-Slider/dxb-slider.js: {}
   css:
     component:
-      vendor/bootstrap-switch/bootstrap-switch.min.css: {}
       vendor/color-wheel/reinvented-color-wheel.min.css: { minified: true}
       css/dxpr-theme.admin.themesettings.css: {}
       vendor/DXB-Slider/dxb-slider.css: {}
   dependencies:
     - core/drupal
-    - core/jquery
     - core/once
 
 dxpr-theme-animatecss-custom:
@@ -190,3 +179,4 @@ dxb_slider:
   css:
     theme:
       vendor/DXB-Slider/dxb-slider.css: {}
+
