@@ -201,7 +201,7 @@ function _dxpr_theme_massage_values(string $key, $value, string $theme, array $s
   // Add prefixes/suffixes for non-empty string values.
   if (!empty($value) && is_string($value)) {
     if ($s === 'rem') {
-      // Match decimal count of postcss-pxtorem
+      // Match decimal count of postcss-pxtorem.
       $value = round($value / 16, 5);
     }
     $value = $prefix . $p . $value . $s . $suffix;
