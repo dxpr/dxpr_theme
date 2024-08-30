@@ -12,7 +12,8 @@ module.exports = function(grunt) {
           'js/minified/dxpr-theme-full-screen-search.min.js': 'js/dist/dxpr-theme-full-screen-search.js',
           'js/minified/dxpr-theme-header.min.js': 'js/dist/dxpr-theme-header.js',
           'js/minified/dxpr-theme-multilevel-mobile-nav.min.js': 'js/dist/dxpr-theme-multilevel-mobile-nav.js',
-          'js/minified/dxpr-theme-settings.admin.min.js': 'js/dist/dxpr-theme-settings.admin.js'
+          'js/minified/dxpr-theme-settings.admin.min.js': 'js/dist/dxpr-theme-settings.admin.js',
+          'js/minified/dxpr-theme-tabs.min.js': 'js/dist/dxpr-theme-tabs.js',
         }
       }
     },
@@ -26,7 +27,8 @@ module.exports = function(grunt) {
           'js/minified/dxpr-theme-full-screen-search.min.js': ['js/minified/dxpr-theme-full-screen-search.min.js'],
           'js/minified/dxpr-theme-header.min.js': ['js/minified/dxpr-theme-header.min.js'],
           'js/minified/dxpr-theme-multilevel-mobile-nav.min.js': ['js/minified/dxpr-theme-multilevel-mobile-nav.min.js'],
-          'js/minified/dxpr-theme-settings.admin.min.js': ['js/minified/dxpr-theme-settings.admin.min.js']
+          'js/minified/dxpr-theme-settings.admin.min.js': ['js/minified/dxpr-theme-settings.admin.min.js'],
+          'js/minified/dxpr-theme-tabs.min.js': ['js/minified/dxpr-theme-tabs.min.js'],
         }
       }
     },
