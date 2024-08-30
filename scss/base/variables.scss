@@ -223,20 +223,6 @@ $schemes: (
 );
 
 :root {
-  @each $name, $scheme in $schemes {
-    &.dxpr-scheme- {
-      &#{$name} {
-        @each $key, $color in $scheme {
-          --dxt-color-#{$key}:#{$color};
-
-          @if $key == "header" {
-            --dxt-color-#{$key}-rgb:#{color.red($color),color.green($color),color.blue($color)};
-          }
-        }
-      }
-    }
-  }
-
   // Theme settings variables.
   --dxt-setting-background-image-attachment: fixed;
   --dxt-setting-background-image-position: center center;
@@ -337,4 +323,19 @@ $schemes: (
   --dxt-setting-title-type-uppercase: uppercase;
   --dxt-setting-title-type-bold: bold;
   --dxt-setting-title-type-italic: italic;
+
+  // Iterate schemes and create color variables.
+  @each $name, $scheme in $schemes {
+    &.dxpr-scheme- {
+      &#{$name} {
+        @each $key, $color in $scheme {
+          --dxt-color-#{$key}:#{$color};
+
+          @if $key == "header" {
+            --dxt-color-#{$key}-rgb:#{color.red($color),color.green($color),color.blue($color)};
+          }
+        }
+      }
+    }
+  }
 }
