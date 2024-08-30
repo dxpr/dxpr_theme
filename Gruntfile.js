@@ -12,7 +12,8 @@ module.exports = function(grunt) {
           'js/minified/dxpr-theme-full-screen-search.min.js': 'js/dist/dxpr-theme-full-screen-search.js',
           'js/minified/dxpr-theme-header.min.js': 'js/dist/dxpr-theme-header.js',
           'js/minified/dxpr-theme-multilevel-mobile-nav.min.js': 'js/dist/dxpr-theme-multilevel-mobile-nav.js',
-          'js/minified/dxpr-theme-settings.admin.min.js': 'js/dist/dxpr-theme-settings.admin.js'
+          'js/minified/dxpr-theme-settings.admin.min.js': 'js/dist/dxpr-theme-settings.admin.js',
+          'js/minified/dxpr-theme-tabs.min.js': 'js/dist/dxpr-theme-tabs.js',
         }
       }
     },
@@ -26,15 +27,16 @@ module.exports = function(grunt) {
           'js/minified/dxpr-theme-full-screen-search.min.js': ['js/minified/dxpr-theme-full-screen-search.min.js'],
           'js/minified/dxpr-theme-header.min.js': ['js/minified/dxpr-theme-header.min.js'],
           'js/minified/dxpr-theme-multilevel-mobile-nav.min.js': ['js/minified/dxpr-theme-multilevel-mobile-nav.min.js'],
-          'js/minified/dxpr-theme-settings.admin.min.js': ['js/minified/dxpr-theme-settings.admin.min.js']
-        },
+          'js/minified/dxpr-theme-settings.admin.min.js': ['js/minified/dxpr-theme-settings.admin.min.js'],
+          'js/minified/dxpr-theme-tabs.min.js': ['js/minified/dxpr-theme-tabs.min.js'],
+        }
       }
     },
     sass: {
       options: {
         implementation: sass,
         sourceMap: false,
-        outputStyle:'compressed'
+        outputStyle: 'compressed'
       },
       dist: {
         files: [{
@@ -48,12 +50,23 @@ module.exports = function(grunt) {
       }
     },
     postcss: {
-        options: {
-            processors: require('autoprefixer'),
-        },
-        dist: {
-            src: 'css/*.css',
-        },
+      options: {
+        processors: [
+          require('autoprefixer'),
+          require('postcss-pxtorem')({
+            rootValue: 16, // The root element font size.
+            unitPrecision: 5, // The decimal precision.
+            propList: ['*'], // Properties to convert.
+            selectorBlackList: [], // Selectors to ignore.
+            replace: true, // Replace the original value.
+            mediaQuery: true, // Allow px to be converted in media queries.
+            minPixelValue: 0 // Set the minimum pixel value to replace.
+          })
+        ]
+      },
+      dist: {
+        src: 'css/**/*.css'
+      }
     },
     watch: {
       css: {
@@ -72,5 +85,5 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-sass');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-postcss');
-  grunt.registerTask('default',['watch']);
-}
+  grunt.registerTask('default', ['watch']);
+};

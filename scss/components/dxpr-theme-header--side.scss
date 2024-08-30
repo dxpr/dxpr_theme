@@ -27,7 +27,7 @@
     overflow-x: hidden;
     overflow-y: auto;
     height: 100%;
-    width: calc(var(--dxpr-setting-header-side-width) - 20px);
+    width: calc(var(--dxt-setting-header-side-width) - 20px);
     padding-right: 20px;
     a {
       color: dxpr-color('headersidetext');
@@ -64,15 +64,13 @@
     position: fixed;
     display: block;
     z-index: 406;
-    top: 80px;
-    height: 100%;
-    height: calc(100vh - 80px);
+    top: var(--dxt-setting-header-side-logo-height);
     left: 0;
     visibility: hidden;
     overflow: hidden;
     overflow-y: auto;
-    width: var(--dxpr-setting-header-side-width);
-    margin: 0;
+    width: var(--dxt-setting-header-side-width);
+    margin: 60px 0 0 ;
     padding:  0;
     float:none;
     border: none;
@@ -130,7 +128,8 @@
     font-size: 0.65em;
     line-height: 1;
     position: fixed;
-    top: 60px;
+    top: var(--dxt-setting-header-side-logo-height);
+    margin-top: 40px;
     padding-left: 20px;
     padding-right: 20px;
     left: 0;
@@ -190,14 +189,14 @@
     padding-left:300px;
 
     html.js & {
-      padding-left: calc(var(--dxpr-setting-header-side-width) + var(--gin-toolbar-x-offset, 256px));
+      padding-left: calc(var(--dxt-setting-header-side-width) + var(--gin-toolbar-x-offset, 0px));
     }
     #navbar.dxpr-theme-header {
-      text-align: var(--dxpr-setting-header-side-align);
+      text-align: var(--dxt-setting-header-side-align);
     }
   }
   .dxpr-theme-header--side {
-    width: var(--dxpr-setting-header-side-width);
+    width: var(--dxt-setting-header-side-width);
     background: dxpr-color('headerside');
     position: fixed;
     left: 0;
@@ -212,18 +211,15 @@
         display: block;
       }
       #logo {
-        max-height: 30px;
+        height: var(--dxt-setting-header-side-logo-height);
+        max-height: 100%;
       }
     }
     .menu__breadcrumbs {
-      top: 160px;
-      width: var(--dxpr-setting-header-side-width);
+      width: var(--dxt-setting-header-side-width);
     }
     .menu__level {
-      top: 180px;
-      height: 100%;
-      height: calc(100vh - 180px);
-      // overflow: auto;
+      height: calc(100vh - var(--dxt-setting-header-side-logo-height));
     }
   }
   &.body--dxpr-theme-header-side.body--full-screen-search .dxpr-theme-header--side .navbar-header {
@@ -271,7 +267,7 @@
 
   .dxpr-theme-header--side {
     #dxpr-theme-main-menu {
-      width: var(--dxpr-setting-header-side-width);
+      width: var(--dxt-setting-header-side-width);
     }
   }
 }

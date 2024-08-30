@@ -25,7 +25,7 @@ function header_theme_settings_css(string $theme, string &$css, array $palette) 
   if (theme_get_setting('header_side_align', $theme) === 'right') {
     $css .= ".dxpr-theme-header--side #dxpr-theme-main-menu .menu__link::after {\n";
     $css .= "  right: auto;\n";
-    $css .= "  left: 20px;\n";
+    $css .= "  left: 1.25rem;\n";
     $css .= "}\n\n";
   }
 
@@ -97,7 +97,7 @@ function header_theme_settings_css(string $theme, string &$css, array $palette) 
     }
   }
 
-  // Mobile Header.
+  // Sticky footer settings.
   if (theme_get_setting('sticky_footer', $theme)) {
     $header_top_height = $header_top_height_var;
 
@@ -109,7 +109,7 @@ function header_theme_settings_css(string $theme, string &$css, array $palette) 
     }
 
     $css .= ".html--dxpr-theme-sticky-footer .body--dxpr-theme-nav-desktop .dxpr-theme-header--top {\n";
-    $css .= "  min-height: $header_top_height;\n";
+    $css .= "  height: $header_top_height;\n";
     $css .= "}\n\n";
 
     $header_mobile_height_var = _dxpr_theme_setting_get_css_var('header_mobile_height');
@@ -154,7 +154,7 @@ function header_theme_settings_css(string $theme, string &$css, array $palette) 
 
       case 'lead':
         $menu_type_selector .= ",\n.dxpr-theme-header .menu span";
-        $menu_type_value = "font-size: 21px;\n  font-weight: 300;";
+        $menu_type_value = "font-size: 1.3125rem;\n  font-weight: 300;";
         break;
     }
 

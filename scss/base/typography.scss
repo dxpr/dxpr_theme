@@ -33,41 +33,41 @@ blockquote, blockquote p {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-weight: 400;
   font-style: italic;
-  font-size: var(--dxpr-setting-blockquote-font-size);
-  line-height: var(--dxpr-setting-blockquote-line-height);
+  font-size: var(--dxt-setting-blockquote-font-size);
+  line-height: var(--dxt-setting-blockquote-line-height);
 }
 
 // Typography
 
-body, html {
+body {
   color: dxpr-color('text');
-  font-size: var(--dxpr-setting-body-font-size);
+  font-size: var(--dxt-setting-body-font-size);
 }
 
 body, p, .lead {
-  line-height:  var(--dxpr-setting-body-line-height);
+  line-height:  var(--dxt-setting-body-line-height);
 }
 
 h1, h2, h3, h4, h5, h6 {
   // Use !important to override default font-family weight.
-  font-weight: var(--dxpr-setting-headings-bold) !important;
-  letter-spacing: var(--dxpr-setting-headings-letter-spacing);
-  line-height: var(--dxpr-setting-headings-line-height);
+  font-weight: var(--dxt-setting-headings-bold) !important;
+  letter-spacing: var(--dxt-setting-headings-letter-spacing);
+  line-height: var(--dxt-setting-headings-line-height);
   margin-bottom: 10px;
   margin-top: 0;
-  text-transform: var(--dxpr-setting-headings-uppercase);
+  text-transform: var(--dxt-setting-headings-uppercase);
 }
 h1 {
-  font-size: var(--dxpr-setting-h1-font-size)
+  font-size: var(--dxt-setting-h1-font-size)
 }
 h2 {
-  font-size: var(--dxpr-setting-h2-font-size)
+  font-size: var(--dxt-setting-h2-font-size)
 }
 h3, .block-title {
-  font-size: var(--dxpr-setting-h3-font-size)
+  font-size: var(--dxt-setting-h3-font-size)
 }
 h4 {
-  font-size: var(--dxpr-setting-h4-font-size)
+  font-size: var(--dxt-setting-h4-font-size)
 }
 h5 {
   font-size: $font-size-h5;
@@ -149,10 +149,10 @@ h1, h2, h3, h4, h5, h6, .navbar-brand, th, .nav-tabs > li > a {
 hr, .card hr {
   height: 0;
   border-top: 4px solid dxpr-color('card');
-  margin: 20px auto 20px var(--dxpr-setting-divider-position);
-  border-top-width: var(--dxpr-setting-divider-thickness);
-  border-top-color: var(--dxpr-setting-divider-color);
-  width: var(--dxpr-setting-divider-length);
+  margin: 20px auto 20px var(--dxt-setting-divider-position);
+  border-top-width: var(--dxt-setting-divider-thickness);
+  border-top-color: var(--dxt-setting-divider-color);
+  width: var(--dxt-setting-divider-length);
 }
 .region-sidebar-first hr,
 .region-sidebar-second hr {
@@ -204,13 +204,13 @@ hr, .card hr {
 
 @media screen and (max-width: 768px) {
   body, p {
-    font-size:  var(--dxpr-setting-body-mobile-font-size);
+    font-size:  var(--dxt-setting-body-mobile-font-size);
   }
-  h1 { font-size: var(--dxpr-setting-h1-mobile-font-size) }
-  h2 { font-size: var(--dxpr-setting-h2-mobile-font-size) }
-  h3 { font-size: var(--dxpr-setting-h3-mobile-font-size) }
-  h4 { font-size: var(--dxpr-setting-h4-mobile-font-size) }
+  h1 { font-size: var(--dxt-setting-h1-mobile-font-size) }
+  h2 { font-size: var(--dxt-setting-h2-mobile-font-size) }
+  h3 { font-size: var(--dxt-setting-h3-mobile-font-size) }
+  h4 { font-size: var(--dxt-setting-h4-mobile-font-size) }
   blockquote, .blockquote p {
-    font-size: var(--dxpr-setting-blockquote-mobile-font-size);
+    font-size: var(--dxt-setting-blockquote-mobile-font-size);
   }
 }

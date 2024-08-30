@@ -52,3 +52,28 @@ function dxpr_theme_post_update_n1_migrate_colors() {
 
   return t('The theme color settings have been migrated, and the Color module has been uninstalled.');
 }
+
+/**
+ * Update theme settings.
+ */
+function dxpr_theme_post_update_n2_settings_update() {
+  /** @var \Drupal\Core\Extension\ThemeHandler $theme_handler */
+  $theme_handler = \Drupal::service('theme_handler');
+  $theme_list = $theme_handler->listInfo();
+
+  require_once $theme_handler
+    ->getTheme('dxpr_theme')
+    ->getPath() . '/dxpr_theme_callbacks.inc';
+
+  /** @var \Drupal\Core\Extension\Extension $theme */
+  foreach ($theme_list as $theme) {
+    $theme_name = $theme->getName();
+    if ('dxpr_theme' === ($theme->info['base theme'] ?? '') || 'dxpr_theme' === $theme_name) {
+      if (function_exists('dxpr_theme_css_cache_build')) {
+        dxpr_theme_css_cache_build($theme_name);
+      }
+    }
+  }
+
+  return t('Theme settings CSS file has been updated.');
+}

@@ -21,35 +21,49 @@ html.html--dxpr-theme-nav-mobile--open {
     padding-top: 0;
   }
   #logo {
-    max-height: 30px;
+    display: inline;
+    height: var(--dxt-setting-logo-height);
+    max-height: 100%;
   }
   .dxpr-theme-header {
     position: static;
     li {
       clear: both;
     }
-    .navbar-header {
+    .navbar-container {
+      display: block;
       float: none;
-      .wrap-branding {
-        display: table;
-        float:left;
-        height: var(--dxpr-setting-header-mobile-height);
-        .logo,
-        .navbar-brand {
-          display: table-cell;
-          vertical-align: middle;
+      height: 100%;
+
+      .navbar-header {
+        display: flex;
+        flex-wrap: nowrap;
+        height: 100%;
+
+        * {
+          height: 100%;
+        }
+
+        .region-navigation {
+          flex-grow: 1;
+        }
+
+        .logo {
+          display: flex;
+          height: 100%;
+          align-items: center;
         }
       }
     }
     .navbar-toggle {
-      height: var(--dxpr-setting-header-mobile-height);
+      height: var(--dxt-setting-header-mobile-height);
     }
     .block {
       padding: 20px;
     }
     .block-dxpr-theme-helper {
-      height: var(--dxpr-setting-header-mobile-height);
-      line-height: var(--dxpr-setting-header-mobile-height);
+      height: var(--dxt-setting-header-mobile-height);
+      line-height: var(--dxt-setting-header-mobile-height);
     }
     .navbar-left,.navbar-right {
         float: none !important;
@@ -196,7 +210,7 @@ html.html--dxpr-theme-nav-mobile--open {
   #dxpr-theme-main-menu .menu__breadcrumbs,
   #dxpr-theme-main-menu .menu__level {
     width: 100% !important;
-    text-align: var(--dxpr-setting-header-side-align);
+    text-align: var(--dxt-setting-header-side-align);
   }
 }
 

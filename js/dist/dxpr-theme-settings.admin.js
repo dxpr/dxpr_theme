@@ -4,8 +4,8 @@
   "use strict";
 
   // Define constants.
-  const cssVarColorsPrefix = "--dxpr-color-";
-  const cssVarSettingsPrefix = "--dxpr-setting-";
+  const cssVarColorsPrefix = "--dxt-color-";
+  const cssVarSettingsPrefix = "--dxt-setting-";
 
   /**
    * Handles the 'Colors' theme settings page.
@@ -448,7 +448,7 @@
       // Adds a divider-position-block CSS variable.
       if (setting === "divider_position") {
         if (event.target.value === "3") {
-          value = "calc(100% - var(--dxpr-setting-block-divider-length))";
+          value = "calc(100% - var(--dxt-setting-block-divider-length))";
         }
         this.root.style.setProperty(
           `${cssVarSettingsPrefix}${cssVarName}-block`,
@@ -493,13 +493,17 @@
         case "title_type[italic]":
           value = value ? "italic" : "normal";
           break;
+        // Generic: Percentage
+        case "logo_height":
+          value = `${value}%`;
+          break;
         // Breadcrumb separator
         case "page_title_breadcrumbs_separator":
           value = `"${value.replace(/\\/g, "\\\\").replace(/"/g, '\\"')}"`;
           break;
         // Title font
         case "title_font_size":
-          value = `var(--dxpr-setting-${value}-font-size)`;
+          value = `var(--dxt-setting-${value}-font-size)`;
           break;
         // Dividers: 0px = 100%
         case "divider_length":
@@ -515,7 +519,7 @@
               value = "auto";
               break;
             case "3":
-              value = "calc(100% - var(--dxpr-setting-divider-length))";
+              value = "calc(100% - var(--dxt-setting-divider-length))";
               break;
             default:
               break;
@@ -895,6 +899,18 @@
         value: parseFloat($input.val()),
       });
 
+      $input = $("#edit-logo-height");
+      $input.bootstrapSlider({
+        step   : 1,
+        min    : 10,
+        max    : 100,
+        tooltip: "hide",
+        formatter(value) {
+          return `${value}%`;
+        },
+        value: parseFloat($input.val()),
+      });
+
       // Header Mobile Breakpoint slider
       $input = $("#edit-header-mobile-breakpoint");
       $input.bootstrapSlider({
@@ -952,6 +968,18 @@
       $input.bootstrapSlider({
         step   : 5,
         min    : 50,
+        max    : 500,
+        tooltip: "hide",
+        formatter(value) {
+          return `${value}px`;
+        },
+        value: parseFloat($input.val()),
+      });
+
+      $input = $("#edit-header-side-logo-height");
+      $input.bootstrapSlider({
+        step   : 1,
+        min    : 10,
         max    : 500,
         tooltip: "hide",
         formatter(value) {

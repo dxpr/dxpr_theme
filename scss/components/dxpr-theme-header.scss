@@ -14,7 +14,7 @@
   }
 
   .nav-child-fixed-width {
-    top: var(--dxpr-setting-header-top-height);
+    top: var(--dxt-setting-header-top-height);
   }
 }
 .navbar.container, .navbar.container-fluid {
@@ -26,7 +26,6 @@
   z-index: 405;
   border: none;
   border-radius: 0;
-  min-height: 0;
   padding: 0;
   a {
     cursor: pointer; // for "nolink" <a> tags
@@ -174,7 +173,7 @@
 #dxpr-theme-main-menu, /* N/A */
 #dxpr-theme-main-menu .menu__breadcrumbs,
 #dxpr-theme-main-menu .menu__level {
-  text-align: var(--dxpr-setting-header-side-align);
+  text-align: var(--dxt-setting-header-side-align);
 }
 
 // MENU BORDER HOVER EFFECT
@@ -183,8 +182,8 @@
   a:hover,
   a:hover .menu a:focus,
   a.is-active {
-    color: var(--dxpr-setting-menu-hover-text-color, var(--dxpr-setting-menu-text-color));
-    background-color: var(--dxpr-setting-menu-hover-background, dxpr-color('base')) !important;
+    color: var(--dxt-setting-menu-hover-text-color, var(--dxt-setting-menu-text-color));
+    background-color: var(--dxt-setting-menu-hover-background, dxpr-color('base')) !important;
   }
 }
 
@@ -228,4 +227,32 @@
 .dxpr-theme-header--top.dxpr-theme-header--hover-border .menu a:hover:before,
 .dxpr-theme-header--top.dxpr-theme-header--hover-border .menu a.is-active:before {
   transform: scale(1, 1) translate(10px, 0);
+}
+
+//
+// Skip to content link
+//
+.skip-link {
+  background: #ff0;
+  border-radius: 0 0 8px 8px;
+  border: 1px solid #333;
+  box-shadow: 0 0 10px rgba(0,0,0,.25);
+  color: #333 !important;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: bold;
+  left: 16px;
+  padding: 12px 15px;
+  position: absolute;
+  text-decoration: none !important;
+  top: 0;
+  transform: translateY(-110%);
+  transition: all 0.3s;
+  z-index: 10000;
+  opacity: 0;
+
+  &:focus {
+    opacity: 1;
+    transform: translateY(0%);
+  }
 }
