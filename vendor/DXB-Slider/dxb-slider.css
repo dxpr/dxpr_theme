@@ -35,7 +35,7 @@
 .dxb-slider::-webkit-slider-runnable-track {
   height: 5px;
   background-image: linear-gradient(#0550e6, #0550e6), linear-gradient(#dadfe7, #dadfe7);
-  background-size: calc(var(--value-percent) - 10px) 5px, 100% 5px;
+  background-size: var(--value-percent) 5px, 100% 5px;
   background-repeat: no-repeat;
   background-position: left center;
 }
@@ -43,7 +43,7 @@
 .dxb-slider::-moz-range-track {
   height: 5px;
   background-image: linear-gradient(#0550e6, #0550e6), linear-gradient(#dadfe7, #dadfe7);
-  background-size: calc(var(--value-percent) - 10px) 5px, 100% 5px;
+  background-size: var(--value-percent) 5px, 100% 5px;
   background-repeat: no-repeat;
   background-position: left center;
 }

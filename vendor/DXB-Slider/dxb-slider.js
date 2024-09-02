@@ -2,14 +2,13 @@
 
 (function() {
   function initDXBSliders() {
-    document.querySelectorAll('[data-dxb-slider]').forEach(rangeInput => {
+    document.querySelectorAll('[data-dxb-slider]:not([data-dxb-initialized])').forEach(rangeInput => {
       const container = rangeInput.closest('.dxb-slider-wrapper');
 
       // Create number input programmatically
       const numberInput = document.createElement('input');
       numberInput.type = 'number';
       numberInput.className = 'dxb-slider-value';
-      numberInput.setAttribute('aria-hidden', 'true');
       numberInput.setAttribute('tabindex', '-1');
       numberInput.setAttribute('pattern', '[0-9]*');
 
@@ -38,6 +37,11 @@
       numberInput.addEventListener('input', () => {
         rangeInput.value = numberInput.value;
         updateValue();
+        rangeInput.dispatchEvent(new Event('input', { bubbles: true }));
+      });
+
+      numberInput.addEventListener('change', () => {
+        rangeInput.dispatchEvent(new Event('change', { bubbles: true }));
       });
 
       // Set initial ARIA attributes
@@ -45,8 +49,32 @@
       rangeInput.setAttribute('aria-valuemax', rangeInput.max);
 
       updateValue();
+
+      // Mark as initialized
+      rangeInput.setAttribute('data-dxb-initialized', 'true');
     });
   }
 
   initDXBSliders();
+
+  const observer = new MutationObserver(mutations => {
+    let shouldInit = false;
+    for (const mutation of mutations) {
+      if (mutation.type === 'childList') {
+        for (const node of mutation.addedNodes) {
+          if (node.nodeType === Node.ELEMENT_NODE &&
+            (node.matches('[data-dxb-slider]') || node.querySelector('[data-dxb-slider]'))) {
+            shouldInit = true;
+            break;
+          }
+        }
+        if (shouldInit) break;
+      }
+    }
+    if (shouldInit) {
+      initDXBSliders();
+    }
+  });
+
+  observer.observe(document.body, { childList: true, subtree: true });
 })();
