@@ -263,9 +263,13 @@
     },
     setNoPreview() {
       // Mark all fields with a no-preview icon.
-      const systemThemeSettings = document.querySelector(".system-theme-settings");
+      const systemThemeSettings = document.querySelector(
+        ".system-theme-settings",
+      );
       if (systemThemeSettings) {
-        const inputs = systemThemeSettings.querySelectorAll("input, select, textarea");
+        const inputs = systemThemeSettings.querySelectorAll(
+          "input, select, textarea",
+        );
         inputs.forEach((input) => {
           // Skip adding no-preview class for these fields.
           const skip = [
@@ -345,7 +349,9 @@
           }
 
           if (name === "nav_font_size" || name === "nav_mobile_font_size") {
-            const radio = document.querySelector(`[name="${depFieldName}"]:checked`);
+            const radio = document.querySelector(
+              `[name="${depFieldName}"]:checked`,
+            );
             if (radio && radio.value !== "lead") {
               this.setPreviewClass(input, false);
             }
@@ -402,7 +408,9 @@
         .replace(cssVarSettingsPrefix, "")
         .replace(/-/g, "_");
 
-      let p1, p2, p3;
+      let p1;
+      let p2;
+      let p3;
 
       // Fix id's containing brackets.
       switch (inputId) {
@@ -425,16 +433,14 @@
      */
     fieldHandler(event) {
       const setting = event.target.name;
-      const textValue = event.target.parentElement.textContent;
-      const unit = textValue.replace(/[^a-z]/gi, "");
       const validUnits = ["px", "em", "rem"];
-      let value = event.target.value;
+      let { value } = event.target;
 
       if (event.target.type === "checkbox") {
         value = event.target.checked;
       }
 
-      // Definišemo varijable koje očekuju "px".
+      // Define variables that expect "px".
       const pxRequiredVars = [
         "box_max_width",
         "header_top_height",
@@ -478,7 +484,7 @@
         "title_border_radius",
       ];
 
-      // Definišemo varijable koje očekuju "em".
+      // Define variables that expect "em".
       const emRequiredVars = [
         "body_line_height",
         "headings_line_height",
@@ -486,13 +492,21 @@
         "headings_letter_spacing",
       ];
 
-      // Ako vrednost nema jedinicu i ako varijabla očekuje 'px', dodajemo 'px'.
-      if (pxRequiredVars.some(varName => setting.includes(varName)) && !validUnits.some(unit => value.endsWith(unit)) && !isNaN(value)) {
+      // If the value has no unit and the variable expects 'px', add 'px'.
+      if (
+        pxRequiredVars.some((varName) => setting.includes(varName)) &&
+        !validUnits.some((unit) => value.endsWith(unit)) &&
+        !Number.isNaN(Number(value))
+      ) {
         value += "px";
       }
 
-      // Ako vrednost nema jedinicu i ako varijabla očekuje 'em', dodajemo 'em'.
-      if (emRequiredVars.some(varName => setting.includes(varName)) && !validUnits.some(unit => value.endsWith(unit)) && !isNaN(value)) {
+      // If the value has no unit and the variable expects 'em', add 'em'.
+      if (
+        emRequiredVars.some((varName) => setting.includes(varName)) &&
+        !validUnits.some((unit) => value.endsWith(unit)) &&
+        !Number.isNaN(Number(value))
+      ) {
         value += "em";
       }
 
@@ -505,7 +519,10 @@
         .replace("]", "");
 
       // Override CSS variable.
-      this.root.style.setProperty(`${cssVarSettingsPrefix}${cssVarName}`, String(value));
+      this.root.style.setProperty(
+        `${cssVarSettingsPrefix}${cssVarName}`,
+        String(value),
+      );
 
       // Workaround for block divider position.
       // Adds a divider-position-block CSS variable.
@@ -513,13 +530,19 @@
         if (event.target.value === "3") {
           value = "calc(100% - var(--dxt-setting-block-divider-length))";
         }
-        this.root.style.setProperty(`${cssVarSettingsPrefix}${cssVarName}-block`, String(value));
+        this.root.style.setProperty(
+          `${cssVarSettingsPrefix}${cssVarName}-block`,
+          String(value),
+        );
       }
 
       // Add mobile title font size variable.
       if (setting === "title_font_size") {
         value = value.replace("-font-size", "-mobile-font-size");
-        this.root.style.setProperty(`${cssVarSettingsPrefix}${cssVarName}-mobile`, String(value));
+        this.root.style.setProperty(
+          `${cssVarSettingsPrefix}${cssVarName}-mobile`,
+          String(value),
+        );
       }
     },
     /**
@@ -600,10 +623,17 @@
         case "dropdown_text_color":
         case "dropdown_hover_background":
         case "dropdown_hover_text_color":
-          if (drupalSettings.dxpr_themeSettings.colors.palette.hasOwnProperty(value)) {
+          if (
+            Object.prototype.hasOwnProperty.call(
+              drupalSettings.dxpr_themeSettings.colors.palette,
+              value,
+            )
+          ) {
             value = `var(${cssVarColorsPrefix + value})`;
           } else if (value === "custom") {
-            const customField = document.querySelector(`[name="${setting}_custom"]`);
+            const customField = document.querySelector(
+              `[name="${setting}_custom"]`,
+            );
             if (customField) {
               value = customField.value;
             }
@@ -628,7 +658,8 @@
       return Array.from(document.styleSheets)
         .filter(
           (styleSheet) =>
-            !styleSheet.href || styleSheet.href.startsWith(window.location.origin)
+            !styleSheet.href ||
+            styleSheet.href.startsWith(window.location.origin),
         )
         .reduce((finalArr, sheet) => {
           const propKeySet = new Set(finalArr);
@@ -668,7 +699,7 @@
       toggleDisplay();
 
       checkbox.addEventListener("change", toggleDisplay);
-    }
+    },
   };
 
   /**

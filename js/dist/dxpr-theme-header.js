@@ -7,7 +7,7 @@
 (function (Drupal, once) {
   let dxpr_themeMenuState = "";
 
-// Create and throttle functions if they don't exist already
+  // Create and throttle functions if they don't exist already
   if (typeof _ != "function") {
     window._ = {};
 
@@ -113,19 +113,25 @@
     };
   }
 
-  const navBreak = "dxpr_themeNavBreakpoint" in window ? window.dxpr_themeNavBreakpoint : 1200;
+  const navBreak =
+    "dxpr_themeNavBreakpoint" in window ? window.dxpr_themeNavBreakpoint : 1200;
 
   if (
     document.querySelectorAll(".dxpr-theme-header--sticky").length > 0 &&
     !document.querySelectorAll(".dxpr-theme-header--overlay").length &&
     window.innerWidth > navBreak
   ) {
-    const headerHeight = parseFloat(drupalSettings.dxpr_themeSettings.headerHeight);
-    const headerScroll = parseFloat(drupalSettings.dxpr_themeSettings.headerOffset);
+    const headerHeight = parseFloat(
+      drupalSettings.dxpr_themeSettings.headerHeight,
+    );
+    const headerScroll = parseFloat(
+      drupalSettings.dxpr_themeSettings.headerOffset,
+    );
 
     if (headerHeight && headerScroll) {
       const elHeader = document.querySelector(".dxpr-theme-header--sticky");
-      const wrapContainer = document.getElementsByClassName("wrap-containers")[0];
+      const wrapContainer =
+        document.getElementsByClassName("wrap-containers")[0];
 
       const onScroll = _.throttle(() => {
         const scroll = window.scrollY;
@@ -145,7 +151,7 @@
     }
   }
 
-// Accepts 2 getBoundingClientRect objects
+  // Accepts 2 getBoundingClientRect objects
   function dxpr_themeHit(rect1, rect2) {
     return !(
       rect1.right < rect2.left ||
@@ -170,18 +176,26 @@
         return false;
       }
 
-      const elementNavMobileOpen = document.querySelector(".html--dxpr-theme-nav-mobile--open");
+      const elementNavMobileOpen = document.querySelector(
+        ".html--dxpr-theme-nav-mobile--open",
+      );
       if (elementNavMobileOpen) {
-        elementNavMobileOpen.classList.remove("html--dxpr-theme-nav-mobile--open");
+        elementNavMobileOpen.classList.remove(
+          "html--dxpr-theme-nav-mobile--open",
+        );
       }
 
-      const elementHeaderSide = document.querySelector(".dxpr-theme-header--side");
+      const elementHeaderSide = document.querySelector(
+        ".dxpr-theme-header--side",
+      );
       if (elementHeaderSide) {
         elementHeaderSide.classList.add("dxpr-theme-header--top");
         elementHeaderSide.classList.remove("dxpr-theme-header--side");
       }
 
-      const menuBreadcrumbs = document.querySelector("#dxpr-theme-main-menu .menu__breadcrumbs");
+      const menuBreadcrumbs = document.querySelector(
+        "#dxpr-theme-main-menu .menu__breadcrumbs",
+      );
       if (menuBreadcrumbs) {
         menuBreadcrumbs.remove();
       }
@@ -199,65 +213,91 @@
         elementMenuItem.classList.remove("menu__item");
       }
 
-      document.querySelectorAll("[data-submenu]").forEach(el => el.removeAttribute("data-submenu"));
-      document.querySelectorAll("[data-menu]").forEach(el => el.removeAttribute("data-menu"));
+      document
+        .querySelectorAll("[data-submenu]")
+        .forEach((el) => el.removeAttribute("data-submenu"));
+      document
+        .querySelectorAll("[data-menu]")
+        .forEach((el) => el.removeAttribute("data-menu"));
 
       const bodyWidth = document.body.clientWidth;
       const margin = 10;
       let columns;
 
-      document.querySelectorAll("#dxpr-theme-main-menu .menu .dropdown-menu").forEach(dropdownElement => {
-        const width = dropdownElement.offsetWidth;
-        const headings = dropdownElement.querySelectorAll(".dxpr-theme-megamenu__heading");
+      document
+        .querySelectorAll("#dxpr-theme-main-menu .menu .dropdown-menu")
+        .forEach((dropdownElement) => {
+          const width = dropdownElement.offsetWidth;
+          const headings = dropdownElement.querySelectorAll(
+            ".dxpr-theme-megamenu__heading",
+          );
 
-        if (headings.length > 0) {
-          columns = headings.length;
-        } else {
-          columns = Math.floor(dropdownElement.querySelectorAll("li").length / 8) + 1;
-        }
-
-        if (columns > 2) {
-          dropdownElement.style.width = "100%";
-          dropdownElement.style.left = "0";
-          dropdownElement.parentElement.style.position = "static";
-
-          dropdownElement.querySelectorAll(".dropdown-menu > li").forEach(li => {
-            li.style.width = `${100 / columns}%`;
-          });
-        } else {
-          if (columns > 1) {
-            dropdownElement.style.minWidth = `${width * columns + 2}px`;
-            dropdownElement.querySelectorAll("> li").forEach(li => {
-              li.style.width = `${width}px`;
-            });
+          if (headings.length > 0) {
+            columns = headings.length;
+          } else {
+            columns =
+              Math.floor(dropdownElement.querySelectorAll("li").length / 8) + 1;
           }
 
-          const topLevelItem = dropdownElement.parentElement;
-          setTimeout(() => {
-            const delta = Math.round(bodyWidth - topLevelItem.offsetLeft - dropdownElement.offsetWidth - margin);
-            if (delta < 0) {
-              dropdownElement.style.left = `${delta}px`;
+          if (columns > 2) {
+            dropdownElement.style.width = "100%";
+            dropdownElement.style.left = "0";
+            dropdownElement.parentElement.style.position = "static";
+
+            dropdownElement
+              .querySelectorAll(".dropdown-menu > li")
+              .forEach((li) => {
+                li.style.width = `${100 / columns}%`;
+              });
+          } else {
+            if (columns > 1) {
+              dropdownElement.style.minWidth = `${width * columns + 2}px`;
+              dropdownElement.querySelectorAll("> li").forEach((li) => {
+                li.style.width = `${width}px`;
+              });
             }
-          }, 0);
-        }
-      });
+
+            const topLevelItem = dropdownElement.parentElement;
+            setTimeout(() => {
+              const delta = Math.round(
+                bodyWidth -
+                  topLevelItem.offsetLeft -
+                  dropdownElement.offsetWidth -
+                  margin,
+              );
+              if (delta < 0) {
+                dropdownElement.style.left = `${delta}px`;
+              }
+            }, 0);
+          }
+        });
 
       dxpr_themeMenuState = "top";
 
       // Hit Detection for Header
-      if (document.querySelectorAll(".tabs--primary").length > 0 && document.querySelectorAll("#navbar").length > 0) {
-        const tabsRect = document.querySelector(".tabs--primary").getBoundingClientRect();
+      if (
+        document.querySelectorAll(".tabs--primary").length > 0 &&
+        document.querySelectorAll("#navbar").length > 0
+      ) {
+        const tabsRect = document
+          .querySelector(".tabs--primary")
+          .getBoundingClientRect();
         if (
-          document.querySelectorAll(".dxpr-theme-header--navbar-pull-down").length > 0 &&
+          document.querySelectorAll(".dxpr-theme-header--navbar-pull-down")
+            .length > 0 &&
           document.querySelectorAll("#navbar .container-col").length > 0
         ) {
-          const pullDownRect = document.querySelector("#navbar .container-col").getBoundingClientRect();
+          const pullDownRect = document
+            .querySelector("#navbar .container-col")
+            .getBoundingClientRect();
           if (dxpr_themeHit(pullDownRect, tabsRect)) {
             document.querySelector(".tabs--primary").style.marginTop =
               `${pullDownRect.bottom - tabsRect.top + 6}px`;
           }
         } else {
-          const navbarRect = document.querySelector("#navbar").getBoundingClientRect();
+          const navbarRect = document
+            .querySelector("#navbar")
+            .getBoundingClientRect();
           if (dxpr_themeHit(navbarRect, tabsRect)) {
             document.querySelector(".tabs--primary").style.marginTop =
               `${navbarRect.bottom - tabsRect.top + 6}px`;
@@ -267,22 +307,34 @@
 
       if (
         document.querySelectorAll("#secondary-header").length > 0 &&
-        document.querySelectorAll("#navbar.dxpr-theme-header--overlay").length > 0
+        document.querySelectorAll("#navbar.dxpr-theme-header--overlay").length >
+          0
       ) {
-        const secHeaderRect = document.querySelector("#secondary-header").getBoundingClientRect();
-        const navbarOverlayRect = document.querySelector("#navbar.dxpr-theme-header--overlay").getBoundingClientRect();
+        const secHeaderRect = document
+          .querySelector("#secondary-header")
+          .getBoundingClientRect();
+        const navbarOverlayRect = document
+          .querySelector("#navbar.dxpr-theme-header--overlay")
+          .getBoundingClientRect();
         if (dxpr_themeHit(navbarOverlayRect, secHeaderRect)) {
           if (drupalSettings.dxpr_themeSettings.secondHeaderSticky) {
-            document.querySelector("#navbar.dxpr-theme-header--overlay").style.cssText =
-              `top:${secHeaderRect.bottom}px !important;`;
-            document.querySelector("#secondary-header").classList.remove("dxpr-theme-secondary-header--sticky");
+            document.querySelector(
+              "#navbar.dxpr-theme-header--overlay",
+            ).style.cssText = `top:${secHeaderRect.bottom}px !important;`;
+            document
+              .querySelector("#secondary-header")
+              .classList.remove("dxpr-theme-secondary-header--sticky");
           } else {
             if (document.querySelectorAll("#toolbar-bar").length > 0) {
-              document.querySelector("dxpr-theme-header--overlay").style.top = `${secHeaderRect.bottom}px`;
+              document.querySelector("dxpr-theme-header--overlay").style.top =
+                `${secHeaderRect.bottom}px`;
             } else {
-              document.querySelector("dxpr-theme-header--overlay").style.top = "0";
+              document.querySelector("dxpr-theme-header--overlay").style.top =
+                "0";
             }
-            document.querySelector("#secondary-header").classList.remove("dxpr-theme-secondary-header--sticky");
+            document
+              .querySelector("#secondary-header")
+              .classList.remove("dxpr-theme-secondary-header--sticky");
           }
         }
       }
@@ -304,52 +356,64 @@
       }
 
       // Remove split-mega menu columns
-      document.querySelectorAll("#dxpr-theme-main-menu .menu .dropdown-menu, #dxpr-theme-main-menu .menu .dropdown-menu li").forEach(el => {
-        el.removeAttribute("style");
-      });
+      document
+        .querySelectorAll(
+          "#dxpr-theme-main-menu .menu .dropdown-menu, #dxpr-theme-main-menu .menu .dropdown-menu li",
+        )
+        .forEach((el) => {
+          el.removeAttribute("style");
+        });
 
       const mainMenu = document.getElementById("dxpr-theme-main-menu");
       if (mainMenu) {
         const menuItems = mainMenu.querySelectorAll(".menu");
-        menuItems.forEach(menuItem => {
+        menuItems.forEach((menuItem) => {
           menuItem.classList.add("menu__level");
 
           const dropdownMenus = menuItem.querySelectorAll(".dropdown-menu");
-          dropdownMenus.forEach(dropdownMenu => {
+          dropdownMenus.forEach((dropdownMenu) => {
             dropdownMenu.classList.add("menu__level");
           });
 
           const megamenus = menuItem.querySelectorAll(".dxpr-theme-megamenu");
-          megamenus.forEach(megamenu => {
+          megamenus.forEach((megamenu) => {
             megamenu.classList.add("menu__level");
           });
 
           const links = menuItem.querySelectorAll("a");
-          links.forEach(link => {
+          links.forEach((link) => {
             link.classList.add("menu__link");
           });
 
           const listItems = menuItem.querySelectorAll("li");
-          listItems.forEach(listItem => {
+          listItems.forEach((listItem) => {
             listItem.classList.add("menu__item");
           });
         });
       }
 
       // Set up data attributes
-      document.querySelectorAll("#dxpr-theme-main-menu .menu a.dropdown-toggle").forEach(element => {
-        const nextElement = element.nextElementSibling;
-        element.setAttribute("data-submenu", element.textContent);
-        nextElement.setAttribute("data-menu", element.textContent);
-      });
+      document
+        .querySelectorAll("#dxpr-theme-main-menu .menu a.dropdown-toggle")
+        .forEach((element) => {
+          const nextElement = element.nextElementSibling;
+          element.setAttribute("data-submenu", element.textContent);
+          nextElement.setAttribute("data-menu", element.textContent);
+        });
 
-      document.querySelectorAll("#dxpr-theme-main-menu .menu a.dxpr-theme-megamenu__heading").forEach(element => {
-        const nextMegaElement = element.nextElementSibling;
-        element.setAttribute("data-submenu", element.textContent);
-        nextMegaElement.setAttribute("data-menu", element.textContent);
-      });
+      document
+        .querySelectorAll(
+          "#dxpr-theme-main-menu .menu a.dxpr-theme-megamenu__heading",
+        )
+        .forEach((element) => {
+          const nextMegaElement = element.nextElementSibling;
+          element.setAttribute("data-submenu", element.textContent);
+          nextMegaElement.setAttribute("data-menu", element.textContent);
+        });
 
-      const bc = document.querySelectorAll("#dxpr-theme-main-menu .menu .dropdown-menu").length > 0;
+      const bc =
+        document.querySelectorAll("#dxpr-theme-main-menu .menu .dropdown-menu")
+          .length > 0;
       const menuEl = document.getElementById("dxpr-theme-main-menu");
       new MLMenu(menuEl, {
         breadcrumbsCtrl: bc, // Show breadcrumbs
@@ -361,22 +425,30 @@
       // Close/open menu function
       const closeMenu = function () {
         if (drupalSettings.dxpr_themeSettings.hamburgerAnimation === "cross") {
-          document.querySelector("#dxpr-theme-menu-toggle").classList.toggle("navbar-toggle--active");
+          document
+            .querySelector("#dxpr-theme-menu-toggle")
+            .classList.toggle("navbar-toggle--active");
         }
-        document.querySelector("#dxpr-theme-main-menu").classList.toggle("menu--open");
-        document.querySelector("html").classList.toggle("html--dxpr-theme-nav-mobile--open");
+        document
+          .querySelector("#dxpr-theme-main-menu")
+          .classList.toggle("menu--open");
+        document
+          .querySelector("html")
+          .classList.toggle("html--dxpr-theme-nav-mobile--open");
       };
 
       // Mobile menu toggle
-      document.querySelector("#dxpr-theme-menu-toggle").addEventListener("click", () => {
-        closeMenu();
-      });
+      document
+        .querySelector("#dxpr-theme-menu-toggle")
+        .addEventListener("click", () => {
+          closeMenu();
+        });
 
       document.getElementById("dxpr-theme-main-menu").style.position = "fixed";
       document.getElementById("dxpr-theme-main-menu").style.display = "block";
 
       // Close menu with click on anchor link
-      document.querySelectorAll(".menu__link").forEach(link => {
+      document.querySelectorAll(".menu__link").forEach((link) => {
         link.addEventListener("click", function () {
           if (!this.getAttribute("data-submenu")) {
             closeMenu();
@@ -391,7 +463,9 @@
         brandingBottom = brandingElement.getBoundingClientRect().bottom;
       }
 
-      const lastBlock = document.querySelector("#dxpr-theme-main-menu .block:not(.block-menu):last-of-type");
+      const lastBlock = document.querySelector(
+        "#dxpr-theme-main-menu .block:not(.block-menu):last-of-type",
+      );
       if (
         document.querySelectorAll(".body--dxpr-theme-header-side").length > 0 &&
         window.innerWidth > navMenuBreak &&
@@ -404,7 +478,9 @@
 
       const menuBreadcrumbs = document.querySelector(".menu__breadcrumbs");
       const menuLevels = document.querySelector(".menu__level");
-      const menuSideLevels = document.querySelector(".dxpr-theme-header--side .menu__level");
+      const menuSideLevels = document.querySelector(
+        ".dxpr-theme-header--side .menu__level",
+      );
 
       if (lastBlock) {
         const lastBlockBottom = lastBlock.getBoundingClientRect().bottom;
@@ -438,10 +514,11 @@
     }
   }
 
-// Fixed header on mobile and tablet
-  const headerMobileHeight = drupalSettings.dxpr_themeSettings.headerMobileHeight;
+  // Fixed header on mobile and tablet
+  const { headerMobileHeight } = drupalSettings.dxpr_themeSettings;
   const headerFixed = drupalSettings.dxpr_themeSettings.headerMobileFixed;
-  const navThemeBreak = "dxpr_themeNavBreakpoint" in window ? window.dxpr_themeNavBreakpoint : 1200;
+  const navThemeBreak =
+    "dxpr_themeNavBreakpoint" in window ? window.dxpr_themeNavBreakpoint : 1200;
 
   if (
     headerFixed &&
@@ -457,7 +534,8 @@
     } else {
       navbarElement.classList.remove("header-mobile-admin-fixed-active");
     }
-    document.querySelector(".dxpr-theme-boxed-container").style.overflow = "hidden";
+    document.querySelector(".dxpr-theme-boxed-container").style.overflow =
+      "hidden";
     document.querySelector("#toolbar-bar").classList.add("header-mobile-fixed");
     navbarElement.classList.add("header-mobile-fixed");
     const secondaryHeaderEle = document.querySelector("#secondary-header");
@@ -472,13 +550,17 @@
       navBreakMenu = window.dxpr_themeNavBreakpoint;
     }
     if (window.innerWidth > navBreakMenu) {
-      const elementNavMobile = document.querySelector(".body--dxpr-theme-nav-mobile");
+      const elementNavMobile = document.querySelector(
+        ".body--dxpr-theme-nav-mobile",
+      );
       if (elementNavMobile) {
         elementNavMobile.classList.add("body--dxpr-theme-nav-desktop");
         elementNavMobile.classList.remove("body--dxpr-theme-nav-mobile");
       }
     } else {
-      const elementNavDesktop = document.querySelector(".body--dxpr-theme-nav-desktop");
+      const elementNavDesktop = document.querySelector(
+        ".body--dxpr-theme-nav-desktop",
+      );
       if (elementNavDesktop) {
         elementNavDesktop.classList.add("body--dxpr-theme-nav-mobile");
         elementNavDesktop.classList.remove("body--dxpr-theme-nav-desktop");
@@ -492,26 +574,34 @@
       drupalSettings.dxpr_themeSettings.headerSideDirection === "right" &&
       window.innerWidth <= window.dxpr_themeNavBreakpoint
     ) {
-      document.querySelector(".dxpr-theme-main-menu").classList.add("dxpr-theme-main-menu--to-left");
+      document
+        .querySelector(".dxpr-theme-main-menu")
+        .classList.add("dxpr-theme-main-menu--to-left");
     } else {
-      document.querySelector(".dxpr-theme-main-menu").classList.remove("dxpr-theme-main-menu--to-left");
+      document
+        .querySelector(".dxpr-theme-main-menu")
+        .classList.remove("dxpr-theme-main-menu--to-left");
     }
     // Fix bug with not styled content on page load.
     if (
       window.innerWidth > window.dxpr_themeNavBreakpoint &&
       document.querySelectorAll(".dxpr-theme-header--side").length === 0
     ) {
-      document.getElementById("dxpr-theme-main-menu").style.position = "relative";
+      document.getElementById("dxpr-theme-main-menu").style.position =
+        "relative";
     }
   }
 
-  window.addEventListener("resize", _.debounce(() => {
-    if (document.querySelectorAll("#dxpr-theme-main-menu .nav").length > 0) {
-      dxpr_themeMenuGovernorBodyClass();
-      dxpr_themeMenuGovernor(document);
-    }
-    dpxr_themeMenuOnResize();
-  }, 50));
+  window.addEventListener(
+    "resize",
+    _.debounce(() => {
+      if (document.querySelectorAll("#dxpr-theme-main-menu .nav").length > 0) {
+        dxpr_themeMenuGovernorBodyClass();
+        dxpr_themeMenuGovernor(document);
+      }
+      dpxr_themeMenuOnResize();
+    }, 50),
+  );
 
   dpxr_themeMenuOnResize();
 

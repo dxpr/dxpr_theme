@@ -14,23 +14,11 @@
         }, 350);
       }
 
-      // Handle the search button click or touchstart
-      if (searchButton && once("search-button", searchButton).length) {
-        searchButton.addEventListener("touchstart", handleSearchButtonClick);
-        searchButton.addEventListener("click", handleSearchButtonClick);
-      }
-
       function handleSearchButtonClick(event) {
         event.preventDefault();
         searchForm.classList.toggle("invisible");
         document.body.classList.toggle("body--full-screen-search");
         searchFormInput.focus();
-      }
-
-      // Handle the search form click or touchstart
-      if (searchForm && once("search-form", searchForm).length) {
-        searchForm.addEventListener("touchstart", handleSearchFormClick);
-        searchForm.addEventListener("click", handleSearchFormClick);
       }
 
       function handleSearchFormClick(ele) {
@@ -39,9 +27,24 @@
         }
       }
 
+      // Handle the search button click or touchstart
+      if (searchButton && once("search-button", searchButton).length) {
+        searchButton.addEventListener("touchstart", handleSearchButtonClick);
+        searchButton.addEventListener("click", handleSearchButtonClick);
+      }
+
+      // Handle the search form click or touchstart
+      if (searchForm && once("search-form", searchForm).length) {
+        searchForm.addEventListener("touchstart", handleSearchFormClick);
+        searchForm.addEventListener("click", handleSearchFormClick);
+      }
+
       // Handle the escape key to close the search form
       document.addEventListener("keydown", (event) => {
-        if (event.keyCode === escapeCode && !searchForm.classList.contains("invisible")) {
+        if (
+          event.keyCode === escapeCode &&
+          !searchForm.classList.contains("invisible")
+        ) {
           clearSearchForm();
         }
       });
