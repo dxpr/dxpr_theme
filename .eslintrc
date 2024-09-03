@@ -67,7 +67,9 @@
           "namespace",
           "Pixeden",
           "plusplus",
-          "undef"
+          "undef",
+          "touchstart",
+          "Rect"
         ],
         "skipIfMatch": [
           "{\\w+}", // E.g. "{paramName}"
