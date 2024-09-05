@@ -85,6 +85,24 @@ docker compose up drupal-check
 docker compose run --rm drupal-check
 ```
 
+### Stylelint check for SCSS files
+
+```bash
+$ docker compose run --rm stylelint
+```
+
+### Stylelint check for SCSS files with HTML report.
+
+```bash
+$ REPORT_ENABLED=true docker compose run --rm stylelint
+```
+
+### Stylelint auto fix for SCSS files
+
+```bash
+$ docker compose run --rm stylelint-auto-fix
+```
+
 ### Using our Demo sites for local development
 
 You can use one of three demo sites to save time in settings up a Drupal site
