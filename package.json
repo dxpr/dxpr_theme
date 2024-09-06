@@ -42,5 +42,8 @@
   "browserslist": [
     "> 1%",
     "last 4 versions"
-  ]
+  ],
+  "dependencies": {
+    "dxb_slider": "github:dxpr/DXB-Slider"
+  }
 }
