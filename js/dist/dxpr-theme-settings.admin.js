@@ -709,7 +709,7 @@
   Drupal.behaviors.dxpr_themeSettingsControls = {
     attach: function (context) {
       this.handleFields();
-      // Select all target inputs once when the page loads.
+// Select all target inputs once when the page loads.
       once('dxpr-settings-controls', 'html', context).forEach(function () {
         // Opacity Sliders
         const opacitySelectors = [
@@ -722,60 +722,59 @@
           "#edit-header-top-opacity-scroll",
           "#edit-menu-full-screen-opacity"
         ];
-
         opacitySelectors.forEach(function (selector) {
           const originalInput = document.querySelector(selector);
           if (originalInput) {
-            transformToDXBSlider(originalInput, 'opacity');
+            createDXBSlider(originalInput, 'opacity', 0.5, 0, 1, 0.01);
           }
         });
 
         // Line Height Sliders
         const lineHeightSelectors = document.querySelectorAll('.line-height-slider');
         lineHeightSelectors.forEach(function (originalInput) {
-          transformToDXBSlider(originalInput, 'line-height');
+          createDXBSlider(originalInput, 'line-height', 1.5, 0, 3, 0.1);
         });
 
         // Border Radius Sliders
         const borderRadiusSelectors = document.querySelectorAll('.border-radius-slider');
         borderRadiusSelectors.forEach(function (originalInput) {
-          transformToDXBSlider(originalInput, 'border-radius');
+          createDXBSlider(originalInput, 'border-radius', 10, 0, 100, 1);
         });
 
         // Body Font Size Slider
         const bodyFontSizeInput = document.querySelector('#edit-body-font-size');
         if (bodyFontSizeInput) {
-          transformToDXBSlider(bodyFontSizeInput, 'font-size');
+          createDXBSlider(bodyFontSizeInput, 'font-size', 16, 8, 100, 1);
         }
 
         // Nav Font Size Slider
         const navFontSizeInput = document.querySelector('#edit-nav-font-size');
         if (navFontSizeInput) {
-          transformToDXBSlider(navFontSizeInput, 'font-size');
+          createDXBSlider(navFontSizeInput, 'font-size', 16, 8, 100, 1);
         }
 
         // Body Mobile Font Size Slider
         const bodyMobileFontSizeInput = document.querySelector('#edit-body-mobile-font-size');
         if (bodyMobileFontSizeInput) {
-          transformToDXBSlider(bodyMobileFontSizeInput, 'font-size');
+          createDXBSlider(bodyMobileFontSizeInput, 'font-size', 14, 8, 100, 1);
         }
 
         // Nav Mobile Font Size Slider
         const navMobileFontSizeInput = document.querySelector('#edit-nav-mobile-font-size');
         if (navMobileFontSizeInput) {
-          transformToDXBSlider(navMobileFontSizeInput, 'font-size');
+          createDXBSlider(navMobileFontSizeInput, 'font-size', 14, 8, 100, 1);
         }
 
         // Other Font Sizes Sliders
         const fontSizeSelectors = document.querySelectorAll('.font-size-slider');
         fontSizeSelectors.forEach(function (originalInput) {
-          transformToDXBSlider(originalInput, 'font-size');
+          createDXBSlider(originalInput, 'font-size', 16, 8, 100, 1);
         });
 
         // Scale Factor Slider
         const scaleFactorInput = document.querySelector('#edit-scale-factor');
         if (scaleFactorInput) {
-          transformToDXBSlider(scaleFactorInput, 'scale-factor');
+          createDXBSlider(scaleFactorInput, 'scale-factor', 1, 1, 2, 0.01);
         }
 
         // Divider Thickness Sliders
@@ -786,7 +785,7 @@
         dividerThicknessSelectors.forEach(function (selector) {
           const originalInput = document.querySelector(selector);
           if (originalInput) {
-            transformToDXBSlider(originalInput, 'divider-thickness');
+            createDXBSlider(originalInput, 'divider-thickness', 1, 0, 20, 1);
           }
         });
 
@@ -798,488 +797,222 @@
         dividerLengthSelectors.forEach(function (selector) {
           const originalInput = document.querySelector(selector);
           if (originalInput) {
-            transformToDXBSlider(originalInput, 'divider-length');
+            createDXBSlider(originalInput, 'divider-length', 100, 0, 500, 10);
           }
         });
 
         // Divider Position Slider
         const dividerPositionInput = document.querySelector('#edit-divider-position');
         if (dividerPositionInput) {
-          transformToDXBSlider(dividerPositionInput, 'divider-position');
+          createDXBSlider(dividerPositionInput, 'divider-position', 1, 1, 3, 1);
         }
 
         // Headings Letter Spacing Slider
         const headingsLetterSpacingInput = document.querySelector('#edit-headings-letter-spacing');
         if (headingsLetterSpacingInput) {
-          transformToDXBSlider(headingsLetterSpacingInput, 'letter-spacing');
+          createDXBSlider(headingsLetterSpacingInput, 'letter-spacing', 0, -0.1, 0.3, 0.01);
         }
 
         // Block Design Divider Spacing Slider
         const blockDividerSpacingInput = document.querySelector('#edit-block-divider-spacing');
         if (blockDividerSpacingInput) {
-          transformToDXBSlider(blockDividerSpacingInput, 'block-divider-spacing');
+          createDXBSlider(blockDividerSpacingInput, 'block-divider-spacing', 10, 0, 100, 1);
         }
 
         // Page Title Height Slider
         const pageTitleHeightInput = document.querySelector('#edit-page-title-height');
         if (pageTitleHeightInput) {
-          transformToDXBSlider(pageTitleHeightInput, 'page-title-height');
+          createDXBSlider(pageTitleHeightInput, 'page-title-height', 200, 50, 500, 5);
         }
 
         // Header Height Slider
         const headerTopHeightInput = document.querySelector('#edit-header-top-height');
         if (headerTopHeightInput) {
-          transformToDXBSlider(headerTopHeightInput, 'header-height');
+          createDXBSlider(headerTopHeightInput, 'header-height', 100, 10, 200, 1);
         }
 
         // Logo Height Slider
         const logoHeightInput = document.querySelector('#edit-logo-height');
         if (logoHeightInput) {
-          transformToDXBSlider(logoHeightInput, 'logo-height');
+          createDXBSlider(logoHeightInput, 'logo-height', 50, 10, 100, 1);
         }
 
         // Header Mobile Breakpoint Slider
         const headerMobileBreakpointInput = document.querySelector('#edit-header-mobile-breakpoint');
         if (headerMobileBreakpointInput) {
-          transformToDXBSlider(headerMobileBreakpointInput, 'header-mobile-breakpoint');
+          createDXBSlider(headerMobileBreakpointInput, 'header-mobile-breakpoint', 768, 480, 4100, 10);
         }
 
         // Header Mobile Height Slider
         const headerMobileHeightInput = document.querySelector('#edit-header-mobile-height');
         if (headerMobileHeightInput) {
-          transformToDXBSlider(headerMobileHeightInput, 'header-mobile-height');
+          createDXBSlider(headerMobileHeightInput, 'header-mobile-height', 60, 10, 200, 1);
         }
 
         // Header After-Scroll Height Slider
         const headerTopHeightScrollInput = document.querySelector('#edit-header-top-height-scroll');
         if (headerTopHeightScrollInput) {
-          transformToDXBSlider(headerTopHeightScrollInput, 'header-scroll-height');
+          createDXBSlider(headerTopHeightScrollInput, 'header-scroll-height', 80, 10, 200, 1);
         }
 
         // Sticky Header Scroll Offset Slider
         const stickyOffsetInput = document.querySelector('#edit-header-top-height-sticky-offset');
         if (stickyOffsetInput) {
-          transformToDXBSlider(stickyOffsetInput, 'sticky-offset');
+          createDXBSlider(stickyOffsetInput, 'sticky-offset', 10, 0, 2096, 10);
         }
 
         // Side Header Width Slider
         const headerSideWidthInput = document.querySelector('#edit-header-side-width');
         if (headerSideWidthInput) {
-          transformToDXBSlider(headerSideWidthInput, 'side-header-width');
+          createDXBSlider(headerSideWidthInput, 'side-header-width', 200, 50, 500, 5);
         }
 
         // Side Header Logo Height Slider
         const headerSideLogoHeightInput = document.querySelector('#edit-header-side-logo-height');
         if (headerSideLogoHeightInput) {
-          transformToDXBSlider(headerSideLogoHeightInput, 'side-header-logo-height');
+          createDXBSlider(headerSideLogoHeightInput, 'side-header-logo-height', 100, 10, 500, 1);
         }
 
         // Main Menu Hover Border Thickness Slider
         const menuBorderSizeInput = document.querySelector('#edit-menu-border-size');
         if (menuBorderSizeInput) {
-          transformToDXBSlider(menuBorderSizeInput, 'menu-border-size');
+          createDXBSlider(menuBorderSizeInput, 'menu-border-size', 2, 1, 20, 1);
         }
 
         // Main Menu Hover Border Position Offset Slider
         const menuBorderPositionOffsetInput = document.querySelector('#edit-menu-border-position-offset');
         if (menuBorderPositionOffsetInput) {
-          transformToDXBSlider(menuBorderPositionOffsetInput, 'menu-border-offset');
+          createDXBSlider(menuBorderPositionOffsetInput, 'menu-border-offset', 10, 0, 100, 1);
         }
 
         // Layout Max Width Slider
         const layoutMaxWidthInput = document.querySelector('#edit-layout-max-width');
         if (layoutMaxWidthInput) {
-          transformToDXBSlider(layoutMaxWidthInput, 'layout-max-width');
+          createDXBSlider(layoutMaxWidthInput, 'layout-max-width', 1200, 480, 4100, 10);
         }
 
         // Box Max Width Slider
         const boxMaxWidthInput = document.querySelector('#edit-box-max-width');
         if (boxMaxWidthInput) {
-          transformToDXBSlider(boxMaxWidthInput, 'box-max-width');
+          createDXBSlider(boxMaxWidthInput, 'box-max-width', 1200, 480, 4100, 10);
         }
 
         // Layout Gutter Horizontal Slider
         const gutterHorizontalInput = document.querySelector('#edit-gutter-horizontal');
         if (gutterHorizontalInput) {
-          transformToDXBSlider(gutterHorizontalInput, 'gutter-horizontal');
+          createDXBSlider(gutterHorizontalInput, 'gutter-horizontal', 20, 0, 100, 1);
         }
 
         // Layout Gutter Vertical Slider
         const gutterVerticalInput = document.querySelector('#edit-gutter-vertical');
         if (gutterVerticalInput) {
-          transformToDXBSlider(gutterVerticalInput, 'gutter-vertical');
+          createDXBSlider(gutterVerticalInput, 'gutter-vertical', 20, 0, 100, 1);
         }
 
         // Layout Gutter Container Slider
         const gutterContainerInput = document.querySelector('#edit-gutter-container');
         if (gutterContainerInput) {
-          transformToDXBSlider(gutterContainerInput, 'gutter-container');
+          createDXBSlider(gutterContainerInput, 'gutter-container', 30, 0, 500, 1);
         }
 
         // Layout Gutter Horizontal Mobile Slider
         const gutterHorizontalMobileInput = document.querySelector('#edit-gutter-horizontal-mobile');
         if (gutterHorizontalMobileInput) {
-          transformToDXBSlider(gutterHorizontalMobileInput, 'gutter-horizontal-mobile');
+          createDXBSlider(gutterHorizontalMobileInput, 'gutter-horizontal-mobile', 10, 0, 100, 1);
         }
 
         // Layout Gutter Vertical Mobile Slider
         const gutterVerticalMobileInput = document.querySelector('#edit-gutter-vertical-mobile');
         if (gutterVerticalMobileInput) {
-          transformToDXBSlider(gutterVerticalMobileInput, 'gutter-vertical-mobile');
+          createDXBSlider(gutterVerticalMobileInput, 'gutter-vertical-mobile', 10, 0, 100, 1);
         }
 
         // Layout Gutter Container Mobile Slider
         const gutterContainerMobileInput = document.querySelector('#edit-gutter-container-mobile');
         if (gutterContainerMobileInput) {
-          transformToDXBSlider(gutterContainerMobileInput, 'gutter-container-mobile');
+          createDXBSlider(gutterContainerMobileInput, 'gutter-container-mobile', 20, 0, 500, 1);
         }
 
         // Dropdown Width Slider
         const dropdownWidthInput = document.querySelector('#edit-dropdown-width');
         if (dropdownWidthInput) {
-          transformToDXBSlider(dropdownWidthInput, 'dropdown-width');
+          createDXBSlider(dropdownWidthInput, 'dropdown-width', 200, 100, 400, 5);
         }
 
         // Menu Border Position Offset Sticky Slider
         const menuBorderPositionOffsetStickyInput = document.querySelector('#edit-menu-border-position-offset-sticky');
         if (menuBorderPositionOffsetStickyInput) {
-          transformToDXBSlider(menuBorderPositionOffsetStickyInput, 'menu-border-position-offset-sticky');
+          createDXBSlider(menuBorderPositionOffsetStickyInput, 'menu-border-position-offset-sticky', 10, 0, 100, 1);
         }
 
         // Block Padding Slider
         const blockPaddingInput = document.querySelector('#edit-block-padding');
         if (blockPaddingInput) {
-          transformToDXBSlider(blockPaddingInput, 'block-padding');
+          createDXBSlider(blockPaddingInput, 'block-padding', 15, 0, 30, 1);
         }
 
         // Block Border Slider
         const blockBorderInput = document.querySelector('#edit-block-border');
         if (blockBorderInput) {
-          transformToDXBSlider(blockBorderInput, 'block-border');
+          createDXBSlider(blockBorderInput, 'block-border', 1, 0, 30, 1);
         }
 
         // Title Padding Slider
         const titlePaddingInput = document.querySelector('#edit-title-padding');
         if (titlePaddingInput) {
-          transformToDXBSlider(titlePaddingInput, 'title-padding');
+          createDXBSlider(titlePaddingInput, 'title-padding', 10, 0, 30, 1);
         }
 
         // Title Border Slider
         const titleBorderInput = document.querySelector('#edit-title-border');
         if (titleBorderInput) {
-          transformToDXBSlider(titleBorderInput, 'title-border');
+          createDXBSlider(titleBorderInput, 'title-border', 1, 0, 30, 1);
         }
       });
 
-      function transformToDXBSlider(inputElement, type) {
-        // Create wrapper
+      // New function for creating sliders
+      function createDXBSlider(inputElement, type, value, min, max, step) {
+        if (!inputElement) {
+          console.error(`Element not found for type: ${type}`);
+          return;
+        }
+
+        // We check if the input element is already set to 'range'
+        if (inputElement.tagName.toLowerCase() !== 'input' || inputElement.type !== 'range') {
+          inputElement.type = 'range';  // Changing the type to range
+        }
+
+        inputElement.min = min;
+        inputElement.max = max;
+        inputElement.step = step;
+        inputElement.value = value;
+
+        inputElement.classList.add('dxb-slider');
+        inputElement.setAttribute('data-dxb-slider', '');
+
+        // Create wrapper and track
         const wrapper = document.createElement('div');
         wrapper.classList.add('dxb-slider-wrapper');
 
         const track = document.createElement('div');
         track.classList.add('dxb-slider-track');
 
-        // Set attributes on the input
-        // Opacity Sliders attributes
-        if (type === 'opacity') {
-          inputElement.setAttribute('min', '0');
-          inputElement.setAttribute('max', '1');
-          inputElement.setAttribute('step', '0.01');
-          inputElement.setAttribute('aria-labelledby', 'fontSizeLabel');
-        }
-        // Line Height Sliders attributes
-        else if (type === 'line-height') {
-          inputElement.setAttribute('min', '0');
-          inputElement.setAttribute('max', '3');
-          inputElement.setAttribute('step', '0.1');
-          inputElement.setAttribute('aria-labelledby', 'lineHeightLabel');
-        }
-        // Border Radius Sliders attributes
-        else if (type === 'border-radius') {
-          inputElement.setAttribute('min', '0');
-          inputElement.setAttribute('max', '100');
-          inputElement.setAttribute('step', '1');
-          inputElement.setAttribute('aria-labelledby', 'borderRadiusLabel');
-        }
-        // Font Size Sliders attributes
-        else if (type === 'font-size') {
-          inputElement.setAttribute('min', '8');
-          inputElement.setAttribute('max', '100');
-          inputElement.setAttribute('step', '1');
-          inputElement.setAttribute('aria-labelledby', 'fontSizeLabel');
-        }
-        // Scale Factor Slider attributes
-        else if (type === 'scale-factor') {
-          inputElement.setAttribute('min', '1');
-          inputElement.setAttribute('max', '2');
-          inputElement.setAttribute('step', '0.01');
-          inputElement.setAttribute('aria-labelledby', 'scaleFactorLabel');
-        }
-        // Divider Thickness Sliders attributes
-        else if (type === 'divider-thickness') {
-          inputElement.setAttribute('min', '0');
-          inputElement.setAttribute('max', '20');
-          inputElement.setAttribute('step', '1');
-          inputElement.setAttribute('aria-labelledby', 'dividerThicknessLabel');
-        }
-        // Divider Length Sliders attributes
-        else if (type === 'divider-length') {
-          inputElement.setAttribute('min', '0');
-          inputElement.setAttribute('max', '500');
-          inputElement.setAttribute('step', '10');
-          inputElement.setAttribute('aria-labelledby', 'dividerLengthLabel');
-        }
-        // Divider Position Slider attributes
-        else if (type === 'divider-position') {
-          inputElement.setAttribute('min', '1');
-          inputElement.setAttribute('max', '3');
-          inputElement.setAttribute('step', '1');
-          inputElement.setAttribute('aria-labelledby', 'dividerPositionLabel');
-        }
-        // Letter Spacing Slider attributes
-        else if (type === 'letter-spacing') {
-          inputElement.setAttribute('min', '-0.1');
-          inputElement.setAttribute('max', '0.3');
-          inputElement.setAttribute('step', '0.01');
-          inputElement.setAttribute('aria-labelledby', 'letterSpacingLabel');
-        }
-        // Block Divider Spacing Slider attributes
-        else if (type === 'block-divider-spacing') {
-          inputElement.setAttribute('min', '0');
-          inputElement.setAttribute('max', '100');
-          inputElement.setAttribute('step', '1');
-          inputElement.setAttribute('aria-labelledby', 'blockDividerSpacingLabel');
-        }
-        // Page Title Height Slider attributes
-        else if (type === 'page-title-height') {
-          inputElement.setAttribute('min', '50');
-          inputElement.setAttribute('max', '500');
-          inputElement.setAttribute('step', '5');
-          inputElement.setAttribute('aria-labelledby', 'pageTitleHeightLabel');
-        }
-        // Header Height Slider attributes
-        else if (type === 'header-height') {
-          inputElement.setAttribute('min', '10');
-          inputElement.setAttribute('max', '200');
-          inputElement.setAttribute('step', '1');
-          inputElement.setAttribute('aria-labelledby', 'headerHeightLabel');
-        }
-        // Logo Height Slider attributes
-        else if (type === 'logo-height') {
-          inputElement.setAttribute('min', '10');
-          inputElement.setAttribute('max', '100');
-          inputElement.setAttribute('step', '1');
-          inputElement.setAttribute('aria-labelledby', 'logoHeightLabel');
-        }
-        // Header Mobile Breakpoint Slider attributes
-        else if (type === 'header-mobile-breakpoint') {
-          inputElement.setAttribute('min', '480');
-          inputElement.setAttribute('max', '4100');
-          inputElement.setAttribute('step', '10');
-          inputElement.setAttribute('aria-labelledby', 'headerMobileBreakpointLabel');
-        }
-        // Header Mobile Height Slider attributes
-        else if (type === 'header-mobile-height') {
-          inputElement.setAttribute('min', '10');
-          inputElement.setAttribute('max', '200');
-          inputElement.setAttribute('step', '1');
-          inputElement.setAttribute('aria-labelledby', 'headerMobileHeightLabel');
-        }
-        // Header After-Scroll Height Slider attributes
-        else if (type === 'header-scroll-height') {
-          inputElement.setAttribute('min', '10');
-          inputElement.setAttribute('max', '200');
-          inputElement.setAttribute('step', '1');
-          inputElement.setAttribute('aria-labelledby', 'headerScrollHeightLabel');
-        }
-        // Sticky Offset Slider attributes
-        else if (type === 'sticky-offset') {
-          inputElement.setAttribute('min', '0');
-          inputElement.setAttribute('max', '2096');
-          inputElement.setAttribute('step', '10');
-          inputElement.setAttribute('aria-labelledby', 'stickyOffsetLabel');
-        }
-        // Side Header Width Slider attributes
-        else if (type === 'side-header-width') {
-          inputElement.setAttribute('min', '50');
-          inputElement.setAttribute('max', '500');
-          inputElement.setAttribute('step', '5');
-          inputElement.setAttribute('aria-labelledby', 'sideHeaderWidthLabel');
-        }
-        // Side Header Logo Height Slider attributes
-        else if (type === 'side-header-logo-height') {
-          inputElement.setAttribute('min', '10');
-          inputElement.setAttribute('max', '500');
-          inputElement.setAttribute('step', '1');
-          inputElement.setAttribute('aria-labelledby', 'sideHeaderLogoHeightLabel');
-        }
-        // Main Menu Border Size Slider attributes
-        else if (type === 'menu-border-size') {
-          inputElement.setAttribute('min', '1');
-          inputElement.setAttribute('max', '20');
-          inputElement.setAttribute('step', '1');
-          inputElement.setAttribute('aria-labelledby', 'menuBorderSizeLabel');
-        }
-        // Main Menu Border Position Offset Slider attributes
-        else if (type === 'menu-border-offset') {
-          inputElement.setAttribute('min', '0');
-          inputElement.setAttribute('max', '100');
-          inputElement.setAttribute('step', '1');
-          inputElement.setAttribute('aria-labelledby', 'menuBorderOffsetLabel');
-        }
-        // Layout Max Width Slider attributes
-        else if (type === 'layout-max-width') {
-          inputElement.setAttribute('min', '480');
-          inputElement.setAttribute('max', '4100');
-          inputElement.setAttribute('step', '10');
-          inputElement.setAttribute('aria-labelledby', 'layoutMaxWidthLabel');
-        }
-        // Box Max Width Slider attributes
-        else if (type === 'box-max-width') {
-          inputElement.setAttribute('min', '480');
-          inputElement.setAttribute('max', '4100');
-          inputElement.setAttribute('step', '10');
-          inputElement.setAttribute('aria-labelledby', 'boxMaxWidthLabel');
-        }
-        // Gutter Horizontal Slider attributes
-        else if (type === 'gutter-horizontal') {
-          inputElement.setAttribute('min', '0');
-          inputElement.setAttribute('max', '100');
-          inputElement.setAttribute('step', '1');
-          inputElement.setAttribute('aria-labelledby', 'gutterHorizontalLabel');
-        }
-        // Gutter Vertical Slider attributes
-        else if (type === 'gutter-vertical') {
-          inputElement.setAttribute('min', '0');
-          inputElement.setAttribute('max', '100');
-          inputElement.setAttribute('step', '1');
-          inputElement.setAttribute('aria-labelledby', 'gutterVerticalLabel');
-        }
-        // Gutter Container Slider attributes
-        else if (type === 'gutter-container') {
-          inputElement.setAttribute('min', '0');
-          inputElement.setAttribute('max', '500');
-          inputElement.setAttribute('step', '1');
-          inputElement.setAttribute('aria-labelledby', 'gutterContainerLabel');
-        }
-        // Gutter Horizontal Mobile Slider attributes
-        else if (type === 'gutter-horizontal-mobile') {
-          inputElement.setAttribute('min', '0');
-          inputElement.setAttribute('max', '100');
-          inputElement.setAttribute('step', '1');
-          inputElement.setAttribute('aria-labelledby', 'gutterHorizontalMobileLabel');
-        }
-        // Gutter Vertical Mobile Slider attributes
-        else if (type === 'gutter-vertical-mobile') {
-          inputElement.setAttribute('min', '0');
-          inputElement.setAttribute('max', '100');
-          inputElement.setAttribute('step', '1');
-          inputElement.setAttribute('aria-labelledby', 'gutterVerticalMobileLabel');
-        }
-        // Gutter Container Mobile Slider attributes
-        else if (type === 'gutter-container-mobile') {
-          inputElement.setAttribute('min', '0');
-          inputElement.setAttribute('max', '500');
-          inputElement.setAttribute('step', '1');
-          inputElement.setAttribute('aria-labelledby', 'gutterContainerMobileLabel');
-        }
-
-        // Gutter Container Mobile Slider attributes
-        else if (type === 'dropdown-width') {
-          inputElement.setAttribute('min', '100');
-          inputElement.setAttribute('max', '400');
-          inputElement.setAttribute('step', '5');
-          inputElement.setAttribute('aria-labelledby', 'dropdownWidthLabel');
-        }
-
-        // Menu Border Position Offset Sticky attributes
-        else if (type === 'menu-border-position-offset-sticky') {
-          inputElement.setAttribute('min', '0');
-          inputElement.setAttribute('max', '100');
-          inputElement.setAttribute('step', '1');
-          inputElement.setAttribute('aria-labelledby', 'menuBorderPositionOffsetStickyLabel');
-        }
-
-        // Block Padding attributes
-        else if (type === 'block-padding') {
-          inputElement.setAttribute('min', '0');
-          inputElement.setAttribute('max', '30');
-          inputElement.setAttribute('step', '1');
-          inputElement.setAttribute('aria-labelledby', 'blockPaddingLabel');
-        }
-
-        // Block Border attributes
-        else if (type === 'block-border') {
-          inputElement.setAttribute('min', '0');
-          inputElement.setAttribute('max', '30');
-          inputElement.setAttribute('step', '1');
-          inputElement.setAttribute('aria-labelledby', 'blockBorderLabel');
-        }
-
-        // Title Padding attributes
-        else if (type === 'title-padding') {
-          inputElement.setAttribute('min', '0');
-          inputElement.setAttribute('max', '30');
-          inputElement.setAttribute('step', '1');
-          inputElement.setAttribute('aria-labelledby', 'titlePaddingLabel');
-        }
-
-        // Title Padding attributes
-        else if (type === 'title-border') {
-          inputElement.setAttribute('min', '0');
-          inputElement.setAttribute('max', '30');
-          inputElement.setAttribute('step', '1');
-          inputElement.setAttribute('aria-labelledby', 'titleBorderLabel');
-        }
-
-        inputElement.type = 'range';
-        inputElement.classList.add('dxb-slider');
-        inputElement.setAttribute('data-dxb-slider', '');
-        inputElement.setAttribute('aria-valuemin', inputElement.min);
-        inputElement.setAttribute('aria-valuemax', inputElement.max);
-        inputElement.setAttribute('aria-valuenow', inputElement.value);
-
-        // Create number input for displaying value
-        const numberInput = document.createElement('input');
-        numberInput.type = 'number';
-        numberInput.className = 'dxb-slider-value';
-        numberInput.setAttribute('aria-hidden', 'true');
-        numberInput.setAttribute('tabindex', '-1');
-        numberInput.setAttribute('pattern', '[0-9]*');
-        numberInput.setAttribute('inputmode', 'decimal');
-        numberInput.min = inputElement.min;
-        numberInput.max = inputElement.max;
-        numberInput.step = inputElement.step;
-        numberInput.value = inputElement.value;
-
         // Wrap the input in the wrapper
         inputElement.parentNode.insertBefore(wrapper, inputElement);
         wrapper.appendChild(track);
         track.appendChild(inputElement);
-        wrapper.appendChild(numberInput);
 
-        // Function to update values
+        // Update the initial slider value display
         function updateValue() {
           const val = inputElement.value;
-          const min = inputElement.min;
-          const max = inputElement.max;
-          const percent = (val - min) / (max - min) * 100;
-
+          const percent = (val - inputElement.min) / (inputElement.max - inputElement.min) * 100;
           inputElement.style.setProperty('--value-percent', `${percent}%`);
-          numberInput.value = val;
-          inputElement.setAttribute('aria-valuenow', val);
-
         }
 
         inputElement.addEventListener('input', updateValue);
-        numberInput.addEventListener('input', () => {
-          inputElement.value = numberInput.value;
-          updateValue();
-        });
-
-        // Set the initial value
-        updateValue();
+        updateValue(); // Set initial value
       }
+
 
       // Reflow layout when showing a tab
       // var $sliders = $('.slider + input');
