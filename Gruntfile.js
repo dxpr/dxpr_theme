@@ -93,11 +93,10 @@ module.exports = function (grunt) {
       },
     },
   });
-
-  grunt.loadNpmTasks("grunt-babel");
-  grunt.loadNpmTasks("grunt-terser");
-  grunt.loadNpmTasks("grunt-sass");
-  grunt.loadNpmTasks("grunt-contrib-watch");
-  grunt.loadNpmTasks("grunt-postcss");
-  grunt.registerTask("default", ["watch"]);
+  grunt.loadNpmTasks('grunt-babel');
+  grunt.loadNpmTasks('grunt-terser');
+  grunt.loadNpmTasks('grunt-sass');
+  grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('@lodder/grunt-postcss');
+  grunt.registerTask('default', ['watch']);
 };
