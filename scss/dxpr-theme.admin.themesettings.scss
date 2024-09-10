@@ -281,7 +281,7 @@ $border-color: #222330;
           }
 
           .vertical-tabs__menu-item-title {
-              font-weight: normal;
+            font-weight: normal;
           }
         }
       }
@@ -330,36 +330,36 @@ $border-color: #222330;
     }
 
     // .form-radios {
-      // label.option,
-      input ~ label.option,
-      input ~ span {
-        cursor: pointer;
-        font-weight: 300;
-        line-height: 24px;
-        margin: 0;
-        width: auto;
+    // label.option,
+    input ~ label.option,
+    input ~ span {
+      cursor: pointer;
+      font-weight: 300;
+      line-height: 24px;
+      margin: 0;
+      width: auto;
 
-        &::before {
-          content: '__';
-          display: inline-block;
-          font-size: 18px;
-          font-weight: normal;
-          opacity: 0.3;
-          width: 25px;
-        }
-      }
-
-      input:checked ~ label.option,
-      input:checked ~ span {
-        font-style: italic;
+      &::before {
+        content: '__';
+        display: inline-block;
+        font-size: 18px;
         font-weight: normal;
-
-        &::before {
-          content: '✓';
-          font-size: 24px;
-          opacity: 1;
-        }
+        opacity: 0.3;
+        width: 25px;
       }
+    }
+
+    input:checked ~ label.option,
+    input:checked ~ span {
+      font-style: italic;
+      font-weight: normal;
+
+      &::before {
+        content: '✓';
+        font-size: 24px;
+        opacity: 1;
+      }
+    }
 
     // }
   }
@@ -527,6 +527,7 @@ $border-color: #222330;
     .form-text:not([name="divider_color_custom"]) {
       width: 27%;
     }
+
     .form-item-scale-factor {
       width: 66%;
     }
@@ -579,9 +580,9 @@ $border-color: #222330;
   }
 
   .js-form-type-checkbox {
-  position: relative;
+    position: relative;
 
-  input[type="checkbox"] {
+    input[type="checkbox"] {
       appearance: auto;
       cursor: pointer;
       height: 27px;
@@ -603,9 +604,9 @@ $border-color: #222330;
         }
       }
 
-    &:focus {
-      box-shadow: unset;
-    }
+      &:focus {
+        box-shadow: unset;
+      }
     }
 
     .switcher {
@@ -645,9 +646,11 @@ $border-color: #222330;
     input {
       border: none;
     }
+
     .dxb-slider-value {
       width: 100px;
     }
+
     .dxb-slider-track .dxb-slider {
       width: 100% !important;
     }
