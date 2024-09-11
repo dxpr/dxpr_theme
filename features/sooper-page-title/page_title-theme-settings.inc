@@ -111,7 +111,7 @@ function page_title_theme_settings(array &$form, $theme) {
     '#prefix' => '<br class="clear-both"><br class="clear-both">',
     '#description' => t('Choose an animation.'),
   ];
-  
+
   $form['dxpr_theme_settings']['page_title']['background'] = [
     '#title' => t('Background Image'),
     '#type' => 'details',
