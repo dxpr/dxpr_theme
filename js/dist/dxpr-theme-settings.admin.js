@@ -482,6 +482,7 @@
         "title_padding",
         "title_border",
         "title_border_radius",
+        "block_divider_spacing",
       ];
 
       // Define variables that expect "em".
