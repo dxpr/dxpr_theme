@@ -708,8 +708,10 @@
   /* eslint-disable */
   Drupal.behaviors.dxpr_themeSettingsControls = {
     attach: function (context) {
-      this.handleFields();
-// Select all target inputs once when the page loads.
+      once('dxpr-settings-controls-fields', 'html', context).forEach(function () {
+        this.handleFields();
+      }.bind(this));
+      // Select all target inputs once when the page loads.
       once('dxpr-settings-controls', 'html', context).forEach(function () {
         // Opacity Sliders
         const opacitySelectors = [
@@ -973,7 +975,6 @@
       // New function for creating sliders
       function createDXBSlider(inputElement, type, value, min, max, step) {
         if (!inputElement) {
-          console.error(`Element not found for type: ${type}`);
           return;
         }
 
@@ -1050,7 +1051,7 @@
 
 
       // Typographic Scale Master Slider
-      document.querySelector('#edit-scale-factor').addEventListener('change', function() {
+      document.querySelector('#edit-scale-factor').addEventListener('input', function() {
         const base = parseFloat(document.querySelector('#edit-body-font-size').value);
         const factor = parseFloat(this.value); // Get value from the scale factor slider
 
@@ -1076,8 +1077,8 @@
       document.addEventListener("keyup", handleDocumentEvents);
 
       // Add event listener for slider elements to handle their change events.
-      document.querySelectorAll('.slider').forEach((el) => {
-        el.addEventListener('change', (e) => {
+      document.querySelectorAll('.dxb-slider').forEach((el) => {
+        el.addEventListener('input', (e) => {
           handleDocumentEvents(e);
         });
       });
@@ -1306,27 +1307,25 @@
 
     setFieldValue(key, value) {
       const field = document.querySelector(`[name="${key}"]`);
-      let newVal = value;
-
       if (!field) {
         return;
       }
 
       if (field.type === 'range' || field.classList.contains('dxb-slider')) {
-        field.value = newVal;
+        field.value = value;
         field.dispatchEvent(new Event('input'));
       } else {
         if (field.type === 'checkbox') {
-          field.checked = newVal;
+          field.checked = value;
           field.dispatchEvent(new Event('change'));
         } else if (field.type === 'radio') {
-          const radioField = document.querySelector(`[name="${key}"][value="${newVal}"]`);
+          const radioField = document.querySelector(`[name="${key}"][value="${value}"]`);
           if (radioField) {
             radioField.checked = true;
             radioField.dispatchEvent(new Event('change'));
           }
         } else {
-          field.value = newVal;
+          field.value = value;
           field.dispatchEvent(new Event('change'));
         }
       }
