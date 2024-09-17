@@ -732,17 +732,32 @@
           }
         });
 
-        // Line Height Sliders
-        const lineHeightSelectors = document.querySelectorAll('.line-height-slider');
-        lineHeightSelectors.forEach(function (originalInput) {
-          createDXBSlider(originalInput, 'line-height', 1.5, 0, 3, 0.1);
-        });
+        // Line Height Sliders with specific types
+        const bodyLineHeightInput = document.querySelector('#edit-body-line-height');
+        if (bodyLineHeightInput) {
+          createDXBSlider(bodyLineHeightInput, 'body-line-height', 1.5, 0, 3, 0.1);
+        }
 
-        // Border Radius Sliders
-        const borderRadiusSelectors = document.querySelectorAll('.border-radius-slider');
-        borderRadiusSelectors.forEach(function (originalInput) {
-          createDXBSlider(originalInput, 'border-radius', 10, 0, 100, 1);
-        });
+        const headingsLineHeightInput = document.querySelector('#edit-headings-line-height');
+        if (headingsLineHeightInput) {
+          createDXBSlider(headingsLineHeightInput, 'headings-line-height', 1.5, 0, 3, 0.1);
+        }
+
+        const blockquoteLineHeightInput = document.querySelector('#edit-blockquote-line-height');
+        if (blockquoteLineHeightInput) {
+          createDXBSlider(blockquoteLineHeightInput, 'blockquote-line-height', 1.5, 0, 3, 0.1);
+        }
+
+        // Border Radius Sliders with specific types
+        const blockBorderRadiusInput = document.querySelector('#edit-block-border-radius');
+        if (blockBorderRadiusInput) {
+          createDXBSlider(blockBorderRadiusInput, 'block-border-radius', 10, 0, 100, 1);
+        }
+
+        const titleBorderRadiusInput = document.querySelector('#edit-title-border-radius');
+        if (titleBorderRadiusInput) {
+          createDXBSlider(titleBorderRadiusInput, 'title-border-radius', 10, 0, 100, 1);
+        }
 
         // Body Font Size Slider
         const bodyFontSizeInput = document.querySelector('#edit-body-font-size');
@@ -768,11 +783,65 @@
           createDXBSlider(navMobileFontSizeInput, 'font-size', 14, 8, 100, 1);
         }
 
-        // Other Font Sizes Sliders
-        const fontSizeSelectors = document.querySelectorAll('.font-size-slider');
-        fontSizeSelectors.forEach(function (originalInput) {
-          createDXBSlider(originalInput, 'font-size', 16, 8, 100, 1);
-        });
+        // H1 Font Size Slider
+        const h1FontSizeInput = document.querySelector('#edit-h1-font-size');
+        if (h1FontSizeInput) {
+          createDXBSlider(h1FontSizeInput, 'h1-font-size', 16, 8, 100, 1);
+        }
+
+        // H2 Font Size Slider
+        const h2FontSizeInput = document.querySelector('#edit-h2-font-size');
+        if (h2FontSizeInput) {
+          createDXBSlider(h2FontSizeInput, 'h2-font-size', 16, 8, 100, 1);
+        }
+
+        // H3 Font Size Slider
+        const h3FontSizeInput = document.querySelector('#edit-h3-font-size');
+        if (h3FontSizeInput) {
+          createDXBSlider(h3FontSizeInput, 'h3-font-size', 16, 8, 100, 1);
+        }
+
+        // H4 Font Size Slider
+        const h4FontSizeInput = document.querySelector('#edit-h4-font-size');
+        if (h4FontSizeInput) {
+          createDXBSlider(h4FontSizeInput, 'h4-font-size', 16, 8, 100, 1);
+        }
+
+        // Blockquote Font Size Slider
+        const blockquoteFontSizeInput = document.querySelector('#edit-blockquote-font-size');
+        if (blockquoteFontSizeInput) {
+          createDXBSlider(blockquoteFontSizeInput, 'blockquote-font-size', 16, 8, 100, 1);
+        }
+
+        // H1 Mobile Font Size Slider
+        const h1MobileFontSizeInput = document.querySelector('#edit-h1-mobile-font-size');
+        if (h1MobileFontSizeInput) {
+          createDXBSlider(h1MobileFontSizeInput, 'h1-mobile-font-size', 16, 8, 100, 1);
+        }
+
+        // H2 Mobile Font Size Slider
+        const h2MobileFontSizeInput = document.querySelector('#edit-h2-mobile-font-size');
+        if (h2MobileFontSizeInput) {
+          createDXBSlider(h2MobileFontSizeInput, 'h2-mobile-font-size', 16, 8, 100, 1);
+        }
+
+        // H3 Mobile Font Size Slider
+        const h3MobileFontSizeInput = document.querySelector('#edit-h3-mobile-font-size');
+        if (h3MobileFontSizeInput) {
+          createDXBSlider(h3MobileFontSizeInput, 'h3-mobile-font-size', 16, 8, 100, 1);
+        }
+
+        // H4 Mobile Font Size Slider
+        const h4MobileFontSizeInput = document.querySelector('#edit-h4-mobile-font-size');
+        if (h4MobileFontSizeInput) {
+          createDXBSlider(h4MobileFontSizeInput, 'h4-mobile-font-size', 16, 8, 100, 1);
+        }
+
+        // Blockquote Mobile Font Size Slider
+        const blockquoteMobileFontSizeInput = document.querySelector('#edit-blockquote-mobile-font-size');
+        if (blockquoteMobileFontSizeInput) {
+          createDXBSlider(blockquoteMobileFontSizeInput, 'blockquote-mobile-font-size', 16, 8, 100, 1);
+        }
 
         // Scale Factor Slider
         const scaleFactorInput = document.querySelector('#edit-scale-factor');
@@ -780,29 +849,29 @@
           createDXBSlider(scaleFactorInput, 'scale-factor', 1, 1, 2, 0.01);
         }
 
-        // Divider Thickness Sliders
-        const dividerThicknessSelectors = [
-          '#edit-divider-thickness',
-          '#edit-block-divider-thickness'
-        ];
-        dividerThicknessSelectors.forEach(function (selector) {
-          const originalInput = document.querySelector(selector);
-          if (originalInput) {
-            createDXBSlider(originalInput, 'divider-thickness', 1, 0, 20, 1);
-          }
-        });
+        // Divider Thickness Slider for divider-thickness
+        const dividerThicknessInput = document.querySelector('#edit-divider-thickness');
+        if (dividerThicknessInput) {
+          createDXBSlider(dividerThicknessInput, 'divider-thickness', 1, 0, 20, 1);
+        }
 
-        // Divider Length Sliders
-        const dividerLengthSelectors = [
-          '#edit-divider-length',
-          '#edit-block-divider-length'
-        ];
-        dividerLengthSelectors.forEach(function (selector) {
-          const originalInput = document.querySelector(selector);
-          if (originalInput) {
-            createDXBSlider(originalInput, 'divider-length', 100, 0, 500, 10);
-          }
-        });
+        // Divider Thickness Slider for block-divider-thickness
+        const blockDividerThicknessInput = document.querySelector('#edit-block-divider-thickness');
+        if (blockDividerThicknessInput) {
+          createDXBSlider(blockDividerThicknessInput, 'block-divider-thickness', 1, 0, 20, 1);
+        }
+
+        // Divider Length Slider for divider-length
+        const dividerLengthInput = document.querySelector('#edit-divider-length');
+        if (dividerLengthInput) {
+          createDXBSlider(dividerLengthInput, 'divider-length', 100, 0, 500, 10);
+        }
+
+        // Divider Length Slider for block-divider-length
+        const blockDividerLengthInput = document.querySelector('#edit-block-divider-length');
+        if (blockDividerLengthInput) {
+          createDXBSlider(blockDividerLengthInput, 'block-divider-length', 100, 0, 500, 10);
+        }
 
         // Divider Position Slider
         const dividerPositionInput = document.querySelector('#edit-divider-position');
@@ -974,6 +1043,7 @@
       });
 
       // New function for creating sliders
+      // New function for creating sliders with dynamic units
       function createDXBSlider(inputElement, type, value, min, max, step) {
         if (!inputElement) {
           return;
@@ -1004,17 +1074,31 @@
         wrapper.appendChild(track);
         track.appendChild(inputElement);
 
+        // Determine the appropriate unit based on the type
+        function getUnitForType(type) {
+          // For line-height related sliders, use "em"
+          if (['body-line-height', 'headings-line-height', 'blockquote-line-height'].includes(type)) {
+            return 'em';
+          }
+          // Default to 'px' for other sliders
+          return 'px';
+        }
+
         // Update the initial slider value display
         function updateValue() {
           const val = inputElement.value;
           const percent = (val - inputElement.min) / (inputElement.max - inputElement.min) * 100;
+          const unit = getUnitForType(type); // Get the unit based on type
+
+          document.documentElement.style.setProperty(`--dxt-setting-${type}`, `${val}${unit}`);
+          console.log(type);
+
           inputElement.style.setProperty('--value-percent', `${percent}%`);
         }
 
         inputElement.addEventListener('input', updateValue);
         updateValue(); // Set initial value
       }
-
 
       // Reflow layout when showing a tab
       // var $sliders = $('.slider + input');
