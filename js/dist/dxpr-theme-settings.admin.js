@@ -1091,7 +1091,6 @@
           const unit = getUnitForType(type); // Get the unit based on type
 
           document.documentElement.style.setProperty(`--dxt-setting-${type}`, `${val}${unit}`);
-          console.log(type);
 
           inputElement.style.setProperty('--value-percent', `${percent}%`);
         }
