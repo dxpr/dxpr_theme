@@ -19,8 +19,7 @@ module.exports = function (grunt) {
             "js/dist/dxpr-theme-multilevel-mobile-nav.js",
           "js/minified/dxpr-theme-settings.admin.min.js":
             "js/dist/dxpr-theme-settings.admin.js",
-          'js/minified/dxpr-theme-tabs.min.js':
-            'js/dist/dxpr-theme-tabs.js',
+          "js/minified/dxpr-theme-tabs.min.js": "js/dist/dxpr-theme-tabs.js",
         },
       },
     },
@@ -43,8 +42,9 @@ module.exports = function (grunt) {
           "js/minified/dxpr-theme-settings.admin.min.js": [
             "js/minified/dxpr-theme-settings.admin.min.js",
           ],
-          'js/minified/dxpr-theme-tabs.min.js':
-            ['js/minified/dxpr-theme-tabs.min.js'],
+          "js/minified/dxpr-theme-tabs.min.js": [
+            "js/minified/dxpr-theme-tabs.min.js",
+          ],
         },
       },
     },
@@ -97,10 +97,10 @@ module.exports = function (grunt) {
       },
     },
   });
-  grunt.loadNpmTasks('grunt-babel');
-  grunt.loadNpmTasks('grunt-terser');
-  grunt.loadNpmTasks('grunt-sass');
-  grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('@lodder/grunt-postcss');
-  grunt.registerTask('default', ['watch']);
+  grunt.loadNpmTasks("grunt-babel");
+  grunt.loadNpmTasks("grunt-terser");
+  grunt.loadNpmTasks("grunt-sass");
+  grunt.loadNpmTasks("grunt-contrib-watch");
+  grunt.loadNpmTasks("@lodder/grunt-postcss");
+  grunt.registerTask("default", ["watch"]);
 };

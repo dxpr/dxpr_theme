@@ -707,130 +707,557 @@
    * Provide vertical tab summaries for Bootstrap settings.
    */
   Drupal.behaviors.dxpr_themeSettingsControls = {
-    attach: function (context) {
-      once('dxpr-settings-controls-fields', 'html', context).forEach(function () {
+    attach(context) {
+      once("dxpr-settings-controls-fields", "html", context).forEach(() => {
         this.handleFields();
-      }.bind(this));
+      });
       // Select all target inputs once when the page loads.
-      once('dxpr-settings-controls', 'html', context).forEach(function () {
+      once("dxpr-settings-controls", "html", context).forEach(() => {
         const slidersConfig = [
           // Opacity Sliders
-          { selector: '#edit-header-top-bg-opacity-scroll', type: 'opacity', value: 0.5, min: 0, max: 1, step: 0.01 },
-          { selector: '#edit-header-top-bg-opacity', type: 'opacity', value: 0.5, min: 0, max: 1, step: 0.01 },
-          { selector: '#edit-header-side-bg-opacity', type: 'opacity', value: 0.5, min: 0, max: 1, step: 0.01 },
-          { selector: '#edit-side-header-background-opacity', type: 'opacity', value: 0.5, min: 0, max: 1, step: 0.01 },
-          { selector: '#edit-page-title-image-opacity', type: 'opacity', value: 0.5, min: 0, max: 1, step: 0.01 },
-          { selector: '#edit-header-top-opacity', type: 'opacity', value: 0.5, min: 0, max: 1, step: 0.01 },
-          { selector: '#edit-header-top-opacity-scroll', type: 'opacity', value: 0.5, min: 0, max: 1, step: 0.01 },
-          { selector: '#edit-menu-full-screen-opacity', type: 'opacity', value: 0.5, min: 0, max: 1, step: 0.01 },
+          {
+            selector: "#edit-header-top-bg-opacity-scroll",
+            type: "opacity",
+            value: 0.5,
+            min: 0,
+            max: 1,
+            step: 0.01,
+          },
+          {
+            selector: "#edit-header-top-bg-opacity",
+            type: "opacity",
+            value: 0.5,
+            min: 0,
+            max: 1,
+            step: 0.01,
+          },
+          {
+            selector: "#edit-header-side-bg-opacity",
+            type: "opacity",
+            value: 0.5,
+            min: 0,
+            max: 1,
+            step: 0.01,
+          },
+          {
+            selector: "#edit-side-header-background-opacity",
+            type: "opacity",
+            value: 0.5,
+            min: 0,
+            max: 1,
+            step: 0.01,
+          },
+          {
+            selector: "#edit-page-title-image-opacity",
+            type: "opacity",
+            value: 0.5,
+            min: 0,
+            max: 1,
+            step: 0.01,
+          },
+          {
+            selector: "#edit-header-top-opacity",
+            type: "opacity",
+            value: 0.5,
+            min: 0,
+            max: 1,
+            step: 0.01,
+          },
+          {
+            selector: "#edit-header-top-opacity-scroll",
+            type: "opacity",
+            value: 0.5,
+            min: 0,
+            max: 1,
+            step: 0.01,
+          },
+          {
+            selector: "#edit-menu-full-screen-opacity",
+            type: "opacity",
+            value: 0.5,
+            min: 0,
+            max: 1,
+            step: 0.01,
+          },
 
           // Line Height Sliders
-          { selector: '#edit-body-line-height', type: 'body-line-height', value: 1.5, min: 0, max: 3, step: 0.1 },
-          { selector: '#edit-headings-line-height', type: 'headings-line-height', value: 1.5, min: 0, max: 3, step: 0.1 },
-          { selector: '#edit-blockquote-line-height', type: 'blockquote-line-height', value: 1.5, min: 0, max: 3, step: 0.1 },
+          {
+            selector: "#edit-body-line-height",
+            type: "body-line-height",
+            value: 1.5,
+            min: 0,
+            max: 3,
+            step: 0.1,
+          },
+          {
+            selector: "#edit-headings-line-height",
+            type: "headings-line-height",
+            value: 1.5,
+            min: 0,
+            max: 3,
+            step: 0.1,
+          },
+          {
+            selector: "#edit-blockquote-line-height",
+            type: "blockquote-line-height",
+            value: 1.5,
+            min: 0,
+            max: 3,
+            step: 0.1,
+          },
 
           // Border Radius Sliders
-          { selector: '#edit-block-border-radius', type: 'block-border-radius', value: 10, min: 0, max: 100, step: 1 },
-          { selector: '#edit-title-border-radius', type: 'title-border-radius', value: 10, min: 0, max: 100, step: 1 },
+          {
+            selector: "#edit-block-border-radius",
+            type: "block-border-radius",
+            value: 10,
+            min: 0,
+            max: 100,
+            step: 1,
+          },
+          {
+            selector: "#edit-title-border-radius",
+            type: "title-border-radius",
+            value: 10,
+            min: 0,
+            max: 100,
+            step: 1,
+          },
 
           // Font Size Sliders
-          { selector: '#edit-body-font-size', type: 'font-size', value: 16, min: 8, max: 100, step: 1 },
-          { selector: '#edit-nav-font-size', type: 'font-size', value: 16, min: 8, max: 100, step: 1 },
-          { selector: '#edit-body-mobile-font-size', type: 'font-size', value: 14, min: 8, max: 100, step: 1 },
-          { selector: '#edit-nav-mobile-font-size', type: 'font-size', value: 14, min: 8, max: 100, step: 1 },
-          { selector: '#edit-h1-font-size', type: 'h1-font-size', value: 16, min: 8, max: 100, step: 1 },
-          { selector: '#edit-h2-font-size', type: 'h2-font-size', value: 16, min: 8, max: 100, step: 1 },
-          { selector: '#edit-h3-font-size', type: 'h3-font-size', value: 16, min: 8, max: 100, step: 1 },
-          { selector: '#edit-h4-font-size', type: 'h4-font-size', value: 16, min: 8, max: 100, step: 1 },
-          { selector: '#edit-blockquote-font-size', type: 'blockquote-font-size', value: 16, min: 8, max: 100, step: 1 },
-          { selector: '#edit-h1-mobile-font-size', type: 'h1-mobile-font-size', value: 16, min: 8, max: 100, step: 1 },
-          { selector: '#edit-h2-mobile-font-size', type: 'h2-mobile-font-size', value: 16, min: 8, max: 100, step: 1 },
-          { selector: '#edit-h3-mobile-font-size', type: 'h3-mobile-font-size', value: 16, min: 8, max: 100, step: 1 },
-          { selector: '#edit-h4-mobile-font-size', type: 'h4-mobile-font-size', value: 16, min: 8, max: 100, step: 1 },
-          { selector: '#edit-blockquote-mobile-font-size', type: 'blockquote-mobile-font-size', value: 16, min: 8, max: 100, step: 1 },
+          {
+            selector: "#edit-body-font-size",
+            type: "font-size",
+            value: 16,
+            min: 8,
+            max: 100,
+            step: 1,
+          },
+          {
+            selector: "#edit-nav-font-size",
+            type: "font-size",
+            value: 16,
+            min: 8,
+            max: 100,
+            step: 1,
+          },
+          {
+            selector: "#edit-body-mobile-font-size",
+            type: "font-size",
+            value: 14,
+            min: 8,
+            max: 100,
+            step: 1,
+          },
+          {
+            selector: "#edit-nav-mobile-font-size",
+            type: "font-size",
+            value: 14,
+            min: 8,
+            max: 100,
+            step: 1,
+          },
+          {
+            selector: "#edit-h1-font-size",
+            type: "h1-font-size",
+            value: 16,
+            min: 8,
+            max: 100,
+            step: 1,
+          },
+          {
+            selector: "#edit-h2-font-size",
+            type: "h2-font-size",
+            value: 16,
+            min: 8,
+            max: 100,
+            step: 1,
+          },
+          {
+            selector: "#edit-h3-font-size",
+            type: "h3-font-size",
+            value: 16,
+            min: 8,
+            max: 100,
+            step: 1,
+          },
+          {
+            selector: "#edit-h4-font-size",
+            type: "h4-font-size",
+            value: 16,
+            min: 8,
+            max: 100,
+            step: 1,
+          },
+          {
+            selector: "#edit-blockquote-font-size",
+            type: "blockquote-font-size",
+            value: 16,
+            min: 8,
+            max: 100,
+            step: 1,
+          },
+          {
+            selector: "#edit-h1-mobile-font-size",
+            type: "h1-mobile-font-size",
+            value: 16,
+            min: 8,
+            max: 100,
+            step: 1,
+          },
+          {
+            selector: "#edit-h2-mobile-font-size",
+            type: "h2-mobile-font-size",
+            value: 16,
+            min: 8,
+            max: 100,
+            step: 1,
+          },
+          {
+            selector: "#edit-h3-mobile-font-size",
+            type: "h3-mobile-font-size",
+            value: 16,
+            min: 8,
+            max: 100,
+            step: 1,
+          },
+          {
+            selector: "#edit-h4-mobile-font-size",
+            type: "h4-mobile-font-size",
+            value: 16,
+            min: 8,
+            max: 100,
+            step: 1,
+          },
+          {
+            selector: "#edit-blockquote-mobile-font-size",
+            type: "blockquote-mobile-font-size",
+            value: 16,
+            min: 8,
+            max: 100,
+            step: 1,
+          },
 
           // Scale Factor Slider
-          { selector: '#edit-scale-factor', type: 'scale-factor', value: 1, min: 1, max: 2, step: 0.01 },
+          {
+            selector: "#edit-scale-factor",
+            type: "scale-factor",
+            value: 1,
+            min: 1,
+            max: 2,
+            step: 0.01,
+          },
 
           // Divider Sliders
-          { selector: '#edit-divider-thickness', type: 'divider-thickness', value: 1, min: 0, max: 20, step: 1 },
-          { selector: '#edit-block-divider-thickness', type: 'block-divider-thickness', value: 1, min: 0, max: 20, step: 1 },
-          { selector: '#edit-divider-length', type: 'divider-length', value: 100, min: 0, max: 500, step: 10 },
-          { selector: '#edit-block-divider-length', type: 'block-divider-length', value: 100, min: 0, max: 500, step: 10 },
-          { selector: '#edit-divider-position', type: 'divider-position', value: 1, min: 1, max: 3, step: 1 },
+          {
+            selector: "#edit-divider-thickness",
+            type: "divider-thickness",
+            value: 1,
+            min: 0,
+            max: 20,
+            step: 1,
+          },
+          {
+            selector: "#edit-block-divider-thickness",
+            type: "block-divider-thickness",
+            value: 1,
+            min: 0,
+            max: 20,
+            step: 1,
+          },
+          {
+            selector: "#edit-divider-length",
+            type: "divider-length",
+            value: 100,
+            min: 0,
+            max: 500,
+            step: 10,
+          },
+          {
+            selector: "#edit-block-divider-length",
+            type: "block-divider-length",
+            value: 100,
+            min: 0,
+            max: 500,
+            step: 10,
+          },
+          {
+            selector: "#edit-divider-position",
+            type: "divider-position",
+            value: 1,
+            min: 1,
+            max: 3,
+            step: 1,
+          },
 
           // Headings Letter Spacing Slider
-          { selector: '#edit-headings-letter-spacing', type: 'letter-spacing', value: 0, min: -0.1, max: 0.3, step: 0.01 },
+          {
+            selector: "#edit-headings-letter-spacing",
+            type: "letter-spacing",
+            value: 0,
+            min: -0.1,
+            max: 0.3,
+            step: 0.01,
+          },
 
           // Block Design Divider Spacing Slider
-          { selector: '#edit-block-divider-spacing', type: 'block-divider-spacing', value: 10, min: 0, max: 100, step: 1 },
+          {
+            selector: "#edit-block-divider-spacing",
+            type: "block-divider-spacing",
+            value: 10,
+            min: 0,
+            max: 100,
+            step: 1,
+          },
 
           // Page Title Height Slider
-          { selector: '#edit-page-title-height', type: 'page-title-height', value: 200, min: 50, max: 500, step: 5 },
+          {
+            selector: "#edit-page-title-height",
+            type: "page-title-height",
+            value: 200,
+            min: 50,
+            max: 500,
+            step: 5,
+          },
 
           // Header Height Slider
-          { selector: '#edit-header-top-height', type: 'header-height', value: 100, min: 10, max: 200, step: 1 },
+          {
+            selector: "#edit-header-top-height",
+            type: "header-height",
+            value: 100,
+            min: 10,
+            max: 200,
+            step: 1,
+          },
 
           // Logo Height Slider
-          { selector: '#edit-logo-height', type: 'logo-height', value: 50, min: 10, max: 100, step: 1 },
+          {
+            selector: "#edit-logo-height",
+            type: "logo-height",
+            value: 50,
+            min: 10,
+            max: 100,
+            step: 1,
+          },
 
           // Header Mobile Breakpoint Slider
-          { selector: '#edit-header-mobile-breakpoint', type: 'header-mobile-breakpoint', value: 768, min: 480, max: 4100, step: 10 },
+          {
+            selector: "#edit-header-mobile-breakpoint",
+            type: "header-mobile-breakpoint",
+            value: 768,
+            min: 480,
+            max: 4100,
+            step: 10,
+          },
 
           // Header Mobile Height Slider
-          { selector: '#edit-header-mobile-height', type: 'header-mobile-height', value: 60, min: 10, max: 200, step: 1 },
+          {
+            selector: "#edit-header-mobile-height",
+            type: "header-mobile-height",
+            value: 60,
+            min: 10,
+            max: 200,
+            step: 1,
+          },
 
           // Header After-Scroll Height Slider
-          { selector: '#edit-header-top-height-scroll', type: 'header-scroll-height', value: 80, min: 10, max: 200, step: 1 },
+          {
+            selector: "#edit-header-top-height-scroll",
+            type: "header-scroll-height",
+            value: 80,
+            min: 10,
+            max: 200,
+            step: 1,
+          },
 
           // Sticky Header Scroll Offset Slider
-          { selector: '#edit-header-top-height-sticky-offset', type: 'sticky-offset', value: 10, min: 0, max: 2096, step: 10 },
+          {
+            selector: "#edit-header-top-height-sticky-offset",
+            type: "sticky-offset",
+            value: 10,
+            min: 0,
+            max: 2096,
+            step: 10,
+          },
 
           // Side Header Width Slider
-          { selector: '#edit-header-side-width', type: 'side-header-width', value: 200, min: 50, max: 500, step: 5 },
+          {
+            selector: "#edit-header-side-width",
+            type: "side-header-width",
+            value: 200,
+            min: 50,
+            max: 500,
+            step: 5,
+          },
 
           // Side Header Logo Height Slider
-          { selector: '#edit-header-side-logo-height', type: 'side-header-logo-height', value: 100, min: 10, max: 500, step: 1 },
+          {
+            selector: "#edit-header-side-logo-height",
+            type: "side-header-logo-height",
+            value: 100,
+            min: 10,
+            max: 500,
+            step: 1,
+          },
 
           // Main Menu Hover Border Sliders
-          { selector: '#edit-menu-border-size', type: 'menu-border-size', value: 2, min: 1, max: 20, step: 1 },
-          { selector: '#edit-menu-border-position-offset', type: 'menu-border-offset', value: 10, min: 0, max: 100, step: 1 },
-          { selector: '#edit-menu-border-position-offset-sticky', type: 'menu-border-position-offset-sticky', value: 10, min: 0, max: 100, step: 1 },
+          {
+            selector: "#edit-menu-border-size",
+            type: "menu-border-size",
+            value: 2,
+            min: 1,
+            max: 20,
+            step: 1,
+          },
+          {
+            selector: "#edit-menu-border-position-offset",
+            type: "menu-border-offset",
+            value: 10,
+            min: 0,
+            max: 100,
+            step: 1,
+          },
+          {
+            selector: "#edit-menu-border-position-offset-sticky",
+            type: "menu-border-position-offset-sticky",
+            value: 10,
+            min: 0,
+            max: 100,
+            step: 1,
+          },
 
           // Layout Max Width Slider
-          { selector: '#edit-layout-max-width', type: 'layout-max-width', value: 1200, min: 480, max: 4100, step: 10 },
+          {
+            selector: "#edit-layout-max-width",
+            type: "layout-max-width",
+            value: 1200,
+            min: 480,
+            max: 4100,
+            step: 10,
+          },
 
           // Box Max Width Slider
-          { selector: '#edit-box-max-width', type: 'box-max-width', value: 1200, min: 480, max: 4100, step: 10 },
+          {
+            selector: "#edit-box-max-width",
+            type: "box-max-width",
+            value: 1200,
+            min: 480,
+            max: 4100,
+            step: 10,
+          },
 
           // Layout Gutter Sliders
-          { selector: '#edit-gutter-horizontal', type: 'gutter-horizontal', value: 20, min: 0, max: 100, step: 1 },
-          { selector: '#edit-gutter-vertical', type: 'gutter-vertical', value: 20, min: 0, max: 100, step: 1 },
-          { selector: '#edit-gutter-container', type: 'gutter-container', value: 30, min: 0, max: 500, step: 1 },
-          { selector: '#edit-gutter-horizontal-mobile', type: 'gutter-horizontal-mobile', value: 10, min: 0, max: 100, step: 1 },
-          { selector: '#edit-gutter-vertical-mobile', type: 'gutter-vertical-mobile', value: 10, min: 0, max: 100, step: 1 },
-          { selector: '#edit-gutter-container-mobile', type: 'gutter-container-mobile', value: 20, min: 0, max: 500, step: 1 },
+          {
+            selector: "#edit-gutter-horizontal",
+            type: "gutter-horizontal",
+            value: 20,
+            min: 0,
+            max: 100,
+            step: 1,
+          },
+          {
+            selector: "#edit-gutter-vertical",
+            type: "gutter-vertical",
+            value: 20,
+            min: 0,
+            max: 100,
+            step: 1,
+          },
+          {
+            selector: "#edit-gutter-container",
+            type: "gutter-container",
+            value: 30,
+            min: 0,
+            max: 500,
+            step: 1,
+          },
+          {
+            selector: "#edit-gutter-horizontal-mobile",
+            type: "gutter-horizontal-mobile",
+            value: 10,
+            min: 0,
+            max: 100,
+            step: 1,
+          },
+          {
+            selector: "#edit-gutter-vertical-mobile",
+            type: "gutter-vertical-mobile",
+            value: 10,
+            min: 0,
+            max: 100,
+            step: 1,
+          },
+          {
+            selector: "#edit-gutter-container-mobile",
+            type: "gutter-container-mobile",
+            value: 20,
+            min: 0,
+            max: 500,
+            step: 1,
+          },
 
           // Dropdown Width Slider
-          { selector: '#edit-dropdown-width', type: 'dropdown-width', value: 200, min: 100, max: 400, step: 5 },
+          {
+            selector: "#edit-dropdown-width",
+            type: "dropdown-width",
+            value: 200,
+            min: 100,
+            max: 400,
+            step: 5,
+          },
 
           // Block Padding Slider
-          { selector: '#edit-block-padding', type: 'block-padding', value: 15, min: 0, max: 30, step: 1 },
+          {
+            selector: "#edit-block-padding",
+            type: "block-padding",
+            value: 15,
+            min: 0,
+            max: 30,
+            step: 1,
+          },
 
           // Block Border Slider
-          { selector: '#edit-block-border', type: 'block-border', value: 1, min: 0, max: 30, step: 1 },
+          {
+            selector: "#edit-block-border",
+            type: "block-border",
+            value: 1,
+            min: 0,
+            max: 30,
+            step: 1,
+          },
 
           // Title Padding Slider
-          { selector: '#edit-title-padding', type: 'title-padding', value: 10, min: 0, max: 30, step: 1 },
+          {
+            selector: "#edit-title-padding",
+            type: "title-padding",
+            value: 10,
+            min: 0,
+            max: 30,
+            step: 1,
+          },
 
           // Title Border Slider
-          { selector: '#edit-title-border', type: 'title-border', value: 1, min: 0, max: 30, step: 1 }
+          {
+            selector: "#edit-title-border",
+            type: "title-border",
+            value: 1,
+            min: 0,
+            max: 30,
+            step: 1,
+          },
         ];
 
-        slidersConfig.forEach(slider => {
+        slidersConfig.forEach((slider) => {
           const inputElement = document.querySelector(slider.selector);
           if (inputElement) {
-            createDXBSlider(inputElement, slider.type, slider.value, slider.min, slider.max, slider.step);
+            createDXBSlider(
+              inputElement,
+              slider.type,
+              slider.value,
+              slider.min,
+              slider.max,
+              slider.step,
+            );
           }
         });
       });
@@ -843,8 +1270,11 @@
         }
 
         // We check if the input element is already set to 'range'
-        if (inputElement.tagName.toLowerCase() !== 'input' || inputElement.type !== 'range') {
-          inputElement.type = 'range';  // Changing the type to range
+        if (
+          inputElement.tagName.toLowerCase() !== "input" ||
+          inputElement.type !== "range"
+        ) {
+          inputElement.type = "range"; // Changing the type to range
         }
 
         inputElement.min = min;
@@ -852,15 +1282,15 @@
         inputElement.step = step;
         inputElement.value = value;
 
-        inputElement.classList.add('dxb-slider');
-        inputElement.setAttribute('data-dxb-slider', '');
+        inputElement.classList.add("dxb-slider");
+        inputElement.setAttribute("data-dxb-slider", "");
 
         // Create wrapper and track
-        const wrapper = document.createElement('div');
-        wrapper.classList.add('dxb-slider-wrapper');
+        const wrapper = document.createElement("div");
+        wrapper.classList.add("dxb-slider-wrapper");
 
-        const track = document.createElement('div');
-        track.classList.add('dxb-slider-track');
+        const track = document.createElement("div");
+        track.classList.add("dxb-slider-track");
 
         // Wrap the input in the wrapper
         inputElement.parentNode.insertBefore(wrapper, inputElement);
@@ -870,25 +1300,36 @@
         // Determine the appropriate unit based on the type
         function getUnitForType(type) {
           // For line-height related sliders, use "em"
-          if (['body-line-height', 'headings-line-height', 'blockquote-line-height'].includes(type)) {
-            return 'em';
+          if (
+            [
+              "body-line-height",
+              "headings-line-height",
+              "blockquote-line-height",
+            ].includes(type)
+          ) {
+            return "em";
           }
           // Default to 'px' for other sliders
-          return 'px';
+          return "px";
         }
 
         // Update the initial slider value display
         function updateValue() {
           const val = inputElement.value;
-          const percent = (val - inputElement.min) / (inputElement.max - inputElement.min) * 100;
+          const percent =
+            ((val - inputElement.min) / (inputElement.max - inputElement.min)) *
+            100;
           const unit = getUnitForType(type); // Get the unit based on type
 
-          document.documentElement.style.setProperty(`--dxt-setting-${type}`, `${val}${unit}`);
+          document.documentElement.style.setProperty(
+            `--dxt-setting-${type}`,
+            `${val}${unit}`,
+          );
 
-          inputElement.style.setProperty('--value-percent', `${percent}%`);
+          inputElement.style.setProperty("--value-percent", `${percent}%`);
         }
 
-        inputElement.addEventListener('input', updateValue);
+        inputElement.addEventListener("input", updateValue);
         updateValue(); // Set initial value
       }
 
@@ -912,39 +1353,45 @@
         const max = parseFloat(sliderElement.max);
         const percent = ((val - min) / (max - min)) * 100;
 
-        sliderElement.style.setProperty('--value-percent', `${percent}%`);
-        sliderElement.setAttribute('aria-valuenow', val);
+        sliderElement.style.setProperty("--value-percent", `${percent}%`);
+        sliderElement.setAttribute("aria-valuenow", val);
       }
 
       // Event listener for radio button change
-      document.querySelectorAll('input[type="radio"]').forEach(radioInput => {
-        radioInput.addEventListener('change', () => {
+      document.querySelectorAll('input[type="radio"]').forEach((radioInput) => {
+        radioInput.addEventListener("change", () => {
           // Find all sliders that need a relayout
-          document.querySelectorAll('.dxb-slider').forEach(sliderElement => {
+          document.querySelectorAll(".dxb-slider").forEach((sliderElement) => {
             relayoutSlider(sliderElement);
           });
         });
       });
 
-
       // Typographic Scale Master Slider
-      document.querySelector('#edit-scale-factor').addEventListener('input', function() {
-        const base = parseFloat(document.querySelector('#edit-body-font-size').value);
-        const factor = parseFloat(this.value); // Get value from the scale factor slider
+      document
+        .querySelector("#edit-scale-factor")
+        .addEventListener("input", function () {
+          const base = parseFloat(
+            document.querySelector("#edit-body-font-size").value,
+          );
+          const factor = parseFloat(this.value); // Get value from the scale factor slider
 
-        function setFontSize(selector, exponent) {
-          document.querySelectorAll(selector).forEach(input => {
-            const newValue = base * Math.pow(factor, exponent);
-            input.value = newValue.toFixed(2); // Set new font size value
-            input.dispatchEvent(new Event('input')); // Trigger change event
-          });
-        }
+          function setFontSize(selector, exponent) {
+            document.querySelectorAll(selector).forEach((input) => {
+              const newValue = base * factor ** exponent;
+              input.value = newValue.toFixed(2); // Set new font size value
+              input.dispatchEvent(new Event("input")); // Trigger change event
+            });
+          }
 
-        setFontSize('#edit-h1-font-size, #edit-h1-mobile-font-size', 4);
-        setFontSize('#edit-h2-font-size, #edit-h2-mobile-font-size', 3);
-        setFontSize('#edit-h3-font-size, #edit-h3-mobile-font-size', 2);
-        setFontSize('#edit-h4-font-size, #edit-h4-mobile-font-size, #edit-blockquote-font-size, #edit-blockquote-mobile-font-size', 1);
-      });
+          setFontSize("#edit-h1-font-size, #edit-h1-mobile-font-size", 4);
+          setFontSize("#edit-h2-font-size, #edit-h2-mobile-font-size", 3);
+          setFontSize("#edit-h3-font-size, #edit-h3-mobile-font-size", 2);
+          setFontSize(
+            "#edit-h4-font-size, #edit-h4-mobile-font-size, #edit-blockquote-font-size, #edit-blockquote-mobile-font-size",
+            1,
+          );
+        });
     },
     handleFields() {
       const self = this;
@@ -954,8 +1401,8 @@
       document.addEventListener("keyup", handleDocumentEvents);
 
       // Add event listener for slider elements to handle their change events.
-      document.querySelectorAll('.dxb-slider').forEach((el) => {
-        el.addEventListener('input', (e) => {
+      document.querySelectorAll(".dxb-slider").forEach((el) => {
+        el.addEventListener("input", (e) => {
           handleDocumentEvents(e);
         });
       });
@@ -965,118 +1412,118 @@
        */
       function handleDocumentEvents(event) {
         const el = event.target;
-        const id = el?.id ?? '';
-        const value = el?.value ?? '';
-        const elName = el?.name ?? '';
+        const id = el?.id ?? "";
+        const value = el?.value ?? "";
+        const elName = el?.name ?? "";
 
         // Set Block Preset to Custom if any value within Block Advanced section is changed.
-        if (el.closest('#edit-block-advanced')) {
-          document.getElementById('edit-block-preset').value = "custom";
+        if (el.closest("#edit-block-advanced")) {
+          document.getElementById("edit-block-preset").value = "custom";
         }
 
         // Handle Block Design Presets based on selected preset.
-        if (id === 'edit-block-preset') {
+        if (id === "edit-block-preset") {
           // Default settings for the Block Design Presets.
           const setDefaults = {
-            "block_border": 0,
-            "block_border_color": "",
-            "block_card": "",
-            "block_divider": false,
-            "block_divider_custom": false,
-            "block_divider_length": 0,
-            "block_divider_thickness": 0,
-            "block_divider_spacing": 0,
-            "block_padding": 0,
-            "title_align": "left",
-            "title_background": "",
-            "title_border": 0,
-            "title_border_color": "",
-            "title_border_radius": 0,
-            "title_card": "",
-            "title_font_size": "h3",
-            "title_padding": 0,
+            block_border: 0,
+            block_border_color: "",
+            block_card: "",
+            block_divider: false,
+            block_divider_custom: false,
+            block_divider_length: 0,
+            block_divider_thickness: 0,
+            block_divider_spacing: 0,
+            block_padding: 0,
+            title_align: "left",
+            title_background: "",
+            title_border: 0,
+            title_border_color: "",
+            title_border_radius: 0,
+            title_card: "",
+            title_font_size: "h3",
+            title_padding: 0,
           };
 
           let set = {};
           switch (value) {
             case "block_boxed":
               set = {
-                "block_border": 5,
-                "block_border_color": "text",
-                "block_padding": 15,
-              }
+                block_border: 5,
+                block_border_color: "text",
+                block_padding: 15,
+              };
               break;
             case "block_outline":
               set = {
-                "block_border": 1,
-                "block_border_color": "text",
-                "block_padding": 10,
-              }
+                block_border: 1,
+                block_border_color: "text",
+                block_padding: 10,
+              };
               break;
             case "block_card":
               set = {
-                "block_card": "card card-body",
-                "title_font_size": "h3",
+                block_card: "card card-body",
+                title_font_size: "h3",
               };
               break;
             case "title_inverted":
               set = {
-                "title_background": "text",
-                "title_card": "card card-body dxpr-theme-util-background-gray",
-                "title_font_size": "h3",
-                "title_padding": 10,
+                title_background: "text",
+                title_card: "card card-body dxpr-theme-util-background-gray",
+                title_font_size: "h3",
+                title_padding: 10,
               };
               break;
             case "title_inverted_shape":
               set = {
-                "title_align": "center",
-                "title_background": "text",
-                "title_border_radius": 100,
-                "title_card": "card card-body dxpr-theme-util-background-gray",
-                "title_font_size": "h4",
-                "title_padding": 10,
+                title_align: "center",
+                title_background: "text",
+                title_border_radius: 100,
+                title_card: "card card-body dxpr-theme-util-background-gray",
+                title_font_size: "h4",
+                title_padding: 10,
               };
               break;
             case "title_sticker":
               set = {
-                "title_card": "card card-body dxpr-theme-util-background-gray",
-                "title_font_size": "body",
-                "title_padding": 10,
+                title_card: "card card-body dxpr-theme-util-background-gray",
+                title_font_size: "body",
+                title_padding: 10,
               };
               break;
             case "title_sticker_color":
               set = {
-                "title_card": "card card-body bg-primary",
-                "title_font_size": "body",
-                "title_padding": 10,
+                title_card: "card card-body bg-primary",
+                title_font_size: "body",
+                title_padding: 10,
               };
               break;
             case "title_outline":
               set = {
-                "title_border": 1,
-                "title_border_color": "text",
-                "title_font_size": "h4",
-                "title_padding": 15,
+                title_border: 1,
+                title_border_color: "text",
+                title_font_size: "h4",
+                title_padding: 15,
               };
               break;
             case "default_divider":
               set = {
-                "block_divider": true,
-                "block_divider_thickness": 4,
-                "block_divider_spacing": 15,
-              }
+                block_divider: true,
+                block_divider_thickness: 4,
+                block_divider_spacing: 15,
+              };
               break;
             case "hairline_divider":
               set = {
-                "block_divider": true,
-                "block_divider_thickness": 1,
-                "block_divider_spacing": 15,
+                block_divider: true,
+                block_divider_thickness: 1,
+                block_divider_spacing: 15,
               };
               break;
           }
 
           // Add missing properties from defaults if not present in set.
-          for (let key in setDefaults) {
+          for (const key in setDefaults) {
             if (!(key in set)) {
               set[key] = setDefaults[key];
             }
@@ -1089,85 +1536,95 @@
         }
 
         const presetClassesRemove = [
-          'card', 'card-body', 'bg-primary',
-          'dxpr-theme-util-background-accent1',
-          'dxpr-theme-util-background-accent2',
-          'dxpr-theme-util-background-black',
-          'dxpr-theme-util-background-white',
-          'dxpr-theme-util-background-gray'
+          "card",
+          "card-body",
+          "bg-primary",
+          "dxpr-theme-util-background-accent1",
+          "dxpr-theme-util-background-accent2",
+          "dxpr-theme-util-background-black",
+          "dxpr-theme-util-background-white",
+          "dxpr-theme-util-background-gray",
         ];
 
         // Apply classes to Block Card Style based on the selected card style.
-        if (id === 'edit-block-card' || id === 'edit-title-card') {
+        if (id === "edit-block-card" || id === "edit-title-card") {
           const presetClasses = value.trim().split(/\s+/);
-          const target = (id === 'edit-title-card') ? '.block-title' : '.block';
+          const target = id === "edit-title-card" ? ".block-title" : ".block";
 
-          document.querySelectorAll('.region-block-design ' + target).forEach(block => {
-            block.classList.remove(...presetClassesRemove);
-            block.classList.add(...presetClasses.filter(className => className !== ''));
-          });
+          document
+            .querySelectorAll(`.region-block-design ${target}`)
+            .forEach((block) => {
+              block.classList.remove(...presetClassesRemove);
+              block.classList.add(
+                ...presetClasses.filter((className) => className !== ""),
+              );
+            });
         }
 
         // Apply or remove block design classes based on region selection.
-        if (elName.startsWith('block_design_regions[')) {
-          let blockDesignClass = 'region-block-design';
-          let regionClass = '.region-' + value.replace('_', '-');
-          let elRegion = document.querySelector(regionClass);
+        if (elName.startsWith("block_design_regions[")) {
+          const blockDesignClass = "region-block-design";
+          const regionClass = `.region-${value.replace("_", "-")}`;
+          const elRegion = document.querySelector(regionClass);
           if (!elRegion) return;
 
           if (el.checked) {
             elRegion.classList.add(blockDesignClass);
 
             // Trigger change event for block and block title card to reapply classes.
-            const elements = document.querySelectorAll('#edit-block-card, #edit-title-card');
-            const changeEvent = new Event('change', {
+            const elements = document.querySelectorAll(
+              "#edit-block-card, #edit-title-card",
+            );
+            const changeEvent = new Event("change", {
               bubbles: true,
               cancelable: true,
             });
-            elements.forEach(el => {
+            elements.forEach((el) => {
               el.dispatchEvent(changeEvent);
             });
           } else {
             elRegion.classList.remove(blockDesignClass);
 
             // Remove all applied block and block title classes.
-            let selectors = regionClass + ' .block,' + regionClass + ' .block-title';
-            document.querySelectorAll(selectors).forEach(block => {
+            const selectors = `${regionClass} .block,${regionClass} .block-title`;
+            document.querySelectorAll(selectors).forEach((block) => {
               block.classList.remove(...presetClassesRemove);
             });
           }
         }
 
         // Toggle display of Title Sticker Mode based on checkbox state.
-        if (id === 'edit-title-sticker') {
-          const blockTitles = document.querySelectorAll('.region-block-design .block-title');
+        if (id === "edit-title-sticker") {
+          const blockTitles = document.querySelectorAll(
+            ".region-block-design .block-title",
+          );
 
-          blockTitles.forEach(title => {
-            title.style.display = el.checked ? 'inline-block' : '';
+          blockTitles.forEach((title) => {
+            title.style.display = el.checked ? "inline-block" : "";
           });
         }
 
         // Remove CSS variables related to Block Divider if not in use.
-        if (id === 'edit-block-divider' || id === 'edit-block-divider-custom') {
+        if (id === "edit-block-divider" || id === "edit-block-divider-custom") {
           if (!el.checked) {
             [
-              'block_divider_color',
-              'block_divider_thickness',
-              'block_divider_length',
-              'block_divider_spacing',
+              "block_divider_color",
+              "block_divider_thickness",
+              "block_divider_length",
+              "block_divider_spacing",
             ].forEach((key) => {
-              const cssVarName = key.replace(/[\[_]/g, '-');
+              const cssVarName = key.replace(/[\[_]/g, "-");
               document.documentElement.style.removeProperty(`--${cssVarName}`);
             });
           }
 
           // Set default divider values if divider is checked.
-          if (id === 'edit-block-divider' && el.checked) {
-            let set = {
-              "block_divider_length": 0,
-              "block_divider_thickness": 4,
-              "block_divider_spacing": 15,
-            }
+          if (id === "edit-block-divider" && el.checked) {
+            const set = {
+              block_divider_length: 0,
+              block_divider_thickness: 4,
+              block_divider_spacing: 15,
+            };
             Object.keys(set).forEach((key) => {
               self.setFieldValue(key, set[key]);
             });
@@ -1175,7 +1632,6 @@
         }
       }
     },
-
 
     /**
      * Update field value.
@@ -1188,24 +1644,24 @@
         return;
       }
 
-      if (field.type === 'range' || field.classList.contains('dxb-slider')) {
+      if (field.type === "range" || field.classList.contains("dxb-slider")) {
         field.value = value;
-        field.dispatchEvent(new Event('input'));
-      } else {
-        if (field.type === 'checkbox') {
-          field.checked = value;
-          field.dispatchEvent(new Event('change'));
-        } else if (field.type === 'radio') {
-          const radioField = document.querySelector(`[name="${key}"][value="${value}"]`);
-          if (radioField) {
-            radioField.checked = true;
-            radioField.dispatchEvent(new Event('change'));
-          }
-        } else {
-          field.value = value;
-          field.dispatchEvent(new Event('change'));
+        field.dispatchEvent(new Event("input"));
+      } else if (field.type === "checkbox") {
+        field.checked = value;
+        field.dispatchEvent(new Event("change"));
+      } else if (field.type === "radio") {
+        const radioField = document.querySelector(
+          `[name="${key}"][value="${value}"]`,
+        );
+        if (radioField) {
+          radioField.checked = true;
+          radioField.dispatchEvent(new Event("change"));
         }
+      } else {
+        field.value = value;
+        field.dispatchEvent(new Event("change"));
       }
-    }
+    },
   };
 })(Drupal, once);
