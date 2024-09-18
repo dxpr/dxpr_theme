@@ -706,7 +706,6 @@
   /**
    * Provide vertical tab summaries for Bootstrap settings.
    */
-  /* eslint-disable */
   Drupal.behaviors.dxpr_themeSettingsControls = {
     attach: function (context) {
       once('dxpr-settings-controls-fields', 'html', context).forEach(function () {
@@ -714,332 +713,126 @@
       }.bind(this));
       // Select all target inputs once when the page loads.
       once('dxpr-settings-controls', 'html', context).forEach(function () {
-        // Opacity Sliders
-        const opacitySelectors = [
-          "#edit-header-top-bg-opacity-scroll",
-          "#edit-header-top-bg-opacity",
-          "#edit-header-side-bg-opacity",
-          "#edit-side-header-background-opacity",
-          "#edit-page-title-image-opacity",
-          "#edit-header-top-opacity",
-          "#edit-header-top-opacity-scroll",
-          "#edit-menu-full-screen-opacity"
+        const slidersConfig = [
+          // Opacity Sliders
+          { selector: '#edit-header-top-bg-opacity-scroll', type: 'opacity', value: 0.5, min: 0, max: 1, step: 0.01 },
+          { selector: '#edit-header-top-bg-opacity', type: 'opacity', value: 0.5, min: 0, max: 1, step: 0.01 },
+          { selector: '#edit-header-side-bg-opacity', type: 'opacity', value: 0.5, min: 0, max: 1, step: 0.01 },
+          { selector: '#edit-side-header-background-opacity', type: 'opacity', value: 0.5, min: 0, max: 1, step: 0.01 },
+          { selector: '#edit-page-title-image-opacity', type: 'opacity', value: 0.5, min: 0, max: 1, step: 0.01 },
+          { selector: '#edit-header-top-opacity', type: 'opacity', value: 0.5, min: 0, max: 1, step: 0.01 },
+          { selector: '#edit-header-top-opacity-scroll', type: 'opacity', value: 0.5, min: 0, max: 1, step: 0.01 },
+          { selector: '#edit-menu-full-screen-opacity', type: 'opacity', value: 0.5, min: 0, max: 1, step: 0.01 },
+
+          // Line Height Sliders
+          { selector: '#edit-body-line-height', type: 'body-line-height', value: 1.5, min: 0, max: 3, step: 0.1 },
+          { selector: '#edit-headings-line-height', type: 'headings-line-height', value: 1.5, min: 0, max: 3, step: 0.1 },
+          { selector: '#edit-blockquote-line-height', type: 'blockquote-line-height', value: 1.5, min: 0, max: 3, step: 0.1 },
+
+          // Border Radius Sliders
+          { selector: '#edit-block-border-radius', type: 'block-border-radius', value: 10, min: 0, max: 100, step: 1 },
+          { selector: '#edit-title-border-radius', type: 'title-border-radius', value: 10, min: 0, max: 100, step: 1 },
+
+          // Font Size Sliders
+          { selector: '#edit-body-font-size', type: 'font-size', value: 16, min: 8, max: 100, step: 1 },
+          { selector: '#edit-nav-font-size', type: 'font-size', value: 16, min: 8, max: 100, step: 1 },
+          { selector: '#edit-body-mobile-font-size', type: 'font-size', value: 14, min: 8, max: 100, step: 1 },
+          { selector: '#edit-nav-mobile-font-size', type: 'font-size', value: 14, min: 8, max: 100, step: 1 },
+          { selector: '#edit-h1-font-size', type: 'h1-font-size', value: 16, min: 8, max: 100, step: 1 },
+          { selector: '#edit-h2-font-size', type: 'h2-font-size', value: 16, min: 8, max: 100, step: 1 },
+          { selector: '#edit-h3-font-size', type: 'h3-font-size', value: 16, min: 8, max: 100, step: 1 },
+          { selector: '#edit-h4-font-size', type: 'h4-font-size', value: 16, min: 8, max: 100, step: 1 },
+          { selector: '#edit-blockquote-font-size', type: 'blockquote-font-size', value: 16, min: 8, max: 100, step: 1 },
+          { selector: '#edit-h1-mobile-font-size', type: 'h1-mobile-font-size', value: 16, min: 8, max: 100, step: 1 },
+          { selector: '#edit-h2-mobile-font-size', type: 'h2-mobile-font-size', value: 16, min: 8, max: 100, step: 1 },
+          { selector: '#edit-h3-mobile-font-size', type: 'h3-mobile-font-size', value: 16, min: 8, max: 100, step: 1 },
+          { selector: '#edit-h4-mobile-font-size', type: 'h4-mobile-font-size', value: 16, min: 8, max: 100, step: 1 },
+          { selector: '#edit-blockquote-mobile-font-size', type: 'blockquote-mobile-font-size', value: 16, min: 8, max: 100, step: 1 },
+
+          // Scale Factor Slider
+          { selector: '#edit-scale-factor', type: 'scale-factor', value: 1, min: 1, max: 2, step: 0.01 },
+
+          // Divider Sliders
+          { selector: '#edit-divider-thickness', type: 'divider-thickness', value: 1, min: 0, max: 20, step: 1 },
+          { selector: '#edit-block-divider-thickness', type: 'block-divider-thickness', value: 1, min: 0, max: 20, step: 1 },
+          { selector: '#edit-divider-length', type: 'divider-length', value: 100, min: 0, max: 500, step: 10 },
+          { selector: '#edit-block-divider-length', type: 'block-divider-length', value: 100, min: 0, max: 500, step: 10 },
+          { selector: '#edit-divider-position', type: 'divider-position', value: 1, min: 1, max: 3, step: 1 },
+
+          // Headings Letter Spacing Slider
+          { selector: '#edit-headings-letter-spacing', type: 'letter-spacing', value: 0, min: -0.1, max: 0.3, step: 0.01 },
+
+          // Block Design Divider Spacing Slider
+          { selector: '#edit-block-divider-spacing', type: 'block-divider-spacing', value: 10, min: 0, max: 100, step: 1 },
+
+          // Page Title Height Slider
+          { selector: '#edit-page-title-height', type: 'page-title-height', value: 200, min: 50, max: 500, step: 5 },
+
+          // Header Height Slider
+          { selector: '#edit-header-top-height', type: 'header-height', value: 100, min: 10, max: 200, step: 1 },
+
+          // Logo Height Slider
+          { selector: '#edit-logo-height', type: 'logo-height', value: 50, min: 10, max: 100, step: 1 },
+
+          // Header Mobile Breakpoint Slider
+          { selector: '#edit-header-mobile-breakpoint', type: 'header-mobile-breakpoint', value: 768, min: 480, max: 4100, step: 10 },
+
+          // Header Mobile Height Slider
+          { selector: '#edit-header-mobile-height', type: 'header-mobile-height', value: 60, min: 10, max: 200, step: 1 },
+
+          // Header After-Scroll Height Slider
+          { selector: '#edit-header-top-height-scroll', type: 'header-scroll-height', value: 80, min: 10, max: 200, step: 1 },
+
+          // Sticky Header Scroll Offset Slider
+          { selector: '#edit-header-top-height-sticky-offset', type: 'sticky-offset', value: 10, min: 0, max: 2096, step: 10 },
+
+          // Side Header Width Slider
+          { selector: '#edit-header-side-width', type: 'side-header-width', value: 200, min: 50, max: 500, step: 5 },
+
+          // Side Header Logo Height Slider
+          { selector: '#edit-header-side-logo-height', type: 'side-header-logo-height', value: 100, min: 10, max: 500, step: 1 },
+
+          // Main Menu Hover Border Sliders
+          { selector: '#edit-menu-border-size', type: 'menu-border-size', value: 2, min: 1, max: 20, step: 1 },
+          { selector: '#edit-menu-border-position-offset', type: 'menu-border-offset', value: 10, min: 0, max: 100, step: 1 },
+          { selector: '#edit-menu-border-position-offset-sticky', type: 'menu-border-position-offset-sticky', value: 10, min: 0, max: 100, step: 1 },
+
+          // Layout Max Width Slider
+          { selector: '#edit-layout-max-width', type: 'layout-max-width', value: 1200, min: 480, max: 4100, step: 10 },
+
+          // Box Max Width Slider
+          { selector: '#edit-box-max-width', type: 'box-max-width', value: 1200, min: 480, max: 4100, step: 10 },
+
+          // Layout Gutter Sliders
+          { selector: '#edit-gutter-horizontal', type: 'gutter-horizontal', value: 20, min: 0, max: 100, step: 1 },
+          { selector: '#edit-gutter-vertical', type: 'gutter-vertical', value: 20, min: 0, max: 100, step: 1 },
+          { selector: '#edit-gutter-container', type: 'gutter-container', value: 30, min: 0, max: 500, step: 1 },
+          { selector: '#edit-gutter-horizontal-mobile', type: 'gutter-horizontal-mobile', value: 10, min: 0, max: 100, step: 1 },
+          { selector: '#edit-gutter-vertical-mobile', type: 'gutter-vertical-mobile', value: 10, min: 0, max: 100, step: 1 },
+          { selector: '#edit-gutter-container-mobile', type: 'gutter-container-mobile', value: 20, min: 0, max: 500, step: 1 },
+
+          // Dropdown Width Slider
+          { selector: '#edit-dropdown-width', type: 'dropdown-width', value: 200, min: 100, max: 400, step: 5 },
+
+          // Block Padding Slider
+          { selector: '#edit-block-padding', type: 'block-padding', value: 15, min: 0, max: 30, step: 1 },
+
+          // Block Border Slider
+          { selector: '#edit-block-border', type: 'block-border', value: 1, min: 0, max: 30, step: 1 },
+
+          // Title Padding Slider
+          { selector: '#edit-title-padding', type: 'title-padding', value: 10, min: 0, max: 30, step: 1 },
+
+          // Title Border Slider
+          { selector: '#edit-title-border', type: 'title-border', value: 1, min: 0, max: 30, step: 1 }
         ];
-        opacitySelectors.forEach(function (selector) {
-          const originalInput = document.querySelector(selector);
-          if (originalInput) {
-            createDXBSlider(originalInput, 'opacity', 0.5, 0, 1, 0.01);
+
+        slidersConfig.forEach(slider => {
+          const inputElement = document.querySelector(slider.selector);
+          if (inputElement) {
+            createDXBSlider(inputElement, slider.type, slider.value, slider.min, slider.max, slider.step);
           }
         });
-
-        // Line Height Sliders with specific types
-        const bodyLineHeightInput = document.querySelector('#edit-body-line-height');
-        if (bodyLineHeightInput) {
-          createDXBSlider(bodyLineHeightInput, 'body-line-height', 1.5, 0, 3, 0.1);
-        }
-
-        const headingsLineHeightInput = document.querySelector('#edit-headings-line-height');
-        if (headingsLineHeightInput) {
-          createDXBSlider(headingsLineHeightInput, 'headings-line-height', 1.5, 0, 3, 0.1);
-        }
-
-        const blockquoteLineHeightInput = document.querySelector('#edit-blockquote-line-height');
-        if (blockquoteLineHeightInput) {
-          createDXBSlider(blockquoteLineHeightInput, 'blockquote-line-height', 1.5, 0, 3, 0.1);
-        }
-
-        // Border Radius Sliders with specific types
-        const blockBorderRadiusInput = document.querySelector('#edit-block-border-radius');
-        if (blockBorderRadiusInput) {
-          createDXBSlider(blockBorderRadiusInput, 'block-border-radius', 10, 0, 100, 1);
-        }
-
-        const titleBorderRadiusInput = document.querySelector('#edit-title-border-radius');
-        if (titleBorderRadiusInput) {
-          createDXBSlider(titleBorderRadiusInput, 'title-border-radius', 10, 0, 100, 1);
-        }
-
-        // Body Font Size Slider
-        const bodyFontSizeInput = document.querySelector('#edit-body-font-size');
-        if (bodyFontSizeInput) {
-          createDXBSlider(bodyFontSizeInput, 'font-size', 16, 8, 100, 1);
-        }
-
-        // Nav Font Size Slider
-        const navFontSizeInput = document.querySelector('#edit-nav-font-size');
-        if (navFontSizeInput) {
-          createDXBSlider(navFontSizeInput, 'font-size', 16, 8, 100, 1);
-        }
-
-        // Body Mobile Font Size Slider
-        const bodyMobileFontSizeInput = document.querySelector('#edit-body-mobile-font-size');
-        if (bodyMobileFontSizeInput) {
-          createDXBSlider(bodyMobileFontSizeInput, 'font-size', 14, 8, 100, 1);
-        }
-
-        // Nav Mobile Font Size Slider
-        const navMobileFontSizeInput = document.querySelector('#edit-nav-mobile-font-size');
-        if (navMobileFontSizeInput) {
-          createDXBSlider(navMobileFontSizeInput, 'font-size', 14, 8, 100, 1);
-        }
-
-        // H1 Font Size Slider
-        const h1FontSizeInput = document.querySelector('#edit-h1-font-size');
-        if (h1FontSizeInput) {
-          createDXBSlider(h1FontSizeInput, 'h1-font-size', 16, 8, 100, 1);
-        }
-
-        // H2 Font Size Slider
-        const h2FontSizeInput = document.querySelector('#edit-h2-font-size');
-        if (h2FontSizeInput) {
-          createDXBSlider(h2FontSizeInput, 'h2-font-size', 16, 8, 100, 1);
-        }
-
-        // H3 Font Size Slider
-        const h3FontSizeInput = document.querySelector('#edit-h3-font-size');
-        if (h3FontSizeInput) {
-          createDXBSlider(h3FontSizeInput, 'h3-font-size', 16, 8, 100, 1);
-        }
-
-        // H4 Font Size Slider
-        const h4FontSizeInput = document.querySelector('#edit-h4-font-size');
-        if (h4FontSizeInput) {
-          createDXBSlider(h4FontSizeInput, 'h4-font-size', 16, 8, 100, 1);
-        }
-
-        // Blockquote Font Size Slider
-        const blockquoteFontSizeInput = document.querySelector('#edit-blockquote-font-size');
-        if (blockquoteFontSizeInput) {
-          createDXBSlider(blockquoteFontSizeInput, 'blockquote-font-size', 16, 8, 100, 1);
-        }
-
-        // H1 Mobile Font Size Slider
-        const h1MobileFontSizeInput = document.querySelector('#edit-h1-mobile-font-size');
-        if (h1MobileFontSizeInput) {
-          createDXBSlider(h1MobileFontSizeInput, 'h1-mobile-font-size', 16, 8, 100, 1);
-        }
-
-        // H2 Mobile Font Size Slider
-        const h2MobileFontSizeInput = document.querySelector('#edit-h2-mobile-font-size');
-        if (h2MobileFontSizeInput) {
-          createDXBSlider(h2MobileFontSizeInput, 'h2-mobile-font-size', 16, 8, 100, 1);
-        }
-
-        // H3 Mobile Font Size Slider
-        const h3MobileFontSizeInput = document.querySelector('#edit-h3-mobile-font-size');
-        if (h3MobileFontSizeInput) {
-          createDXBSlider(h3MobileFontSizeInput, 'h3-mobile-font-size', 16, 8, 100, 1);
-        }
-
-        // H4 Mobile Font Size Slider
-        const h4MobileFontSizeInput = document.querySelector('#edit-h4-mobile-font-size');
-        if (h4MobileFontSizeInput) {
-          createDXBSlider(h4MobileFontSizeInput, 'h4-mobile-font-size', 16, 8, 100, 1);
-        }
-
-        // Blockquote Mobile Font Size Slider
-        const blockquoteMobileFontSizeInput = document.querySelector('#edit-blockquote-mobile-font-size');
-        if (blockquoteMobileFontSizeInput) {
-          createDXBSlider(blockquoteMobileFontSizeInput, 'blockquote-mobile-font-size', 16, 8, 100, 1);
-        }
-
-        // Scale Factor Slider
-        const scaleFactorInput = document.querySelector('#edit-scale-factor');
-        if (scaleFactorInput) {
-          createDXBSlider(scaleFactorInput, 'scale-factor', 1, 1, 2, 0.01);
-        }
-
-        // Divider Thickness Slider for divider-thickness
-        const dividerThicknessInput = document.querySelector('#edit-divider-thickness');
-        if (dividerThicknessInput) {
-          createDXBSlider(dividerThicknessInput, 'divider-thickness', 1, 0, 20, 1);
-        }
-
-        // Divider Thickness Slider for block-divider-thickness
-        const blockDividerThicknessInput = document.querySelector('#edit-block-divider-thickness');
-        if (blockDividerThicknessInput) {
-          createDXBSlider(blockDividerThicknessInput, 'block-divider-thickness', 1, 0, 20, 1);
-        }
-
-        // Divider Length Slider for divider-length
-        const dividerLengthInput = document.querySelector('#edit-divider-length');
-        if (dividerLengthInput) {
-          createDXBSlider(dividerLengthInput, 'divider-length', 100, 0, 500, 10);
-        }
-
-        // Divider Length Slider for block-divider-length
-        const blockDividerLengthInput = document.querySelector('#edit-block-divider-length');
-        if (blockDividerLengthInput) {
-          createDXBSlider(blockDividerLengthInput, 'block-divider-length', 100, 0, 500, 10);
-        }
-
-        // Divider Position Slider
-        const dividerPositionInput = document.querySelector('#edit-divider-position');
-        if (dividerPositionInput) {
-          createDXBSlider(dividerPositionInput, 'divider-position', 1, 1, 3, 1);
-        }
-
-        // Headings Letter Spacing Slider
-        const headingsLetterSpacingInput = document.querySelector('#edit-headings-letter-spacing');
-        if (headingsLetterSpacingInput) {
-          createDXBSlider(headingsLetterSpacingInput, 'letter-spacing', 0, -0.1, 0.3, 0.01);
-        }
-
-        // Block Design Divider Spacing Slider
-        const blockDividerSpacingInput = document.querySelector('#edit-block-divider-spacing');
-        if (blockDividerSpacingInput) {
-          createDXBSlider(blockDividerSpacingInput, 'block-divider-spacing', 10, 0, 100, 1);
-        }
-
-        // Page Title Height Slider
-        const pageTitleHeightInput = document.querySelector('#edit-page-title-height');
-        if (pageTitleHeightInput) {
-          createDXBSlider(pageTitleHeightInput, 'page-title-height', 200, 50, 500, 5);
-        }
-
-        // Header Height Slider
-        const headerTopHeightInput = document.querySelector('#edit-header-top-height');
-        if (headerTopHeightInput) {
-          createDXBSlider(headerTopHeightInput, 'header-height', 100, 10, 200, 1);
-        }
-
-        // Logo Height Slider
-        const logoHeightInput = document.querySelector('#edit-logo-height');
-        if (logoHeightInput) {
-          createDXBSlider(logoHeightInput, 'logo-height', 50, 10, 100, 1);
-        }
-
-        // Header Mobile Breakpoint Slider
-        const headerMobileBreakpointInput = document.querySelector('#edit-header-mobile-breakpoint');
-        if (headerMobileBreakpointInput) {
-          createDXBSlider(headerMobileBreakpointInput, 'header-mobile-breakpoint', 768, 480, 4100, 10);
-        }
-
-        // Header Mobile Height Slider
-        const headerMobileHeightInput = document.querySelector('#edit-header-mobile-height');
-        if (headerMobileHeightInput) {
-          createDXBSlider(headerMobileHeightInput, 'header-mobile-height', 60, 10, 200, 1);
-        }
-
-        // Header After-Scroll Height Slider
-        const headerTopHeightScrollInput = document.querySelector('#edit-header-top-height-scroll');
-        if (headerTopHeightScrollInput) {
-          createDXBSlider(headerTopHeightScrollInput, 'header-scroll-height', 80, 10, 200, 1);
-        }
-
-        // Sticky Header Scroll Offset Slider
-        const stickyOffsetInput = document.querySelector('#edit-header-top-height-sticky-offset');
-        if (stickyOffsetInput) {
-          createDXBSlider(stickyOffsetInput, 'sticky-offset', 10, 0, 2096, 10);
-        }
-
-        // Side Header Width Slider
-        const headerSideWidthInput = document.querySelector('#edit-header-side-width');
-        if (headerSideWidthInput) {
-          createDXBSlider(headerSideWidthInput, 'side-header-width', 200, 50, 500, 5);
-        }
-
-        // Side Header Logo Height Slider
-        const headerSideLogoHeightInput = document.querySelector('#edit-header-side-logo-height');
-        if (headerSideLogoHeightInput) {
-          createDXBSlider(headerSideLogoHeightInput, 'side-header-logo-height', 100, 10, 500, 1);
-        }
-
-        // Main Menu Hover Border Thickness Slider
-        const menuBorderSizeInput = document.querySelector('#edit-menu-border-size');
-        if (menuBorderSizeInput) {
-          createDXBSlider(menuBorderSizeInput, 'menu-border-size', 2, 1, 20, 1);
-        }
-
-        // Main Menu Hover Border Position Offset Slider
-        const menuBorderPositionOffsetInput = document.querySelector('#edit-menu-border-position-offset');
-        if (menuBorderPositionOffsetInput) {
-          createDXBSlider(menuBorderPositionOffsetInput, 'menu-border-offset', 10, 0, 100, 1);
-        }
-
-        // Layout Max Width Slider
-        const layoutMaxWidthInput = document.querySelector('#edit-layout-max-width');
-        if (layoutMaxWidthInput) {
-          createDXBSlider(layoutMaxWidthInput, 'layout-max-width', 1200, 480, 4100, 10);
-        }
-
-        // Box Max Width Slider
-        const boxMaxWidthInput = document.querySelector('#edit-box-max-width');
-        if (boxMaxWidthInput) {
-          createDXBSlider(boxMaxWidthInput, 'box-max-width', 1200, 480, 4100, 10);
-        }
-
-        // Layout Gutter Horizontal Slider
-        const gutterHorizontalInput = document.querySelector('#edit-gutter-horizontal');
-        if (gutterHorizontalInput) {
-          createDXBSlider(gutterHorizontalInput, 'gutter-horizontal', 20, 0, 100, 1);
-        }
-
-        // Layout Gutter Vertical Slider
-        const gutterVerticalInput = document.querySelector('#edit-gutter-vertical');
-        if (gutterVerticalInput) {
-          createDXBSlider(gutterVerticalInput, 'gutter-vertical', 20, 0, 100, 1);
-        }
-
-        // Layout Gutter Container Slider
-        const gutterContainerInput = document.querySelector('#edit-gutter-container');
-        if (gutterContainerInput) {
-          createDXBSlider(gutterContainerInput, 'gutter-container', 30, 0, 500, 1);
-        }
-
-        // Layout Gutter Horizontal Mobile Slider
-        const gutterHorizontalMobileInput = document.querySelector('#edit-gutter-horizontal-mobile');
-        if (gutterHorizontalMobileInput) {
-          createDXBSlider(gutterHorizontalMobileInput, 'gutter-horizontal-mobile', 10, 0, 100, 1);
-        }
-
-        // Layout Gutter Vertical Mobile Slider
-        const gutterVerticalMobileInput = document.querySelector('#edit-gutter-vertical-mobile');
-        if (gutterVerticalMobileInput) {
-          createDXBSlider(gutterVerticalMobileInput, 'gutter-vertical-mobile', 10, 0, 100, 1);
-        }
-
-        // Layout Gutter Container Mobile Slider
-        const gutterContainerMobileInput = document.querySelector('#edit-gutter-container-mobile');
-        if (gutterContainerMobileInput) {
-          createDXBSlider(gutterContainerMobileInput, 'gutter-container-mobile', 20, 0, 500, 1);
-        }
-
-        // Dropdown Width Slider
-        const dropdownWidthInput = document.querySelector('#edit-dropdown-width');
-        if (dropdownWidthInput) {
-          createDXBSlider(dropdownWidthInput, 'dropdown-width', 200, 100, 400, 5);
-        }
-
-        // Menu Border Position Offset Sticky Slider
-        const menuBorderPositionOffsetStickyInput = document.querySelector('#edit-menu-border-position-offset-sticky');
-        if (menuBorderPositionOffsetStickyInput) {
-          createDXBSlider(menuBorderPositionOffsetStickyInput, 'menu-border-position-offset-sticky', 10, 0, 100, 1);
-        }
-
-        // Block Padding Slider
-        const blockPaddingInput = document.querySelector('#edit-block-padding');
-        if (blockPaddingInput) {
-          createDXBSlider(blockPaddingInput, 'block-padding', 15, 0, 30, 1);
-        }
-
-        // Block Border Slider
-        const blockBorderInput = document.querySelector('#edit-block-border');
-        if (blockBorderInput) {
-          createDXBSlider(blockBorderInput, 'block-border', 1, 0, 30, 1);
-        }
-
-        // Title Padding Slider
-        const titlePaddingInput = document.querySelector('#edit-title-padding');
-        if (titlePaddingInput) {
-          createDXBSlider(titlePaddingInput, 'title-padding', 10, 0, 30, 1);
-        }
-
-        // Title Border Slider
-        const titleBorderInput = document.querySelector('#edit-title-border');
-        if (titleBorderInput) {
-          createDXBSlider(titleBorderInput, 'title-border', 1, 0, 30, 1);
-        }
       });
 
       // New function for creating sliders
@@ -1414,115 +1207,5 @@
         }
       }
     }
-
-
-    /**
-     * Provide vertical tab summaries for Bootstrap settings.
-     *
-     * Since the number of settings categories has grown I decided to remove
-     * summaries as to lighten this navigation and clear it up.
-     */
-    // Drupal.behaviors.dxpr_themeSettingSummaries = {
-    //   attach: function (context) {
-    //     var $context = $(context);
-
-    //     // Page Title.
-    //     $context.find('#edit-page-title').drupalSetSummary(function () {
-    //       var summary = [];
-
-    //       var align = $context.find('input[name="page_title_align"]:checked');
-    //       if (align.val()) {
-    //         summary.push(Drupal.t('Align @align', {
-    //           '@align': align.find('+label').text()
-    //         }));
-    //       }
-
-    //       var animate = $context.find('input[name="page_title_animate"]:checked');
-    //       if (animate.val()) {
-    //         summary.push(Drupal.t('@animate', {
-    //           '@animate': animate.find('+label').text()
-    //         }));
-    //       }
-
-    //       if ($context.find(':input[name="page_title_breadcrumbs"]').is(':checked')) {
-    //         summary.push(Drupal.t('Crumbs'));
-    //       } else {
-    //         summary.push(Drupal.t('No Crumbs'));
-    //       }
-    //       return summary.join(', ');
-
-    //     });
-
-    //     // Menu.
-    //     $context.find('#edit-menu').drupalSetSummary(function () {
-    //       var summary = [];
-
-    //       var menu = $context.find('input[name="menu_type"]:checked');
-    //       if (menu.val()) {
-    //         summary.push(Drupal.t('@menu', {
-    //           '@menu': menu.find('+label').text()
-    //         }));
-    //       }
-    //       return summary.join(', ');
-
-    //     });
-
-    //     // Colors.
-    //     $context.find('#color_scheme_form').drupalSetSummary(function () {
-    //       var summary = [];
-
-    //       var scheme = $context.find('select[name="scheme"] :selected');
-    //       if (scheme.val()) {
-    //         summary.push(Drupal.t('@scheme', {
-    //           '@scheme': scheme.text()
-    //         }));
-    //       }
-    //       return summary.join(', ');
-
-    //     });
-
-    //     // Layout.
-    //     $context.find('#edit-layout').drupalSetSummary(function () {
-    //       var summary = [];
-
-    //       var layoutWidth = $context.find('input[name="layout_max_width"]');
-    //       if (layoutWidth.length) {
-    //         summary.push(Drupal.t('@layoutWidth', {
-    //           '@layoutWidth': layoutWidth.val() + 'px'
-    //         }));
-    //       }
-
-    //       return summary.join(', ');
-
-    //     });
-
-    //     // Header.
-    //     $context.find('#edit-header').drupalSetSummary(function () {
-    //       var summary = [];
-
-    //       if ($context.find(':input[name="header_position"]').is(':checked')) {
-    //         summary.push(Drupal.t('Side Header'));
-    //       } else {
-    //         summary.push(Drupal.t('Top Header'));
-    //       }
-    //       return summary.join(', ');
-
-    //     });
-
-    //     // Typography.
-    //     $context.find('#edit-fonts').drupalSetSummary(function () {
-    //       var summary = [];
-
-    //       var typography = $context.find('select[name="body_font_face"] :selected');
-    //       if (typography.val()) {
-    //         summary.push(Drupal.t('Base: @typography', {
-    //           '@typography': typography.text()
-    //         }));
-    //       }
-    //       return summary.join(', ');
-
-    //     });
-    //   }
-    // };
   };
 })(Drupal, once);
