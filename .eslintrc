@@ -69,7 +69,9 @@
           "plusplus",
           "undef",
           "touchstart",
-          "Rect"
+          "Rect",
+          "Breakpoint",
+          "keyup"
         ],
         "skipIfMatch": [
           "{\\w+}", // E.g. "{paramName}"

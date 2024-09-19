@@ -711,6 +711,78 @@
       once("dxpr-settings-controls-fields", "html", context).forEach(() => {
         this.handleFields();
       });
+
+      // New function for creating sliders
+      // New function for creating sliders with dynamic units
+      function createDXBSlider(inputElement, type, value, min, max, step) {
+        if (!inputElement) {
+          return;
+        }
+
+        // We check if the input element is already set to 'range'
+        if (
+          inputElement.tagName.toLowerCase() !== "input" ||
+          inputElement.type !== "range"
+        ) {
+          inputElement.type = "range"; // Changing the type to range
+        }
+
+        inputElement.min = min;
+        inputElement.max = max;
+        inputElement.step = step;
+        inputElement.value = value;
+
+        inputElement.classList.add("dxb-slider");
+        inputElement.setAttribute("data-dxb-slider", "");
+
+        // Create wrapper and track
+        const wrapper = document.createElement("div");
+        wrapper.classList.add("dxb-slider-wrapper");
+
+        const track = document.createElement("div");
+        track.classList.add("dxb-slider-track");
+
+        // Wrap the input in the wrapper
+        inputElement.parentNode.insertBefore(wrapper, inputElement);
+        wrapper.appendChild(track);
+        track.appendChild(inputElement);
+
+        // Determine the appropriate unit based on the sliderType
+        function getUnitForType(sliderType) {
+          // For line-height related sliders, use "em"
+          if (
+            [
+              "body-line-height",
+              "headings-line-height",
+              "blockquote-line-height",
+            ].includes(sliderType)
+          ) {
+            return "em";
+          }
+          // Default to 'px' for other sliders
+          return "px";
+        }
+
+        // Update the initial slider value display
+        function updateValue() {
+          const val = inputElement.value;
+          const percent =
+            ((val - inputElement.min) / (inputElement.max - inputElement.min)) *
+            100;
+          const unit = getUnitForType(type); // Get the unit based on type
+
+          document.documentElement.style.setProperty(
+            `--dxt-setting-${type}`,
+            `${val}${unit}`,
+          );
+
+          inputElement.style.setProperty("--value-percent", `${percent}%`);
+        }
+
+        inputElement.addEventListener("input", updateValue);
+        updateValue(); // Set initial value
+      }
+
       // Select all target inputs once when the page loads.
       once("dxpr-settings-controls", "html", context).forEach(() => {
         const slidersConfig = [
@@ -1262,90 +1334,7 @@
         });
       });
 
-      // New function for creating sliders
-      // New function for creating sliders with dynamic units
-      function createDXBSlider(inputElement, type, value, min, max, step) {
-        if (!inputElement) {
-          return;
-        }
-
-        // We check if the input element is already set to 'range'
-        if (
-          inputElement.tagName.toLowerCase() !== "input" ||
-          inputElement.type !== "range"
-        ) {
-          inputElement.type = "range"; // Changing the type to range
-        }
-
-        inputElement.min = min;
-        inputElement.max = max;
-        inputElement.step = step;
-        inputElement.value = value;
-
-        inputElement.classList.add("dxb-slider");
-        inputElement.setAttribute("data-dxb-slider", "");
-
-        // Create wrapper and track
-        const wrapper = document.createElement("div");
-        wrapper.classList.add("dxb-slider-wrapper");
-
-        const track = document.createElement("div");
-        track.classList.add("dxb-slider-track");
-
-        // Wrap the input in the wrapper
-        inputElement.parentNode.insertBefore(wrapper, inputElement);
-        wrapper.appendChild(track);
-        track.appendChild(inputElement);
-
-        // Determine the appropriate unit based on the type
-        function getUnitForType(type) {
-          // For line-height related sliders, use "em"
-          if (
-            [
-              "body-line-height",
-              "headings-line-height",
-              "blockquote-line-height",
-            ].includes(type)
-          ) {
-            return "em";
-          }
-          // Default to 'px' for other sliders
-          return "px";
-        }
-
-        // Update the initial slider value display
-        function updateValue() {
-          const val = inputElement.value;
-          const percent =
-            ((val - inputElement.min) / (inputElement.max - inputElement.min)) *
-            100;
-          const unit = getUnitForType(type); // Get the unit based on type
-
-          document.documentElement.style.setProperty(
-            `--dxt-setting-${type}`,
-            `${val}${unit}`,
-          );
-
-          inputElement.style.setProperty("--value-percent", `${percent}%`);
-        }
-
-        inputElement.addEventListener("input", updateValue);
-        updateValue(); // Set initial value
-      }
-
-      // Reflow layout when showing a tab
-      // var $sliders = $('.slider + input');
-      // $sliders.each( function() {
-      //   $slider = $(this);
-      //   $('.vertical-tab-button').click(function() {
-      //     $slider.bootstrapSlider('relayout');
-      //   });
-      // });
-      // $(".vertical-tab-button a").click(() => {
-      //   $(".slider + input").bootstrapSlider("relayout");
-      // });
-
-      // Function to relayout the slider
+      // Function to re-layout the slider
       function relayoutSlider(sliderElement) {
         // Reset value and style
         const val = parseFloat(sliderElement.value).toFixed(2);
@@ -1360,7 +1349,7 @@
       // Event listener for radio button change
       document.querySelectorAll('input[type="radio"]').forEach((radioInput) => {
         radioInput.addEventListener("change", () => {
-          // Find all sliders that need a relayout
+          // Find all sliders that need a re-layout
           document.querySelectorAll(".dxb-slider").forEach((sliderElement) => {
             relayoutSlider(sliderElement);
           });
@@ -1396,28 +1385,17 @@
     handleFields() {
       const self = this;
 
-      // Listen for change and keyup events on the document to handle field changes.
-      document.addEventListener("change", handleDocumentEvents);
-      document.addEventListener("keyup", handleDocumentEvents);
-
-      // Add event listener for slider elements to handle their change events.
-      document.querySelectorAll(".dxb-slider").forEach((el) => {
-        el.addEventListener("input", (e) => {
-          handleDocumentEvents(e);
-        });
-      });
-
       /**
        * Handle document changes.
        */
       function handleDocumentEvents(event) {
-        const el = event.target;
-        const id = el?.id ?? "";
-        const value = el?.value ?? "";
-        const elName = el?.name ?? "";
+        const targetElement = event.target;
+        const id = targetElement?.id ?? "";
+        const value = targetElement?.value ?? "";
+        const elName = targetElement?.name ?? "";
 
         // Set Block Preset to Custom if any value within Block Advanced section is changed.
-        if (el.closest("#edit-block-advanced")) {
+        if (targetElement.closest("#edit-block-advanced")) {
           document.getElementById("edit-block-preset").value = "custom";
         }
 
@@ -1520,14 +1498,18 @@
                 block_divider_spacing: 15,
               };
               break;
+            default:
+              // Handle the case when no known value matches
+              set = {};
+              break;
           }
 
           // Add missing properties from defaults if not present in set.
-          for (const key in setDefaults) {
+          Object.keys(setDefaults).forEach((key) => {
             if (!(key in set)) {
               set[key] = setDefaults[key];
             }
-          }
+          });
 
           // Apply the preset values to the corresponding fields.
           Object.keys(set).forEach((key) => {
@@ -1568,7 +1550,7 @@
           const elRegion = document.querySelector(regionClass);
           if (!elRegion) return;
 
-          if (el.checked) {
+          if (targetElement.checked) {
             elRegion.classList.add(blockDesignClass);
 
             // Trigger change event for block and block title card to reapply classes.
@@ -1579,8 +1561,8 @@
               bubbles: true,
               cancelable: true,
             });
-            elements.forEach((el) => {
-              el.dispatchEvent(changeEvent);
+            elements.forEach((element) => {
+              element.dispatchEvent(changeEvent);
             });
           } else {
             elRegion.classList.remove(blockDesignClass);
@@ -1600,26 +1582,26 @@
           );
 
           blockTitles.forEach((title) => {
-            title.style.display = el.checked ? "inline-block" : "";
+            title.style.display = targetElement.checked ? "inline-block" : "";
           });
         }
 
         // Remove CSS variables related to Block Divider if not in use.
         if (id === "edit-block-divider" || id === "edit-block-divider-custom") {
-          if (!el.checked) {
+          if (!targetElement.checked) {
             [
               "block_divider_color",
               "block_divider_thickness",
               "block_divider_length",
               "block_divider_spacing",
             ].forEach((key) => {
-              const cssVarName = key.replace(/[\[_]/g, "-");
+              const cssVarName = key.replace(/[_]/g, "-");
               document.documentElement.style.removeProperty(`--${cssVarName}`);
             });
           }
 
           // Set default divider values if divider is checked.
-          if (id === "edit-block-divider" && el.checked) {
+          if (id === "edit-block-divider" && targetElement.checked) {
             const set = {
               block_divider_length: 0,
               block_divider_thickness: 4,
@@ -1631,6 +1613,17 @@
           }
         }
       }
+
+      // Listen for change and keyup events on the document to handle field changes.
+      document.addEventListener("change", handleDocumentEvents);
+      document.addEventListener("keyup", handleDocumentEvents);
+
+      // Add event listener for slider elements to handle their change events.
+      document.querySelectorAll(".dxb-slider").forEach((el) => {
+        el.addEventListener("input", (e) => {
+          handleDocumentEvents(e);
+        });
+      });
     },
 
     /**
