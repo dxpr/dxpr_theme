@@ -651,8 +651,12 @@ $border-color: #222330;
       width: 100px;
     }
 
-    .dxb-slider-track .dxb-slider {
-      width: 100% !important;
+    .dxb-slider-track {
+      min-width: 150px;
+
+      .dxb-slider {
+        width: 100% !important;
+      }
     }
   }
 }
