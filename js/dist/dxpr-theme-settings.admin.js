@@ -899,7 +899,7 @@
           // Font Size Sliders
           {
             selector: "#edit-body-font-size",
-            type: "font-size",
+            type: "body-font-size",
             value: 16,
             min: 8,
             max: 100,
@@ -907,7 +907,7 @@
           },
           {
             selector: "#edit-nav-font-size",
-            type: "font-size",
+            type: "nav-font-size",
             value: 16,
             min: 8,
             max: 100,
@@ -1065,7 +1065,7 @@
           // Headings Letter Spacing Slider
           {
             selector: "#edit-headings-letter-spacing",
-            type: "letter-spacing",
+            type: "headings-letter-spacing",
             value: 0,
             min: -0.1,
             max: 0.3,
