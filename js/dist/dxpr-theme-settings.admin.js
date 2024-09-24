@@ -822,22 +822,22 @@
             max: 1,
             step: 0.01,
           },
-          {
-            selector: "#edit-header-side-bg-opacity",
-            type: "opacity",
-            value: 0.5,
-            min: 0,
-            max: 1,
-            step: 0.01,
-          },
-          {
-            selector: "#edit-side-header-background-opacity",
-            type: "opacity",
-            value: 0.5,
-            min: 0,
-            max: 1,
-            step: 0.01,
-          },
+          // {
+          //   selector: "#edit-header-side-bg-opacity",
+          //   type: "opacity",
+          //   value: 0.5,
+          //   min: 0,
+          //   max: 1,
+          //   step: 0.01,
+          // },
+          // {
+          //   selector: "#edit-side-header-background-opacity",
+          //   type: "opacity",
+          //   value: 0.5,
+          //   min: 0,
+          //   max: 1,
+          //   step: 0.01,
+          // },
           {
             selector: "#edit-page-title-image-opacity",
             type: "opacity",
@@ -846,30 +846,30 @@
             max: 1,
             step: 0.01,
           },
-          {
-            selector: "#edit-header-top-opacity",
-            type: "opacity",
-            value: 0.5,
-            min: 0,
-            max: 1,
-            step: 0.01,
-          },
-          {
-            selector: "#edit-header-top-opacity-scroll",
-            type: "opacity",
-            value: 0.5,
-            min: 0,
-            max: 1,
-            step: 0.01,
-          },
-          {
-            selector: "#edit-menu-full-screen-opacity",
-            type: "opacity",
-            value: 0.5,
-            min: 0,
-            max: 1,
-            step: 0.01,
-          },
+          // {
+          //   selector: "#edit-header-top-opacity",
+          //   type: "opacity",
+          //   value: 0.5,
+          //   min: 0,
+          //   max: 1,
+          //   step: 0.01,
+          // },
+          // {
+          //   selector: "#edit-header-top-opacity-scroll",
+          //   type: "opacity",
+          //   value: 0.5,
+          //   min: 0,
+          //   max: 1,
+          //   step: 0.01,
+          // },
+          // {
+          //   selector: "#edit-menu-full-screen-opacity",
+          //   type: "opacity",
+          //   value: 0.5,
+          //   min: 0,
+          //   max: 1,
+          //   step: 0.01,
+          // },
 
           // Line Height Sliders
           {
@@ -1340,6 +1340,7 @@
 
         slidersConfig.forEach((slider) => {
           const inputElement = document.querySelector(slider.selector);
+
           if (inputElement) {
             createDXBSlider(
               inputElement,

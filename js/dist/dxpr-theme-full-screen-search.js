@@ -4,7 +4,6 @@
       const searchButton = document.querySelector(".full-screen-search-button");
       const searchForm = document.querySelector(".full-screen-search-form");
       const searchFormInput = searchForm.querySelector(".search-query");
-      const escapeCode = 27;
 
       function clearSearchForm() {
         searchForm.classList.toggle("invisible");
@@ -42,10 +41,10 @@
       // Handle the escape key to close the search form
       document.addEventListener("keydown", (event) => {
         if (
-          event.keyCode === escapeCode &&
-          !searchForm.classList.contains("invisible")
+          event.key === "Escape" && // Check if Escape key is pressed
+          !searchForm.classList.contains("invisible") // Ensure the form is visible
         ) {
-          clearSearchForm();
+          clearSearchForm(); // Call the function to clear the form
         }
       });
     },
