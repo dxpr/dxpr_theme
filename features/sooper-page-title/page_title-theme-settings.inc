@@ -134,7 +134,7 @@ function page_title_theme_settings(array &$form, $theme) {
 
   $form['dxpr_theme_settings']['page_title']['background']['page_title_image_opacity'] = [
     '#type' => 'textfield',
-    '#title' => t('Backound Image Opacity'),
+    '#title' => t('Background Image Opacity'),
     '#default_value' => ((theme_get_setting('page_title_image_opacity') !== NULL)) ? theme_get_setting('page_title_image_opacity') : 1,
     '#size' => 9,
     '#maxlength' => 9,
