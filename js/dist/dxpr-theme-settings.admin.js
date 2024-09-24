@@ -790,10 +790,10 @@
               ? calculatedValue
               : `${calculatedValue}${unit}`;
 
-          document.documentElement.style.setProperty(
-            `--dxt-setting-${type}`,
-            finalValue,
-          );
+          // Skip live updates for 'box-max-width' and 'layout-max-width'
+          if (type !== "box-max-width" && type !== "layout-max-width") {
+            document.documentElement.style.setProperty(`--dxt-setting-${type}`, finalValue);
+          }
 
           inputElement.style.setProperty("--value-percent", `${percent}%`);
         }
