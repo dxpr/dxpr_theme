@@ -525,18 +525,6 @@
         String(value),
       );
 
-      // Workaround for block divider position.
-      // Adds a divider-position-block CSS variable.
-      if (setting === "divider_position") {
-        if (event.target.value === "3") {
-          value = "calc(100% - var(--dxt-setting-block-divider-length))";
-        }
-        this.root.style.setProperty(
-          `${cssVarSettingsPrefix}${cssVarName}-block`,
-          String(value),
-        );
-      }
-
       // Add mobile title font size variable.
       if (setting === "title_font_size") {
         value = value.replace("-font-size", "-mobile-font-size");
@@ -747,7 +735,29 @@
         wrapper.appendChild(track);
         track.appendChild(inputElement);
 
-        // Determine the appropriate unit based on the sliderType
+        // Get the appropriate value for the slider, handling special cases like 'divider-position'
+        // For 'divider-position', return specific values like '0', 'auto', or 'calc' without units
+        // For other sliders, return the value along with the appropriate unit (px, em, etc.)
+        function getValueForType(sliderType, val) {
+          // Special case for divider-position
+          if (sliderType === "divider-position") {
+            const numericVal = Number(val); // Convert val to a number
+
+            if (numericVal === 1) {
+              return "0"; // Return 0 without units
+            }
+            if (numericVal === 2) {
+              return "auto"; // Return 'auto' without units
+            }
+            if (numericVal === 3) {
+              return "calc(100% - var(--dxt-setting-divider-length))"; // Return calc expression without units
+            }
+          }
+
+          // For other sliders, return value with units
+          return val;
+        }
+
         function getUnitForType(sliderType) {
           // For line-height related sliders, use "em"
           if (
@@ -759,6 +769,7 @@
           ) {
             return "em";
           }
+
           // Default to 'px' for other sliders
           return "px";
         }
@@ -769,11 +780,19 @@
           const percent =
             ((val - inputElement.min) / (inputElement.max - inputElement.min)) *
             100;
+
+          const calculatedValue = getValueForType(type, val); // Get the value, including special cases
           const unit = getUnitForType(type); // Get the unit based on type
+
+          // Only add unit if it's not a special case (like divider-position)
+          const finalValue =
+            type === "divider-position"
+              ? calculatedValue
+              : `${calculatedValue}${unit}`;
 
           document.documentElement.style.setProperty(
             `--dxt-setting-${type}`,
-            `${val}${unit}`,
+            finalValue,
           );
 
           inputElement.style.setProperty("--value-percent", `${percent}%`);

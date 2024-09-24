@@ -71,7 +71,8 @@
           "touchstart",
           "Rect",
           "Breakpoint",
-          "keyup"
+          "keyup",
+          "calc"
         ],
         "skipIfMatch": [
           "{\\w+}", // E.g. "{paramName}"
