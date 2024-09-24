@@ -299,7 +299,7 @@ function dxpr_theme_form_system_theme_settings_submit(&$form, &$form_state) {
  * @return array
  *   Array containing requested data.
  */
-function _dxpr_theme_get_color_inc(string $key = NULL): array {
+function _dxpr_theme_get_color_inc(?string $key = NULL): array {
   $path = \Drupal::service('extension.list.theme')->getPath('dxpr_theme');
   $filepath = sprintf('%s/%s/features/sooper-colors/color-settings.json', DRUPAL_ROOT, $path);
 
