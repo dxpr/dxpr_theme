@@ -526,6 +526,18 @@
         String(value),
       );
 
+      // Workaround for block divider position.
+      // Adds a divider-position-block CSS variable.
+      if (setting === "divider_position") {
+        if (event.target.value === "3") {
+          value = "calc(100% - var(--dxt-setting-block-divider-length))";
+        }
+        this.root.style.setProperty(
+          `${cssVarSettingsPrefix}${cssVarName}-block`,
+          String(value),
+        );
+      }
+
       // Add mobile title font size variable.
       if (setting === "title_font_size") {
         value = value.replace("-font-size", "-mobile-font-size");
