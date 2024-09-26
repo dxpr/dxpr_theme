@@ -763,7 +763,7 @@
               return "auto"; // Return 'auto' without units
             }
             if (numericVal === 3) {
-              return "calc(100% - var(--dxt-setting-divider-length))"; // Return calc expression without units
+              return `calc(100% - var(${cssVarSettingsPrefix}divider-length))`;
             }
           }
 
@@ -806,7 +806,7 @@
           // Skip live updates for 'box-max-width' and 'layout-max-width'
           if (type !== "box-max-width" && type !== "layout-max-width") {
             document.documentElement.style.setProperty(
-              `--dxt-setting-${type}`,
+              `${cssVarSettingsPrefix}${type}`,
               finalValue,
             );
           }
