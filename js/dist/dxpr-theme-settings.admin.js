@@ -824,7 +824,7 @@
           // Opacity Sliders
           {
             selector: "#edit-header-top-bg-opacity-scroll",
-            type: "opacity",
+            type: "header-top-bg-opacity-scroll",
             value: 0.5,
             min: 0,
             max: 1,
@@ -1130,7 +1130,7 @@
           // Header Height Slider
           {
             selector: "#edit-header-top-height",
-            type: "header-height",
+            type: "header-top-height",
             value: 100,
             min: 10,
             max: 200,
