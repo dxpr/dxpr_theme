@@ -793,11 +793,7 @@
             return "";
           }
           // For opacity related sliders, use "%"
-          if (
-            [
-              "logo-height",
-            ].includes(sliderType)
-          ) {
+          if (["logo-height"].includes(sliderType)) {
             return "%";
           }
 
@@ -898,7 +894,7 @@
           // },
           // {
           //   selector: "#edit-menu-full-screen-opacity",
-            //   type: "opacity",
+          //   type: "opacity",
           //   value: 0.5,
           //   min: 0,
           //   max: 1,
