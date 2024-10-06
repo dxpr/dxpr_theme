@@ -782,6 +782,24 @@
           ) {
             return "em";
           }
+          // For opacity related sliders, use ""
+          if (
+            [
+              "header-top-bg-opacity-scroll",
+              "header-top-bg-opacity",
+              "page-title-image-opacity",
+            ].includes(sliderType)
+          ) {
+            return "";
+          }
+          // For opacity related sliders, use "%"
+          if (
+            [
+              "logo-height",
+            ].includes(sliderType)
+          ) {
+            return "%";
+          }
 
           // Default to 'px' for other sliders
           return "px";
@@ -832,7 +850,7 @@
           },
           {
             selector: "#edit-header-top-bg-opacity",
-            type: "opacity",
+            type: "header-top-bg-opacity",
             value: 0.5,
             min: 0,
             max: 1,
@@ -856,7 +874,7 @@
           // },
           {
             selector: "#edit-page-title-image-opacity",
-            type: "opacity",
+            type: "page-title-image-opacity",
             value: 0.5,
             min: 0,
             max: 1,
@@ -880,7 +898,7 @@
           // },
           // {
           //   selector: "#edit-menu-full-screen-opacity",
-          //   type: "opacity",
+            //   type: "opacity",
           //   value: 0.5,
           //   min: 0,
           //   max: 1,
@@ -950,7 +968,7 @@
           },
           {
             selector: "#edit-body-mobile-font-size",
-            type: "font-size",
+            type: "body-mobile-font-size",
             value: 14,
             min: 8,
             max: 100,
@@ -958,7 +976,7 @@
           },
           {
             selector: "#edit-nav-mobile-font-size",
-            type: "font-size",
+            type: "nav-mobile-font-size",
             value: 14,
             min: 8,
             max: 100,
@@ -1170,7 +1188,7 @@
           // Header After-Scroll Height Slider
           {
             selector: "#edit-header-top-height-scroll",
-            type: "header-scroll-height",
+            type: "header-top-height-scroll",
             value: 80,
             min: 10,
             max: 200,
@@ -1180,7 +1198,7 @@
           // Sticky Header Scroll Offset Slider
           {
             selector: "#edit-header-top-height-sticky-offset",
-            type: "sticky-offset",
+            type: "header-top-height-sticky-offset",
             value: 10,
             min: 0,
             max: 2096,
@@ -1218,7 +1236,7 @@
           },
           {
             selector: "#edit-menu-border-position-offset",
-            type: "menu-border-offset",
+            type: "menu-border-position-offset",
             value: 10,
             min: 0,
             max: 100,
