@@ -778,6 +778,7 @@
               "body-line-height",
               "headings-line-height",
               "blockquote-line-height",
+              "headings-letter-spacing",
             ].includes(sliderType)
           ) {
             return "em";
@@ -1204,7 +1205,7 @@
           // Side Header Width Slider
           {
             selector: "#edit-header-side-width",
-            type: "side-header-width",
+            type: "header-side-width",
             value: 200,
             min: 50,
             max: 500,
@@ -1214,7 +1215,7 @@
           // Side Header Logo Height Slider
           {
             selector: "#edit-header-side-logo-height",
-            type: "side-header-logo-height",
+            type: "header-side-logo-height",
             value: 100,
             min: 10,
             max: 500,
