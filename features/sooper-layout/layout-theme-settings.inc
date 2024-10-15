@@ -74,12 +74,19 @@ function layout_theme_settings(array &$form, $theme) {
   ];
 
   $form['dxpr_theme_settings']['layout']['grid']['layout_max_width'] = [
-    '#type' => 'textfield',
+    '#type' => 'range',
     '#title' => t('Content Max-width'),
-    '#default_value' => ((theme_get_setting('layout_max_width') !== NULL)) ? theme_get_setting('layout_max_width') : '1170',
-    '#size' => 9,
-    '#maxlength' => 9,
+    '#default_value' => ((theme_get_setting('layout_max_width') !== NULL)) ? theme_get_setting('layout_max_width') : 1170,
+    '#min' => 480,
+    '#max' => 4100,
+    '#step' => 10,
     '#description' => t('Max width of the website container. 480px - 4100px. Default is 1280px. With Side-Header enabled we typically use 980px.'),
+    '#attributes' => [
+      'class' => ['dxb-slider', 'layout-max-width-range'],
+      'data-dxb-slider' => TRUE,
+    ],
+    '#prefix' => '<div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
+    '#suffix' => '</div></div></div>',
   ];
 
   $form['dxpr_theme_settings']['layout']['grid']['gutter_horizontal'] = [
