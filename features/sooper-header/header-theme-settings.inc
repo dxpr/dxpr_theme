@@ -632,7 +632,7 @@ function header_theme_settings(array &$form, $theme) {
     '#title' => t('Mobile Breakpoint'),
     '#default_value' => ((theme_get_setting('header_mobile_breakpoint') !== NULL)) ? theme_get_setting('header_mobile_breakpoint') : 1200,
     '#min' => 480,
-    '#max' => 410,
+    '#max' => 4100,
     '#step' => 10,
     '#description' => t('Point below where DXPR Theme switches to mobile header and navigation. If you set this to the maximum value (4100) the desktop style will never show. Default is 1200.'),
   ];
