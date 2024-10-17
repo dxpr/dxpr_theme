@@ -914,7 +914,7 @@
           {
             selector: "#edit-headings-line-height",
             type: "headings-line-height",
-            value: 1.5,
+            value: 1.05,
             min: 0,
             max: 3,
             step: 0.1,
@@ -950,7 +950,7 @@
           {
             selector: "#edit-body-font-size",
             type: "body-font-size",
-            value: 16,
+            value: 14,
             min: 8,
             max: 100,
             step: 1,
@@ -958,7 +958,7 @@
           {
             selector: "#edit-nav-font-size",
             type: "nav-font-size",
-            value: 16,
+            value: 14,
             min: 8,
             max: 100,
             step: 1,
@@ -982,7 +982,7 @@
           {
             selector: "#edit-h1-font-size",
             type: "h1-font-size",
-            value: 16,
+            value: 36,
             min: 8,
             max: 100,
             step: 1,
@@ -998,7 +998,7 @@
           {
             selector: "#edit-h3-font-size",
             type: "h3-font-size",
-            value: 16,
+            value: 14,
             min: 8,
             max: 100,
             step: 1,
@@ -1006,7 +1006,7 @@
           {
             selector: "#edit-h4-font-size",
             type: "h4-font-size",
-            value: 16,
+            value: 12,
             min: 8,
             max: 100,
             step: 1,
@@ -1022,7 +1022,7 @@
           {
             selector: "#edit-h1-mobile-font-size",
             type: "h1-mobile-font-size",
-            value: 16,
+            value: 36,
             min: 8,
             max: 100,
             step: 1,
@@ -1030,7 +1030,7 @@
           {
             selector: "#edit-h2-mobile-font-size",
             type: "h2-mobile-font-size",
-            value: 16,
+            value: 30,
             min: 8,
             max: 100,
             step: 1,
@@ -1046,7 +1046,7 @@
           {
             selector: "#edit-h4-mobile-font-size",
             type: "h4-mobile-font-size",
-            value: 16,
+            value: 14,
             min: 8,
             max: 100,
             step: 1,
@@ -1054,7 +1054,7 @@
           {
             selector: "#edit-blockquote-mobile-font-size",
             type: "blockquote-mobile-font-size",
-            value: 16,
+            value: 18,
             min: 8,
             max: 100,
             step: 1,
@@ -1074,7 +1074,7 @@
           {
             selector: "#edit-divider-thickness",
             type: "divider-thickness",
-            value: 1,
+            value: 4,
             min: 0,
             max: 20,
             step: 1,
