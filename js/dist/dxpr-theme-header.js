@@ -252,7 +252,7 @@
           } else {
             if (columns > 1) {
               dropdownElement.style.minWidth = `${width * columns + 2}px`;
-              dropdownElement.querySelectorAll("> li").forEach((li) => {
+              dropdownElement.querySelectorAll(":scope > li").forEach((li) => {
                 li.style.width = `${width}px`;
               });
             }

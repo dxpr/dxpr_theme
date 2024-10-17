@@ -82,6 +82,12 @@ function layout_theme_settings(array &$form, $theme) {
     '#max' => 4100,
     '#step' => 10,
     '#description' => t('Max width of the website container. 480px - 4100px. Default is 1280px. With Side-Header enabled we typically use 980px.'),
+    '#attributes' => [
+      'class' => ['dxb-slider', 'layout-max-width-range'],
+      'data-dxb-slider' => TRUE,
+    ],
+    '#prefix' => '<div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
+    '#suffix' => '</div></div></div>',
   ];
 
   $form['dxpr_theme_settings']['layout']['grid']['gutter_horizontal'] = [
