@@ -872,7 +872,7 @@
           {
             selector: "#edit-page-title-image-opacity",
             type: "page-title-image-opacity",
-            value: 0.5,
+            value: 1,
             min: 0,
             max: 1,
             step: 0.01,
@@ -1136,7 +1136,7 @@
           {
             selector: "#edit-page-title-height",
             type: "page-title-height",
-            value: 200,
+            value: 120,
             min: 50,
             max: 500,
             step: 5,
