@@ -940,9 +940,9 @@
           {
             selector: "#edit-title-border-radius",
             type: "title-border-radius",
-            value: 10,
+            value: 0,
             min: 0,
-            max: 100,
+            max: 30,
             step: 1,
           },
 
@@ -1082,7 +1082,7 @@
           {
             selector: "#edit-block-divider-thickness",
             type: "block-divider-thickness",
-            value: 1,
+            value: 4,
             min: 0,
             max: 20,
             step: 1,
@@ -1090,7 +1090,7 @@
           {
             selector: "#edit-divider-length",
             type: "divider-length",
-            value: 100,
+            value: 10,
             min: 0,
             max: 500,
             step: 10,
@@ -1126,7 +1126,7 @@
           {
             selector: "#edit-block-divider-spacing",
             type: "block-divider-spacing",
-            value: 10,
+            value: 20,
             min: 0,
             max: 100,
             step: 1,
@@ -1332,7 +1332,7 @@
           {
             selector: "#edit-block-padding",
             type: "block-padding",
-            value: 15,
+            value: 0,
             min: 0,
             max: 30,
             step: 1,
@@ -1362,7 +1362,7 @@
           {
             selector: "#edit-title-border",
             type: "title-border",
-            value: 1,
+            value: 0,
             min: 0,
             max: 30,
             step: 1,
