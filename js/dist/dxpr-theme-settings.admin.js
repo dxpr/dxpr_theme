@@ -840,7 +840,7 @@
           {
             selector: "#edit-header-top-bg-opacity-scroll",
             type: "header-top-bg-opacity-scroll",
-            value: 0.5,
+            value: 1,
             min: 0,
             max: 1,
             step: 0.01,
@@ -1166,7 +1166,7 @@
           {
             selector: "#edit-header-mobile-breakpoint",
             type: "header-mobile-breakpoint",
-            value: 768,
+            value: 1200,
             min: 480,
             max: 4100,
             step: 10,
@@ -1186,7 +1186,7 @@
           {
             selector: "#edit-header-top-height-scroll",
             type: "header-top-height-scroll",
-            value: 80,
+            value: 50,
             min: 10,
             max: 200,
             step: 1,
@@ -1196,7 +1196,7 @@
           {
             selector: "#edit-header-top-height-sticky-offset",
             type: "header-top-height-sticky-offset",
-            value: 10,
+            value: 60,
             min: 0,
             max: 2096,
             step: 10,
@@ -1206,7 +1206,7 @@
           {
             selector: "#edit-header-side-width",
             type: "header-side-width",
-            value: 200,
+            value: 300,
             min: 50,
             max: 500,
             step: 5,
@@ -1216,7 +1216,7 @@
           {
             selector: "#edit-header-side-logo-height",
             type: "header-side-logo-height",
-            value: 100,
+            value: 30,
             min: 10,
             max: 500,
             step: 1,
@@ -1234,7 +1234,7 @@
           {
             selector: "#edit-menu-border-position-offset",
             type: "menu-border-position-offset",
-            value: 10,
+            value: 0,
             min: 0,
             max: 100,
             step: 1,
@@ -1322,7 +1322,7 @@
           {
             selector: "#edit-dropdown-width",
             type: "dropdown-width",
-            value: 200,
+            value: 160,
             min: 100,
             max: 400,
             step: 5,

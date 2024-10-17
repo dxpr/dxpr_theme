@@ -60,11 +60,12 @@ function layout_theme_settings(array &$form, $theme) {
   ];
 
   $form['dxpr_theme_settings']['layout']['grid']['box_max_width'] = [
-    '#type' => 'textfield',
+    '#type' => 'range',
     '#title' => t('Boxed Container Max-width'),
-    '#default_value' => ((theme_get_setting('box_max_width') !== NULL)) ? theme_get_setting('box_max_width') : '1170',
-    '#size' => 9,
-    '#maxlength' => 9,
+    '#default_value' => ((theme_get_setting('box_max_width') !== NULL)) ? theme_get_setting('box_max_width') : 1170,
+    '#min' => 480,
+    '#max' => 4100,
+    '#step' => 10,
     '#description' => t('Width of the boxed layout container. Should be higher than content width.'),
     '#states' => [
       'visible' => [
@@ -74,39 +75,43 @@ function layout_theme_settings(array &$form, $theme) {
   ];
 
   $form['dxpr_theme_settings']['layout']['grid']['layout_max_width'] = [
-    '#type' => 'textfield',
+    '#type' => 'range',
     '#title' => t('Content Max-width'),
-    '#default_value' => ((theme_get_setting('layout_max_width') !== NULL)) ? theme_get_setting('layout_max_width') : '1170',
-    '#size' => 9,
-    '#maxlength' => 9,
+    '#default_value' => ((theme_get_setting('layout_max_width') !== NULL)) ? theme_get_setting('layout_max_width') : 1170,
+    '#min' => 480,
+    '#max' => 4100,
+    '#step' => 10,
     '#description' => t('Max width of the website container. 480px - 4100px. Default is 1280px. With Side-Header enabled we typically use 980px.'),
   ];
 
   $form['dxpr_theme_settings']['layout']['grid']['gutter_horizontal'] = [
-    '#type' => 'textfield',
+    '#type' => 'range',
     '#title' => t('Space between columns'),
-    '#default_value' => ((theme_get_setting('gutter_horizontal') !== NULL)) ? theme_get_setting('gutter_horizontal') : '30',
-    '#size' => 9,
-    '#maxlength' => 9,
-    '#description' => t('Default is 30px.'),
+    '#default_value' => ((theme_get_setting('gutter_horizontal') !== NULL)) ? theme_get_setting('gutter_horizontal') : 20,
+    '#min' => 0,
+    '#max' => 100,
+    '#step' => 1,
+    '#description' => t('Default is 20px.'),
   ];
 
   $form['dxpr_theme_settings']['layout']['grid']['gutter_vertical'] = [
-    '#type' => 'textfield',
+    '#type' => 'range',
     '#title' => t('Space between rows'),
-    '#default_value' => ((theme_get_setting('gutter_vertical') !== NULL)) ? theme_get_setting('gutter_vertical') : '30',
-    '#size' => 9,
-    '#maxlength' => 9,
-    '#description' => t('Default is 30px.'),
+    '#default_value' => ((theme_get_setting('gutter_vertical') !== NULL)) ? theme_get_setting('gutter_vertical') : 30,
+    '#min' => 0,
+    '#max' => 100,
+    '#step' => 1,
+    '#description' => t('Default is 20px.'),
   ];
 
   $form['dxpr_theme_settings']['layout']['grid']['gutter_container'] = [
-    '#type' => 'textfield',
+    '#type' => 'range',
     '#title' => t('Container Space'),
-    '#default_value' => ((theme_get_setting('gutter_container') !== NULL)) ? theme_get_setting('gutter_container') : '60',
-    '#size' => 9,
-    '#maxlength' => 9,
-    '#description' => t('Default is 60px.'),
+    '#default_value' => ((theme_get_setting('gutter_container') !== NULL)) ? theme_get_setting('gutter_container') : 30,
+    '#min' => 0,
+    '#max' => 500,
+    '#step' => 1,
+    '#description' => t('Default is 30px.'),
   ];
 
   $form['dxpr_theme_settings']['layout']['background'] = [
@@ -175,30 +180,33 @@ function layout_theme_settings(array &$form, $theme) {
   ];
 
   $form['dxpr_theme_settings']['layout']['mobile_layout']['gutter_horizontal_mobile'] = [
-    '#type' => 'textfield',
+    '#type' => 'range',
     '#title' => t('Space between columns'),
-    '#default_value' => ((theme_get_setting('gutter_horizontal_mobile') !== NULL)) ? theme_get_setting('gutter_horizontal_mobile') : '30',
-    '#size' => 9,
-    '#maxlength' => 9,
-    '#description' => t('Width of the horizontal gutter in DXPR Theme mobile view (<1200px). 0 - 100px. Default is 30.'),
+    '#default_value' => ((theme_get_setting('gutter_horizontal_mobile') !== NULL)) ? theme_get_setting('gutter_horizontal_mobile') : 10,
+    '#min' => 0,
+    '#max' => 100,
+    '#step' => 1,
+    '#description' => t('Width of the horizontal gutter in DXPR Theme mobile view (<1200px). 0 - 100px. Default is 10.'),
   ];
 
   $form['dxpr_theme_settings']['layout']['mobile_layout']['gutter_vertical_mobile'] = [
-    '#type' => 'textfield',
+    '#type' => 'range',
     '#title' => t('Space between rows'),
-    '#default_value' => ((theme_get_setting('gutter_vertical_mobile') !== NULL)) ? theme_get_setting('gutter_vertical_mobile') : '30',
-    '#size' => 9,
-    '#maxlength' => 9,
-    '#description' => t('Width of the vertical gutter in DXPR Theme mobile view (<1200px). 0 - 100px. Default is 30px.'),
+    '#default_value' => ((theme_get_setting('gutter_vertical_mobile') !== NULL)) ? theme_get_setting('gutter_vertical_mobile') : 10,
+    '#min' => 0,
+    '#max' => 100,
+    '#step' => 1,
+    '#description' => t('Width of the vertical gutter in DXPR Theme mobile view (<1200px). 0 - 100px. Default is 10px.'),
   ];
 
   $form['dxpr_theme_settings']['layout']['mobile_layout']['gutter_container_mobile'] = [
-    '#type' => 'textfield',
+    '#type' => 'range',
     '#title' => t('Mobile Container space'),
-    '#default_value' => ((theme_get_setting('gutter_container_mobile') !== NULL)) ? theme_get_setting('gutter_container_mobile') : '30',
-    '#size' => 9,
-    '#maxlength' => 9,
-    '#description' => t('Default is 30px.'),
+    '#default_value' => ((theme_get_setting('gutter_container_mobile') !== NULL)) ? theme_get_setting('gutter_container_mobile') : 20,
+    '#min' => 0,
+    '#max' => 500,
+    '#step' => 1,
+    '#description' => t('Default is 20px.'),
   ];
 
   // Secondary Header.
