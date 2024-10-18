@@ -72,6 +72,12 @@ function layout_theme_settings(array &$form, $theme) {
         ':input[name="boxed_layout"]' => ['checked' => TRUE],
       ],
     ],
+    '#attributes' => [
+      'class' => ['dxb-slider', 'box-max-width-range'],
+      'data-dxb-slider' => TRUE,
+    ],
+    '#prefix' => '<div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
+    '#suffix' => '</div></div></div>',
   ];
 
   $form['dxpr_theme_settings']['layout']['grid']['layout_max_width'] = [
@@ -98,6 +104,12 @@ function layout_theme_settings(array &$form, $theme) {
     '#max' => 100,
     '#step' => 1,
     '#description' => t('Default is 20px.'),
+    '#attributes' => [
+      'class' => ['dxb-slider', 'gutter-horizontal-range'],
+      'data-dxb-slider' => TRUE,
+    ],
+    '#prefix' => '<div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
+    '#suffix' => '</div></div></div>',
   ];
 
   $form['dxpr_theme_settings']['layout']['grid']['gutter_vertical'] = [
@@ -108,6 +120,12 @@ function layout_theme_settings(array &$form, $theme) {
     '#max' => 100,
     '#step' => 1,
     '#description' => t('Default is 20px.'),
+    '#attributes' => [
+      'class' => ['dxb-slider', 'gutter-vertical-range'],
+      'data-dxb-slider' => TRUE,
+    ],
+    '#prefix' => '<div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
+    '#suffix' => '</div></div></div>',
   ];
 
   $form['dxpr_theme_settings']['layout']['grid']['gutter_container'] = [
@@ -118,6 +136,12 @@ function layout_theme_settings(array &$form, $theme) {
     '#max' => 500,
     '#step' => 1,
     '#description' => t('Default is 30px.'),
+    '#attributes' => [
+      'class' => ['dxb-slider', 'gutter-container-range'],
+      'data-dxb-slider' => TRUE,
+    ],
+    '#prefix' => '<div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
+    '#suffix' => '</div></div></div>',
   ];
 
   $form['dxpr_theme_settings']['layout']['background'] = [
@@ -193,6 +217,12 @@ function layout_theme_settings(array &$form, $theme) {
     '#max' => 100,
     '#step' => 1,
     '#description' => t('Width of the horizontal gutter in DXPR Theme mobile view (<1200px). 0 - 100px. Default is 10.'),
+    '#attributes' => [
+      'class' => ['dxb-slider', 'gutter-horizontal-mobile-range'],
+      'data-dxb-slider' => TRUE,
+    ],
+    '#prefix' => '<div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
+    '#suffix' => '</div></div></div>',
   ];
 
   $form['dxpr_theme_settings']['layout']['mobile_layout']['gutter_vertical_mobile'] = [
@@ -203,6 +233,12 @@ function layout_theme_settings(array &$form, $theme) {
     '#max' => 100,
     '#step' => 1,
     '#description' => t('Width of the vertical gutter in DXPR Theme mobile view (<1200px). 0 - 100px. Default is 10px.'),
+    '#attributes' => [
+      'class' => ['dxb-slider', 'gutter-vertical-mobile-range'],
+      'data-dxb-slider' => TRUE,
+    ],
+    '#prefix' => '<div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
+    '#suffix' => '</div></div></div>',
   ];
 
   $form['dxpr_theme_settings']['layout']['mobile_layout']['gutter_container_mobile'] = [
@@ -213,6 +249,12 @@ function layout_theme_settings(array &$form, $theme) {
     '#max' => 500,
     '#step' => 1,
     '#description' => t('Default is 20px.'),
+    '#attributes' => [
+      'class' => ['dxb-slider', 'gutter-container-mobile-range'],
+      'data-dxb-slider' => TRUE,
+    ],
+    '#prefix' => '<div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
+    '#suffix' => '</div></div></div>',
   ];
 
   // Secondary Header.

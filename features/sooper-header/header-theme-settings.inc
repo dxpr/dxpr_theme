@@ -75,6 +75,12 @@ function header_theme_settings(array &$form, $theme) {
     '#max' => 1,
     '#step' => 0.01,
     '#description' => t('Creates RGBa translucent background color. 0 is fully transparent and 1 is fully opaque.'),
+    '#attributes' => [
+      'class' => ['dxb-slider', 'header-top-bg-opacity-range'],
+      'data-dxb-slider' => TRUE,
+    ],
+    '#prefix' => '<div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
+    '#suffix' => '</div></div></div>',
   ];
 
   $form['dxpr_theme_settings']['header']['header_top']['header_top_height'] = [
@@ -85,6 +91,12 @@ function header_theme_settings(array &$form, $theme) {
     '#max' => 200,
     '#step' => 1,
     '#description' => t('Initial height of the header. 10px - 200px. Default is 100.'),
+    '#attributes' => [
+      'class' => ['dxb-slider', 'header-top-height-range'],
+      'data-dxb-slider' => TRUE,
+    ],
+    '#prefix' => '<div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
+    '#suffix' => '</div></div></div>',
   ];
 
   $form['dxpr_theme_settings']['header']['header_top']['logo_height'] = [
@@ -95,6 +107,12 @@ function header_theme_settings(array &$form, $theme) {
     '#max' => 100,
     '#step' => 1,
     '#description' => t('Height of the logo within the header. 10% - 100%. Default is 50%.'),
+    '#attributes' => [
+      'class' => ['dxb-slider', 'logo-height-range'],
+      'data-dxb-slider' => TRUE,
+    ],
+    '#prefix' => '<div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
+    '#suffix' => '</div></div></div>',
   ];
 
   $form['dxpr_theme_settings']['header']['header_top']['header_top_fixed'] = [
@@ -173,6 +191,12 @@ function header_theme_settings(array &$form, $theme) {
         ':input[name="header_top_sticky"]' => ['checked' => TRUE],
       ],
     ],
+    '#attributes' => [
+      'class' => ['dxb-slider', 'header-top-height-sticky-offset-range'],
+      'data-dxb-slider' => TRUE,
+    ],
+    '#prefix' => '<div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
+    '#suffix' => '</div></div></div>',
   ];
 
   $form['dxpr_theme_settings']['header']['header_top']['sticky']['header_top_height_scroll'] = [
@@ -189,6 +213,12 @@ function header_theme_settings(array &$form, $theme) {
         ':input[name="header_top_sticky"]' => ['checked' => TRUE],
       ],
     ],
+    '#attributes' => [
+      'class' => ['dxb-slider', 'header-top-height-scroll-range'],
+      'data-dxb-slider' => TRUE,
+    ],
+    '#prefix' => '<div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
+    '#suffix' => '</div></div></div>',
   ];
 
   $form['dxpr_theme_settings']['header']['header_top']['sticky']['header_top_bg_opacity_scroll'] = [
@@ -205,6 +235,12 @@ function header_theme_settings(array &$form, $theme) {
         ':input[name="header_top_sticky"]' => ['checked' => TRUE],
       ],
     ],
+    '#attributes' => [
+      'class' => ['dxb-slider', 'header-top-bg-opacity-scroll-range'],
+      'data-dxb-slider' => TRUE,
+    ],
+    '#prefix' => '<div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
+    '#suffix' => '</div></div></div>',
   ];
 
   $form['dxpr_theme_settings']['header']['header_top']['navcolors'] = [
@@ -439,6 +475,12 @@ function header_theme_settings(array &$form, $theme) {
     '#max' => 500,
     '#step' => 5,
     '#description' => t('Width of the side-header. Default is 300.'),
+    '#attributes' => [
+      'class' => ['dxb-slider', 'header-side-width-range'],
+      'data-dxb-slider' => TRUE,
+    ],
+    '#prefix' => '<div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
+    '#suffix' => '</div></div></div>',
   ];
 
   $form['dxpr_theme_settings']['header']['header_side']['header_side_logo_height'] = [
@@ -449,6 +491,12 @@ function header_theme_settings(array &$form, $theme) {
     '#max' => 500,
     '#step' => 1,
     '#description' => t('Height of the logo in the side-header. Default is 30px.'),
+    '#attributes' => [
+      'class' => ['dxb-slider', 'header-side-logo-height-range'],
+      'data-dxb-slider' => TRUE,
+    ],
+    '#prefix' => '<div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
+    '#suffix' => '</div></div></div>',
   ];
 
   $form['dxpr_theme_settings']['header']['header_side']['header_side_direction'] = [
@@ -504,6 +552,12 @@ function header_theme_settings(array &$form, $theme) {
     '#min' => 100,
     '#max' => 500,
     '#step' => 5,
+    '#attributes' => [
+      'class' => ['dxb-slider', 'dropdown-width-range'],
+      'data-dxb-slider' => TRUE,
+    ],
+    '#prefix' => '<div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
+    '#suffix' => '</div></div></div>',
   ];
 
   $form['dxpr_theme_settings']['header']['menu']['menu_type'] = [
@@ -574,6 +628,12 @@ function header_theme_settings(array &$form, $theme) {
         ':input[name="header_position"]' => ['checked' => FALSE],
       ],
     ],
+    '#attributes' => [
+      'class' => ['dxb-slider', 'menu-border-position-offset-range'],
+      'data-dxb-slider' => TRUE,
+    ],
+    '#prefix' => '<div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
+    '#suffix' => '</div></div></div>',
   ];
 
   $form['dxpr_theme_settings']['header']['menu']['menu_border']['menu_border_position_offset_sticky'] = [
@@ -590,6 +650,12 @@ function header_theme_settings(array &$form, $theme) {
         ':input[name="header_top_sticky"]' => ['checked' => TRUE],
       ],
     ],
+    '#attributes' => [
+      'class' => ['dxb-slider', 'menu-border-position-offset-sticky-range'],
+      'data-dxb-slider' => TRUE,
+    ],
+    '#prefix' => '<div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
+    '#suffix' => '</div></div></div>',
   ];
 
   $form['dxpr_theme_settings']['header']['menu']['menu_border']['menu_border_size'] = [
@@ -599,6 +665,12 @@ function header_theme_settings(array &$form, $theme) {
     '#min' => 1,
     '#max' => 20,
     '#step' => 1,
+    '#attributes' => [
+      'class' => ['dxb-slider', 'menu-border-size-range'],
+      'data-dxb-slider' => TRUE,
+    ],
+    '#prefix' => '<div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
+    '#suffix' => '</div></div></div>',
   ];
 
   $form['dxpr_theme_settings']['header']['menu']['menu_border']['menu_border_color'] = [
@@ -635,6 +707,12 @@ function header_theme_settings(array &$form, $theme) {
     '#max' => 4100,
     '#step' => 10,
     '#description' => t('Point below where DXPR Theme switches to mobile header and navigation. If you set this to the maximum value (4100) the desktop style will never show. Default is 1200.'),
+    '#attributes' => [
+      'class' => ['dxb-slider', 'header-mobile-breakpoint-range'],
+      'data-dxb-slider' => TRUE,
+    ],
+    '#prefix' => '<div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
+    '#suffix' => '</div></div></div>',
   ];
 
   $form['dxpr_theme_settings']['header']['header_mobile']['header_mobile_height'] = [
@@ -645,6 +723,12 @@ function header_theme_settings(array &$form, $theme) {
     '#max' => 200,
     '#step' => 1,
     '#description' => t('Height of header in mobile view. 10px - 200px. Default is 60.'),
+    '#attributes' => [
+      'class' => ['dxb-slider', 'header-mobile-height-range'],
+      'data-dxb-slider' => TRUE,
+    ],
+    '#prefix' => '<div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
+    '#suffix' => '</div></div></div>',
   ];
 
   $form['dxpr_theme_settings']['header']['header_mobile']['header_mobile_fixed'] = [
