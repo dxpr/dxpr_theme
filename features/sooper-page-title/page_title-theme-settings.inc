@@ -92,6 +92,12 @@ function page_title_theme_settings(array &$form, $theme) {
     '#max' => 500,
     '#step' => 5,
     '#description' => t('height of the header. 50px - 500px. Default is 120px.'),
+    '#attributes' => [
+      'class' => ['dxb-slider', 'page-title-height-range'],
+      'data-dxb-slider' => TRUE,
+    ],
+    '#prefix' => '<div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
+    '#suffix' => '</div></div></div>',
   ];
 
   $form['dxpr_theme_settings']['page_title']['page_title_animate'] = [
@@ -141,6 +147,12 @@ function page_title_theme_settings(array &$form, $theme) {
     '#max' => 1,
     '#step' => 0.01,
     '#description' => t('Use this to blend the background image with a color. 0 is fully transparent and 1 is fully opaque.'),
+    '#attributes' => [
+      'class' => ['dxb-slider', 'page-title-image-opacity-range'],
+      'data-dxb-slider' => TRUE,
+    ],
+    '#prefix' => '<div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
+    '#suffix' => '</div></div></div>',
   ];
 
   $form['dxpr_theme_settings']['page_title']['background']['page_title_image_style'] = [
