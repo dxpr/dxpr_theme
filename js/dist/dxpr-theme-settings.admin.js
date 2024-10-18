@@ -240,7 +240,7 @@
         this.setPreview(inputName, els[0] ?? null);
 
         els.forEach((el) => {
-          el.addEventListener("change", (e) => {
+          el.addEventListener("input", (e) => {
             this.fieldHandler(e);
           });
 
@@ -408,7 +408,6 @@
       let inputId = setting
         .replace(cssVarSettingsPrefix, "")
         .replace(/-/g, "_");
-
       let p1;
       let p2;
       let p3;
