@@ -761,6 +761,7 @@
             "#edit-h4-font-size, #edit-h4-mobile-font-size, #edit-blockquote-font-size, #edit-blockquote-mobile-font-size",
             1,
           );
+
         });
     },
     handleFields() {
