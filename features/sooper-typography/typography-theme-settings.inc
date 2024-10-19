@@ -14,6 +14,7 @@
  *   Theme machine name.
  */
 function typography_theme_settings(array &$form, $theme) {
+  $form['#attributes']['novalidate'] = 'novalidate';
   $form['dxpr_theme_settings']['typography'] = [
     '#title' => t('Typography'),
     '#type' => 'details',
