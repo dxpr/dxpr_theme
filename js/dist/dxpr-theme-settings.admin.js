@@ -240,11 +240,19 @@
         this.setPreview(inputName, els[0] ?? null);
 
         els.forEach((el) => {
-          el.addEventListener("input", (e) => {
-            this.fieldHandler(e);
-          });
+          if (
+            el.id === "edit-box-max-width" ||
+            el.id === "edit-layout-max-width"
+          ) {
+            el.addEventListener("change", (e) => {
+              this.fieldHandler(e);
+            });
+          } else {
+            el.addEventListener("input", (e) => {
+              this.fieldHandler(e);
+            });
+          }
 
-          // Add handler also to potential "_custom" fields.
           const customField = document.querySelector(
             `[name="${inputName}_custom"]`,
           );
@@ -761,7 +769,6 @@
             "#edit-h4-font-size, #edit-h4-mobile-font-size, #edit-blockquote-font-size, #edit-blockquote-mobile-font-size",
             1,
           );
-
         });
     },
     handleFields() {
