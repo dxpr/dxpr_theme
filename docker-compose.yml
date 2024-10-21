@@ -88,7 +88,7 @@ services:
   # to watch and build files, use:
   # DEV_WATCH=true docker compose up -d dev && docker compose logs -f dev
   dev:
-    image: ${NODE_IMAGE:-node:14}
+    image: ${NODE_IMAGE:-node:20}
     profiles: ["lint"]
     working_dir: /src
     command: bash -c "./scripts/run_dev.sh"
