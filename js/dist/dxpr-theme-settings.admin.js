@@ -784,9 +784,19 @@
         const elName = targetElement?.name ?? "";
 
         // Set Block Preset to Custom if any value within Block Advanced section is changed.
-        if (targetElement.closest("#edit-block-advanced")) {
-          document.getElementById("edit-block-preset").value = "custom";
-        }
+        (function() {
+          const blockAdvancedSection = document.querySelector('#edit-block-advanced');
+
+          if (blockAdvancedSection) {
+            blockAdvancedSection.addEventListener('change', (e) => {
+              const targetElement = e.target;
+
+              if (blockAdvancedSection.contains(targetElement)) {
+                document.getElementById('edit-block-preset').value = 'custom';
+              }
+            });
+          }
+        })();
 
         // Handle Block Design Presets based on selected preset.
         if (id === "edit-block-preset") {
