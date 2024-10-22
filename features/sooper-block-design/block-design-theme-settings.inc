@@ -362,67 +362,79 @@ function block_design_theme_settings(array &$form, $theme) {
     ],
   ];
 
-  $form['dxpr_theme_settings']['block']['block_advanced']['divider_el']['block_divider_thickness'] = [
-    '#type' => 'range',
-    '#title' => t('Divider Thickness'),
-    '#default_value' => ((theme_get_setting('block_divider_thickness') !== NULL)) ? theme_get_setting('block_divider_thickness') : 4,
-    '#min' => 0,
-    '#max' => 20,
-    '#step' => 1,
+  $form['dxpr_theme_settings']['block']['block_advanced']['divider_el']['block_divider_thickness_wrapper'] = [
+    '#type' => 'container',
+    '#attributes' => ['class' => ['dxb-slider-wrapper-container']],
     '#states' => [
       'visible' => [
         ':input[name="block_divider"]' => ['checked' => TRUE],
         ':input[name="block_divider_custom"]' => ['checked' => TRUE],
       ],
     ],
-    '#attributes' => [
-      'class' => ['dxb-slider', 'block-divider-thickness-range'],
-      'data-dxb-slider' => TRUE,
+    'block_divider_thickness' => [
+      '#type' => 'range',
+      '#title' => t('Divider Thickness'),
+      '#default_value' => ((theme_get_setting('block_divider_thickness') !== NULL)) ? theme_get_setting('block_divider_thickness') : 4,
+      '#min' => 0,
+      '#max' => 20,
+      '#step' => 1,
+      '#attributes' => [
+        'class' => ['dxb-slider', 'block-divider-thickness-range'],
+        'data-dxb-slider' => TRUE,
+      ],
+      '#prefix' => '<div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
+      '#suffix' => '</div></div></div>',
     ],
-    '#prefix' => '<div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
-    '#suffix' => '</div></div></div>',
   ];
 
-  $form['dxpr_theme_settings']['block']['block_advanced']['divider_el']['block_divider_length'] = [
-    '#type' => 'range',
-    '#title' => t('Divider Length'),
-    '#default_value' => ((theme_get_setting('block_divider_length') !== NULL)) ? theme_get_setting('block_divider_length') : 10,
-    '#min' => 0,
-    '#max' => 500,
-    '#step' => 1,
+  $form['dxpr_theme_settings']['block']['block_advanced']['divider_el']['block_divider_length_wrapper'] = [
+    '#type' => 'container',
+    '#attributes' => ['class' => ['dxb-slider-wrapper-container']],
     '#states' => [
       'visible' => [
         ':input[name="block_divider"]' => ['checked' => TRUE],
         ':input[name="block_divider_custom"]' => ['checked' => TRUE],
       ],
     ],
-    '#attributes' => [
-      'class' => ['dxb-slider', 'block-divider-length-range'],
-      'data-dxb-slider' => TRUE,
+    'block_divider_length' => [
+      '#type' => 'range',
+      '#title' => t('Divider Length'),
+      '#default_value' => ((theme_get_setting('block_divider_length') !== NULL)) ? theme_get_setting('block_divider_length') : 10,
+      '#min' => 0,
+      '#max' => 500,
+      '#step' => 1,
+      '#attributes' => [
+        'class' => ['dxb-slider', 'block-divider-length-range'],
+        'data-dxb-slider' => TRUE,
+      ],
+      '#prefix' => '<div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
+      '#suffix' => '</div></div></div>',
     ],
-    '#prefix' => '<div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
-    '#suffix' => '</div></div></div>',
   ];
 
-  $form['dxpr_theme_settings']['block']['block_advanced']['divider_el']['block_divider_spacing'] = [
-    '#type' => 'range',
-    '#title' => t('Divider Spacing'),
-    '#default_value' => ((theme_get_setting('block_divider_spacing') !== NULL)) ? theme_get_setting('block_divider_spacing') : 20,
-    '#min' => 0,
-    '#max' => 100,
-    '#step' => 1,
+  $form['dxpr_theme_settings']['block']['block_advanced']['divider_el']['block_divider_spacing_wrapper'] = [
+    '#type' => 'container',
+    '#attributes' => ['class' => ['dxb-slider-wrapper-container']],
     '#states' => [
       'visible' => [
         ':input[name="block_divider"]' => ['checked' => TRUE],
         ':input[name="block_divider_custom"]' => ['checked' => TRUE],
       ],
     ],
-    '#attributes' => [
-      'class' => ['dxb-slider', 'block-divider-spacing-range'],
-      'data-dxb-slider' => TRUE,
+    'block_divider_spacing' => [
+      '#type' => 'range',
+      '#title' => t('Divider Spacing'),
+      '#default_value' => ((theme_get_setting('block_divider_spacing') !== NULL)) ? theme_get_setting('block_divider_spacing') : 20,
+      '#min' => 0,
+      '#max' => 100,
+      '#step' => 1,
+      '#attributes' => [
+        'class' => ['dxb-slider', 'block-divider-spacing-range'],
+        'data-dxb-slider' => TRUE,
+      ],
+      '#prefix' => '<div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
+      '#suffix' => '</div></div></div>',
     ],
-    '#prefix' => '<div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
-    '#suffix' => '</div></div></div>',
   ];
 
   $form['dxpr_theme_settings']['block']['regions'] = [
