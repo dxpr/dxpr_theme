@@ -59,25 +59,29 @@ function layout_theme_settings(array &$form, $theme) {
     '#collapsed' => TRUE,
   ];
 
-  $form['dxpr_theme_settings']['layout']['grid']['box_max_width'] = [
-    '#type' => 'range',
-    '#title' => t('Boxed Container Max-width'),
-    '#default_value' => ((theme_get_setting('box_max_width') !== NULL)) ? theme_get_setting('box_max_width') : 1170,
-    '#min' => 480,
-    '#max' => 4100,
-    '#step' => 10,
-    '#description' => t('Width of the boxed layout container. Should be higher than content width.'),
+  $form['dxpr_theme_settings']['layout']['grid']['box_max_width_wrapper'] = [
+    '#type' => 'container',
+    '#attributes' => ['class' => ['dxb-slider-wrapper-container']],
+    'box_max_width' => [
+      '#type' => 'range',
+      '#title' => t('Boxed Container Max-width'),
+      '#default_value' => ((theme_get_setting('box_max_width') !== NULL)) ? theme_get_setting('box_max_width') : 1170,
+      '#min' => 480,
+      '#max' => 4100,
+      '#step' => 10,
+      '#description' => t('Width of the boxed layout container. Should be higher than content width.'),
+      '#attributes' => [
+        'class' => ['dxb-slider', 'box-max-width-range'],
+        'data-dxb-slider' => TRUE,
+      ],
+      '#prefix' => '<div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
+      '#suffix' => '</div></div></div>',
+    ],
     '#states' => [
       'visible' => [
         ':input[name="boxed_layout"]' => ['checked' => TRUE],
       ],
     ],
-    '#attributes' => [
-      'class' => ['dxb-slider', 'box-max-width-range'],
-      'data-dxb-slider' => TRUE,
-    ],
-    '#prefix' => '<div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
-    '#suffix' => '</div></div></div>',
   ];
 
   $form['dxpr_theme_settings']['layout']['grid']['layout_max_width'] = [
