@@ -204,7 +204,7 @@ function header_theme_settings(array &$form, $theme) {
     '#title' => t('Height'),
     '#default_value' => ((theme_get_setting('header_top_height_scroll') !== NULL)) ? theme_get_setting('header_top_height_scroll') : 50,
     '#min' => 10,
-    '#max' => 2090,
+    '#max' => 200,
     '#step' => 1,
     '#description' => t('Header height after scrolling past scroll offset. Default is 50.'),
     '#states' => [
