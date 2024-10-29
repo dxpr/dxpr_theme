@@ -154,6 +154,10 @@ $border-color: #222330;
     }
   }
 
+  .form-radios .no-preview::after, .form-checkboxes .no-preview::after {
+    display: none;
+  }
+
   .form-item {
     background-color: unset;
     clear: both;
