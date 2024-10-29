@@ -31,7 +31,6 @@ libraries:
 #libraries-override:
 #  dxpr_theme/bootstrap-3: false
 #  dxpr_theme/bootstrap-theme: false
-#  dxpr_theme/jquery-ui: false
 #  dxpr_theme/footer-menu: false
 #  dxpr_theme/forms: false
 #  dxpr_theme/layout: false

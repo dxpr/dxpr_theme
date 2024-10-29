@@ -228,3 +228,21 @@ hr, .card hr {
     font-size: var(--dxt-setting-blockquote-mobile-font-size);
   }
 }
+
+#system-theme-settings #edit-typography .details-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#system-theme-settings #edit-typography .details-wrapper > details {
+  width: 100%;
+}
+
+#system-theme-settings #edit-typography  .details-wrapper > .js-form-item.form-item.js-form-type-range.form-type-range {
+  width: auto;
+}
+
+#system-theme-settings #edit-typography .details-wrapper > .js-form-item.form-item.js-form-type-range.form-type-range > .dxb-slider-container > .dxb-slider-wrapper > .dxb-slider-track > .js-form-item {
+  max-width: 200px;
+  width: auto;
+}

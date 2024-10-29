@@ -18,7 +18,6 @@
     "eslint-detailed-reporter": "^0",
     "eslint-plugin-babel": "^5",
     "eslint-plugin-import": "^2",
-    "eslint-plugin-jquery": "^1.5.1",
     "eslint-plugin-jsx-a11y": "^6",
     "eslint-plugin-prettier": "^5",
     "eslint-plugin-react": "^7",
@@ -51,6 +50,7 @@
     "lint:scss:fix": "stylelint \"scss/**/*.scss\" --fix --custom-formatter=node_modules/stylelint-formatter-pretty/index.js --output-file stylelint-results.json"
   },
   "dependencies": {
+    "dxb_slider": "github:dxpr/DXB-Slider",
     "postcss": "^8.4.41"
   }
 }

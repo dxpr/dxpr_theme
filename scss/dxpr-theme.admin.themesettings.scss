@@ -154,6 +154,10 @@ $border-color: #222330;
     }
   }
 
+  .form-radios .no-preview::after, .form-checkboxes .no-preview::after, .form-item-block-card .no-preview::after, .form-item-block-divider .no-preview::after {
+    display: none;
+  }
+
   .form-item {
     background-color: unset;
     clear: both;
@@ -189,25 +193,8 @@ $border-color: #222330;
     position: static;
   }
 
-  // Slider input wrapper
-  .slider-input-wrapper {
-    display: flex;
-    height: 40px;
-    padding: 0 10px;
-    width: 100%;
-
-    .slider {
-      flex: 0 1 80%;
-    }
-
-    input {
-      flex: 0 1 20%;
-    }
-  }
-
   .form-text,
   .fieldset-wrapper,
-  .slider,
   .select-wrapper {
     float: left;
     max-width: 100%;
@@ -228,46 +215,6 @@ $border-color: #222330;
   .description,
   .help-block {
     clear: both;
-  }
-
-  // BOOTSTRAP SLIDER
-  .slider + input {
-    background: transparent;
-    border: none;
-    bottom: 20px;
-    display: block !important;
-    font-size: 15px;
-    height: 40px;
-    margin-left: 15px;
-    margin-top: 8px;
-    padding: 0;
-    position: relative;
-    width: 120px;
-  }
-
-  .slider-track {
-    box-shadow: none;
-    height: 5px;
-  }
-
-  .slider-selection {
-    background: var(--dxt-color-base);
-    box-shadow: none;
-  }
-
-  .slider {
-    display: block;
-    position: relative;
-  }
-
-  .slider-handle {
-    background: #fff;
-    border-radius: 2px;
-    box-shadow: 0 1px 2px rgb(16 24 40 / 9%), 0 1px 3px rgb(16 24 40 / 15%);
-    cursor: pointer;
-    height: 20px;
-    margin-top: -3px;
-    width: 20px;
   }
 
   h2 {
@@ -338,7 +285,7 @@ $border-color: #222330;
           }
 
           .vertical-tabs__menu-item-title {
-              font-weight: normal;
+            font-weight: normal;
           }
         }
       }
@@ -387,36 +334,36 @@ $border-color: #222330;
     }
 
     // .form-radios {
-      // label.option,
-      input ~ label.option,
-      input ~ span {
-        cursor: pointer;
-        font-weight: 300;
-        line-height: 24px;
-        margin: 0;
-        width: auto;
+    // label.option,
+    input ~ label.option,
+    input ~ span {
+      cursor: pointer;
+      font-weight: 300;
+      line-height: 24px;
+      margin: 0;
+      width: auto;
 
-        &::before {
-          content: '__';
-          display: inline-block;
-          font-size: 18px;
-          font-weight: normal;
-          opacity: 0.3;
-          width: 25px;
-        }
-      }
-
-      input:checked ~ label.option,
-      input:checked ~ span {
-        font-style: italic;
+      &::before {
+        content: '__';
+        display: inline-block;
+        font-size: 18px;
         font-weight: normal;
-
-        &::before {
-          content: '✓';
-          font-size: 24px;
-          opacity: 1;
-        }
+        opacity: 0.3;
+        width: 25px;
       }
+    }
+
+    input:checked ~ label.option,
+    input:checked ~ span {
+      font-style: italic;
+      font-weight: normal;
+
+      &::before {
+        content: '✓';
+        font-size: 24px;
+        opacity: 1;
+      }
+    }
 
     // }
   }
@@ -585,10 +532,6 @@ $border-color: #222330;
       width: 27%;
     }
 
-    .slider {
-      width: 73%;
-    }
-
     .form-item-scale-factor {
       width: 66%;
     }
@@ -600,14 +543,9 @@ $border-color: #222330;
   }
 
   #edit-block {
-    .slider,
     .form-type-select,
     .form-text {
       width: 80%;
-    }
-
-    .slider + input {
-      width: 20%;
     }
   }
 
@@ -646,9 +584,9 @@ $border-color: #222330;
   }
 
   .js-form-type-checkbox {
-  position: relative;
+    position: relative;
 
-  input[type="checkbox"] {
+    input[type="checkbox"] {
       appearance: auto;
       cursor: pointer;
       height: 27px;
@@ -670,9 +608,9 @@ $border-color: #222330;
         }
       }
 
-    &:focus {
-      box-shadow: unset;
-    }
+      &:focus {
+        box-shadow: unset;
+      }
     }
 
     .switcher {
@@ -705,6 +643,24 @@ $border-color: #222330;
     .js-form-type-checkbox input[type="checkbox"] {
       left: auto;
       right: 0;
+    }
+  }
+
+  .dxb-slider-wrapper {
+    input {
+      border: none;
+    }
+
+    .dxb-slider-value {
+      width: 100px;
+    }
+
+    .dxb-slider-track {
+      min-width: 150px;
+
+      .dxb-slider {
+        width: 100% !important;
+      }
     }
   }
 }
