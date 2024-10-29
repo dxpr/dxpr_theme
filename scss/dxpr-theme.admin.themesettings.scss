@@ -154,7 +154,7 @@ $border-color: #222330;
     }
   }
 
-  .form-radios .no-preview::after, .form-checkboxes .no-preview::after {
+  .form-radios .no-preview::after, .form-checkboxes .no-preview::after, .form-item-block-card .no-preview::after, .form-item-block-divider .no-preview::after {
     display: none;
   }
 
