@@ -224,53 +224,47 @@
       const margin = 10;
       let columns;
 
-      document
-        .querySelectorAll("#dxpr-theme-main-menu .menu .dropdown-menu")
-        .forEach((dropdownElement) => {
-          const width = dropdownElement.offsetWidth;
-          const headings = dropdownElement.querySelectorAll(
-            ".dxpr-theme-megamenu__heading",
-          );
+      document.querySelectorAll('.dropdown-toggle').forEach((toggleElement) => {
+        toggleElement.addEventListener('mouseover', () => {
+          const dropdownElement = toggleElement.nextElementSibling;
 
-          if (headings.length > 0) {
-            columns = headings.length;
-          } else {
-            columns =
-              Math.floor(dropdownElement.querySelectorAll("li").length / 8) + 1;
-          }
+          if (dropdownElement && dropdownElement.classList.contains('dropdown-menu')) {
+            if (dropdownElement.dataset.widthSet === "true") return;
 
-          if (columns > 2) {
-            dropdownElement.style.width = "100%";
-            dropdownElement.style.left = "0";
-            dropdownElement.parentElement.style.position = "static";
+            const width = dropdownElement.offsetWidth;
 
-            dropdownElement
-              .querySelectorAll(".dropdown-menu > li")
-              .forEach((li) => {
+            const headings = dropdownElement.querySelectorAll(".dxpr-theme-megamenu__heading");
+            const columns = headings.length > 0 ? headings.length : Math.floor(dropdownElement.querySelectorAll("li").length / 8) + 1;
+
+            if (columns > 2) {
+              dropdownElement.style.width = "100%";
+              dropdownElement.style.left = "0";
+              dropdownElement.parentElement.style.position = "static";
+
+              dropdownElement.querySelectorAll(":scope > li").forEach((li) => {
                 li.style.width = `${100 / columns}%`;
               });
-          } else {
-            if (columns > 1) {
+            } else {
               dropdownElement.style.minWidth = `${width * columns + 2}px`;
+
               dropdownElement.querySelectorAll(":scope > li").forEach((li) => {
                 li.style.width = `${width}px`;
               });
             }
 
             const topLevelItem = dropdownElement.parentElement;
-            setTimeout(() => {
-              const delta = Math.round(
-                bodyWidth -
-                  topLevelItem.offsetLeft -
-                  dropdownElement.offsetWidth -
-                  margin,
-              );
-              if (delta < 0) {
-                dropdownElement.style.left = `${delta}px`;
-              }
-            }, 0);
+            const delta = Math.round(
+              document.body.clientWidth - topLevelItem.offsetLeft - dropdownElement.offsetWidth - 10
+            );
+            if (delta < 0) {
+              dropdownElement.style.left = `${delta}px`;
+            }
+
+            dropdownElement.dataset.widthSet = "true";
           }
         });
+      });
+
 
       dxpr_themeMenuState = "top";
 
