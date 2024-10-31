@@ -6,7 +6,6 @@ global-styling:
   dependencies:
     - core/drupal
     - core/once
-    - core/modernizr
 
 bootstrap-3:
   css:

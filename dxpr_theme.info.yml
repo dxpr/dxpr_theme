@@ -29,9 +29,6 @@ libraries:
   - 'dxpr_theme/global-styling'
 
 libraries-override:
-  core/modernizr:
-    js:
-      assets/vendor/modernizr/modernizr.min.js: vendor/modernizr-custom-d8-dxpr-theme.js
   classy/base:
     css:
       component:
