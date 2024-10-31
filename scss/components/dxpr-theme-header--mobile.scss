@@ -99,8 +99,10 @@ html.html--dxpr-theme-nav-mobile--open {
         display: block;
         height: 4px;
         position: absolute;
-        transition: all 0.3s;
         width: 100%;
+        @supports (animation-name: test) {
+          transition: all 0.3s;
+        }
       }
 
       span::before {
@@ -118,9 +120,11 @@ html.html--dxpr-theme-nav-mobile--open {
 
         span::before,
         span::after {
-          transition: transform .18s cubic-bezier(0.04, 0.04, 0.12, 0.96),
-          top .1s cubic-bezier(0.52, 0.16, 0.52, 0.84) .16s,
-          bottom .1s cubic-bezier(0.52, 0.16, 0.52, 0.84) .16s;
+          @supports (animation-name: test) {
+            transition: transform .18s cubic-bezier(0.04, 0.04, 0.12, 0.96),
+            top .1s cubic-bezier(0.52, 0.16, 0.52, 0.84) .16s,
+            bottom .1s cubic-bezier(0.52, 0.16, 0.52, 0.84) .16s;
+          }
         }
 
         span::before {
@@ -136,9 +140,11 @@ html.html--dxpr-theme-nav-mobile--open {
           span::after {
             bottom: 0;
             top: 0;
-            transition: transform .18s cubic-bezier(0.04, 0.04, 0.12, 0.96) .08s,
-            top .1s cubic-bezier(0.52, 0.16, 0.52, 0.84),
-            bottom .1s cubic-bezier(0.52, 0.16, 0.52, 0.84);
+            @supports (animation-name: test) {
+              transition: transform .18s cubic-bezier(0.04, 0.04, 0.12, 0.96) .08s,
+              top .1s cubic-bezier(0.52, 0.16, 0.52, 0.84),
+              bottom .1s cubic-bezier(0.52, 0.16, 0.52, 0.84);
+            }
           }
         }
       }
