@@ -220,21 +220,27 @@
         .querySelectorAll("[data-menu]")
         .forEach((el) => el.removeAttribute("data-menu"));
 
-      const bodyWidth = document.body.clientWidth;
-      const margin = 10;
-      let columns;
-
-      document.querySelectorAll('.dropdown-toggle').forEach((toggleElement) => {
-        toggleElement.addEventListener('mouseover', () => {
+      document.querySelectorAll(".dropdown-toggle").forEach((toggleElement) => {
+        toggleElement.addEventListener("mouseover", () => {
           const dropdownElement = toggleElement.nextElementSibling;
 
-          if (dropdownElement && dropdownElement.classList.contains('dropdown-menu')) {
+          if (
+            dropdownElement &&
+            dropdownElement.classList.contains("dropdown-menu")
+          ) {
             if (dropdownElement.dataset.widthSet === "true") return;
 
             const width = dropdownElement.offsetWidth;
 
-            const headings = dropdownElement.querySelectorAll(".dxpr-theme-megamenu__heading");
-            const columns = headings.length > 0 ? headings.length : Math.floor(dropdownElement.querySelectorAll("li").length / 8) + 1;
+            const headings = dropdownElement.querySelectorAll(
+              ".dxpr-theme-megamenu__heading",
+            );
+            const columns =
+              headings.length > 0
+                ? headings.length
+                : Math.floor(
+                    dropdownElement.querySelectorAll("li").length / 8,
+                  ) + 1;
 
             if (columns > 2) {
               dropdownElement.style.width = "100%";
@@ -254,7 +260,10 @@
 
             const topLevelItem = dropdownElement.parentElement;
             const delta = Math.round(
-              document.body.clientWidth - topLevelItem.offsetLeft - dropdownElement.offsetWidth - 10
+              document.body.clientWidth -
+                topLevelItem.offsetLeft -
+                dropdownElement.offsetWidth -
+                10,
             );
             if (delta < 0) {
               dropdownElement.style.left = `${delta}px`;
@@ -264,7 +273,6 @@
           }
         });
       });
-
 
       dxpr_themeMenuState = "top";
 
