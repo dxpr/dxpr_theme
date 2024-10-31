@@ -70,7 +70,7 @@ module.exports = function (grunt) {
     postcss: {
       options: {
         processors: [
-          autoprefixer,
+          autoprefixer(),
           postcssPxtorem({
             rootValue: 16, // The root element font size.
             unitPrecision: 5, // The decimal precision.
