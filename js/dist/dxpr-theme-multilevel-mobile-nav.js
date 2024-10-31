@@ -203,9 +203,9 @@
       const delayValue = isBackNavigation
         ? `${parseInt(pos * self.options.itemsDelayInterval, 10)}ms`
         : `${parseInt(
-          Math.abs(clickPosition - pos) * self.options.itemsDelayInterval,
-          10,
-        )}ms`;
+            Math.abs(clickPosition - pos) * self.options.itemsDelayInterval,
+            10,
+          )}ms`;
       item.style.WebkitAnimationDelay = delayValue;
       item.style.animationDelay = delayValue;
     });
@@ -237,9 +237,9 @@
       const delayValue = isBackNavigation
         ? `${parseInt(pos * self.options.itemsDelayInterval, 10)}ms`
         : `${parseInt(
-          Math.abs(clickPosition - pos) * self.options.itemsDelayInterval,
-          10,
-        )}ms`;
+            Math.abs(clickPosition - pos) * self.options.itemsDelayInterval,
+            10,
+          )}ms`;
       item.style.WebkitAnimationDelay = delayValue;
       item.style.animationDelay = delayValue;
 
