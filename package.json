@@ -50,7 +50,7 @@
     "lint:scss:fix": "stylelint \"scss/**/*.scss\" --fix --custom-formatter=node_modules/stylelint-formatter-pretty/index.js --output-file stylelint-results.json"
   },
   "dependencies": {
-    "dxb_slider": "github:dxpr/DXB-Slider",
+    "dxb_slider": "github:dxpr/DXB-Slider#v2.0.0",
     "postcss": "^8.4.41"
   }
 }
