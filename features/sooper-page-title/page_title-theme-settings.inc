@@ -96,8 +96,6 @@ function page_title_theme_settings(array &$form, $theme) {
       'class' => ['dxb-slider', 'page-title-height-range'],
       'data-dxb-slider' => TRUE,
     ],
-    '#prefix' => '<div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
-    '#suffix' => '</div></div></div>',
   ];
 
   $form['dxpr_theme_settings']['page_title']['page_title_animate'] = [
@@ -151,8 +149,6 @@ function page_title_theme_settings(array &$form, $theme) {
       'class' => ['dxb-slider', 'page-title-image-opacity-range'],
       'data-dxb-slider' => TRUE,
     ],
-    '#prefix' => '<div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
-    '#suffix' => '</div></div></div>',
   ];
 
   $form['dxpr_theme_settings']['page_title']['background']['page_title_image_style'] = [
