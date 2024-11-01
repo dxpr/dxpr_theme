@@ -33,8 +33,6 @@ function typography_theme_settings(array &$form, $theme) {
       'class' => ['dxb-slider', 'body-line-height-range', 'line-height-slider'],
       'data-dxb-slider' => TRUE,
     ],
-    '#prefix' => '<div class="js-form-item form-item js-form-type-range form-type-range"><div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
-    '#suffix' => '</div></div></div></div>',
   ];
 
   $form['dxpr_theme_settings']['typography']['body_font_size'] = [
@@ -48,8 +46,6 @@ function typography_theme_settings(array &$form, $theme) {
       'class' => ['dxb-slider', 'body-font-size-range'],
       'data-dxb-slider' => TRUE,
     ],
-    '#prefix' => '<div class="js-form-item form-item js-form-type-range form-type-range"><div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
-    '#suffix' => '</div></div></div></div>',
   ];
 
   $form['dxpr_theme_settings']['typography']['nav_font_size'] = [
@@ -63,8 +59,6 @@ function typography_theme_settings(array &$form, $theme) {
       'class' => ['dxb-slider', 'nav-font-size-range'],
       'data-dxb-slider' => TRUE,
     ],
-    '#prefix' => '<div class="js-form-item form-item js-form-type-range form-type-range"><div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
-    '#suffix' => '</div></div></div></div>',
   ];
 
   $form['dxpr_theme_settings']['typography']['headings_line_height'] = [
@@ -78,8 +72,6 @@ function typography_theme_settings(array &$form, $theme) {
       'class' => ['dxb-slider', 'headings-line-height-range', 'line-height-slider'],
       'data-dxb-slider' => TRUE,
     ],
-    '#prefix' => '<div class="js-form-item form-item js-form-type-range form-type-range"><div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
-    '#suffix' => '</div></div></div></div>',
   ];
 
   $form['dxpr_theme_settings']['typography']['scale_factor'] = [
@@ -93,8 +85,6 @@ function typography_theme_settings(array &$form, $theme) {
       'class' => ['dxb-slider', 'scale-factor-range'],
       'data-dxb-slider' => TRUE,
     ],
-    '#prefix' => '<div class="js-form-item form-item js-form-type-range form-type-range"><div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
-    '#suffix' => '</div></div></div></div>',
   ];
 
   $form['dxpr_theme_settings']['typography']['advanced_type'] = [
@@ -116,8 +106,6 @@ function typography_theme_settings(array &$form, $theme) {
       'class' => ['dxb-slider', 'h1-font-size-range', 'font-size-slider'],
       'data-dxb-slider' => TRUE,
     ],
-    '#prefix' => '<div class="js-form-item form-item js-form-type-range form-type-range"><div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
-    '#suffix' => '</div></div></div></div>',
   ];
 
   $form['dxpr_theme_settings']['typography']['advanced_type']['h2_font_size'] = [
@@ -131,8 +119,6 @@ function typography_theme_settings(array &$form, $theme) {
       'class' => ['dxb-slider', 'h2-font-size-range', 'font-size-slider'],
       'data-dxb-slider' => TRUE,
     ],
-    '#prefix' => '<div class="js-form-item form-item js-form-type-range form-type-range"><div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
-    '#suffix' => '</div></div></div></div>',
   ];
 
   $form['dxpr_theme_settings']['typography']['advanced_type']['h3_font_size'] = [
@@ -146,8 +132,6 @@ function typography_theme_settings(array &$form, $theme) {
       'class' => ['dxb-slider', 'h3-font-size-range', 'font-size-slider'],
       'data-dxb-slider' => TRUE,
     ],
-    '#prefix' => '<div class="js-form-item form-item js-form-type-range form-type-range"><div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
-    '#suffix' => '</div></div></div></div>',
   ];
 
   $form['dxpr_theme_settings']['typography']['advanced_type']['h4_font_size'] = [
@@ -161,8 +145,6 @@ function typography_theme_settings(array &$form, $theme) {
       'class' => ['dxb-slider', 'h4-font-size-range', 'font-size-slider'],
       'data-dxb-slider' => TRUE,
     ],
-    '#prefix' => '<div class="js-form-item form-item js-form-type-range form-type-range"><div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
-    '#suffix' => '</div></div></div></div>',
   ];
 
   $form['dxpr_theme_settings']['typography']['advanced_type']['blockquote_font_size'] = [
@@ -176,8 +158,6 @@ function typography_theme_settings(array &$form, $theme) {
       'class' => ['dxb-slider', 'blockquote-font-size-range', 'font-size-slider'],
       'data-dxb-slider' => TRUE,
     ],
-    '#prefix' => '<div class="js-form-item form-item js-form-type-range form-type-range"><div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
-    '#suffix' => '</div></div></div></div>',
   ];
 
   $form['dxpr_theme_settings']['typography']['advanced_type']['blockquote_line_height'] = [
@@ -191,8 +171,6 @@ function typography_theme_settings(array &$form, $theme) {
       'class' => ['dxb-slider', 'blockquote-line-height-range', 'line-height-slider'],
       'data-dxb-slider' => TRUE,
     ],
-    '#prefix' => '<div class="js-form-item form-item js-form-type-range form-type-range"><div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
-    '#suffix' => '</div></div></div></div>',
   ];
 
   $form['dxpr_theme_settings']['typography']['advanced_type']['headings_letter_spacing'] = [
@@ -206,8 +184,6 @@ function typography_theme_settings(array &$form, $theme) {
       'class' => ['dxb-slider', 'headings-letter-spacing-range'],
       'data-dxb-slider' => TRUE,
     ],
-    '#prefix' => '<div class="js-form-item form-item js-form-type-range form-type-range"><div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
-    '#suffix' => '</div></div></div></div>',
   ];
 
   $form['dxpr_theme_settings']['typography']['advanced_type']['headings_uppercase'] = [
@@ -244,8 +220,6 @@ function typography_theme_settings(array &$form, $theme) {
       'class' => ['dxb-slider', 'body-mobile-font-size-range'],
       'data-dxb-slider' => TRUE,
     ],
-    '#prefix' => '<div class="js-form-item form-item js-form-type-range form-type-range"><div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
-    '#suffix' => '</div></div></div></div>',
   ];
 
   $form['dxpr_theme_settings']['typography']['advanced_type']['mobile_type']['nav_mobile_font_size'] = [
@@ -259,8 +233,6 @@ function typography_theme_settings(array &$form, $theme) {
       'class' => ['dxb-slider', 'nav-mobile-font-size-range'],
       'data-dxb-slider' => TRUE,
     ],
-    '#prefix' => '<div class="js-form-item form-item js-form-type-range form-type-range"><div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
-    '#suffix' => '</div></div></div></div>',
   ];
 
   $form['dxpr_theme_settings']['typography']['advanced_type']['mobile_type']['h1_mobile_font_size'] = [
@@ -274,8 +246,6 @@ function typography_theme_settings(array &$form, $theme) {
       'class' => ['dxb-slider', 'h1-mobile-font-size-range', 'font-size-slider'],
       'data-dxb-slider' => TRUE,
     ],
-    '#prefix' => '<div class="js-form-item form-item js-form-type-range form-type-range"><div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
-    '#suffix' => '</div></div></div></div>',
   ];
 
   $form['dxpr_theme_settings']['typography']['advanced_type']['mobile_type']['h2_mobile_font_size'] = [
@@ -289,8 +259,6 @@ function typography_theme_settings(array &$form, $theme) {
       'class' => ['dxb-slider', 'h2-mobile-font-size-range', 'font-size-slider'],
       'data-dxb-slider' => TRUE,
     ],
-    '#prefix' => '<div class="js-form-item form-item js-form-type-range form-type-range"><div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
-    '#suffix' => '</div></div></div></div>',
   ];
 
   $form['dxpr_theme_settings']['typography']['advanced_type']['mobile_type']['h3_mobile_font_size'] = [
@@ -304,8 +272,6 @@ function typography_theme_settings(array &$form, $theme) {
       'class' => ['dxb-slider', 'h3-mobile-font-size-range', 'font-size-slider'],
       'data-dxb-slider' => TRUE,
     ],
-    '#prefix' => '<div class="js-form-item form-item js-form-type-range form-type-range"><div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
-    '#suffix' => '</div></div></div></div>',
   ];
 
   $form['dxpr_theme_settings']['typography']['advanced_type']['mobile_type']['h4_mobile_font_size'] = [
@@ -319,8 +285,6 @@ function typography_theme_settings(array &$form, $theme) {
       'class' => ['dxb-slider', 'h4-mobile-font-size-range', 'font-size-slider'],
       'data-dxb-slider' => TRUE,
     ],
-    '#prefix' => '<div class="js-form-item form-item js-form-type-range form-type-range"><div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
-    '#suffix' => '</div></div></div></div>',
   ];
 
   $form['dxpr_theme_settings']['typography']['advanced_type']['mobile_type']['blockquote_mobile_font_size'] = [
@@ -334,8 +298,6 @@ function typography_theme_settings(array &$form, $theme) {
       'class' => ['dxb-slider', 'blockquote-mobile-font-size-range', 'font-size-slider'],
       'data-dxb-slider' => TRUE,
     ],
-    '#prefix' => '<div class="js-form-item form-item js-form-type-range form-type-range"><div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
-    '#suffix' => '</div></div></div></div>',
   ];
 
   $form['dxpr_theme_settings']['typography']['divider'] = [
@@ -357,8 +319,6 @@ function typography_theme_settings(array &$form, $theme) {
       'class' => ['dxb-slider', 'divider-thickness-range'],
       'data-dxb-slider' => TRUE,
     ],
-    '#prefix' => '<div class="js-form-item form-item js-form-type-range form-type-range"><div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
-    '#suffix' => '</div></div></div></div>',
   ];
 
   $form['dxpr_theme_settings']['typography']['divider']['divider_length'] = [
@@ -372,8 +332,6 @@ function typography_theme_settings(array &$form, $theme) {
       'class' => ['dxb-slider', 'divider-length-range'],
       'data-dxb-slider' => TRUE,
     ],
-    '#prefix' => '<div class="js-form-item form-item js-form-type-range form-type-range"><div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
-    '#suffix' => '</div></div></div></div>',
   ];
 
   $form['dxpr_theme_settings']['typography']['divider']['divider_position'] = [
@@ -392,8 +350,6 @@ function typography_theme_settings(array &$form, $theme) {
       'class' => ['dxb-slider', 'divider-position-range', 'element-invisible'],
       'data-dxb-slider' => TRUE,
     ],
-    '#prefix' => '<div class="js-form-item form-item js-form-type-range form-type-range"><div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
-    '#suffix' => '</div></div></div></div>',
   ];
 
   $form['dxpr_theme_settings']['typography']['divider']['divider_color'] = [

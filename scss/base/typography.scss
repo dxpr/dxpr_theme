@@ -238,11 +238,8 @@ hr, .card hr {
   width: 100%;
 }
 
-#system-theme-settings #edit-typography  .details-wrapper > .js-form-item.form-item.js-form-type-range.form-type-range {
-  width: auto;
-}
-
-#system-theme-settings #edit-typography .details-wrapper > .js-form-item.form-item.js-form-type-range.form-type-range > .dxb-slider-container > .dxb-slider-wrapper > .dxb-slider-track > .js-form-item {
-  max-width: 200px;
-  width: auto;
+@media (max-width: 976px) {
+  #system-theme-settings #edit-typography .details-wrapper > .js-form-item.form-item.js-form-type-range.form-type-range {
+    width: 300px;
+  }
 }
