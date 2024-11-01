@@ -238,7 +238,7 @@ hr, .card hr {
   width: 100%;
 }
 
-@media (max-width: 976px) {
+@media (width <= 976px) {
   #system-theme-settings #edit-typography .details-wrapper > .js-form-item.form-item.js-form-type-range.form-type-range {
     width: 300px;
   }
