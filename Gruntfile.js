@@ -1,10 +1,14 @@
 const sass = require("sass");
 const autoprefixer = require("autoprefixer");
 const postcssPxtorem = require("postcss-pxtorem");
+const webpackConfig = require('./webpack.config.js');
 
 module.exports = function (grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON("package.json"),
+    webpack: {
+      myConfig: webpackConfig,
+    },
     babel: {
       options: {
         sourceMap: false,
@@ -13,8 +17,6 @@ module.exports = function (grunt) {
         files: {
           "js/minified/dxpr-theme-full-screen-search.min.js":
             "js/dist/dxpr-theme-full-screen-search.js",
-          "js/minified/dxpr-theme-header.min.js":
-            "js/dist/header/dxpr-theme-header.js",
           "js/minified/dxpr-theme-multilevel-mobile-nav.min.js":
             "js/dist/dxpr-theme-multilevel-mobile-nav.js",
           "js/minified/dxpr-theme-settings.admin.min.js":
@@ -32,9 +34,6 @@ module.exports = function (grunt) {
           "js/minified/classie.min.js": ["vendor/classie.js"],
           "js/minified/dxpr-theme-full-screen-search.min.js": [
             "js/minified/dxpr-theme-full-screen-search.min.js",
-          ],
-          "js/minified/dxpr-theme-header.min.js": [
-            "js/minified/dxpr-theme-header.min.js",
           ],
           "js/minified/dxpr-theme-multilevel-mobile-nav.min.js": [
             "js/minified/dxpr-theme-multilevel-mobile-nav.min.js",
@@ -72,13 +71,13 @@ module.exports = function (grunt) {
         processors: [
           autoprefixer,
           postcssPxtorem({
-            rootValue: 16, // The root element font size.
-            unitPrecision: 5, // The decimal precision.
-            propList: ["*"], // Properties to convert.
-            selectorBlackList: [], // Selectors to ignore.
-            replace: true, // Replace the original value.
-            mediaQuery: true, // Allow px to be converted in media queries.
-            minPixelValue: 0, // Set the minimum pixel value to replace.
+            rootValue: 16,
+            unitPrecision: 5,
+            propList: ["*"],
+            selectorBlackList: [],
+            replace: true,
+            mediaQuery: true,
+            minPixelValue: 0,
           }),
         ],
       },
@@ -92,11 +91,13 @@ module.exports = function (grunt) {
         tasks: ["sass", "postcss"],
       },
       js: {
-        files: ["js/dist/header/dxpr-theme-header.js", "js/dist/*.js"],
-        tasks: ["babel", "terser"],
+        files: ["js/dist/header/*.js", "js/dist/*.js"],
+        tasks: ["webpack", "babel", "terser"],
       },
     },
   });
+
+  grunt.loadNpmTasks("grunt-webpack");
   grunt.loadNpmTasks("grunt-babel");
   grunt.loadNpmTasks("grunt-terser");
   grunt.loadNpmTasks("grunt-sass");

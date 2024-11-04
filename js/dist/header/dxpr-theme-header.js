@@ -4,6 +4,9 @@
  *
  * @see sass/styles.scss for more info
  */
+
+const { setupStickyHeader } = require("./sticky-header");
+
 (function (Drupal, once) {
   let dxpr_themeMenuState = "";
 
@@ -121,34 +124,8 @@
     !document.querySelectorAll(".dxpr-theme-header--overlay").length &&
     window.innerWidth > navBreak
   ) {
-    const headerHeight = parseFloat(
-      drupalSettings.dxpr_themeSettings.headerHeight,
-    );
-    const headerScroll = parseFloat(
-      drupalSettings.dxpr_themeSettings.headerOffset,
-    );
-
-    if (headerHeight && headerScroll) {
-      const elHeader = document.querySelector(".dxpr-theme-header--sticky");
-      const wrapContainer =
-        document.getElementsByClassName("wrap-containers")[0];
-
-      const onScroll = _.throttle(() => {
-        const scroll = window.scrollY;
-
-        if (scroll >= headerScroll) {
-          elHeader.classList.add("affix");
-          elHeader.classList.remove("affix-top");
-          wrapContainer.style.marginTop = `${headerHeight}px`;
-        } else {
-          elHeader.classList.add("affix-top");
-          elHeader.classList.remove("affix");
-          wrapContainer.style.marginTop = "0";
-        }
-      }, 100);
-
-      window.addEventListener("scroll", onScroll);
-    }
+    // Injecting function setupStickyHeader() from sticky-header.js
+    setupStickyHeader();
   }
 
   // Accepts 2 getBoundingClientRect objects
