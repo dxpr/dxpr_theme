@@ -10,6 +10,7 @@ const { debounce, throttle, delay } = require("./performance-helpers");
 const { setupDesktopMenu } = require("./menu-desktop");
 const { setupMobileMenu } = require("./menu-mobile");
 const { hitDetection } = require("./hit-detection");
+const { handleOverlayPosition } = require("./overlay-position");
 
 (function (Drupal, once) {
   let dxpr_themeMenuState = "";
@@ -24,16 +25,6 @@ const { hitDetection } = require("./hit-detection");
   ) {
     // Injecting function setupStickyHeader() from sticky-header.js
     setupStickyHeader();
-  }
-
-  // Accepts 2 getBoundingClientRect objects
-  function dxpr_themeHit(rect1, rect2) {
-    return !(
-      rect1.right < rect2.left ||
-      rect1.left > rect2.right ||
-      rect1.bottom < rect2.top ||
-      rect1.top > rect2.bottom
-    );
   }
 
   function dxpr_themeMenuGovernor(context) {
@@ -67,36 +58,10 @@ const { hitDetection } = require("./hit-detection");
 
       if (
         document.querySelectorAll("#secondary-header").length > 0 &&
-        document.querySelectorAll("#navbar.dxpr-theme-header--overlay").length >
-          0
+        document.querySelectorAll("#navbar.dxpr-theme-header--overlay").length > 0
       ) {
-        const secHeaderRect = document
-          .querySelector("#secondary-header")
-          .getBoundingClientRect();
-        const navbarOverlayRect = document
-          .querySelector("#navbar.dxpr-theme-header--overlay")
-          .getBoundingClientRect();
-        if (dxpr_themeHit(navbarOverlayRect, secHeaderRect)) {
-          if (drupalSettings.dxpr_themeSettings.secondHeaderSticky) {
-            document.querySelector(
-              "#navbar.dxpr-theme-header--overlay",
-            ).style.cssText = `top:${secHeaderRect.bottom}px !important;`;
-            document
-              .querySelector("#secondary-header")
-              .classList.remove("dxpr-theme-secondary-header--sticky");
-          } else {
-            if (document.querySelectorAll("#toolbar-bar").length > 0) {
-              document.querySelector("dxpr-theme-header--overlay").style.top =
-                `${secHeaderRect.bottom}px`;
-            } else {
-              document.querySelector("dxpr-theme-header--overlay").style.top =
-                "0";
-            }
-            document
-              .querySelector("#secondary-header")
-              .classList.remove("dxpr-theme-secondary-header--sticky");
-          }
-        }
+        //Injecting overlay-position.js
+        handleOverlayPosition(drupalSettings);
       }
     } else {
       // Mobile Menu with sliding panels and breadcrumb
