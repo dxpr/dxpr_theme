@@ -6,115 +6,10 @@
  */
 
 const { setupStickyHeader } = require("./sticky-header");
+const { debounce, throttle, delay } = require("./performance-helpers");
 
 (function (Drupal, once) {
   let dxpr_themeMenuState = "";
-
-  // Create and throttle functions if they don't exist already
-  if (typeof _ != "function") {
-    window._ = {};
-
-    const restArgs = function (func, startIndex) {
-      startIndex = startIndex == null ? func.length - 1 : +startIndex;
-      return function (...args) {
-        const length = Math.max(args.length - startIndex, 0);
-        const rest = Array(length);
-        let index;
-        for (index = 0; index < length; index++) {
-          rest[index] = args[index + startIndex];
-        }
-        switch (startIndex) {
-          case 0:
-            return func.call(this, rest);
-          case 1:
-            return func.call(this, args[0], rest);
-          case 2:
-            return func.call(this, args[0], args[1], rest);
-          default:
-        }
-        const argsData = Array(startIndex + 1);
-        for (index = 0; index < startIndex; index++) {
-          argsData[index] = args[index];
-        }
-        argsData[startIndex] = rest;
-        return func.apply(this, argsData);
-      };
-    };
-
-    _.delay = restArgs((func, waitValue, args) =>
-      setTimeout(() => func(...args), waitValue),
-    );
-
-    window._.debounce = function (func, wait, immediate) {
-      let timeout;
-      let result;
-
-      const later = function (context, args) {
-        timeout = null;
-        if (args) result = func.apply(context, args);
-      };
-
-      const debounced = restArgs(function (args) {
-        const callNow = immediate && !timeout;
-        if (timeout) clearTimeout(timeout);
-        if (callNow) {
-          timeout = setTimeout(later, wait);
-          result = func.apply(this, args);
-        } else if (!immediate) {
-          timeout = _.delay(later, wait, this, args);
-        }
-
-        return result;
-      });
-
-      debounced.cancel = function () {
-        clearTimeout(timeout);
-        timeout = null;
-      };
-
-      return debounced;
-    };
-
-    window._.throttle = function (func, wait, options) {
-      let context;
-      let args;
-      let result;
-      let timeout = null;
-      let previous = 0;
-      if (!options) options = {};
-      const later = function () {
-        previous = options.leading === false ? 0 : Date.now();
-        timeout = null;
-        result = func.apply(context, args);
-        if (!timeout) {
-          context = null;
-          args = null;
-        }
-      };
-      return function (...reArgs) {
-        const now = Date.now();
-        if (!previous && options.leading === false) previous = now;
-        const remaining = wait - (now - previous);
-        context = this;
-        args = reArgs;
-        if (remaining <= 0 || remaining > wait) {
-          if (timeout) {
-            clearTimeout(timeout);
-            timeout = null;
-          }
-          previous = now;
-          result = func.apply(context, args);
-          if (!timeout) {
-            context = null;
-            args = null;
-          }
-        } else if (!timeout && options.trailing !== false) {
-          timeout = setTimeout(later, remaining);
-        }
-        return result;
-      };
-    };
-  }
 
   const navBreak =
     "dxpr_themeNavBreakpoint" in window ? window.dxpr_themeNavBreakpoint : 1200;
@@ -571,7 +466,7 @@ const { setupStickyHeader } = require("./sticky-header");
 
   window.addEventListener(
     "resize",
-    _.debounce(() => {
+    debounce(() => {
       if (document.querySelectorAll("#dxpr-theme-main-menu .nav").length > 0) {
         dxpr_themeMenuGovernorBodyClass();
         dxpr_themeMenuGovernor(document);
@@ -590,3 +485,5 @@ const { setupStickyHeader } = require("./sticky-header");
     }
   });
 })(Drupal, once);
+
+
