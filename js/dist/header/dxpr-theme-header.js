@@ -9,6 +9,7 @@ const { setupStickyHeader } = require("./sticky-header");
 const { debounce, throttle, delay } = require("./performance-helpers");
 const { setupDesktopMenu } = require("./menu-desktop");
 const { setupMobileMenu } = require("./menu-mobile");
+const { hitDetection } = require("./hit-detection");
 
 (function (Drupal, once) {
   let dxpr_themeMenuState = "";
@@ -60,30 +61,8 @@ const { setupMobileMenu } = require("./menu-mobile");
         document.querySelectorAll(".tabs--primary").length > 0 &&
         document.querySelectorAll("#navbar").length > 0
       ) {
-        const tabsRect = document
-          .querySelector(".tabs--primary")
-          .getBoundingClientRect();
-        if (
-          document.querySelectorAll(".dxpr-theme-header--navbar-pull-down")
-            .length > 0 &&
-          document.querySelectorAll("#navbar .container-col").length > 0
-        ) {
-          const pullDownRect = document
-            .querySelector("#navbar .container-col")
-            .getBoundingClientRect();
-          if (dxpr_themeHit(pullDownRect, tabsRect)) {
-            document.querySelector(".tabs--primary").style.marginTop =
-              `${pullDownRect.bottom - tabsRect.top + 6}px`;
-          }
-        } else {
-          const navbarRect = document
-            .querySelector("#navbar")
-            .getBoundingClientRect();
-          if (dxpr_themeHit(navbarRect, tabsRect)) {
-            document.querySelector(".tabs--primary").style.marginTop =
-              `${navbarRect.bottom - tabsRect.top + 6}px`;
-          }
-        }
+        //Injecting hit-detection.js
+        hitDetection();
       }
 
       if (
