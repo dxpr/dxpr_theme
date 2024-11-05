@@ -11,6 +11,7 @@ const { setupDesktopMenu } = require("./menu-desktop");
 const { setupMobileMenu } = require("./menu-mobile");
 const { hitDetection } = require("./hit-detection");
 const { handleOverlayPosition } = require("./overlay-position");
+const { adjustMenuPosition } = require("./menu-position");
 
 (function (Drupal, once) {
   let dxpr_themeMenuState = "";
@@ -60,7 +61,8 @@ const { handleOverlayPosition } = require("./overlay-position");
         document.querySelectorAll("#secondary-header").length > 0 &&
         document.querySelectorAll("#navbar.dxpr-theme-header--overlay").length > 0
       ) {
-        //Injecting overlay-position.js
+
+        //Injecting overlay-position.js and inside it's collision-detection.js
         handleOverlayPosition(drupalSettings);
       }
     } else {
@@ -75,61 +77,8 @@ const { handleOverlayPosition } = require("./overlay-position");
 
       dxpr_themeMenuState = "side"
 
-      // See if logo or block content overlaps menu and apply correction
-      let brandingBottom = 0;
-      const brandingElement = document.querySelector(".wrap-branding");
-      if (brandingElement) {
-        brandingBottom = brandingElement.getBoundingClientRect().bottom;
-      }
-
-      const lastBlock = document.querySelector(
-        "#dxpr-theme-main-menu .block:not(.block-menu):last-of-type",
-      );
-      if (
-        document.querySelectorAll(".body--dxpr-theme-header-side").length > 0 &&
-        window.innerWidth > navMenuBreak &&
-        lastBlock &&
-        brandingBottom > 0
-      ) {
-        document.getElementById("dxpr-theme-main-menu").style.paddingTop =
-          `${brandingBottom + 40}px`;
-      }
-
-      const menuBreadcrumbs = document.querySelector(".menu__breadcrumbs");
-      const menuLevels = document.querySelector(".menu__level");
-      const menuSideLevels = document.querySelector(
-        ".dxpr-theme-header--side .menu__level",
-      );
-
-      if (lastBlock) {
-        const lastBlockBottom = lastBlock.getBoundingClientRect().bottom;
-        if (menuBreadcrumbs) {
-          menuBreadcrumbs.style.top = `${lastBlockBottom + 20}px`;
-        }
-        if (menuLevels) {
-          menuLevels.style.top = `${lastBlockBottom + 40}px`;
-        }
-        const offsetBlockBottom = 40 + lastBlockBottom;
-        if (menuSideLevels) {
-          menuSideLevels.style.height = `calc(100vh - ${offsetBlockBottom}px)`;
-        }
-      } else if (
-        document.querySelectorAll(".body--dxpr-theme-header-side").length > 0 &&
-        brandingElement &&
-        brandingBottom > 120
-      ) {
-        if (menuBreadcrumbs) {
-          menuBreadcrumbs.style.top = `${brandingBottom + 20}px`;
-        }
-        if (menuLevels) {
-          menuLevels.style.top = `${brandingBottom + 40}px`;
-        }
-        const offsetBrandingBottom = 40 + brandingBottom;
-        if (menuSideLevels) {
-          menuSideLevels.style.height = `calc(100vh - ${offsetBrandingBottom}px)`;
-        }
-      }
-      dxpr_themeMenuState = "side";
+      //Injecting menu-position.js
+      adjustMenuPosition();
     }
   }
 
