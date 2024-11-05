@@ -12,6 +12,8 @@ const { setupMobileMenu } = require("./menu-mobile");
 const { hitDetection } = require("./hit-detection");
 const { handleOverlayPosition } = require("./overlay-position");
 const { adjustMenuPosition } = require("./menu-position");
+const { applyFixedHeaderStyles } = require("./apply-fixed-header-styles");
+
 
 (function (Drupal, once) {
   let dxpr_themeMenuState = "";
@@ -85,31 +87,15 @@ const { adjustMenuPosition } = require("./menu-position");
   // Fixed header on mobile and tablet
   const { headerMobileHeight } = drupalSettings.dxpr_themeSettings;
   const headerFixed = drupalSettings.dxpr_themeSettings.headerMobileFixed;
-  const navThemeBreak =
-    "dxpr_themeNavBreakpoint" in window ? window.dxpr_themeNavBreakpoint : 1200;
+  const navThemeBreak = "dxpr_themeNavBreakpoint" in window ? window.dxpr_themeNavBreakpoint : 1200;
 
   if (
     headerFixed &&
     document.querySelectorAll(".dxpr-theme-header").length > 0 &&
     window.innerWidth <= navThemeBreak
   ) {
-    const navbarElement = document.querySelector("#navbar");
-    if (document.querySelectorAll("#toolbar-bar").length > 0) {
-      navbarElement.classList.add("header-mobile-admin-fixed");
-    }
-    if (window.innerWidth >= 975) {
-      navbarElement.classList.add("header-mobile-admin-fixed-active");
-    } else {
-      navbarElement.classList.remove("header-mobile-admin-fixed-active");
-    }
-    document.querySelector(".dxpr-theme-boxed-container").style.overflow =
-      "hidden";
-    document.querySelector("#toolbar-bar").classList.add("header-mobile-fixed");
-    navbarElement.classList.add("header-mobile-fixed");
-    const secondaryHeaderEle = document.querySelector("#secondary-header");
-    if (secondaryHeaderEle) {
-      secondaryHeaderEle.style.marginTop = `${headerMobileHeight}px`;
-    }
+    //Injecting apply-fixed-header-styles.js
+    applyFixedHeaderStyles(headerMobileHeight);
   }
 
   function dxpr_themeMenuGovernorBodyClass() {
