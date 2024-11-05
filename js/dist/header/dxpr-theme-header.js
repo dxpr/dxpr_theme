@@ -13,7 +13,7 @@ const { hitDetection } = require("./hit-detection");
 const { handleOverlayPosition } = require("./overlay-position");
 const { adjustMenuPosition } = require("./menu-position");
 const { applyFixedHeaderStyles } = require("./apply-fixed-header-styles");
-
+const { dxpr_themeMenuGovernorBodyClass } = require("./menu-governor-body");
 
 (function (Drupal, once) {
   let dxpr_themeMenuState = "";
@@ -98,29 +98,8 @@ const { applyFixedHeaderStyles } = require("./apply-fixed-header-styles");
     applyFixedHeaderStyles(headerMobileHeight);
   }
 
-  function dxpr_themeMenuGovernorBodyClass() {
-    let navBreakMenu = 1200;
-    if ("dxpr_themeNavBreakpoint" in window) {
-      navBreakMenu = window.dxpr_themeNavBreakpoint;
-    }
-    if (window.innerWidth > navBreakMenu) {
-      const elementNavMobile = document.querySelector(
-        ".body--dxpr-theme-nav-mobile",
-      );
-      if (elementNavMobile) {
-        elementNavMobile.classList.add("body--dxpr-theme-nav-desktop");
-        elementNavMobile.classList.remove("body--dxpr-theme-nav-mobile");
-      }
-    } else {
-      const elementNavDesktop = document.querySelector(
-        ".body--dxpr-theme-nav-desktop",
-      );
-      if (elementNavDesktop) {
-        elementNavDesktop.classList.add("body--dxpr-theme-nav-mobile");
-        elementNavDesktop.classList.remove("body--dxpr-theme-nav-desktop");
-      }
-    }
-  }
+  //Injecting menu-governor-body.js
+  dxpr_themeMenuGovernorBodyClass();
 
   function dpxr_themeMenuOnResize() {
     // Mobile menu open direction.
