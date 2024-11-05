@@ -14,6 +14,7 @@ const { handleOverlayPosition } = require("./overlay-position");
 const { adjustMenuPosition } = require("./menu-position");
 const { applyFixedHeaderStyles } = require("./apply-fixed-header-styles");
 const { dxpr_themeMenuGovernorBodyClass } = require("./menu-governor-body");
+const { dxpr_themeMenuOnResize } = require("./menu-resize-handler");
 
 (function (Drupal, once) {
   let dxpr_themeMenuState = "";
@@ -101,30 +102,6 @@ const { dxpr_themeMenuGovernorBodyClass } = require("./menu-governor-body");
   //Injecting menu-governor-body.js
   dxpr_themeMenuGovernorBodyClass();
 
-  function dpxr_themeMenuOnResize() {
-    // Mobile menu open direction.
-    if (
-      drupalSettings.dxpr_themeSettings.headerSideDirection === "right" &&
-      window.innerWidth <= window.dxpr_themeNavBreakpoint
-    ) {
-      document
-        .querySelector(".dxpr-theme-main-menu")
-        .classList.add("dxpr-theme-main-menu--to-left");
-    } else {
-      document
-        .querySelector(".dxpr-theme-main-menu")
-        .classList.remove("dxpr-theme-main-menu--to-left");
-    }
-    // Fix bug with not styled content on page load.
-    if (
-      window.innerWidth > window.dxpr_themeNavBreakpoint &&
-      document.querySelectorAll(".dxpr-theme-header--side").length === 0
-    ) {
-      document.getElementById("dxpr-theme-main-menu").style.position =
-        "relative";
-    }
-  }
-
   window.addEventListener(
     "resize",
     debounce(() => {
@@ -132,11 +109,13 @@ const { dxpr_themeMenuGovernorBodyClass } = require("./menu-governor-body");
         dxpr_themeMenuGovernorBodyClass();
         dxpr_themeMenuGovernor(document);
       }
-      dpxr_themeMenuOnResize();
+      //Injecting menu-resize-handler.js
+      dxpr_themeMenuOnResize();
     }, 50),
   );
 
-  dpxr_themeMenuOnResize();
+  //Injecting menu-resize-handler.js
+  dxpr_themeMenuOnResize();
 
   document.addEventListener("DOMContentLoaded", () => {
     const mainMenuNav = document.querySelector("#dxpr-theme-main-menu .nav");
