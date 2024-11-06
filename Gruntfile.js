@@ -91,7 +91,7 @@ module.exports = function (grunt) {
         tasks: ["sass", "postcss"],
       },
       js: {
-        files: ["js/dist/header/*.js", "js/dist/*.js"],
+        files: ["js/dist/*/*.js", "!js/dist/minified/**/*.js", "js/dist/*.js"],
         tasks: ["webpack", "babel", "terser"],
       },
     },
