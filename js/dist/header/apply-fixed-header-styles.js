@@ -17,7 +17,8 @@ function applyFixedHeaderStyles(headerMobileHeight) {
   }
 
   // Set overflow for the boxed container and apply fixed classes
-  document.querySelector(".dxpr-theme-boxed-container").style.overflow = "hidden";
+  document.querySelector(".dxpr-theme-boxed-container").style.overflow =
+    "hidden";
   document.querySelector("#toolbar-bar").classList.add("header-mobile-fixed");
   navbarElement.classList.add("header-mobile-fixed");
 

@@ -6,7 +6,7 @@
  */
 
 const { setupStickyHeader } = require("./sticky-header");
-const { debounce, throttle, delay } = require("./performance-helpers");
+const { debounce } = require("./performance-helpers");
 const { setupDesktopMenu } = require("./menu-desktop");
 const { setupMobileMenu } = require("./menu-mobile");
 const { hitDetection } = require("./hit-detection");
@@ -46,7 +46,7 @@ const { dxpr_themeMenuOnResize } = require("./menu-resize-handler");
         return false;
       }
 
-      //Injecting menu-desktop.js
+      // Injecting menu-desktop.js
       setupDesktopMenu();
 
       dxpr_themeMenuState = "top";
@@ -56,16 +56,16 @@ const { dxpr_themeMenuOnResize } = require("./menu-resize-handler");
         document.querySelectorAll(".tabs--primary").length > 0 &&
         document.querySelectorAll("#navbar").length > 0
       ) {
-        //Injecting hit-detection.js
+        // Injecting hit-detection.js
         hitDetection();
       }
 
       if (
         document.querySelectorAll("#secondary-header").length > 0 &&
-        document.querySelectorAll("#navbar.dxpr-theme-header--overlay").length > 0
+        document.querySelectorAll("#navbar.dxpr-theme-header--overlay").length >
+          0
       ) {
-
-        //Injecting overlay-position.js and inside it's collision-detection.js
+        // Injecting overlay-position.js and inside it's collision-detection.js
         handleOverlayPosition(drupalSettings);
       }
     } else {
@@ -75,12 +75,12 @@ const { dxpr_themeMenuOnResize } = require("./menu-resize-handler");
         return false;
       }
 
-      //Injecting menu-mobile.js
+      // Injecting menu-mobile.js
       setupMobileMenu();
 
-      dxpr_themeMenuState = "side"
+      dxpr_themeMenuState = "side";
 
-      //Injecting menu-position.js
+      // Injecting menu-position.js
       adjustMenuPosition();
     }
   }
@@ -88,18 +88,19 @@ const { dxpr_themeMenuOnResize } = require("./menu-resize-handler");
   // Fixed header on mobile and tablet
   const { headerMobileHeight } = drupalSettings.dxpr_themeSettings;
   const headerFixed = drupalSettings.dxpr_themeSettings.headerMobileFixed;
-  const navThemeBreak = "dxpr_themeNavBreakpoint" in window ? window.dxpr_themeNavBreakpoint : 1200;
+  const navThemeBreak =
+    "dxpr_themeNavBreakpoint" in window ? window.dxpr_themeNavBreakpoint : 1200;
 
   if (
     headerFixed &&
     document.querySelectorAll(".dxpr-theme-header").length > 0 &&
     window.innerWidth <= navThemeBreak
   ) {
-    //Injecting apply-fixed-header-styles.js
+    // Injecting apply-fixed-header-styles.js
     applyFixedHeaderStyles(headerMobileHeight);
   }
 
-  //Injecting menu-governor-body.js
+  // Injecting menu-governor-body.js
   dxpr_themeMenuGovernorBodyClass();
 
   window.addEventListener(
@@ -109,12 +110,13 @@ const { dxpr_themeMenuOnResize } = require("./menu-resize-handler");
         dxpr_themeMenuGovernorBodyClass();
         dxpr_themeMenuGovernor(document);
       }
-      //Injecting menu-resize-handler.js
+      // eslint-disable-next-line spellcheck/spell-checker
+      // Injecting menu-resize-handler.js
       dxpr_themeMenuOnResize();
     }, 50),
   );
-
-  //Injecting menu-resize-handler.js
+  // eslint-disable-next-line spellcheck/spell-checker
+  // Injecting menu-resize-handler.js
   dxpr_themeMenuOnResize();
 
   document.addEventListener("DOMContentLoaded", () => {
@@ -125,5 +127,3 @@ const { dxpr_themeMenuOnResize } = require("./menu-resize-handler");
     }
   });
 })(Drupal, once);
-
-

@@ -7,7 +7,9 @@
  * @returns {Function} - Throttled version of the function.
  */
 export function throttle(func, wait, options = {}) {
-  let context, args, result;
+  let context;
+  let args;
+  let result;
   let timeout = null;
   let previous = 0;
 
@@ -15,10 +17,13 @@ export function throttle(func, wait, options = {}) {
     previous = options.leading === false ? 0 : Date.now();
     timeout = null;
     result = func.apply(context, args);
-    if (!timeout) context = args = null;
+    if (!timeout) {
+      context = null;
+      args = null;
+    }
   };
 
-  return function (...args) {
+  return function (...funcArgs) {
     const now = Date.now();
     if (!previous && options.leading === false) previous = now;
     const remaining = wait - (now - previous);
@@ -30,8 +35,11 @@ export function throttle(func, wait, options = {}) {
         timeout = null;
       }
       previous = now;
-      result = func.apply(context, args);
-      if (!timeout) context = args = null;
+      result = func.apply(context, funcArgs);
+      if (!timeout) {
+        context = null;
+        funcArgs = null;
+      }
     } else if (!timeout && options.trailing !== false) {
       timeout = setTimeout(later, remaining);
     }

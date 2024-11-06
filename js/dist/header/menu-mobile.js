@@ -11,9 +11,12 @@ function setupMobileMenu() {
     headerTop.classList.remove("dxpr-theme-header--top");
   }
 
+  // eslint-disable-next-line spellcheck/spell-checker
   // Clear megamenu styles for mobile view
   document
-    .querySelectorAll("#dxpr-theme-main-menu .menu .dropdown-menu, #dxpr-theme-main-menu .menu .dropdown-menu li")
+    .querySelectorAll(
+      "#dxpr-theme-main-menu .menu .dropdown-menu, #dxpr-theme-main-menu .menu .dropdown-menu li",
+    )
     .forEach((el) => {
       el.removeAttribute("style");
     });
@@ -47,14 +50,18 @@ function setupMobileMenu() {
   }
 
   // Set up data attributes
-  document.querySelectorAll("#dxpr-theme-main-menu .menu a.dropdown-toggle").forEach((element) => {
-    const nextElement = element.nextElementSibling;
-    element.setAttribute("data-submenu", element.textContent);
-    nextElement.setAttribute("data-menu", element.textContent);
-  });
+  document
+    .querySelectorAll("#dxpr-theme-main-menu .menu a.dropdown-toggle")
+    .forEach((element) => {
+      const nextElement = element.nextElementSibling;
+      element.setAttribute("data-submenu", element.textContent);
+      nextElement.setAttribute("data-menu", element.textContent);
+    });
 
   document
-    .querySelectorAll("#dxpr-theme-main-menu .menu a.dxpr-theme-megamenu__heading")
+    .querySelectorAll(
+      "#dxpr-theme-main-menu .menu a.dxpr-theme-megamenu__heading",
+    )
     .forEach((element) => {
       const nextMegaElement = element.nextElementSibling;
       element.setAttribute("data-submenu", element.textContent);
@@ -62,7 +69,9 @@ function setupMobileMenu() {
     });
 
   // Initialize MLMenu with breadcrumb control
-  const bc = document.querySelectorAll("#dxpr-theme-main-menu .menu .dropdown-menu").length > 0;
+  const bc =
+    document.querySelectorAll("#dxpr-theme-main-menu .menu .dropdown-menu")
+      .length > 0;
   const menuEl = document.getElementById("dxpr-theme-main-menu");
   new MLMenu(menuEl, {
     breadcrumbsCtrl: bc, // Show breadcrumbs

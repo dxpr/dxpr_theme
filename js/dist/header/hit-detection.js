@@ -11,27 +11,34 @@
 
 function hitDetection() {
   // Get the bounding rectangle of the primary tabs element
-  const tabsRect = document.querySelector(".tabs--primary").getBoundingClientRect();
+  const tabsRect = document
+    .querySelector(".tabs--primary")
+    .getBoundingClientRect();
 
   // Check if navbar pull-down elements are present
   if (
-    document.querySelectorAll(".dxpr-theme-header--navbar-pull-down").length > 0 &&
+    document.querySelectorAll(".dxpr-theme-header--navbar-pull-down").length >
+      0 &&
     document.querySelectorAll("#navbar .container-col").length > 0
   ) {
     // Get the bounding rectangle of the pull-down container
-    const pullDownRect = document.querySelector("#navbar .container-col").getBoundingClientRect();
+    const pullDownRect = document
+      .querySelector("#navbar .container-col")
+      .getBoundingClientRect();
 
     // If pull-down overlaps with tabs, adjust margin-top of the tabs
-    if (dxpr_themeHit(pullDownRect, tabsRect)) {
+    if (hitDetection(pullDownRect, tabsRect)) {
       document.querySelector(".tabs--primary").style.marginTop =
         `${pullDownRect.bottom - tabsRect.top + 6}px`;
     }
   } else {
     // Fallback: Get the bounding rectangle of the main navbar if pull-down is absent
-    const navbarRect = document.querySelector("#navbar").getBoundingClientRect();
+    const navbarRect = document
+      .querySelector("#navbar")
+      .getBoundingClientRect();
 
     // If navbar overlaps with tabs, adjust margin-top of the tabs
-    if (dxpr_themeHit(navbarRect, tabsRect)) {
+    if (hitDetection(navbarRect, tabsRect)) {
       document.querySelector(".tabs--primary").style.marginTop =
         `${navbarRect.bottom - tabsRect.top + 6}px`;
     }

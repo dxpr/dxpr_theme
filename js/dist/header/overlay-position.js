@@ -11,12 +11,18 @@ function handleOverlayPosition(drupalSettings) {
     document.querySelectorAll("#navbar.dxpr-theme-header--overlay").length > 0
   ) {
     // Get bounding rectangles for both elements
-    const secHeaderRect = document.querySelector("#secondary-header").getBoundingClientRect();
-    const navbarOverlayRect = document.querySelector("#navbar.dxpr-theme-header--overlay").getBoundingClientRect();
+    const secHeaderRect = document
+      .querySelector("#secondary-header")
+      .getBoundingClientRect();
+    const navbarOverlayRect = document
+      .querySelector("#navbar.dxpr-theme-header--overlay")
+      .getBoundingClientRect();
 
     // If elements overlap, adjust the overlay header position
     if (dxprThemeHit(navbarOverlayRect, secHeaderRect)) {
-      const navbarOverlay = document.querySelector("#navbar.dxpr-theme-header--overlay");
+      const navbarOverlay = document.querySelector(
+        "#navbar.dxpr-theme-header--overlay",
+      );
       const secondaryHeader = document.querySelector("#secondary-header");
 
       if (drupalSettings.dxpr_themeSettings.secondHeaderSticky) {

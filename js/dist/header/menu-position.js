@@ -6,12 +6,12 @@ function adjustMenuPosition() {
   let brandingBottom = 0;
   const brandingElement = document.querySelector(".wrap-branding");
   if (brandingElement) {
-    brandingBottom = brandingElement.getBoundingClientRect().bottom;;
+    brandingBottom = brandingElement.getBoundingClientRect().bottom;
   }
 
   // Identify the last block element in the main menu
   const lastBlock = document.querySelector(
-    "#dxpr-theme-main-menu .block:not(.block-menu):last-of-type"
+    "#dxpr-theme-main-menu .block:not(.block-menu):last-of-type",
   );
 
   // If in side header mode and conditions are met, apply paddingTop correction to main menu
@@ -21,13 +21,16 @@ function adjustMenuPosition() {
     lastBlock &&
     brandingBottom > 0
   ) {
-    document.getElementById("dxpr-theme-main-menu").style.paddingTop = `${brandingBottom + 40}px`;
+    document.getElementById("dxpr-theme-main-menu").style.paddingTop =
+      `${brandingBottom + 40}px`;
   }
 
   // Define menu elements for breadcrumb, levels, and side-levels
   const menuBreadcrumbs = document.querySelector(".menu__breadcrumbs");
   const menuLevels = document.querySelector(".menu__level");
-  const menuSideLevels = document.querySelector(".dxpr-theme-header--side .menu__level");
+  const menuSideLevels = document.querySelector(
+    ".dxpr-theme-header--side .menu__level",
+  );
 
   // Adjust top and height properties based on last block or branding element
   if (lastBlock) {

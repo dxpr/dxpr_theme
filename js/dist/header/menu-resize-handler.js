@@ -22,8 +22,7 @@ function dxpr_themeMenuOnResize() {
     window.innerWidth > window.dxpr_themeNavBreakpoint &&
     document.querySelectorAll(".dxpr-theme-header--side").length === 0
   ) {
-    document.getElementById("dxpr-theme-main-menu").style.position =
-      "relative";
+    document.getElementById("dxpr-theme-main-menu").style.position = "relative";
   }
 }
 
