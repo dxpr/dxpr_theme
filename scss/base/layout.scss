@@ -266,3 +266,10 @@ html.js .kenburnimg img {
 .region-content {
   padding: 0;
 }
+
+body #edit-block-advanced #edit-block-divider-thickness-wrapper,
+body #edit-block-advanced #edit-block-divider-length-wrapper,
+body #edit-block-advanced #edit-block-divider-spacing-wrapper,
+body #edit-layout #edit-box-max-width-wrapper, {
+  border: none;
+}

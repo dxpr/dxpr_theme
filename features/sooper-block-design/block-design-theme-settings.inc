@@ -94,30 +94,48 @@ function block_design_theme_settings(array &$form, $theme) {
   ];
 
   $form['dxpr_theme_settings']['block']['block_advanced']['block_el']['block_padding'] = [
-    '#type' => 'textfield',
+    '#type' => 'range',
     '#title' => t('Block padding'),
-    '#default_value' => ((theme_get_setting('block_padding') !== NULL)) ? theme_get_setting('block_padding') : '0',
-    '#attributes' => ['class' => ['border-size-slider']],
-    '#size' => 9,
-    '#maxlength' => 9,
+    '#default_value' => ((theme_get_setting('block_padding') !== NULL)) ? theme_get_setting('block_padding') : 0,
+    '#min' => 0,
+    '#max' => 30,
+    '#step' => 1,
+    '#attributes' => [
+      'class' => ['dxb-slider', 'block-padding-range', 'border-size-slider'],
+      'data-dxb-slider' => TRUE,
+    ],
+    '#prefix' => '<div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
+    '#suffix' => '</div></div></div>',
   ];
 
   $form['dxpr_theme_settings']['block']['block_advanced']['block_el']['block_border_radius'] = [
-    '#type' => 'textfield',
+    '#type' => 'range',
     '#title' => t('Block Border Radius'),
-    '#default_value' => ((theme_get_setting('block_border_radius') !== NULL)) ? theme_get_setting('block_border_radius') : '0',
-    '#attributes' => ['class' => ['border-radius-slider']],
-    '#size' => 9,
-    '#maxlength' => 9,
+    '#default_value' => ((theme_get_setting('block_border_radius') !== NULL)) ? theme_get_setting('block_border_radius') : 0,
+    '#min' => 0,
+    '#max' => 100,
+    '#step' => 1,
+    '#attributes' => [
+      'class' => ['dxb-slider', 'block-border-radius-range', 'border-radius-slider'],
+      'data-dxb-slider' => TRUE,
+    ],
+    '#prefix' => '<div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
+    '#suffix' => '</div></div></div>',
   ];
 
   $form['dxpr_theme_settings']['block']['block_advanced']['block_el']['block_border'] = [
-    '#type' => 'textfield',
+    '#type' => 'range',
     '#title' => t('Block Border'),
-    '#default_value' => ((theme_get_setting('block_border') !== NULL)) ? theme_get_setting('block_border') : '0',
-    '#attributes' => ['class' => ['border-size-slider']],
-    '#size' => 9,
-    '#maxlength' => 9,
+    '#default_value' => ((theme_get_setting('block_border') !== NULL)) ? theme_get_setting('block_border') : 0,
+    '#min' => 0,
+    '#max' => 30,
+    '#step' => 1,
+    '#attributes' => [
+      'class' => ['dxb-slider', 'block-border-range', 'border-size-slider'],
+      'data-dxb-slider' => TRUE,
+    ],
+    '#prefix' => '<div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
+    '#suffix' => '</div></div></div>',
   ];
 
   $form['dxpr_theme_settings']['block']['block_advanced']['block_el']['block_border_color'] = [
@@ -201,30 +219,48 @@ function block_design_theme_settings(array &$form, $theme) {
   ];
 
   $form['dxpr_theme_settings']['block']['block_advanced']['title_el']['title_padding'] = [
-    '#type' => 'textfield',
+    '#type' => 'range',
     '#title' => t('Title padding'),
-    '#default_value' => ((theme_get_setting('title_padding') !== NULL)) ? theme_get_setting('title_padding') : '0',
-    '#attributes' => ['class' => ['border-size-slider']],
-    '#size' => 9,
-    '#maxlength' => 9,
+    '#default_value' => ((theme_get_setting('title_padding') !== NULL)) ? theme_get_setting('title_padding') : 10,
+    '#min' => 0,
+    '#max' => 30,
+    '#step' => 1,
+    '#attributes' => [
+      'class' => ['dxb-slider', 'title-padding-range', 'border-size-slider'],
+      'data-dxb-slider' => TRUE,
+    ],
+    '#prefix' => '<div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
+    '#suffix' => '</div></div></div>',
   ];
 
   $form['dxpr_theme_settings']['block']['block_advanced']['title_el']['title_border'] = [
-    '#type' => 'textfield',
+    '#type' => 'range',
     '#title' => t('Title Border'),
-    '#default_value' => ((theme_get_setting('title_border') !== NULL)) ? theme_get_setting('title_border') : '0',
-    '#attributes' => ['class' => ['border-size-slider']],
-    '#size' => 9,
-    '#maxlength' => 9,
+    '#default_value' => ((theme_get_setting('title_border') !== NULL)) ? theme_get_setting('title_border') : 0,
+    '#min' => 0,
+    '#max' => 30,
+    '#step' => 1,
+    '#attributes' => [
+      'class' => ['dxb-slider', 'title-border-range', 'border-size-slider'],
+      'data-dxb-slider' => TRUE,
+    ],
+    '#prefix' => '<div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
+    '#suffix' => '</div></div></div>',
   ];
 
   $form['dxpr_theme_settings']['block']['block_advanced']['title_el']['title_border_radius'] = [
-    '#type' => 'textfield',
+    '#type' => 'range',
     '#title' => t('Title Border Radius'),
-    '#default_value' => ((theme_get_setting('title_border_radius') !== NULL)) ? theme_get_setting('title_border_radius') : '0',
-    '#attributes' => ['class' => ['border-radius-slider']],
-    '#size' => 9,
-    '#maxlength' => 9,
+    '#default_value' => ((theme_get_setting('title_border_radius') !== NULL)) ? theme_get_setting('title_border_radius') : 0,
+    '#min' => 0,
+    '#max' => 30,
+    '#step' => 1,
+    '#attributes' => [
+      'class' => ['dxb-slider', 'title-border-radius-range', 'border-radius-slider'],
+      'data-dxb-slider' => TRUE,
+    ],
+    '#prefix' => '<div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
+    '#suffix' => '</div></div></div>',
   ];
 
   $form['dxpr_theme_settings']['block']['block_advanced']['title_el']['title_border_color'] = [
@@ -326,45 +362,78 @@ function block_design_theme_settings(array &$form, $theme) {
     ],
   ];
 
-  $form['dxpr_theme_settings']['block']['block_advanced']['divider_el']['block_divider_thickness'] = [
-    '#type' => 'textfield',
-    '#title' => t('Divider Thickness'),
-    '#default_value' => ((theme_get_setting('block_divider_thickness') !== NULL)) ? theme_get_setting('block_divider_thickness') : '4',
-    '#size' => 9,
-    '#maxlength' => 9,
+  $form['dxpr_theme_settings']['block']['block_advanced']['divider_el']['block_divider_thickness_wrapper'] = [
+    '#type' => 'container',
+    '#attributes' => ['class' => ['dxb-slider-wrapper-container']],
     '#states' => [
       'visible' => [
         ':input[name="block_divider"]' => ['checked' => TRUE],
         ':input[name="block_divider_custom"]' => ['checked' => TRUE],
       ],
     ],
+    'block_divider_thickness' => [
+      '#type' => 'range',
+      '#title' => t('Divider Thickness'),
+      '#default_value' => ((theme_get_setting('block_divider_thickness') !== NULL)) ? theme_get_setting('block_divider_thickness') : 4,
+      '#min' => 0,
+      '#max' => 20,
+      '#step' => 1,
+      '#attributes' => [
+        'class' => ['dxb-slider', 'block-divider-thickness-range'],
+        'data-dxb-slider' => TRUE,
+      ],
+      '#prefix' => '<div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
+      '#suffix' => '</div></div></div>',
+    ],
   ];
 
-  $form['dxpr_theme_settings']['block']['block_advanced']['divider_el']['block_divider_length'] = [
-    '#type' => 'textfield',
-    '#title' => t('Divider Length'),
-    '#default_value' => ((theme_get_setting('block_divider_length') !== NULL)) ? theme_get_setting('block_divider_length') : '10',
-    '#size' => 9,
-    '#maxlength' => 9,
+  $form['dxpr_theme_settings']['block']['block_advanced']['divider_el']['block_divider_length_wrapper'] = [
+    '#type' => 'container',
+    '#attributes' => ['class' => ['dxb-slider-wrapper-container']],
     '#states' => [
       'visible' => [
         ':input[name="block_divider"]' => ['checked' => TRUE],
         ':input[name="block_divider_custom"]' => ['checked' => TRUE],
       ],
     ],
+    'block_divider_length' => [
+      '#type' => 'range',
+      '#title' => t('Divider Length'),
+      '#default_value' => ((theme_get_setting('block_divider_length') !== NULL)) ? theme_get_setting('block_divider_length') : 10,
+      '#min' => 0,
+      '#max' => 500,
+      '#step' => 1,
+      '#attributes' => [
+        'class' => ['dxb-slider', 'block-divider-length-range'],
+        'data-dxb-slider' => TRUE,
+      ],
+      '#prefix' => '<div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
+      '#suffix' => '</div></div></div>',
+    ],
   ];
 
-  $form['dxpr_theme_settings']['block']['block_advanced']['divider_el']['block_divider_spacing'] = [
-    '#type' => 'textfield',
-    '#title' => t('Divider Spacing'),
-    '#default_value' => ((theme_get_setting('block_divider_spacing') !== NULL)) ? theme_get_setting('block_divider_spacing') : '20',
-    '#size' => 9,
-    '#maxlength' => 9,
+  $form['dxpr_theme_settings']['block']['block_advanced']['divider_el']['block_divider_spacing_wrapper'] = [
+    '#type' => 'container',
+    '#attributes' => ['class' => ['dxb-slider-wrapper-container']],
     '#states' => [
       'visible' => [
         ':input[name="block_divider"]' => ['checked' => TRUE],
         ':input[name="block_divider_custom"]' => ['checked' => TRUE],
       ],
+    ],
+    'block_divider_spacing' => [
+      '#type' => 'range',
+      '#title' => t('Divider Spacing'),
+      '#default_value' => ((theme_get_setting('block_divider_spacing') !== NULL)) ? theme_get_setting('block_divider_spacing') : 20,
+      '#min' => 0,
+      '#max' => 100,
+      '#step' => 1,
+      '#attributes' => [
+        'class' => ['dxb-slider', 'block-divider-spacing-range'],
+        'data-dxb-slider' => TRUE,
+      ],
+      '#prefix' => '<div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
+      '#suffix' => '</div></div></div>',
     ],
   ];
 
