@@ -83,7 +83,7 @@
 
       // Set current menu class
       if (pos === self.current) {
-        classie.add(menuEl, "menu__level--current");
+        menuEl.classList.add("menu__level--current");
       }
     });
 
@@ -131,12 +131,9 @@
               // Add class current
               const currentlink = self.el.querySelector(".menu__link--current");
               if (currentlink) {
-                classie.remove(
-                  self.el.querySelector(".menu__link--current"),
-                  "menu__link--current",
-                );
+                currentlink.classList.remove("menu__link--current");
               }
-              classie.add(ev.target, "menu__link--current");
+              ev.target.classList.add("menu__link--current");
 
               // Callback
               self.options.onItemClick(ev, itemName);
@@ -211,13 +208,11 @@
     });
     // Animation class
     if (this.options.direction === "r2l") {
-      classie.add(
-        currentMenu,
+      currentMenu.classList.add(
         !isBackNavigation ? "animate-outToLeft" : "animate-outToRight",
       );
     } else {
-      classie.add(
-        currentMenu,
+      currentMenu.classList.add(
         isBackNavigation ? "animate-outToLeft" : "animate-outToRight",
       );
     }
@@ -257,26 +252,22 @@
         onEndAnimation(item, () => {
           // Reset classes
           if (self.options.direction === "r2l") {
-            classie.remove(
-              currentMenu,
+            currentMenu.classList.remove(
               !isBackNavigation ? "animate-outToLeft" : "animate-outToRight",
             );
-            classie.remove(
-              nextMenuEl,
+            nextMenuEl.classList.remove(
               !isBackNavigation ? "animate-inFromRight" : "animate-inFromLeft",
             );
           } else {
-            classie.remove(
-              currentMenu,
+            currentMenu.classList.remove(
               isBackNavigation ? "animate-outToLeft" : "animate-outToRight",
             );
-            classie.remove(
-              nextMenuEl,
+            nextMenuEl.classList.remove(
               isBackNavigation ? "animate-inFromRight" : "animate-inFromLeft",
             );
           }
-          classie.remove(currentMenu, "menu__level--current");
-          classie.add(nextMenuEl, "menu__level--current");
+          currentMenu.classList.remove("menu__level--current");
+          nextMenuEl.classList.add("menu__level--current");
 
           // Reset current
           self.current = nextMenuIdx;
@@ -285,14 +276,14 @@
           if (!isBackNavigation) {
             // Show back button
             if (self.options.backCtrl) {
-              classie.remove(self.backCtrl, "menu__back--hidden");
+              self.backCtrl.classList.remove("menu__back--hidden");
             }
 
             // Add breadcrumb
             self._addBreadcrumb(nextMenuIdx);
           } else if (self.current === 0 && self.options.backCtrl) {
             // Hide back button
-            classie.add(self.backCtrl, "menu__back--hidden");
+            self.backCtrl.classList.add("menu__back--hidden");
           }
 
           // We can navigate again..
@@ -303,13 +294,11 @@
 
     // Animation class
     if (this.options.direction === "r2l") {
-      classie.add(
-        nextMenuEl,
+      nextMenuEl.classList.add(
         !isBackNavigation ? "animate-inFromRight" : "animate-inFromLeft",
       );
     } else {
-      classie.add(
-        nextMenuEl,
+      nextMenuEl.classList.add(
         isBackNavigation ? "animate-inFromRight" : "animate-inFromLeft",
       );
     }

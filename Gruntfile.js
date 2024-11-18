@@ -29,7 +29,6 @@ module.exports = function (grunt) {
       },
       main: {
         files: {
-          "js/minified/classie.min.js": ["vendor/classie.js"],
           "js/minified/dxpr-theme-full-screen-search.min.js": [
             "js/minified/dxpr-theme-full-screen-search.min.js",
           ],
