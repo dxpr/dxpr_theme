@@ -33,7 +33,7 @@
      */
     function handleTriggerClick(e) {
       e.currentTarget.setAttribute(
-        "aria-expanded",
+        "aria-expanded", 
         !tabs.classList.contains(expandedClass),
       );
       tabs.classList.toggle(expandedClass);
