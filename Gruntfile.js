@@ -25,7 +25,7 @@ module.exports = function (grunt) {
     },
     terser: {
       options: {
-        ecma: 2015,
+        ecma: 2022,
       },
       main: {
         files: {
