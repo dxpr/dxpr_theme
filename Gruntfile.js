@@ -14,15 +14,21 @@ module.exports = function (grunt) {
         sourceMap: false,
       },
       dist: {
-        files: {
-          "js/minified/dxpr-theme-full-screen-search.min.js":
-            "js/dist/dxpr-theme-full-screen-search.js",
-          "js/minified/dxpr-theme-multilevel-mobile-nav.min.js":
-            "js/dist/dxpr-theme-multilevel-mobile-nav.js",
-          "js/minified/dxpr-theme-settings.admin.min.js":
-            "js/dist/dxpr-theme-settings.admin.js",
-          "js/minified/dxpr-theme-tabs.min.js": "js/dist/dxpr-theme-tabs.js",
-        },
+        files: [
+          {
+            expand: true,
+            cwd: 'js/dist/',
+            src: ['*.js', '!dxpr-theme-header.js',
+                          '!dxpr-theme-multilevel-mobile-nav.js',
+                          '!dxpr-theme-full-screen-search.js',
+                          '!dxpr-theme-settings.admin.js',
+                          '!dxpr-theme-tabs.js',
+
+            ],
+            dest: 'js/minified/',
+            ext: '.min.js',
+          },
+        ],
       },
     },
     terser: {
@@ -30,21 +36,19 @@ module.exports = function (grunt) {
         ecma: 2015,
       },
       main: {
-        files: {
-          "js/minified/classie.min.js": ["vendor/classie.js"],
-          "js/minified/dxpr-theme-full-screen-search.min.js": [
-            "js/minified/dxpr-theme-full-screen-search.min.js",
-          ],
-          "js/minified/dxpr-theme-multilevel-mobile-nav.min.js": [
-            "js/minified/dxpr-theme-multilevel-mobile-nav.min.js",
-          ],
-          "js/minified/dxpr-theme-settings.admin.min.js": [
-            "js/minified/dxpr-theme-settings.admin.min.js",
-          ],
-          "js/minified/dxpr-theme-tabs.min.js": [
-            "js/minified/dxpr-theme-tabs.min.js",
-          ],
-        },
+        files: [
+          {
+            expand: true,
+            cwd: 'js/minified/',
+            src: ['*.min.js', '!dxpr-theme-header.bundle.min.js',
+                              '!dxpr-theme-multilevel-mobile-nav.bundle.min.js',
+                              '!dxpr-theme-full-screen-search.bundle.min.js',
+                              '!dxpr-theme-settings.admin.bundle.min.js',
+                              '!dxpr-theme-tabs.bundle.min.js'],
+            dest: 'js/minified/',
+            ext: '.min.js',
+          },
+        ],
       },
     },
     sass: {
@@ -87,11 +91,11 @@ module.exports = function (grunt) {
     },
     watch: {
       css: {
-        files: ["scss/*.scss", "scss/**/*.scss"],
+        files: ["scss/**/*.scss"],
         tasks: ["sass", "postcss"],
       },
       js: {
-        files: ["js/dist/*/*.js", "!js/dist/minified/**/*.js", "js/dist/*.js"],
+        files: ["js/dist/**/*.js", "!js/minified/**/*.js"],
         tasks: ["webpack", "babel", "terser"],
       },
     },
@@ -103,5 +107,6 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks("grunt-sass");
   grunt.loadNpmTasks("grunt-contrib-watch");
   grunt.loadNpmTasks("@lodder/grunt-postcss");
+
   grunt.registerTask("default", ["watch"]);
 };

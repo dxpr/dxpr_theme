@@ -1,8 +1,8 @@
 global-styling:
   js:
     vendor/classie.js: {}
-    js/minified/dxpr-theme-multilevel-mobile-nav.min.js: { minified: true }
     js/minified/dxpr-theme-header.bundle.min.js: { minified: true }
+    js/minified/dxpr-theme-multilevel-mobile-nav.bundle.min.js: { minified: true }
   dependencies:
     - core/drupal
     - core/once
