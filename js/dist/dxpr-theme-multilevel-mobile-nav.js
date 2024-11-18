@@ -11,14 +11,11 @@
 (function (window) {
   "use strict";
 
-  const support = { animations: Modernizr.cssanimations };
-  const animEndEventNames = {
-    WebkitAnimation: "webkitAnimationEnd",
-    OAnimation: "oAnimationEnd",
-    msAnimation: "MSAnimationEnd",
-    animation: "animationend",
+  const support = {
+    animations: typeof document.documentElement.style.animation !== "undefined",
   };
-  const animEndEventName = animEndEventNames[Modernizr.prefixed("animation")];
+  const animEndEventName = "animationend";
+
   const onEndAnimation = function (el, callback) {
     const onEndCallbackFn = function (ev) {
       if (support.animations) {

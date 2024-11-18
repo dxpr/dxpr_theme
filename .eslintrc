@@ -101,7 +101,6 @@
     "getBootstrapBreakPoints": true,
     "liveEditingManager": true,
     "matchMedia": true,
-    "Modernizr": true,
     "MLMenu": true,
     "once": true,
     "preview": true,
