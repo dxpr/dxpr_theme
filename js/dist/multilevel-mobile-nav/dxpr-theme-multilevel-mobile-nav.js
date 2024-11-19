@@ -10,34 +10,12 @@
  */
 
 const { extend } = require("./helpers");
+const { onEndAnimation } = require("./animations");
 
 (function (window) {
   "use strict";
 
   const support = { animations: Modernizr.cssanimations };
-  const animEndEventNames = {
-    WebkitAnimation: "webkitAnimationEnd",
-    OAnimation: "oAnimationEnd",
-    msAnimation: "MSAnimationEnd",
-    animation: "animationend",
-  };
-  const animEndEventName = animEndEventNames[Modernizr.prefixed("animation")];
-  const onEndAnimation = function (el, callback) {
-    const onEndCallbackFn = function (ev) {
-      if (support.animations) {
-        if (ev.target !== this) return;
-        this.removeEventListener(animEndEventName, onEndCallbackFn);
-      }
-      if (callback && typeof callback === "function") {
-        callback.call();
-      }
-    };
-    if (support.animations) {
-      el.addEventListener(animEndEventName, onEndCallbackFn);
-    } else {
-      onEndCallbackFn();
-    }
-  };
 
   function MLMenu(el, options) {
     this.el = el;
