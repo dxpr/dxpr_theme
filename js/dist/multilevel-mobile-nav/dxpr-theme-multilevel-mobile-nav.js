@@ -8,6 +8,9 @@
  * Copyright 2015, Codrops
  * http://www.codrops.com
  */
+
+const { extend } = require("./helpers");
+
 (function (window) {
   "use strict";
 
@@ -35,15 +38,6 @@
       onEndCallbackFn();
     }
   };
-
-  function extend(a, b) {
-    Object.keys(b).forEach((key) => {
-      if (Object.prototype.hasOwnProperty.call(b, key)) {
-        a[key] = b[key];
-      }
-    });
-    return a;
-  }
 
   function MLMenu(el, options) {
     this.el = el;
@@ -353,6 +347,6 @@
       }
     });
   };
-  
+
   window.MLMenu = MLMenu;
 })(window);
