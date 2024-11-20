@@ -176,37 +176,25 @@
         return false;
       }
 
-      const elementNavMobileOpen = document.querySelector(
-        ".html--dxpr-theme-nav-mobile--open",
-      );
-      if (elementNavMobileOpen) {
-        elementNavMobileOpen.classList.remove(
-          "html--dxpr-theme-nav-mobile--open",
-        );
-      }
+      const elementNavMobileOpen = document.querySelector(".html--dxpr-theme-nav-mobile--open");
+      elementNavMobileOpen?.classList.remove("html--dxpr-theme-nav-mobile--open");
 
-      const elementHeaderSide = document.querySelector(
-        ".dxpr-theme-header--side",
-      );
+      const elementHeaderSide = document.querySelector(".dxpr-theme-header--side");
       if (elementHeaderSide) {
         elementHeaderSide.classList.add("dxpr-theme-header--top");
         elementHeaderSide.classList.remove("dxpr-theme-header--side");
       }
 
-      const menuBreadcrumbs = document.querySelector(
-        "#dxpr-theme-main-menu .menu__breadcrumbs",
-      );
-      if (menuBreadcrumbs) {
-        menuBreadcrumbs.remove();
-      }
+      const menuBreadcrumbs = document.querySelector("#dxpr-theme-main-menu .menu__breadcrumbs");
+      menuBreadcrumbs?.remove();
 
       const elementMenuLevel = document.querySelector(".menu__level");
-      if (elementMenuLevel) {
-        elementMenuLevel.classList.remove("menu__level");
-        elementMenuLevel.style.top = "100%";
-        elementMenuLevel.style.marginTop = 0;
-        elementMenuLevel.style.height = "auto";
-      }
+
+      elementMenuLevel?.classList.remove("menu__level");
+
+      elementMenuLevel?.style.setProperty("top", "100%");
+      elementMenuLevel?.style.setProperty("marginTop", "0");
+      elementMenuLevel?.style.setProperty("height", "auto");
 
       const elementMenuItem = document.querySelector(".menu__item");
       if (elementMenuItem) {
@@ -350,11 +338,10 @@
 
       // Set up classes
       const headerTop = document.querySelector(".dxpr-theme-header--top");
-      if (headerTop) {
-        headerTop.classList.add("dxpr-theme-header--side");
-        headerTop.classList.remove("dxpr-theme-header--top");
-      }
 
+      headerTop?.classList.add("dxpr-theme-header--side");
+      headerTop?.classList.remove("dxpr-theme-header--top");
+      
       // Remove split-mega menu columns
       document
         .querySelectorAll(
