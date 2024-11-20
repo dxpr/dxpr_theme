@@ -570,25 +570,23 @@
 
   function dpxr_themeMenuOnResize() {
     // Mobile menu open direction.
+    const menu = document.querySelector(".dxpr-theme-main-menu");
     if (
       drupalSettings.dxpr_themeSettings.headerSideDirection === "right" &&
       window.innerWidth <= window.dxpr_themeNavBreakpoint
     ) {
-      document
-        .querySelector(".dxpr-theme-main-menu")
-        .classList.add("dxpr-theme-main-menu--to-left");
+      menu ? menu.classList.add("dxpr-theme-main-menu--to-left") : null;
     } else {
-      document
-        .querySelector(".dxpr-theme-main-menu")
-        .classList.remove("dxpr-theme-main-menu--to-left");
+      menu ? menu.classList.remove("dxpr-theme-main-menu--to-left") : null;
     }
+
     // Fix bug with not styled content on page load.
+    const mainMenu = document.getElementById("dxpr-theme-main-menu");
     if (
       window.innerWidth > window.dxpr_themeNavBreakpoint &&
       document.querySelectorAll(".dxpr-theme-header--side").length === 0
     ) {
-      document.getElementById("dxpr-theme-main-menu").style.position =
-        "relative";
+      mainMenu ? (mainMenu.style.position = "relative") : null;
     }
   }
 
