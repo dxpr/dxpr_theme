@@ -176,16 +176,24 @@
         return false;
       }
 
-      const elementNavMobileOpen = document.querySelector(".html--dxpr-theme-nav-mobile--open");
-      elementNavMobileOpen?.classList.remove("html--dxpr-theme-nav-mobile--open");
+      const elementNavMobileOpen = document.querySelector(
+        ".html--dxpr-theme-nav-mobile--open",
+      );
+      elementNavMobileOpen?.classList.remove(
+        "html--dxpr-theme-nav-mobile--open",
+      );
 
-      const elementHeaderSide = document.querySelector(".dxpr-theme-header--side");
+      const elementHeaderSide = document.querySelector(
+        ".dxpr-theme-header--side",
+      );
       if (elementHeaderSide) {
         elementHeaderSide.classList.add("dxpr-theme-header--top");
         elementHeaderSide.classList.remove("dxpr-theme-header--side");
       }
 
-      const menuBreadcrumbs = document.querySelector("#dxpr-theme-main-menu .menu__breadcrumbs");
+      const menuBreadcrumbs = document.querySelector(
+        "#dxpr-theme-main-menu .menu__breadcrumbs",
+      );
       menuBreadcrumbs?.remove();
 
       const elementMenuLevel = document.querySelector(".menu__level");
@@ -341,7 +349,7 @@
 
       headerTop?.classList.add("dxpr-theme-header--side");
       headerTop?.classList.remove("dxpr-theme-header--top");
-      
+
       // Remove split-mega menu columns
       document
         .querySelectorAll(
@@ -562,9 +570,11 @@
       drupalSettings.dxpr_themeSettings.headerSideDirection === "right" &&
       window.innerWidth <= window.dxpr_themeNavBreakpoint
     ) {
-      menu ? menu.classList.add("dxpr-theme-main-menu--to-left") : null;
-    } else {
-      menu ? menu.classList.remove("dxpr-theme-main-menu--to-left") : null;
+      if (menu) {
+        menu.classList.add("dxpr-theme-main-menu--to-left");
+      } else {
+        menu.classList.remove("dxpr-theme-main-menu--to-left");
+      }
     }
 
     // Fix bug with not styled content on page load.
@@ -573,7 +583,9 @@
       window.innerWidth > window.dxpr_themeNavBreakpoint &&
       document.querySelectorAll(".dxpr-theme-header--side").length === 0
     ) {
-      mainMenu ? (mainMenu.style.position = "relative") : null;
+      if (mainMenu) {
+        mainMenu.style.position = "relative";
+      }
     }
   }
 
