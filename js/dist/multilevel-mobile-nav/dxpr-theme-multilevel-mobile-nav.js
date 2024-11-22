@@ -11,6 +11,7 @@
 
 const { extend } = require("./helpers");
 const { onEndAnimation } = require("./animations");
+const { init } = require("./initialization");
 
 (function (window) {
   "use strict";
@@ -49,84 +50,11 @@ const { onEndAnimation } = require("./animations");
   };
 
   MLMenu.prototype._init = function () {
-    // Iterate the existing menus and create an array of menus, more specifically an array of objects where each one holds the info of each menu element and its menu items
-    this.menusArr = [];
-    const self = this;
-    this.menus.forEach((menuEl, pos) => {
-      const menu = { menuEl, menuItems: [].slice.call(menuEl.children) };
-      self.menusArr.push(menu);
-
-      // Set current menu class
-      if (pos === self.current) {
-        classie.add(menuEl, "menu__level--current");
-      }
-    });
-
-    // Create back button
-    if (this.options.backCtrl) {
-      this.backCtrl = document.createElement("button");
-      this.backCtrl.className = "menu__back menu__back--hidden";
-      this.backCtrl.setAttribute("aria-label", "Go back");
-      this.backCtrl.innerHTML = '<span class="icon icon--arrow-left"></span>';
-      this.el.insertBefore(this.backCtrl, this.el.firstChild);
-    }
-
-    // Create breadcrumbs
-    if (self.options.breadcrumbsCtrl) {
-      this.breadcrumbsCtrl = document.createElement("nav");
-      this.breadcrumbsCtrl.className = "menu__breadcrumbs";
-      this.el.insertBefore(this.breadcrumbsCtrl, this.el.firstChild);
-      // Add initial breadcrumb
-      this._addBreadcrumb(0);
-    }
-
-    // Event binding
-    this._initEvents();
+    init(this);
   };
 
   MLMenu.prototype._initEvents = function () {
-    const self = this;
-
-    for (let i = 0, len = this.menusArr.length; i < len; ++i) {
-      this.menusArr[i].menuItems.forEach((item, pos) => {
-        if (item.querySelector("a")) {
-          item.querySelector("a").addEventListener("click", (ev) => {
-            const submenu = ev.target.getAttribute("data-submenu");
-            const itemName = ev.target.innerHTML;
-            const subMenuEl = self.el.querySelector(
-              `ul[data-menu="${submenu}"]`,
-            );
-
-            // Check if there's a sub menu for this item
-            if (submenu && subMenuEl) {
-              ev.preventDefault();
-              // Open it
-              self._openSubMenu(subMenuEl, pos, itemName);
-            } else {
-              // Add class current
-              const currentlink = self.el.querySelector(".menu__link--current");
-              if (currentlink) {
-                classie.remove(
-                  self.el.querySelector(".menu__link--current"),
-                  "menu__link--current",
-                );
-              }
-              classie.add(ev.target, "menu__link--current");
-
-              // Callback
-              self.options.onItemClick(ev, itemName);
-            }
-          });
-        }
-      });
-    }
-
-    // Back navigation
-    if (this.options.backCtrl) {
-      this.backCtrl.addEventListener("click", () => {
-        self._back();
-      });
-    }
+    initEvents(this);
   };
 
   MLMenu.prototype._openSubMenu = function (
