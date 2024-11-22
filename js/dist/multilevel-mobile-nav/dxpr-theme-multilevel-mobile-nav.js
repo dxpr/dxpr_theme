@@ -12,6 +12,7 @@
 const { extend } = require("./helpers");
 const { onEndAnimation } = require("./animations");
 const { init } = require("./initialization");
+const { addBreadcrumb } = require("./add-breadcrumb");
 
 (function (window) {
   "use strict";
@@ -219,39 +220,7 @@ const { init } = require("./initialization");
   };
 
   MLMenu.prototype._addBreadcrumb = function (idx) {
-    if (!this.options.breadcrumbsCtrl) {
-      return false;
-    }
-
-    const bc = document.createElement("a");
-    bc.innerHTML = idx
-      ? this.menusArr[idx].name
-      : this.options.initialBreadcrumb;
-    this.breadcrumbsCtrl.appendChild(bc);
-
-    const self = this;
-    bc.addEventListener("click", (ev) => {
-      ev.preventDefault();
-
-      // Do nothing if this breadcrumb is the last one in the list of breadcrumbs
-      if (!bc.nextSibling || self.isAnimating) {
-        return false;
-      }
-      self.isAnimating = true;
-
-      // Current menu slides out
-      self._menuOut();
-      // Next menu slides in
-      const nextMenu = self.menusArr[idx].menuEl;
-      self._menuIn(nextMenu);
-
-      // Remove breadcrumbs that are ahead
-      let siblingNode = bc.nextSibling;
-      while (siblingNode) {
-        self.breadcrumbsCtrl.removeChild(siblingNode);
-        siblingNode = bc.nextSibling;
-      }
-    });
+    addBreadcrumb(this, idx);
   };
 
   window.MLMenu = MLMenu;
