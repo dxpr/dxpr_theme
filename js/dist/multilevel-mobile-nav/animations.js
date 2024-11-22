@@ -7,7 +7,7 @@ const animEndEventNames = {
 
 const support = { animations: true };
 
-const animEndEventName = animEndEventNames["animation"];
+const animEndEventName = animEndEventNames.animation;
 
 /**
  * Adds an event listener for the end of an animation on a given element.

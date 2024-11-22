@@ -11,13 +11,11 @@
 
 const { extend } = require("./helpers");
 const { onEndAnimation } = require("./animations");
-const { init } = require("./initialization");
+const { init, initEvents } = require("./initialization");
 const { addBreadcrumb } = require("./add-breadcrumb");
 
 (function (window) {
   "use strict";
-
-  const support = { animations: Modernizr.cssanimations };
 
   function MLMenu(el, options) {
     this.el = el;

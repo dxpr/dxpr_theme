@@ -4,6 +4,55 @@
  */
 
 /**
+ * Binds events to menu items and back button.
+ * @param {Object} context - The MLMenu instance.
+ */
+function initEvents(context) {
+  context.menusArr.forEach((menu) => {
+    menu.menuItems.forEach((item, pos) => {
+      if (item.querySelector("a")) {
+        item.querySelector("a").addEventListener("click", (ev) => {
+          const submenu = ev.target.getAttribute("data-submenu");
+          const itemName = ev.target.innerHTML;
+          const subMenuEl = context.el.querySelector(
+            `ul[data-menu="${submenu}"]`,
+          );
+
+          // Check if there's a sub menu for this item
+          if (submenu && subMenuEl) {
+            ev.preventDefault();
+            // Open it
+            context._openSubMenu(subMenuEl, pos, itemName);
+          } else {
+            // Add class current
+            const currentlink = context.el.querySelector(
+              ".menu__link--current",
+            );
+            if (currentlink) {
+              classie.remove(
+                context.el.querySelector(".menu__link--current"),
+                "menu__link--current",
+              );
+            }
+            classie.add(ev.target, "menu__link--current");
+
+            // Callback
+            context.options.onItemClick(ev, itemName);
+          }
+        });
+      }
+    });
+  });
+
+  // Back navigation
+  if (context.options.backCtrl) {
+    context.backCtrl.addEventListener("click", () => {
+      context._back();
+    });
+  }
+}
+
+/**
  * Initializes the menu structure, back button, and breadcrumbs.
  * @param {Object} context - The MLMenu instance.
  */
@@ -39,55 +88,6 @@ function init(context) {
 
   // Bind events
   initEvents(context);
-}
-
-/**
- * Binds events to menu items and back button.
- * @param {Object} context - The MLMenu instance.
- */
-function initEvents(context) {
-  context.menusArr.forEach((menu) => {
-    menu.menuItems.forEach((item, pos) => {
-      if (item.querySelector("a")) {
-        item.querySelector("a").addEventListener("click", (ev) => {
-          const submenu = ev.target.getAttribute("data-submenu");
-          const itemName = ev.target.innerHTML;
-          const subMenuEl = context.el.querySelector(
-            `ul[data-menu="${submenu}"]`,
-          );
-
-          // Check if there's a submenu for this item
-          if (submenu && subMenuEl) {
-            ev.preventDefault();
-            // Open it
-            context._openSubMenu(subMenuEl, pos, itemName);
-          } else {
-            // Add class current
-            const currentlink = context.el.querySelector(
-              ".menu__link--current",
-            );
-            if (currentlink) {
-              classie.remove(
-                context.el.querySelector(".menu__link--current"),
-                "menu__link--current",
-              );
-            }
-            classie.add(ev.target, "menu__link--current");
-
-            // Callback
-            context.options.onItemClick(ev, itemName);
-          }
-        });
-      }
-    });
-  });
-
-  // Back navigation
-  if (context.options.backCtrl) {
-    context.backCtrl.addEventListener("click", () => {
-      context._back();
-    });
-  }
 }
 
 module.exports = { init, initEvents };
