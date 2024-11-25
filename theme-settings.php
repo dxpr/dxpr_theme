@@ -5,7 +5,6 @@
  * DXPR Theme settings.
  */
 
-use Drupal\Component\Serialization\Json;
 use Drupal\Core\File\Exception\FileException;
 use Drupal\Core\File\FileSystemInterface;
 use Drupal\node\Entity\NodeType;
@@ -288,85 +287,6 @@ function dxpr_theme_form_system_theme_settings_submit(&$form, &$form_state) {
   }
 
   $form_state->setValue('color_palette', serialize($color_palette));
-}
-
-/**
- * Returns data from the color-settings.json file.
- *
- * @param string|null $key
- *   Key index in color.inc $info array.
- *
- * @return array
- *   Array containing requested data.
- */
-function _dxpr_theme_get_color_inc(?string $key = NULL): array {
-  $path = \Drupal::service('extension.list.theme')->getPath('dxpr_theme');
-  $filepath = sprintf('%s/%s/features/sooper-colors/color-settings.json', DRUPAL_ROOT, $path);
-
-  if ($path && file_exists($filepath)) {
-    $json = file_get_contents($filepath);
-    $settings = Json::decode($json);
-
-    if ($settings) {
-      $data = $key ? ($settings[$key] ?? []) : $settings;
-    }
-  }
-
-  return $data ?? [];
-}
-
-/**
- * Returns the color field keys.
- *
- * @return array
- *   The 'fields' sub-array.
- */
-function _dxpr_theme_get_color_names(): array {
-  return _dxpr_theme_get_color_inc('fields');
-}
-
-/**
- * Returns the color schemes.
- *
- * @return array
- *   The 'schemes' sub-array.
- */
-function _dxpr_theme_get_color_schemes(): array {
-  return _dxpr_theme_get_color_inc('schemes');
-}
-
-/**
- * Returns the specified color scheme, defaults to 'default'.
- *
- * @param string $scheme
- *   The color scheme machine name.
- *
- * @return array
- *   The specified color scheme indexed by color machine names.
- */
-function _dxpr_theme_get_color_scheme(string $scheme = 'default'): array {
-  $schemes = _dxpr_theme_get_color_schemes();
-  return $schemes['default'] ?? [];
-}
-
-/**
- * Color options for theme settings.
- *
- * @param string $theme
- *   Theme machine name.
- *
- * @return array
- *   Color options.
- */
-function _dxpr_theme_color_options($theme) {
-  $colors = [
-    '' => t('None (Theme Default)'),
-    'white' => t('White'),
-    'custom' => t('Custom Color'),
-  ];
-  $theme_colors = _dxpr_theme_get_color_names($theme);
-  $colors = array_merge($colors, $theme_colors);
-  return $colors;
 }
 
 /**

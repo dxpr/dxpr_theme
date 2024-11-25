@@ -113,13 +113,11 @@ const { addBreadcrumb } = require("./add-breadcrumb");
     });
     // Animation class
     if (this.options.direction === "r2l") {
-      classie.add(
-        currentMenu,
+      currentMenu.classList.add(
         !isBackNavigation ? "animate-outToLeft" : "animate-outToRight",
       );
     } else {
-      classie.add(
-        currentMenu,
+      currentMenu.classList.add(
         isBackNavigation ? "animate-outToLeft" : "animate-outToRight",
       );
     }
@@ -159,26 +157,22 @@ const { addBreadcrumb } = require("./add-breadcrumb");
         onEndAnimation(item, () => {
           // Reset classes
           if (self.options.direction === "r2l") {
-            classie.remove(
-              currentMenu,
+            currentMenu.classList.remove(
               !isBackNavigation ? "animate-outToLeft" : "animate-outToRight",
             );
-            classie.remove(
-              nextMenuEl,
+            nextMenuEl.classList.remove(
               !isBackNavigation ? "animate-inFromRight" : "animate-inFromLeft",
             );
           } else {
-            classie.remove(
-              currentMenu,
+            currentMenu.classList.remove(
               isBackNavigation ? "animate-outToLeft" : "animate-outToRight",
             );
-            classie.remove(
-              nextMenuEl,
+            nextMenuEl.classList.remove(
               isBackNavigation ? "animate-inFromRight" : "animate-inFromLeft",
             );
           }
-          classie.remove(currentMenu, "menu__level--current");
-          classie.add(nextMenuEl, "menu__level--current");
+          currentMenu.classList.remove("menu__level--current");
+          nextMenuEl.classList.add("menu__level--current");
 
           // Reset current
           self.current = nextMenuIdx;
@@ -187,14 +181,14 @@ const { addBreadcrumb } = require("./add-breadcrumb");
           if (!isBackNavigation) {
             // Show back button
             if (self.options.backCtrl) {
-              classie.remove(self.backCtrl, "menu__back--hidden");
+              self.backCtrl.classList.remove("menu__back--hidden");
             }
 
             // Add breadcrumb
             self._addBreadcrumb(nextMenuIdx);
           } else if (self.current === 0 && self.options.backCtrl) {
             // Hide back button
-            classie.add(self.backCtrl, "menu__back--hidden");
+            self.backCtrl.classList.add("menu__back--hidden");
           }
 
           // We can navigate again..
@@ -205,13 +199,11 @@ const { addBreadcrumb } = require("./add-breadcrumb");
 
     // Animation class
     if (this.options.direction === "r2l") {
-      classie.add(
-        nextMenuEl,
+      nextMenuEl.classList.add(
         !isBackNavigation ? "animate-inFromRight" : "animate-inFromLeft",
       );
     } else {
-      classie.add(
-        nextMenuEl,
+      nextMenuEl.classList.add(
         isBackNavigation ? "animate-inFromRight" : "animate-inFromLeft",
       );
     }

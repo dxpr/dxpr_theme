@@ -33,7 +33,7 @@ module.exports = function (grunt) {
     },
     terser: {
       options: {
-        ecma: 2015,
+        ecma: 2022,
       },
       main: {
         files: [
@@ -73,7 +73,7 @@ module.exports = function (grunt) {
     postcss: {
       options: {
         processors: [
-          autoprefixer,
+          autoprefixer(),
           postcssPxtorem({
             rootValue: 16,
             unitPrecision: 5,

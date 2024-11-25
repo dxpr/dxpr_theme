@@ -29,12 +29,11 @@ function initEvents(context) {
               ".menu__link--current",
             );
             if (currentlink) {
-              classie.remove(
-                context.el.querySelector(".menu__link--current"),
-                "menu__link--current",
-              );
+              context.el
+                .querySelector(".menu__link--current")
+                .classList.remove("menu__link--current");
             }
-            classie.add(ev.target, "menu__link--current");
+            ev.target.classList.add("menu__link--current");
 
             // Callback
             context.options.onItemClick(ev, itemName);
@@ -64,7 +63,7 @@ function init(context) {
 
     // Set current menu class
     if (pos === context.current) {
-      classie.add(menuEl, "menu__level--current");
+      menuEl.classList.add("menu__level--current");
     }
   });
 

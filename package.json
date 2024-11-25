@@ -29,6 +29,7 @@
     "grunt-contrib-jshint": "^3",
     "grunt-contrib-nodeunit": "^5",
     "grunt-contrib-watch": "^1",
+    "grunt-postcss": "^0.9.0",
     "grunt-sass": "^3",
     "grunt-terser": "^2",
     "grunt-webpack": "^7.0.0",
@@ -54,7 +55,6 @@
     "lint:scss:fix": "stylelint \"scss/**/*.scss\" --fix --custom-formatter=node_modules/stylelint-formatter-pretty/index.js --output-file stylelint-results.json"
   },
   "dependencies": {
-    "dxb_slider": "github:dxpr/DXB-Slider",
-    "postcss": "^8.4.41"
+    "dxb_slider": "github:dxpr/DXB-Slider"
   }
 }

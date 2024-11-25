@@ -1,5 +1,5 @@
 type: theme
-core_version_requirement: ^9.3 || ^10
+core_version_requirement: ^9.4 || ^10 || ^11
 base theme: bootstrap5
 
 name: 'DXPR Theme'
@@ -7,6 +7,7 @@ description: 'Low code framework theme by DXPR.'
 package: DXPR
 
 dependencies:
+  - drupal:file
   - dxpr_theme_helper:dxpr_theme_helper
 
 regions:
@@ -29,9 +30,6 @@ libraries:
   - 'dxpr_theme/global-styling'
 
 libraries-override:
-  core/modernizr:
-    js:
-      assets/vendor/modernizr/modernizr.min.js: vendor/modernizr-custom-d8-dxpr-theme.js
   classy/base:
     css:
       component:
