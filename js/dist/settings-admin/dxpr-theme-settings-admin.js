@@ -1,4 +1,10 @@
-/* eslint max-lines: "off" */
+/**
+ * @file
+ * Handles theme settings behaviors.
+ */
+
+const { dxprThemeSettingsColors } = require("./theme-settings-colors");
+
 (function (Drupal, once) {
   /* global ReinventedColorWheel */
 
