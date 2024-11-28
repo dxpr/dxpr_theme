@@ -8,39 +8,14 @@
  * Copyright 2015, Codrops
  * http://www.codrops.com
  */
+
+const { extend } = require("./helpers");
+const { onEndAnimation } = require("./animations");
+const { init, initEvents } = require("./initialization");
+const { addBreadcrumb } = require("./add-breadcrumb");
+
 (function (window) {
   "use strict";
-
-  const support = {
-    animations: typeof document.documentElement.style.animation !== "undefined",
-  };
-  const animEndEventName = "animationend";
-
-  const onEndAnimation = function (el, callback) {
-    const onEndCallbackFn = function (ev) {
-      if (support.animations) {
-        if (ev.target !== this) return;
-        this.removeEventListener(animEndEventName, onEndCallbackFn);
-      }
-      if (callback && typeof callback === "function") {
-        callback.call();
-      }
-    };
-    if (support.animations) {
-      el.addEventListener(animEndEventName, onEndCallbackFn);
-    } else {
-      onEndCallbackFn();
-    }
-  };
-
-  function extend(a, b) {
-    Object.keys(b).forEach((key) => {
-      if (Object.prototype.hasOwnProperty.call(b, key)) {
-        a[key] = b[key];
-      }
-    });
-    return a;
-  }
 
   function MLMenu(el, options) {
     this.el = el;
@@ -74,81 +49,11 @@
   };
 
   MLMenu.prototype._init = function () {
-    // Iterate the existing menus and create an array of menus, more specifically an array of objects where each one holds the info of each menu element and its menu items
-    this.menusArr = [];
-    const self = this;
-    this.menus.forEach((menuEl, pos) => {
-      const menu = { menuEl, menuItems: [].slice.call(menuEl.children) };
-      self.menusArr.push(menu);
-
-      // Set current menu class
-      if (pos === self.current) {
-        menuEl.classList.add("menu__level--current");
-      }
-    });
-
-    // Create back button
-    if (this.options.backCtrl) {
-      this.backCtrl = document.createElement("button");
-      this.backCtrl.className = "menu__back menu__back--hidden";
-      this.backCtrl.setAttribute("aria-label", "Go back");
-      this.backCtrl.innerHTML = '<span class="icon icon--arrow-left"></span>';
-      this.el.insertBefore(this.backCtrl, this.el.firstChild);
-    }
-
-    // Create breadcrumbs
-    if (self.options.breadcrumbsCtrl) {
-      this.breadcrumbsCtrl = document.createElement("nav");
-      this.breadcrumbsCtrl.className = "menu__breadcrumbs";
-      this.el.insertBefore(this.breadcrumbsCtrl, this.el.firstChild);
-      // Add initial breadcrumb
-      this._addBreadcrumb(0);
-    }
-
-    // Event binding
-    this._initEvents();
+    init(this);
   };
 
   MLMenu.prototype._initEvents = function () {
-    const self = this;
-
-    for (let i = 0, len = this.menusArr.length; i < len; ++i) {
-      this.menusArr[i].menuItems.forEach((item, pos) => {
-        if (item.querySelector("a")) {
-          item.querySelector("a").addEventListener("click", (ev) => {
-            const submenu = ev.target.getAttribute("data-submenu");
-            const itemName = ev.target.innerHTML;
-            const subMenuEl = self.el.querySelector(
-              `ul[data-menu="${submenu}"]`,
-            );
-
-            // Check if there's a sub menu for this item
-            if (submenu && subMenuEl) {
-              ev.preventDefault();
-              // Open it
-              self._openSubMenu(subMenuEl, pos, itemName);
-            } else {
-              // Add class current
-              const currentlink = self.el.querySelector(".menu__link--current");
-              if (currentlink) {
-                currentlink.classList.remove("menu__link--current");
-              }
-              ev.target.classList.add("menu__link--current");
-
-              // Callback
-              self.options.onItemClick(ev, itemName);
-            }
-          });
-        }
-      });
-    }
-
-    // Back navigation
-    if (this.options.backCtrl) {
-      this.backCtrl.addEventListener("click", () => {
-        self._back();
-      });
-    }
+    initEvents(this);
   };
 
   MLMenu.prototype._openSubMenu = function (
@@ -305,39 +210,7 @@
   };
 
   MLMenu.prototype._addBreadcrumb = function (idx) {
-    if (!this.options.breadcrumbsCtrl) {
-      return false;
-    }
-
-    const bc = document.createElement("a");
-    bc.innerHTML = idx
-      ? this.menusArr[idx].name
-      : this.options.initialBreadcrumb;
-    this.breadcrumbsCtrl.appendChild(bc);
-
-    const self = this;
-    bc.addEventListener("click", (ev) => {
-      ev.preventDefault();
-
-      // Do nothing if this breadcrumb is the last one in the list of breadcrumbs
-      if (!bc.nextSibling || self.isAnimating) {
-        return false;
-      }
-      self.isAnimating = true;
-
-      // Current menu slides out
-      self._menuOut();
-      // Next menu slides in
-      const nextMenu = self.menusArr[idx].menuEl;
-      self._menuIn(nextMenu);
-
-      // Remove breadcrumbs that are ahead
-      let siblingNode = bc.nextSibling;
-      while (siblingNode) {
-        self.breadcrumbsCtrl.removeChild(siblingNode);
-        siblingNode = bc.nextSibling;
-      }
-    });
+    addBreadcrumb(this, idx);
   };
 
   window.MLMenu = MLMenu;

@@ -1,3 +1,4 @@
+/* eslint max-lines: "off" */
 (function (Drupal, once) {
   /* global ReinventedColorWheel */
 
@@ -11,7 +12,7 @@
    * Handles the 'Colors' theme settings page.
    */
   Drupal.behaviors.dxpr_themeSettingsColors = {
-    // Settings. 
+    // Settings.
     elColorPalette: document.querySelector("#color-palette"),
     elSchemeSelect: document.getElementById("edit-color-scheme"),
     colorSettings: drupalSettings.dxpr_themeSettings.colors ?? [],
