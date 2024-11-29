@@ -4,6 +4,7 @@
  */
 
 const { dxprThemeSettingsColors } = require("./theme-settings-colors");
+const { handleMaxWidthSettings } = require("./handle-max-width");
 
 (function (Drupal, once) {
   /* global ReinventedColorWheel */
@@ -36,41 +37,15 @@ const { dxprThemeSettingsColors } = require("./theme-settings-colors");
       this.toggleElement("page_title_breadcrumbs", "header ol.breadcrumb");
       this.toggleElement("block_divider", ".block-preview hr");
 
-      Object.values(settings).forEach((setting) => {
-        const inputName = this.getInputName(setting);
-        const els = document.querySelectorAll(`[name="${inputName}"]`);
-        this.setPreview(inputName, els[0] ?? null);
-
-        els.forEach((el) => {
-          if (
-            el.id === "edit-box-max-width" ||
-            el.id === "edit-layout-max-width"
-          ) {
-            el.addEventListener("change", (e) => {
-              this.fieldHandler(e);
-            });
-          } else {
-            el.addEventListener("input", (e) => {
-              this.fieldHandler(e);
-            });
-          }
-
-          const customField = document.querySelector(
-            `[name="${inputName}_custom"]`,
-          );
-
-          if (customField) {
-            customField.addEventListener("change", (e) => {
-              this.fieldHandler(e);
-            });
-
-            customField.addEventListener("keyup", (e) => {
-              this.fieldHandler(e);
-            });
-          }
-        });
-      });
+      //OVAJ JE DA SE NE PRAVI AUTOMATSKI Boxed Container Max-width NEGO KADA SE PUSTI MIŠ
+      handleMaxWidthSettings(
+        settings,
+        this.getInputName.bind(this),
+        this.setPreview.bind(this),
+        this.fieldHandler.bind(this)
+      );
     },
+    //OVO JE DA SE POSTAVE NO PREVIEW ICONE I NAJBOLJE SE VIDI NA LAYOUT -> BACKGROUND IMAGE
     setNoPreview() {
       // Mark all fields with a no-preview icon.
       const systemThemeSettings = document.querySelector(
