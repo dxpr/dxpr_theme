@@ -4,12 +4,39 @@
  */
 
 /**
+ * Updates a field's value dynamically.
+ */
+function setFieldValue(key, value) {
+  const field = document.querySelector(`[name="${key}"]`);
+  if (!field) return;
+
+  if (field.type === "range" || field.classList.contains("dxb-slider")) {
+    field.value = value;
+    field.dispatchEvent(new Event("input"));
+  } else if (field.type === "checkbox") {
+    field.checked = value;
+    field.dispatchEvent(new Event("change"));
+  } else if (field.type === "radio") {
+    const radioField = document.querySelector(
+      `[name="${key}"][value="${value}"]`,
+    );
+    if (radioField) {
+      radioField.checked = true;
+      radioField.dispatchEvent(new Event("change"));
+    }
+  } else {
+    field.value = value;
+    field.dispatchEvent(new Event("change"));
+  }
+}
+
+/**
  * Handles document change events for block configurations.
  *
  * @param {Event} event - The event triggered by user interaction.
- * @param {Function} setFieldValue - A function to update field values dynamically.
+ * @param {Function} updateFieldValue - A function to update field values dynamically.
  */
-function handleDocumentEvents(event, setFieldValue) {
+function handleDocumentEvents(event, updateFieldValue) {
   const targetElement = event.target;
   const id = targetElement?.id ?? "";
   const value = targetElement?.value ?? "";
@@ -204,33 +231,6 @@ function handleDocumentEvents(event, setFieldValue) {
         setFieldValue(key, set[key]);
       });
     }
-  }
-}
-
-/**
- * Updates a field's value dynamically.
- */
-function setFieldValue(key, value) {
-  const field = document.querySelector(`[name="${key}"]`);
-  if (!field) return;
-
-  if (field.type === "range" || field.classList.contains("dxb-slider")) {
-    field.value = value;
-    field.dispatchEvent(new Event("input"));
-  } else if (field.type === "checkbox") {
-    field.checked = value;
-    field.dispatchEvent(new Event("change"));
-  } else if (field.type === "radio") {
-    const radioField = document.querySelector(
-      `[name="${key}"][value="${value}"]`,
-    );
-    if (radioField) {
-      radioField.checked = true;
-      radioField.dispatchEvent(new Event("change"));
-    }
-  } else {
-    field.value = value;
-    field.dispatchEvent(new Event("change"));
   }
 }
 

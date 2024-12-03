@@ -9,7 +9,7 @@ function setNoPreview(setPreviewClass) {
   const systemThemeSettings = document.querySelector(".system-theme-settings");
   if (systemThemeSettings) {
     const inputs = systemThemeSettings.querySelectorAll(
-      "input, select, textarea"
+      "input, select, textarea",
     );
     const skip = [
       "color_scheme",
@@ -92,7 +92,7 @@ function setPreview(name, input, setPreviewClass) {
 
       if (name === "nav_font_size" || name === "nav_mobile_font_size") {
         const radio = document.querySelector(
-          `[name="${depFieldName}"]:checked`
+          `[name="${depFieldName}"]:checked`,
         );
         if (radio && radio.value !== "lead") {
           setPreviewClass(input, false);
@@ -103,20 +103,6 @@ function setPreview(name, input, setPreviewClass) {
 
   if (!processed) {
     setPreviewClass(input, false);
-  }
-}
-
-/**
- * Adds or removes the "no-preview" class from the input's label.
- */
-function setPreviewClass(input, action) {
-  const label = getLabel(input);
-  if (!label) return;
-
-  if (action) {
-    label.classList.add("no-preview");
-  } else {
-    label.classList.remove("no-preview");
   }
 }
 
@@ -138,4 +124,18 @@ function getLabel(input) {
   return label;
 }
 
-module.exports = { setNoPreview, setPreview, setPreviewClass };
+/**
+ * Adds or removes the "no-preview" class from the input's label.
+ */
+function updatePreviewClass(input, action) {
+  const label = getLabel(input);
+  if (!label) return;
+
+  if (action) {
+    label.classList.add("no-preview");
+  } else {
+    label.classList.remove("no-preview");
+  }
+}
+
+module.exports = { setNoPreview, setPreview, updatePreviewClass };

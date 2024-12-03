@@ -40,7 +40,7 @@ const dxprThemeSettingsColors = {
       const colorFields = colorPalette.querySelectorAll(".form-text");
 
       const colorFieldHandler = {
-        init: function (ev) {
+        init(ev) {
           if (ev.key === "Backspace" || ev.keyCode === 8) {
             return;
           }
@@ -50,9 +50,18 @@ const dxprThemeSettingsColors = {
       };
 
       colorFields.forEach((el) => {
-        el.addEventListener("focus", colorFieldHandler.init.bind(colorFieldHandler));
-        el.addEventListener("change", colorFieldHandler.init.bind(colorFieldHandler));
-        el.addEventListener("keyup", colorFieldHandler.init.bind(colorFieldHandler));
+        el.addEventListener(
+          "focus",
+          colorFieldHandler.init.bind(colorFieldHandler),
+        );
+        el.addEventListener(
+          "change",
+          colorFieldHandler.init.bind(colorFieldHandler),
+        );
+        el.addEventListener(
+          "keyup",
+          colorFieldHandler.init.bind(colorFieldHandler),
+        );
       });
     }
 
@@ -142,11 +151,17 @@ const dxprThemeSettingsColors = {
 
     if (palette) {
       Object.keys(palette).forEach((key) => {
-        root.style.setProperty(`${cssVarColorsPrefix}${key}`, String(palette[key]));
+        root.style.setProperty(
+          `${cssVarColorsPrefix}${key}`,
+          String(palette[key]),
+        );
 
         if (key === "header") {
           const [r, g, b] = this.getHexToRgb(palette[key]);
-          root.style.setProperty(`${cssVarColorsPrefix}${key}-rgb`, `${r},${g},${b}`);
+          root.style.setProperty(
+            `${cssVarColorsPrefix}${key}-rgb`,
+            `${r},${g},${b}`,
+          );
         }
       });
     }

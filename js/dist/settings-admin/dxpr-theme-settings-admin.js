@@ -8,15 +8,13 @@ const { handleMaxWidthSettings } = require("./handle-max-width");
 const {
   setNoPreview,
   setPreview,
-  setPreviewClass,
+  updatePreviewClass,
 } = require("./no-preview-handler");
 
-const { fieldHandler, massageValue } = require("./field-handler");
+const { fieldHandler, massageFieldValue } = require("./field-handler");
 const { handleDocumentEvents, setFieldValue } = require("./block-handler");
 
 (function (Drupal, once) {
-  /* global ReinventedColorWheel */
-
   "use strict";
 
   // Define constants.
@@ -39,7 +37,7 @@ const { handleDocumentEvents, setFieldValue } = require("./block-handler");
       }
     },
     init() {
-      setNoPreview(setPreviewClass);
+      setNoPreview(updatePreviewClass);
       const settings = this.getCssVariables();
 
       this.toggleElement("page_title_breadcrumbs", "header ol.breadcrumb");
@@ -48,8 +46,15 @@ const { handleDocumentEvents, setFieldValue } = require("./block-handler");
       handleMaxWidthSettings(
         settings,
         this.getInputName.bind(this),
-        (name, input) => setPreview(name, input, setPreviewClass),
-        (event) => fieldHandler(event, this.root, cssVarSettingsPrefix, massageValue)
+        (name, input) => setPreview(name, input, updatePreviewClass),
+        (event) =>
+          fieldHandler(
+            event,
+            this.root,
+            cssVarSettingsPrefix,
+            (setting, value) =>
+              massageFieldValue(setting, value, cssVarColorsPrefix),
+          ),
       );
     },
 
@@ -190,11 +195,12 @@ const { handleDocumentEvents, setFieldValue } = require("./block-handler");
         });
     },
     handleFields() {
-      const self = this;
-
-      document.addEventListener("change", (e) => handleDocumentEvents(e, setFieldValue));
-      document.addEventListener("keyup", (e) => handleDocumentEvents(e, setFieldValue));
-
+      document.addEventListener("change", (e) =>
+        handleDocumentEvents(e, setFieldValue),
+      );
+      document.addEventListener("keyup", (e) =>
+        handleDocumentEvents(e, setFieldValue),
+      );
     },
   };
 })(Drupal, once);

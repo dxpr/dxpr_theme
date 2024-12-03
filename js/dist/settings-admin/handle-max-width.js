@@ -6,7 +6,12 @@
  * @param {function} setPreview - Function to set preview for a setting.
  * @param {function} fieldHandler - Function to handle field changes.
  */
-function handleMaxWidthSettings(settings, getInputName, setPreview, fieldHandler) {
+function handleMaxWidthSettings(
+  settings,
+  getInputName,
+  setPreview,
+  fieldHandler,
+) {
   Object.values(settings).forEach((setting) => {
     const inputName = getInputName(setting);
     const elements = document.querySelectorAll(`[name="${inputName}"]`);
@@ -26,7 +31,9 @@ function handleMaxWidthSettings(settings, getInputName, setPreview, fieldHandler
         });
       }
 
-      const customField = document.querySelector(`[name="${inputName}_custom"]`);
+      const customField = document.querySelector(
+        `[name="${inputName}_custom"]`,
+      );
 
       if (customField) {
         customField.addEventListener("change", (event) => {

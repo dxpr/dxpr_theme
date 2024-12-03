@@ -1,134 +1,12 @@
 /**
- * Handles the change event for form fields.
- *
- * @param event
- * @param root
- * @param cssVarSettingsPrefix
- * @param massageValue
- */
-function fieldHandler(event, root, cssVarSettingsPrefix, massageValue) {
-  const setting = event.target.name;
-  const validUnits = ["px", "em", "rem"];
-  let { value } = event.target;
-
-  if (event.target.type === "checkbox") {
-    value = event.target.checked;
-  }
-
-  // Define variables that expect "px".
-  const pxRequiredVars = [
-    "box_max_width",
-    "header_top_height",
-    "layout_max_width",
-    "gutter_horizontal",
-    "gutter_vertical",
-    "gutter_container",
-    "gutter_horizontal_mobile",
-    "gutter_vertical_mobile",
-    "gutter_container_mobile",
-    "header_side_width",
-    "header_side_logo_height",
-    "dropdown_width",
-    "menu_border_position_offset",
-    "menu_border_position_offset_sticky",
-    "menu_border_size",
-    "header_mobile_breakpoint",
-    "header_mobile_height",
-    "page_title_height",
-    "body_font_size",
-    "nav_font_size",
-    "h1_font_size",
-    "h2_font_size",
-    "h3_font_size",
-    "h4_font_size",
-    "blockquote_font_size",
-    "body_mobile_font_size",
-    "nav_mobile_font_size",
-    "h1_mobile_font_size",
-    "h2_mobile_font_size",
-    "h3_mobile_font_size",
-    "h4_mobile_font_size",
-    "blockquote_mobile_font_size",
-    "divider_thickness",
-    "divider_length",
-    "block_padding",
-    "block_border_radius",
-    "block_border",
-    "title_padding",
-    "title_border",
-    "title_border_radius",
-    "block_divider_spacing",
-  ];
-
-  // Define variables that expect "em".
-  const emRequiredVars = [
-    "body_line_height",
-    "headings_line_height",
-    "blockquote_line_height",
-    "headings_letter_spacing",
-  ];
-
-  // If the value has no unit and the variable expects 'px', add 'px'.
-  if (
-    pxRequiredVars.some((varName) => setting.includes(varName)) &&
-    !validUnits.some((unit) => value.endsWith(unit)) &&
-    !Number.isNaN(Number(value))
-  ) {
-    value += "px";
-  }
-
-  // If the value has no unit and the variable expects 'em', add 'em'.
-  if (
-    emRequiredVars.some((varName) => setting.includes(varName)) &&
-    !validUnits.some((unit) => value.endsWith(unit)) &&
-    !Number.isNaN(Number(value))
-  ) {
-    value += "em";
-  }
-
-  value = massageValue(setting, value);
-
-  // Create CSS variable name.
-  const cssVarName = setting
-    .replace("_custom", "")
-    .replace(/[[_]/g, "-")
-    .replace("]", "");
-
-  // Override CSS variable.
-  root.style.setProperty(
-    `${cssVarSettingsPrefix}${cssVarName}`,
-    String(value),
-  );
-
-  // Workaround for block divider position.
-  if (setting === "divider_position") {
-    if (event.target.value === "3") {
-      value = "calc(100% - var(--dxt-setting-block-divider-length))";
-    }
-    root.style.setProperty(
-      `${cssVarSettingsPrefix}${cssVarName}-block`,
-      String(value),
-    );
-  }
-
-  // Add mobile title font size variable.
-  if (setting === "title_font_size") {
-    value = value.replace("-font-size", "-mobile-font-size");
-    root.style.setProperty(
-      `${cssVarSettingsPrefix}${cssVarName}-mobile`,
-      String(value),
-    );
-  }
-}
-
-/**
  * Tweak certain settings to valid values.
  *
  * @param setting
  * @param value
+ * @param cssVarColorsPrefix
  * @returns {string}
  */
-function massageValue(setting, value) {
+function massageFieldValue(setting, value, cssVarColorsPrefix) {
   switch (setting) {
     // Generic: Inline/Block display
     case "title_sticker":
@@ -225,4 +103,124 @@ function massageValue(setting, value) {
   return value;
 }
 
-module.exports = { fieldHandler, massageValue };
+/**
+ * Handles the change event for form fields.
+ *
+ * @param event
+ * @param root
+ * @param cssVarSettingsPrefix
+ * @param massageValue
+ */
+function fieldHandler(event, root, cssVarSettingsPrefix, massageValue) {
+  const setting = event.target.name;
+  const validUnits = ["px", "em", "rem"];
+  let { value } = event.target;
+
+  if (event.target.type === "checkbox") {
+    value = event.target.checked;
+  }
+
+  // Define variables that expect "px".
+  const pxRequiredVars = [
+    "box_max_width",
+    "header_top_height",
+    "layout_max_width",
+    "gutter_horizontal",
+    "gutter_vertical",
+    "gutter_container",
+    "gutter_horizontal_mobile",
+    "gutter_vertical_mobile",
+    "gutter_container_mobile",
+    "header_side_width",
+    "header_side_logo_height",
+    "dropdown_width",
+    "menu_border_position_offset",
+    "menu_border_position_offset_sticky",
+    "menu_border_size",
+    "header_mobile_breakpoint",
+    "header_mobile_height",
+    "page_title_height",
+    "body_font_size",
+    "nav_font_size",
+    "h1_font_size",
+    "h2_font_size",
+    "h3_font_size",
+    "h4_font_size",
+    "blockquote_font_size",
+    "body_mobile_font_size",
+    "nav_mobile_font_size",
+    "h1_mobile_font_size",
+    "h2_mobile_font_size",
+    "h3_mobile_font_size",
+    "h4_mobile_font_size",
+    "blockquote_mobile_font_size",
+    "divider_thickness",
+    "divider_length",
+    "block_padding",
+    "block_border_radius",
+    "block_border",
+    "title_padding",
+    "title_border",
+    "title_border_radius",
+    "block_divider_spacing",
+  ];
+
+  // Define variables that expect "em".
+  const emRequiredVars = [
+    "body_line_height",
+    "headings_line_height",
+    "blockquote_line_height",
+    "headings_letter_spacing",
+  ];
+
+  // If the value has no unit and the variable expects 'px', add 'px'.
+  if (
+    pxRequiredVars.some((varName) => setting.includes(varName)) &&
+    !validUnits.some((unit) => value.endsWith(unit)) &&
+    !Number.isNaN(Number(value))
+  ) {
+    value += "px";
+  }
+
+  // If the value has no unit and the variable expects 'em', add 'em'.
+  if (
+    emRequiredVars.some((varName) => setting.includes(varName)) &&
+    !validUnits.some((unit) => value.endsWith(unit)) &&
+    !Number.isNaN(Number(value))
+  ) {
+    value += "em";
+  }
+
+  value = massageFieldValue(setting, value);
+
+  // Create CSS variable name.
+  const cssVarName = setting
+    .replace("_custom", "")
+    .replace(/[[_]/g, "-")
+    .replace("]", "");
+
+  // Override CSS variable.
+  root.style.setProperty(`${cssVarSettingsPrefix}${cssVarName}`, String(value));
+
+  // Workaround for block divider position.
+  if (setting === "divider_position") {
+    if (event.target.value === "3") {
+      value = "calc(100% - var(--dxt-setting-block-divider-length))";
+    }
+    root.style.setProperty(
+      `${cssVarSettingsPrefix}${cssVarName}-block`,
+      String(value),
+    );
+  }
+
+  // Add mobile title font size variable.
+  if (setting === "title_font_size") {
+    value = value.replace("-font-size", "-mobile-font-size");
+    root.style.setProperty(
+      `${cssVarSettingsPrefix}${cssVarName}-mobile`,
+      String(value),
+    );
+  }
+}
+
+module.exports = { fieldHandler, massageFieldValue };
