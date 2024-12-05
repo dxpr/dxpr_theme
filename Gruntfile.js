@@ -27,7 +27,7 @@ module.exports = function (grunt) {
     },
     terser: {
       options: {
-        ecma: 2015,
+        ecma: 2022,
       },
       main: {
         files: {
@@ -69,7 +69,7 @@ module.exports = function (grunt) {
     postcss: {
       options: {
         processors: [
-          autoprefixer,
+          autoprefixer(),
           postcssPxtorem({
             rootValue: 16,
             unitPrecision: 5,
@@ -87,7 +87,7 @@ module.exports = function (grunt) {
     },
     watch: {
       css: {
-        files: ["scss/*.scss", "scss/**/*.scss"],
+        files: ["scss/**/*.scss"],
         tasks: ["sass", "postcss"],
       },
       js: {
