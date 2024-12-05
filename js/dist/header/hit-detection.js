@@ -5,9 +5,10 @@
  * based on its bounding rectangle and the position of the navbar or pull-down container.
  *
  * Dependencies:
- * - dxpr_themeHit: A helper function to detect rectangle intersection.
- * - The presence of specific header classes to identify the header state.
+ * - dxprThemeCollisionCheck: A helper function to detect rectangle intersection.
  */
+
+const { dxprThemeCollisionCheck } = require("./collision-detection");
 
 function hitDetection() {
   // Get the bounding rectangle of the primary tabs element
@@ -27,7 +28,7 @@ function hitDetection() {
       .getBoundingClientRect();
 
     // If pull-down overlaps with tabs, adjust margin-top of the tabs
-    if (hitDetection(pullDownRect, tabsRect)) {
+    if (dxprThemeCollisionCheck(pullDownRect, tabsRect)) {
       document.querySelector(".tabs--primary").style.marginTop =
         `${pullDownRect.bottom - tabsRect.top + 6}px`;
     }
@@ -38,7 +39,7 @@ function hitDetection() {
       .getBoundingClientRect();
 
     // If navbar overlaps with tabs, adjust margin-top of the tabs
-    if (hitDetection(navbarRect, tabsRect)) {
+    if (dxprThemeCollisionCheck(navbarRect, tabsRect)) {
       document.querySelector(".tabs--primary").style.marginTop =
         `${navbarRect.bottom - tabsRect.top + 6}px`;
     }

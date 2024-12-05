@@ -17,11 +17,10 @@ module.exports = function (grunt) {
         files: {
           "js/minified/dxpr-theme-full-screen-search.min.js":
             "js/dist/dxpr-theme-full-screen-search.js",
-          "js/minified/dxpr-theme-multilevel-mobile-nav.min.js":
-            "js/dist/dxpr-theme-multilevel-mobile-nav.js",
           "js/minified/dxpr-theme-settings.admin.min.js":
             "js/dist/dxpr-theme-settings.admin.js",
-          "js/minified/dxpr-theme-tabs.min.js": "js/dist/dxpr-theme-tabs.js",
+          "js/minified/dxpr-theme-tabs.min.js":
+            "js/dist/dxpr-theme-tabs.js",
         },
       },
     },
@@ -31,12 +30,8 @@ module.exports = function (grunt) {
       },
       main: {
         files: {
-          "js/minified/classie.min.js": ["vendor/classie.js"],
           "js/minified/dxpr-theme-full-screen-search.min.js": [
             "js/minified/dxpr-theme-full-screen-search.min.js",
-          ],
-          "js/minified/dxpr-theme-multilevel-mobile-nav.min.js": [
-            "js/minified/dxpr-theme-multilevel-mobile-nav.min.js",
           ],
           "js/minified/dxpr-theme-settings.admin.min.js": [
             "js/minified/dxpr-theme-settings.admin.min.js",
