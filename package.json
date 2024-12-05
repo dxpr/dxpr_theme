@@ -56,7 +56,7 @@
     "postinstall": "bash scripts/update-vendor-assets.sh"
   },
   "dependencies": {
-    "dxb_slider": "^1.0.1",
+    "dxb_slider": "^2.0.0",
     "postcss": "^8.4.41",
     "reinvented-color-wheel": "^0.4.0"
   }
