@@ -5,9 +5,7 @@ function setupDesktopMenu() {
   const elementNavMobileOpen = document.querySelector(
     ".html--dxpr-theme-nav-mobile--open",
   );
-  elementNavMobileOpen?.classList.remove(
-    "html--dxpr-theme-nav-mobile--open",
-  );
+  elementNavMobileOpen?.classList.remove("html--dxpr-theme-nav-mobile--open");
 
   const elementHeaderSide = document.querySelector(".dxpr-theme-header--side");
   if (elementHeaderSide) {
@@ -20,8 +18,9 @@ function setupDesktopMenu() {
   );
   menuBreadcrumbs?.remove();
 
-  elementMenuLevel?.classList.remove("menu__level");
+  const elementMenuLevel = document.querySelector(".menu__level");
 
+  elementMenuLevel?.classList.remove("menu__level");
   elementMenuLevel?.style.setProperty("top", "100%");
   elementMenuLevel?.style.setProperty("marginTop", "0");
   elementMenuLevel?.style.setProperty("height", "auto");
