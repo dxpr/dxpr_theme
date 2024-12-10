@@ -233,43 +233,62 @@
             const width = dropdownElement.offsetWidth;
 
             const headings = dropdownElement.querySelectorAll(
-              ".dxpr-theme-megamenu__heading",
+              ".dxpr-theme-megamenu__heading"
             );
             const columns =
               headings.length > 0
                 ? headings.length
                 : Math.floor(
-                    dropdownElement.querySelectorAll("li").length / 8,
-                  ) + 1;
+                dropdownElement.querySelectorAll("li").length / 8
+              ) + 1;
 
             if (columns > 2) {
               dropdownElement.style.width = "100%";
-              dropdownElement.style.left = "0";
+              setTimeout(() => {
+                dropdownElement.style.left = "0";
+              }, 0);
+              dropdownElement.style.setProperty("display", "flex");
               dropdownElement.parentElement.style.position = "static";
-
               dropdownElement.querySelectorAll(":scope > li").forEach((li) => {
-                li.style.width = `${100 / columns}%`;
+                li.style.minWidth = `${100 / columns}%`;
               });
             } else {
-              dropdownElement.style.minWidth = `${width * columns + 2}px`;
+              if (!dropdownElement.dataset.initialWidth) {
+                dropdownElement.dataset.initialWidth = dropdownElement.offsetWidth;
+              }
 
+              const initialWidth = parseFloat(dropdownElement.dataset.initialWidth);
+
+              dropdownElement.style.minWidth = `${initialWidth * columns + 2}px`;
               dropdownElement.querySelectorAll(":scope > li").forEach((li) => {
-                li.style.width = `${width}px`;
+                li.style.width = `${initialWidth}px`;
               });
             }
 
             const topLevelItem = dropdownElement.parentElement;
             const delta = Math.round(
               document.body.clientWidth -
-                topLevelItem.offsetLeft -
-                dropdownElement.offsetWidth -
-                10,
+              topLevelItem.offsetLeft -
+              dropdownElement.offsetWidth -
+              10
             );
             if (delta < 0) {
               dropdownElement.style.left = `${delta}px`;
             }
 
             dropdownElement.dataset.widthSet = "true";
+          }
+        });
+
+        toggleElement.addEventListener("mouseout", () => {
+          const dropdownElement = toggleElement.nextElementSibling;
+
+          if (
+            dropdownElement &&
+            dropdownElement.classList.contains("dropdown-menu")
+          ) {
+            dropdownElement.style.removeProperty("display");
+            dropdownElement.dataset.widthSet = "false";
           }
         });
       });
