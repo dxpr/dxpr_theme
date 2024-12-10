@@ -1,3 +1,4 @@
+/* eslint max-lines: "off" */
 (function (Drupal, once) {
   /* global ReinventedColorWheel */
 
