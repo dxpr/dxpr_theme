@@ -44,13 +44,6 @@ function setupDesktopMenu() {
   const bodyWidth = document.body.clientWidth;
   const margin = 10;
 
-  function setupDropdownEvents() {
-    document.querySelectorAll(".dropdown-toggle").forEach((toggleElement) => {
-      toggleElement.addEventListener("mouseover", () => handleMouseOver(toggleElement));
-      toggleElement.addEventListener("mouseout", () => handleMouseOut(toggleElement));
-    });
-  }
-
   function handleMouseOver(toggleElement) {
     const dropdownElement = toggleElement.nextElementSibling;
 
@@ -60,7 +53,6 @@ function setupDesktopMenu() {
     ) {
       if (dropdownElement.dataset.widthSet === "true") return;
 
-      const width = dropdownElement.offsetWidth;
       const headings = dropdownElement.querySelectorAll(
         ".dxpr-theme-megamenu__heading",
       );
@@ -95,9 +87,9 @@ function setupDesktopMenu() {
       const topLevelItem = dropdownElement.parentElement;
       const delta = Math.round(
         bodyWidth -
-        topLevelItem.offsetLeft -
-        dropdownElement.offsetWidth -
-        margin,
+          topLevelItem.offsetLeft -
+          dropdownElement.offsetWidth -
+          margin,
       );
       if (delta < 0) {
         dropdownElement.style.left = `${delta}px`;
@@ -117,6 +109,17 @@ function setupDesktopMenu() {
       dropdownElement.style.removeProperty("display");
       dropdownElement.dataset.widthSet = "false";
     }
+  }
+
+  function setupDropdownEvents() {
+    document.querySelectorAll(".dropdown-toggle").forEach((toggleElement) => {
+      toggleElement.addEventListener("mouseover", () =>
+        handleMouseOver(toggleElement),
+      );
+      toggleElement.addEventListener("mouseout", () =>
+        handleMouseOut(toggleElement),
+      );
+    });
   }
 
   setupDropdownEvents();
