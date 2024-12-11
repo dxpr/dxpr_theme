@@ -6,10 +6,10 @@ global-styling:
     - core/drupal
     - core/once
 
-bootstrap-3:
+bootstrap-5:
   css:
     theme:
-      css/vendor-extensions/bootstrap-3.css: { minified: true }
+      css/vendor-extensions/bootstrap-5.css: { minified: true }
 
 bootstrap-theme:
   css:

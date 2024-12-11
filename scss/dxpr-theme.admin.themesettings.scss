@@ -291,11 +291,12 @@ $border-color: #222330;
       }
 
       .is-selected {
+        background-color: var(--dxt-color-silver);
         a {
           border: none;
 
           .vertical-tabs__menu-item-title {
-            color: var(--dxt-color-accent1);
+            text-decoration: underline;
           }
         }
       }
