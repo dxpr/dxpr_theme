@@ -14,14 +14,19 @@ module.exports = function (grunt) {
         sourceMap: false,
       },
       dist: {
-        files: {
-          "js/minified/dxpr-theme-full-screen-search.min.js":
-            "js/dist/dxpr-theme-full-screen-search.js",
-          "js/minified/dxpr-theme-settings.admin.min.js":
-            "js/dist/dxpr-theme-settings.admin.js",
-          "js/minified/dxpr-theme-tabs.min.js":
-            "js/dist/dxpr-theme-tabs.js",
-        },
+        files: [
+          {
+            expand: true,
+            cwd: 'js/dist/',
+            src: ['*.js', '!dxpr-theme-header.js',
+                          '!dxpr-theme-multilevel-mobile-nav.js',
+                          '!dxpr-theme-settings-admin.js',
+
+            ],
+            dest: 'js/minified/',
+            ext: '.min.js',
+          },
+        ],
       },
     },
     terser: {
@@ -29,17 +34,17 @@ module.exports = function (grunt) {
         ecma: 2022,
       },
       main: {
-        files: {
-          "js/minified/dxpr-theme-full-screen-search.min.js": [
-            "js/minified/dxpr-theme-full-screen-search.min.js",
-          ],
-          "js/minified/dxpr-theme-settings.admin.min.js": [
-            "js/minified/dxpr-theme-settings.admin.min.js",
-          ],
-          "js/minified/dxpr-theme-tabs.min.js": [
-            "js/minified/dxpr-theme-tabs.min.js",
-          ],
-        },
+        files: [
+          {
+            expand: true,
+            cwd: 'js/minified/',
+            src: ['*.min.js', '!dxpr-theme-header.bundle.min.js',
+                              '!dxpr-theme-multilevel-mobile-nav.bundle.min.js',
+                              '!dxpr-theme-settings-admin.bundle.min.js'],
+            dest: 'js/minified/',
+            ext: '.min.js',
+          },
+        ],
       },
     },
     sass: {
@@ -86,7 +91,7 @@ module.exports = function (grunt) {
         tasks: ["sass", "postcss"],
       },
       js: {
-        files: ["js/dist/*/*.js", "!js/dist/minified/**/*.js", "js/dist/*.js"],
+        files: ["js/dist/**/*.js", "!js/minified/**/*.js"],
         tasks: ["webpack", "babel", "terser"],
       },
     },
@@ -98,5 +103,6 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks("grunt-sass");
   grunt.loadNpmTasks("grunt-contrib-watch");
   grunt.loadNpmTasks("@lodder/grunt-postcss");
+
   grunt.registerTask("default", ["watch"]);
 };

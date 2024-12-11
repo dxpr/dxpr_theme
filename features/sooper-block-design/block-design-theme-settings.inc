@@ -104,8 +104,6 @@ function block_design_theme_settings(array &$form, $theme) {
       'class' => ['dxb-slider', 'block-padding-range', 'border-size-slider'],
       'data-dxb-slider' => TRUE,
     ],
-    '#prefix' => '<div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
-    '#suffix' => '</div></div></div>',
   ];
 
   $form['dxpr_theme_settings']['block']['block_advanced']['block_el']['block_border_radius'] = [
@@ -119,8 +117,6 @@ function block_design_theme_settings(array &$form, $theme) {
       'class' => ['dxb-slider', 'block-border-radius-range', 'border-radius-slider'],
       'data-dxb-slider' => TRUE,
     ],
-    '#prefix' => '<div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
-    '#suffix' => '</div></div></div>',
   ];
 
   $form['dxpr_theme_settings']['block']['block_advanced']['block_el']['block_border'] = [
@@ -134,8 +130,6 @@ function block_design_theme_settings(array &$form, $theme) {
       'class' => ['dxb-slider', 'block-border-range', 'border-size-slider'],
       'data-dxb-slider' => TRUE,
     ],
-    '#prefix' => '<div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
-    '#suffix' => '</div></div></div>',
   ];
 
   $form['dxpr_theme_settings']['block']['block_advanced']['block_el']['block_border_color'] = [
@@ -229,8 +223,6 @@ function block_design_theme_settings(array &$form, $theme) {
       'class' => ['dxb-slider', 'title-padding-range', 'border-size-slider'],
       'data-dxb-slider' => TRUE,
     ],
-    '#prefix' => '<div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
-    '#suffix' => '</div></div></div>',
   ];
 
   $form['dxpr_theme_settings']['block']['block_advanced']['title_el']['title_border'] = [
@@ -244,8 +236,6 @@ function block_design_theme_settings(array &$form, $theme) {
       'class' => ['dxb-slider', 'title-border-range', 'border-size-slider'],
       'data-dxb-slider' => TRUE,
     ],
-    '#prefix' => '<div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
-    '#suffix' => '</div></div></div>',
   ];
 
   $form['dxpr_theme_settings']['block']['block_advanced']['title_el']['title_border_radius'] = [
@@ -259,8 +249,6 @@ function block_design_theme_settings(array &$form, $theme) {
       'class' => ['dxb-slider', 'title-border-radius-range', 'border-radius-slider'],
       'data-dxb-slider' => TRUE,
     ],
-    '#prefix' => '<div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
-    '#suffix' => '</div></div></div>',
   ];
 
   $form['dxpr_theme_settings']['block']['block_advanced']['title_el']['title_border_color'] = [
@@ -382,8 +370,6 @@ function block_design_theme_settings(array &$form, $theme) {
         'class' => ['dxb-slider', 'block-divider-thickness-range'],
         'data-dxb-slider' => TRUE,
       ],
-      '#prefix' => '<div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
-      '#suffix' => '</div></div></div>',
     ],
   ];
 
@@ -407,8 +393,6 @@ function block_design_theme_settings(array &$form, $theme) {
         'class' => ['dxb-slider', 'block-divider-length-range'],
         'data-dxb-slider' => TRUE,
       ],
-      '#prefix' => '<div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
-      '#suffix' => '</div></div></div>',
     ],
   ];
 
@@ -432,8 +416,6 @@ function block_design_theme_settings(array &$form, $theme) {
         'class' => ['dxb-slider', 'block-divider-spacing-range'],
         'data-dxb-slider' => TRUE,
       ],
-      '#prefix' => '<div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
-      '#suffix' => '</div></div></div>',
     ],
   ];
 
