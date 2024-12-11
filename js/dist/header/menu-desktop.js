@@ -56,10 +56,14 @@ function setupDesktopMenu() {
       const headings = dropdownElement.querySelectorAll(
         ".dxpr-theme-megamenu__heading",
       );
+      const itemsCount = dropdownElement.querySelectorAll("li").length;
+
       const columns =
         headings.length > 0
           ? headings.length
-          : Math.floor(dropdownElement.querySelectorAll("li").length / 8) + 1;
+          : itemsCount <= 15
+          ? Math.floor(itemsCount / 8) + 1
+          : 2;
 
       if (columns > 2) {
         dropdownElement.style.width = "100%";
