@@ -32,10 +32,8 @@
      *   The event object.
      */
     function handleTriggerClick(e) {
-      e.currentTarget.setAttribute(
-        "aria-expanded",
-        !tabs.classList.contains(expandedClass),
-      );
+      const s = !tabs.classList.contains(expandedClass);
+      e.currentTarget.setAttribute("aria-expanded", s);
       tabs.classList.toggle(expandedClass);
     }
 
