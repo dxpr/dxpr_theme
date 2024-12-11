@@ -1,0 +1,151 @@
+// Bounce Animation
+@keyframes bounce-dxpr {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+
+  40% {
+    transform: translateY(-30px);
+  }
+
+  60% {
+    transform: translateY(-15px);
+  }
+}
+
+.bounce-dxpr {
+  animation: bounce-dxpr 1s;
+}
+
+// Flash Animation
+@keyframes flash-dxpr {
+  0%, 50%, 100% {
+    opacity: 1;
+  }
+
+  25%, 75% {
+    opacity: 0;
+  }
+}
+
+.flash-dxpr {
+  animation: flash-dxpr 1s;
+}
+
+// Pulse Animation
+@keyframes pulse-dxpr {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.05);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.pulse-dxpr {
+  animation: pulse-dxpr 1s;
+}
+
+// Fade In Animation
+@keyframes fade-in-dxpr {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-in-dxpr {
+  animation: fade-in-dxpr 1s;
+}
+
+// Bounce In Down Animation
+@keyframes bounce-in-down-dxpr {
+  0% {
+    opacity: 0;
+    transform: translateY(-2000px);
+  }
+
+  60% {
+    opacity: 1;
+    transform: translateY(30px);
+  }
+
+  80% {
+    transform: translateY(-10px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.bounce-in-down-dxpr {
+  animation: bounce-in-down-dxpr 1s;
+}
+
+// Bounce In Up Animation
+@keyframes bounce-in-up-dxpr {
+  0% {
+    opacity: 0;
+    transform: translateY(2000px);
+  }
+
+  60% {
+    opacity: 1;
+    transform: translateY(-30px);
+  }
+
+  80% {
+    transform: translateY(10px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.bounce-in-up-dxpr {
+  animation: bounce-in-up-dxpr 1s;
+}
+
+// Fade In Down Animation
+@keyframes fade-in-down-dxpr {
+  from {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-down-dxpr {
+  animation: fade-in-down-dxpr 1s;
+}
+
+// Fade In Up Animation
+@keyframes fade-in-up-dxpr {
+  from {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up-dxpr {
+  animation: fade-in-up-dxpr 1s;
+}

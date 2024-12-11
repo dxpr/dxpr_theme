@@ -5,10 +5,10 @@
 @import "../includes/variables";
 
 .dxpr-theme-util-full-width-content .main-container {
-  width: auto;
-  max-width: none;
   margin-left: 0;
   margin-right: 0;
+  max-width: none;
+  width: auto;
 }
 
 .dxpr-theme-util-full-width-content .col-sm-12 {
@@ -21,7 +21,6 @@
 }
 
 .html {
-
   .inline {
     display: inline;
   }
@@ -44,6 +43,7 @@
 
   .dxpr-theme-util-float-left {
     float: left;
+
     img {
       margin: 0 20px 15px 0;
     }
@@ -51,6 +51,7 @@
 
   .dxpr-theme-util-float-right {
     float: right;
+
     img {
       margin: 0 0 15px 20px;
     }
@@ -66,13 +67,15 @@
   .dxpr-theme-util-no-gutter {
     margin: 0!important;
     padding: 0!important;
+
     .row {
       margin: 0!important;
       padding: 0!important;
     }
+
     > * {
-      padding: 0!important;
       margin: 0!important;
+      padding: 0!important;
     }
   }
   .row .dxpr-theme-util-no-gutter .row { margin: 0!important }
@@ -88,25 +91,25 @@
     margin-bottom: var(--dxt-setting-gutter-vertical);
   }
 
-  @media (max-width: 768px) {
+  @media (width <= 768px) {
     .dxpr-theme-util-columns-5 .col-lg-2,
     .dxpr-theme-util-columns-5 .col-md-2,
     .dxpr-theme-util-columns-5 .col-sm-2,
     .dxpr-theme-util-columns-5 .col-xs-2 {
-      width: 100%;
       clear:none;
+      margin-bottom: 10px;
       margin-left: 0;
       margin-right: 0;
-      margin-bottom: 10px;
+      width: 100%;
     }
   }
 
   // Text shadows
-  .dxpr-theme-util-text-shadow { text-shadow: 1px 1px rgba(0,0,0,1); }
-  .dxpr-theme-util-text-shadow-80 { text-shadow: 1px 1px rgba(0,0,0,0.8); }
-  .dxpr-theme-util-text-shadow-60 { text-shadow: 1px 1px rgba(0,0,0,0.6); }
-  .dxpr-theme-util-text-shadow-40 { text-shadow: 1px 1px rgba(0,0,0,0.4); }
-  .dxpr-theme-util-text-shadow-20 { text-shadow: 1px 1px rgba(0,0,0,0.2); }
+  .dxpr-theme-util-text-shadow { text-shadow: 1px 1px rgb(0 0 0 / 100%); }
+  .dxpr-theme-util-text-shadow-80 { text-shadow: 1px 1px rgb(0 0 0 / 80%); }
+  .dxpr-theme-util-text-shadow-60 { text-shadow: 1px 1px rgb(0 0 0 / 60%); }
+  .dxpr-theme-util-text-shadow-40 { text-shadow: 1px 1px rgb(0 0 0 / 40%); }
+  .dxpr-theme-util-text-shadow-20 { text-shadow: 1px 1px rgb(0 0 0 / 20%); }
 
   // Text muted with color support
   .dxpr-theme-util-text-muted { opacity: 0.75; }
@@ -126,27 +129,28 @@
   .dxpr-theme-util-overlay-gray {
     position:relative;
     z-index: 0;
-    &:after {
+
+    &::after {
+      background-color: #000;
       content: ' ';
       display: block;
+      height: 100%;
+      left:0;
+      opacity: 0.90;
       position: absolute;
       top:0;
-      left:0;
-      background-color: #000;
-      opacity: 0.90;
       width: 100%;
-      height: 100%;
       z-index: -1;
     }
   }
 
   .YTPOverlay { opacity: 0.9; }
-  .dxpr-theme-util-overlay-primary:after,.dxpr-theme-util-overlay-primary .YTPOverlay { background-color: dxpr-color('base'); }
-  .dxpr-theme-util-overlay-accent1:after,.dxpr-theme-util-overlay-accent1 .YTPOverlay { background-color: dxpr-color('accent1'); }
-  .dxpr-theme-util-overlay-accent2:after,.dxpr-theme-util-overlay-accent2 .YTPOverlay { background-color: dxpr-color('accent2'); }
-  .dxpr-theme-util-overlay-black:after,.dxpr-theme-util-overlay-black .YTPOverlay { background-color: #000; }
-  .dxpr-theme-util-overlay-white:after,.dxpr-theme-util-overlay-white .YTPOverlay { background-color: white; }
-  .dxpr-theme-util-overlay-gray:after,.dxpr-theme-util-overlay-gray .YTPOverlay { background-color: dxpr-color('text'); }
+  .dxpr-theme-util-overlay-primary::after,.dxpr-theme-util-overlay-primary .YTPOverlay { background-color: dxpr-color('base'); }
+  .dxpr-theme-util-overlay-accent1::after,.dxpr-theme-util-overlay-accent1 .YTPOverlay { background-color: dxpr-color('accent1'); }
+  .dxpr-theme-util-overlay-accent2::after,.dxpr-theme-util-overlay-accent2 .YTPOverlay { background-color: dxpr-color('accent2'); }
+  .dxpr-theme-util-overlay-black::after,.dxpr-theme-util-overlay-black .YTPOverlay { background-color: #000; }
+  .dxpr-theme-util-overlay-white::after,.dxpr-theme-util-overlay-white .YTPOverlay { background-color: white; }
+  .dxpr-theme-util-overlay-gray::after,.dxpr-theme-util-overlay-gray .YTPOverlay { background-color: dxpr-color('text'); }
 
   // Color helper classes
   .dxpr-theme-util-background-body { background-color: dxpr-color('body'); }
@@ -192,19 +196,20 @@
     .form-item,
     .form-actions,
     .webform-elements {
+      clear: none;
       display: block;
       float:left;
-      clear: none;
       margin-right: 20px;
     }
+
     .btn {
       padding: 12px 18px;
     }
   }
 
   .dxpr-theme-util-vcenter {
-    display: flex;
     align-items: center;
+    display: flex;
   }
 
 }

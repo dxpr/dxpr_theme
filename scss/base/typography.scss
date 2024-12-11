@@ -7,33 +7,33 @@
 
 body, .toooltip {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  font-weight: 400;
   font-style: normal;
+  font-weight: 400;
 }
 
 h1,h2,h3,h4,h5,h6,label,.field--label {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  font-weight: 700;
   font-style: normal;
+  font-weight: 700;
 }
 
 .dxpr-theme-header .nav {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  font-weight: 400;
   font-style: normal;
+  font-weight: 400;
 }
 
 .site-name, .navbar-brand {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  font-weight: 400;
   font-style: normal;
+  font-weight: 400;
 }
 
 blockquote, blockquote p {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  font-weight: 400;
-  font-style: italic;
   font-size: var(--dxt-setting-blockquote-font-size);
+  font-style: italic;
+  font-weight: 400;
   line-height: var(--dxt-setting-blockquote-line-height);
 }
 
@@ -57,21 +57,27 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: 0;
   text-transform: var(--dxt-setting-headings-uppercase);
 }
+
 h1 {
   font-size: var(--dxt-setting-h1-font-size)
 }
+
 h2 {
   font-size: var(--dxt-setting-h2-font-size)
 }
+
 h3, .block-title {
   font-size: var(--dxt-setting-h3-font-size)
 }
+
 h4 {
   font-size: var(--dxt-setting-h4-font-size)
 }
+
 h5 {
   font-size: $font-size-h5;
 }
+
 h6 {
   font-size: $font-size-h6;
 }
@@ -80,6 +86,7 @@ h3.field--label {
   font-size: $font-size-h4;
   margin-bottom: 0;
 }
+
 h3.field--label + div,
 h3.field--label + ul {
   margin-bottom: 10px;
@@ -95,6 +102,7 @@ h3.field--label + ul {
     //   content: '';
     // }
   }
+
   a {
     color: dxpr-color('text');
   }
@@ -104,18 +112,21 @@ a,
 .btn-link,
 .nav-link {
   color: dxpr-color('base');
+
   svg {
     fill: dxpr-color('base');
   }
 }
 
 a {
-  transition: color 200ms;
   text-decoration: none;
+  transition: color 200ms;
+
   &:hover,
   &:focus {
     outline: none;
   }
+
   svg {
     transition: fill 200ms;
   }
@@ -123,8 +134,9 @@ a {
 
 a:hover, a:focus,
 .btn-link:hover, .btn-link:focus  {
-  text-decoration: underline;
   color: dxpr-color('accent1');
+  text-decoration: underline;
+
   svg {
     fill: dxpr-color('accent1');
   }
@@ -132,12 +144,14 @@ a:hover, a:focus,
 
 h1, h2, h3, h4, h5, h6, .navbar-brand, th, .nav-tabs > li > a {
   color: dxpr-color('headings');
+
   a {
     color: dxpr-color('headings');
+
     &:hover,
     &:focus {
-      text-decoration: none;
       color: dxpr-color('base');
+      text-decoration: none;
     }
   }
 }
@@ -147,18 +161,20 @@ h1, h2, h3, h4, h5, h6, .navbar-brand, th, .nav-tabs > li > a {
 }
 
 hr, .card hr {
-  height: 0;
   border-top: 4px solid dxpr-color('card');
-  margin: 20px auto 20px var(--dxt-setting-divider-position);
-  border-top-width: var(--dxt-setting-divider-thickness);
   border-top-color: var(--dxt-setting-divider-color);
+  border-top-width: var(--dxt-setting-divider-thickness);
+  height: 0;
+  margin: 20px auto 20px var(--dxt-setting-divider-position);
   width: var(--dxt-setting-divider-length);
 }
+
 .region-sidebar-first hr,
 .region-sidebar-second hr {
-  margin-top: 10px;
   margin-bottom: 10px;
+  margin-top: 10px;
 }
+
 .dxpr-theme-footer hr {
   border-top-color: dxpr-color('footertext');
 }
@@ -169,9 +185,11 @@ hr, .card hr {
 
 .submitted {
   color: dxpr-color('graylight');
+
   a {
     color: dxpr-color('graylight');
     text-decoration: underline;
+
     &:hover, &:focus {
       text-decoration: none;
     }
@@ -185,24 +203,19 @@ hr, .card hr {
 .main-container .block-menu-block .nav {
   > li {
     float: none;
-    > a {
-      &:hover,
-      &:focus,
-      &.active {
-      }
-    }
   }
 }
 
 .region-sidebar-first,
 .region-sidebar-second {
   color: dxpr-color('graylight');
+
   a {
     color: dxpr-color('text');
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (width <= 768px) {
   body, p {
     font-size:  var(--dxt-setting-body-mobile-font-size);
   }
@@ -210,7 +223,26 @@ hr, .card hr {
   h2 { font-size: var(--dxt-setting-h2-mobile-font-size) }
   h3 { font-size: var(--dxt-setting-h3-mobile-font-size) }
   h4 { font-size: var(--dxt-setting-h4-mobile-font-size) }
+
   blockquote, .blockquote p {
     font-size: var(--dxt-setting-blockquote-mobile-font-size);
   }
+}
+
+#system-theme-settings #edit-typography .details-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#system-theme-settings #edit-typography .details-wrapper > details {
+  width: 100%;
+}
+
+#system-theme-settings #edit-typography  .details-wrapper > .js-form-item.form-item.js-form-type-range.form-type-range {
+  width: auto;
+}
+
+#system-theme-settings #edit-typography .details-wrapper > .js-form-item.form-item.js-form-type-range.form-type-range > .dxb-slider-container > .dxb-slider-wrapper > .dxb-slider-track > .js-form-item {
+  max-width: 200px;
+  width: auto;
 }

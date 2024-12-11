@@ -11,29 +11,29 @@
 // Primary tabs
 //
 .html .dxpr-theme-mini-tabs-wrapper {
-  pointer-events: none;
   display: block;
   float: left;
   margin-bottom: 10px;
+  pointer-events: none;
 
   .tabs {
     border: none;
-    box-shadow: 0 3px 10px 0 rgba(50, 50, 50, 0.23);
+    box-shadow: 0 3px 10px 0 rgba(50 50 50 / 23%);
 
     .tabs__tab {
+      border: none;
       margin: 0;
       padding: 0;
-      border: none;
 
       .tabs__link {
         background-color: var(--dxt-color-header);
-        color: var(--dxt-color-headertext);
-        padding: 8px;
-        font-size: 14px;
-        margin: 0;
         border: none;
+        color: var(--dxt-color-headertext);
+        font-size: 14px;
+        line-height: 1.4286;
+        margin: 0;
+        padding: 8px;
         pointer-events: auto;
-        line-height: 1.42857143;
 
         &:hover,
         &:focus {
@@ -46,11 +46,8 @@
 
         a {
           border: none;
+          color: var(--dxt-color-base);
         }
-      }
-
-      &.active a {
-        color: var(--dxt-color-base);
       }
     }
   }
@@ -65,34 +62,35 @@
 // Secondary tabs.
 //
 .html .tabs--secondary {
-  float: left;
   clear: both;
-  margin: 10px 0 10px;
+  float: left;
+  margin: 10px 0;
 }
 
 //
 // Mobile layout.
 //
-@media screen and (max-width: 768px) {
+@media (max-width >= 768px) {
   .html.user-logged-in .block-local-tasks-block nav.tabs {
     // Make space for contextual links.
-    padding-top: 2rem;
+    padding-top: 32px;
   }
+
   .html .dxpr-theme-mini-tabs-wrapper {
     float: none;
     width: 100%;
 
-    --tab-height: 3rem;
+    --tab-height: 48px;
 
     .tabs {
       background: var(--dxt-color-graylighter);
       display: flex;
-      width: 100%;
+      flex-direction: column;
+      list-style: none;
       margin: 0;
       margin-inline-start: 0;
       padding: 0;
-      list-style: none;
-      flex-direction: column;
+      width: 100%;
 
       &.is-expanded .tabs__tab {
         display: flex;
@@ -104,14 +102,14 @@
 
       .tabs__tab {
         display: none;
-        margin: 1px 0 0 0;
+        margin: 1px 0 0;
         width: 100%;
 
         &.active {
           display: flex;
           position: relative;
 
-          &:before {
+          &::before {
             border-left: 3px solid var(--dxt-color-link);
             border-top-left-radius: 2px;
             content: '';
@@ -120,7 +118,7 @@
             left: -1px;
             position: absolute;
             top: -1px;
-            width: 0.1875rem;
+            width: 3px;
             z-index: 5;
           }
         }
@@ -130,13 +128,13 @@
         }
 
         .tabs__link {
+          align-items: center;
           display: flex;
           flex-grow: 1;
-          align-items: center;
           height: var(--tab-height);
-          padding: 0 1rem;
-          text-decoration: none;
           line-height: 1;
+          padding: 0 16px;
+          text-decoration: none;
 
           &.active {
             font-weight: 600;
@@ -156,18 +154,18 @@
     }
 
     .tabs__trigger {
-      display: flex;
       align-items: center;
-      justify-content: center;
-      width: var(--tab-height);
-      margin-block: 0;
-      margin-inline: 1px 0;
-      cursor: pointer;
       background-color: var(--dxt-color-header);
       border: 0 none;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      margin-block: 0;
+      margin-inline: 1px 0;
       margin-left: 1px;
       pointer-events: auto;
       transition: all 0.15s ease-in-out;
+      width: var(--tab-height);
 
       &:hover, &:focus {
         background-color: var(--dxt-color-graylighter) !important;
@@ -181,20 +179,20 @@
     }
 
     .tabs__trigger-icon {
-      position: relative;
       display: block;
-      width: 1rem;
-      height: 0.625rem;
+      height: 10px;
       margin-block-start: -2px;
+      position: relative;
+      width: 16px;
     }
 
     .tabs__trigger-icon > span {
-      position: absolute;
-      inset-inline-start: 0;
-      display: block;
-      width: 100%;
-      transition: transform 0.2s, opacity 0.2s, top 0.2s;
       border-block-start: solid 2px var(--dxt-color-link);
+      display: block;
+      inset-inline-start: 0;
+      position: absolute;
+      transition: transform 0.2s, opacity 0.2s, top 0.2s;
+      width: 100%;
     }
 
     .tabs__trigger-icon > span:nth-child(1) {

@@ -4,15 +4,14 @@ html {
   // Prevent horizontal scrolling on small devices
   // Also important for SEO, needed for mobile-friendly test
   overflow: hidden;
-  overflow-x: hidden;
-  overflow-y: visible;
+  overflow: hidden visible;
 }
 
 body {
   background: dxpr-color('body');
-  background-size: cover;
   background-attachment: fixed;
   background-position: center center;
+  background-size: cover;
   font-size:  var(--dxt-setting-body-font-size);
 }
 
@@ -26,16 +25,17 @@ body {
   margin-left: calc(-1 * var(--dxt-setting-gutter-horizontal) / 2);
   margin-right: calc(-1 * var(--dxt-setting-gutter-horizontal) / 2);
 }
+
 .row > * {
+  margin-bottom: var(--dxt-setting-gutter-vertical);
   padding-left: calc(var(--dxt-setting-gutter-horizontal) / 2);
   padding-right: calc(var(--dxt-setting-gutter-horizontal) / 2);
-  margin-bottom: var(--dxt-setting-gutter-vertical);
 }
 
 .container {
+  max-width: var(--dxt-setting-layout-max-width);
   padding-left: var(--dxt-setting-gutter-container);
   padding-right: var(--dxt-setting-gutter-container);
-  max-width: var(--dxt-setting-layout-max-width);
 }
 
 // navbar and page-title padding is not user-controlled and should be kept
@@ -47,25 +47,28 @@ body {
   padding-right: calc(var(--dxt-setting-gutter-horizontal) / 2);
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (width <= 1200px) {
   .container {
     padding-left: calc(var(--dxt-setting-gutter-container-mobile) / 2);
     padding-right: calc(var(--dxt-setting-gutter-container-mobile) / 2);
   }
+
   .navbar-container.dxpr-theme-fluid,
   .page-title-container.dxpr-theme-fluid,
   .container-fluid {
     padding-left: calc(var(--dxt-setting-gutter-horizontal-mobile) / 2);
     padding-right: calc(var(--dxt-setting-gutter-horizontal-mobile) / 2);
   }
+
   .row {
     margin-left: calc(-1 * var(--dxt-setting-gutter-horizontal-mobile) / 2);
     margin-right: calc(-1 * var(--dxt-setting-gutter-horizontal-mobile) / 2);
   }
+
   .row > * {
+    margin-bottom: var(--dxt-setting-gutter-vertical-mobile);
     padding-left: calc(var(--dxt-setting-gutter-horizontal-mobile) / 2);
     padding-right: calc(var(--dxt-setting-gutter-horizontal-mobile) / 2);
-    margin-bottom: var(--dxt-setting-gutter-vertical-mobile);
   }
 }
 
@@ -73,10 +76,11 @@ body.full-width-content {
   .main-container > .row,
   .main-container > .row > section,
   .main-container {
-    width: 100%;
     margin: 0;
     padding: 0;
+    width: 100%;
   }
+
   .main-container > .row > aside {
     display: none;
   }
@@ -97,36 +101,38 @@ body.full-width-content {
 }
 
 .region-block-design .block {
-  padding: var(--dxt-setting-block-padding);
+  background-color: var(--dxt-setting-block-background);
   border-color: var(--dxt-setting-block-border-color);
   border-radius: var(--dxt-setting-block-border-radius);
   border-style: solid;
   border-width: var(--dxt-setting-block-border);
-  background-color: var(--dxt-setting-block-background);
+  padding: var(--dxt-setting-block-padding);
 }
+
 .region-block-design .block-title {
   background-color: var(--dxt-setting-title-background);
   border-color: var(--dxt-setting-title-border-color);
-  border-width: var(--dxt-setting-title-border);
-  border-style: solid;
-  font-size: var(--dxt-setting-title-font-size);
-  text-align: var(--dxt-setting-title-align);
   border-radius: var(--dxt-setting-title-border-radius);
+  border-style: solid;
+  border-width: var(--dxt-setting-title-border);
+  font-size: var(--dxt-setting-title-font-size);
   padding: var(--dxt-setting-title-padding);
+  text-align: var(--dxt-setting-title-align);
 }
+
 .region-block-design .block-hr {
-  display: block;
   border-top-color: var(--dxt-setting-block-divider-color);
   border-top-width: var(--dxt-setting-block-divider-thickness);
-  width: var(--dxt-setting-block-divider-length);
+  display: block;
   margin:
     var(--dxt-setting-block-divider-spacing)
     auto
     var(--dxt-setting-block-divider-spacing)
     var(--dxt-setting-divider-position-block);
+  width: var(--dxt-setting-block-divider-length);
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (width <= 768px) {
   .region-block-design .block-title {
     font-size: var(--dxt-setting-title-font-size-mobile);
   }
@@ -145,6 +151,7 @@ img {
   height: auto;
   max-width: 100%; // can't remove this because then image will overflow parent elements.
 }
+
 // exception for revolution slider kenburns effect
 html.js .kenburnimg img {
   max-width: none;
@@ -155,10 +162,11 @@ html.js .kenburnimg img {
 .node {
   // margin-bottom: 30px;
   .submitted {
-    margin-bottom: 30px;
     display: block;
+    margin-bottom: 30px;
     padding: 15px 0;
   }
+
   &.node-blog-node-teaser {
     .links {
       margin-top: -15px;
@@ -180,36 +188,44 @@ html.js .kenburnimg img {
 // FOOTER
 .dxpr-theme-footer {
   background-color: dxpr-color('footer');
-  color: dxpr-color('footertext');
   border-color: dxpr-color('footertext');
+  color: dxpr-color('footertext');
   padding: 0;
+
   .footer-container {
-    padding-top: 15px;
     padding-bottom: 0;
+    padding-top: 15px;
   }
+
   h1, h2, h3, h4, h5, h6 {
     color: dxpr-color('footertext');
   }
+
   a {
     color: dxpr-color('footertext');
+
     &:hover,
     &:focus {
       color: dxpr-color('footertext');
     }
   }
+
   ul.contact-info {
     padding: 1em 0;
+
     li {
       background: none;
-      padding: 0;
       font-size: 1.6em;
       line-height: 1.7em;
+      padding: 0;
     }
   }
+
   .block {
     margin-bottom: 0;
     padding-bottom: 0;
   }
+
   .badge {
     font-size: 11px;
     font-weight: normal;
@@ -221,21 +237,26 @@ html.js .kenburnimg img {
 // https://css-tricks.com/couple-takes-sticky-footer/
 .html--dxpr-theme-sticky-footer {
   height: 100%;
+
   body,
   .dialog-off-canvas-main-canvas {
-    height: 100%;
     display: flex;
     flex-direction: column;
+    height: 100%;
   }
+
   .wrap-containers {
     flex: 1 0 auto;
   }
+
   .body--dxpr-theme-nav-desktop .dxpr-theme-header--top.dxpr-theme-header--navbar-pull-down {
     min-height: 45px;
   }
+
   .body--dxpr-theme-nav-desktop .dxpr-theme-header--top.affix {
     min-height: 60px;
   }
+
   footer {
     flex-shrink: 0;
   }
@@ -244,4 +265,11 @@ html.js .kenburnimg img {
 // Region content style
 .region-content {
   padding: 0;
+}
+
+body #edit-block-advanced #edit-block-divider-thickness-wrapper,
+body #edit-block-advanced #edit-block-divider-length-wrapper,
+body #edit-block-advanced #edit-block-divider-spacing-wrapper,
+body #edit-layout #edit-box-max-width-wrapper, {
+  border: none;
 }

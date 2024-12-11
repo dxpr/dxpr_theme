@@ -7,12 +7,12 @@
  * Place your custom PHP code in this file.
  */
 
-use Drupal\block\Entity\Block;
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Markup;
 use Drupal\Core\Template\Attribute;
+use Drupal\block\Entity\Block;
 use Drupal\node\NodeInterface;
 
 /**
@@ -202,7 +202,6 @@ function dxpr_theme_preprocess_page(&$variables) {
     'dxpr_theme/bootstrap-3',
     'dxpr_theme/bootstrap-theme',
     // @todo Include only if needed.
-    'dxpr_theme/jquery-ui',
     // DXPR THEME BASE.
     'dxpr_theme/forms',
     'dxpr_theme/layout',
