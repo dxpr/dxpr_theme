@@ -1,12 +1,10 @@
 global-styling:
   js:
-    vendor/classie.js: {}
-    js/minified/dxpr-theme-multilevel-mobile-nav.min.js: { minified: true }
-    js/minified/dxpr-theme-header.min.js: { minified: true }
+    js/minified/dxpr-theme-header.bundle.min.js: { minified: true }
+    js/minified/dxpr-theme-multilevel-mobile-nav.bundle.min.js: { minified: true }
   dependencies:
     - core/drupal
     - core/once
-    - core/modernizr
 
 bootstrap-3:
   css:
@@ -160,7 +158,7 @@ admin:
 admin.themesettings:
   js:
     vendor/color-wheel/reinvented-color-wheel.min.js: { minified: true }
-    js/minified/dxpr-theme-settings.admin.min.js: {}
+    js/minified/dxpr-theme-settings-admin.bundle.min.js: { minified: true }
     vendor/dxb_slider/dxb-slider.min.js: { minified: true }
   css:
     component:
