@@ -158,13 +158,13 @@ admin:
 admin.themesettings:
   js:
     vendor/color-wheel/reinvented-color-wheel.min.js: { minified: true }
-    js/minified/dxpr-theme-settings.admin.min.js: {}
-    vendor/dxb-slider/dxb-slider.min.js: { minified: true }
+    js/minified/dxpr-theme-settings-admin.bundle.min.js: { minified: true }
+    vendor/dxb_slider/dxb-slider.min.js: { minified: true }
   css:
     component:
       vendor/color-wheel/reinvented-color-wheel.min.css: { minified: true}
       css/dxpr-theme.admin.themesettings.css: {}
-      vendor/dxb-slider/dxb-slider.min.css: { minified: true }
+      vendor/dxb_slider/dxb-slider.min.css: { minified: true }
   dependencies:
     - core/drupal
     - core/once
@@ -178,10 +178,10 @@ gin_toolbar:
 dxb_slider:
   version: 1.x
   js:
-    vendor/DXB-Slider/dxb-slider.js: {}
+    vendor/dxb_slider/dxb-slider.js: {}
   css:
     theme:
-      vendor/DXB-Slider/dxb-slider.css: {}
+      vendor/dxb_slider/dxb-slider.css: {}
 
 custom_animations:
   css:

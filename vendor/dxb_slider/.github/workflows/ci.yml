@@ -1,0 +1,28 @@
+name: CI
+
+on:
+  push:
+    branches: [main, 2.x]
+  pull_request:
+    branches: [main, 2.x]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      HUSKY: 0  # Disable Husky in CI
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '22'
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Run tests
+      run: npm test

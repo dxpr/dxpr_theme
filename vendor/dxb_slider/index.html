@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DXB Slider Demo</title>
+    <link rel="stylesheet" href="dxb-slider.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+            max-width: 350px;
+        }
+        label {
+            margin-bottom: 10px;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <h1>DXB Slider Demo</h1>
+
+    <h2>LTR (Left-to-Right) Mode</h2>
+    
+    <!-- Font size -->
+    <label for="fontSize">Font size</label>
+    <input type="range" 
+           data-dxb-slider 
+           id="fontSize"
+           min="0" max="100" 
+           value="58">
+
+    <!-- Drop shadow -->
+    <label for="dropShadow">Drop shadow</label>
+    <input type="range" 
+           data-dxb-slider 
+           id="dropShadow"
+           min="1" max="5" 
+           value="3">
+
+    <!-- Temperature -->
+    <label for="temperature">Temperature (°C)</label>
+    <input type="range" 
+           data-dxb-slider 
+           id="temperature"
+           min="0" max="100" 
+           value="34"
+           step="0.1">
+
+    <h2>RTL (Right-to-Left) Mode</h2>
+    
+    <div dir="rtl" lang="ar">
+        <!-- Font size RTL -->
+        <label for="fontSizeRTL">حجم الخط</label>
+        <input type="range" 
+               data-dxb-slider 
+               id="fontSizeRTL"
+               min="0" max="100" 
+               value="51">
+
+        <!-- Drop shadow RTL -->
+        <label for="dropShadowRTL">تأثير الظل</label>
+        <input type="range" 
+               data-dxb-slider 
+               id="dropShadowRTL"
+               min="1" max="5" 
+               value="3">
+
+        <!-- Weight RTL -->
+        <label for="weightRTL">الوزن (كجم)</label>
+        <input type="range" 
+               data-dxb-slider 
+               id="weightRTL"
+               min="0" max="100" 
+               value="75.5"
+               step="0.1">
+    </div>
+
+    <script src="dxb-slider.min.js"></script>
+</body>
+</html>

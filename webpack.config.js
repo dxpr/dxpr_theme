@@ -4,6 +4,7 @@ module.exports = {
   entry: {
     'dxpr-theme-header': './js/dist/header/dxpr-theme-header.js',
     'dxpr-theme-multilevel-mobile-nav': './js/dist/multilevel-mobile-nav/dxpr-theme-multilevel-mobile-nav.js',
+    'dxpr-theme-settings-admin': './js/dist/settings-admin/dxpr-theme-settings-admin.js',
   },
   output: {
     filename: '[name].bundle.min.js',

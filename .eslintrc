@@ -107,6 +107,7 @@
     "preview": true,
     "Twig": true,
     "window": true,
-    "WOW": true
+    "WOW": true,
+    "ReinventedColorWheel": true
   }
 }
