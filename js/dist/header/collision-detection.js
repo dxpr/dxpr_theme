@@ -5,7 +5,7 @@
  * @param {DOMRect} rect2 - The second rectangle.
  * @returns {boolean} - True if the rectangles intersect, otherwise false.
  */
-function dxprThemeHit(rect1, rect2) {
+function dxprThemeCollisionCheck(rect1, rect2) {
   return !(
     rect1.right < rect2.left ||
     rect1.left > rect2.right ||
@@ -14,4 +14,4 @@ function dxprThemeHit(rect1, rect2) {
   );
 }
 
-module.exports = { dxprThemeHit };
+module.exports = { dxprThemeCollisionCheck };
