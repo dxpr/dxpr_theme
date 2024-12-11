@@ -1,5 +1,5 @@
 type: theme
-core_version_requirement: ^9.4 || ^10 || ^11
+core_version_requirement: ^9.3 || ^10 || ^11
 base theme: bootstrap5
 
 name: 'DXPR Theme'

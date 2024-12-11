@@ -199,7 +199,7 @@ function dxpr_theme_preprocess_page(&$variables) {
   // CSS to load on every page.
   $dxpr_theme_libraries = [
     // Bootstrap TAILORING.
-    'dxpr_theme/bootstrap-3',
+    'dxpr_theme/bootstrap-5',
     'dxpr_theme/bootstrap-theme',
     // @todo Include only if needed.
     // DXPR THEME BASE.

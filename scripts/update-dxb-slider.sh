@@ -7,8 +7,8 @@ npm update dxb_slider
 # 2. Define source and destination paths
 SLIDER_JS_SRC="./node_modules/dxb_slider/dxb-slider.min.js"
 SLIDER_CSS_SRC="./node_modules/dxb_slider/dxb-slider.min.css"
-VENDOR_JS_DEST="./vendor/dxb-slider/dxb-slider.min.js"
-VENDOR_CSS_DEST="./vendor/dxb-slider/dxb-slider.min.css"
+VENDOR_JS_DEST="./vendor/dxb_slider/dxb-slider.min.js"
+VENDOR_CSS_DEST="./vendor/dxb_slider/dxb-slider.min.css"
 
 # 3. Create vendor directory if it does not exist
 echo "Creating vendor directory if not exists..."

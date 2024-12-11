@@ -29,7 +29,7 @@ libraries:
 # Uncomment to override libraries as needed.
 #
 #libraries-override:
-#  dxpr_theme/bootstrap-3: false
+#  dxpr_theme/bootstrap-5: false
 #  dxpr_theme/bootstrap-theme: false
 #  dxpr_theme/footer-menu: false
 #  dxpr_theme/forms: false

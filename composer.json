@@ -23,6 +23,6 @@
         }
     ],
     "require": {
-        "drupal/bootstrap5": "^3"
+        "drupal/bootstrap5": "^3 || ^4"
     }
 }

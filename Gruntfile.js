@@ -21,7 +21,7 @@ module.exports = function (grunt) {
             src: ['*.js', '!dxpr-theme-header.js',
                           '!dxpr-theme-multilevel-mobile-nav.js',
                           '!dxpr-theme-full-screen-search.js',
-                          '!dxpr-theme-settings.admin.js',
+                          '!dxpr-theme-settings-admin.js',
                           '!dxpr-theme-tabs.js',
 
             ],
@@ -43,7 +43,7 @@ module.exports = function (grunt) {
             src: ['*.min.js', '!dxpr-theme-header.bundle.min.js',
                               '!dxpr-theme-multilevel-mobile-nav.bundle.min.js',
                               '!dxpr-theme-full-screen-search.bundle.min.js',
-                              '!dxpr-theme-settings.admin.bundle.min.js',
+                              '!dxpr-theme-settings-admin.bundle.min.js',
                               '!dxpr-theme-tabs.bundle.min.js'],
             dest: 'js/minified/',
             ext: '.min.js',
