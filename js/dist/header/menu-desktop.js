@@ -55,12 +55,15 @@ function setupDesktopMenu() {
       );
       const itemsCount = dropdownElement.querySelectorAll("li").length;
 
-      const columns =
-        headings.length > 0
-          ? headings.length
-          : itemsCount <= 15
-          ? Math.floor(itemsCount / 8) + 1
-          : 2;
+      let columns;
+
+      if (headings.length > 0) {
+        columns = headings.length;
+      } else if (itemsCount <= 15) {
+        columns = Math.floor(itemsCount / 8) + 1;
+      } else {
+        columns = 2;
+      }
 
       if (columns > 2) {
         dropdownElement.style.width = "100%";
