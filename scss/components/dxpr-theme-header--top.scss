@@ -391,6 +391,13 @@ html.js .gin--vertical-toolbar .dxpr-theme-header--fixed {
   color: var(--dxt-setting-dropdown-text-color);
 }
 
+.dxpr-scheme-darkmode #navbar.dxpr-theme-header--top .dropdown,
+.dxpr-scheme-darkmode #navbar.dxpr-theme-header--top .dropdown-menu a,
+.dxpr-scheme-powerfulenergetic #navbar.dxpr-theme-header--top .dropdown,
+.dxpr-scheme-powerfulenergetic.dxpr-theme-header--top .dropdown-menu a {
+  color: #b0b0b0;
+}
+
 #navbar.dxpr-theme-header--top .dropdown-menu a:hover,
 #navbar.dxpr-theme-header--top .dropdown-menu a:focus {
   background-color: var(--dxt-setting-dropdown-hover-background);
