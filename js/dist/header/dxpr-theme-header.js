@@ -15,7 +15,6 @@ const { adjustMenuPosition } = require("./menu-position");
 const { applyFixedHeaderStyles } = require("./apply-fixed-header-styles");
 const { dxpr_themeMenuGovernorBodyClass } = require("./menu-governor-body");
 const { dxpr_themeMenuOnResize } = require("./menu-resize-handler");
-const { setupDarkBackgroundMenu } = require("./dark-background-menu");
 
 (function (Drupal, once) {
   let dxpr_themeMenuState = "";
@@ -127,6 +126,4 @@ const { setupDarkBackgroundMenu } = require("./dark-background-menu");
       dxpr_themeMenuGovernor(document);
     }
   });
-
-  setupDarkBackgroundMenu();
 })(Drupal, once);

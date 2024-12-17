@@ -73,8 +73,7 @@
           "Rect",
           "Breakpoint",
           "keyup",
-          "calc",
-          "luminance"
+          "calc"
         ],
         "skipIfMatch": [
           "{\\w+}", // E.g. "{paramName}"
