@@ -9,6 +9,7 @@ package: DXPR
 dependencies:
   - drupal:file
   - dxpr_theme_helper:dxpr_theme_helper
+  - drupal:media_library_form_element
 
 regions:
   secondary_header: 'Secondary Header'
