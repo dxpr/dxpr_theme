@@ -13,6 +13,7 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Markup;
 use Drupal\Core\Template\Attribute;
 use Drupal\block\Entity\Block;
+use Drupal\media\MediaInterface;
 use Drupal\node\NodeInterface;
 
 /**
@@ -83,6 +84,7 @@ function dxpr_theme_preprocess_html(&$variables) {
       if ($node->hasField('field_dth_body_background')) {
         // Get the module handler service.
         $module_handler = \Drupal::service('module_handler');
+
         // Check if the module is enabled.
         if ($module_handler->moduleExists('media_library')) {
           $media = $node->get('field_dth_body_background')->entity ?? 0;
@@ -193,6 +195,7 @@ function dxpr_theme_preprocess_page(&$variables) {
       if ($node->hasField('field_dth_page_title_backgrou')) {
         // Get the module handler service.
         $module_handler = \Drupal::service('module_handler');
+
         // Check if the module is enabled.
         if ($module_handler->moduleExists('media_library')) {
           $media = $node->get('field_dth_page_title_backgrou')->entity ?? 0;

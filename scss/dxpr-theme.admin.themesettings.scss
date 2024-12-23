@@ -175,6 +175,17 @@ $border-color: #222330;
     }
   }
 
+  .media-library-item {
+    width: auto;
+
+    .media-library-item__remove {
+      font-size: small;
+      height: auto;
+      padding: 6px 10px;
+      width: auto;
+    }
+  }
+
   // selects fix
   .form-item-field-settings-granularity {
     .option.checkbox.control-label {
