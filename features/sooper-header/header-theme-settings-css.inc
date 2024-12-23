@@ -222,4 +222,57 @@ function header_theme_settings_css(string $theme, string &$css, array $palette) 
     $css .= "}\n\n";
   }
 
+  // Handle dropdown text color.
+  $dropdown_text_color = theme_get_setting('dropdown_text_color');
+  $dropdown_custom_color = theme_get_setting('dropdown_text_color_custom');
+  $color_palette = unserialize(theme_get_setting('color_palette'));
+  $headertext = $color_palette['headertext'];
+
+//   dump($color_palette); headertext
+  // dump(theme_get_setting('color_palette'));
+
+  if ($dropdown_text_color === '') {
+    // Default to header text color if dropdown color is not set.
+    $css .= "
+    #block-dxpr-theme-main-menu .dropdown-menu {
+      .dropdown {
+        color: $headertext !important;
+
+        * {
+          color: $headertext !important;
+        }
+      }
+    }
+  ";
+  } else {
+    // Determine the dropdown text color.
+    if ($dropdown_text_color === 'custom') {
+      $color_value = $dropdown_custom_color; // Use the custom color.
+    }
+    else {
+      // Fetch the color from the palette if available.
+      $color_value = isset($color_palette[$dropdown_text_color])
+        ? $color_palette[$dropdown_text_color]
+        : "dxpr-color('$dropdown_text_color')"; // Fallback to dxpr-color if not in palette.
+    }
+
+//    SADA RJEŠI DA KADA SE ODABERE MENU TEXT DA SE KUPI TA BOJA NA MENU TEXT
+    // Generate the CSS for the dropdown text color.
+    $css .= "
+    #block-dxpr-theme-main-menu {
+     .dropdown-menu {
+        .dropdown {
+          color: $color_value !important;
+
+          * {
+            color: $color_value !important;
+          }
+        }
+      }
+      .expanded.dropdown a {
+        color: $headertext;
+      }
+    }
+  ";
+  }
 }
