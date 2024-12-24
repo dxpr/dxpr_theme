@@ -222,4 +222,102 @@ function header_theme_settings_css(string $theme, string &$css, array $palette) 
     $css .= "}\n\n";
   }
 
+  // Handle dropdown text and menu text color.
+  $dropdown_text_color = theme_get_setting('dropdown_text_color');
+  $dropdown_custom_color = theme_get_setting('dropdown_text_color_custom');
+  $menu_text_color = theme_get_setting('menu_text_color');
+  $menu_text_color_custom = theme_get_setting('menu_text_color_custom');
+  $color_palette = unserialize(theme_get_setting('color_palette'), ['allowed_classes' => FALSE]);
+  $headertext = $color_palette['headertext'];
+
+  /**
+   * This function returns the custom color if specified,
+   * otherwise it fetches the color from the palette.
+   */
+  function resolve_color($color, $custom_color, $color_palette) {
+    if ($color === 'custom') {
+      // Use the custom color.
+      return $custom_color;
+    }
+    // Fallback to default color format.
+    return $color_palette[$color] ?? "dxpr-color('$color')";
+  }
+
+  // Resolve dropdown and menu text colors using the helper function.
+  $dropdown_color_value = resolve_color($dropdown_text_color, $dropdown_custom_color, $color_palette);
+  $menu_color_value = resolve_color($menu_text_color, $menu_text_color_custom, $color_palette);
+
+  if ($dropdown_text_color === '' && $menu_text_color === '') {
+    // Handles the case where both dropdown and menu text colors are not set.
+    $css .= "
+    #block-dxpr-theme-main-menu .dropdown-menu {
+      .dropdown {
+        color: $headertext !important;
+
+        * {
+          color: $headertext !important;
+        }
+      }
+    }
+  ";
+  }
+  elseif ($dropdown_text_color === '' && $menu_text_color !== '') {
+    // Handles the case where the dropdown color
+    // is not set but the menu text color is set.
+    $css .= "
+    #block-dxpr-theme-main-menu {
+     .dropdown-menu {
+        .dropdown {
+          color: $headertext !important;
+
+          * {
+            color: $headertext !important;
+          }
+        }
+      }
+    }
+    #navbar #block-dxpr-theme-main-menu  .expanded.dropdown a {
+      color: $menu_color_value;
+    }
+  ";
+  }
+  elseif ($dropdown_text_color !== '' && $menu_text_color === '') {
+    // Handles the case where the dropdown color
+    // is set but the menu text color is not.
+    $css .= "
+    #block-dxpr-theme-main-menu {
+     .dropdown-menu {
+        .dropdown {
+          color: $dropdown_color_value !important;
+
+          * {
+            color: $dropdown_color_value !important;
+          }
+        }
+      }
+      .expanded.dropdown a {
+        color: $headertext;
+      }
+    }
+  ";
+  }
+  else {
+    // Handles the case where both dropdown and menu text colors are set.
+    $css .= "
+    #block-dxpr-theme-main-menu {
+     .dropdown-menu {
+        .dropdown {
+          color: $dropdown_color_value !important;
+
+          * {
+            color: $dropdown_color_value !important;
+          }
+        }
+      }
+      .expanded.dropdown a {
+        color: $menu_color_value;
+      }
+    }
+  ";
+  }
 }
