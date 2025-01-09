@@ -40,93 +40,70 @@ function setupDesktopMenu() {
 
   const bodyWidth = document.body.clientWidth;
   const margin = 10;
+  let columns;
 
-  function handleMouseOver(toggleElement) {
-    const dropdownElement = toggleElement.nextElementSibling;
+  document
+    .querySelectorAll("#dxpr-theme-main-menu .menu .dropdown-menu")
+    .forEach((dropdownElement) => {
+      dropdownElement.parentElement.addEventListener(
+        "mouseenter",
+        () => {
+          const width = dropdownElement.offsetWidth; // Dobijanje širine na hover
+          // console.log("width je " + width);
 
-    if (
-      dropdownElement &&
-      dropdownElement.classList.contains("dropdown-menu")
-    ) {
-      if (dropdownElement.dataset.widthSet === "true") return;
+          const headings = dropdownElement.querySelectorAll(
+            ".dxpr-theme-megamenu__heading"
+          );
 
-      const headings = dropdownElement.querySelectorAll(
-        ".dxpr-theme-megamenu__heading",
-      );
-      const itemsCount = dropdownElement.querySelectorAll("li").length;
+          let columns;
+          if (headings.length > 0) {
+            columns = headings.length;
+          } else {
+            columns =
+              Math.floor(dropdownElement.querySelectorAll("li").length / 8) + 1;
+          }
 
-      let columns;
+          // console.log(columns);
 
-      if (headings.length > 0) {
-        columns = headings.length;
-      } else if (itemsCount <= 15) {
-        columns = Math.floor(itemsCount / 8) + 1;
-      } else {
-        columns = 2;
-      }
+          if (columns > 2) {
+            dropdownElement.style.width = "100%";
+            dropdownElement.style.left = "0";
+            dropdownElement.parentElement.style.position = "static";
+            dropdownElement
+              .querySelectorAll(".dropdown-menu > li")
+              .forEach((li) => {
+                li.style.width = `${100 / columns}%`;
+                console.log('Preko dvije kolone je width '+ li.style.width);
+              });
+          } else {
+            if (columns > 1) {
+              console.log("JE li ovo 2 kolone");
+              dropdownElement.style.minWidth = `${width * columns + 2}px`;
+              dropdownElement.querySelectorAll(":scope > li").forEach((li) => {
+                li.style.width = `${width}px`;
+                console.log('Dvije kolone je width '+ li.style.width);
+              });
+            }
 
-      if (columns > 2) {
-        dropdownElement.style.width = "100%";
-        setTimeout(() => {
-          dropdownElement.style.left = "0";
-        }, 0);
-        dropdownElement.style.setProperty("display", "flex");
-        dropdownElement.parentElement.style.position = "static";
-        dropdownElement.querySelectorAll(":scope > li").forEach((li) => {
-          li.style.minWidth = `${100 / columns}%`;
-        });
-      } else {
-        if (!dropdownElement.dataset.initialWidth) {
-          dropdownElement.dataset.initialWidth = dropdownElement.offsetWidth;
-        }
-
-        const initialWidth = parseFloat(dropdownElement.dataset.initialWidth);
-
-        dropdownElement.style.minWidth = `${initialWidth * columns + 2}px`;
-        dropdownElement.querySelectorAll(":scope > li").forEach((li) => {
-          li.style.width = `${initialWidth}px`;
-        });
-      }
-
-      const topLevelItem = dropdownElement.parentElement;
-      const delta = Math.round(
-        bodyWidth -
-          topLevelItem.offsetLeft -
-          dropdownElement.offsetWidth -
-          margin,
-      );
-      if (delta < 0) {
-        dropdownElement.style.left = `${delta}px`;
-      }
-
-      dropdownElement.dataset.widthSet = "true";
-    }
-  }
-
-  function handleMouseOut(toggleElement) {
-    const dropdownElement = toggleElement.nextElementSibling;
-
-    if (
-      dropdownElement &&
-      dropdownElement.classList.contains("dropdown-menu")
-    ) {
-      dropdownElement.style.removeProperty("display");
-      dropdownElement.dataset.widthSet = "false";
-    }
-  }
-
-  function setupDropdownEvents() {
-    document.querySelectorAll(".dropdown-toggle").forEach((toggleElement) => {
-      toggleElement.addEventListener("mouseover", () =>
-        handleMouseOver(toggleElement),
-      );
-      toggleElement.addEventListener("mouseout", () =>
-        handleMouseOut(toggleElement),
+            const topLevelItem = dropdownElement.parentElement;
+            setTimeout(() => {
+              const delta = Math.round(
+                bodyWidth -
+                topLevelItem.offsetLeft -
+                dropdownElement.offsetWidth -
+                margin
+              );
+              if (delta < 0) {
+                dropdownElement.style.left = `${delta}px`;
+              }
+            }, 0);
+          }
+        },
+        { once: true } // Osigurava da se event listener pokrene samo jednom
       );
     });
-  }
 
-  setupDropdownEvents();
+
 }
 
 module.exports = { setupDesktopMenu };
