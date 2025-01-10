@@ -40,7 +40,6 @@ function setupDesktopMenu() {
 
   const bodyWidth = document.body.clientWidth;
   const margin = 10;
-  let columns;
 
   document
     .querySelectorAll("#dxpr-theme-main-menu .menu .dropdown-menu")
@@ -48,11 +47,10 @@ function setupDesktopMenu() {
       dropdownElement.parentElement.addEventListener(
         "mouseenter",
         () => {
-          const width = dropdownElement.offsetWidth; // Dobijanje širine na hover
-          // console.log("width je " + width);
+          const width = dropdownElement.offsetWidth;
 
           const headings = dropdownElement.querySelectorAll(
-            ".dxpr-theme-megamenu__heading"
+            ".dxpr-theme-megamenu__heading",
           );
 
           let columns;
@@ -63,8 +61,6 @@ function setupDesktopMenu() {
               Math.floor(dropdownElement.querySelectorAll("li").length / 8) + 1;
           }
 
-          // console.log(columns);
-
           if (columns > 2) {
             dropdownElement.style.width = "100%";
             dropdownElement.style.left = "0";
@@ -73,15 +69,12 @@ function setupDesktopMenu() {
               .querySelectorAll(".dropdown-menu > li")
               .forEach((li) => {
                 li.style.width = `${100 / columns}%`;
-                console.log('Preko dvije kolone je width '+ li.style.width);
               });
           } else {
             if (columns > 1) {
-              console.log("JE li ovo 2 kolone");
               dropdownElement.style.minWidth = `${width * columns + 2}px`;
               dropdownElement.querySelectorAll(":scope > li").forEach((li) => {
                 li.style.width = `${width}px`;
-                console.log('Dvije kolone je width '+ li.style.width);
               });
             }
 
@@ -89,9 +82,9 @@ function setupDesktopMenu() {
             setTimeout(() => {
               const delta = Math.round(
                 bodyWidth -
-                topLevelItem.offsetLeft -
-                dropdownElement.offsetWidth -
-                margin
+                  topLevelItem.offsetLeft -
+                  dropdownElement.offsetWidth -
+                  margin,
               );
               if (delta < 0) {
                 dropdownElement.style.left = `${delta}px`;
@@ -99,11 +92,9 @@ function setupDesktopMenu() {
             }, 0);
           }
         },
-        { once: true } // Osigurava da se event listener pokrene samo jednom
+        { once: true },
       );
     });
-
-
 }
 
 module.exports = { setupDesktopMenu };
