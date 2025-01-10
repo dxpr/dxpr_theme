@@ -225,13 +225,19 @@
       }
     }
 
-    .dropdown-menu {
+    #block-dxpr-theme-main-menu .dropdown-menu {
       // @todo remove this when safari fixes their bug
       // transform CSS forces a redraw of the element and this fixes a safari-only
       // problem with box-shadow/border remaining visible with the menu @ display:none
       transform: translateZ(0);
 
       .dropdown {
+        color: dxpr-color('headertext');
+
+        * {
+          color: dxpr-color('headertext');
+        }
+
         > span {
           color: dxpr-color('headertext');
           display: block;
