@@ -252,10 +252,10 @@ function header_theme_settings_css(string $theme, string &$css, array $palette) 
     $css .= "
     #block-dxpr-theme-main-menu .dropdown-menu {
       .dropdown {
-        color: $headertext !important;
+        color: $headertext;
 
         * {
-          color: $headertext !important;
+          color: $headertext;
         }
       }
     }
@@ -271,7 +271,7 @@ function header_theme_settings_css(string $theme, string &$css, array $palette) 
           color: $headertext !important;
 
           * {
-            color: $headertext !important;
+            color: $headertext;
           }
         }
       }
@@ -288,9 +288,7 @@ function header_theme_settings_css(string $theme, string &$css, array $palette) 
     #block-dxpr-theme-main-menu {
      .dropdown-menu {
         .dropdown {
-          color: $dropdown_color_value !important;
-
-          * {
+           * {
             color: $dropdown_color_value !important;
           }
         }
