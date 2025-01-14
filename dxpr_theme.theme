@@ -13,6 +13,7 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Markup;
 use Drupal\Core\Template\Attribute;
 use Drupal\block\Entity\Block;
+use Drupal\media\MediaInterface;
 use Drupal\node\NodeInterface;
 
 /**
@@ -81,12 +82,19 @@ function dxpr_theme_preprocess_html(&$variables) {
 
     if (isset($node) && !is_string($node)) {
       if ($node->hasField('field_dth_body_background')) {
-        $data = $node->field_dth_body_background->view([
-          'label' => 'hidden',
-          'type' => 'image_url',
-        ]);
-        if (isset($data[0]['#markup'])) {
-          $variables['body_bg_image_path'] = $data[0]['#markup'];
+        // Get the module handler service.
+        $module_handler = \Drupal::service('module_handler');
+
+        // Check if the module is enabled.
+        if ($module_handler->moduleExists('media_library')) {
+          $media = $node->get('field_dth_body_background')->entity ?? 0;
+          if ($media instanceof MediaInterface) {
+            $thumbnailUri = $media->get('thumbnail')->entity->getFileUri();
+            $url = \Drupal::service('file_url_generator')->generateString($thumbnailUri);
+            if (isset($url)) {
+              $variables['body_bg_image_path'] = $url;
+            }
+          }
         }
       }
     }
@@ -185,12 +193,19 @@ function dxpr_theme_preprocess_page(&$variables) {
 
     if (isset($node) && !is_string($node)) {
       if ($node->hasField('field_dth_page_title_backgrou')) {
-        $data = $node->field_dth_page_title_backgrou->view([
-          'label' => 'hidden',
-          'type' => 'image_url',
-        ]);
-        if (isset($data[0]['#markup'])) {
-          $variables['title_bg_image_path'] = $data[0]['#markup'];
+        // Get the module handler service.
+        $module_handler = \Drupal::service('module_handler');
+
+        // Check if the module is enabled.
+        if ($module_handler->moduleExists('media_library')) {
+          $media = $node->get('field_dth_page_title_backgrou')->entity ?? 0;
+          if ($media instanceof MediaInterface) {
+            $thumbnailUri = $media->get('thumbnail')->entity->getFileUri();
+            $url = \Drupal::service('file_url_generator')->generateString($thumbnailUri);
+            if (isset($url)) {
+              $variables['title_bg_image_path'] = $url;
+            }
+          }
         }
       }
     }

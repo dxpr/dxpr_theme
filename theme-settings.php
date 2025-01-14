@@ -6,7 +6,7 @@
  */
 
 use Drupal\Core\File\Exception\FileException;
-use Drupal\Core\File\FileSystemInterface;
+use Drupal\media\Entity\Media;
 use Drupal\node\Entity\NodeType;
 
 /**
@@ -139,38 +139,7 @@ function dxpr_theme_form_system_theme_settings_alter(&$form, &$form_state, $form
  * @see \Drupal\system\Form\ThemeSettingsForm::validateForm()
  */
 function dxpr_theme_form_system_theme_settings_validate(&$form, &$form_state) {
-  if (\Drupal::moduleHandler()->moduleExists('file')) {
-    // Handle file uploads.
-    $validators = ['file_validate_is_image' => []];
-
-    // Check for a new uploaded logo.
-    $file = file_save_upload('page_title_image', $validators, FALSE, 0);
-    if (isset($file)) {
-      // File upload was attempted.
-      if ($file) {
-        // Put the temporary file in form_values so we can save it on submit.
-        $form_state->setValue('page_title_image', $file);
-      }
-      else {
-        // File upload failed.
-        $form_state->setErrorByName('page_title_image', t('The logo could not be uploaded.'));
-      }
-    }
-
-    // Check for a new uploaded background image.
-    $file = file_save_upload('background_image', $validators, FALSE, 0);
-    if (isset($file)) {
-      // File upload was attempted.
-      if ($file) {
-        // Put the temporary file in form_values so we can save it on submit.
-        $form_state->setValue('background_image', $file);
-      }
-      else {
-        // File upload failed.
-        $form_state->setErrorByName('background_image', t('The background image could not be uploaded.'));
-      }
-    }
-
+  if (\Drupal::moduleHandler()->moduleExists('media')) {
     // If the user provided a path for a logo or background image file,
     // make sure a file exists at that path.
     if ($form_state->getValue('page_title_image_path')) {
@@ -183,23 +152,6 @@ function dxpr_theme_form_system_theme_settings_validate(&$form, &$form_state) {
       $path = _dxpr_theme_validate_path($form_state->getValue('background_image_path'));
       if (!$path) {
         $form_state->setErrorByName('background_image_path', t('The custom background image path is invalid.'));
-      }
-    }
-
-    // Handle file uploads.
-    $validators = ['file_validate_is_image' => []];
-    // $validators = [];
-    // Check for a new uploaded logo.
-    $file = file_save_upload('page_title_image', $validators, FALSE, 0);
-    if (isset($file)) {
-      // File upload was attempted.
-      if ($file) {
-        // Put the temporary file in form_values so we can save it on submit.
-        $form_state->setValue('page_title_image', $file);
-      }
-      else {
-        // File upload failed.
-        $form_state->setErrorByName('page_title_image', t('The logo could not be uploaded.'));
       }
     }
   }
@@ -225,27 +177,12 @@ function dxpr_theme_form_system_theme_settings_validate(&$form, &$form_state) {
  * @see \Drupal\system\Form\ThemeSettingsForm::submitForm()
  */
 function dxpr_theme_form_system_theme_settings_submit(&$form, &$form_state) {
-  // If the user uploaded a new image, save it to a permanent location.
-  /** @var \Drupal\Core\File\FileSystemInterface $file_system */
-  $file_system = \Drupal::service('file_system');
-  $directory = 'public://dxpr_theme/images/';
-
-  // Create dxpr_theme/images directory at the public folder
-  // if it doesn't exist.
-  try {
-    $file_system->prepareDirectory($directory, FileSystemInterface::CREATE_DIRECTORY);
-  }
-  catch (FileException $e) {
-    \Drupal::messenger()->addMessage($e->getMessage(), 'error');
-    \Drupal::logger('dxpr_theme')->error($e->getMessage());
-  }
-
   $value = $form_state->getValue('page_title_image');
   if (!empty($value)) {
-    $form_state->setValue('page_title_image', '');
+    $media = Media::load(($value));
     try {
-      $filename = $file_system->copy($value->getFileUri(), $directory . $value->getFilename());
-      $form_state->setValue('page_title_image_path', $filename);
+      $media_url = $media->field_media_image->entity->getFileUri();
+      $form_state->setValue('page_title_image_path', $media_url);
     }
     catch (FileException $e) {
       \Drupal::messenger()->addMessage($e->getMessage(), 'error');
@@ -255,10 +192,10 @@ function dxpr_theme_form_system_theme_settings_submit(&$form, &$form_state) {
 
   $value = $form_state->getValue('background_image');
   if (!empty($value)) {
-    $form_state->setValue('background_image', '');
+    $media = Media::load(($value));
     try {
-      $filename = $file_system->copy($value->getFileUri(), $directory . $value->getFilename());
-      $form_state->setValue('background_image_path', $filename);
+      $media_url = $media->field_media_image->entity->getFileUri();
+      $form_state->setValue('background_image_path', $media_url);
     }
     catch (FileException $e) {
       \Drupal::messenger()->addMessage($e->getMessage(), 'error');

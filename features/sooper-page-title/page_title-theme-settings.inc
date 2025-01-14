@@ -132,8 +132,10 @@ function page_title_theme_settings(array &$form, $theme) {
     '#description' => t('The path to the file you would like to use as your page title background image. If you upload a file below it will automatically populate this text field'),
   ];
   $form['dxpr_theme_settings']['page_title']['background']['page_title_image'] = [
-    '#type' => 'file',
+    '#type' => 'media_library',
+    '#allowed_bundles' => ['image'],
     '#title' => t('Upload Background'),
+    '#default_value' => theme_get_setting('page_title_image'),
     '#description' => t('The default page title image can also be changed per node, using the Header image field in the node form.'),
   ];
 

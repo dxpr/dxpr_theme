@@ -23,6 +23,7 @@
         }
     ],
     "require": {
-        "drupal/bootstrap5": "^3 || ^4"
+        "drupal/bootstrap5": "^3 || ^4",
+        "drupal/media_library_form_element": "^2.1"
     }
 }
