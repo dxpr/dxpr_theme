@@ -70,7 +70,7 @@
 //
 // Mobile layout.
 //
-@media (max-width >= 768px) {
+@media (width <= 768px) {
   .html.user-logged-in .block-local-tasks-block nav.tabs {
     // Make space for contextual links.
     padding-top: 32px;
