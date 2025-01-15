@@ -1,6 +1,6 @@
 global-styling:
   js:
-    js/minified/dxpr-theme-multilevel-mobile-nav.min.js: { minified: true }
+    js/minified/dxpr-theme-multilevel-mobile-nav.bundle.min.js: { minified: true }
     js/minified/dxpr-theme-header.bundle.min.js: { minified: true }
   dependencies:
     - core/drupal
