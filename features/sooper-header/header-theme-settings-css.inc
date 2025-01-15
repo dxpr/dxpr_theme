@@ -227,8 +227,13 @@ function header_theme_settings_css(string $theme, string &$css, array $palette) 
   $dropdown_custom_color = theme_get_setting('dropdown_text_color_custom');
   $menu_text_color = theme_get_setting('menu_text_color');
   $menu_text_color_custom = theme_get_setting('menu_text_color_custom');
-  $color_palette = unserialize(theme_get_setting('color_palette'), ['allowed_classes' => FALSE]);
-  $headertext = $color_palette['headertext'];
+
+  // Add null check and provide default empty array
+  $color_palette_setting = theme_get_setting('color_palette') ?? '';
+  $color_palette = !empty($color_palette_setting) ? unserialize($color_palette_setting, ['allowed_classes' => FALSE]) : [];
+
+  // Safely access headertext with null coalescing operator
+  $headertext = $color_palette['headertext'] ?? '';
 
   /**
    * This function returns the custom color if specified,
@@ -239,7 +244,7 @@ function header_theme_settings_css(string $theme, string &$css, array $palette) 
       // Use the custom color.
       return $custom_color;
     }
-    // Fallback to default color format.
+    // Safely access color from palette with null coalescing operator
     return $color_palette[$color] ?? "dxpr-color('$color')";
   }
 
