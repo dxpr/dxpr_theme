@@ -35,6 +35,10 @@ libraries-override:
     css:
       component:
         css/components/collapse-processed.css: false
+  gin/gin_base:
+    css:
+      component:
+        dist/css/theme/font.css: false
 
 libraries-extend:
   gin/gin_toolbar:
