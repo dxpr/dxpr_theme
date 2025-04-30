@@ -266,6 +266,33 @@
         "silver": "#3e3e3e",
         "body": "#0a0a0a"
       }
+    },
+    "oceanblue": {
+      "title": "Ocean Blue",
+      "colors": {
+        "base": "#284ed9",
+        "link": "#284ed9",
+        "accent1": "#dffeff",
+        "accent2": "#dffeff",
+        "text": "#3c3c3c",
+        "headings": "#1a1a1a",
+        "footer": "#3a3a3a",
+        "footertext": "#ffffff",
+        "secheader": "#3a3a3a",
+        "secheadertext": "#ffffff",
+        "card": "#ffffff",
+        "cardtext": "#3c3c3c",
+        "header": "#ffffff",
+        "headertext": "#3a3a3a",
+        "headerside": "#f2f2f2",
+        "headersidetext": "#3a3a3a",
+        "pagetitle": "#3a3a3a",
+        "pagetitletext": "#ffffff",
+        "graylight": "#8c8c8c",
+        "graylighter": "#ebebeb",
+        "silver": "#d7d7d7",
+        "body": "#f6f6f6"
+      }
     }
   }
 }
