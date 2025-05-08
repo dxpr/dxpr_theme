@@ -239,18 +239,12 @@ function header_theme_settings_css(string $theme, string &$css, array $palette) 
    * This function returns the custom color if specified,
    * otherwise it fetches the color from the palette.
    */
-  function resolve_color($color, $custom_color, $color_palette) {
-    if ($color === 'custom') {
-      // Use the custom color.
-      return $custom_color;
-    }
-    // Safely access color from palette with null coalescing operator
-    return $color_palette[$color] ?? "dxpr-color('$color')";
-  }
+  $resolve_color = function ($color, $custom_color, $color_palette) {
+    return $color === 'custom' ? $custom_color : ($color_palette[$color] ?? "dxpr-color('$color')");
+  };
 
-  // Resolve dropdown and menu text colors using the helper function.
-  $dropdown_color_value = resolve_color($dropdown_text_color, $dropdown_custom_color, $color_palette);
-  $menu_color_value = resolve_color($menu_text_color, $menu_text_color_custom, $color_palette);
+  $dropdown_color_value = $resolve_color($dropdown_text_color, $dropdown_custom_color, $color_palette);
+  $menu_color_value = $resolve_color($menu_text_color, $menu_text_color_custom, $color_palette);
 
   if ($dropdown_text_color === '' && $menu_text_color === '') {
     // Handles the case where both dropdown and menu text colors are not set.
