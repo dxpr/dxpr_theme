@@ -228,17 +228,15 @@ function header_theme_settings_css(string $theme, string &$css, array $palette) 
   $menu_text_color = theme_get_setting('menu_text_color');
   $menu_text_color_custom = theme_get_setting('menu_text_color_custom');
 
-  // Add null check and provide default empty array
+  // Add null check and provide default empty array.
   $color_palette_setting = theme_get_setting('color_palette') ?? '';
   $color_palette = !empty($color_palette_setting) ? unserialize($color_palette_setting, ['allowed_classes' => FALSE]) : [];
 
-  // Safely access headertext with null coalescing operator
+  // Safely access headertext with null coalescing operator.
   $headertext = $color_palette['headertext'] ?? '';
 
-  /**
-   * This function returns the custom color if specified,
-   * otherwise it fetches the color from the palette.
-   */
+  // This function returns the custom color if specified,
+  // otherwise it fetches the color from the palette.
   $resolve_color = function ($color, $custom_color, $color_palette) {
     return $color === 'custom' ? $custom_color : ($color_palette[$color] ?? "dxpr-color('$color')");
   };
