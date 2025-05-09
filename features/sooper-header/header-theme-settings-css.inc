@@ -228,29 +228,21 @@ function header_theme_settings_css(string $theme, string &$css, array $palette) 
   $menu_text_color = theme_get_setting('menu_text_color');
   $menu_text_color_custom = theme_get_setting('menu_text_color_custom');
 
-  // Add null check and provide default empty array
+  // Add null check and provide default empty array.
   $color_palette_setting = theme_get_setting('color_palette') ?? '';
   $color_palette = !empty($color_palette_setting) ? unserialize($color_palette_setting, ['allowed_classes' => FALSE]) : [];
 
-  // Safely access headertext with null coalescing operator
+  // Safely access headertext with null coalescing operator.
   $headertext = $color_palette['headertext'] ?? '';
 
-  /**
-   * This function returns the custom color if specified,
-   * otherwise it fetches the color from the palette.
-   */
-  function resolve_color($color, $custom_color, $color_palette) {
-    if ($color === 'custom') {
-      // Use the custom color.
-      return $custom_color;
-    }
-    // Safely access color from palette with null coalescing operator
-    return $color_palette[$color] ?? "dxpr-color('$color')";
-  }
+  // This function returns the custom color if specified,
+  // otherwise it fetches the color from the palette.
+  $resolve_color = function ($color, $custom_color, $color_palette) {
+    return $color === 'custom' ? $custom_color : ($color_palette[$color] ?? "dxpr-color('$color')");
+  };
 
-  // Resolve dropdown and menu text colors using the helper function.
-  $dropdown_color_value = resolve_color($dropdown_text_color, $dropdown_custom_color, $color_palette);
-  $menu_color_value = resolve_color($menu_text_color, $menu_text_color_custom, $color_palette);
+  $dropdown_color_value = $resolve_color($dropdown_text_color, $dropdown_custom_color, $color_palette);
+  $menu_color_value = $resolve_color($menu_text_color, $menu_text_color_custom, $color_palette);
 
   if ($dropdown_text_color === '' && $menu_text_color === '') {
     // Handles the case where both dropdown and menu text colors are not set.

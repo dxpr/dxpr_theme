@@ -26,6 +26,7 @@ function _dxpr_theme_css_cache_file($theme) {
  *
  * @param string $theme
  *   Theme machine name.
+ *
  * phpcs:ignore
  * @deprecated This function is no longer needed. Kept for legacy reasons.
  */

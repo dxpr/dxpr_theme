@@ -13,6 +13,10 @@ function dxpr_theme_post_update_n1_migrate_colors() {
   $theme_handler = \Drupal::service('theme_handler');
   $theme_list = $theme_handler->listInfo();
 
+  if (!\Drupal::moduleHandler()->moduleExists('color')) {
+    return t('The Color module is not installed.');
+  }
+
   // Load Color module.
   \Drupal::moduleHandler()->loadInclude('module', 'color');
 
@@ -29,20 +33,22 @@ function dxpr_theme_post_update_n1_migrate_colors() {
       $config = \Drupal::configFactory()
         ->getEditable($theme_name . '.settings');
 
-      // Get color module palette.
-      $color_palette = color_get_palette($theme_name);
-      $config->set('color_scheme', 'custom');
-      $config->set('color_palette', serialize($color_palette));
+      if (color_get_info($theme_name)) {
+        // Get color module palette.
+        $color_palette = color_get_palette($theme_name);
+        $config->set('color_scheme', 'custom');
+        $config->set('color_palette', serialize($color_palette));
 
-      foreach ($color_palette as $name => $clr) {
-        $config->set('color_palette_' . $name, $clr);
-      }
+        foreach ($color_palette as $name => $clr) {
+          $config->set('color_palette_' . $name, $clr);
+        }
 
-      $config->save();
+        $config->save();
 
-      // Rebuild theme CSS.
-      if (function_exists('dxpr_theme_css_cache_build')) {
-        dxpr_theme_css_cache_build($theme_name);
+        // Rebuild theme CSS.
+        if (function_exists('dxpr_theme_css_cache_build')) {
+          dxpr_theme_css_cache_build($theme_name);
+        }
       }
     }
   }
