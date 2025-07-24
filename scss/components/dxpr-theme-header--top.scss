@@ -90,6 +90,8 @@
       .block-dxpr-theme-helper  {
         height: var(--dxt-setting-header-top-height-scroll);
         line-height: var(--dxt-setting-header-top-height-scroll);
+        display: flex;
+        align-items: center;
       }
 
       .dxpr-theme-main-menu {
@@ -205,13 +207,6 @@
       }
     }
 
-    li.dropdown:hover,
-    li.dropdown:focus {
-      .dropdown-menu {
-        display:block;
-      }
-    }
-
     .block,
     .navbar-nav {
       float: right;
@@ -248,41 +243,13 @@
       }
     }
 
-    .nav {
+    ul.nav {
       float: right;
 
-      > li {
-        display: table;
-        float: left;
-        height: 100%;
-      }
-
-      > li > a,
-      > li > span {
-        display: table-cell;
-        font-size: $font-size-large;
-        height: var(--dxt-setting-header-top-height);
-        line-height: var(--dxt-setting-header-top-height);
-        padding: 0 15px;
-        vertical-align: middle;
-      }
-
-      .dropdown-menu li {
-        width: 100%;
-
-        > a,
-        > span {
-          display:block;
-          font-size: $font-size-base;
-          font-weight: normal;
-          padding: 10px 20px;
-
-          &.dxpr-theme-megamenu__heading {
-            font-size: $font-size-large;
-            font-weight: 300;
-          }
-        }
-      }
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      height: var(--dxt-setting-header-top-height);
     }
 
     .dxpr-theme-megamenu__heading {

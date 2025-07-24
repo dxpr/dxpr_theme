@@ -18,45 +18,99 @@
 {% import _self as menus %}
 
 {#
+  Menu type variable - defaults to 'standard'
+  Options: 'standard', 'split', 'simple'
+#}
+{% set menu_type = menu_type|default('standard') %}
+
+{#
   We call a macro which calls itself to render the full tree.
   @see http://twig.sensiolabs.org/doc/tags/macro.html
 #}
-{{ menus.menu_links(items, attributes, 0) }}
+{{ menus.menu_links(items, attributes, 0, menu_type) }}
 
-{% macro menu_links(items, attributes, menu_level) %}
+{% macro menu_links(items, attributes, menu_level, menu_type) %}
   {% import _self as menus %}
   {% if items %}
     {% if menu_level == 0 %}
-      <ul{{ attributes.addClass('menu', 'nav', 'navbar-nav') }}>
-    {% elseif menu_level == 1  %}
+      <ul{{ attributes.addClass('menu', 'nav', 'navbar-nav', 'enhanced-dropdowns', 'level-1') }} role="menubar">
+    {% elseif menu_level == 1 %}
       {% set attributes = create_attribute() %}
-      <ul{{ attributes.addClass('dropdown-menu') }}>
-    {% else  %}
+      <ul{{ attributes.addClass('dropdown-menu', 'level-2') }}>
+    {% else %}
       {% set attributes = create_attribute() %}
-      <ul{{ attributes.addClass('dxpr-theme-megamenu') }}>
+      <ul{{ attributes.addClass('dropdown-menu', 'level-3plus') }}>
     {% endif %}
+
     {% for item in items %}
-      {%
-        set item_classes = [
-          'expanded',
-          'dropdown',
-          item.in_active_trail ? 'active',
-        ]
-      %}
-      {% if menu_level == 0 and item.is_expanded %}
-        <li{{ item.attributes.addClass(item_classes) }}>
-        <a href="{{ item.url }}" class="dropdown-toggle" data-target="#">{{ item.title }}</a>
-      {% elseif menu_level == 1 and item.is_expanded %}
-        <li{{ item.attributes.addClass(item_classes) }}>
-        <a href="{{ item.url }}" class="dxpr-theme-megamenu__heading" data-target="#">{{ item.title }}</a>
+      {% if menu_level == 0 %}
+        {# Top-level menu items #}
+        {% if item.below %}
+          {# Has submenu #}
+          {% if menu_type == 'split' %}
+            {# Split Dropdown #}
+            {% set item_classes = ['nav-item', 'dropdown', item.in_active_trail ? 'active'] %}
+            <li{{ item.attributes.addClass(item_classes) }} role="none">
+              <div class="bs-dropdown-wrapper">
+                <a class="nav-link" href="{{ item.url }}" id="{{ item.title|clean_id }}Link" role="menuitem">{{ item.title }}</a>
+                <button class="bs-dropdown-caret" type="button" aria-expanded="false" aria-controls="{{ item.title|clean_id }}Menu" aria-labelledby="{{ item.title|clean_id }}Link">
+                  <span class="visually-hidden">Toggle {{ item.title }} submenu</span>
+                </button>
+              </div>
+              {{ menus.menu_links(item.below, attributes.removeClass('nav', 'navbar-nav', 'menu').setAttribute('id', item.title|clean_id ~ 'Menu').setAttribute('aria-labelledby', item.title|clean_id ~ 'Link'), menu_level + 1, menu_type) }}
+            </li>
+          {% else %}
+            {# Standard Full Toggle Dropdown #}
+            {% set item_classes = ['nav-item', 'dropdown', item.in_active_trail ? 'active'] %}
+            <li{{ item.attributes.addClass(item_classes) }} role="none">
+              <a class="nav-link dropdown-toggle" href="{{ item.url.toString() == '#' ? '#' : item.url }}" id="{{ item.title|clean_id }}Link" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                {{ item.title }}
+              </a>
+              {{ menus.menu_links(item.below, attributes.removeClass('nav', 'navbar-nav', 'menu').setAttribute('aria-labelledby', item.title|clean_id ~ 'Link'), menu_level + 1, menu_type) }}
+            </li>
+          {% endif %}
+        {% else %}
+          {# Simple Nav Link #}
+          {% set item_classes = ['nav-item', item.in_active_trail ? 'active'] %}
+          <li{{ item.attributes.addClass(item_classes) }} role="none">
+            <a class="nav-link" href="{{ item.url }}" role="menuitem">{{ item.title }}</a>
+          </li>
+        {% endif %}
+
       {% else %}
-        <li{{ item.attributes.addClass(item_classes) }}>
-        {{ link(item.title, item.url, { 'class': 'parent_link' }) }}
+        {# Submenu items #}
+        {% if item.below %}
+          {# Has nested submenu #}
+          {% set item_classes = ['bs-dropdown-submenu', item.in_active_trail ? 'active'] %}
+
+          {% if menu_type == 'split' %}
+            {# Nested Split Submenu Item #}
+            <li{{ item.attributes.addClass(item_classes) }} role="none">
+              <div class="bs-dropdown-item-wrapper">
+                <a class="dropdown-item" href="{{ item.url }}" id="{{ item.title|clean_id }}Link" role="menuitem">{{ item.title }}</a>
+                <button class="bs-dropdown-caret" type="button" aria-expanded="false" aria-controls="{{ item.title|clean_id }}Menu" aria-labelledby="{{ item.title|clean_id }}Link">
+                  <span class="visually-hidden">Toggle {{ item.title }} submenu</span>
+                </button>
+              </div>
+              {{ menus.menu_links(item.below, attributes.removeClass('dropdown-menu').setAttribute('id', item.title|clean_id ~ 'Menu').setAttribute('aria-labelledby', item.title|clean_id ~ 'Link'), menu_level + 1, menu_type) }}
+            </li>
+          {% else %}
+            {# Nested Full Toggle Submenu Item #}
+            <li{{ item.attributes.addClass(item_classes) }} role="none">
+              <a class="dropdown-item dropdown-toggle" href="{{ item.url.toString() == '#' ? '#' : item.url }}" id="{{ item.title|clean_id }}Link" role="button" aria-expanded="false" aria-controls="{{ item.title|clean_id }}Menu">
+                {{ item.title }}
+              </a>
+              {{ menus.menu_links(item.below, attributes.removeClass('dropdown-menu').setAttribute('id', item.title|clean_id ~ 'Menu').setAttribute('aria-labelledby', item.title|clean_id ~ 'Link'), menu_level + 1, menu_type) }}
+            </li>
+          {% endif %}
+        {% else %}
+          {# Simple dropdown item #}
+          {% set item_classes = [item.in_active_trail ? 'active'] %}
+          <li{{ item.attributes.addClass(item_classes) }} role="none">
+            <a class="dropdown-item" href="{{ item.url }}" role="menuitem">{{ item.title }}</a>
+          </li>
+        {% endif %}
       {% endif %}
-      {% if item.below %}
-        {{ menus.menu_links(item.below, attributes.removeClass('nav', 'navbar-nav', 'menu', 'dropdown-menu', 'dxpr-theme-megamenu'), menu_level + 1) }}
-      {% endif %}
-      </li>
     {% endfor %}
     </ul>
   {% endif %}

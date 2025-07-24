@@ -7,7 +7,6 @@
 
 const { setupStickyHeader } = require("./sticky-header");
 const { debounce } = require("./performance-helpers");
-const { setupDesktopMenu } = require("./menu-desktop");
 const { setupMobileMenu } = require("./menu-mobile");
 const { hitDetection } = require("./hit-detection");
 const { handleOverlayPosition } = require("./overlay-position");
@@ -45,9 +44,6 @@ const { dxpr_themeMenuOnResize } = require("./menu-resize-handler");
       if (dxpr_themeMenuState === "top") {
         return false;
       }
-
-      // Injecting menu-desktop.js
-      setupDesktopMenu();
 
       dxpr_themeMenuState = "top";
 
