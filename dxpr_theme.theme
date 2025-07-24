@@ -225,6 +225,7 @@ function dxpr_theme_preprocess_page(&$variables) {
     // DXPR THEME Components.
     // @todo Include only if needed.
     'dxpr_theme/dxpr-theme-header--side',
+    'dxpr_theme/enhanced-dropdowns',
     'dxpr_theme/admin',
     // Overrides.
     // @todo Include only if needed.

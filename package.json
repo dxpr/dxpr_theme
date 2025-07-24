@@ -56,6 +56,7 @@
     "postinstall": "bash scripts/update-vendor-assets.sh"
   },
   "dependencies": {
+    "bs-enhanced-dropdowns": "^1.0.0",
     "dxb_slider": "^2.0.0",
     "postcss": "^8.4.41",
     "reinvented-color-wheel": "^0.4.0"

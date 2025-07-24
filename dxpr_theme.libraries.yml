@@ -187,3 +187,14 @@ custom_animations:
   css:
     theme:
       css/animations-dxpr.css: {}
+
+enhanced-dropdowns:
+  version: 1.x
+  js:
+    vendor/enhanced-dropdowns/dist/js/enhanced-dropdowns.min.js: { minified: true }
+    js/minified/enhanced-dropdowns.min.js: { minified: true }
+  css:
+    theme:
+      vendor/enhanced-dropdowns/dist/css/main.min.css: { minified: true }
+  dependencies:
+    - core/drupal
