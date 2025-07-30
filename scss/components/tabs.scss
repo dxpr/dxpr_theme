@@ -71,10 +71,6 @@
 // Mobile layout.
 //
 @media (width <= 768px) {
-  .html.user-logged-in .block-local-tasks-block nav.tabs {
-    // Make space for contextual links.
-    padding-top: 32px;
-  }
 
   .html .dxpr-theme-mini-tabs-wrapper {
     float: none;
