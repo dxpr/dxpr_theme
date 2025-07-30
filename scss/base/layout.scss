@@ -1,9 +1,10 @@
 @import "../includes/variables";
 
+// Horizontal scroll prevention
+
 html {
   // Prevent horizontal scrolling on small devices
-  // Also important for SEO, needed for mobile-friendly test
-  overflow-x: hidden;
+  overflow-x: hidden !important;
   // Ensure box-sizing is border-box for all elements
   box-sizing: border-box;
 }
@@ -13,12 +14,42 @@ html {
 }
 
 body {
+  overflow-x: hidden !important;
+}
+
+// responsive image. This sometimes sucks because images cannot over overscan their base size to save bytes.
+img {
+  height: auto;
+  max-width: 100%; // can't remove this because then image will overflow parent elements.
+}
+
+// Specific elements that commonly cause horizontal scroll issues
+pre, code, table {
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+// Mobile-specific overflow prevention
+@media screen and (max-width: 768px) {
+  html, body {
+    overflow-x: hidden !important;
+    width: 100% !important;
+    max-width: 100vw !important;
+    position: relative;
+  }
+  
+  // Prevent any element from exceeding viewport width on mobile
+  * {
+    max-width: 100vw !important;
+  }
+}
+
+body {
   background: dxpr-color('body');
   background-attachment: fixed;
   background-position: center center;
   background-size: cover;
   font-size:  var(--dxt-setting-body-font-size);
-  overflow-x: hidden;
 }
 
 .dxpr-theme-boxed-container {
@@ -150,46 +181,6 @@ body.full-width-content {
 
 .navbar {
   margin-bottom: 0;
-}
-
-// responsive image. This sometimes sucks because images cannot over overscan their base size to save bytes.
-img {
-  height: auto;
-  max-width: 100%; // can't remove this because then image will overflow parent elements.
-}
-
-// Specific elements that commonly cause horizontal scroll issues
-pre, code, table {
-  overflow-x: auto;
-  max-width: 100%;
-}
-
-// Mobile-specific overflow prevention
-@media screen and (max-width: 768px) {
-  html, body {
-    overflow-x: hidden !important;
-    width: 100% !important;
-    max-width: 100vw !important;
-    position: relative;
-  }
-  
-  // Ensure main page elements and all content stay within bounds
-  .page, .dialog-off-canvas-main-canvas, .wrap-containers,
-  .container, .container-fluid, .row {
-    overflow-x: hidden;
-    width: 100%;
-    max-width: 100vw;
-  }
-  
-  // Prevent any element from exceeding viewport width on mobile
-  * {
-    max-width: 100vw !important;
-  }
-}
-
-// exception for revolution slider kenburns effect
-html.js .kenburnimg img {
-  max-width: none;
 }
 
 // NODES
