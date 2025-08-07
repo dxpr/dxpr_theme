@@ -8,6 +8,21 @@
 @import "../includes/variables";
 
 //
+// Primary tabs wrapper.
+//
+@media (width > 768px) {
+  // Center aligned for full-width content.
+  .main-container.container .block-local-tasks-block {
+    left: 50%;
+    padding-right: 32px; // Make room for contextual links.
+    position: absolute;
+    transform: translate(-50%,-100%);
+    z-index: 10;
+  }
+}
+
+
+//
 // Primary tabs
 //
 .html .dxpr-theme-mini-tabs-wrapper {
@@ -71,10 +86,6 @@
 // Mobile layout.
 //
 @media (width <= 768px) {
-  .html.user-logged-in .block-local-tasks-block nav.tabs {
-    // Make space for contextual links.
-    padding-top: 32px;
-  }
 
   .html .dxpr-theme-mini-tabs-wrapper {
     float: none;

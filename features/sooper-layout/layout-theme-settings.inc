@@ -89,7 +89,7 @@ function layout_theme_settings(array &$form, $theme) {
     '#min' => 480,
     '#max' => 4100,
     '#step' => 10,
-    '#description' => t('Max width of the website container. 480px - 4100px. Default is 1280px. With Side-Header enabled we typically use 980px.'),
+    '#description' => t('Max width of the website container. 480px - 4100px. Default is 1320px. With Side-Header enabled we typically use 980px.'),
     '#attributes' => [
       'class' => ['dxb-slider', 'layout-max-width-range'],
       'data-dxb-slider' => TRUE,

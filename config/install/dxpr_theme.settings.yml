@@ -32,7 +32,7 @@ boxed_layout: 1
 sticky_footer: 1
 boxed_layout_boxbg: '#ffffff'
 box_max_width: '1580'
-layout_max_width: '1280'
+layout_max_width: '1320'
 gutter_horizontal: '30'
 gutter_vertical: '30'
 gutter_container: '60'
