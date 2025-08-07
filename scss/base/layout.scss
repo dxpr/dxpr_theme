@@ -17,6 +17,10 @@ body {
   overflow-x: hidden !important;
 }
 
+.main-container {
+  position: relative; // Centering mini tabs while using side toolbar
+}
+
 // responsive image. This sometimes sucks because images cannot over overscan their base size to save bytes.
 img {
   height: auto;
