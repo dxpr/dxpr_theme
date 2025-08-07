@@ -148,32 +148,32 @@ services:
       - dev
 
   drupal-lint:
-    image: ${COMPOSER_IMAGE:-composer:2.1}
+    image: ${COMPOSER_IMAGE:-composer:2.7}
     profiles: ["lint"]
     working_dir: /src
     command: bash -c "./scripts/run_drupal-lint.sh"
     environment:
-      TARGET_DRUPAL_CORE_VERSION: ${TARGET_DRUPAL_CORE_VERSION:-8}
+      TARGET_DRUPAL_CORE_VERSION: ${TARGET_DRUPAL_CORE_VERSION:-11}
     volumes:
       - .:/src
 
   drupal-lint-auto-fix:
-    image: ${COMPOSER_IMAGE:-composer:2.1}
+    image: ${COMPOSER_IMAGE:-composer:2.7}
     profiles: ["lint"]
     working_dir: /src
     command: bash -c "./scripts/run_drupal-lint-auto-fix.sh"
     environment:
-      TARGET_DRUPAL_CORE_VERSION: ${TARGET_DRUPAL_CORE_VERSION:-8}
+      TARGET_DRUPAL_CORE_VERSION: ${TARGET_DRUPAL_CORE_VERSION:-11}
     volumes:
       - .:/src
 
   drupal-check:
-    image: ${COMPOSER_IMAGE:-composer:2.1}
+    image: ${COMPOSER_IMAGE:-composer:2.7}
     profiles: ["lint"]
     working_dir: /
     command: bash -c "/src/scripts/run_drupal-check.sh"
     tty: true
     environment:
-      DRUPAL_RECOMMENDED_PROJECT: ${DRUPAL_RECOMMENDED_PROJECT:-8.8.x-dev}
+      DRUPAL_RECOMMENDED_PROJECT: ${DRUPAL_RECOMMENDED_PROJECT:-11.x-dev}
     volumes:
       - .:/src
