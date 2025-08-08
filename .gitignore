@@ -19,3 +19,6 @@ stylelint-results.json
 
 .npm.installed
 .env
+
+/vendor/classie*
+/vendor/modernizr*
