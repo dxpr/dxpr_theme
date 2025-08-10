@@ -246,6 +246,18 @@ function dxpr_theme_preprocess_menu_local_tasks(&$variables) {
     // Secondary tabs are styled with bootstrap pager CSS.
     $variables['#attached']['library'][] = 'dxpr_theme/drupal-pager';
   }
+
+  // Check if admin_toolbar_tools is enabled and configured to show local tasks.
+  $module_handler = \Drupal::service('module_handler');
+  if ($module_handler->moduleExists('admin_toolbar_tools')) {
+    $config = \Drupal::config('admin_toolbar_tools.settings');
+    $show_local_tasks = $config->get('show_local_tasks');
+
+    if ($show_local_tasks === TRUE) {
+      // Hide tabs when admin_toolbar_tools is showing local tasks.
+      $variables['hide_tabs'] = TRUE;
+    }
+  }
 }
 
 /**
