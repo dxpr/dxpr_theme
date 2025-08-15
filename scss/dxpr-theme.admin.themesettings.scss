@@ -5,6 +5,8 @@ $border-color: #222330;
 #system-theme-settings {
   margin-top: 60px;
 
+  * { color: #333; }
+
   // Header
   *:not(.reinvented-color-wheel *) {
     box-sizing: border-box;
@@ -316,7 +318,6 @@ $border-color: #222330;
 
     .vertical-tabs__panes {
       padding: 0 15px 15px 0;
-
       .details-wrapper {
         padding: 15px;
       }
