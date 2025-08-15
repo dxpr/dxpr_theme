@@ -1,0 +1,22 @@
+{%
+  set classes = [
+    'mb-4',
+    element == 'h1' ? 'display-3 fw-bold lh-sm',
+    element == 'h2' ? 'display-5 fw-bold lh-sm',
+    element == 'h3' ? 'h2 fw-bold lh-base',
+    element == 'h4' ? 'h3 fw-bold lh-base',
+    element == 'h5' ? 'h5 fw-bold lh-base text-uppercase',
+    element == 'h6' ? 'h6 fw-semibold lh-sm text-uppercase small',
+  ]
+%}
+{%
+  set style_attrs = {
+    'h1': 'letter-spacing: -0.02em;',
+    'h2': 'letter-spacing: -0.02em;',
+    'h3': 'letter-spacing: -0.01em;',
+    'h4': 'letter-spacing: 0.09em;',
+    'h5': 'letter-spacing: 0.12em;',
+    'h6': 'letter-spacing: 0.2em;',
+  }
+%}
+<{{ element }}{{ attributes.addClass(classes) }}{% if style_attrs[element] is defined %} style="{{ style_attrs[element] }}"{% endif %}>{{ text }}</{{ element }}>

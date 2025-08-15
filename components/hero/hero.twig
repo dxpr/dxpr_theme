@@ -1,0 +1,77 @@
+{%
+  set hero_classes = [
+    'position-relative',
+    'overflow-hidden'
+  ]
+%}
+{%
+  set container_classes = [
+    'container',
+    'd-flex',
+    'flex-column',
+    'position-relative',
+    'min-vh-50'
+  ]
+%}
+{%
+  set image_classes = [
+    'w-100',
+    'h-auto',
+    'object-fit-cover',
+    'd-block',
+    'd-lg-none'
+  ]
+%}
+{%
+  set image_bg_classes = [
+    'd-none',
+    'd-lg-block',
+    'position-absolute',
+    'top-0',
+    'start-0',
+    'w-100',
+    'h-100',
+    'object-fit-cover'
+  ]
+%}
+{%
+  set data_wrapper_classes = [
+    'row',
+    'mt-auto',
+    'pt-4',
+    'pt-lg-5'
+  ]
+%}
+{%
+  set data_classes = [
+    'col-12',
+    'col-lg-9',
+    'bg-white',
+    'py-4',
+    'py-lg-5',
+    'ms-lg-n3'
+  ]
+%}
+
+<div{{ attributes.addClass(hero_classes) }}>
+  <img class="{{ image_classes|join(' ') }}" src="{{ image.src }}" alt="{{ image.alt }}" width="{{ image.width }}" height="{{ image.height }}">
+  <div class="{{ container_classes|join(' ') }}" style="min-height: 50vh;">
+    <img class="{{ image_bg_classes|join(' ') }}" src="{{ image.src }}" alt="{{ image.alt }}" style="z-index: -1;">
+    <div class="{{ data_wrapper_classes|join(' ') }}">
+      <div class="{{ data_classes|join(' ') }}">
+        <div class="px-3 px-lg-4">
+          <h2 class="display-4 fw-bold mb-3">{{ title }}</h2>
+          {% if summary %}
+            <p class="fw-bold mb-4">{{ summary }}</p>
+          {% endif %}
+          <div class="d-flex flex-wrap gap-2">
+            <a class="btn btn-primary" href="{{ link_url_1 }}">{{ link_text_1|default('Learn more'|t) }}</a>
+            {%- if link_text_2 and link_url_2 -%}
+              <a class="btn btn-secondary" href="{{ link_url_2 }}">{{ link_text_2 }}</a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
