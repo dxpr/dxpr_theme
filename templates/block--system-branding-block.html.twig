@@ -15,8 +15,8 @@
  */
 #}
 {% block content %}
-  {% if site_logo or site_name %}
-  <div class="wrap-branding">
+  {% if site_logo or site_name or site_slogan %}
+    <div class="wrap-branding">
   {% endif %}
   {% if site_logo %}
     <a class="logo navbar-btn" href="{{ path('<front>') }}" title="{{ 'Home'|t }}" rel="home">
@@ -26,7 +26,10 @@
   {% if site_name %}
     <a class="name navbar-brand" href="{{ path('<front>') }}" title="{{ 'Home'|t }}" rel="home">{{ site_name }}</a>
   {% endif %}
-  {% if site_logo or site_name %}
-  </div>
+  {% if site_slogan %}
+    <p class="navbar-text slogan">{{ site_slogan }}</p>
+  {% endif %}
+  {% if site_logo or site_name or site_slogan %}
+    </div>
   {% endif %}
 {% endblock %}
