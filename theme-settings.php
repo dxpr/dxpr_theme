@@ -5,6 +5,7 @@
  * DXPR Theme settings.
  */
 
+use Drupal\Core\Render\Markup;
 use Drupal\Core\File\Exception\FileException;
 use Drupal\media\Entity\Media;
 use Drupal\node\Entity\NodeType;
@@ -117,13 +118,13 @@ function dxpr_theme_form_system_theme_settings_alter(&$form, &$form_state, $form
     dxpr_theme_css_cache_build($subject_theme);
   }
 
-  // Create body wrapper and load styleguide
+  // Create body wrapper and load styleguide.
   $styleguide_url = base_path() . \Drupal::service('extension.list.theme')->getPath('dxpr_theme') . '/resources/styleguide.html';
-  
+
   $form['#attached']['html_head'][] = [
     [
       '#tag' => 'script',
-      '#value' => \Drupal\Core\Render\Markup::create("
+      '#value' => Markup::create("
         document.addEventListener('DOMContentLoaded', function() {
           var body = document.body;
           var wrapper = document.createElement('div');

@@ -3,18 +3,18 @@
 $border-color: #222330;
 
 #system-theme-settings {
-  position: fixed !important;
-  top: 0 !important;
-  right: 0 !important;
-  width: 50vw !important;
-  height: 100vh !important;
   background: white !important;
-  box-shadow: -4px 0 8px rgba(0, 0, 0, 0.1) !important;
-  z-index: 1000 !important;
-  overflow-y: auto !important;
-  padding: 80px 20px 20px 20px !important;
   border-left: 1px solid #ddd !important;
+  box-shadow: -4px 0 8px rgb(0 0 0 / 10%) !important;
+  height: 100vh !important;
   margin: 0 !important;
+  overflow-y: auto !important;
+  padding: 80px 20px 20px !important;
+  position: fixed !important;
+  right: 0 !important;
+  top: 0 !important;
+  width: 50vw !important;
+  z-index: 1000 !important;
 
   * { color: #333; }
 
@@ -329,6 +329,7 @@ $border-color: #222330;
 
     .vertical-tabs__panes {
       padding: 0 15px 15px 0;
+
       .details-wrapper {
         padding: 15px;
       }
