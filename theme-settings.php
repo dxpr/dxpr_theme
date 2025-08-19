@@ -29,7 +29,6 @@ function dxpr_theme_form_system_theme_settings_alter(&$form, &$form_state, $form
   $subject_theme = $build_info['args'][0];
   $dxpr_theme_theme_path = \Drupal::service('extension.list.theme')->getPath('dxpr_theme') . '/';
 
-
   $form['dxpr_theme_settings_header'] = [
     '#type' => 'inline_template',
     '#template' => '
@@ -42,7 +41,7 @@ function dxpr_theme_form_system_theme_settings_alter(&$form, &$form_state, $form
     ',
     '#context' => [
       'image' => '<img width="40" height="15" src="' . $base_path . $dxpr_theme_theme_path . 'images/dxpr-logo-dark.svg" />',
-      'preview_text' =>' = ' . t('No preview. Save to view changes.'),
+      'preview_text' => ' = ' . t('No preview. Save to view changes.'),
     ],
     '#weight' => -100,
   ];
