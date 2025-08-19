@@ -86,7 +86,6 @@ jobs:
             ## 📊 Changes
             - Previous font count: ${{ steps.changes.outputs.old_count }}
             - New font count: ${{ steps.changes.outputs.new_count }}
-            - Difference: ${{ steps.changes.outputs.new_count - steps.changes.outputs.old_count }} fonts
             
             ## 🔍 What Changed
             This update refreshes the `features/sooper-fonts/google-webfonts.json` file with the latest available fonts from Google Webfonts API.
