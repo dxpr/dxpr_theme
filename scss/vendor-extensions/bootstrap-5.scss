@@ -271,84 +271,84 @@ a.text-primary:focus {
 
 // Override Bootstrap background classes to use proper text colors
 .bg-primary {
-  color: dxpr-color('basetext');
+  color: dxpr-color('basetext') !important;
   
   *, h1, h2, h3, h4, h5, h6, p, span, div, a {
-    color: dxpr-color('basetext');
+    color: dxpr-color('basetext') !important;
   }
 }
 
 .bg-secondary {
-  background-color: dxpr-color('accent1');
-  color: dxpr-color('accent1text');
+  background-color: dxpr-color('accent1') !important;
+  color: dxpr-color('accent1text') !important;
   
   *, h1, h2, h3, h4, h5, h6, p, span, div, a {
-    color: dxpr-color('accent1text');
+    color: dxpr-color('accent1text') !important;
   }
 }
 
 // Bootstrap 5.3 Subtle Background Variants
 .bg-primary-subtle {
-  background-color: dxpr-color('basesubtle');
-  color: dxpr-color('basesubtletext');
+  background-color: dxpr-color('basesubtle') !important;
+  color: dxpr-color('basesubtletext') !important;
   
   *, h1, h2, h3, h4, h5, h6, p, span, div, a {
-    color: dxpr-color('basesubtletext');
+    color: dxpr-color('basesubtletext') !important;
   }
 }
 
 .bg-secondary-subtle {
-  background-color: dxpr-color('accent1subtle');
-  color: dxpr-color('accent1subtletext');
+  background-color: dxpr-color('accent1subtle') !important;
+  color: dxpr-color('accent1subtletext') !important;
   
   *, h1, h2, h3, h4, h5, h6, p, span, div, a {
-    color: dxpr-color('accent1subtletext');
+    color: dxpr-color('accent1subtletext') !important;
   }
 }
 
 .bg-dark-subtle {
-  background-color: dxpr-color('headingssubtle');
-  color: dxpr-color('headingssubtletext');
+  background-color: dxpr-color('headingssubtle') !important;
+  color: dxpr-color('headingssubtletext') !important;
   
   *, h1, h2, h3, h4, h5, h6, p, span, div, a {
-    color: dxpr-color('headingssubtletext');
+    color: dxpr-color('headingssubtletext') !important;
   }
 }
 
 .bg-info-subtle {
-  background-color: dxpr-color('accent2subtle');
-  color: dxpr-color('accent2subtletext');
+  background-color: dxpr-color('accent2subtle') !important;
+  color: dxpr-color('accent2subtletext') !important;
   
   *, h1, h2, h3, h4, h5, h6, p, span, div, a {
-    color: dxpr-color('accent2subtletext');
+    color: dxpr-color('accent2subtletext') !important;
   }
 }
 
 .bg-success-subtle {
-  background-color: dxpr-color('accent1subtle');
-  color: dxpr-color('accent1subtletext');
+  background-color: dxpr-color('accent1subtle') !important;
+  color: dxpr-color('accent1subtletext') !important;
   
   *, h1, h2, h3, h4, h5, h6, p, span, div, a {
-    color: dxpr-color('accent1subtletext');
+    color: dxpr-color('accent1subtletext') !important;
   }
 }
 
 
 .text-white {
   h1, h2, h3, h4, h5, h6, th {
-    color: #fff;
+    color: #fff !important;
   }
 }
 
 .text-primary {
   h1, h2, h3, h4, h5, h6, th {
-    color: dxpr-color('accent1');
+    color: dxpr-color('accent1') !important;
   }
 }
 
 .text-secondary {
   h1, h2, h3, h4, h5, h6, th {
-    color: dxpr-color('accent2');
+    color: dxpr-color('accent2') !important;
   }
 }
 
@@ -619,5 +619,5 @@ blockquote footer, blockquote small, blockquote .small {
 // -------------------------
 
 .bg-light {
-  background-color: dxpr-color('graylight');
+  background-color: dxpr-color('graylight') !important;
 }
