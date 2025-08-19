@@ -3,52 +3,9 @@
 $border-color: #222330;
 
 #system-theme-settings {
-  background: white !important;
-  border-left: 1px solid #ddd !important;
-  box-shadow: -4px 0 8px rgb(0 0 0 / 10%) !important;
-  height: 100vh !important;
-  margin: 0 !important;
-  overflow-y: auto !important;
-  padding: 12px !important;
-  position: fixed !important;
-  right: 0 !important;
-  top: 0 !important;
-  width: 35vw !important;
-  z-index: 9999 !important;
+  margin-top: 60px;
 
   * { color: #333; }
-
-  // Search functionality
-  .dxpr-search-container {
-    background: #f8f9fa;
-    border-bottom: 1px solid $border-color;
-    margin: -12px -12px 20px;
-    padding: 12px;
-    position: sticky;
-    top: -12px;
-    z-index: 100;
-  }
-
-  #dxpr-settings-search {
-    background: white;
-    border: 1px solid #ced4da;
-    border-radius: 4px;
-    font-size: 14px;
-    outline: none;
-    padding: 8px 12px;
-    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-    width: 100%;
-
-    &:focus {
-      border-color: #4675ff;
-      box-shadow: 0 0 0 2px rgb(70 117 255 / 25%);
-    }
-
-    &::placeholder {
-      color: #6c757d;
-      opacity: 1;
-    }
-  }
 
   // Header
   *:not(.reinvented-color-wheel *) {
@@ -63,10 +20,10 @@ $border-color: #222330;
 
   #edit-submit {
     border: none;
-    font-size: 16px;
-    margin: 12px 0;
-    padding: 12px;
-    width: 100%;
+    font-size: 18px;
+    margin: 20px;
+    padding: 20px;
+    width: 300px;
   }
 
   .settings-header {
@@ -158,27 +115,25 @@ $border-color: #222330;
     background-color: unset;
     border: none;
     display: block;
-    font-size: 16px;
-    margin-bottom: 8px;
+    float: left;
+    font-size: 18px;
     outline: none;
-    width: 100%;
+    padding: 0 27px 5px 0;
+    width: 200px;
   }
 
   .no-preview {
-    position: relative;
-    
     &::after {
       background-image: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20fill%3D%22none%22%20stroke%3D%22currentColor%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20class%3D%22feather%20feather-eye-off%22%3E%3Cpath%20d%3D%22M17.94%2017.94A10.07%2010.07%200%200%201%2012%2020c-7%200-11-8-11-8a18.45%2018.45%200%200%201%205.06-5.94M9.9%204.24A9.12%209.12%200%200%201%2012%204c7%200%2011%208%2011%208a18.5%2018.5%200%200%201-2.16%203.19m-6.72-1.07a3%203%200%201%201-4.24-4.24M1%201l22%2022%22%2F%3E%3C%2Fsvg%3E');
       background-size: contain;
       content: '';
       display: inline-block;
       filter: invert(100%) brightness(70%);
-      height: 16px;
-      margin-left: .4em;
+      height: 20px;
+      margin-left: .3em;
+      margin-top: .2em;
       position: absolute;
-      right: -20px;
-      top: 2px;
-      width: 16px;
+      width: 20px;
     }
   }
 
@@ -207,8 +162,15 @@ $border-color: #222330;
 
   .form-item {
     background-color: unset;
-    margin-bottom: 20px;
+    clear: both;
+    min-height: 3em;
     padding-left: 0;
+
+    &::after{
+      clear: both;
+      content: "";
+      display: table;
+    }
 
     .js-form-type-radio {
       min-height: 20px;
@@ -247,8 +209,9 @@ $border-color: #222330;
   .form-text,
   .fieldset-wrapper,
   .select-wrapper {
+    float: left;
     max-width: 100%;
-    width: 100%;
+    width: 400px;
   }
 
   .fieldset-wrapper {
@@ -264,9 +227,7 @@ $border-color: #222330;
 
   .description,
   .help-block {
-    color: #666;
-    font-size: 14px;
-    margin-top: 8px;
+    clear: both;
   }
 
   h2 {
@@ -276,7 +237,7 @@ $border-color: #222330;
 
   .form-header {
     border-bottom: 1px solid $border-color;
-    padding: 12px;
+    padding: 20px;
     position: relative;
 
     h2 {
@@ -303,11 +264,11 @@ $border-color: #222330;
       height: 100%;
       left: 0;
       margin: 0;
-      padding-top: 16px;
+      padding-top: 30px;
       position: relative;
       top: 0;
       vertical-align: top;
-      width: 120px;
+      width: 200px;
 
       .vertical-tabs__menu-item {
         background: transparent;
@@ -316,9 +277,8 @@ $border-color: #222330;
         a {
           background: transparent;
           border: none;
-          font-size: 12px;
-          margin-bottom: 1px;
-          padding: 6px 8px;
+          margin-bottom: 3px;
+          padding: 10px 15px;
 
           &:hover,
           &:active {
@@ -344,7 +304,7 @@ $border-color: #222330;
       }
 
       .is-selected {
-        background-color: #e9ecef;
+        background-color: var(--dxt-color-silver);
 
         a {
           border: none;
@@ -357,10 +317,10 @@ $border-color: #222330;
     }
 
     .vertical-tabs__panes {
-      padding: 0 12px 12px 0;
+      padding: 0 15px 15px 0;
 
       .details-wrapper {
-        padding: 12px;
+        padding: 15px;
       }
     }
 
@@ -372,7 +332,8 @@ $border-color: #222330;
   }
 
   .form-composite {
-    display: block;
+    display: flex;
+    flex-direction: inherit;
 
     .form-checkboxes input {
       display: block;
@@ -383,27 +344,27 @@ $border-color: #222330;
     }
 
     label {
-      font-size: 14px;
-      margin-bottom: 8px;
-      width: 100%;
+      font-size: 15px;
+      width: auto;
     }
 
+    // .form-radios {
+    // label.option,
     input ~ label.option,
     input ~ span {
       cursor: pointer;
-      display: block;
       font-weight: 300;
-      line-height: 20px;
-      margin: 0 0 8px;
-      width: 100%;
+      line-height: 24px;
+      margin: 0;
+      width: auto;
 
       &::before {
         content: '__';
         display: inline-block;
-        font-size: 16px;
+        font-size: 18px;
         font-weight: normal;
         opacity: 0.3;
-        width: 20px;
+        width: 25px;
       }
     }
 
@@ -414,10 +375,12 @@ $border-color: #222330;
 
       &::before {
         content: '✓';
-        font-size: 20px;
+        font-size: 24px;
         opacity: 1;
       }
     }
+
+    // }
   }
 
   .form-type-checkboxes {
@@ -427,43 +390,37 @@ $border-color: #222330;
   }
 
   .farbtastic {
-    flex-shrink: 0;
-    transform: scale(0.7);
-    transform-origin: top left;
     z-index: 10;
   }
 
   .color-form {
-    display: flex;
-    max-width: 100%;
+    max-width: 740px;
 
     .form-item {
-      margin: 0 0 16px;
+      margin: 0 0 24px;
     }
 
     .details-wrapper {
       display: flex;
-      gap: 16px;
-      width: 100%;
     }
 
     .form-text {
-      padding: 8px;
-      width: 100%;
+      padding: 3px;
+      width: 250px;
     }
 
     .select-wrapper {
-      margin-bottom: 12px;
-      width: 100%;
+      width: 250px;
 
       .form-select {
-        width: 100%;
+        float: none;
+        width: 250px;
       }
     }
 
     .form-item-scheme {
-      margin-bottom: 16px;
-      width: 100%;
+      height: 3.2em;
+      margin-right: 160px;
     }
 
     h2 {
@@ -486,17 +443,17 @@ $border-color: #222330;
   }
 
   .color-palette {
-    flex: 1;
-    margin-top: 20px;
+    margin-top: 64px;
 
     label {
       line-height: 1.2;
-      margin-bottom: 6px;
-      width: 100%;
+      padding: 0 27px 0 0;
     }
 
     .form-item {
-      margin-bottom: 16px;
+      align-items: center;
+      display: flex;
+      min-height: 0;
       padding: 0;
     }
 
@@ -509,15 +466,12 @@ $border-color: #222330;
     }
 
     .lock {
-      left: auto;
-      margin-left: 8px;
-      position: relative;
-      top: auto;
+      left: -18px;
+      top: -2em;
     }
 
     .form-text {
-      padding: 8px;
-      width: 100%;
+      padding: 5px;
 
       &.active {
         border-radius: 4px;
@@ -550,12 +504,18 @@ $border-color: #222330;
 
   #edit-fonts {
     .form-item:not(.form-wrapper) {
-      margin-bottom: 16px;
-      width: 100%;
+      clear: none;
+      float: left;
+      height: 70px;
+      padding-right: 10px;
+      width: 40%;
+
+      &.form-type-textfield {
+        width: 60%;
+      }
 
       .form-select {
-        height: 40px;
-        width: 100%;
+        height: 50px;
       }
 
       .form-text,
@@ -563,52 +523,57 @@ $border-color: #222330;
         width: 100%;
       }
 
-      label {
-        margin-bottom: 6px;
+      .form-wrapper {
+        clear: both;
       }
     }
   }
 
   #edit-typography {
     .form-item:not(.form-wrapper) {
-      margin-bottom: 16px;
-      width: 100%;
+      clear: none;
+      float: left;
+      margin-bottom: 0;
+      overflow: hidden;
+      padding-top: 0;
+      width: 33%;
 
       label {
-        margin-bottom: 6px;
         width: 100%;
       }
     }
 
     .form-text:not([name="divider_color_custom"]) {
-      width: 100%;
+      width: 27%;
     }
 
     .form-item-scale-factor {
-      width: 100%;
+      width: 66%;
     }
 
     .form-item-divider-color,
     .form-item-divider-color-custom {
-      width: 100%;
+      clear: both;
     }
   }
 
   #edit-block {
     .form-type-select,
     .form-text {
-      width: 100%;
+      width: 80%;
     }
   }
 
   .block-design-settings {
-    margin-bottom: 20px;
-    width: 100%;
+    float:left;
+    padding: 0 0 60px;
+    width: 50%;
   }
 
   .block-preview {
-    margin-top: 20px;
-    width: 100%;
+    float:left;
+    padding: 90px 0 0 60px;
+    width:50%;
   }
 
   .form-item[class$="invoke"] .form-text {
@@ -634,50 +599,65 @@ $border-color: #222330;
   }
 
   .js-form-type-checkbox {
-    display: block;
-    margin-bottom: 16px;
     position: relative;
 
     input[type="checkbox"] {
       appearance: auto;
       cursor: pointer;
-      float: right;
-      height: 20px;
-      position: static;
-      width: 40px;
+      height: 27px;
+      left: 200px;
+      margin: 0;
+      position: absolute;
+      top: 0;
+      width: 54px;
       z-index: 10;
+
+      // Can't add the switcher div with #suffix and #prefix for some reason
+      // So just using checkboxes again
+      // opacity: 0;
+      // appearance: none;
+      &:checked + .switcher {
+        &::after {
+          left: calc(100% - 3px);
+          transform: translateX(-100%);
+        }
+      }
 
       &:focus {
         box-shadow: unset;
       }
     }
 
-    label {
-      display: block;
-      line-height: 1.4;
-      margin-bottom: 4px;
-      width: 100%;
-    }
-
-    .description {
-      clear: both;
-      color: #666;
-      font-size: 14px;
-      line-height: 1.3;
-      margin-top: 4px;
-    }
-
     .switcher {
-      display: none; // Hide custom switcher, use native checkbox
+      border-radius: 20px;
+      cursor: pointer;
+      display: block;
+      height: 27px;
+      left: 200px;
+      margin: 0;
+      padding: 0;
+      position: absolute;
+      text-indent: -9999px;
+      top: 0;
+      width: 54px;
+
+      &::after {
+        border-radius: 50%;
+        content: '';
+        height: 21px;
+        left: 3px;
+        position: absolute;
+        top: 3px;
+        transition: 0.3s;
+        width: 21px;
+      }
     }
   }
 
   .core-theme-settings, .form-checkboxes {
-    .js-form-type-checkbox {
-      input[type="checkbox"] {
-        margin-left: auto;
-        position: static;
-      }
+    .js-form-type-checkbox input[type="checkbox"] {
+      left: auto;
+      right: 0;
     }
   }
 
@@ -698,10 +678,6 @@ $border-color: #222330;
       }
     }
   }
-}
-
-.dxpr-body-wrapper {
-  margin-right: 35vw !important;
 }
 
 .type-preview {
