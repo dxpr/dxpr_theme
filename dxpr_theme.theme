@@ -469,7 +469,7 @@ function _dxpr_theme_generate_manifest($web_icons_media_id, $manifest_path) {
     if ($image_style_192) {
       $url_192 = $image_style_192->buildUrl($file_uri);
       $manifest['icons'][] = [
-        'src' => file_url_transform_relative($url_192),
+        'src' => \Drupal::service('file_url_generator')->transformRelative($url_192),
         'sizes' => '192x192',
         'type' => 'image/png',
       ];
@@ -480,7 +480,7 @@ function _dxpr_theme_generate_manifest($web_icons_media_id, $manifest_path) {
     if ($image_style_512) {
       $url_512 = $image_style_512->buildUrl($file_uri);
       $manifest['icons'][] = [
-        'src' => file_url_transform_relative($url_512),
+        'src' => \Drupal::service('file_url_generator')->transformRelative($url_512),
         'sizes' => '512x512',
         'type' => 'image/png',
       ];
