@@ -7,6 +7,8 @@
  * Place your custom PHP code in this file.
  */
 
+use Drupal\image\Entity\ImageStyle;
+use Drupal\media\Entity\Media;
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Form\FormStateInterface;
@@ -155,9 +157,9 @@ function dxpr_theme_preprocess_html(&$variables) {
   // Add Apple Touch Icon URL if configured.
   $web_icons_media_id = theme_get_setting('web_icons_upload');
   if ($web_icons_media_id) {
-    $media = \Drupal\media\Entity\Media::load($web_icons_media_id);
+    $media = Media::load($web_icons_media_id);
     if ($media && $media->field_media_image->entity) {
-      $image_style = \Drupal\image\Entity\ImageStyle::load('apple_touch_icon');
+      $image_style = ImageStyle::load('apple_touch_icon');
       if ($image_style) {
         $variables['apple_touch_icon_url'] = $image_style->buildUrl($media->field_media_image->entity->getFileUri());
       }
@@ -170,11 +172,11 @@ function dxpr_theme_preprocess_html(&$variables) {
     $file_system = \Drupal::service('file_system');
     $public_path = $file_system->realpath('public://');
     $manifest_path = $public_path . '/manifest.webmanifest';
-    
+
     if (!file_exists($manifest_path)) {
       _dxpr_theme_generate_manifest($web_icons_media_id, $manifest_path);
     }
-    
+
     $variables['manifest_url'] = '/sites/default/files/manifest.webmanifest';
   }
 }
@@ -460,12 +462,12 @@ function _dxpr_theme_generate_manifest($web_icons_media_id, $manifest_path) {
     'icons' => [],
   ];
 
-  $media = \Drupal\media\Entity\Media::load($web_icons_media_id);
+  $media = Media::load($web_icons_media_id);
   if ($media && $media->field_media_image->entity) {
     $file_uri = $media->field_media_image->entity->getFileUri();
-    
+
     // Add 192x192 icon.
-    $image_style_192 = \Drupal\image\Entity\ImageStyle::load('android_chrome_192');
+    $image_style_192 = ImageStyle::load('android_chrome_192');
     if ($image_style_192) {
       $url_192 = $image_style_192->buildUrl($file_uri);
       $manifest['icons'][] = [
@@ -476,7 +478,7 @@ function _dxpr_theme_generate_manifest($web_icons_media_id, $manifest_path) {
     }
 
     // Add 512x512 icon.
-    $image_style_512 = \Drupal\image\Entity\ImageStyle::load('android_chrome_512');
+    $image_style_512 = ImageStyle::load('android_chrome_512');
     if ($image_style_512) {
       $url_512 = $image_style_512->buildUrl($file_uri);
       $manifest['icons'][] = [
