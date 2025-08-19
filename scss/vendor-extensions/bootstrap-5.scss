@@ -93,6 +93,7 @@ div.lead {
 
   a {
     color: dxpr-color('basetext') !important;
+
     &:hover,
     &:focus {
       color: dxpr-color('basetext') !important;
@@ -108,6 +109,7 @@ div.lead {
 
   a {
     color: dxpr-color('accent1text') !important;
+
     &:hover,
     &:focus {
       color: dxpr-color('accent1text') !important;
@@ -157,9 +159,9 @@ a.text-primary:focus {
 
 // Bootstrap 5 Outline Button Styles
 .btn-outline-primary {
-  color: dxpr-color('base');
-  border-color: dxpr-color('base');
   background-color: transparent;
+  border-color: dxpr-color('base');
+  color: dxpr-color('base');
 
   &:hover,
   &:focus,
@@ -171,8 +173,8 @@ a.text-primary:focus {
     color: dxpr-color('basetext');
   }
 
-  &:not(:disabled):not(.disabled):active,
-  &:not(:disabled):not(.disabled).active {
+  &:not(:disabled, .disabled):active,
+  &:not(:disabled, .disabled).active {
     background-color: dxpr-color('accent1');
     border-color: dxpr-color('accent1');
     color: dxpr-color('accent1text');
@@ -180,9 +182,9 @@ a.text-primary:focus {
 }
 
 .btn-outline-secondary {
-  color: dxpr-color('accent1');
-  border-color: dxpr-color('accent1');
   background-color: transparent;
+  border-color: dxpr-color('accent1');
+  color: dxpr-color('accent1');
 
   &:hover,
   &:focus,
@@ -194,8 +196,8 @@ a.text-primary:focus {
     color: dxpr-color('accent1text');
   }
 
-  &:not(:disabled):not(.disabled):active,
-  &:not(:disabled):not(.disabled).active {
+  &:not(:disabled, .disabled):active,
+  &:not(:disabled, .disabled).active {
     background-color: dxpr-color('accent2');
     border-color: dxpr-color('accent2');
     color: dxpr-color('accent2text');
@@ -204,9 +206,9 @@ a.text-primary:focus {
 
 // Additional outline button variants using theme colors
 .btn-outline-success {
-  color: dxpr-color('accent1');
-  border-color: dxpr-color('accent1');
   background-color: transparent;
+  border-color: dxpr-color('accent1');
+  color: dxpr-color('accent1');
 
   &:hover,
   &:focus,
@@ -220,9 +222,9 @@ a.text-primary:focus {
 }
 
 .btn-outline-info {
-  color: dxpr-color('accent2');
-  border-color: dxpr-color('accent2');
   background-color: transparent;
+  border-color: dxpr-color('accent2');
+  color: dxpr-color('accent2');
 
   &:hover,
   &:focus,
@@ -236,9 +238,9 @@ a.text-primary:focus {
 }
 
 .btn-outline-dark {
-  color: dxpr-color('headings');
-  border-color: dxpr-color('headings');
   background-color: transparent;
+  border-color: dxpr-color('headings');
+  color: dxpr-color('headings');
 
   &:hover,
   &:focus,
@@ -252,9 +254,9 @@ a.text-primary:focus {
 }
 
 .btn-outline-light {
-  color: dxpr-color('graylight');
-  border-color: dxpr-color('graylight');
   background-color: transparent;
+  border-color: dxpr-color('graylight');
+  color: dxpr-color('graylight');
 
   &:hover,
   &:focus,
