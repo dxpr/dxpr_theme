@@ -87,23 +87,31 @@ div.lead {
 .btn-primary,
 .btn-group > .btn-primary,
 .html .fake-submit {
-  background: dxpr-color('base');
-  border-color: dxpr-color('base');
-  color: dxpr-color('basetext');
+  background: dxpr-color('base') !important;
+  border-color: dxpr-color('base') !important;
+  color: dxpr-color('basetext') !important;
 
   a {
-    color: dxpr-color('basetext');
+    color: dxpr-color('basetext') !important;
+    &:hover,
+    &:focus {
+      color: dxpr-color('basetext') !important;
+    }
   }
 }
 
 .btn-secondary,
 .btn-group > .btn-secondary {
-  background: dxpr-color('accent1');
-  border-color: dxpr-color('accent1');
-  color: dxpr-color('accent1text');
+  background: dxpr-color('accent1') !important;
+  border-color: dxpr-color('accent1') !important;
+  color: dxpr-color('accent1text') !important;
 
   a {
-    color: dxpr-color('accent1text');
+    color: dxpr-color('accent1text') !important;
+    &:hover,
+    &:focus {
+      color: dxpr-color('accent1text') !important;
+    }
   }
 }
 
@@ -261,84 +269,84 @@ a.text-primary:focus {
 
 // Override Bootstrap background classes to use proper text colors
 .bg-primary {
-  color: dxpr-color('basetext') !important;
+  color: dxpr-color('basetext');
   
   *, h1, h2, h3, h4, h5, h6, p, span, div, a {
-    color: dxpr-color('basetext') !important;
+    color: dxpr-color('basetext');
   }
 }
 
 .bg-secondary {
-  background-color: dxpr-color('accent1') !important;
-  color: dxpr-color('accent1text') !important;
+  background-color: dxpr-color('accent1');
+  color: dxpr-color('accent1text');
   
   *, h1, h2, h3, h4, h5, h6, p, span, div, a {
-    color: dxpr-color('accent1text') !important;
+    color: dxpr-color('accent1text');
   }
 }
 
 // Bootstrap 5.3 Subtle Background Variants
 .bg-primary-subtle {
-  background-color: dxpr-color('basesubtle') !important;
-  color: dxpr-color('basesubtletext') !important;
+  background-color: dxpr-color('basesubtle');
+  color: dxpr-color('basesubtletext');
   
   *, h1, h2, h3, h4, h5, h6, p, span, div, a {
-    color: dxpr-color('basesubtletext') !important;
+    color: dxpr-color('basesubtletext');
   }
 }
 
 .bg-secondary-subtle {
-  background-color: dxpr-color('accent1subtle') !important;
-  color: dxpr-color('accent1subtletext') !important;
+  background-color: dxpr-color('accent1subtle');
+  color: dxpr-color('accent1subtletext');
   
   *, h1, h2, h3, h4, h5, h6, p, span, div, a {
-    color: dxpr-color('accent1subtletext') !important;
+    color: dxpr-color('accent1subtletext');
   }
 }
 
 .bg-dark-subtle {
-  background-color: dxpr-color('headingssubtle') !important;
-  color: dxpr-color('headingssubtletext') !important;
+  background-color: dxpr-color('headingssubtle');
+  color: dxpr-color('headingssubtletext');
   
   *, h1, h2, h3, h4, h5, h6, p, span, div, a {
-    color: dxpr-color('headingssubtletext') !important;
+    color: dxpr-color('headingssubtletext');
   }
 }
 
 .bg-info-subtle {
-  background-color: dxpr-color('accent2subtle') !important;
-  color: dxpr-color('accent2subtletext') !important;
+  background-color: dxpr-color('accent2subtle');
+  color: dxpr-color('accent2subtletext');
   
   *, h1, h2, h3, h4, h5, h6, p, span, div, a {
-    color: dxpr-color('accent2subtletext') !important;
+    color: dxpr-color('accent2subtletext');
   }
 }
 
 .bg-success-subtle {
-  background-color: dxpr-color('accent1subtle') !important;
-  color: dxpr-color('accent1subtletext') !important;
+  background-color: dxpr-color('accent1subtle');
+  color: dxpr-color('accent1subtletext');
   
   *, h1, h2, h3, h4, h5, h6, p, span, div, a {
-    color: dxpr-color('accent1subtletext') !important;
+    color: dxpr-color('accent1subtletext');
   }
 }
 
 
 .text-white {
   h1, h2, h3, h4, h5, h6, th {
-    color: #fff !important;
+    color: #fff;
   }
 }
 
 .text-primary {
   h1, h2, h3, h4, h5, h6, th {
-    color: dxpr-color('accent1') !important;
+    color: dxpr-color('accent1');
   }
 }
 
 .text-secondary {
   h1, h2, h3, h4, h5, h6, th {
-    color: dxpr-color('accent2') !important;
+    color: dxpr-color('accent2');
   }
 }
 
@@ -443,7 +451,7 @@ blockquote footer, blockquote small, blockquote .small {
 }
 
 .center-block {
-  float: none!important;
+  float: none;
 }
 
 // Tabs
@@ -535,7 +543,7 @@ blockquote footer, blockquote small, blockquote .small {
       }
 
       &.active {
-        bottom: auto !important;
+        bottom: auto;
 
         a {
           border: none;
@@ -609,5 +617,5 @@ blockquote footer, blockquote small, blockquote .small {
 // -------------------------
 
 .bg-light {
-  background-color: dxpr-color('graylight') !important;
+  background-color: dxpr-color('graylight');
 }
