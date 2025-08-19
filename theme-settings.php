@@ -38,10 +38,7 @@ function dxpr_theme_form_system_theme_settings_alter(&$form, &$form_state, $form
     '#type' => 'inline_template',
     '#template' => '
       <div class="form-header">
-        <h2>
-          {{ image|raw }} {{ name }} {{ version }}
-          <span class="small">({{ bs5_name }} base theme {{ bs5_version }})</span>
-        </h2>
+        <h2>{{ image|raw }}</h2>
         <div class="no-preview-info small">
           <span class="no-preview">&nbsp;</span>{{ preview_text }}
         </div>
@@ -49,11 +46,7 @@ function dxpr_theme_form_system_theme_settings_alter(&$form, &$form_state, $form
     ',
     '#context' => [
       'image' => '<img width="40" height="15" src="' . $base_path . $dxpr_theme_theme_path . 'images/dxpr-logo-dark.svg" />',
-      'name' => $themes[$subject_theme]->info['name'],
-      'version' => $version ?? 'dev',
-      'bs5_name' => $themes['bootstrap5']->info['name'],
-      'bs5_version' => $themes['bootstrap5']->info['version'],
-      'preview_text' => t('No preview. Save to view changes.'),
+      'preview_text' =>' = ' . t('No preview. Save to view changes.'),
     ],
     '#weight' => -100,
   ];
