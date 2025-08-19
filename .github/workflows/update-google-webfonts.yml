@@ -52,8 +52,10 @@ jobs:
             exit 1
           fi
           
-          # Replace old file with new one
-          mv features/sooper-fonts/google-webfonts.json.new features/sooper-fonts/google-webfonts.json
+          # Extract just the items array to match existing file format
+          jq '.items' features/sooper-fonts/google-webfonts.json.new > features/sooper-fonts/google-webfonts.json.extracted
+          mv features/sooper-fonts/google-webfonts.json.extracted features/sooper-fonts/google-webfonts.json
+          rm features/sooper-fonts/google-webfonts.json.new
 
       - name: Check for changes
         id: changes
@@ -66,8 +68,8 @@ jobs:
             echo "changed=true" >> $GITHUB_OUTPUT
             
             # Get statistics about changes
-            OLD_COUNT=$(jq '.items | length' features/sooper-fonts/google-webfonts.json.backup)
-            NEW_COUNT=$(jq '.items | length' features/sooper-fonts/google-webfonts.json)
+            OLD_COUNT=$(jq 'length' features/sooper-fonts/google-webfonts.json.backup)
+            NEW_COUNT=$(jq 'length' features/sooper-fonts/google-webfonts.json)
             echo "old_count=${OLD_COUNT}" >> $GITHUB_OUTPUT
             echo "new_count=${NEW_COUNT}" >> $GITHUB_OUTPUT
           fi
