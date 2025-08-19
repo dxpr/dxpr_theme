@@ -80,6 +80,8 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: 'feat: update Google Webfonts database'
+          add-paths: |
+            features/sooper-fonts/google-webfonts.json
           title: 'Update Google Webfonts database'
           body: |
             ## 📝 Summary
