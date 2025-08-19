@@ -1,0 +1,75 @@
+{%
+  set classes = [
+    'card',
+    'h-100',
+    'bg-light',
+    'border-0',
+    'my-5',
+    'overflow-hidden',
+    'position-relative',
+    not image ? 'p-0'
+  ]
+%}
+{%
+  set inner_classes = [
+    'd-flex',
+    'flex-column',
+    'h-100',
+    'position-relative',
+    image ? 'flex-md-row'
+  ]
+%}
+{%
+  set content_classes = [
+    'd-flex',
+    'flex-column',
+    'justify-content-center',
+    'p-3',
+    image ? 'ps-md-4 border-start border-6 border-transparent' : 'p-4 p-sm-5',
+    image ? 'flex-md-fill'
+  ]
+%}
+<article{{ attributes.addClass(classes) }}>
+  <div class="{{ inner_classes|join(' ') }}">
+    {% if image %}
+      <div class="d-flex flex-md-fill">
+        <img loading="lazy" src="{{ image.src }}" alt="{{ image.alt }}" class="w-100 h-auto object-fit-cover ratio ratio-16x9">
+      </div>
+    {% endif %}
+    <div class="{{ content_classes|join(' ') }}">
+      <header class="d-flex flex-column gap-2 mb-3">
+        {% if pretitle %}
+          <div class="text-muted text-uppercase fw-semibold" style="font-size: 0.75rem; letter-spacing: 0.15rem;">
+            {{ pretitle }}
+          </div>
+        {% endif %}
+        <h3 class="h4 mb-0 text-dark">
+          {% if link_url %}
+            <a href="{{ link_url }}" class="text-decoration-none text-dark stretched-link">{{ title }}</a>
+          {% else %}
+            {{ title }}
+          {% endif %}
+        </h3>
+        {% if subtitle %}
+          <div class="text-muted small" style="letter-spacing: 0.0625rem;">
+            {{ subtitle}}
+          </div>
+        {% endif %}
+      </header>
+      <div class="d-flex flex-column gap-3">
+        {% if summary %}
+          <div class="card-text">
+            {{ summary }}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+    {% if link_url %}
+      <div class="position-absolute bottom-0 end-0 p-3 text-primary">
+        <svg width="16" height="16" fill="currentColor" class="bi bi-arrow-right">
+          <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+        </svg>
+      </div>
+    {% endif %}
+  </div>
+</article>

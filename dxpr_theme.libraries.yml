@@ -187,3 +187,13 @@ custom_animations:
   css:
     theme:
       css/animations-dxpr.css: {}
+
+# SDC Component Libraries
+views:
+  dependencies:
+    - core/components.dxpr_theme--card
+    - core/components.dxpr_theme--card-grid
+    - core/components.dxpr_theme--heading
+    - core/components.dxpr_theme--feature
+    - core/components.dxpr_theme--hero
+    - core/components.dxpr_theme--testimonial

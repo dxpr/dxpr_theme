@@ -43,6 +43,8 @@ libraries-override:
 libraries-extend:
   gin/gin_toolbar:
     - dxpr_theme/gin_toolbar
+  views/views.module:
+    - dxpr_theme/views
 
 config:
   install:
