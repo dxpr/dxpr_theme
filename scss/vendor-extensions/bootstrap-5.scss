@@ -274,7 +274,7 @@ a.text-primary:focus {
   color: dxpr-color('basetext') !important;
   
   *, h1, h2, h3, h4, h5, h6, p, span, div, a {
-    color: dxpr-color('basetext') !important;
+    color: dxpr-color('basetext');
   }
 }
 
@@ -283,7 +283,7 @@ a.text-primary:focus {
   color: dxpr-color('accent1text') !important;
   
   *, h1, h2, h3, h4, h5, h6, p, span, div, a {
-    color: dxpr-color('accent1text') !important;
+    color: dxpr-color('accent1text');
   }
 }
 
@@ -293,7 +293,7 @@ a.text-primary:focus {
   color: dxpr-color('basesubtletext') !important;
   
   *, h1, h2, h3, h4, h5, h6, p, span, div, a {
-    color: dxpr-color('basesubtletext') !important;
+    color: dxpr-color('basesubtletext');
   }
 }
 
@@ -302,7 +302,7 @@ a.text-primary:focus {
   color: dxpr-color('accent1subtletext') !important;
   
   *, h1, h2, h3, h4, h5, h6, p, span, div, a {
-    color: dxpr-color('accent1subtletext') !important;
+    color: dxpr-color('accent1subtletext');
   }
 }
 
@@ -311,7 +311,7 @@ a.text-primary:focus {
   color: dxpr-color('headingssubtletext') !important;
   
   *, h1, h2, h3, h4, h5, h6, p, span, div, a {
-    color: dxpr-color('headingssubtletext') !important;
+    color: dxpr-color('headingssubtletext');
   }
 }
 
@@ -320,7 +320,7 @@ a.text-primary:focus {
   color: dxpr-color('accent2subtletext') !important;
   
   *, h1, h2, h3, h4, h5, h6, p, span, div, a {
-    color: dxpr-color('accent2subtletext') !important;
+    color: dxpr-color('accent2subtletext');
   }
 }
 
@@ -329,26 +329,26 @@ a.text-primary:focus {
   color: dxpr-color('accent1subtletext') !important;
   
   *, h1, h2, h3, h4, h5, h6, p, span, div, a {
-    color: dxpr-color('accent1subtletext') !important;
+    color: dxpr-color('accent1subtletext');
   }
 }
 
 
 .text-white {
   h1, h2, h3, h4, h5, h6, th {
-    color: #fff !important;
+    color: #fff;
   }
 }
 
 .text-primary {
   h1, h2, h3, h4, h5, h6, th {
-    color: dxpr-color('accent1') !important;
+    color: dxpr-color('accent1');
   }
 }
 
 .text-secondary {
   h1, h2, h3, h4, h5, h6, th {
-    color: dxpr-color('accent2') !important;
+    color: dxpr-color('accent2');
   }
 }
 
