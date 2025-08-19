@@ -33,6 +33,22 @@ function dxpr_theme_form_system_theme_settings_alter(&$form, &$form_state, $form
     $version = $themes[$subject_theme]->info['version'];
   }
 
+  // Load styleguide HTML
+  $theme_path = \Drupal::service('extension.list.theme')->getPath('dxpr_theme');
+  $styleguide_html = file_get_contents($theme_path . '/resources/styleguide.html');
+  
+  // Extract just the cheatsheet content
+  $html_dom = \Drupal\Component\Utility\Html::load($styleguide_html);
+  $xpath = new \DOMXPath($html_dom);
+  
+  $xpath_cheatsheet = $xpath->query("//*[contains(@class, 'bd-cheatsheet')]")->item(0);
+  
+  $html_cheatsheet = '';
+  
+  if ($xpath_cheatsheet) {
+    $html_cheatsheet = $xpath_cheatsheet->ownerDocument->saveHTML($xpath_cheatsheet);
+  }
+
   $form['dxpr_theme_settings_header'] = [
     '#type' => 'inline_template',
     '#template' => '
@@ -116,6 +132,18 @@ function dxpr_theme_form_system_theme_settings_alter(&$form, &$form_state, $form
   if (!file_exists($dxpr_theme_css_file)) {
     dxpr_theme_css_cache_build($subject_theme);
   }
+
+  // Add Styleguide tab
+  $form['styleguide'] = [
+    '#type' => 'details',
+    '#title' => t('Styleguide'),
+    '#group' => 'dxpr_theme_settings',
+    '#weight' => 100,
+  ];
+  
+  $form['styleguide']['styleguide_content'] = [
+    '#markup' => $html_cheatsheet,
+  ];
 
   foreach (\Drupal::service('file_system')->scanDirectory(\Drupal::service('extension.list.theme')->getPath('dxpr_theme') . '/features', '/settings.inc/i') as $file) {
     require_once $file->uri;
