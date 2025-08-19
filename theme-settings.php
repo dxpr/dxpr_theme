@@ -28,11 +28,7 @@ function dxpr_theme_form_system_theme_settings_alter(&$form, &$form_state, $form
   $build_info = $form_state->getBuildInfo();
   $subject_theme = $build_info['args'][0];
   $dxpr_theme_theme_path = \Drupal::service('extension.list.theme')->getPath('dxpr_theme') . '/';
-  $themes = \Drupal::service('theme_handler')->listInfo();
 
-  if (!empty($themes[$subject_theme]->info['version'])) {
-    $version = $themes[$subject_theme]->info['version'];
-  }
 
   $form['dxpr_theme_settings_header'] = [
     '#type' => 'inline_template',
