@@ -151,6 +151,32 @@ function dxpr_theme_preprocess_html(&$variables) {
   if ($header_hamburger_animation = theme_get_setting('hamburger_animation')) {
     $variables['#attached']['drupalSettings']['dxpr_themeSettings']['hamburgerAnimation'] = $header_hamburger_animation;
   }
+
+  // Add Apple Touch Icon URL if configured.
+  $web_icons_media_id = theme_get_setting('web_icons_upload');
+  if ($web_icons_media_id) {
+    $media = \Drupal\media\Entity\Media::load($web_icons_media_id);
+    if ($media && $media->field_media_image->entity) {
+      $image_style = \Drupal\image\Entity\ImageStyle::load('apple_touch_icon');
+      if ($image_style) {
+        $variables['apple_touch_icon_url'] = $image_style->buildUrl($media->field_media_image->entity->getFileUri());
+      }
+    }
+  }
+
+  // Add web manifest URL if icons are configured.
+  if ($web_icons_media_id) {
+    // Create a simple manifest JSON file in the public files directory.
+    $file_system = \Drupal::service('file_system');
+    $public_path = $file_system->realpath('public://');
+    $manifest_path = $public_path . '/manifest.webmanifest';
+    
+    if (!file_exists($manifest_path)) {
+      _dxpr_theme_generate_manifest($web_icons_media_id, $manifest_path);
+    }
+    
+    $variables['manifest_url'] = '/sites/default/files/manifest.webmanifest';
+  }
 }
 
 /**
@@ -419,6 +445,49 @@ function dxpr_theme_preprocess_input(&$variables) {
     }
   }
   $variables['#attached']['library'][] = 'dxpr_theme/drupal-search';
+}
+
+/**
+ * Generate web manifest file.
+ */
+function _dxpr_theme_generate_manifest($web_icons_media_id, $manifest_path) {
+  $config = \Drupal::config('system.site');
+  $manifest = [
+    'name' => $config->get('name') ?: 'Drupal Site',
+    'short_name' => $config->get('name') ?: 'Drupal',
+    'start_url' => '/',
+    'display' => 'standalone',
+    'icons' => [],
+  ];
+
+  $media = \Drupal\media\Entity\Media::load($web_icons_media_id);
+  if ($media && $media->field_media_image->entity) {
+    $file_uri = $media->field_media_image->entity->getFileUri();
+    
+    // Add 192x192 icon.
+    $image_style_192 = \Drupal\image\Entity\ImageStyle::load('android_chrome_192');
+    if ($image_style_192) {
+      $url_192 = $image_style_192->buildUrl($file_uri);
+      $manifest['icons'][] = [
+        'src' => file_url_transform_relative($url_192),
+        'sizes' => '192x192',
+        'type' => 'image/png',
+      ];
+    }
+
+    // Add 512x512 icon.
+    $image_style_512 = \Drupal\image\Entity\ImageStyle::load('android_chrome_512');
+    if ($image_style_512) {
+      $url_512 = $image_style_512->buildUrl($file_uri);
+      $manifest['icons'][] = [
+        'src' => file_url_transform_relative($url_512),
+        'sizes' => '512x512',
+        'type' => 'image/png',
+      ];
+    }
+  }
+
+  file_put_contents($manifest_path, json_encode($manifest, JSON_PRETTY_PRINT));
 }
 
 /**

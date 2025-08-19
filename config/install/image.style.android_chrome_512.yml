@@ -1,0 +1,14 @@
+langcode: en
+status: true
+dependencies: {  }
+name: android_chrome_512
+label: 'Android Chrome (512x512)'
+effects:
+  resize:
+    uuid: resize
+    id: image_scale_and_crop
+    weight: 0
+    data:
+      width: 512
+      height: 512
+      anchor: center-center

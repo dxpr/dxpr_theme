@@ -1,0 +1,14 @@
+langcode: en
+status: true
+dependencies: {  }
+name: apple_touch_icon
+label: 'Apple Touch Icon (180x180)'
+effects:
+  resize:
+    uuid: resize
+    id: image_scale_and_crop
+    weight: 0
+    data:
+      width: 180
+      height: 180
+      anchor: center-center
