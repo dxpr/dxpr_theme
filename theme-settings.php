@@ -117,6 +117,47 @@ function dxpr_theme_form_system_theme_settings_alter(&$form, &$form_state, $form
     dxpr_theme_css_cache_build($subject_theme);
   }
 
+  // Create body wrapper and load styleguide
+  $styleguide_url = base_path() . \Drupal::service('extension.list.theme')->getPath('dxpr_theme') . '/resources/styleguide.html';
+  
+  $form['#attached']['html_head'][] = [
+    [
+      '#tag' => 'script',
+      '#value' => \Drupal\Core\Render\Markup::create("
+        document.addEventListener('DOMContentLoaded', function() {
+          var body = document.body;
+          var wrapper = document.createElement('div');
+          wrapper.className = 'dxpr-body-wrapper';
+          while (body.firstChild) {
+            wrapper.appendChild(body.firstChild);
+          }
+          body.appendChild(wrapper);
+          
+          requestAnimationFrame(function() {
+            var contentRegion = document.querySelector('.region-content');
+            if (contentRegion) {
+              var styleguideDiv = document.createElement('div');
+              styleguideDiv.innerHTML = '<h2>Bootstrap Styleguide</h2><p>Loading...</p>';
+              contentRegion.insertBefore(styleguideDiv, contentRegion.firstChild);
+              
+              fetch('" . $styleguide_url . "')
+                .then(function(response) { return response.text(); })
+                .then(function(html) {
+                  var parser = new DOMParser();
+                  var doc = parser.parseFromString(html, 'text/html');
+                  var cheatsheet = doc.querySelector('.bd-cheatsheet');
+                  if (cheatsheet) {
+                    styleguideDiv.innerHTML = '<h2>Bootstrap Styleguide</h2>' + cheatsheet.outerHTML;
+                  }
+                });
+            }
+          });
+        });
+      "),
+    ],
+    'dxpr-theme-layout-js',
+  ];
+
   foreach (\Drupal::service('file_system')->scanDirectory(\Drupal::service('extension.list.theme')->getPath('dxpr_theme') . '/features', '/settings.inc/i') as $file) {
     require_once $file->uri;
     $function_name = basename($file->filename, '.inc');

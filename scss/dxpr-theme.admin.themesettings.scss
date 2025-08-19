@@ -3,7 +3,18 @@
 $border-color: #222330;
 
 #system-theme-settings {
-  margin-top: 60px;
+  position: fixed !important;
+  top: 0 !important;
+  right: 0 !important;
+  width: 50vw !important;
+  height: 100vh !important;
+  background: white !important;
+  box-shadow: -4px 0 8px rgba(0, 0, 0, 0.1) !important;
+  z-index: 1000 !important;
+  overflow-y: auto !important;
+  padding: 80px 20px 20px 20px !important;
+  border-left: 1px solid #ddd !important;
+  margin: 0 !important;
 
   * { color: #333; }
 
@@ -677,6 +688,10 @@ $border-color: #222330;
       }
     }
   }
+}
+
+.dxpr-body-wrapper {
+  margin-right: 50vw !important;
 }
 
 .type-preview {
