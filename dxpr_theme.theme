@@ -1,523 +1,519 @@
 <?php
 
-  /**
-   * @file
-   * Bootstrap sub-theme.
-   *
-   * Place your custom PHP code in this file.
-   */
+/**
+ * @file
+ * Bootstrap sub-theme.
+ *
+ * Place your custom PHP code in this file.
+ */
 
-  use Drupal\image\Entity\ImageStyle;
-  use Drupal\media\Entity\Media;
-  use Drupal\Component\Utility\Html;
-  use Drupal\Core\Entity\ContentEntityInterface;
-  use Drupal\Core\Form\FormStateInterface;
-  use Drupal\Core\Render\Markup;
-  use Drupal\Core\Template\Attribute;
-  use Drupal\block\Entity\Block;
-  use Drupal\media\MediaInterface;
-  use Drupal\node\NodeInterface;
+use Drupal\image\Entity\ImageStyle;
+use Drupal\media\Entity\Media;
+use Drupal\Component\Utility\Html;
+use Drupal\Core\Entity\ContentEntityInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Render\Markup;
+use Drupal\Core\Template\Attribute;
+use Drupal\block\Entity\Block;
+use Drupal\media\MediaInterface;
+use Drupal\node\NodeInterface;
 
-  /**
-   * Implements hook_library_info_alter().
-   *
-   * Replaces style sheets declared in libraries with color-altered style sheets.
-   */
-  function dxpr_theme_library_info_alter(&$libraries, $extension) {
-    if ($extension == 'dxpr_theme') {
-      // Manage dxpr_theme themesettings CSS.
-      $current_theme = \Drupal::service('theme.manager')->getActiveTheme()->getName();
-      $key = 'public://dxpr_theme/css/themesettings-' . $current_theme . '.css';
-      if (\Drupal::service('file_system')->realpath($key)) {
-        $libraries['global-styling']['css']['theme'][$key] = [
-          'minified' => FALSE,
-          'weight' => 5,
-        ];
-      }
-      // Subthemes dxpr_theme.css.
-      if ($current_theme !== 'dxpr_theme') {
-        // Subthemes carry their own copy of dxpr_theme.css,
-        // disable dxpr_theme/css/dxpr_theme.css.
-        unset($libraries['global-styling']['css']['theme']['css/dxpr_theme.css']);
-      }
-    }
-  }
-
-  /**
-   * Prepares variables for the all templates. Theme settings.
-   */
-  function dxpr_theme_preprocess(&$variables, $hook, $info) {
-    $theme = \Drupal::theme()
-      ->getActiveTheme()
-      ->getName();
-    $variables['theme']['settings'] = \Drupal::config($theme . '.settings')->get();
-  }
-
-  /**
-   * Prepares variables for the html template. Adds node object.
-   *
-   * Default template: html.html.twig.
-   *
-   * See the html.html.twig template for the list of variables.
-   */
-  function dxpr_theme_preprocess_html(&$variables) {
-
-    if ($node = \Drupal::routeMatch()->getParameter('node')) {
-      $variables['node'] = $node;
-    }
-
-    foreach (\Drupal::routeMatch()->getParameters() as $parameter) {
-      if ($parameter instanceof ContentEntityInterface) {
-        $variables['attributes']['class'][] = Html::getClass('page-' . $parameter->getEntityTypeId() . '-' . $parameter->id());
-        break;
-      }
-    }
-
-    // Include CSS variables and set color scheme class.
-    $variables['#attached']['library'][] = 'dxpr_theme/variables';
-    $variables['html_attributes']
-      ->setAttribute('class', 'dxpr-scheme-' . (theme_get_setting('color_scheme') ?? 'default'));
-
-    // Body background image.
-    if (array_key_exists('node', $variables)) {
-      $node = $variables['node'];
-
-      if (isset($node) && !is_string($node)) {
-        if ($node->hasField('field_dth_body_background')) {
-          // Get the module handler service.
-          $module_handler = \Drupal::service('module_handler');
-
-          // Check if the module is enabled.
-          if ($module_handler->moduleExists('media_library')) {
-            $media = $node->get('field_dth_body_background')->entity ?? 0;
-            if ($media instanceof MediaInterface) {
-              $thumbnailUri = $media->get('thumbnail')->entity->getFileUri();
-              $url = \Drupal::service('file_url_generator')->generateString($thumbnailUri);
-              if (isset($url)) {
-                $variables['body_bg_image_path'] = $url;
-              }
-            }
-          }
-        }
-      }
-    }
-
-    // Load Sooper Features Controllers.
-    $dxprThemePath = \Drupal::service('extension.list.theme')->getPath('dxpr_theme');
-    foreach (\Drupal::service('file_system')->scanDirectory($dxprThemePath . '/features', '/controller.inc/i') as $file) {
-      require_once $file->uri;
-      $function_name = basename($file->filename, '.inc');
-      $function_name = str_replace('-', '_', $function_name);
-      if (function_exists($function_name)) {
-        $function_name($variables);
-      }
-    }
-
-    if ($custom_js = theme_get_setting('custom_javascript_site')) {
-      $custom_js = Markup::create($custom_js);
-      $variables['page_bottom']['custom_javascript_site'] = [
-        '#markup' => $custom_js,
+/**
+ * Implements hook_library_info_alter().
+ *
+ * Replaces style sheets declared in libraries with color-altered style sheets.
+ */
+function dxpr_theme_library_info_alter(&$libraries, $extension) {
+  if ($extension == 'dxpr_theme') {
+    // Manage dxpr_theme themesettings CSS.
+    $current_theme = \Drupal::service('theme.manager')->getActiveTheme()->getName();
+    $key = 'public://dxpr_theme/css/themesettings-' . $current_theme . '.css';
+    if (\Drupal::service('file_system')->realpath($key)) {
+      $libraries['global-styling']['css']['theme'][$key] = [
+        'minified' => FALSE,
+        'weight' => 5,
       ];
     }
-    $variables['page_bottom']['custom_javascript'] = [
-      '#markup' => '<div class="hidden" id="dxpr-theme-js-seed">sfy39587stp18</div>',
-    ];
-
-    if ($header_height = theme_get_setting('header_top_height')) {
-      $variables['#attached']['drupalSettings']['dxpr_themeSettings']['headerHeight'] = $header_height;
+    // Subthemes dxpr_theme.css.
+    if ($current_theme !== 'dxpr_theme') {
+      // Subthemes carry their own copy of dxpr_theme.css,
+      // disable dxpr_theme/css/dxpr_theme.css.
+      unset($libraries['global-styling']['css']['theme']['css/dxpr_theme.css']);
     }
+  }
+}
 
-    if ($header_scroll_offset = theme_get_setting('header_top_height_sticky_offset')) {
-      $variables['#attached']['drupalSettings']['dxpr_themeSettings']['headerOffset'] = $header_scroll_offset;
-    }
+/**
+ * Prepares variables for the all templates. Theme settings.
+ */
+function dxpr_theme_preprocess(&$variables, $hook, $info) {
+  $theme = \Drupal::theme()
+    ->getActiveTheme()
+    ->getName();
+  $variables['theme']['settings'] = \Drupal::config($theme . '.settings')->get();
+}
 
-    // Fixed mobile header.
-    if ($header_mobile_fixed = theme_get_setting('header_mobile_fixed')) {
-      $variables['#attached']['drupalSettings']['dxpr_themeSettings']['headerMobileFixed'] = $header_mobile_fixed;
-    }
-    // Mobile header height.
-    if ($header_mobile_height = theme_get_setting('header_mobile_height')) {
-      $variables['#attached']['drupalSettings']['dxpr_themeSettings']['headerMobileHeight'] = $header_mobile_height;
-    }
+/**
+ * Prepares variables for the html template. Adds node object.
+ *
+ * Default template: html.html.twig.
+ *
+ * See the html.html.twig template for the list of variables.
+ */
+function dxpr_theme_preprocess_html(&$variables) {
 
-    if ($header_menu_direction = ((theme_get_setting('header_side_direction') !== NULL)) ? theme_get_setting('header_side_direction') : 'left') {
-      $variables['#attached']['drupalSettings']['dxpr_themeSettings']['headerSideDirection'] = $header_menu_direction;
-    }
+  if ($node = \Drupal::routeMatch()->getParameter('node')) {
+    $variables['node'] = $node;
+  }
 
-    // Second header sticky.
-    if ($second_header_sticky = theme_get_setting('second_header_sticky')) {
-      $variables['#attached']['drupalSettings']['dxpr_themeSettings']['secondHeaderSticky'] = $second_header_sticky;
-    }
-
-    // Menu hamburger animation.
-    if ($header_hamburger_animation = theme_get_setting('hamburger_animation')) {
-      $variables['#attached']['drupalSettings']['dxpr_themeSettings']['hamburgerAnimation'] = $header_hamburger_animation;
-    }
-
-    // Add Apple Touch Icon URL if configured.
-    $web_icons_media_id = theme_get_setting('web_icons_upload');
-    if ($web_icons_media_id) {
-      $media = Media::load($web_icons_media_id);
-      if ($media && $media->field_media_image->entity) {
-        $image_style = ImageStyle::load('apple_touch_icon');
-        if ($image_style) {
-          $variables['apple_touch_icon_url'] = $image_style->buildUrl($media->field_media_image->entity->getFileUri());
-        }
-      }
-    }
-
-    // Add web manifest URL if icons are configured.
-    if ($web_icons_media_id) {
-      // Create a simple manifest JSON file in the public files directory.
-      $file_system = \Drupal::service('file_system');
-      $public_path = $file_system->realpath('public://');
-      $manifest_path = $public_path . '/manifest.webmanifest';
-
-      // (1) Ensure public dir exists.
-//    $file_system->prepareDirectory('public://', \Drupal\Core\File\FileSystemInterface::CREATE_DIRECTORY);
-
-      // (2) Always (re)generate.
-      _dxpr_theme_generate_manifest($web_icons_media_id, $manifest_path);
-
-      // Absolute URL for the manifest.
-      $variables['manifest_url'] = \Drupal::service('file_url_generator')
-        ->generateAbsoluteString('public://manifest.webmanifest');
-
+  foreach (\Drupal::routeMatch()->getParameters() as $parameter) {
+    if ($parameter instanceof ContentEntityInterface) {
+      $variables['attributes']['class'][] = Html::getClass('page-' . $parameter->getEntityTypeId() . '-' . $parameter->id());
+      break;
     }
   }
 
-  /**
-   * Implements template_preprocess_page()
-   */
-  function dxpr_theme_preprocess_page(&$variables) {
-    $variables['navbar_attributes'] = [
-      'class' => ['navbar'],
-      'id' => ['navbar'],
-      'role' => ['banner'],
-    ];
-    $variables['navbar_attributes'] = new Attribute($variables['navbar_attributes']);
+  // Include CSS variables and set color scheme class.
+  $variables['#attached']['library'][] = 'dxpr_theme/variables';
+  $variables['html_attributes']
+    ->setAttribute('class', 'dxpr-scheme-' . (theme_get_setting('color_scheme') ?? 'default'));
 
-    $hide_regions = $local_hide = [];
-    if (theme_get_setting('hidden_regions') && !empty(array_keys(array_filter(theme_get_setting('hidden_regions'))))) {
-      $hide_regions = array_keys(array_filter(theme_get_setting('hidden_regions')));
-    }
-    if (!empty($variables['node'])
-      && $variables['node'] instanceof NodeInterface
-      && $variables['node']->hasField('field_dth_hide_regions')) {
-      $local_hide = array_column($variables['node']->get('field_dth_hide_regions')->getValue(), 'value');
-      $hide_regions = array_unique(array_merge($hide_regions, $local_hide));
-    }
-    if (in_array('navigation', $hide_regions)) {
-      $hide_regions[] = 'navigation_collapsible';
-    }
-    if (in_array('header', $hide_regions)) {
-      $hide_regions[] = 'navigation_collapsible';
-      $hide_regions[] = 'navigation';
-    }
-    foreach ($hide_regions as $value) {
-      if (!empty($variables['page'][$value])) {
-        unset($variables['page'][$value]);
-      }
-    }
+  // Body background image.
+  if (array_key_exists('node', $variables)) {
+    $node = $variables['node'];
 
-    // Title background image.
-    if (array_key_exists('node', $variables)) {
-      $node = $variables['node'];
+    if (isset($node) && !is_string($node)) {
+      if ($node->hasField('field_dth_body_background')) {
+        // Get the module handler service.
+        $module_handler = \Drupal::service('module_handler');
 
-      if (isset($node) && !is_string($node)) {
-        if ($node->hasField('field_dth_page_title_backgrou')) {
-          // Get the module handler service.
-          $module_handler = \Drupal::service('module_handler');
-
-          // Check if the module is enabled.
-          if ($module_handler->moduleExists('media_library')) {
-            $media = $node->get('field_dth_page_title_backgrou')->entity ?? 0;
-            if ($media instanceof MediaInterface) {
-              $thumbnailUri = $media->get('thumbnail')->entity->getFileUri();
-              $url = \Drupal::service('file_url_generator')->generateString($thumbnailUri);
-              if (isset($url)) {
-                $variables['title_bg_image_path'] = $url;
-              }
+        // Check if the module is enabled.
+        if ($module_handler->moduleExists('media_library')) {
+          $media = $node->get('field_dth_body_background')->entity ?? 0;
+          if ($media instanceof MediaInterface) {
+            $thumbnailUri = $media->get('thumbnail')->entity->getFileUri();
+            $url = \Drupal::service('file_url_generator')->generateString($thumbnailUri);
+            if (isset($url)) {
+              $variables['body_bg_image_path'] = $url;
             }
           }
         }
       }
     }
+  }
 
-    // CSS to load on every page.
-    $dxpr_theme_libraries = [
-      // Bootstrap TAILORING.
-      'dxpr_theme/bootstrap-5',
-      'dxpr_theme/bootstrap-theme',
-      // @todo Include only if needed.
-      // DXPR THEME BASE.
-      'dxpr_theme/forms',
-      'dxpr_theme/layout',
-      'dxpr_theme/page-title',
-      'dxpr_theme/typography',
-      // DXPR THEME Components.
-      // @todo Include only if needed.
-      'dxpr_theme/dxpr-theme-header--side',
-      'dxpr_theme/admin',
-      // Overrides.
-      // @todo Include only if needed.
-      'dxpr_theme/drupal-webform',
-      'dxpr_theme/dxpr-theme-builder',
-      // HELPERS.
-      'dxpr_theme/helper-classes',
-    ];
-    foreach ($dxpr_theme_libraries as $dxpr_theme_library) {
-      $variables['#attached']['library'][] = $dxpr_theme_library;
+  // Load Sooper Features Controllers.
+  $dxprThemePath = \Drupal::service('extension.list.theme')->getPath('dxpr_theme');
+  foreach (\Drupal::service('file_system')->scanDirectory($dxprThemePath . '/features', '/controller.inc/i') as $file) {
+    require_once $file->uri;
+    $function_name = basename($file->filename, '.inc');
+    $function_name = str_replace('-', '_', $function_name);
+    if (function_exists($function_name)) {
+      $function_name($variables);
     }
   }
 
-  /**
-   * Implements template_menu_local_tasks()
-   */
-  function dxpr_theme_preprocess_menu_local_tasks(&$variables) {
-    if ($variables['secondary']) {
-      // Secondary tabs are styled with bootstrap pager CSS.
-      $variables['#attached']['library'][] = 'dxpr_theme/drupal-pager';
-    }
+  if ($custom_js = theme_get_setting('custom_javascript_site')) {
+    $custom_js = Markup::create($custom_js);
+    $variables['page_bottom']['custom_javascript_site'] = [
+      '#markup' => $custom_js,
+    ];
+  }
+  $variables['page_bottom']['custom_javascript'] = [
+    '#markup' => '<div class="hidden" id="dxpr-theme-js-seed">sfy39587stp18</div>',
+  ];
 
-    // Check if admin_toolbar_tools is enabled and configured to show local tasks.
-    $module_handler = \Drupal::service('module_handler');
-    if ($module_handler->moduleExists('admin_toolbar_tools')) {
-      $config = \Drupal::config('admin_toolbar_tools.settings');
-      $show_local_tasks = $config->get('show_local_tasks');
+  if ($header_height = theme_get_setting('header_top_height')) {
+    $variables['#attached']['drupalSettings']['dxpr_themeSettings']['headerHeight'] = $header_height;
+  }
 
-      if ($show_local_tasks === TRUE) {
-        // Hide tabs when admin_toolbar_tools is showing local tasks.
-        $variables['hide_tabs'] = TRUE;
+  if ($header_scroll_offset = theme_get_setting('header_top_height_sticky_offset')) {
+    $variables['#attached']['drupalSettings']['dxpr_themeSettings']['headerOffset'] = $header_scroll_offset;
+  }
+
+  // Fixed mobile header.
+  if ($header_mobile_fixed = theme_get_setting('header_mobile_fixed')) {
+    $variables['#attached']['drupalSettings']['dxpr_themeSettings']['headerMobileFixed'] = $header_mobile_fixed;
+  }
+  // Mobile header height.
+  if ($header_mobile_height = theme_get_setting('header_mobile_height')) {
+    $variables['#attached']['drupalSettings']['dxpr_themeSettings']['headerMobileHeight'] = $header_mobile_height;
+  }
+
+  if ($header_menu_direction = ((theme_get_setting('header_side_direction') !== NULL)) ? theme_get_setting('header_side_direction') : 'left') {
+    $variables['#attached']['drupalSettings']['dxpr_themeSettings']['headerSideDirection'] = $header_menu_direction;
+  }
+
+  // Second header sticky.
+  if ($second_header_sticky = theme_get_setting('second_header_sticky')) {
+    $variables['#attached']['drupalSettings']['dxpr_themeSettings']['secondHeaderSticky'] = $second_header_sticky;
+  }
+
+  // Menu hamburger animation.
+  if ($header_hamburger_animation = theme_get_setting('hamburger_animation')) {
+    $variables['#attached']['drupalSettings']['dxpr_themeSettings']['hamburgerAnimation'] = $header_hamburger_animation;
+  }
+
+  // Add Apple Touch Icon URL if configured.
+  $web_icons_media_id = theme_get_setting('web_icons_upload');
+  if ($web_icons_media_id) {
+    $media = Media::load($web_icons_media_id);
+    if ($media && $media->field_media_image->entity) {
+      $image_style = ImageStyle::load('apple_touch_icon');
+      if ($image_style) {
+        $variables['apple_touch_icon_url'] = $image_style->buildUrl($media->field_media_image->entity->getFileUri());
       }
     }
   }
 
-  /**
-   * Implements template_preprocess_block()
-   */
-  function dxpr_theme_preprocess_block(&$variables) {
-    if (isset($variables['elements']['#id'])) {
-      $block = Block::load($variables['elements']['#id']);
-      if ($block) {
-        $variables['region'] = $block->getRegion();
+  // Add web manifest URL if icons are configured.
+  if ($web_icons_media_id) {
+    // Create a simple manifest JSON file in the public files directory.
+    $file_system = \Drupal::service('file_system');
+    $public_path = $file_system->realpath('public://');
+    $manifest_path = $public_path . '/manifest.webmanifest';
 
-        // If it exists, add the 'content_class' from the block's settings to
-        // the content's CSS classes.
-        if ($block_classes = $block->getThirdPartySettings('block_classes')) {
-          if (!empty($block_classes['content_class'])) {
-            $variables['content']['#attributes']['class'][] = $block_classes['content_class'];
+    _dxpr_theme_generate_manifest($web_icons_media_id, $manifest_path);
+
+    // Absolute URL for the manifest.
+    $variables['manifest_url'] = \Drupal::service('file_url_generator')
+      ->generateAbsoluteString('public://manifest.webmanifest');
+
+  }
+}
+
+/**
+ * Implements template_preprocess_page()
+ */
+function dxpr_theme_preprocess_page(&$variables) {
+  $variables['navbar_attributes'] = [
+    'class' => ['navbar'],
+    'id' => ['navbar'],
+    'role' => ['banner'],
+  ];
+  $variables['navbar_attributes'] = new Attribute($variables['navbar_attributes']);
+
+  $hide_regions = $local_hide = [];
+  if (theme_get_setting('hidden_regions') && !empty(array_keys(array_filter(theme_get_setting('hidden_regions'))))) {
+    $hide_regions = array_keys(array_filter(theme_get_setting('hidden_regions')));
+  }
+  if (!empty($variables['node'])
+    && $variables['node'] instanceof NodeInterface
+    && $variables['node']->hasField('field_dth_hide_regions')) {
+    $local_hide = array_column($variables['node']->get('field_dth_hide_regions')->getValue(), 'value');
+    $hide_regions = array_unique(array_merge($hide_regions, $local_hide));
+  }
+  if (in_array('navigation', $hide_regions)) {
+    $hide_regions[] = 'navigation_collapsible';
+  }
+  if (in_array('header', $hide_regions)) {
+    $hide_regions[] = 'navigation_collapsible';
+    $hide_regions[] = 'navigation';
+  }
+  foreach ($hide_regions as $value) {
+    if (!empty($variables['page'][$value])) {
+      unset($variables['page'][$value]);
+    }
+  }
+
+  // Title background image.
+  if (array_key_exists('node', $variables)) {
+    $node = $variables['node'];
+
+    if (isset($node) && !is_string($node)) {
+      if ($node->hasField('field_dth_page_title_backgrou')) {
+        // Get the module handler service.
+        $module_handler = \Drupal::service('module_handler');
+
+        // Check if the module is enabled.
+        if ($module_handler->moduleExists('media_library')) {
+          $media = $node->get('field_dth_page_title_backgrou')->entity ?? 0;
+          if ($media instanceof MediaInterface) {
+            $thumbnailUri = $media->get('thumbnail')->entity->getFileUri();
+            $url = \Drupal::service('file_url_generator')->generateString($thumbnailUri);
+            if (isset($url)) {
+              $variables['title_bg_image_path'] = $url;
+            }
           }
         }
       }
     }
-    // Include DXPR Theme full search block css library.
-    if ($variables['plugin_id'] === 'full_screen_search') {
-      $variables['#attached']['library'][] = 'dxpr_theme/dxpr-theme-full-screen-search';
-      $variables['#attached']['library'][] = 'dxpr_theme/dxpr-theme-full-screen-search-js';
-    }
   }
 
-  /**
-   * Implements template_preprocess_links()
-   */
-  function dxpr_theme_preprocess_links__language_block(&$variables) {
-    $variables['attributes']['class'][] = 'nav';
-    $variables['attributes']['class'][] = 'menu';
+  // CSS to load on every page.
+  $dxpr_theme_libraries = [
+    // Bootstrap TAILORING.
+    'dxpr_theme/bootstrap-5',
+    'dxpr_theme/bootstrap-theme',
+    // @todo Include only if needed.
+    // DXPR THEME BASE.
+    'dxpr_theme/forms',
+    'dxpr_theme/layout',
+    'dxpr_theme/page-title',
+    'dxpr_theme/typography',
+    // DXPR THEME Components.
+    // @todo Include only if needed.
+    'dxpr_theme/dxpr-theme-header--side',
+    'dxpr_theme/admin',
+    // Overrides.
+    // @todo Include only if needed.
+    'dxpr_theme/drupal-webform',
+    'dxpr_theme/dxpr-theme-builder',
+    // HELPERS.
+    'dxpr_theme/helper-classes',
+  ];
+  foreach ($dxpr_theme_libraries as $dxpr_theme_library) {
+    $variables['#attached']['library'][] = $dxpr_theme_library;
   }
+}
 
-  /**
-   * Implements template_preprocess_region()
-   */
-  function dxpr_theme_preprocess_region(&$variables) {
-    switch ($variables['region']) {
-      case 'secondary_header':
-        $variables['#attached']['library'][] = 'dxpr_theme/dxpr-theme-secondary-header';
-      case 'navigation':
-      case 'navigation_collapsible':
-        $variables['#attached']['library'][] = 'dxpr_theme/dxpr-theme-header';
-        $variables['#attached']['library'][] = 'dxpr_theme/dxpr-theme-header--top';
-        $variables['#attached']['library'][] = 'dxpr_theme/dxpr-theme-header--mobile';
-        break;
-
-      case 'footer':
-        $variables['#attached']['library'][] = 'dxpr_theme/footer-menu';
-        break;
-    }
-
-    // Apply class to block design regions.
-    if ($block_design_regions = array_keys(array_filter(theme_get_setting('block_design_regions')))) {
-      if (in_array($variables['region'], $block_design_regions)) {
-        $variables['attributes']['class'][] = 'region-block-design';
-      }
-    }
-  }
-
-  /**
-   * Implements template_preprocess_breadcrumb()
-   */
-  function dxpr_theme_preprocess_breadcrumb(&$variables) {
-    // Remove 'Home' from breadcrumb trail.
-    if (count($variables['breadcrumb'])) {
-      array_shift($variables['breadcrumb']);
-    }
-    if (!empty($variables['breadcrumb'])) {
-      $request = \Drupal::request();
-      $route_match = \Drupal::routeMatch();
-      $page_title = \Drupal::service('title_resolver')->getTitle($request, $route_match->getRouteObject());
-
-      if (!empty($page_title)) {
-        $variables['breadcrumb'][] = [
-          'text' => $page_title,
-          'attributes' => new Attribute(['class' => ['active']]),
-        ];
-      }
-      $variables['#attached']['library'][] = 'dxpr_theme/drupal-breadcrumbs';
-
-      // Always load breadcrumb on settings page.
-      if ($route_match->getRouteName() === 'dxpr_theme_helper.settings') {
-        $variables['theme']['settings']['page_title_breadcrumbs'] = TRUE;
-      }
-    }
-  }
-
-  /**
-   * Implements template_preprocess_comment()
-   */
-  function dxpr_theme_preprocess_comment(&$variables) {
-    if ($variables['elements']['#comment']) {
-      $variables['#attached']['library'][] = 'bootstrap5/indented';
-      $variables['#attached']['library'][] = 'dxpr_theme/drupal-comments';
-    }
-  }
-
-  /**
-   * Implements template_preprocess_pager()
-   */
-  function dxpr_theme_preprocess_pager(&$variables) {
+/**
+ * Implements template_menu_local_tasks()
+ */
+function dxpr_theme_preprocess_menu_local_tasks(&$variables) {
+  if ($variables['secondary']) {
+    // Secondary tabs are styled with bootstrap pager CSS.
     $variables['#attached']['library'][] = 'dxpr_theme/drupal-pager';
   }
 
-  /**
-   * Implements template_preprocess_views_mini_pager()
-   */
-  function dxpr_theme_preprocess_views_mini_pager(&$variables) {
-    $variables['#attached']['library'][] = 'dxpr_theme/drupal-pager';
-  }
+  // Check if admin_toolbar_tools is enabled and configured to show local tasks.
+  $module_handler = \Drupal::service('module_handler');
+  if ($module_handler->moduleExists('admin_toolbar_tools')) {
+    $config = \Drupal::config('admin_toolbar_tools.settings');
+    $show_local_tasks = $config->get('show_local_tasks');
 
-  /**
-   * Implements template_theme_suggestions_form_element_alter()
-   */
-  function dxpr_theme_theme_suggestions_form_element_alter(array &$suggestions, array $variables, $hook) {
-    if (isset($variables['element']['#type'])) {
-      $id = str_replace("-", "_", $variables['element']['#type']);
-      $suggestions[] = $hook . '__' . $id;
+    if ($show_local_tasks === TRUE) {
+      // Hide tabs when admin_toolbar_tools is showing local tasks.
+      $variables['hide_tabs'] = TRUE;
     }
   }
+}
 
-  /**
-   * Implements hook_form_FORM_ID_alter().
-   */
-  function dxpr_theme_form_search_form_alter(&$form, FormStateInterface $form_state, $form_id) {
-    $form['basic']['#attributes']['class'] = [
-      0 => 'form-group',
-      1 => 'input-group',
-    ];
-    $form['basic']['keys']['#placeholder'] = $form['basic']['keys']['#title'];
-    unset($form['basic']['keys']['#title']);
-    $form['basic']['submit']['#icon'] = TRUE;
-  }
+/**
+ * Implements template_preprocess_block()
+ */
+function dxpr_theme_preprocess_block(&$variables) {
+  if (isset($variables['elements']['#id'])) {
+    $block = Block::load($variables['elements']['#id']);
+    if ($block) {
+      $variables['region'] = $block->getRegion();
 
-  /**
-   * Implements hook_form_FORM_ID_alter().
-   */
-  function dxpr_theme_form_search_block_form_alter(&$form, FormStateInterface $form_state, $form_id) {
-    $form['actions']['#type'] = 'submit';
-    $form['keys']['#placeholder'] = 'Search';
-    $form['actions']['#icon'] = TRUE;
-    unset($form['actions']['submit']);
-  }
-
-  /**
-   * Implements template_preprocess_input()
-   */
-  function dxpr_theme_preprocess_input(&$variables) {
-    $element = $variables['element'];
-    if (isset($element['#icon'])) {
-      $variables['icon'] = $element['#icon'];
-    }
-    if (isset($element['#id'])) {
-      if ($element['#id'] === 'full_screen_search') {
-        $variables['icon'] = TRUE;
+      // If it exists, add the 'content_class' from the block's settings to
+      // the content's CSS classes.
+      if ($block_classes = $block->getThirdPartySettings('block_classes')) {
+        if (!empty($block_classes['content_class'])) {
+          $variables['content']['#attributes']['class'][] = $block_classes['content_class'];
+        }
       }
     }
-    $variables['#attached']['library'][] = 'dxpr_theme/drupal-search';
+  }
+  // Include DXPR Theme full search block css library.
+  if ($variables['plugin_id'] === 'full_screen_search') {
+    $variables['#attached']['library'][] = 'dxpr_theme/dxpr-theme-full-screen-search';
+    $variables['#attached']['library'][] = 'dxpr_theme/dxpr-theme-full-screen-search-js';
+  }
+}
+
+/**
+ * Implements template_preprocess_links()
+ */
+function dxpr_theme_preprocess_links__language_block(&$variables) {
+  $variables['attributes']['class'][] = 'nav';
+  $variables['attributes']['class'][] = 'menu';
+}
+
+/**
+ * Implements template_preprocess_region()
+ */
+function dxpr_theme_preprocess_region(&$variables) {
+  switch ($variables['region']) {
+    case 'secondary_header':
+      $variables['#attached']['library'][] = 'dxpr_theme/dxpr-theme-secondary-header';
+    case 'navigation':
+    case 'navigation_collapsible':
+      $variables['#attached']['library'][] = 'dxpr_theme/dxpr-theme-header';
+      $variables['#attached']['library'][] = 'dxpr_theme/dxpr-theme-header--top';
+      $variables['#attached']['library'][] = 'dxpr_theme/dxpr-theme-header--mobile';
+      break;
+
+    case 'footer':
+      $variables['#attached']['library'][] = 'dxpr_theme/footer-menu';
+      break;
   }
 
-  /**
-   * Generate web manifest file.
-   */
-  function _dxpr_theme_generate_manifest($web_icons_media_id, $manifest_path) {
-    $config = \Drupal::config('system.site');
-    $name = $config->get('name') ?: 'Drupal Site';
-    $manifest = [
-      'name' => $name,
-      'short_name' => mb_strimwidth($name, 0, 12, ''),
-      'id' => '/',
-      'start_url' => '/',
-      'scope' => '/',
-      'display' => 'standalone',
-      'icons' => [],
-    ];
+  // Apply class to block design regions.
+  if ($block_design_regions = array_keys(array_filter(theme_get_setting('block_design_regions')))) {
+    if (in_array($variables['region'], $block_design_regions)) {
+      $variables['attributes']['class'][] = 'region-block-design';
+    }
+  }
+}
 
-    $media = Media::load($web_icons_media_id);
-    if ($media && $media->hasField('field_media_image') && $media->field_media_image->entity) {
-      $file_uri = $media->field_media_image->entity->getFileUri();
+/**
+ * Implements template_preprocess_breadcrumb()
+ */
+function dxpr_theme_preprocess_breadcrumb(&$variables) {
+  // Remove 'Home' from breadcrumb trail.
+  if (count($variables['breadcrumb'])) {
+    array_shift($variables['breadcrumb']);
+  }
+  if (!empty($variables['breadcrumb'])) {
+    $request = \Drupal::request();
+    $route_match = \Drupal::routeMatch();
+    $page_title = \Drupal::service('title_resolver')->getTitle($request, $route_match->getRouteObject());
 
-      // Add 192x192 icon.
-      $image_style_192 = ImageStyle::load('android_chrome_192');
-      if ($image_style_192) {
-        $url_192 = $image_style_192->buildUrl($file_uri);
-        $manifest['icons'][] = [
-          'src' => \Drupal::service('file_url_generator')->transformRelative($url_192),
-          'sizes' => '192x192',
-          'type' => 'image/png',
-          'purpose' => 'any maskable',
-        ];
-      }
+    if (!empty($page_title)) {
+      $variables['breadcrumb'][] = [
+        'text' => $page_title,
+        'attributes' => new Attribute(['class' => ['active']]),
+      ];
+    }
+    $variables['#attached']['library'][] = 'dxpr_theme/drupal-breadcrumbs';
 
-      // Add 512x512 icon.
-      if ($image_style_512 = ImageStyle::load('android_chrome_512')) {
-        $url_512 = $image_style_512->buildUrl($file_uri);
-        $manifest['icons'][] = [
-          'src' => \Drupal::service('file_url_generator')->transformRelative($url_512),
-          'sizes' => '512x512',
-          'type' => 'image/png',
-          'purpose' => 'any maskable',
-        ];
-      }
+    // Always load breadcrumb on settings page.
+    if ($route_match->getRouteName() === 'dxpr_theme_helper.settings') {
+      $variables['theme']['settings']['page_title_breadcrumbs'] = TRUE;
+    }
+  }
+}
+
+/**
+ * Implements template_preprocess_comment()
+ */
+function dxpr_theme_preprocess_comment(&$variables) {
+  if ($variables['elements']['#comment']) {
+    $variables['#attached']['library'][] = 'bootstrap5/indented';
+    $variables['#attached']['library'][] = 'dxpr_theme/drupal-comments';
+  }
+}
+
+/**
+ * Implements template_preprocess_pager()
+ */
+function dxpr_theme_preprocess_pager(&$variables) {
+  $variables['#attached']['library'][] = 'dxpr_theme/drupal-pager';
+}
+
+/**
+ * Implements template_preprocess_views_mini_pager()
+ */
+function dxpr_theme_preprocess_views_mini_pager(&$variables) {
+  $variables['#attached']['library'][] = 'dxpr_theme/drupal-pager';
+}
+
+/**
+ * Implements template_theme_suggestions_form_element_alter()
+ */
+function dxpr_theme_theme_suggestions_form_element_alter(array &$suggestions, array $variables, $hook) {
+  if (isset($variables['element']['#type'])) {
+    $id = str_replace("-", "_", $variables['element']['#type']);
+    $suggestions[] = $hook . '__' . $id;
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function dxpr_theme_form_search_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  $form['basic']['#attributes']['class'] = [
+    0 => 'form-group',
+    1 => 'input-group',
+  ];
+  $form['basic']['keys']['#placeholder'] = $form['basic']['keys']['#title'];
+  unset($form['basic']['keys']['#title']);
+  $form['basic']['submit']['#icon'] = TRUE;
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function dxpr_theme_form_search_block_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  $form['actions']['#type'] = 'submit';
+  $form['keys']['#placeholder'] = 'Search';
+  $form['actions']['#icon'] = TRUE;
+  unset($form['actions']['submit']);
+}
+
+/**
+ * Implements template_preprocess_input()
+ */
+function dxpr_theme_preprocess_input(&$variables) {
+  $element = $variables['element'];
+  if (isset($element['#icon'])) {
+    $variables['icon'] = $element['#icon'];
+  }
+  if (isset($element['#id'])) {
+    if ($element['#id'] === 'full_screen_search') {
+      $variables['icon'] = TRUE;
+    }
+  }
+  $variables['#attached']['library'][] = 'dxpr_theme/drupal-search';
+}
+
+/**
+ * Generate web manifest file.
+ */
+function _dxpr_theme_generate_manifest($web_icons_media_id, $manifest_path) {
+  $config = \Drupal::config('system.site');
+  $name = $config->get('name') ?: 'Drupal Site';
+  $manifest = [
+    'name' => $name,
+    'short_name' => mb_strimwidth($name, 0, 12, ''),
+    'id' => '/',
+    'start_url' => '/',
+    'scope' => '/',
+    'display' => 'standalone',
+    'icons' => [],
+  ];
+
+  $media = Media::load($web_icons_media_id);
+  if ($media && $media->hasField('field_media_image') && $media->field_media_image->entity) {
+    $file_uri = $media->field_media_image->entity->getFileUri();
+
+    // Add 192x192 icon.
+    $image_style_192 = ImageStyle::load('android_chrome_192');
+    if ($image_style_192) {
+      $url_192 = $image_style_192->buildUrl($file_uri);
+      $manifest['icons'][] = [
+        'src' => \Drupal::service('file_url_generator')->transformRelative($url_192),
+        'sizes' => '192x192',
+        'type' => 'image/png',
+        'purpose' => 'any maskable',
+      ];
     }
 
-    file_put_contents($manifest_path, json_encode($manifest, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
+    // Add 512x512 icon.
+    if ($image_style_512 = ImageStyle::load('android_chrome_512')) {
+      $url_512 = $image_style_512->buildUrl($file_uri);
+      $manifest['icons'][] = [
+        'src' => \Drupal::service('file_url_generator')->transformRelative($url_512),
+        'sizes' => '512x512',
+        'type' => 'image/png',
+        'purpose' => 'any maskable',
+      ];
+    }
   }
 
-  /**
-   * Implements template_preprocess_status_messages().
-   */
-  function dxpr_theme_preprocess_status_messages(&$variables) {
-    $variables['#attached']['library'][] = 'dxpr_theme/drupal-status-message';
-  }
+  file_put_contents($manifest_path, json_encode($manifest, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
+}
 
-  /**
-   * Implements template_preprocess_details()
-   */
-  function dxpr_theme_preprocess_details(&$variables) {
-    $variables['attributes']['class'][] = 'form-item';
-  }
+/**
+ * Implements template_preprocess_status_messages().
+ */
+function dxpr_theme_preprocess_status_messages(&$variables) {
+  $variables['#attached']['library'][] = 'dxpr_theme/drupal-status-message';
+}
 
-  /**
-   * Implements template_theme_suggestions_form_alter()
-   */
-  function dxpr_theme_theme_suggestions_form_alter(array &$suggestions, array $variables) {
-    $suggestions[] = 'form__' . $variables['element']['#form_id'];
-  }
+/**
+ * Implements template_preprocess_details()
+ */
+function dxpr_theme_preprocess_details(&$variables) {
+  $variables['attributes']['class'][] = 'form-item';
+}
+
+/**
+ * Implements template_theme_suggestions_form_alter()
+ */
+function dxpr_theme_theme_suggestions_form_alter(array &$suggestions, array $variables) {
+  $suggestions[] = 'form__' . $variables['element']['#form_id'];
+}
