@@ -82,6 +82,25 @@ function dxpr_theme_form_system_theme_settings_alter(&$form, &$form_state, $form
   $form['theme_settings']['#group'] = 'core_theme_settings';
   $form['logo']['#group'] = 'core_theme_settings';
   $form['favicon']['#group'] = 'core_theme_settings';
+
+  // Web Icons group.
+  $form['web_icons'] = [
+    '#type' => 'details',
+    '#title' => t('Web/App Icons'),
+    '#description' => t('Configure icons for mobile devices and progressive web apps.'),
+    '#group' => 'core_theme_settings',
+  ];
+
+  // Single web icons upload.
+  $form['web_icons_upload'] = [
+    '#type' => 'media_library',
+    '#title' => t('Web Icons'),
+    '#description' => t('Upload an icon that will be automatically resized for iOS, Android, and PWA use. Recommended minimum size: 512x512 pixels.'),
+    '#allowed_bundles' => ['image'],
+    '#default_value' => theme_get_setting('web_icons_upload'),
+    '#cardinality' => 1,
+    '#group' => 'web_icons',
+  ];
   unset($form['body_details']);
   unset($form['nav_details']);
   unset($form['footer_details']);
@@ -395,7 +414,6 @@ function dxpr_theme_form_system_theme_settings_validate(&$form, &$form_state) {
       }
     }
   }
-
 }
 
 /**
