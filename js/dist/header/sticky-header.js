@@ -23,21 +23,27 @@ function setupStickyHeader() {
     const elHeader = document.querySelector(".dxpr-theme-header--sticky");
     const wrapContainer = document.getElementsByClassName("wrap-containers")[0];
 
-    const onScroll = () => {
-      const scroll = window.scrollY;
+    if (elHeader && wrapContainer) {
+      const onScroll = () => {
+        // Use body.scrollTop since scroll events are firing on body element
+        const scroll = document.body.scrollTop || document.documentElement.scrollTop || window.scrollY || 0;
 
-      if (scroll >= headerScroll) {
-        elHeader.classList.add("affix");
-        elHeader.classList.remove("affix-top");
-        wrapContainer.style.marginTop = `${headerHeight}px`;
-      } else {
-        elHeader.classList.add("affix-top");
-        elHeader.classList.remove("affix");
-        wrapContainer.style.marginTop = "0";
-      }
-    };
+        if (scroll >= headerScroll) {
+          elHeader.classList.add("affix");
+          elHeader.classList.remove("affix-top");
+          wrapContainer.style.marginTop = `${headerHeight}px`;
+        } else {
+          elHeader.classList.add("affix-top");
+          elHeader.classList.remove("affix");
+          wrapContainer.style.marginTop = "0";
+        }
+      };
 
-    window.addEventListener("scroll", onScroll);
+      // Add scroll event listeners on both window and body elements
+      window.addEventListener("scroll", onScroll);
+      document.body.addEventListener("scroll", onScroll);
+      document.documentElement.addEventListener("scroll", onScroll);
+    }
   }
 }
 
