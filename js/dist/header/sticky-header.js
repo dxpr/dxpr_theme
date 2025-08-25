@@ -26,7 +26,11 @@ function setupStickyHeader() {
     if (elHeader && wrapContainer) {
       const onScroll = () => {
         // Use body.scrollTop since scroll events are firing on body element
-        const scroll = document.body.scrollTop || document.documentElement.scrollTop || window.scrollY || 0;
+        const scroll =
+          document.body.scrollTop ||
+          document.documentElement.scrollTop ||
+          window.scrollY ||
+          0;
 
         if (scroll >= headerScroll) {
           elHeader.classList.add("affix");
