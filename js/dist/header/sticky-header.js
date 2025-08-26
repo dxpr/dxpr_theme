@@ -28,7 +28,9 @@ function setupStickyHeader() {
      * @param {number} marginValue - The margin value in pixels (80 for normal, 60 for sticky)
      */
     const adjustBrandingSpacing = (marginValue) => {
-      const brandingElement = document.querySelector(".wrap-branding:has(.name.navbar-brand)");
+      const brandingElement = document.querySelector(
+        ".wrap-branding:has(.name.navbar-brand)",
+      );
       if (brandingElement) {
         brandingElement.style.marginBottom = `${marginValue}px`;
       }
@@ -53,7 +55,7 @@ function setupStickyHeader() {
     };
 
     window.addEventListener("scroll", onScroll);
-    
+
     // Set initial spacing when page loads
     adjustBrandingSpacing(80);
   }
