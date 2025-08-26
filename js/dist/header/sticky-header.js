@@ -23,6 +23,17 @@ function setupStickyHeader() {
     const elHeader = document.querySelector(".dxpr-theme-header--sticky");
     const wrapContainer = document.getElementsByClassName("wrap-containers")[0];
 
+    /**
+     * Adjusts the margin-bottom of the branding element based on sticky header state
+     * @param {number} marginValue - The margin value in pixels (80 for normal, 60 for sticky)
+     */
+    const adjustBrandingSpacing = (marginValue) => {
+      const brandingElement = document.querySelector(".wrap-branding:has(.name.navbar-brand)");
+      if (brandingElement) {
+        brandingElement.style.marginBottom = `${marginValue}px`;
+      }
+    };
+
     const onScroll = () => {
       const scroll = window.scrollY;
 
@@ -30,14 +41,21 @@ function setupStickyHeader() {
         elHeader.classList.add("affix");
         elHeader.classList.remove("affix-top");
         wrapContainer.style.marginTop = `${headerHeight}px`;
+        // Reduce spacing when header is sticky to prevent excessive gaps
+        adjustBrandingSpacing(60);
       } else {
         elHeader.classList.add("affix-top");
         elHeader.classList.remove("affix");
         wrapContainer.style.marginTop = "0";
+        // Normal spacing when header is at the top
+        adjustBrandingSpacing(80);
       }
     };
 
     window.addEventListener("scroll", onScroll);
+    
+    // Set initial spacing when page loads
+    adjustBrandingSpacing(80);
   }
 }
 

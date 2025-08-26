@@ -305,10 +305,7 @@
     }
   }
 
-  // Add spacing only when site name is present to avoid gaps when it's disabled
-  .wrap-branding:has(.name.navbar-brand) {
-    margin-bottom: 80px;
-  }
+
 }
 
 .body--dxpr-theme-header-overlay {
