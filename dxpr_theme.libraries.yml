@@ -159,7 +159,7 @@ admin.themesettings:
   js:
     vendor/color-wheel/reinvented-color-wheel.min.js: { minified: true }
     js/minified/dxpr-theme-settings-admin.bundle.min.js: { minified: true }
-    js/minified/dxpr-theme-theme-settings-sidebar.bundle.min.js: { minified: true }
+    js/minified/dxpr-theme-settings-sidebar.bundle.min.js: { minified: true }
     vendor/dxb_slider/dxb-slider.min.js: { minified: true }
   css:
     component:
