@@ -21,7 +21,7 @@ module.exports = function (grunt) {
             src: ['*.js', '!dxpr-theme-header.js',
                           '!dxpr-theme-multilevel-mobile-nav.js',
                           '!dxpr-theme-settings-admin.js',
-                          '!dxpr-theme-theme-settings-sidebar.js',
+                          '!theme-settings-sidebar/**/*.js',
             ],
             dest: 'js/minified/',
             ext: '.min.js',
