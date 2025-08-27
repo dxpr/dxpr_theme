@@ -54,27 +54,31 @@
         "templates": false,
         "identifiers": false,
         "lang": "en_US",
-        "skipWords": [
-          "accessor",
-          "checkbox",
-          "dom",
-          "dropdown",
-          "Drupal",
-          "DXPR",
-          "Glyphicons",
-          "jslint",
-          "Jur",
-          "multivar",
-          "namespace",
-          "Pixeden",
-          "plusplus",
-          "undef",
-          "touchstart",
-          "Rect",
-          "Breakpoint",
-          "keyup",
-          "calc"
-        ],
+                  "skipWords": [
+            "accessor",
+            "checkbox",
+            "dom",
+            "dropdown",
+            "Drupal",
+            "DXPR",
+            "Glyphicons",
+            "jslint",
+            "Jur",
+            "multivar",
+            "namespace",
+            "Pixeden",
+            "plusplus",
+            "undef",
+            "touchstart",
+            "Rect",
+            "Breakpoint",
+            "keyup",
+            "calc",
+            "styleguide",
+            "cheatsheet",
+            "searchable",
+            "Debounced"
+          ],
         "skipIfMatch": [
           "{\\w+}", // E.g. "{paramName}"
           "{^[-\\w]+\\s+<}", // E.g. "<hello> <world>"
@@ -108,6 +112,9 @@
     "Twig": true,
     "window": true,
     "WOW": true,
-    "ReinventedColorWheel": true
+    "ReinventedColorWheel": true,
+    "requestAnimationFrame": true,
+    "DOMParser": true,
+    "MutationObserver": true
   }
 }

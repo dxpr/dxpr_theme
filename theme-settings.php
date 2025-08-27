@@ -127,7 +127,7 @@ function dxpr_theme_form_system_theme_settings_alter(&$form, &$form_state, $form
   // Create body wrapper and load styleguide.
   $styleguide_url = base_path() . \Drupal::service('extension.list.theme')->getPath('dxpr_theme') . '/resources/styleguide.html';
 
-  // Add styleguide URL to Drupal settings for JavaScript to use
+  // Add styleguide URL to Drupal settings for JavaScript to use.
   $form['#attached']['drupalSettings']['dxpr_theme']['styleguide_url'] = $styleguide_url;
 
   foreach (\Drupal::service('file_system')->scanDirectory(\Drupal::service('extension.list.theme')->getPath('dxpr_theme') . '/features', '/settings.inc/i') as $file) {

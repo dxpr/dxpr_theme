@@ -8,21 +8,23 @@ const { initSearchFunctionality } = require("./search-functionality");
 const { loadStyleguide } = require("./styleguide-loader");
 
 (function (Drupal, once) {
-  'use strict';
+  "use strict";
 
   Drupal.behaviors.dxprThemeSettingsSidebar = {
-    attach: function (context, settings) {
+    attach(context, settings) {
       // Only run once per page
-      once('dxpr-theme-settings-sidebar', 'html', context).forEach(function (element) {
-        this.init(element, settings);
-      }.bind(this));
+      once("dxpr-theme-settings-sidebar", "html", context).forEach(
+        (element) => {
+          this.init(element, settings);
+        },
+      );
     },
 
-    init: function (element, settings) {
-      // Create body wrapper and load styleguide
+    init(element, settings) {
+      // Create body wrapper and load style guide
       createBodyWrapper();
       initSearchFunctionality();
       loadStyleguide();
-    }
+    },
   };
 })(Drupal, once);
