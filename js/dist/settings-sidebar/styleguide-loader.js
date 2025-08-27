@@ -16,7 +16,9 @@ function loadStyleguide() {
         ? drupalSettings.dxpr_theme.styleguide_url 
         : window.location.origin + window.location.pathname.replace('/admin/appearance/settings', '') + '/themes/custom/dxpr_theme/resources/styleguide.html';
       
-      fetch(styleguideUrl)
+      // Add cache-busting to ensure admins always see the latest HTML
+      var cacheBustedUrl = styleguideUrl + '?v=' + Date.now();
+      fetch(cacheBustedUrl, { cache: 'no-store' })
         .then(function(response) { 
           if (!response.ok) {
             throw new Error('HTTP ' + response.status + ': ' + response.statusText);
