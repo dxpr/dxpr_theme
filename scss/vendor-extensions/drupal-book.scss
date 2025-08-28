@@ -1,0 +1,104 @@
+//
+// Author: DXPR Theme for Book Navigation. Copyright DXPR.
+//
+
+// Book navigation
+@import "../includes/variables";
+
+// Book navigation block wrapper
+.block-book-navigation {
+  margin-bottom: 1.5rem;
+}
+
+// Book outline navigation in blocks
+.block-book-navigation nav[role="navigation"] {
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  li {
+    margin: 0;
+    padding: 0.25rem 0;
+  }
+
+  a {
+    display: block;
+    padding: 0.5rem 0.75rem;
+    text-decoration: none;
+    border-left: 3px solid transparent;
+    transition: all 0.2s ease;
+    color: dxpr-color('text');
+
+    &:hover,
+    &:focus {
+      background-color: dxpr-color('silver');
+      border-left-color: dxpr-color('base');
+      color: dxpr-color('base');
+    }
+
+    &.is-active {
+      background-color: dxpr-color('base');
+      color: dxpr-color('basetext');
+      border-left-color: dxpr-color('headings');
+    }
+  }
+
+  // Nested book pages
+  ul ul {
+    margin-left: 1rem;
+    border-left: 1px solid dxpr-color('graylight');
+
+    a {
+      padding-left: 1rem;
+      font-size: 0.9rem;
+    }
+  }
+}
+
+// Book traversal navigation (prev/next links in content)
+.book-traversal__list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 2rem 0;
+  padding: 1rem;
+  background-color: dxpr-color('silver');
+  border-radius: 0.375rem;
+  border: 1px solid dxpr-color('graylight');
+}
+
+.book-traversal__item {
+  list-style: none;
+  margin: 0;
+}
+
+.book-traversal__list a {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background-color: dxpr-color('base');
+  color: dxpr-color('basetext');
+  text-decoration: none;
+  border-radius: 0.25rem;
+  transition: background-color 0.2s ease;
+
+  &:hover,
+  &:focus {
+    background-color: dxpr-color('headings');
+    color: dxpr-color('basetext');
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 767.98px) {
+  .book-traversal__list {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .book-traversal__list a {
+    width: 100%;
+    text-align: center;
+  }
+}
