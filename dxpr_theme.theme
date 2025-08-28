@@ -312,7 +312,7 @@ function dxpr_theme_preprocess_block(&$variables) {
     $variables['#attached']['library'][] = 'dxpr_theme/dxpr-theme-full-screen-search';
     $variables['#attached']['library'][] = 'dxpr_theme/dxpr-theme-full-screen-search-js';
   }
-  
+
   // Include DXPR Theme book navigation css library.
   if ($variables['plugin_id'] === 'book_navigation') {
     $variables['#attached']['library'][] = 'dxpr_theme/drupal-book';
