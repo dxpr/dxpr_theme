@@ -312,6 +312,11 @@ function dxpr_theme_preprocess_block(&$variables) {
     $variables['#attached']['library'][] = 'dxpr_theme/dxpr-theme-full-screen-search';
     $variables['#attached']['library'][] = 'dxpr_theme/dxpr-theme-full-screen-search-js';
   }
+
+  // Include DXPR Theme book navigation css library.
+  if ($variables['plugin_id'] === 'book_navigation') {
+    $variables['#attached']['library'][] = 'dxpr_theme/drupal-book';
+  }
 }
 
 /**
@@ -392,6 +397,13 @@ function dxpr_theme_preprocess_comment(&$variables) {
  */
 function dxpr_theme_preprocess_pager(&$variables) {
   $variables['#attached']['library'][] = 'dxpr_theme/drupal-pager';
+}
+
+/**
+ * Implements template_preprocess_book_navigation()
+ */
+function dxpr_theme_preprocess_book_navigation(&$variables) {
+  $variables['#attached']['library'][] = 'dxpr_theme/drupal-book';
 }
 
 /**
