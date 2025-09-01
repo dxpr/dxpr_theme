@@ -46,12 +46,10 @@ function setupStickyHeader() {
               elHeader.classList.remove("affix-top");
               wrapContainer.style.marginTop = `${headerHeight}px`;
             }
-          } else {
-            if (!elHeader.classList.contains("affix-top")) {
-              elHeader.classList.add("affix-top");
-              elHeader.classList.remove("affix");
-              wrapContainer.style.marginTop = "0";
-            }
+          } else if (!elHeader.classList.contains("affix-top")) {
+            elHeader.classList.add("affix-top");
+            elHeader.classList.remove("affix");
+            wrapContainer.style.marginTop = "0";
           }
         }
 
@@ -62,23 +60,27 @@ function setupStickyHeader() {
         // Throttle scroll events using requestAnimationFrame
         if (!isScrolling) {
           isScrolling = true;
-          
+
           // Cancel any pending animation frame
           if (rafId) {
-            cancelAnimationFrame(rafId);
+            window.cancelAnimationFrame(rafId);
           }
-          
-          rafId = requestAnimationFrame(updateStickyHeader);
+
+          rafId = window.requestAnimationFrame(updateStickyHeader);
         }
       };
 
       // Use passive listeners for better scroll performance
       const scrollOptions = { passive: true };
-      
+
       // Add scroll event listeners on both window and body elements
       window.addEventListener("scroll", onScroll, scrollOptions);
       document.body.addEventListener("scroll", onScroll, scrollOptions);
-      document.documentElement.addEventListener("scroll", onScroll, scrollOptions);
+      document.documentElement.addEventListener(
+        "scroll",
+        onScroll,
+        scrollOptions,
+      );
 
       // Initial state check
       updateStickyHeader();
