@@ -24,7 +24,11 @@ function setupStickyHeader() {
     const wrapContainer = document.getElementsByClassName("wrap-containers")[0];
 
     if (elHeader && wrapContainer) {
-      const onScroll = () => {
+      let isScrolling = false;
+      let lastScrollPosition = -1;
+      let rafId = null;
+
+      const updateStickyHeader = () => {
         // Use body.scrollTop since scroll events are firing on body element
         const scroll =
           document.body.scrollTop ||
@@ -32,21 +36,52 @@ function setupStickyHeader() {
           window.scrollY ||
           0;
 
-        if (scroll >= headerScroll) {
-          elHeader.classList.add("affix");
-          elHeader.classList.remove("affix-top");
-          wrapContainer.style.marginTop = `${headerHeight}px`;
-        } else {
-          elHeader.classList.add("affix-top");
-          elHeader.classList.remove("affix");
-          wrapContainer.style.marginTop = "0";
+        // Only update DOM if scroll position actually changed
+        if (scroll !== lastScrollPosition) {
+          lastScrollPosition = scroll;
+
+          if (scroll >= headerScroll) {
+            if (!elHeader.classList.contains("affix")) {
+              elHeader.classList.add("affix");
+              elHeader.classList.remove("affix-top");
+              wrapContainer.style.marginTop = `${headerHeight}px`;
+            }
+          } else {
+            if (!elHeader.classList.contains("affix-top")) {
+              elHeader.classList.add("affix-top");
+              elHeader.classList.remove("affix");
+              wrapContainer.style.marginTop = "0";
+            }
+          }
+        }
+
+        isScrolling = false;
+      };
+
+      const onScroll = () => {
+        // Throttle scroll events using requestAnimationFrame
+        if (!isScrolling) {
+          isScrolling = true;
+          
+          // Cancel any pending animation frame
+          if (rafId) {
+            cancelAnimationFrame(rafId);
+          }
+          
+          rafId = requestAnimationFrame(updateStickyHeader);
         }
       };
 
+      // Use passive listeners for better scroll performance
+      const scrollOptions = { passive: true };
+      
       // Add scroll event listeners on both window and body elements
-      window.addEventListener("scroll", onScroll);
-      document.body.addEventListener("scroll", onScroll);
-      document.documentElement.addEventListener("scroll", onScroll);
+      window.addEventListener("scroll", onScroll, scrollOptions);
+      document.body.addEventListener("scroll", onScroll, scrollOptions);
+      document.documentElement.addEventListener("scroll", onScroll, scrollOptions);
+
+      // Initial state check
+      updateStickyHeader();
     }
   }
 }
