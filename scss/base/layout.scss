@@ -141,7 +141,7 @@ body.full-width-content {
 }
 
 // Apply background only to blocks without preset background classes
-.region-block-design .block:not(.card):not([class*="bg-"]):not([class*="dxpr-theme-util-background"]) {
+.region-block-design .block:not(.card, [class*="bg-"], [class*="dxpr-theme-util-background"]) {
   background-color: var(--dxt-setting-block-background);
 }
 
@@ -155,7 +155,7 @@ body.full-width-content {
 }
 
 // Apply title background only when block and title don't have preset classes
-.region-block-design .block:not(.card):not([class*="bg-"]):not([class*="dxpr-theme-util-background"]) .block-title:not(.card):not([class*="bg-"]):not([class*="dxpr-theme-util-background"]) {
+.region-block-design .block:not(.card, [class*="bg-"], [class*="dxpr-theme-util-background"]) .block-title:not(.card, [class*="bg-"], [class*="dxpr-theme-util-background"]) {
   background-color: var(--dxt-setting-title-background);
 }
 

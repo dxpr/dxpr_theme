@@ -3,15 +3,14 @@
  * Style guide loading functionality for theme settings sidebar.
  */
 
-const { initializeSidebarNavigation } = require('./sidebar-navigation');
+const { initializeSidebarNavigation } = require("./sidebar-navigation");
 
 function loadStyleguide() {
   requestAnimationFrame(() => {
     const contentRegion = document.querySelector(".region-content");
     if (contentRegion) {
       const styleguideDiv = document.createElement("div");
-      styleguideDiv.innerHTML =
-        "<p>Loading...</p>";
+      styleguideDiv.innerHTML = "<p>Loading...</p>";
       contentRegion.insertBefore(styleguideDiv, contentRegion.firstChild);
 
       // Get style guide URL from Drupal settings or construct it
@@ -39,45 +38,55 @@ function loadStyleguide() {
 
           if (cheatsheet) {
             styleguideDiv.innerHTML = cheatsheet.outerHTML;
-            
+
             // Initialize sidebar navigation after styleguide is loaded
             initializeSidebarNavigation();
-            
+
             // After styleguide is loaded, initialize block preview
             setTimeout(() => {
               const blockCardField = document.getElementById("edit-block-card");
               const titleCardField = document.getElementById("edit-title-card");
-              
+
               if (blockCardField) {
-                blockCardField.dispatchEvent(new Event("change", {
-                  bubbles: true,
-                  cancelable: true
-                }));
+                blockCardField.dispatchEvent(
+                  new Event("change", {
+                    bubbles: true,
+                    cancelable: true,
+                  }),
+                );
               }
-              
+
               if (titleCardField) {
-                titleCardField.dispatchEvent(new Event("change", {
-                  bubbles: true,
-                  cancelable: true
-                }));
+                titleCardField.dispatchEvent(
+                  new Event("change", {
+                    bubbles: true,
+                    cancelable: true,
+                  }),
+                );
               }
-              
+
               // Also check if block divider is enabled
-              const blockDivider = document.getElementById("edit-block-divider");
+              const blockDivider =
+                document.getElementById("edit-block-divider");
               if (blockDivider && blockDivider.checked) {
-                blockDivider.dispatchEvent(new Event("change", {
-                  bubbles: true,
-                  cancelable: true
-                }));
+                blockDivider.dispatchEvent(
+                  new Event("change", {
+                    bubbles: true,
+                    cancelable: true,
+                  }),
+                );
               }
-              
+
               // Check title sticker setting
-              const titleSticker = document.getElementById("edit-title-sticker");
+              const titleSticker =
+                document.getElementById("edit-title-sticker");
               if (titleSticker && titleSticker.checked) {
-                titleSticker.dispatchEvent(new Event("change", {
-                  bubbles: true,
-                  cancelable: true
-                }));
+                titleSticker.dispatchEvent(
+                  new Event("change", {
+                    bubbles: true,
+                    cancelable: true,
+                  }),
+                );
               }
             }, 100);
           } else {
