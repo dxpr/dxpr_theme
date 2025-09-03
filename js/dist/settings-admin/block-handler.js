@@ -140,6 +140,26 @@ function handleDocumentEvents(event, updateFieldValue) {
     Object.keys(settings).forEach((key) => {
       setFieldValue(key, settings[key]);
     });
+    
+    // Trigger change events for block_card and title_card to update preview
+    setTimeout(() => {
+      const blockCardField = document.getElementById("edit-block-card");
+      const titleCardField = document.getElementById("edit-title-card");
+      
+      if (blockCardField) {
+        blockCardField.dispatchEvent(new Event("change", {
+          bubbles: true,
+          cancelable: true
+        }));
+      }
+      
+      if (titleCardField) {
+        titleCardField.dispatchEvent(new Event("change", {
+          bubbles: true,
+          cancelable: true
+        }));
+      }
+    }, 10);
   }
 
   const presetClassesRemove = [
@@ -234,4 +254,56 @@ function handleDocumentEvents(event, updateFieldValue) {
   }
 }
 
-module.exports = { handleDocumentEvents, setFieldValue };
+/**
+ * Initialize block preview with current settings on page load.
+ */
+function initializeBlockPreview() {
+  // Wait for DOM to be fully loaded
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeBlockPreview);
+    return;
+  }
+  
+  // Apply current block_card and title_card settings to preview
+  setTimeout(() => {
+    const blockCardField = document.getElementById("edit-block-card");
+    const titleCardField = document.getElementById("edit-title-card");
+    
+    if (blockCardField) {
+      blockCardField.dispatchEvent(new Event("change", {
+        bubbles: true,
+        cancelable: true
+      }));
+    }
+    
+    if (titleCardField) {
+      titleCardField.dispatchEvent(new Event("change", {
+        bubbles: true,
+        cancelable: true
+      }));
+    }
+    
+    // Also check if block divider is enabled
+    const blockDivider = document.getElementById("edit-block-divider");
+    if (blockDivider && blockDivider.checked) {
+      blockDivider.dispatchEvent(new Event("change", {
+        bubbles: true,
+        cancelable: true
+      }));
+    }
+    
+    // Check title sticker setting
+    const titleSticker = document.getElementById("edit-title-sticker");
+    if (titleSticker && titleSticker.checked) {
+      titleSticker.dispatchEvent(new Event("change", {
+        bubbles: true,
+        cancelable: true
+      }));
+    }
+  }, 100);
+}
+
+// Initialize on load
+initializeBlockPreview();
+
+module.exports = { handleDocumentEvents, setFieldValue, initializeBlockPreview };

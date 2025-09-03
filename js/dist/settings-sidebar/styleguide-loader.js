@@ -37,6 +37,44 @@ function loadStyleguide() {
 
           if (cheatsheet) {
             styleguideDiv.innerHTML = `<h2>Bootstrap Styleguide</h2>${cheatsheet.outerHTML}`;
+            
+            // After styleguide is loaded, initialize block preview
+            setTimeout(() => {
+              const blockCardField = document.getElementById("edit-block-card");
+              const titleCardField = document.getElementById("edit-title-card");
+              
+              if (blockCardField) {
+                blockCardField.dispatchEvent(new Event("change", {
+                  bubbles: true,
+                  cancelable: true
+                }));
+              }
+              
+              if (titleCardField) {
+                titleCardField.dispatchEvent(new Event("change", {
+                  bubbles: true,
+                  cancelable: true
+                }));
+              }
+              
+              // Also check if block divider is enabled
+              const blockDivider = document.getElementById("edit-block-divider");
+              if (blockDivider && blockDivider.checked) {
+                blockDivider.dispatchEvent(new Event("change", {
+                  bubbles: true,
+                  cancelable: true
+                }));
+              }
+              
+              // Check title sticker setting
+              const titleSticker = document.getElementById("edit-title-sticker");
+              if (titleSticker && titleSticker.checked) {
+                titleSticker.dispatchEvent(new Event("change", {
+                  bubbles: true,
+                  cancelable: true
+                }));
+              }
+            }, 100);
           } else {
             // User-facing fallback when .bd-cheatsheet element is not found
             styleguideDiv.innerHTML =

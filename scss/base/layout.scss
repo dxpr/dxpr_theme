@@ -140,7 +140,8 @@ body.full-width-content {
   margin-bottom: var(--dxt-setting-gutter-vertical);
 }
 
-.region-block-design .block {
+// Only apply custom block styles when not using card classes
+.region-block-design .block:not(.card) {
   background-color: var(--dxt-setting-block-background);
   border-color: var(--dxt-setting-block-border-color);
   border-radius: var(--dxt-setting-block-border-radius);
@@ -149,7 +150,8 @@ body.full-width-content {
   padding: var(--dxt-setting-block-padding);
 }
 
-.region-block-design .block-title {
+// Only apply custom title styles when parent block is not using card classes
+.region-block-design .block:not(.card) .block-title {
   background-color: var(--dxt-setting-title-background);
   border-color: var(--dxt-setting-title-border-color);
   border-radius: var(--dxt-setting-title-border-radius);
