@@ -253,44 +253,6 @@ function _dxpr_theme_node_types_options() {
 }
 
 /**
- * Generate node type preview markup.
- */
-function _dxpr_theme_type_preview() {
-  $output = <<<EOT
-<div class="type-preview">
-  <div class="type-container type-title-container">
-    <h1>Beautiful Typography</h1>
-  </div>
-
-  <div class="type-container">
-    <h2>Typewriter delectus cred. Thundercats, sed scenester before they sold out et aesthetic</h2>
-    <hr>
-    <p class="lead">Lead Text Direct trade gluten-free blog, fanny pack cray labore skateboard before they sold out adipisicing non magna id Helvetica freegan. Disrupt aliqua Brooklyn church-key lo-fi dreamcatcher.</p>
-
-
-    <h3>Truffaut disrupt sartorial deserunt</h3>
-
-    <p>Cosby sweater plaid shabby chic kitsch pour-over ex. Try-hard fanny pack mumblecore cornhole cray scenester. Assumenda narwhal occupy, Blue Bottle nihil culpa fingerstache. Meggings kogi vinyl meh, food truck banh mi Etsy magna 90's duis typewriter banjo organic leggings Vice.</p>
-
-    <ul>
-      <li>Roof party put a bird on it incididunt sed umami craft beer cred.</li>
-      <li>Carles literally normcore, Williamsburg Echo Park fingerstache photo booth twee keffiyeh chambray whatever.</li>
-      <li>Scenester High Life Banksy, proident master cleanse tousled squid sriracha ad chillwave post-ironic retro.</li>
-    </ul>
-
-    <h4>Fingerstache nesciunt lomo nostrud hoodie</h4>
-
-    <blockquote>
-      <p>Cosby sweater plaid shabby chic kitsch pour-over ex. Try-hard fanny pack mumblecore cornhole cray scenester. Assumenda narwhal occupy, Blue Bottle nihil culpa fingerstache. Meggings kogi vinyl meh, food truck banh mi Etsy magna 90's duis typewriter banjo organic leggings Vice.</p>
-      <footer>Someone famous in <cite title="Source Title">Source Title</cite></footer>
-    </blockquote>
-  </div>
-</div>
-EOT;
-  return $output;
-}
-
-/**
  * Helper function for the system_theme_settings form.
  *
  * Attempts to validate normal system paths, paths relative to the public files

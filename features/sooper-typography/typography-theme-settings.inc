@@ -305,7 +305,6 @@ function typography_theme_settings(array &$form, $theme) {
     '#type' => 'details',
     '#collapsible' => TRUE,
     '#collapsed' => TRUE,
-    '#suffix' => _dxpr_theme_type_preview(),
   ];
 
   $form['dxpr_theme_settings']['typography']['divider']['divider_thickness'] = [

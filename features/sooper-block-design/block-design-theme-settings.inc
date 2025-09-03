@@ -425,7 +425,7 @@ function block_design_theme_settings(array &$form, $theme) {
     '#collapsible' => TRUE,
     '#collapsed' => TRUE,
     '#description' => t('The custom block design only applies to selected regions.'),
-    '#suffix' => '</div><div class="block-preview sticky-top">' . _dxpr_theme_block_preview() . '</div></div>',
+    '#suffix' => '</div></div>',
   ];
 
   $form['dxpr_theme_settings']['block']['regions']['block_design_regions'] = [
@@ -448,52 +448,4 @@ function block_design_theme_settings(array &$form, $theme) {
       'footer' => t('Footer'),
     ],
   ];
-}
-
-/**
- * Generate block preview markup.
- */
-function _dxpr_theme_block_preview() {
-  $block_card = theme_get_setting('block_card');
-  $title_card = theme_get_setting('title_card');
-  $output = <<<EOT
-<div class="blocks-preview">
-  <div class="region-block-design region region-sidebar-second">
-    <section class="block block-tagclouds clearfix {$block_card}" id="block-tagclouds-2">
-      <div class="wrap-block-title"><h2 class="block-title {$title_card}">Tags in Tags</h2></div>
-      <hr class="block-hr">
-      <span class=
-      "tagclouds-term"><a class="tagclouds level1" href="#" title=
-      "">Business</a></span> <span class="tagclouds-term"><a class=
-      "tagclouds level6" href="#" title="">Inspiration</a></span>
-      <span class="tagclouds-term"><a class="tagclouds level3" href=
-      "#" title="">Oppurtunities</a></span> <span class=
-      "tagclouds-term"><a class="tagclouds level3" href="#" title=
-      "">Secrets</a></span> <span class="tagclouds-term"><a class=
-      "tagclouds level5" href="#" title="">Travel</a></span>
-    </section>
-    <section class="block block-views clearfix {$block_card}" id=
-    "block-views-cms-blog-cat-blog-categories">
-      <div class="wrap-block-title"><h2 class="block-title {$title_card}">Categories</h2></div>
-      <hr class="block-hr">
-      <div class=
-      "view view-cms-blog-cat view-id-cms_blog_cat view-display-id-blog_categories view-dom-id-414e72d6e00d6259852916a789bc63e5 ">
-      <div class="view-content">
-          <ul class="dxpr-theme-processed nav">
-            <li class="">
-              <a href="#">Business <span class=
-              "dxpr-theme-util-text-muted">(12)</span></a>
-            </li>
-            <li class="">
-              <a href="#">Lifestyle <span class=
-              "dxpr-theme-util-text-muted">(3)</span></a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </section>
-  </div>
-</div>
-EOT;
-  return $output;
 }
