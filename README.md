@@ -14,15 +14,19 @@ https://github.com/dxpr/dxpr_maven/blob/main/CONTRIBUTING.md
 
 ## Subtheme CSS File (/css/dxpr_theme_subtheme.css)
 
-**Important**: The `dxpr_theme_subtheme.css` file in your custom subtheme is intended
-**only for manual custom styles**. This file will remain empty by design and is not
-automatically populated when you change theme settings through the admin interface.
+**Important**: The `dxpr_theme_subtheme.css` file in your custom subtheme is
+intended **only for manual custom styles**. This file will remain empty by
+design and is not automatically populated when you change theme settings
+through the admin interface.
 
 ### How it works:
 - All theme setting changes are applied directly from the parent theme
-- The `dxpr_theme_subtheme.css` file is included on the site but remains empty unless you manually add custom CSS
-- If you need custom styles, you must manually add them to `dxpr_theme_subtheme.css`
-- Manual styles in this file will persist even after saving theme settings and clearing cache
+- The `dxpr_theme_subtheme.css` file is included on the site but remains empty
+  unless you manually add custom CSS
+- If you need custom styles, you must manually add them to
+  `dxpr_theme_subtheme.css`
+- Manual styles in this file will persist even after saving theme settings
+  and clearing cache
 
 # Continuous Integration / Automation
 
