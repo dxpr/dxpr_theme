@@ -180,11 +180,18 @@ function handleDocumentEvents(event, updateFieldValue) {
 
     document
       .querySelectorAll(`.region-block-design ${target}`)
-      .forEach((block) => {
-        block.classList.remove(...presetClassesRemove);
-        block.classList.add(
+      .forEach((element) => {
+        element.classList.remove(...presetClassesRemove);
+        element.classList.add(
           ...presetClasses.filter((className) => className !== ""),
         );
+        
+        // Apply custom color overrides if they exist
+        if (target === ".block") {
+          applyCustomStyleOverrides(element, 'block');
+        } else {
+          applyCustomStyleOverrides(element, 'title');
+        }
       });
   }
 
@@ -252,6 +259,9 @@ function handleDocumentEvents(event, updateFieldValue) {
       });
     }
   }
+  
+  // Handle custom color changes
+  handleCustomColorChanges(event);
 }
 
 /**
@@ -303,7 +313,86 @@ function initializeBlockPreview() {
   }, 100);
 }
 
+/**
+ * Apply custom style overrides for elements that have preset classes but need custom colors.
+ */
+function applyCustomStyleOverrides(element, type) {
+  const prefix = type === 'block' ? 'block' : 'title';
+  
+  // Check if custom background color should override preset
+  const backgroundField = document.getElementById(`edit-${prefix}-background`);
+  const backgroundCustomField = document.getElementById(`edit-${prefix}-background-custom`);
+  
+  if (backgroundField && backgroundCustomField && 
+      backgroundField.value === 'custom' && backgroundCustomField.value) {
+    // Custom color overrides any preset background
+    element.style.backgroundColor = backgroundCustomField.value;
+  } else {
+    // Remove any previous override to let CSS/preset handle it
+    element.style.removeProperty('background-color');
+  }
+  
+  // Check if custom border color should override preset
+  const borderColorField = document.getElementById(`edit-${prefix}-border-color`);
+  const borderColorCustomField = document.getElementById(`edit-${prefix}-border-color-custom`);
+  
+  if (borderColorField && borderColorCustomField && 
+      borderColorField.value === 'custom' && borderColorCustomField.value) {
+    element.style.borderColor = borderColorCustomField.value;
+  } else {
+    element.style.removeProperty('border-color');
+  }
+}
+
+/**
+ * Check if element has background utility classes.
+ */
+function hasBackgroundUtilityClass(element) {
+  const classList = element.classList.toString();
+  return classList.includes('bg-') || classList.includes('dxpr-theme-util-background');
+}
+
+/**
+ * Apply custom overrides when background/border settings change.
+ */
+function handleCustomColorChanges(event) {
+  const targetElement = event.target;
+  const id = targetElement?.id ?? "";
+  
+  // Handle custom background color changes
+  if (id === "edit-block-background" || id === "edit-block-background-custom") {
+    document.querySelectorAll('.region-block-design .block').forEach((block) => {
+      applyCustomStyleOverrides(block, 'block');
+    });
+  }
+  
+  if (id === "edit-title-background" || id === "edit-title-background-custom") {
+    document.querySelectorAll('.region-block-design .block-title').forEach((title) => {
+      applyCustomStyleOverrides(title, 'title');
+    });
+  }
+  
+  // Handle custom border color changes
+  if (id === "edit-block-border-color" || id === "edit-block-border-color-custom") {
+    document.querySelectorAll('.region-block-design .block').forEach((block) => {
+      applyCustomStyleOverrides(block, 'block');
+    });
+  }
+  
+  if (id === "edit-title-border-color" || id === "edit-title-border-color-custom") {
+    document.querySelectorAll('.region-block-design .block-title').forEach((title) => {
+      applyCustomStyleOverrides(title, 'title');
+    });
+  }
+}
+
 // Initialize on load
 initializeBlockPreview();
 
-module.exports = { handleDocumentEvents, setFieldValue, initializeBlockPreview };
+module.exports = { 
+  handleDocumentEvents, 
+  setFieldValue, 
+  initializeBlockPreview, 
+  applyCustomStyleOverrides,
+  handleCustomColorChanges 
+};

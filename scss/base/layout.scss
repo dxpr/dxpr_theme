@@ -140,9 +140,13 @@ body.full-width-content {
   margin-bottom: var(--dxt-setting-gutter-vertical);
 }
 
-// Only apply custom block styles when not using card classes
-.region-block-design .block:not(.card) {
+// Apply background only to blocks without preset background classes
+.region-block-design .block:not(.card):not([class*="bg-"]):not([class*="dxpr-theme-util-background"]) {
   background-color: var(--dxt-setting-block-background);
+}
+
+// Apply other block styles only to non-card blocks
+.region-block-design .block:not(.card) {
   border-color: var(--dxt-setting-block-border-color);
   border-radius: var(--dxt-setting-block-border-radius);
   border-style: solid;
@@ -150,9 +154,13 @@ body.full-width-content {
   padding: var(--dxt-setting-block-padding);
 }
 
-// Only apply custom title styles when parent block is not using card classes
-.region-block-design .block:not(.card) .block-title {
+// Apply title background only when block and title don't have preset classes
+.region-block-design .block:not(.card):not([class*="bg-"]):not([class*="dxpr-theme-util-background"]) .block-title:not(.card):not([class*="bg-"]):not([class*="dxpr-theme-util-background"]) {
   background-color: var(--dxt-setting-title-background);
+}
+
+// Apply other title styles only when parent block is not using card classes  
+.region-block-design .block:not(.card) .block-title:not(.card) {
   border-color: var(--dxt-setting-title-border-color);
   border-radius: var(--dxt-setting-title-border-radius);
   border-style: solid;
