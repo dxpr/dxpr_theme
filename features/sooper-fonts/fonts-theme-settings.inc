@@ -101,7 +101,6 @@ function fonts_theme_settings(array &$form, $theme) {
     '#collapsible' => TRUE,
     '#collapsed' => TRUE,
     '#prefix' => '<br class="clear-both"><br class="clear-both">',
-    '#suffix' => _dxpr_theme_type_preview(),
   ];
 
   $form['dxpr_theme_settings']['fonts']['font_preview']['preview'] = [

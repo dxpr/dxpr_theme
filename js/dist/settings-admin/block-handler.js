@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 /**
  * @file
  * Handles block-related events and field updates.
@@ -27,6 +28,98 @@ function setFieldValue(key, value) {
   } else {
     field.value = value;
     field.dispatchEvent(new Event("change"));
+  }
+}
+
+/**
+ * Apply custom style overrides for elements that have preset classes but need custom colors.
+ */
+function applyCustomStyleOverrides(element, type) {
+  const prefix = type === "block" ? "block" : "title";
+
+  // Check if custom background color should override preset
+  const backgroundField = document.getElementById(`edit-${prefix}-background`);
+  const backgroundCustomField = document.getElementById(
+    `edit-${prefix}-background-custom`,
+  );
+
+  if (
+    backgroundField &&
+    backgroundCustomField &&
+    backgroundField.value === "custom" &&
+    backgroundCustomField.value
+  ) {
+    // Custom color overrides any preset background
+    element.style.backgroundColor = backgroundCustomField.value;
+  } else {
+    // Remove any previous override to let CSS/preset handle it
+    element.style.removeProperty("background-color");
+  }
+
+  // Check if custom border color should override preset
+  const borderColorField = document.getElementById(
+    `edit-${prefix}-border-color`,
+  );
+  const borderColorCustomField = document.getElementById(
+    `edit-${prefix}-border-color-custom`,
+  );
+
+  if (
+    borderColorField &&
+    borderColorCustomField &&
+    borderColorField.value === "custom" &&
+    borderColorCustomField.value
+  ) {
+    element.style.borderColor = borderColorCustomField.value;
+  } else {
+    element.style.removeProperty("border-color");
+  }
+}
+
+/**
+ * Apply custom overrides when background/border settings change.
+ */
+function handleCustomColorChanges(event) {
+  const targetElement = event.target;
+  const id = targetElement?.id ?? "";
+
+  // Handle custom background color changes
+  if (id === "edit-block-background" || id === "edit-block-background-custom") {
+    document
+      .querySelectorAll(".region-block-design .block")
+      .forEach((block) => {
+        applyCustomStyleOverrides(block, "block");
+      });
+  }
+
+  if (id === "edit-title-background" || id === "edit-title-background-custom") {
+    document
+      .querySelectorAll(".region-block-design .block-title")
+      .forEach((title) => {
+        applyCustomStyleOverrides(title, "title");
+      });
+  }
+
+  if (
+    id === "edit-block-border-color" ||
+    id === "edit-block-border-color-custom"
+  ) {
+    document
+      .querySelectorAll(".region-block-design .block")
+      .forEach((block) => {
+        applyCustomStyleOverrides(block, "block");
+      });
+  }
+
+  if (
+    id === "edit-title-border-color" ||
+    id === "edit-title-border-color-custom"
+  ) {
+    document
+      .querySelectorAll(".region-block-design .block-title")
+      .forEach((title) => {
+        applyCustomStyleOverrides(title, "title");
+      });
   }
 }
 
@@ -140,6 +233,30 @@ function handleDocumentEvents(event, updateFieldValue) {
     Object.keys(settings).forEach((key) => {
       setFieldValue(key, settings[key]);
     });
+
+    // Trigger change events for block_card and title_card to update preview
+    setTimeout(() => {
+      const blockCardField = document.getElementById("edit-block-card");
+      const titleCardField = document.getElementById("edit-title-card");
+
+      if (blockCardField) {
+        blockCardField.dispatchEvent(
+          new Event("change", {
+            bubbles: true,
+            cancelable: true,
+          }),
+        );
+      }
+
+      if (titleCardField) {
+        titleCardField.dispatchEvent(
+          new Event("change", {
+            bubbles: true,
+            cancelable: true,
+          }),
+        );
+      }
+    }, 10);
   }
 
   const presetClassesRemove = [
@@ -160,11 +277,18 @@ function handleDocumentEvents(event, updateFieldValue) {
 
     document
       .querySelectorAll(`.region-block-design ${target}`)
-      .forEach((block) => {
-        block.classList.remove(...presetClassesRemove);
-        block.classList.add(
+      .forEach((element) => {
+        element.classList.remove(...presetClassesRemove);
+        element.classList.add(
           ...presetClasses.filter((className) => className !== ""),
         );
+
+        // Apply custom color overrides if they exist
+        if (target === ".block") {
+          applyCustomStyleOverrides(element, "block");
+        } else {
+          applyCustomStyleOverrides(element, "title");
+        }
       });
   }
 
@@ -232,6 +356,75 @@ function handleDocumentEvents(event, updateFieldValue) {
       });
     }
   }
+
+  // Handle custom color changes
+  handleCustomColorChanges(event);
 }
 
-module.exports = { handleDocumentEvents, setFieldValue };
+/**
+ * Initialize block preview with current settings on page load.
+ */
+function initializeBlockPreview() {
+  // Wait for DOM to be fully loaded
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initializeBlockPreview);
+    return;
+  }
+
+  // Apply current block_card and title_card settings to preview
+  setTimeout(() => {
+    const blockCardField = document.getElementById("edit-block-card");
+    const titleCardField = document.getElementById("edit-title-card");
+
+    if (blockCardField) {
+      blockCardField.dispatchEvent(
+        new Event("change", {
+          bubbles: true,
+          cancelable: true,
+        }),
+      );
+    }
+
+    if (titleCardField) {
+      titleCardField.dispatchEvent(
+        new Event("change", {
+          bubbles: true,
+          cancelable: true,
+        }),
+      );
+    }
+
+    // Also check if block divider is enabled
+    const blockDivider = document.getElementById("edit-block-divider");
+    if (blockDivider && blockDivider.checked) {
+      blockDivider.dispatchEvent(
+        new Event("change", {
+          bubbles: true,
+          cancelable: true,
+        }),
+      );
+    }
+
+    // Check title sticker setting
+    const titleSticker = document.getElementById("edit-title-sticker");
+    if (titleSticker && titleSticker.checked) {
+      titleSticker.dispatchEvent(
+        new Event("change", {
+          bubbles: true,
+          cancelable: true,
+        }),
+      );
+    }
+  }, 100);
+}
+
+// Initialize on load
+initializeBlockPreview();
+
+module.exports = {
+  handleDocumentEvents,
+  setFieldValue,
+  initializeBlockPreview,
+  applyCustomStyleOverrides,
+  handleCustomColorChanges,
+};

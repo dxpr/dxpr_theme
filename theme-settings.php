@@ -27,20 +27,12 @@ function dxpr_theme_form_system_theme_settings_alter(&$form, &$form_state, $form
   $build_info = $form_state->getBuildInfo();
   $subject_theme = $build_info['args'][0];
   $dxpr_theme_theme_path = \Drupal::service('extension.list.theme')->getPath('dxpr_theme') . '/';
-  $themes = \Drupal::service('theme_handler')->listInfo();
-
-  if (!empty($themes[$subject_theme]->info['version'])) {
-    $version = $themes[$subject_theme]->info['version'];
-  }
 
   $form['dxpr_theme_settings_header'] = [
     '#type' => 'inline_template',
     '#template' => '
       <div class="form-header">
-        <h2>
-          {{ image|raw }} {{ name }} {{ version }}
-          <span class="small">({{ bs5_name }} base theme {{ bs5_version }})</span>
-        </h2>
+        <h2>{{ image|raw }}</h2>
         <div class="no-preview-info small">
           <span class="no-preview">&nbsp;</span>{{ preview_text }}
         </div>
@@ -48,11 +40,7 @@ function dxpr_theme_form_system_theme_settings_alter(&$form, &$form_state, $form
     ',
     '#context' => [
       'image' => '<img width="40" height="15" src="' . $base_path . $dxpr_theme_theme_path . 'images/dxpr-logo-dark.svg" />',
-      'name' => $themes[$subject_theme]->info['name'],
-      'version' => $version ?? 'dev',
-      'bs5_name' => $themes['bootstrap5']->info['name'],
-      'bs5_version' => $themes['bootstrap5']->info['version'],
-      'preview_text' => t('No preview. Save to view changes.'),
+      'preview_text' => ' = ' . t('No preview. Save to view changes.'),
     ],
     '#weight' => -100,
   ];
@@ -135,6 +123,12 @@ function dxpr_theme_form_system_theme_settings_alter(&$form, &$form_state, $form
   if (!file_exists($dxpr_theme_css_file)) {
     dxpr_theme_css_cache_build($subject_theme);
   }
+
+  // Create body wrapper and load styleguide.
+  $styleguide_url = base_path() . \Drupal::service('extension.list.theme')->getPath('dxpr_theme') . '/resources/styleguide.html';
+
+  // Add styleguide URL to Drupal settings for JavaScript to use.
+  $form['#attached']['drupalSettings']['dxpr_theme']['styleguide_url'] = $styleguide_url;
 
   foreach (\Drupal::service('file_system')->scanDirectory(\Drupal::service('extension.list.theme')->getPath('dxpr_theme') . '/features', '/settings.inc/i') as $file) {
     require_once $file->uri;
@@ -256,44 +250,6 @@ function _dxpr_theme_node_types_options() {
     $types[$key] = $value->get('name');
   }
   return $types;
-}
-
-/**
- * Generate node type preview markup.
- */
-function _dxpr_theme_type_preview() {
-  $output = <<<EOT
-<div class="type-preview">
-  <div class="type-container type-title-container">
-    <h1>Beautiful Typography</h1>
-  </div>
-
-  <div class="type-container">
-    <h2>Typewriter delectus cred. Thundercats, sed scenester before they sold out et aesthetic</h2>
-    <hr>
-    <p class="lead">Lead Text Direct trade gluten-free blog, fanny pack cray labore skateboard before they sold out adipisicing non magna id Helvetica freegan. Disrupt aliqua Brooklyn church-key lo-fi dreamcatcher.</p>
-
-
-    <h3>Truffaut disrupt sartorial deserunt</h3>
-
-    <p>Cosby sweater plaid shabby chic kitsch pour-over ex. Try-hard fanny pack mumblecore cornhole cray scenester. Assumenda narwhal occupy, Blue Bottle nihil culpa fingerstache. Meggings kogi vinyl meh, food truck banh mi Etsy magna 90's duis typewriter banjo organic leggings Vice.</p>
-
-    <ul>
-      <li>Roof party put a bird on it incididunt sed umami craft beer cred.</li>
-      <li>Carles literally normcore, Williamsburg Echo Park fingerstache photo booth twee keffiyeh chambray whatever.</li>
-      <li>Scenester High Life Banksy, proident master cleanse tousled squid sriracha ad chillwave post-ironic retro.</li>
-    </ul>
-
-    <h4>Fingerstache nesciunt lomo nostrud hoodie</h4>
-
-    <blockquote>
-      <p>Cosby sweater plaid shabby chic kitsch pour-over ex. Try-hard fanny pack mumblecore cornhole cray scenester. Assumenda narwhal occupy, Blue Bottle nihil culpa fingerstache. Meggings kogi vinyl meh, food truck banh mi Etsy magna 90's duis typewriter banjo organic leggings Vice.</p>
-      <footer>Someone famous in <cite title="Source Title">Source Title</cite></footer>
-    </blockquote>
-  </div>
-</div>
-EOT;
-  return $output;
 }
 
 /**
