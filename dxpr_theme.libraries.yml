@@ -130,6 +130,11 @@ drupal-status-message:
     theme:
       css/vendor-extensions/drupal-status-message.css: { minified: true }
 
+drupal-book:
+  css:
+    theme:
+      css/vendor-extensions/drupal-book.css: { minified: true }
+
 dxpr-theme-builder:
   css:
     theme:

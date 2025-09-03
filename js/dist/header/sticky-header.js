@@ -23,21 +23,68 @@ function setupStickyHeader() {
     const elHeader = document.querySelector(".dxpr-theme-header--sticky");
     const wrapContainer = document.getElementsByClassName("wrap-containers")[0];
 
-    const onScroll = () => {
-      const scroll = window.scrollY;
+    if (elHeader && wrapContainer) {
+      let isScrolling = false;
+      let lastScrollPosition = -1;
+      let rafId = null;
 
-      if (scroll >= headerScroll) {
-        elHeader.classList.add("affix");
-        elHeader.classList.remove("affix-top");
-        wrapContainer.style.marginTop = `${headerHeight}px`;
-      } else {
-        elHeader.classList.add("affix-top");
-        elHeader.classList.remove("affix");
-        wrapContainer.style.marginTop = "0";
-      }
-    };
+      const updateStickyHeader = () => {
+        // Use body.scrollTop since scroll events are firing on body element
+        const scroll =
+          document.body.scrollTop ||
+          document.documentElement.scrollTop ||
+          window.scrollY ||
+          0;
 
-    window.addEventListener("scroll", onScroll);
+        // Only update DOM if scroll position actually changed
+        if (scroll !== lastScrollPosition) {
+          lastScrollPosition = scroll;
+
+          if (scroll >= headerScroll) {
+            if (!elHeader.classList.contains("affix")) {
+              elHeader.classList.add("affix");
+              elHeader.classList.remove("affix-top");
+              wrapContainer.style.marginTop = `${headerHeight}px`;
+            }
+          } else if (!elHeader.classList.contains("affix-top")) {
+            elHeader.classList.add("affix-top");
+            elHeader.classList.remove("affix");
+            wrapContainer.style.marginTop = "0";
+          }
+        }
+
+        isScrolling = false;
+      };
+
+      const onScroll = () => {
+        // Throttle scroll events using requestAnimationFrame
+        if (!isScrolling) {
+          isScrolling = true;
+
+          // Cancel any pending animation frame
+          if (rafId) {
+            window.cancelAnimationFrame(rafId);
+          }
+
+          rafId = window.requestAnimationFrame(updateStickyHeader);
+        }
+      };
+
+      // Use passive listeners for better scroll performance
+      const scrollOptions = { passive: true };
+
+      // Add scroll event listeners on both window and body elements
+      window.addEventListener("scroll", onScroll, scrollOptions);
+      document.body.addEventListener("scroll", onScroll, scrollOptions);
+      document.documentElement.addEventListener(
+        "scroll",
+        onScroll,
+        scrollOptions,
+      );
+
+      // Initial state check
+      updateStickyHeader();
+    }
   }
 }
 
