@@ -8,20 +8,9 @@ https://app.dxpr.com/hc/documentation/internal
 
 ## Contributing Guidelines
 
-Before you write any code for this project please also check 
+Before you write any code for this project please also check
 https://github.com/dxpr/dxpr_maven/blob/main/CONTRIBUTING.md
 
-## [WARNING] Save theme settings form after updating theme CSS
-
-Because DXPR Theme generates custom CSS files from theme settings, changes to its CSS may
-not immediately take effect.
-When the theme is configured with custom settings in the theme settings form
-the system will save a copy of the customized theme CSS files inside
-the Drupal files folder. When updating the theme CSS files in the theme
-folder these changes might not take effect because the browser is loading
-the copies of the theme's CSS files from the files folder. To fix this you
-have to save the theme settings form so that the system will create
-new copies of the theme's CSS files that include your latest changes.
 
 # Continuous Integration / Automation
 
