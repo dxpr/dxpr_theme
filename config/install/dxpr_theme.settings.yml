@@ -194,6 +194,7 @@ logo:
   use_default: 1
 page_title_image: {  }
 background_image: {  }
+web_icons_upload: null
 hidden_regions:
   navigation: 0
   navigation_collapsible: 0

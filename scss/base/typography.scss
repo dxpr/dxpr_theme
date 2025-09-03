@@ -156,6 +156,20 @@ h1, h2, h3, h4, h5, h6, .navbar-brand, th, .nav-tabs > li > a {
   }
 }
 
+h1 a,
+h2 a,
+h3 a,
+h4 a,
+h5 a,
+h6 a {
+  color: dxpr-color('base');
+
+  &:hover,
+  &:focus {
+    color: dxpr-color('accent1');
+  }
+}
+
 .block-revslider img { /* This selector specifity should keep images in check but allow special circumstances like revolution slider image effects */
   max-width: 100%;
 }

@@ -74,6 +74,15 @@
   <head>
     <head-placeholder token="{{ placeholder_token|raw }}">
     <title>{{ head_title|safe_join(' | ') }}</title>
+
+    {# Modern web icons #}
+    {% if apple_touch_icon_url %}
+      <link rel="apple-touch-icon" href="{{ apple_touch_icon_url }}">
+    {% endif %}
+    {% if manifest_url %}
+      <link rel="manifest" href="{{ manifest_url }}" type="application/manifest+json" crossorigin="anonymous">
+    {% endif %}
+
     <style>ul.dropdown-menu {display: none;}</style>
     <css-placeholder token="{{ placeholder_token|raw }}">
     <js-placeholder token="{{ placeholder_token|raw }}">
