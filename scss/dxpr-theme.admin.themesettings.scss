@@ -716,3 +716,9 @@ body.path-admin #system-theme-settings,
     padding: 40px 80px;
   }
 }
+
+// Fix sticky footer causing sidebar scroll issues
+html.html--dxpr-theme-sticky-footer:has(#system-theme-settings) {
+  height: auto !important;
+}
+

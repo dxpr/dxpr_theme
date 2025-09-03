@@ -3,6 +3,8 @@
  * Style guide loading functionality for theme settings sidebar.
  */
 
+const { initializeSidebarNavigation } = require('./sidebar-navigation');
+
 function loadStyleguide() {
   requestAnimationFrame(() => {
     const contentRegion = document.querySelector(".region-content");
@@ -37,6 +39,9 @@ function loadStyleguide() {
 
           if (cheatsheet) {
             styleguideDiv.innerHTML = cheatsheet.outerHTML;
+            
+            // Initialize sidebar navigation after styleguide is loaded
+            initializeSidebarNavigation();
             
             // After styleguide is loaded, initialize block preview
             setTimeout(() => {
