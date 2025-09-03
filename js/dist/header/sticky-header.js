@@ -23,8 +23,6 @@ function setupStickyHeader() {
     const elHeader = document.querySelector(".dxpr-theme-header--sticky");
     const wrapContainer = document.getElementsByClassName("wrap-containers")[0];
 
-
-
     const onScroll = () => {
       const scroll = window.scrollY;
 
