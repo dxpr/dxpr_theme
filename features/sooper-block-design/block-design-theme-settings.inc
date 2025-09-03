@@ -58,7 +58,7 @@ function block_design_theme_settings(array &$form, $theme) {
   ];
 
   $card_options = [
-    '' => t('None'),
+    '' => t('Custom'),
     'card card-body' => t('Card'),
     'card card-body bg-primary' => t('Card DXPR Theme Primary Color'),
     'card card-body dxpr-theme-util-background-accent1' => t('Card Accent 1 Color'),
@@ -104,6 +104,11 @@ function block_design_theme_settings(array &$form, $theme) {
       'class' => ['dxb-slider', 'block-padding-range', 'border-size-slider'],
       'data-dxb-slider' => TRUE,
     ],
+    '#states' => [
+      'disabled' => [
+        'select[name="block_card"]' => ['!value' => ''],
+      ],
+    ],
   ];
 
   $form['dxpr_theme_settings']['block']['block_advanced']['block_el']['block_border_radius'] = [
@@ -117,6 +122,11 @@ function block_design_theme_settings(array &$form, $theme) {
       'class' => ['dxb-slider', 'block-border-radius-range', 'border-radius-slider'],
       'data-dxb-slider' => TRUE,
     ],
+    '#states' => [
+      'disabled' => [
+        'select[name="block_card"]' => ['!value' => ''],
+      ],
+    ],
   ];
 
   $form['dxpr_theme_settings']['block']['block_advanced']['block_el']['block_border'] = [
@@ -129,6 +139,11 @@ function block_design_theme_settings(array &$form, $theme) {
     '#attributes' => [
       'class' => ['dxb-slider', 'block-border-range', 'border-size-slider'],
       'data-dxb-slider' => TRUE,
+    ],
+    '#states' => [
+      'disabled' => [
+        'select[name="block_card"]' => ['!value' => ''],
+      ],
     ],
   ];
 
@@ -223,6 +238,11 @@ function block_design_theme_settings(array &$form, $theme) {
       'class' => ['dxb-slider', 'title-padding-range', 'border-size-slider'],
       'data-dxb-slider' => TRUE,
     ],
+    '#states' => [
+      'disabled' => [
+        'select[name="title_card"]' => ['!value' => ''],
+      ],
+    ],
   ];
 
   $form['dxpr_theme_settings']['block']['block_advanced']['title_el']['title_border'] = [
@@ -236,6 +256,11 @@ function block_design_theme_settings(array &$form, $theme) {
       'class' => ['dxb-slider', 'title-border-range', 'border-size-slider'],
       'data-dxb-slider' => TRUE,
     ],
+    '#states' => [
+      'disabled' => [
+        'select[name="title_card"]' => ['!value' => ''],
+      ],
+    ],
   ];
 
   $form['dxpr_theme_settings']['block']['block_advanced']['title_el']['title_border_radius'] = [
@@ -248,6 +273,11 @@ function block_design_theme_settings(array &$form, $theme) {
     '#attributes' => [
       'class' => ['dxb-slider', 'title-border-radius-range', 'border-radius-slider'],
       'data-dxb-slider' => TRUE,
+    ],
+    '#states' => [
+      'disabled' => [
+        'select[name="title_card"]' => ['!value' => ''],
+      ],
     ],
   ];
 
