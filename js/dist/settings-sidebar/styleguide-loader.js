@@ -9,7 +9,7 @@ function loadStyleguide() {
     if (contentRegion) {
       const styleguideDiv = document.createElement("div");
       styleguideDiv.innerHTML =
-        "<h2>Bootstrap Styleguide</h2><p>Loading...</p>";
+        "<p>Loading...</p>";
       contentRegion.insertBefore(styleguideDiv, contentRegion.firstChild);
 
       // Get style guide URL from Drupal settings or construct it
@@ -36,7 +36,7 @@ function loadStyleguide() {
           const cheatsheet = doc.querySelector(".bd-cheatsheet");
 
           if (cheatsheet) {
-            styleguideDiv.innerHTML = `<h2>Bootstrap Styleguide</h2>${cheatsheet.outerHTML}`;
+            styleguideDiv.innerHTML = cheatsheet.outerHTML;
             
             // After styleguide is loaded, initialize block preview
             setTimeout(() => {
@@ -78,7 +78,7 @@ function loadStyleguide() {
           } else {
             // User-facing fallback when .bd-cheatsheet element is not found
             styleguideDiv.innerHTML =
-              '<h2>Bootstrap Styleguide</h2><div class="alert alert-warning"><p><strong>Notice:</strong> Styleguide content structure has changed. The expected content section (.bd-cheatsheet) was not found in the loaded HTML.</p><p>This may indicate a change in the styleguide format or a configuration issue.</p></div>';
+              '<div class="alert alert-warning"><p><strong>Notice:</strong> Styleguide content structure has changed. The expected content section (.bd-cheatsheet) was not found in the loaded HTML.</p><p>This may indicate a change in the styleguide format or a configuration issue.</p></div>';
           }
         })
         .catch((error) => {
