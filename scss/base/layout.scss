@@ -1,10 +1,17 @@
 @import "../includes/variables";
 
+// Horizontal scroll prevention
+
 html {
+  // Ensure box-sizing is border-box for all elements
+  box-sizing: border-box;
+
   // Prevent horizontal scrolling on small devices
-  // Also important for SEO, needed for mobile-friendly test
-  overflow: hidden;
-  overflow: hidden visible;
+  overflow-x: hidden !important;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
 }
 
 body {
@@ -13,7 +20,40 @@ body {
   background-position: center center;
   background-size: cover;
   font-size:  var(--dxt-setting-body-font-size);
+  overflow-x: hidden !important;
 }
+
+.main-container {
+  position: relative; // Centering mini tabs while using side toolbar
+}
+
+// responsive image. This sometimes sucks because images cannot over overscan their base size to save bytes.
+img {
+  height: auto;
+  max-width: 100%; // can't remove this because then image will overflow parent elements.
+}
+
+// Specific elements that commonly cause horizontal scroll issues
+pre, code, table {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+// Mobile-specific overflow prevention
+@media screen and (width <= 768px) {
+  html, body {
+    max-width: 100vw !important;
+    overflow-x: hidden !important;
+    position: relative;
+    width: 100% !important;
+  }
+  
+  // Prevent any element from exceeding viewport width on mobile
+  * {
+    max-width: 100vw !important;
+  }
+}
+
 
 .dxpr-theme-boxed-container {
   background: white;
@@ -100,8 +140,13 @@ body.full-width-content {
   margin-bottom: var(--dxt-setting-gutter-vertical);
 }
 
-.region-block-design .block {
+// Apply background only to blocks without preset background classes
+.region-block-design .block:not(.card, [class*="bg-"], [class*="dxpr-theme-util-background"]) {
   background-color: var(--dxt-setting-block-background);
+}
+
+// Apply other block styles only to non-card blocks
+.region-block-design .block:not(.card) {
   border-color: var(--dxt-setting-block-border-color);
   border-radius: var(--dxt-setting-block-border-radius);
   border-style: solid;
@@ -109,8 +154,13 @@ body.full-width-content {
   padding: var(--dxt-setting-block-padding);
 }
 
-.region-block-design .block-title {
+// Apply title background only when block and title don't have preset classes
+.region-block-design .block:not(.card, [class*="bg-"], [class*="dxpr-theme-util-background"]) .block-title:not(.card, [class*="bg-"], [class*="dxpr-theme-util-background"]) {
   background-color: var(--dxt-setting-title-background);
+}
+
+// Apply other title styles only when parent block is not using card classes  
+.region-block-design .block:not(.card) .block-title:not(.card) {
   border-color: var(--dxt-setting-title-border-color);
   border-radius: var(--dxt-setting-title-border-radius);
   border-style: solid;
@@ -144,17 +194,6 @@ body.full-width-content {
 
 .navbar {
   margin-bottom: 0;
-}
-
-// responsive image. This sometimes sucks because images cannot over overscan their base size to save bytes.
-img {
-  height: auto;
-  max-width: 100%; // can't remove this because then image will overflow parent elements.
-}
-
-// exception for revolution slider kenburns effect
-html.js .kenburnimg img {
-  max-width: none;
 }
 
 // NODES
@@ -270,6 +309,34 @@ html.js .kenburnimg img {
 body #edit-block-advanced #edit-block-divider-thickness-wrapper,
 body #edit-block-advanced #edit-block-divider-length-wrapper,
 body #edit-block-advanced #edit-block-divider-spacing-wrapper,
-body #edit-layout #edit-box-max-width-wrapper, {
+body #edit-layout #edit-box-max-width-wrapper {
   border: none;
+}
+
+//
+// Skip to content link
+//
+.skip-link {
+  background: #ff0;
+  border: 1px solid #333;
+  border-radius: 0 0 8px 8px;
+  box-shadow: 0 0 10px rgba(0 0 0 / 25%);
+  color: #333 !important;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: bold;
+  left: 16px;
+  opacity: 0;
+  padding: 12px 15px;
+  position: absolute;
+  text-decoration: none !important;
+  top: 0;
+  transform: translateY(-110%);
+  transition: all 0.3s;
+  z-index: 10000;
+
+  &:focus {
+    opacity: 1;
+    transform: translateY(0%);
+  }
 }

@@ -74,8 +74,6 @@ function layout_theme_settings(array &$form, $theme) {
         'class' => ['dxb-slider', 'box-max-width-range'],
         'data-dxb-slider' => TRUE,
       ],
-      '#prefix' => '<div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
-      '#suffix' => '</div></div></div>',
     ],
     '#states' => [
       'visible' => [
@@ -91,13 +89,11 @@ function layout_theme_settings(array &$form, $theme) {
     '#min' => 480,
     '#max' => 4100,
     '#step' => 10,
-    '#description' => t('Max width of the website container. 480px - 4100px. Default is 1280px. With Side-Header enabled we typically use 980px.'),
+    '#description' => t('Max width of the website container. 480px - 4100px. Default is 1320px. With Side-Header enabled we typically use 980px.'),
     '#attributes' => [
       'class' => ['dxb-slider', 'layout-max-width-range'],
       'data-dxb-slider' => TRUE,
     ],
-    '#prefix' => '<div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
-    '#suffix' => '</div></div></div>',
   ];
 
   $form['dxpr_theme_settings']['layout']['grid']['gutter_horizontal'] = [
@@ -112,8 +108,6 @@ function layout_theme_settings(array &$form, $theme) {
       'class' => ['dxb-slider', 'gutter-horizontal-range'],
       'data-dxb-slider' => TRUE,
     ],
-    '#prefix' => '<div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
-    '#suffix' => '</div></div></div>',
   ];
 
   $form['dxpr_theme_settings']['layout']['grid']['gutter_vertical'] = [
@@ -128,8 +122,6 @@ function layout_theme_settings(array &$form, $theme) {
       'class' => ['dxb-slider', 'gutter-vertical-range'],
       'data-dxb-slider' => TRUE,
     ],
-    '#prefix' => '<div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
-    '#suffix' => '</div></div></div>',
   ];
 
   $form['dxpr_theme_settings']['layout']['grid']['gutter_container'] = [
@@ -144,8 +136,6 @@ function layout_theme_settings(array &$form, $theme) {
       'class' => ['dxb-slider', 'gutter-container-range'],
       'data-dxb-slider' => TRUE,
     ],
-    '#prefix' => '<div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
-    '#suffix' => '</div></div></div>',
   ];
 
   $form['dxpr_theme_settings']['layout']['background'] = [
@@ -163,8 +153,10 @@ function layout_theme_settings(array &$form, $theme) {
     '#description' => t('The path to the file you would like to use as your page title background image. If you upload a file below it will automatically populate this text field'),
   ];
   $form['dxpr_theme_settings']['layout']['background']['background_image'] = [
-    '#type' => 'file',
+    '#type' => 'media_library',
+    '#allowed_bundles' => ['image'],
     '#title' => t('Upload Background'),
+    '#default_value' => theme_get_setting('background_image'),
     '#description' => t('The default page title image can also be changed per node, using the Header image field in the node form.'),
   ];
 
@@ -225,8 +217,6 @@ function layout_theme_settings(array &$form, $theme) {
       'class' => ['dxb-slider', 'gutter-horizontal-mobile-range'],
       'data-dxb-slider' => TRUE,
     ],
-    '#prefix' => '<div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
-    '#suffix' => '</div></div></div>',
   ];
 
   $form['dxpr_theme_settings']['layout']['mobile_layout']['gutter_vertical_mobile'] = [
@@ -241,8 +231,6 @@ function layout_theme_settings(array &$form, $theme) {
       'class' => ['dxb-slider', 'gutter-vertical-mobile-range'],
       'data-dxb-slider' => TRUE,
     ],
-    '#prefix' => '<div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
-    '#suffix' => '</div></div></div>',
   ];
 
   $form['dxpr_theme_settings']['layout']['mobile_layout']['gutter_container_mobile'] = [
@@ -257,8 +245,6 @@ function layout_theme_settings(array &$form, $theme) {
       'class' => ['dxb-slider', 'gutter-container-mobile-range'],
       'data-dxb-slider' => TRUE,
     ],
-    '#prefix' => '<div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
-    '#suffix' => '</div></div></div>',
   ];
 
   // Secondary Header.

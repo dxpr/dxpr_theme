@@ -1,0 +1,110 @@
+name: Update Google Webfonts
+
+on:
+  schedule:
+    # Run every Monday at 9:00 AM UTC
+    - cron: '0 9 * * 1'
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  update-webfonts:
+    runs-on: ubuntu-latest
+    
+    permissions:
+      contents: write
+      pull-requests: write
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: Set up Git user
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+
+      - name: Fetch Google Webfonts data
+        env:
+          GOOGLE_WEBFONTS_API_KEY: ${{ secrets.GOOGLE_WEBFONTS_API_KEY }}
+        run: |
+          # Create backup of current file
+          cp features/sooper-fonts/google-webfonts.json features/sooper-fonts/google-webfonts.json.backup
+          
+          # Fetch new data from Google Webfonts API
+          curl -s "https://www.googleapis.com/webfonts/v1/webfonts?key=${GOOGLE_WEBFONTS_API_KEY}" \
+            -H "Accept: application/json" \
+            -o features/sooper-fonts/google-webfonts.json.new
+          
+          # Validate the downloaded JSON
+          if ! python3 -m json.tool features/sooper-fonts/google-webfonts.json.new > /dev/null 2>&1; then
+            echo "Error: Downloaded JSON is invalid"
+            rm features/sooper-fonts/google-webfonts.json.new
+            exit 1
+          fi
+          
+          # Check if the new file has meaningful content (should have 'items' array)
+          if ! grep -q '"items"' features/sooper-fonts/google-webfonts.json.new; then
+            echo "Error: Downloaded JSON doesn't contain expected 'items' array"
+            rm features/sooper-fonts/google-webfonts.json.new
+            exit 1
+          fi
+          
+          # Extract just the items array to match existing file format
+          jq '.items' features/sooper-fonts/google-webfonts.json.new > features/sooper-fonts/google-webfonts.json.extracted
+          mv features/sooper-fonts/google-webfonts.json.extracted features/sooper-fonts/google-webfonts.json
+          rm features/sooper-fonts/google-webfonts.json.new
+
+      - name: Check for changes
+        id: changes
+        run: |
+          if git diff --quiet features/sooper-fonts/google-webfonts.json; then
+            echo "No changes detected"
+            echo "changed=false" >> $GITHUB_OUTPUT
+          else
+            echo "Changes detected"
+            echo "changed=true" >> $GITHUB_OUTPUT
+            
+            # Get statistics about changes
+            OLD_COUNT=$(jq 'length' features/sooper-fonts/google-webfonts.json.backup)
+            NEW_COUNT=$(jq 'length' features/sooper-fonts/google-webfonts.json)
+            echo "old_count=${OLD_COUNT}" >> $GITHUB_OUTPUT
+            echo "new_count=${NEW_COUNT}" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Create Pull Request
+        if: steps.changes.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: 'feat: update Google Webfonts database'
+          add-paths: |
+            features/sooper-fonts/google-webfonts.json
+          title: 'Update Google Webfonts database'
+          body: |
+            ## 📝 Summary
+            Automated weekly update of Google Webfonts database from the Google Webfonts API.
+            
+            ## 📊 Changes
+            - Previous font count: ${{ steps.changes.outputs.old_count }}
+            - New font count: ${{ steps.changes.outputs.new_count }}
+            
+            ## 🔍 What Changed
+            This update refreshes the `features/sooper-fonts/google-webfonts.json` file with the latest available fonts from Google Webfonts API.
+            
+            ## ✅ Testing
+            - [x] JSON validation passed
+            - [x] Contains expected 'items' array structure
+            
+            ---
+            
+            🤖 This PR was created automatically by the Update Google Webfonts workflow.
+          branch: update-google-webfonts
+          delete-branch: true
+          
+      - name: Clean up backup file
+        if: always()
+        run: |
+          rm -f features/sooper-fonts/google-webfonts.json.backup

@@ -7,12 +7,15 @@
  * Place your custom PHP code in this file.
  */
 
+use Drupal\image\Entity\ImageStyle;
+use Drupal\media\Entity\Media;
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Markup;
 use Drupal\Core\Template\Attribute;
 use Drupal\block\Entity\Block;
+use Drupal\media\MediaInterface;
 use Drupal\node\NodeInterface;
 
 /**
@@ -81,12 +84,19 @@ function dxpr_theme_preprocess_html(&$variables) {
 
     if (isset($node) && !is_string($node)) {
       if ($node->hasField('field_dth_body_background')) {
-        $data = $node->field_dth_body_background->view([
-          'label' => 'hidden',
-          'type' => 'image_url',
-        ]);
-        if (isset($data[0]['#markup'])) {
-          $variables['body_bg_image_path'] = $data[0]['#markup'];
+        // Get the module handler service.
+        $module_handler = \Drupal::service('module_handler');
+
+        // Check if the module is enabled.
+        if ($module_handler->moduleExists('media_library')) {
+          $media = $node->get('field_dth_body_background')->entity ?? 0;
+          if ($media instanceof MediaInterface) {
+            $thumbnailUri = $media->get('thumbnail')->entity->getFileUri();
+            $url = \Drupal::service('file_url_generator')->generateString($thumbnailUri);
+            if (isset($url)) {
+              $variables['body_bg_image_path'] = $url;
+            }
+          }
         }
       }
     }
@@ -143,6 +153,33 @@ function dxpr_theme_preprocess_html(&$variables) {
   if ($header_hamburger_animation = theme_get_setting('hamburger_animation')) {
     $variables['#attached']['drupalSettings']['dxpr_themeSettings']['hamburgerAnimation'] = $header_hamburger_animation;
   }
+
+  // Add Apple Touch Icon URL if configured.
+  $web_icons_media_id = theme_get_setting('web_icons_upload');
+  if ($web_icons_media_id) {
+    $media = Media::load($web_icons_media_id);
+    if ($media && $media->field_media_image->entity) {
+      $image_style = ImageStyle::load('apple_touch_icon');
+      if ($image_style) {
+        $variables['apple_touch_icon_url'] = $image_style->buildUrl($media->field_media_image->entity->getFileUri());
+      }
+    }
+  }
+
+  // Add web manifest URL if icons are configured.
+  if ($web_icons_media_id) {
+    // Create a simple manifest JSON file in the public files directory.
+    $file_system = \Drupal::service('file_system');
+    $public_path = $file_system->realpath('public://');
+    $manifest_path = $public_path . '/manifest.webmanifest';
+
+    _dxpr_theme_generate_manifest($web_icons_media_id, $manifest_path);
+
+    // Absolute URL for the manifest.
+    $variables['manifest_url'] = \Drupal::service('file_url_generator')
+      ->generateAbsoluteString('public://manifest.webmanifest');
+
+  }
 }
 
 /**
@@ -185,12 +222,19 @@ function dxpr_theme_preprocess_page(&$variables) {
 
     if (isset($node) && !is_string($node)) {
       if ($node->hasField('field_dth_page_title_backgrou')) {
-        $data = $node->field_dth_page_title_backgrou->view([
-          'label' => 'hidden',
-          'type' => 'image_url',
-        ]);
-        if (isset($data[0]['#markup'])) {
-          $variables['title_bg_image_path'] = $data[0]['#markup'];
+        // Get the module handler service.
+        $module_handler = \Drupal::service('module_handler');
+
+        // Check if the module is enabled.
+        if ($module_handler->moduleExists('media_library')) {
+          $media = $node->get('field_dth_page_title_backgrou')->entity ?? 0;
+          if ($media instanceof MediaInterface) {
+            $thumbnailUri = $media->get('thumbnail')->entity->getFileUri();
+            $url = \Drupal::service('file_url_generator')->generateString($thumbnailUri);
+            if (isset($url)) {
+              $variables['title_bg_image_path'] = $url;
+            }
+          }
         }
       }
     }
@@ -199,7 +243,7 @@ function dxpr_theme_preprocess_page(&$variables) {
   // CSS to load on every page.
   $dxpr_theme_libraries = [
     // Bootstrap TAILORING.
-    'dxpr_theme/bootstrap-3',
+    'dxpr_theme/bootstrap-5',
     'dxpr_theme/bootstrap-theme',
     // @todo Include only if needed.
     // DXPR THEME BASE.
@@ -231,6 +275,18 @@ function dxpr_theme_preprocess_menu_local_tasks(&$variables) {
     // Secondary tabs are styled with bootstrap pager CSS.
     $variables['#attached']['library'][] = 'dxpr_theme/drupal-pager';
   }
+
+  // Check if admin_toolbar_tools is enabled and configured to show local tasks.
+  $module_handler = \Drupal::service('module_handler');
+  if ($module_handler->moduleExists('admin_toolbar_tools')) {
+    $config = \Drupal::config('admin_toolbar_tools.settings');
+    $show_local_tasks = $config->get('show_local_tasks');
+
+    if ($show_local_tasks === TRUE) {
+      // Hide tabs when admin_toolbar_tools is showing local tasks.
+      $variables['hide_tabs'] = TRUE;
+    }
+  }
 }
 
 /**
@@ -255,6 +311,11 @@ function dxpr_theme_preprocess_block(&$variables) {
   if ($variables['plugin_id'] === 'full_screen_search') {
     $variables['#attached']['library'][] = 'dxpr_theme/dxpr-theme-full-screen-search';
     $variables['#attached']['library'][] = 'dxpr_theme/dxpr-theme-full-screen-search-js';
+  }
+
+  // Include DXPR Theme book navigation css library.
+  if ($variables['plugin_id'] === 'book_navigation') {
+    $variables['#attached']['library'][] = 'dxpr_theme/drupal-book';
   }
 }
 
@@ -339,6 +400,13 @@ function dxpr_theme_preprocess_pager(&$variables) {
 }
 
 /**
+ * Implements template_preprocess_book_navigation()
+ */
+function dxpr_theme_preprocess_book_navigation(&$variables) {
+  $variables['#attached']['library'][] = 'dxpr_theme/drupal-book';
+}
+
+/**
  * Implements template_preprocess_views_mini_pager()
  */
 function dxpr_theme_preprocess_views_mini_pager(&$variables) {
@@ -392,6 +460,53 @@ function dxpr_theme_preprocess_input(&$variables) {
     }
   }
   $variables['#attached']['library'][] = 'dxpr_theme/drupal-search';
+}
+
+/**
+ * Generate web manifest file.
+ */
+function _dxpr_theme_generate_manifest($web_icons_media_id, $manifest_path) {
+  $config = \Drupal::config('system.site');
+  $name = $config->get('name') ?: 'Drupal Site';
+  $manifest = [
+    'name' => $name,
+    'short_name' => mb_strimwidth($name, 0, 12, ''),
+    'id' => '/',
+    'start_url' => '/',
+    'scope' => '/',
+    'display' => 'standalone',
+    'icons' => [],
+  ];
+
+  $media = Media::load($web_icons_media_id);
+  if ($media && $media->hasField('field_media_image') && $media->field_media_image->entity) {
+    $file_uri = $media->field_media_image->entity->getFileUri();
+
+    // Add 192x192 icon.
+    $image_style_192 = ImageStyle::load('android_chrome_192');
+    if ($image_style_192) {
+      $url_192 = $image_style_192->buildUrl($file_uri);
+      $manifest['icons'][] = [
+        'src' => \Drupal::service('file_url_generator')->transformRelative($url_192),
+        'sizes' => '192x192',
+        'type' => 'image/png',
+        'purpose' => 'any maskable',
+      ];
+    }
+
+    // Add 512x512 icon.
+    if ($image_style_512 = ImageStyle::load('android_chrome_512')) {
+      $url_512 = $image_style_512->buildUrl($file_uri);
+      $manifest['icons'][] = [
+        'src' => \Drupal::service('file_url_generator')->transformRelative($url_512),
+        'sizes' => '512x512',
+        'type' => 'image/png',
+        'purpose' => 'any maskable',
+      ];
+    }
+  }
+
+  file_put_contents($manifest_path, json_encode($manifest, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
 }
 
 /**

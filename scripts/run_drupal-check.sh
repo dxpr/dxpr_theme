@@ -10,8 +10,8 @@ if [ "$GD_ENABLED" != 'enabled' ]; then
   apk add libpng libpng-dev libjpeg-turbo-dev libwebp-dev zlib-dev libxpm-dev gd && docker-php-ext-install gd
 fi
 
-if [ -z "DRUPAL_RECOMMENDED_PROJECT" ]; then
-  DRUPAL_RECOMMENDED_PROJECT=8.8.x-dev
+if [ -z "$DRUPAL_RECOMMENDED_PROJECT" ]; then
+  DRUPAL_RECOMMENDED_PROJECT=11.x-dev
 fi
 
 # if drupal directory exists, don't re-create

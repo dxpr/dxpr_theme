@@ -7,7 +7,7 @@ on:
       - '2.x'
 
 env:
-  TARGET_DRUPAL_CORE_VERSION: 8
+  TARGET_DRUPAL_CORE_VERSION: 11
 
 jobs:
 # just check and send reports for now because too many errors
@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
 
     - name: Lint Drupal
       run: |
@@ -26,7 +26,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
 
     - name: Drupal Deprecations and Analysis Check
       run: |
@@ -38,14 +38,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
 
     - name: Lint with eslint
       run: |
         REPORT_ENABLED=true docker compose run --rm eslint
 
     - name: Archive eslint html report
-      uses: actions/upload-artifact@v1
+      uses: actions/upload-artifact@v4
       if: always()
       with:
         name: eslint-report
@@ -54,7 +54,7 @@ jobs:
   publish-artifacts:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
 
     - name: Build artifacts
       run: |

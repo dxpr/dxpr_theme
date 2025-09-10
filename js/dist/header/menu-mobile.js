@@ -6,10 +6,8 @@ function setupMobileMenu() {
   document.getElementById("dxpr-theme-main-menu").style.display = "none";
 
   const headerTop = document.querySelector(".dxpr-theme-header--top");
-  if (headerTop) {
-    headerTop.classList.add("dxpr-theme-header--side");
-    headerTop.classList.remove("dxpr-theme-header--top");
-  }
+  headerTop?.classList.add("dxpr-theme-header--side");
+  headerTop?.classList.remove("dxpr-theme-header--top");
 
   // eslint-disable-next-line spellcheck/spell-checker
   // Clear megamenu styles for mobile view

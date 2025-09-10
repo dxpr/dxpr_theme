@@ -87,12 +87,33 @@ div.lead {
 .btn-primary,
 .btn-group > .btn-primary,
 .html .fake-submit {
-  background: dxpr-color('base');
-  border-color: dxpr-color('base');
-  color: white;
+  background: dxpr-color('base') !important;
+  border-color: dxpr-color('base') !important;
+  color: dxpr-color('basetext') !important;
 
   a {
-    color: white;
+    color: dxpr-color('basetext') !important;
+
+    &:hover,
+    &:focus {
+      color: dxpr-color('basetext') !important;
+    }
+  }
+}
+
+.btn-secondary,
+.btn-group > .btn-secondary {
+  background: dxpr-color('accent1') !important;
+  border-color: dxpr-color('accent1') !important;
+  color: dxpr-color('accent1text') !important;
+
+  a {
+    color: dxpr-color('accent1text') !important;
+
+    &:hover,
+    &:focus {
+      color: dxpr-color('accent1text') !important;
+    }
   }
 }
 
@@ -110,10 +131,24 @@ a.bg-primary:hover,
 a.bg-primary:focus {
   background-color: dxpr-color('accent1');
   border-color: dxpr-color('accent1');
-  color: white;
+  color: dxpr-color('accent1text');
 
   a {
-    color: white;
+    color: dxpr-color('accent1text');
+  }
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus,
+.btn-secondary.focus,
+.btn-secondary:active,
+.btn-secondary.active {
+  background-color: dxpr-color('accent2');
+  border-color: dxpr-color('accent2');
+  color: dxpr-color('accent2text');
+
+  a {
+    color: dxpr-color('accent2text');
   }
 }
 
@@ -122,22 +157,198 @@ a.text-primary:focus {
   color: dxpr-color('accent1');
 }
 
+// Bootstrap 5 Outline Button Styles
+.btn-outline-primary {
+  background-color: transparent;
+  border-color: dxpr-color('base');
+  color: dxpr-color('base');
+
+  &:hover,
+  &:focus,
+  &.focus,
+  &:active,
+  &.active {
+    background-color: dxpr-color('base');
+    border-color: dxpr-color('base');
+    color: dxpr-color('basetext');
+  }
+
+  &:not(:disabled, .disabled):active,
+  &:not(:disabled, .disabled).active {
+    background-color: dxpr-color('accent1');
+    border-color: dxpr-color('accent1');
+    color: dxpr-color('accent1text');
+  }
+}
+
+.btn-outline-secondary {
+  background-color: transparent;
+  border-color: dxpr-color('accent1');
+  color: dxpr-color('accent1');
+
+  &:hover,
+  &:focus,
+  &.focus,
+  &:active,
+  &.active {
+    background-color: dxpr-color('accent1');
+    border-color: dxpr-color('accent1');
+    color: dxpr-color('accent1text');
+  }
+
+  &:not(:disabled, .disabled):active,
+  &:not(:disabled, .disabled).active {
+    background-color: dxpr-color('accent2');
+    border-color: dxpr-color('accent2');
+    color: dxpr-color('accent2text');
+  }
+}
+
+// Additional outline button variants using theme colors
+.btn-outline-success {
+  background-color: transparent;
+  border-color: dxpr-color('accent1');
+  color: dxpr-color('accent1');
+
+  &:hover,
+  &:focus,
+  &.focus,
+  &:active,
+  &.active {
+    background-color: dxpr-color('accent1');
+    border-color: dxpr-color('accent1');
+    color: dxpr-color('accent1text');
+  }
+}
+
+.btn-outline-info {
+  background-color: transparent;
+  border-color: dxpr-color('accent2');
+  color: dxpr-color('accent2');
+
+  &:hover,
+  &:focus,
+  &.focus,
+  &:active,
+  &.active {
+    background-color: dxpr-color('accent2');
+    border-color: dxpr-color('accent2');
+    color: dxpr-color('accent2text');
+  }
+}
+
+.btn-outline-dark {
+  background-color: transparent;
+  border-color: dxpr-color('headings');
+  color: dxpr-color('headings');
+
+  &:hover,
+  &:focus,
+  &.focus,
+  &:active,
+  &.active {
+    background-color: dxpr-color('headings');
+    border-color: dxpr-color('headings');
+    color: dxpr-color('body');
+  }
+}
+
+.btn-outline-light {
+  background-color: transparent;
+  border-color: dxpr-color('graylight');
+  color: dxpr-color('graylight');
+
+  &:hover,
+  &:focus,
+  &.focus,
+  &:active,
+  &.active {
+    background-color: dxpr-color('graylight');
+    border-color: dxpr-color('graylight');
+    color: dxpr-color('text');
+  }
+}
+
+// Override Bootstrap background classes to use proper text colors
+.bg-primary {
+  color: dxpr-color('basetext') !important;
+  
+  *, h1, h2, h3, h4, h5, h6, p, span, div, a {
+    color: dxpr-color('basetext');
+  }
+}
+
+.bg-secondary {
+  background-color: dxpr-color('accent1') !important;
+  color: dxpr-color('accent1text') !important;
+  
+  *, h1, h2, h3, h4, h5, h6, p, span, div, a {
+    color: dxpr-color('accent1text');
+  }
+}
+
+// Bootstrap 5.3 Subtle Background Variants
+.bg-primary-subtle {
+  background-color: dxpr-color('basesubtle') !important;
+  color: dxpr-color('basesubtletext') !important;
+  
+  *, h1, h2, h3, h4, h5, h6, p, span, div, a {
+    color: dxpr-color('basesubtletext');
+  }
+}
+
+.bg-secondary-subtle {
+  background-color: dxpr-color('accent1subtle') !important;
+  color: dxpr-color('accent1subtletext') !important;
+  
+  *, h1, h2, h3, h4, h5, h6, p, span, div, a {
+    color: dxpr-color('accent1subtletext');
+  }
+}
+
+.bg-dark-subtle {
+  background-color: dxpr-color('headingssubtle') !important;
+  color: dxpr-color('headingssubtletext') !important;
+  
+  *, h1, h2, h3, h4, h5, h6, p, span, div, a {
+    color: dxpr-color('headingssubtletext');
+  }
+}
+
+.bg-info-subtle {
+  background-color: dxpr-color('accent2subtle') !important;
+  color: dxpr-color('accent2subtletext') !important;
+  
+  *, h1, h2, h3, h4, h5, h6, p, span, div, a {
+    color: dxpr-color('accent2subtletext');
+  }
+}
+
+.bg-success-subtle {
+  background-color: dxpr-color('accent1subtle') !important;
+  color: dxpr-color('accent1subtletext') !important;
+  
+  *, h1, h2, h3, h4, h5, h6, p, span, div, a {
+    color: dxpr-color('accent1subtletext');
+  }
+}
+
 
 .text-white {
   h1, h2, h3, h4, h5, h6, th {
-    color: #fff !important;
+    color: #fff;
   }
 }
 
 .text-primary {
   h1, h2, h3, h4, h5, h6, th {
-    color: dxpr-color('accent1') !important;
+    color: dxpr-color('accent1');
   }
 }
 
 .text-secondary {
   h1, h2, h3, h4, h5, h6, th {
-    color: dxpr-color('accent2') !important;
+    color: dxpr-color('accent2');
   }
 }
 
@@ -242,7 +453,7 @@ blockquote footer, blockquote small, blockquote .small {
 }
 
 .center-block {
-  float: none!important;
+  float: none;
 }
 
 // Tabs
@@ -334,7 +545,7 @@ blockquote footer, blockquote small, blockquote .small {
       }
 
       &.active {
-        bottom: auto !important;
+        bottom: auto;
 
         a {
           border: none;
@@ -355,7 +566,7 @@ blockquote footer, blockquote small, blockquote .small {
   left: 50%;
   margin-top: 2px;
   position: absolute;
-  z-index: 470;
+  z-index: 401;
 
   .tabs--primary {
     left: -50%;
@@ -409,4 +620,8 @@ blockquote footer, blockquote small, blockquote .small {
 
 .bg-light {
   background-color: dxpr-color('graylight') !important;
+}
+
+.bg-body {
+  background-color: dxpr-color('body') !important;
 }

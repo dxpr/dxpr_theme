@@ -8,20 +8,25 @@ https://app.dxpr.com/hc/documentation/internal
 
 ## Contributing Guidelines
 
-Before you write any code for this project please also check 
+Before you write any code for this project please also check
 https://github.com/dxpr/dxpr_maven/blob/main/CONTRIBUTING.md
 
-## [WARNING2] Save theme settings form after updating theme CSS
 
-Because DXPR Theme integrates with the color module, changes to its CSS may
-not immediately take effect.
-When the theme is configured with custom colors in the theme settings form
-the color module will save a copy of the recolored theme CSS files inside
-the Drupal files folder. When updating the theme CSS files in the theme
-folder these changes might not take effect because the browser is loading
-the copies of the theme's CSS files from the files folder. To fix this you
-have to save the theme settings form so that the color module will create
-new copies of the theme's CSS files that include your latest changes.
+## Subtheme CSS File (/css/dxpr_theme_subtheme.css)
+
+**Important**: The `dxpr_theme_subtheme.css` file in your custom subtheme is
+intended **only for manual custom styles**. This file will remain empty by
+design and is not automatically populated when you change theme settings
+through the admin interface.
+
+### How it works:
+- All theme setting changes are applied directly from the parent theme
+- The `dxpr_theme_subtheme.css` file is included on the site but remains empty
+  unless you manually add custom CSS
+- If you need custom styles, you must manually add them to
+  `dxpr_theme_subtheme.css`
+- Manual styles in this file will persist even after saving theme settings
+  and clearing cache
 
 # Continuous Integration / Automation
 

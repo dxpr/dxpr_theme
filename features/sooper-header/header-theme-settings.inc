@@ -79,8 +79,6 @@ function header_theme_settings(array &$form, $theme) {
       'class' => ['dxb-slider', 'header-top-bg-opacity-range'],
       'data-dxb-slider' => TRUE,
     ],
-    '#prefix' => '<div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
-    '#suffix' => '</div></div></div>',
   ];
 
   $form['dxpr_theme_settings']['header']['header_top']['header_top_height'] = [
@@ -95,8 +93,6 @@ function header_theme_settings(array &$form, $theme) {
       'class' => ['dxb-slider', 'header-top-height-range'],
       'data-dxb-slider' => TRUE,
     ],
-    '#prefix' => '<div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
-    '#suffix' => '</div></div></div>',
   ];
 
   $form['dxpr_theme_settings']['header']['header_top']['logo_height'] = [
@@ -111,8 +107,6 @@ function header_theme_settings(array &$form, $theme) {
       'class' => ['dxb-slider', 'logo-height-range'],
       'data-dxb-slider' => TRUE,
     ],
-    '#prefix' => '<div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
-    '#suffix' => '</div></div></div>',
   ];
 
   $form['dxpr_theme_settings']['header']['header_top']['header_top_fixed'] = [
@@ -195,8 +189,6 @@ function header_theme_settings(array &$form, $theme) {
       'class' => ['dxb-slider', 'header-top-height-sticky-offset-range'],
       'data-dxb-slider' => TRUE,
     ],
-    '#prefix' => '<div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
-    '#suffix' => '</div></div></div>',
   ];
 
   $form['dxpr_theme_settings']['header']['header_top']['sticky']['header_top_height_scroll'] = [
@@ -217,8 +209,6 @@ function header_theme_settings(array &$form, $theme) {
       'class' => ['dxb-slider', 'header-top-height-scroll-range'],
       'data-dxb-slider' => TRUE,
     ],
-    '#prefix' => '<div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
-    '#suffix' => '</div></div></div>',
   ];
 
   $form['dxpr_theme_settings']['header']['header_top']['sticky']['header_top_bg_opacity_scroll'] = [
@@ -239,8 +229,6 @@ function header_theme_settings(array &$form, $theme) {
       'class' => ['dxb-slider', 'header-top-bg-opacity-scroll-range'],
       'data-dxb-slider' => TRUE,
     ],
-    '#prefix' => '<div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
-    '#suffix' => '</div></div></div>',
   ];
 
   $form['dxpr_theme_settings']['header']['header_top']['navcolors'] = [
@@ -479,8 +467,6 @@ function header_theme_settings(array &$form, $theme) {
       'class' => ['dxb-slider', 'header-side-width-range'],
       'data-dxb-slider' => TRUE,
     ],
-    '#prefix' => '<div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
-    '#suffix' => '</div></div></div>',
   ];
 
   $form['dxpr_theme_settings']['header']['header_side']['header_side_logo_height'] = [
@@ -495,8 +481,6 @@ function header_theme_settings(array &$form, $theme) {
       'class' => ['dxb-slider', 'header-side-logo-height-range'],
       'data-dxb-slider' => TRUE,
     ],
-    '#prefix' => '<div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
-    '#suffix' => '</div></div></div>',
   ];
 
   $form['dxpr_theme_settings']['header']['header_side']['header_side_direction'] = [
@@ -556,8 +540,6 @@ function header_theme_settings(array &$form, $theme) {
       'class' => ['dxb-slider', 'dropdown-width-range'],
       'data-dxb-slider' => TRUE,
     ],
-    '#prefix' => '<div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
-    '#suffix' => '</div></div></div>',
   ];
 
   $form['dxpr_theme_settings']['header']['menu']['menu_type'] = [
@@ -632,8 +614,6 @@ function header_theme_settings(array &$form, $theme) {
       'class' => ['dxb-slider', 'menu-border-position-offset-range'],
       'data-dxb-slider' => TRUE,
     ],
-    '#prefix' => '<div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
-    '#suffix' => '</div></div></div>',
   ];
 
   $form['dxpr_theme_settings']['header']['menu']['menu_border']['menu_border_position_offset_sticky'] = [
@@ -654,8 +634,6 @@ function header_theme_settings(array &$form, $theme) {
       'class' => ['dxb-slider', 'menu-border-position-offset-sticky-range'],
       'data-dxb-slider' => TRUE,
     ],
-    '#prefix' => '<div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
-    '#suffix' => '</div></div></div>',
   ];
 
   $form['dxpr_theme_settings']['header']['menu']['menu_border']['menu_border_size'] = [
@@ -669,8 +647,6 @@ function header_theme_settings(array &$form, $theme) {
       'class' => ['dxb-slider', 'menu-border-size-range'],
       'data-dxb-slider' => TRUE,
     ],
-    '#prefix' => '<div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
-    '#suffix' => '</div></div></div>',
   ];
 
   $form['dxpr_theme_settings']['header']['menu']['menu_border']['menu_border_color'] = [
@@ -711,8 +687,6 @@ function header_theme_settings(array &$form, $theme) {
       'class' => ['dxb-slider', 'header-mobile-breakpoint-range'],
       'data-dxb-slider' => TRUE,
     ],
-    '#prefix' => '<div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
-    '#suffix' => '</div></div></div>',
   ];
 
   $form['dxpr_theme_settings']['header']['header_mobile']['header_mobile_height'] = [
@@ -727,8 +701,6 @@ function header_theme_settings(array &$form, $theme) {
       'class' => ['dxb-slider', 'header-mobile-height-range'],
       'data-dxb-slider' => TRUE,
     ],
-    '#prefix' => '<div class="dxb-slider-container"><div class="dxb-slider-wrapper"><div class="dxb-slider-track">',
-    '#suffix' => '</div></div></div>',
   ];
 
   $form['dxpr_theme_settings']['header']['header_mobile']['header_mobile_fixed'] = [

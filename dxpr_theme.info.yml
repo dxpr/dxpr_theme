@@ -1,5 +1,5 @@
 type: theme
-core_version_requirement: ^9.4 || ^10 || ^11
+core_version_requirement: ^9.3 || ^10 || ^11
 base theme: bootstrap5
 
 name: 'DXPR Theme'
@@ -9,6 +9,7 @@ package: DXPR
 dependencies:
   - drupal:file
   - dxpr_theme_helper:dxpr_theme_helper
+  - media_library_form_element:media_library_form_element
 
 regions:
   secondary_header: 'Secondary Header'
@@ -34,6 +35,10 @@ libraries-override:
     css:
       component:
         css/components/collapse-processed.css: false
+  gin/gin_base:
+    css:
+      component:
+        dist/css/theme/font.css: false
 
 libraries-extend:
   gin/gin_toolbar:

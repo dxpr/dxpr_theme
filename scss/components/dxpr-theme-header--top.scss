@@ -71,6 +71,7 @@
     }
 
     &.affix {
+      left: 0;
       opacity: 1;
       position: fixed;
       top: 0;
@@ -225,13 +226,19 @@
       }
     }
 
-    .dropdown-menu {
+    #block-dxpr-theme-main-menu .dropdown-menu {
       // @todo remove this when safari fixes their bug
       // transform CSS forces a redraw of the element and this fixes a safari-only
       // problem with box-shadow/border remaining visible with the menu @ display:none
       transform: translateZ(0);
 
       .dropdown {
+        color: dxpr-color('headertext');
+
+        * {
+          color: dxpr-color('headertext');
+        }
+
         > span {
           color: dxpr-color('headertext');
           display: block;
@@ -297,7 +304,18 @@
       height: var(--dxt-setting-header-top-height);
       line-height: var(--dxt-setting-header-top-height);
     }
+
+    // Add spacing only when site name is present to avoid gaps when it's disabled
+    .wrap-branding:has(.name.navbar-brand) {
+      margin-bottom: 80px;
+    }
+
+    // Reduce spacing when header is sticky to prevent excessive gaps
+    &.affix .wrap-branding:has(.name.navbar-brand) {
+      margin-bottom: 60px;
+    }
   }
+
 }
 
 .body--dxpr-theme-header-overlay {
