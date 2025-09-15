@@ -8,12 +8,11 @@
 const { setupStickyHeader } = require("./sticky-header");
 const { debounce } = require("./performance-helpers");
 const { setupMobileMenu } = require("./menu-mobile");
+const { setupDesktopMenu } = require("./menu-desktop");
 const { hitDetection } = require("./hit-detection");
 const { handleOverlayPosition } = require("./overlay-position");
-const { adjustMenuPosition } = require("./menu-position");
 const { applyFixedHeaderStyles } = require("./apply-fixed-header-styles");
 const { dxpr_themeMenuGovernorBodyClass } = require("./menu-governor-body");
-const { dxpr_themeMenuOnResize } = require("./menu-resize-handler");
 
 (function (Drupal, once) {
   let dxpr_themeMenuState = "";
@@ -41,6 +40,8 @@ const { dxpr_themeMenuOnResize } = require("./menu-resize-handler");
       document.querySelectorAll(".body--dxpr-theme-header-side").length === 0 &&
       window.innerWidth > navMenuBreak
     ) {
+      setupDesktopMenu();
+
       if (dxpr_themeMenuState === "top") {
         return false;
       }
@@ -65,19 +66,8 @@ const { dxpr_themeMenuOnResize } = require("./menu-resize-handler");
         handleOverlayPosition(drupalSettings);
       }
     } else {
-      // Mobile Menu with sliding panels and breadcrumb
-      // @see dxpr-theme-multilevel-mobile-nav.js
-      if (dxpr_themeMenuState === "side") {
-        return false;
-      }
-
       // Injecting menu-mobile.js
       setupMobileMenu();
-
-      dxpr_themeMenuState = "side";
-
-      // Injecting menu-position.js
-      adjustMenuPosition();
     }
   }
 
@@ -106,14 +96,8 @@ const { dxpr_themeMenuOnResize } = require("./menu-resize-handler");
         dxpr_themeMenuGovernorBodyClass();
         dxpr_themeMenuGovernor(document);
       }
-      // eslint-disable-next-line spellcheck/spell-checker
-      // Injecting menu-resize-handler.js
-      dxpr_themeMenuOnResize();
     }, 50),
   );
-  // eslint-disable-next-line spellcheck/spell-checker
-  // Injecting menu-resize-handler.js
-  dxpr_themeMenuOnResize();
 
   document.addEventListener("DOMContentLoaded", () => {
     const mainMenuNav = document.querySelector("#dxpr-theme-main-menu .nav");

@@ -21,22 +21,11 @@ function header_theme_settings(array &$form, $theme) {
     '#weight' => 10,
   ];
 
-  $form['dxpr_theme_settings']['header']['header_position'] = [
-    '#type' => 'checkbox',
-    '#title' => t('Side-Header'),
-    '#default_value' => ((theme_get_setting('header_position') !== NULL)) ? theme_get_setting('header_position') : 0,
-  ];
-
   $form['dxpr_theme_settings']['header']['header_top'] = [
-    '#title' => t('Top Header Options'),
+    '#title' => t('Header Options'),
     '#type' => 'details',
     '#collapsible' => TRUE,
     '#collapsed' => TRUE,
-    '#states' => [
-      'visible' => [
-        ':input[name="header_position"]' => ['checked' => FALSE],
-      ],
-    ],
   ];
 
   $form['dxpr_theme_settings']['header']['header_top']['header_top_layout'] = [
@@ -437,61 +426,10 @@ function header_theme_settings(array &$form, $theme) {
   ];
 
   $form['dxpr_theme_settings']['header']['header_side'] = [
-    '#title' => t('Side Header & Mobile Menu Options'),
+    '#title' => t('Mobile Menu Options'),
     '#type' => 'details',
     '#collapsible' => TRUE,
     '#collapsed' => TRUE,
-  ];
-
-  $form['dxpr_theme_settings']['header']['header_side']['header_side_align'] = [
-    '#type' => 'radios',
-    '#title' => t('Align Content'),
-    '#description' => t('Different header aligns give a different view at your menu and logo.'),
-    '#default_value' => ((theme_get_setting('header_side_align') !== NULL)) ? theme_get_setting('header_side_align') : 'left',
-    '#options' => [
-      'left' => t('Left'),
-      'center' => t('Center'),
-      'right' => t('Right'),
-    ],
-  ];
-
-  $form['dxpr_theme_settings']['header']['header_side']['header_side_width'] = [
-    '#type' => 'range',
-    '#title' => t('Width'),
-    '#default_value' => ((theme_get_setting('header_side_width') !== NULL)) ? theme_get_setting('header_side_width') : 300,
-    '#min' => 50,
-    '#max' => 500,
-    '#step' => 5,
-    '#description' => t('Width of the side-header. Default is 300.'),
-    '#attributes' => [
-      'class' => ['dxb-slider', 'header-side-width-range'],
-      'data-dxb-slider' => TRUE,
-    ],
-  ];
-
-  $form['dxpr_theme_settings']['header']['header_side']['header_side_logo_height'] = [
-    '#type' => 'range',
-    '#title' => t('Logo Height'),
-    '#default_value' => theme_get_setting('header_side_logo_height') ?: 30,
-    '#min' => 10,
-    '#max' => 500,
-    '#step' => 1,
-    '#description' => t('Height of the logo in the side-header. Default is 30px.'),
-    '#attributes' => [
-      'class' => ['dxb-slider', 'header-side-logo-height-range'],
-      'data-dxb-slider' => TRUE,
-    ],
-  ];
-
-  $form['dxpr_theme_settings']['header']['header_side']['header_side_direction'] = [
-    '#type' => 'radios',
-    '#title' => t('Mobile menu open direction'),
-    '#default_value' => ((theme_get_setting('header_side_direction') !== NULL)) ? theme_get_setting('header_side_direction') : 'left',
-    '#description' => t('Open menu from the right'),
-    '#options' => [
-      'left' => t('Left to Right'),
-      'right' => t('Right to Left'),
-    ],
   ];
 
   $form['dxpr_theme_settings']['header']['header_side']['hamburger_menu'] = [

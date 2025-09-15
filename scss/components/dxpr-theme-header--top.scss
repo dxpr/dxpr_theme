@@ -12,15 +12,8 @@
       height: var(--dxt-setting-header-top-height);
       position: relative;
 
-      &.dxpr-theme-menu--has-children {
-        a.dropdown-toggle::after {
-          content: "﹀";
-          font-size: 12px;
-          left: 5px;
-          pointer-events: none;
-          position: relative;
-          top: 3px;
-        }
+      > div, section, ul.menu {
+        height: var(--dxt-setting-header-top-height);
       }
     }
 
@@ -84,6 +77,7 @@
         font-size: $font-size-large;
       }
 
+      .nav > li > .bs-dropdown-wrapper > *,
       .nav > li > a,
       .nav > li > span,
       .wrap-branding,
@@ -192,6 +186,10 @@
         display: block;
         text-align: center;
       }
+
+      .navbar-nav {
+        display: flex;
+      }
     }
 
     &.dxpr-theme-header--centered-inline {
@@ -233,6 +231,10 @@
           color: dxpr-color('headertext');
         }
 
+        li {
+          float: none;
+        }
+
         > span {
           color: dxpr-color('headertext');
           display: block;
@@ -240,6 +242,16 @@
           line-height: unset;
           padding: 10px 20px;
         }
+      }
+
+      .bs-dropdown-item-wrapper {
+        padding-top: var(--bs-dropdown-item-padding-y);
+        padding-bottom: var(--bs-dropdown-item-padding-y);
+      }
+
+      .dropdown-item {
+        --bs-dropdown-item-padding-x: .5rem;
+        --bs-dropdown-indent-step: .5rem;
       }
     }
 
@@ -249,7 +261,6 @@
       display: flex;
       flex-direction: row;
       align-items: center;
-      height: var(--dxt-setting-header-top-height);
     }
 
     .dxpr-theme-megamenu__heading {
@@ -345,14 +356,29 @@ html.js .gin--vertical-toolbar .dxpr-theme-header--fixed {
 }
 
 #navbar.dxpr-theme-header--top .menu,
-#navbar.dxpr-theme-header--top .menu a {
+#navbar.dxpr-theme-header--top .menu a,
+#navbar.dxpr-theme-header--top .menu span {
   color: var(--dxt-setting-menu-text-color);
 }
 
-#navbar.dxpr-theme-header--top .menu a:hover,
-#navbar.dxpr-theme-header--top .menu a:focus {
-  background-color: var(--dxt-setting-menu-hover-background);
-  color: var(--dxt-setting-menu-hover-text-color);
+#navbar.dxpr-theme-header--top .menu {
+  a {
+    &:hover, &:focus {
+      background-color: var(--dxt-setting-menu-hover-background);
+      color: var(--dxt-setting-menu-hover-text-color);
+
+    }
+  }
+  .bs-dropdown-caret {
+    &:hover, &:focus {
+      background-color: var(--dxt-setting-menu-hover-text-color);
+      color: var(--dxt-setting-menu-hover-text-color);
+
+      &:after {
+        border-top-color: var(--dxt-setting-menu-hover-background);
+      }
+    }
+  }
 }
 
 #navbar.dxpr-theme-header--top .dropdown-menu {
@@ -360,12 +386,23 @@ html.js .gin--vertical-toolbar .dxpr-theme-header--fixed {
 }
 
 #navbar.dxpr-theme-header--top .dropdown,
-#navbar.dxpr-theme-header--top .dropdown-menu a {
+#navbar.dxpr-theme-header--top .dropdown-menu a,
+#navbar.dxpr-theme-header--top .dropdown-menu button {
   color: var(--dxt-setting-dropdown-text-color);
 }
 
-#navbar.dxpr-theme-header--top .dropdown-menu a:hover,
-#navbar.dxpr-theme-header--top .dropdown-menu a:focus {
-  background-color: var(--dxt-setting-dropdown-hover-background);
-  color: var(--dxt-setting-dropdown-hover-text-color);
+#navbar.dxpr-theme-header--top .dropdown-menu {
+  a, button {
+    &:hover, &:focus {
+      background-color: var(--dxt-setting-dropdown-hover-background);
+      color: var(--dxt-setting-dropdown-hover-text-color);
+    }
+  }
+}
+
+// Menu corrections
+.body--dxpr-theme-nav-desktop {
+  .navbar-toggler {
+    display: none;
+  }
 }

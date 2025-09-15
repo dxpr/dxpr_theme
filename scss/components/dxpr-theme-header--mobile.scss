@@ -44,11 +44,6 @@ html.html--dxpr-theme-nav-mobile--open {
       .navbar-header {
         display: flex;
         flex-wrap: nowrap;
-        height: 100%;
-
-        * {
-          height: 100%;
-        }
 
         .region-navigation {
           flex-grow: 1;
@@ -66,10 +61,6 @@ html.html--dxpr-theme-nav-mobile--open {
       height: var(--dxt-setting-header-mobile-height);
     }
 
-    .block {
-      padding: 20px;
-    }
-
     .block-dxpr-theme-helper {
       height: var(--dxt-setting-header-mobile-height);
       line-height: var(--dxt-setting-header-mobile-height);
@@ -77,6 +68,11 @@ html.html--dxpr-theme-nav-mobile--open {
 
     .navbar-left,.navbar-right {
         float: none !important;
+    }
+
+    .wrap-toggle {
+      flex: 1 1 auto;
+      align-content: center;
     }
 
     #dxpr-theme-menu-toggle {
@@ -87,6 +83,7 @@ html.html--dxpr-theme-nav-mobile--open {
       padding: 10px 32px 16px 0;
       position: relative;
       z-index: 410;
+      border: 0 none;
 
       span,
       span::before,
@@ -190,6 +187,7 @@ html.html--dxpr-theme-nav-mobile--open {
     .nav {
       float: none!important;
       margin-top: 7.5px;
+      margin-bottom: 7.5px;
     }
 
     .nav > li {
@@ -223,16 +221,6 @@ html.html--dxpr-theme-nav-mobile--open {
   }
 }
 
-// Fix for FOUC on mobile menu.
-@media all and (width <= 1200px) {
-  #dxpr-theme-main-menu {
-    height: 100%;
-    position: fixed;
-    top: 0;
-    width: 300px;
-  }
-}
-
 // Mobile-Small styles
 @media screen and (width <= 768px) {
   .action--open,
@@ -254,4 +242,35 @@ html.html--dxpr-theme-nav-mobile--open {
   position: fixed;
   right: 0;
   z-index: 406;
+}
+
+//
+// Menu corrections.
+//
+.body--dxpr-theme-nav-mobile {
+  nav#dxpr-theme-main-menu {
+    background: var(--dxt-setting-dropdown-background);
+    width: 100%;
+    left: 0;
+    z-index: 100;
+
+    ul, li {
+      width: 100%;
+    }
+
+    ul.navbar-nav {
+      width: 100%;
+    }
+
+    ul.dropdown-menu {
+      position: static;
+      --bs-dropdown-font-size: var(--bs-nav-link-font-size);
+
+      .dropdown-item {
+        --bs-dropdown-font-size: var(--bs-nav-link-font-size);
+        --bs-dropdown-item-padding-x: .5rem;
+        --bs-dropdown-indent-step: .5rem;
+      }
+    }
+  }
 }

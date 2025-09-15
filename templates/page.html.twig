@@ -122,23 +122,34 @@
       {% set container = theme.settings.full_width_containers.cnt_header_nav ? 'dxpr-theme-fluid' : 'container' %}
       <div class="{{ container }} navbar-container">
         {% if not theme.settings.full_width_containers.cnt_header_nav%}
-          <div class="row container-row"><div class="col-sm-12 container-col">
+          <div class="row container-row"><div class="col-sm-12 container-col navbar-header-wrapper">
         {% endif %}
         <div class="navbar-header">
           {{ page.navigation }}
           {# .btn-navbar is used as the toggle for collapsed navbar content #}
           {% if page.navigation_collapsible %}
-            <a id="dxpr-theme-menu-toggle" href="#" class="{{ hamburger_menu }}"><span></span><div class="screenreader-text visually-hidden">Toggle menu</div></a>
+            <div class="wrap-toggle">
+              <button id="dxpr-theme-menu-toggle"
+                type="button"
+                class="navbar-toggler collapsed {{ hamburger_menu }}"
+                data-bs-target="#dxpr-theme-main-menu"
+                data-bs-toggle="collapse"
+                aria-controls="dxpr-theme-main-menu"
+                aria-expanded="false"
+                aria-label="{{ 'Toggle navigation menu'|t }}">
+                <span class="navbar-toggler-icon"></span><span class="screenreader-text visually-hidden">{{ 'Toggle menu'|t }}</span>
+              </button>
+            </div>
           {% endif %}
         </div>
 
         {# Navigation (collapsible) #}
         {% if page.navigation_collapsible %}
-            <nav role="navigation" id="dxpr-theme-main-menu" class="dxpr-theme-main-menu {{ mark_menu }}">
+            <nav role="navigation" id="dxpr-theme-main-menu" class="navbar-expand-lg dxpr-theme-main-menu {{ mark_menu }}">
             {{ page.navigation_collapsible }}
             </nav>
         {% endif %}
-        {% if not theme.settings.full_width_containers.cnt_header_nav%}
+        {% if not theme.settings.full_width_containers.cnt_header_nav %}
           </div></div>
         {% endif %}
       </div>

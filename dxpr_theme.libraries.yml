@@ -1,6 +1,5 @@
 global-styling:
   js:
-    js/minified/dxpr-theme-multilevel-mobile-nav.bundle.min.js: { minified: true }
     js/minified/dxpr-theme-header.bundle.min.js: { minified: true }
   dependencies:
     - core/drupal
@@ -66,11 +65,6 @@ dxpr-theme-header--top:
   css:
     theme:
       css/components/dxpr-theme-header--top.css: { minified: true }
-
-dxpr-theme-header--side:
-  css:
-    theme:
-      css/components/dxpr-theme-header--side.css: { minified: true }
 
 dxpr-theme-header--mobile:
   css:

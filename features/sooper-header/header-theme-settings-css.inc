@@ -133,14 +133,7 @@ function header_theme_settings_css(string $theme, string &$css, array $palette) 
    */
   $css .= "/* Menu Options */\n";
 
-  if ($dropdown_width = _dxpr_theme_settings_add_css('dropdown_width', 'min-width')) {
-    $css .= ".dropdown-menu, .dropdown-menu li {\n";
-    $css .= $dropdown_width;
-    $css .= "}\n\n";
-  }
-
   if ($menu_type = theme_get_setting('menu_type', $theme)) {
-    $menu_type_selector = ".dxpr-theme-header .menu a";
     $menu_type_value = "";
 
     switch ($menu_type) {
@@ -153,12 +146,11 @@ function header_theme_settings_css(string $theme, string &$css, array $palette) 
         break;
 
       case 'lead':
-        $menu_type_selector .= ",\n.dxpr-theme-header .menu span";
         $menu_type_value = "font-size: 1.3125rem;\n  font-weight: 300;";
         break;
     }
 
-    $css .= "$menu_type_selector {\n  ";
+    $css .= ".dxpr-theme-header .menu a,\n.dxpr-theme-header .menu span,\n.dxpr-theme-header .menu button {\n  ";
     $css .= "$menu_type_value\n";
     $css .= "}\n\n";
   }
