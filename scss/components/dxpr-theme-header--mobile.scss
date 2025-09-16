@@ -57,6 +57,41 @@ html.html--dxpr-theme-nav-mobile--open {
       }
     }
 
+    .dxpr-theme-main-menu {
+      background: var(--dxt-setting-dropdown-background);
+      left: 0;
+      width: 100%;
+      z-index: 100;
+
+      .nav-link {
+        font-size: var(--dxt-setting-nav-mobile-font-size);
+      }
+
+      ul, li {
+        width: 100%;
+      }
+
+      ul.navbar-nav {
+        width: 100%;
+      }
+
+      ul.dropdown-menu {
+        position: static;
+
+        .dropdown-item,
+        .bs-dropdown-item-wrapper > .dropdown-item {
+          background-color: var(--dxt-setting-dropdown-background) !important;
+          font-size: var(--dxt-setting-nav-mobile-font-size);
+
+          --bs-dropdown-indent-step: calc(var(--dxt-setting-nav-font-size) / 2);
+
+          &:hover, &:focus {
+            background-color: var(--dxt-setting-dropdown-hover-background) !important;
+          }
+        }
+      }
+    }
+
     .navbar-toggle {
       height: var(--dxt-setting-header-mobile-height);
     }
@@ -71,11 +106,12 @@ html.html--dxpr-theme-nav-mobile--open {
     }
 
     .wrap-toggle {
-      flex: 1 1 auto;
       align-content: center;
+      flex: 1 1 auto;
     }
 
     #dxpr-theme-menu-toggle {
+      border: 0 none;
       cursor: pointer;
       float: right;
       margin: 15px 0;
@@ -83,7 +119,6 @@ html.html--dxpr-theme-nav-mobile--open {
       padding: 10px 32px 16px 0;
       position: relative;
       z-index: 410;
-      border: 0 none;
 
       span,
       span::before,
@@ -186,8 +221,8 @@ html.html--dxpr-theme-nav-mobile--open {
 
     .nav {
       float: none!important;
-      margin-top: 7.5px;
       margin-bottom: 7.5px;
+      margin-top: 7.5px;
     }
 
     .nav > li {
@@ -242,35 +277,4 @@ html.html--dxpr-theme-nav-mobile--open {
   position: fixed;
   right: 0;
   z-index: 406;
-}
-
-//
-// Menu corrections.
-//
-.body--dxpr-theme-nav-mobile {
-  nav#dxpr-theme-main-menu {
-    background: var(--dxt-setting-dropdown-background);
-    width: 100%;
-    left: 0;
-    z-index: 100;
-
-    ul, li {
-      width: 100%;
-    }
-
-    ul.navbar-nav {
-      width: 100%;
-    }
-
-    ul.dropdown-menu {
-      position: static;
-      --bs-dropdown-font-size: var(--bs-nav-link-font-size);
-
-      .dropdown-item {
-        --bs-dropdown-font-size: var(--bs-nav-link-font-size);
-        --bs-dropdown-item-padding-x: .5rem;
-        --bs-dropdown-indent-step: .5rem;
-      }
-    }
-  }
 }
