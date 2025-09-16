@@ -72,6 +72,7 @@
     }
 
     &.affix {
+      left: 0;
       opacity: 1;
       position: fixed;
       top: 0;
@@ -287,7 +288,18 @@
       height: var(--dxt-setting-header-top-height);
       line-height: var(--dxt-setting-header-top-height);
     }
+
+    // Add spacing only when site name is present to avoid gaps when it's disabled
+    .wrap-branding:has(.name.navbar-brand) {
+      margin-bottom: 80px;
+    }
+
+    // Reduce spacing when header is sticky to prevent excessive gaps
+    &.affix .wrap-branding:has(.name.navbar-brand) {
+      margin-bottom: 60px;
+    }
   }
+
 }
 
 .body--dxpr-theme-header-overlay {

@@ -75,7 +75,7 @@ function _dxpr_theme_add_google_fonts(array $google_fonts, array &$variables) {
     _dxpr_theme_cache_google_fonts($google_fonts, $fonts_folder_uri);
   }
 
-  if ($wrapper = \Drupal::service('stream_wrapper_manager')->getViaUri($fonts_folder_uri . '/' . 'font-face.css')) {
+  if ($wrapper = \Drupal::service('stream_wrapper_manager')->getViaUri($fonts_folder_uri . '/font-face.css')) {
     $local_path = $wrapper->realpath();
 
     if (!empty($local_path)) {
@@ -173,7 +173,7 @@ function _dxpr_theme_cache_google_fonts(array $google_fonts, string $fonts_folde
     }
   }
 
-  $file_repository->writeData($font_face, $fonts_folder_uri . '/' . 'font-face.css', FileSystemInterface::EXISTS_REPLACE);
+  $file_repository->writeData($font_face, $fonts_folder_uri . '/font-face.css', FileSystemInterface::EXISTS_REPLACE);
   $state->set('dxpr_theme_fonts_update', strtotime("+1 week"));
   $state->set('dxpr_theme_stored_fonts', implode(',', $google_fonts));
 }

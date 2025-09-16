@@ -227,11 +227,20 @@ function header_theme_settings_css(string $theme, string &$css, array $palette) 
   // Safely access headertext with null coalescing operator.
   $headertext = $color_palette['headertext'] ?? '';
 
-  // This function returns the custom color if specified,
-  // otherwise it fetches the color from the palette.
-  $resolve_color = function ($color, $custom_color, $color_palette) {
-    return $color === 'custom' ? $custom_color : ($color_palette[$color] ?? "dxpr-color('$color')");
-  };
+  if (!isset($dxpr_resolve_color) || !is_callable($dxpr_resolve_color)) {
+    // Define color resolver once, even if this file is included multiple times.
+    $dxpr_resolve_color = static function (
+      $color,
+      $custom_color,
+      $color_palette,
+    ) {
+      if ($color === 'custom' && is_string($custom_color) && $custom_color !== '') {
+        return $custom_color;
+      }
+      return $color_palette[$color] ?? "dxpr-color('{$color}')";
+    };
+  }
+  $resolve_color = $dxpr_resolve_color;
 
   $dropdown_color_value = $resolve_color($dropdown_text_color, $dropdown_custom_color, $color_palette);
   $menu_color_value = $resolve_color($menu_text_color, $menu_text_color_custom, $color_palette);

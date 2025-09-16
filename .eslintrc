@@ -74,7 +74,11 @@
           "Rect",
           "Breakpoint",
           "keyup",
-          "calc"
+          "calc",
+          "styleguide",
+          "cheatsheet",
+          "searchable",
+          "Debounced"
         ],
         "skipIfMatch": [
           "{\\w+}", // E.g. "{paramName}"
@@ -109,6 +113,9 @@
     "Twig": true,
     "window": true,
     "WOW": true,
-    "ReinventedColorWheel": true
+    "ReinventedColorWheel": true,
+    "requestAnimationFrame": true,
+    "DOMParser": true,
+    "MutationObserver": true
   }
 }

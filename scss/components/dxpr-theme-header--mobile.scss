@@ -254,6 +254,11 @@ html.html--dxpr-theme-nav-mobile--open {
       top: 78px;
     }
   }
+
+  // Add spacing only when site name is present to avoid gaps when it's disabled
+  .wrap-branding:has(.name.navbar-brand) {
+   padding-bottom: 50px;
+  }
 }
 
 // Mobile-Small styles

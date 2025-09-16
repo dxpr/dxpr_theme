@@ -2,8 +2,58 @@
 
 $border-color: #222330;
 
+// DXPR theme-specific selectors for higher CSS specificity without !important
+body.body--dxpr-theme-header-top #system-theme-settings,
+body.body--dxpr-theme-header-not-overlay #system-theme-settings,
+body.body--dxpr-theme-header-normal #system-theme-settings,
+body.path-admin #system-theme-settings,
 #system-theme-settings {
-  margin-top: 60px;
+  background: white;
+  border-left: 1px solid #ddd;
+  box-shadow: -4px 0 8px rgb(0 0 0 / 10%);
+  height: 100vh;
+  margin: 0;
+  overflow-y: auto;
+  padding: 12px;
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 35vw;
+  z-index: 9999;
+
+  * { color: #333; }
+
+  // Search functionality
+  .dxpr-search-container {
+    background: #f8f9fa;
+    border-bottom: 1px solid $border-color;
+    margin: -12px -12px 20px;
+    padding: 12px;
+    position: sticky;
+    top: -12px;
+    z-index: 100;
+  }
+
+  #dxpr-settings-search {
+    background: white;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 14px;
+    outline: none;
+    padding: 8px 12px;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    width: 100%;
+
+    &:focus {
+      border-color: #4675ff;
+      box-shadow: 0 0 0 2px rgb(70 117 255 / 25%);
+    }
+
+    &::placeholder {
+      color: #6c757d;
+      opacity: 1;
+    }
+  }
 
   // Header
   *:not(.reinvented-color-wheel *) {
@@ -18,10 +68,10 @@ $border-color: #222330;
 
   #edit-submit {
     border: none;
-    font-size: 18px;
-    margin: 20px;
-    padding: 20px;
-    width: 300px;
+    font-size: 16px;
+    margin: 12px 0;
+    padding: 12px;
+    width: 100%;
   }
 
   .settings-header {
@@ -113,25 +163,27 @@ $border-color: #222330;
     background-color: unset;
     border: none;
     display: block;
-    float: left;
-    font-size: 18px;
+    font-size: 16px;
+    margin-bottom: 8px;
     outline: none;
-    padding: 0 27px 5px 0;
-    width: 200px;
+    width: 100%;
   }
 
   .no-preview {
+    position: relative;
+
     &::after {
       background-image: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20fill%3D%22none%22%20stroke%3D%22currentColor%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20class%3D%22feather%20feather-eye-off%22%3E%3Cpath%20d%3D%22M17.94%2017.94A10.07%2010.07%200%200%201%2012%2020c-7%200-11-8-11-8a18.45%2018.45%200%200%201%205.06-5.94M9.9%204.24A9.12%209.12%200%200%201%2012%204c7%200%2011%208%2011%208a18.5%2018.5%200%200%201-2.16%203.19m-6.72-1.07a3%203%200%201%201-4.24-4.24M1%201l22%2022%22%2F%3E%3C%2Fsvg%3E');
       background-size: contain;
       content: '';
       display: inline-block;
       filter: invert(100%) brightness(70%);
-      height: 20px;
-      margin-left: .3em;
-      margin-top: .2em;
+      height: 16px;
+      margin-left: .4em;
       position: absolute;
-      width: 20px;
+      right: -20px;
+      top: 2px;
+      width: 16px;
     }
   }
 
@@ -160,15 +212,8 @@ $border-color: #222330;
 
   .form-item {
     background-color: unset;
-    clear: both;
-    min-height: 3em;
+    margin-bottom: 20px;
     padding-left: 0;
-
-    &::after{
-      clear: both;
-      content: "";
-      display: table;
-    }
 
     .js-form-type-radio {
       min-height: 20px;
@@ -207,9 +252,8 @@ $border-color: #222330;
   .form-text,
   .fieldset-wrapper,
   .select-wrapper {
-    float: left;
     max-width: 100%;
-    width: 400px;
+    width: 100%;
   }
 
   .fieldset-wrapper {
@@ -225,7 +269,9 @@ $border-color: #222330;
 
   .description,
   .help-block {
-    clear: both;
+    color: #666;
+    font-size: 14px;
+    margin-top: 8px;
   }
 
   h2 {
@@ -235,7 +281,7 @@ $border-color: #222330;
 
   .form-header {
     border-bottom: 1px solid $border-color;
-    padding: 20px;
+    padding: 12px;
     position: relative;
 
     h2 {
@@ -262,11 +308,11 @@ $border-color: #222330;
       height: 100%;
       left: 0;
       margin: 0;
-      padding-top: 30px;
+      padding-top: 16px;
       position: relative;
       top: 0;
       vertical-align: top;
-      width: 200px;
+      width: 120px;
 
       .vertical-tabs__menu-item {
         background: transparent;
@@ -275,8 +321,9 @@ $border-color: #222330;
         a {
           background: transparent;
           border: none;
-          margin-bottom: 3px;
-          padding: 10px 15px;
+          font-size: 12px;
+          margin-bottom: 1px;
+          padding: 6px 8px;
 
           &:hover,
           &:active {
@@ -302,7 +349,7 @@ $border-color: #222330;
       }
 
       .is-selected {
-        background-color: var(--dxt-color-silver);
+        background-color: #e9ecef;
 
         a {
           border: none;
@@ -315,10 +362,10 @@ $border-color: #222330;
     }
 
     .vertical-tabs__panes {
-      padding: 0 15px 15px 0;
+      padding: 0 12px 12px 0;
 
       .details-wrapper {
-        padding: 15px;
+        padding: 12px;
       }
     }
 
@@ -330,8 +377,7 @@ $border-color: #222330;
   }
 
   .form-composite {
-    display: flex;
-    flex-direction: inherit;
+    display: block;
 
     .form-checkboxes input {
       display: block;
@@ -342,27 +388,27 @@ $border-color: #222330;
     }
 
     label {
-      font-size: 15px;
-      width: auto;
+      font-size: 14px;
+      margin-bottom: 8px;
+      width: 100%;
     }
 
-    // .form-radios {
-    // label.option,
     input ~ label.option,
     input ~ span {
       cursor: pointer;
+      display: block;
       font-weight: 300;
-      line-height: 24px;
-      margin: 0;
-      width: auto;
+      line-height: 20px;
+      margin: 0 0 8px;
+      width: 100%;
 
       &::before {
         content: '__';
         display: inline-block;
-        font-size: 18px;
+        font-size: 16px;
         font-weight: normal;
         opacity: 0.3;
-        width: 25px;
+        width: 20px;
       }
     }
 
@@ -373,12 +419,10 @@ $border-color: #222330;
 
       &::before {
         content: '✓';
-        font-size: 24px;
+        font-size: 20px;
         opacity: 1;
       }
     }
-
-    // }
   }
 
   .form-type-checkboxes {
@@ -388,37 +432,43 @@ $border-color: #222330;
   }
 
   .farbtastic {
+    flex-shrink: 0;
+    transform: scale(0.7);
+    transform-origin: top left;
     z-index: 10;
   }
 
   .color-form {
-    max-width: 740px;
+    display: flex;
+    max-width: 100%;
 
     .form-item {
-      margin: 0 0 24px;
+      margin: 0 0 16px;
     }
 
     .details-wrapper {
       display: flex;
+      gap: 16px;
+      width: 100%;
     }
 
     .form-text {
-      padding: 3px;
-      width: 250px;
+      padding: 8px;
+      width: 100%;
     }
 
     .select-wrapper {
-      width: 250px;
+      margin-bottom: 12px;
+      width: 100%;
 
       .form-select {
-        float: none;
-        width: 250px;
+        width: 100%;
       }
     }
 
     .form-item-scheme {
-      height: 3.2em;
-      margin-right: 160px;
+      margin-bottom: 16px;
+      width: 100%;
     }
 
     h2 {
@@ -442,17 +492,17 @@ $border-color: #222330;
   }
 
   .color-palette {
-    margin-top: 64px;
+    flex: 1;
+    margin-top: 20px;
 
     label {
       line-height: 1.2;
-      padding: 0 27px 0 0;
+      margin-bottom: 6px;
+      width: 100%;
     }
 
     .form-item {
-      align-items: center;
-      display: flex;
-      min-height: 0;
+      margin-bottom: 16px;
       padding: 0;
     }
 
@@ -465,12 +515,15 @@ $border-color: #222330;
     }
 
     .lock {
-      left: -18px;
-      top: -2em;
+      left: auto;
+      margin-left: 8px;
+      position: relative;
+      top: auto;
     }
 
     .form-text {
-      padding: 5px;
+      padding: 8px;
+      width: 100%;
 
       &.active {
         border-radius: 4px;
@@ -503,18 +556,12 @@ $border-color: #222330;
 
   #edit-fonts {
     .form-item:not(.form-wrapper) {
-      clear: none;
-      float: left;
-      height: 70px;
-      padding-right: 10px;
-      width: 40%;
-
-      &.form-type-textfield {
-        width: 60%;
-      }
+      margin-bottom: 16px;
+      width: 100%;
 
       .form-select {
-        height: 50px;
+        height: 40px;
+        width: 100%;
       }
 
       .form-text,
@@ -522,57 +569,52 @@ $border-color: #222330;
         width: 100%;
       }
 
-      .form-wrapper {
-        clear: both;
+      label {
+        margin-bottom: 6px;
       }
     }
   }
 
   #edit-typography {
     .form-item:not(.form-wrapper) {
-      clear: none;
-      float: left;
-      margin-bottom: 0;
-      overflow: hidden;
-      padding-top: 0;
-      width: 33%;
+      margin-bottom: 16px;
+      width: 100%;
 
       label {
+        margin-bottom: 6px;
         width: 100%;
       }
     }
 
     .form-text:not([name="divider_color_custom"]) {
-      width: 27%;
+      width: 100%;
     }
 
     .form-item-scale-factor {
-      width: 66%;
+      width: 100%;
     }
 
     .form-item-divider-color,
     .form-item-divider-color-custom {
-      clear: both;
+      width: 100%;
     }
   }
 
   #edit-block {
     .form-type-select,
     .form-text {
-      width: 80%;
+      width: 100%;
     }
   }
 
   .block-design-settings {
-    float:left;
-    padding: 0 0 60px;
-    width: 50%;
+    margin-bottom: 20px;
+    width: 100%;
   }
 
   .block-preview {
-    float:left;
-    padding: 90px 0 0 60px;
-    width:50%;
+    margin-top: 20px;
+    width: 100%;
   }
 
   .form-item[class$="invoke"] .form-text {
@@ -598,65 +640,50 @@ $border-color: #222330;
   }
 
   .js-form-type-checkbox {
+    display: block;
+    margin-bottom: 16px;
     position: relative;
 
     input[type="checkbox"] {
       appearance: auto;
       cursor: pointer;
-      height: 27px;
-      left: 200px;
-      margin: 0;
-      position: absolute;
-      top: 0;
-      width: 54px;
+      float: right;
+      height: 20px;
+      position: static;
+      width: 40px;
       z-index: 10;
-
-      // Can't add the switcher div with #suffix and #prefix for some reason
-      // So just using checkboxes again
-      // opacity: 0;
-      // appearance: none;
-      &:checked + .switcher {
-        &::after {
-          left: calc(100% - 3px);
-          transform: translateX(-100%);
-        }
-      }
 
       &:focus {
         box-shadow: unset;
       }
     }
 
-    .switcher {
-      border-radius: 20px;
-      cursor: pointer;
+    label {
       display: block;
-      height: 27px;
-      left: 200px;
-      margin: 0;
-      padding: 0;
-      position: absolute;
-      text-indent: -9999px;
-      top: 0;
-      width: 54px;
+      line-height: 1.4;
+      margin-bottom: 4px;
+      width: 100%;
+    }
 
-      &::after {
-        border-radius: 50%;
-        content: '';
-        height: 21px;
-        left: 3px;
-        position: absolute;
-        top: 3px;
-        transition: 0.3s;
-        width: 21px;
-      }
+    .description {
+      clear: both;
+      color: #666;
+      font-size: 14px;
+      line-height: 1.3;
+      margin-top: 4px;
+    }
+
+    .switcher {
+      display: none; // Hide custom switcher, use native checkbox
     }
   }
 
   .core-theme-settings, .form-checkboxes {
-    .js-form-type-checkbox input[type="checkbox"] {
-      left: auto;
-      right: 0;
+    .js-form-type-checkbox {
+      input[type="checkbox"] {
+        margin-left: auto;
+        position: static;
+      }
     }
   }
 
@@ -679,6 +706,10 @@ $border-color: #222330;
   }
 }
 
+.dxpr-body-wrapper {
+  margin-right: 35vw !important;
+}
+
 .type-preview {
   clear: both;
 
@@ -686,3 +717,9 @@ $border-color: #222330;
     padding: 40px 80px;
   }
 }
+
+// Fix sticky footer causing sidebar scroll issues
+html.html--dxpr-theme-sticky-footer:has(#system-theme-settings) {
+  height: auto !important;
+}
+

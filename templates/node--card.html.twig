@@ -1,0 +1,89 @@
+{#
+/**
+ * @file
+ * Implementation to display a node card.
+ *
+ * Uses Bootstrap 5.3 utility classes for the card component.
+ */
+#}
+
+{{ attach_library('core/components.dxpr_theme--card')}}
+
+{%
+  set classes = [
+  'node',
+  'node--type-' ~ node.bundle|clean_class,
+  node.isPromoted() ? 'node--promoted',
+  node.isSticky() ? 'node--sticky',
+  not node.isPublished() ? 'node--unpublished',
+  view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+]
+%}
+
+{% set has_image = content.field_featured_image|render|striptags('img')|trim %}
+{%
+  set card_classes = [
+    'card',
+    'h-100',
+    'bg-primary-subtle',
+    'border-0',
+    'my-5',
+    'overflow-hidden',
+    'position-relative',
+    not has_image ? 'p-0'
+  ]
+%}
+{%
+  set inner_classes = [
+    'd-flex',
+    'flex-column',
+    'h-100',
+    'position-relative',
+    has_image ? 'flex-md-row'
+  ]
+%}
+{%
+  set content_classes = [
+    'd-flex',
+    'flex-column',
+    'justify-content-center',
+    'p-3',
+    has_image ? 'ps-md-4 border-start border-6 border-transparent col-md-8' : 'p-4 p-sm-5'
+  ]
+%}
+
+<article{{ attributes.addClass(classes).addClass(card_classes) }}>
+  <div class="{{ inner_classes|join(' ') }}">
+    {{ title_suffix }}
+    {% if has_image %}
+      <div class="d-flex col-md-4">
+        {{ content.field_featured_image }}
+      </div>
+    {% endif %}
+    <div class="{{ content_classes|join(' ') }}">
+      <header class="d-flex flex-column gap-2 mb-3">
+        <h3 class="h4 mb-0 text-dark">
+          <a href="{{ url }}" class="text-decoration-none text-dark stretched-link">{{ label }}</a>
+        </h3>
+        {% if display_submitted %}
+          <div class="text-muted small" style="letter-spacing: 0.0625rem;">
+            <span{{ author_attributes }}>
+              {{ date }}
+            </span>
+            {{ metadata }}
+          </div>
+        {% endif %}
+      </header>
+      <div class="d-flex flex-column gap-3">
+        <div class="card-text">
+          {{ content|without('field_featured_image', 'links') }}
+        </div>
+      </div>
+    </div>
+    <div class="position-absolute bottom-0 end-0 p-3 text-primary">
+      <svg width="16" height="16" fill="currentColor" class="bi bi-arrow-right">
+        <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+      </svg>
+    </div>
+  </div>
+</article>
