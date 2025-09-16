@@ -79,7 +79,7 @@ env:
 
 jobs:
   chrome-editor-tests-bs3:
-    runs-on: buildjet-4vcpu-ubuntu-2004
+    runs-on: dxpr-runner
     timeout-minutes: 60
     steps:
       - name: Check out repository code
@@ -130,7 +130,7 @@ jobs:
           sha: ${{ github.event.client_payload.pull_request.head.sha }}
           target_url: ${{ steps.chrome_editor_tests_bs3.outputs.html_url }}
   chrome-anonymous-tests-bs3:
-    runs-on: buildjet-4vcpu-ubuntu-2004
+    runs-on: dxpr-runner
     timeout-minutes: 60
     env:
       TEST_SUITE: ./chrome.anonymous.bs3.parallel.xml

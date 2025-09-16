@@ -1412,11 +1412,11 @@ msgstr ""
 "Hoogte van koptekst in mobiele weergave. 10px - 200px. Standaard is 60."
 #: features/sooper-layout/layout-theme-settings.inc:82,71
 msgid ""
-"Max width of the website container. 480px - 4100px. Default is 1280px. With "
+"Max width of the website container. 480px - 4100px. Default is 1320px. With "
 "Side-Header enabled we typically use 980px."
 msgstr ""
 "Maximale breedte van de websitecontainer. 480px - 4100px. Standaard is "
-"1280px. Als Side-Header is ingeschakeld, gebruiken we meestal 980px."
+"1320px. Als Side-Header is ingeschakeld, gebruiken we meestal 980px."
 #: features/sooper-layout/layout-theme-settings.inc:122
 msgid "Path to  background image"
 msgstr "Pad naar achtergrondafbeelding"
