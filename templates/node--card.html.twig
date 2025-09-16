@@ -48,8 +48,7 @@
     'flex-column',
     'justify-content-center',
     'p-3',
-    has_image ? 'ps-md-4 border-start border-6 border-transparent' : 'p-4 p-sm-5',
-    has_image ? 'flex-md-fill'
+    has_image ? 'ps-md-4 border-start border-6 border-transparent col-md-8' : 'p-4 p-sm-5'
   ]
 %}
 
@@ -57,7 +56,7 @@
   <div class="{{ inner_classes|join(' ') }}">
     {{ title_suffix }}
     {% if has_image %}
-      <div class="d-flex flex-md-fill">
+      <div class="d-flex col-md-4">
         {{ content.field_featured_image }}
       </div>
     {% endif %}
