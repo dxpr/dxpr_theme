@@ -45,6 +45,7 @@
           !searchForm.classList.contains("invisible") // Ensure the form is visible
         ) {
           clearSearchForm(); // Call the function to clear the form
+          searchButton.focus(); // Return focus to the search button
         }
       });
     },
