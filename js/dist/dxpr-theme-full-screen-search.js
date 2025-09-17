@@ -4,10 +4,22 @@
       const searchButton = document.querySelector(".full-screen-search-button");
       const searchForm = document.querySelector(".full-screen-search-form");
       const searchFormInput = searchForm.querySelector(".search-query");
+      const searchStatus = document.querySelector("#search-status");
 
       function clearSearchForm() {
         searchForm.classList.toggle("invisible");
         document.body.classList.toggle("body--full-screen-search");
+
+        // Update ARIA states for accessibility
+        const isVisible = !searchForm.classList.contains("invisible");
+        searchButton.setAttribute("aria-expanded", isVisible.toString());
+        searchForm.setAttribute("aria-hidden", (!isVisible).toString());
+
+        // Announce state change to screen readers
+        if (searchStatus) {
+          searchStatus.textContent = isVisible ? "Search opened" : "Search closed";
+        }
+
         setTimeout(() => {
           searchFormInput.value = "";
         }, 350);
@@ -17,6 +29,17 @@
         event.preventDefault();
         searchForm.classList.toggle("invisible");
         document.body.classList.toggle("body--full-screen-search");
+
+        // Update ARIA states for accessibility
+        const isVisible = !searchForm.classList.contains("invisible");
+        searchButton.setAttribute("aria-expanded", isVisible.toString());
+        searchForm.setAttribute("aria-hidden", (!isVisible).toString());
+
+        // Announce state change to screen readers
+        if (searchStatus) {
+          searchStatus.textContent = isVisible ? "Search opened" : "Search closed";
+        }
+
         searchFormInput.focus();
       }
 

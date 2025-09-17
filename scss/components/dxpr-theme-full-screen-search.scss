@@ -63,9 +63,16 @@
       line-height: 1.3em;
       padding: 0;
       text-align: center;
+      outline: 2px solid #eee !important;
+      outline-offset: 4px !important;
+      transition: outline-color 0.3s ease;
+
+      &:hover {
+        outline-color: #ccc !important;
+      }
 
       &:focus, &:active {
-        outline: 0;
+        outline-color: #aaa !important;
       }
     }
   }
@@ -73,5 +80,31 @@
   & > div {
     display: table-cell;
     vertical-align: middle;
+  }
+
+  .input-group input.btn.full-screen-search-submit {
+    display: block !important;
+    margin: 2em auto 0 !important;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border-radius: 0;
+
+    // Override btn-primary to look like outline button with #eee border
+    background-color: transparent !important;
+    border: 2px solid #eee !important;
+    color: #666 !important;
+
+    &:hover,
+    &:focus {
+      background-color: #eee !important;
+      color: #333 !important;
+      border-color: #eee !important;
+    }
+
+    &:active {
+      transform: translateY(1px);
+      background-color: #ddd !important;
+      color: #333 !important;
+    }
   }
 }
