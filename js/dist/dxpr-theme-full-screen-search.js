@@ -17,7 +17,9 @@
 
         // Announce state change to screen readers
         if (searchStatus) {
-          searchStatus.textContent = isVisible ? "Search opened" : "Search closed";
+          searchStatus.textContent = isVisible
+            ? "Search opened"
+            : "Search closed";
         }
 
         setTimeout(() => {
@@ -37,7 +39,9 @@
 
         // Announce state change to screen readers
         if (searchStatus) {
-          searchStatus.textContent = isVisible ? "Search opened" : "Search closed";
+          searchStatus.textContent = isVisible
+            ? "Search opened"
+            : "Search closed";
         }
 
         searchFormInput.focus();
