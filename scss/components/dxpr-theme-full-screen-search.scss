@@ -61,11 +61,18 @@
       height: auto;
       letter-spacing: -0.05em;
       line-height: 1.3em;
+      outline: 2px solid #eee !important;
+      outline-offset: 4px !important;
       padding: 0;
       text-align: center;
+      transition: outline-color 0.3s ease;
+
+      &:hover {
+        outline-color: #f5f5f5 !important;
+      }
 
       &:focus, &:active {
-        outline: 0;
+        outline-color: #f8f8f8 !important;
       }
     }
   }
@@ -73,5 +80,30 @@
   & > div {
     display: table-cell;
     vertical-align: middle;
+  }
+
+  .input-group input.btn.full-screen-search-submit {
+    // Override btn-primary to look like outline button with #eee border
+    background-color: transparent !important;
+    border: 2px solid #eee !important;
+    border-radius: 0;
+    color: #666 !important;
+    display: block !important;
+    letter-spacing: 0.05em;
+    margin: 2em auto 0 !important;
+    text-transform: uppercase;
+
+    &:hover,
+    &:focus {
+      background-color: #eee !important;
+      border-color: #eee !important;
+      color: #333 !important;
+    }
+
+    &:active {
+      background-color: #ddd !important;
+      color: #333 !important;
+      transform: translateY(1px);
+    }
   }
 }
