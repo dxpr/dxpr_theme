@@ -231,6 +231,10 @@
   }
 }
 
+.dxpr-theme-header--top.dxpr-theme-header--hover-border .nav > li {
+  position: relative;
+}
+
 .body--dxpr-theme-header-side .dxpr-theme-header--side.dxpr-theme-header--hover-border .menu a::before,
 .dxpr-theme-header--top.dxpr-theme-header--hover-border .nav > li > a::before {
   background: #eee;

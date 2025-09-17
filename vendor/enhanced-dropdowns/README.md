@@ -2,6 +2,8 @@
 
 [![npm downloads](https://img.shields.io/npm/dm/bs-enhanced-dropdowns.svg)](https://www.npmjs.com/package/bs-enhanced-dropdowns)
 
+**[Live Demo of Bootstrap 5 Enhanced Dropdowns](https://dxpr.github.io/bs-dropdown-extended/)**
+
 A powerful enhancement for Bootstrap 5 navigation menus, featuring split dropdown buttons, multi-level submenus, improved keyboard accessibility, and intelligent handling of link behavior based on the `href` attribute.
 
 ## Core Features
@@ -13,6 +15,7 @@ A powerful enhancement for Bootstrap 5 navigation menus, featuring split dropdow
     -   For **full toggle links** (e.g., `.dropdown-item.dropdown-toggle`), if `href` is `"#"` or empty, it acts as a dropdown toggle. If `href` is a valid URL, it will navigate *and* attempt to toggle (though typically these are used only for toggling).
     -   The JavaScript primarily uses the presence and value of `href` on anchor tags to distinguish between navigational links and toggle-only actions, especially for full `dropdown-toggle` items.
 -   **Multi-level Submenus**: Supports nested dropdowns (currently styled for up to 3 levels effectively).
+-   **Automatic Multi-Column Layout (Desktop)**: Top-level dropdowns automatically arrange items into 1 to 5 columns on larger screens (>=992px) based on item count. Dropdowns with 3 or more columns expand to the full width of the navbar.
 -   **Enhanced Keyboard Navigation**: Intuitive navigation using Arrow keys, Enter, Space, Escape, and Tab.
 -   **ARIA Accessibility**: Implements ARIA roles and attributes for screen readers and assistive technologies.
 -   **Focus Management**: Ensures logical focus flow when opening, closing, and navigating menus.
@@ -48,12 +51,14 @@ A powerful enhancement for Bootstrap 5 navigation menus, featuring split dropdow
 
 Wrap your navigation in a `<ul class="navbar-nav" role="menubar">`.
 
-**Key Custom Classes:**
+**Key Custom Classes (applied by script or for structure):**
 
 -   `.bs-dropdown-wrapper`: Wrapper for top-level split buttons (contains a `.nav-link` and a `.bs-dropdown-caret`).
 -   `.bs-dropdown-item-wrapper`: Wrapper for nested split buttons within a dropdown menu (contains a `.dropdown-item` and a `.bs-dropdown-caret`).
 -   `.bs-dropdown-caret`: The clickable caret button in a split button setup.
 -   `.bs-dropdown-submenu`: Applied to an `<li>` that contains a nested dropdown menu.
+-   `.dropdown-menu-columns-X` (e.g., `dropdown-menu-columns-2`): Applied by the script to `.dropdown-menu` on desktop for multi-column layout (X can be 2-5).
+-   `.dropdown-full-width`: Applied by the script to the parent `li.nav-item.dropdown` on desktop when its menu has 3+ columns, making the menu span the navbar width.
 
 **1. Simple Nav Link**
 
@@ -146,6 +151,13 @@ Wrap your navigation in a `<ul class="navbar-nav" role="menubar">`.
     -   `--bs-dropdown-caret-width`: Width of the caret button in split layouts.
     -   `--bs-dropdown-caret-padding-x`: Horizontal padding within the caret button.
     -   `--bs-dropdown-indent-step`: Indentation amount for each submenu level.
+-   **Auto-Column Behavior (Desktop)**: The script automatically applies multi-column layouts to top-level dropdowns based on the number of `<li>` items:
+    -   1-7 items: 1 column (standard Bootstrap behavior, no extra classes)
+    -   8-14 items: 2 columns (`.dropdown-menu-columns-2`)
+    -   15-20 items: 3 columns (`.dropdown-menu-columns-3`, becomes full-width)
+    -   21-27 items: 4 columns (`.dropdown-menu-columns-4`, becomes full-width)
+    -   28+ items: 5 columns (`.dropdown-menu-columns-5`, becomes full-width)
+    This behavior is active on viewports 992px and wider. The full-width effect relies on the parent `li.nav-item.dropdown` getting the `.dropdown-full-width` class, which sets its position to static.
 -   **Border Radius**: As an example of Bootstrap customization, you can set global border-radius to 0 in your page-specific CSS if desired:
     ```css
     /* In your page-specific <style> tag or CSS file */
