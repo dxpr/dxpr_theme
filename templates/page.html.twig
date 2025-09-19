@@ -89,28 +89,18 @@
 {# Navbar #}
 {% if page.navigation or page.navigation_collapsible %}
   {% block navbar %}
-    {% if theme.settings.header_position %}
-      {%
-        set navbar_classes = [
-          'navbar dxpr-theme-header dxpr-theme-header--top',
-          theme.settings.navbar_position ? 'navbar-is-' ~ theme.settings.navbar_position,
-        theme.settings.header_side_align,
-        ]
-      %}
-    {% else %}
-      {%
-        set navbar_classes = [
-          'navbar dxpr-theme-header clearfix',
-          theme.settings.header_position ? 'dxpr-theme-header--side' : 'dxpr-theme-header--top',
-          theme.settings.navbar_position ? 'navbar-is-' ~ theme.settings.navbar_position,
-          theme.settings.header_top_layout ? 'dxpr-theme-header--' ~ theme.settings.header_top_layout|clean_class,
-          theme.settings.header_style ? 'dxpr-theme-header--' ~ theme.settings.header_style|clean_class,
-          theme.settings.menu_hover ? 'dxpr-theme-header--hover-' ~ theme.settings.menu_hover|clean_class,
-          theme.settings.header_top_fixed and theme.settings.header_top_sticky ? 'dxpr-theme-header--sticky',
-          theme.settings.header_top_fixed and not theme.settings.header_top_sticky ? 'dxpr-theme-header--fixed',
-        ]
-      %}
-    {% endif %}
+    {%
+      set navbar_classes = [
+        'navbar dxpr-theme-header clearfix',
+        'dxpr-theme-header--top',
+        theme.settings.navbar_position ? 'navbar-is-' ~ theme.settings.navbar_position,
+        theme.settings.header_top_layout ? 'dxpr-theme-header--' ~ theme.settings.header_top_layout|clean_class,
+        theme.settings.header_style ? 'dxpr-theme-header--' ~ theme.settings.header_style|clean_class,
+        theme.settings.menu_hover ? 'dxpr-theme-header--hover-' ~ theme.settings.menu_hover|clean_class,
+        theme.settings.header_top_fixed and theme.settings.header_top_sticky ? 'dxpr-theme-header--sticky',
+        theme.settings.header_top_fixed and not theme.settings.header_top_sticky ? 'dxpr-theme-header--fixed',
+      ]
+    %}
     {% set mark_menu = theme.settings.mark_menu_with_children ? 'dxpr-theme-menu--has-children' : '' %}
     {% set navbar_attributes = navbar_attributes.removeClass('container').addClass(navbar_classes) %}
     {% if theme.settings.header_top_fixed and theme.settings.header_top_sticky %}

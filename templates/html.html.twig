@@ -59,10 +59,10 @@
     db_offline ? 'db-offline',
     theme.settings.navbar_position ? 'navbar-is-' ~ theme.settings.navbar_position,
     theme.has_glyphicons ? 'has-glyphicons',
-    theme.settings.header_position ? 'body--dxpr-theme-header-side' : 'body--dxpr-theme-header-top',
-    not theme.settings.header_position and theme.settings.header_style != 'overlay' ? 'body--dxpr-theme-header-not-overlay',
-    not theme.settings.header_position ? 'body--dxpr-theme-header-' ~ theme.settings.header_style|clean_class,
-    not theme.settings.header_position and not theme.settings.header_top_sticky and theme.settings.header_top_fixed ? 'body--dxpr-theme-header-fixed',
+    'body--dxpr-theme-header-top',
+    theme.settings.header_style != 'overlay' ? 'body--dxpr-theme-header-not-overlay',
+    'body--dxpr-theme-header-' ~ theme.settings.header_style|clean_class,
+    not theme.settings.header_top_sticky and theme.settings.header_top_fixed ? 'body--dxpr-theme-header-fixed',
     page_title in node.field_dth_hide_regions.getValue|keys ? 'body--primary-tabs-float',
   ]
 %}

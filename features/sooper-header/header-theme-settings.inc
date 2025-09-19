@@ -543,11 +543,6 @@ function header_theme_settings(array &$form, $theme) {
     '#min' => 0,
     '#max' => 100,
     '#step' => 1,
-    '#states' => [
-      'visible' => [
-        ':input[name="header_position"]' => ['checked' => FALSE],
-      ],
-    ],
     '#attributes' => [
       'class' => ['dxb-slider', 'menu-border-position-offset-range'],
       'data-dxb-slider' => TRUE,
@@ -563,7 +558,6 @@ function header_theme_settings(array &$form, $theme) {
     '#step' => 1,
     '#states' => [
       'visible' => [
-        ':input[name="header_position"]' => ['checked' => FALSE],
         ':input[name="header_top_fixed"]' => ['checked' => TRUE],
         ':input[name="header_top_sticky"]' => ['checked' => TRUE],
       ],

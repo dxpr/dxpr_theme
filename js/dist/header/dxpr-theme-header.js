@@ -36,10 +36,7 @@ const { dxpr_themeMenuGovernorBodyClass } = require("./menu-governor-body");
       navMenuBreak = window.dxpr_themeNavBreakpoint;
     }
 
-    if (
-      document.querySelectorAll(".body--dxpr-theme-header-side").length === 0 &&
-      window.innerWidth > navMenuBreak
-    ) {
+    if (window.innerWidth > navMenuBreak) {
       setupDesktopMenu();
 
       if (dxpr_themeMenuState === "top") {

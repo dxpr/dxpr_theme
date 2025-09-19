@@ -199,7 +199,7 @@
 #dxpr-theme-main-menu, /* N/A */
 #dxpr-theme-main-menu .menu__breadcrumbs,
 #dxpr-theme-main-menu .menu__level {
-  text-align: var(--dxt-setting-header-side-align);
+  text-align: left;
 }
 
 // MENU BORDER HOVER EFFECT
@@ -231,7 +231,6 @@
   }
 }
 
-.body--dxpr-theme-header-side .dxpr-theme-header--side.dxpr-theme-header--hover-border .menu a::before,
 .dxpr-theme-header--top.dxpr-theme-header--hover-border .nav > li > a::before {
   background: #eee;
   background: dxpr-color('base');
@@ -247,9 +246,6 @@
   width: calc(100% - 20px);
 }
 
-.body--dxpr-theme-header-side .dxpr-theme-header--side.dxpr-theme-header--hover-border .nav > li.active > a::before,
-.body--dxpr-theme-header-side .dxpr-theme-header--side.dxpr-theme-header--hover-border .nav > li > a:hover::before,
-.body--dxpr-theme-header-side .dxpr-theme-header--side.dxpr-theme-header--hover-border .nav > li > a.is-active::before,
 .dxpr-theme-header--top.dxpr-theme-header--hover-border .menu li.active > a::before,
 .dxpr-theme-header--top.dxpr-theme-header--hover-border .menu a:hover::before,
 .dxpr-theme-header--top.dxpr-theme-header--hover-border .menu a.is-active::before {
