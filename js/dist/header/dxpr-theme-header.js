@@ -19,7 +19,8 @@ const { dxpr_themeMenuGovernorBodyClass } = require("./menu-governor-body");
 
   const navBreak =
     window.dxpr_themeNavBreakpoint ??
-    drupalSettings?.dxpr_themeSettings?.headerMobileBreakpoint ?? 1200;
+    drupalSettings?.dxpr_themeSettings?.headerMobileBreakpoint ??
+    1200;
 
   if (
     document.querySelectorAll(".dxpr-theme-header--sticky").length > 0 &&
@@ -88,12 +89,15 @@ const { dxpr_themeMenuGovernorBodyClass } = require("./menu-governor-body");
 
         // Add --drupal-displace-offset-top Drupal 9.x.
         const html = document.documentElement;
-        const toolbar = document.getElementById('toolbar-bar');
-        if (!html.style.getPropertyValue('--drupal-displace-offset-top')) {
-          html.style.setProperty('--drupal-displace-offset-top', '0px');
+        const toolbar = document.getElementById("toolbar-bar");
+        if (!html.style.getPropertyValue("--drupal-displace-offset-top")) {
+          html.style.setProperty("--drupal-displace-offset-top", "0px");
         }
         if (toolbar) {
-          html.style.setProperty('--drupal-displace-offset-top', toolbar.offsetHeight + 'px');
+          html.style.setProperty(
+            "--drupal-displace-offset-top",
+            `${toolbar.offsetHeight}px`,
+          );
         }
       }
     }, 50),

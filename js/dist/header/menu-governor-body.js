@@ -5,7 +5,8 @@
 function dxpr_themeMenuGovernorBodyClass() {
   const navBreakMenu =
     window.dxpr_themeNavBreakpoint ??
-    drupalSettings?.dxpr_themeSettings?.headerMobileBreakpoint ?? 1200;
+    drupalSettings?.dxpr_themeSettings?.headerMobileBreakpoint ??
+    1200;
 
   if (window.innerWidth > navBreakMenu) {
     const elementNavMobile = document.querySelector(

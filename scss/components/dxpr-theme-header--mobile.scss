@@ -59,14 +59,13 @@ html.html--dxpr-theme-nav-mobile--open {
 
     .dxpr-theme-main-menu {
       background: var(--dxt-setting-dropdown-background);
+      box-shadow: 0 5px 5px rgb(0 0 0 / 2%);
       left: 0;
-      width: 100%;
-      z-index: 100;
-
-      box-shadow: 0 5px 5px rgba(0,0,0,0.02);
       padding-left: calc(var(--dxt-setting-gutter-vertical-mobile, 0) / 2);
       padding-right: calc(var(--dxt-setting-gutter-vertical-mobile, 0) / 2);
       position: absolute;
+      width: 100%;
+      z-index: 100;
 
       .nav-link {
         font-size: var(--dxt-setting-nav-mobile-font-size);
