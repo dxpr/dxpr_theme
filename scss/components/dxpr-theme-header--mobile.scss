@@ -63,6 +63,11 @@ html.html--dxpr-theme-nav-mobile--open {
       width: 100%;
       z-index: 100;
 
+      box-shadow: 0 5px 5px rgba(0,0,0,0.02);
+      padding-left: calc(var(--dxt-setting-gutter-vertical-mobile, 0) / 2);
+      padding-right: calc(var(--dxt-setting-gutter-vertical-mobile, 0) / 2);
+      position: absolute;
+
       .nav-link {
         font-size: var(--dxt-setting-nav-mobile-font-size);
       }
@@ -244,15 +249,6 @@ html.html--dxpr-theme-nav-mobile--open {
     left: 0;
     position: fixed;
     right: 0;
-    top: 0;
-
-    &.header-mobile-admin-fixed {
-      top: 39px;
-    }
-
-    &.header-mobile-admin-fixed-active {
-      top: 78px;
-    }
   }
 
   // Add spacing only when site name is present to avoid gaps when it's disabled

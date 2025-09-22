@@ -94,6 +94,7 @@
         'navbar dxpr-theme-header clearfix',
         'dxpr-theme-header--top',
         theme.settings.navbar_position ? 'navbar-is-' ~ theme.settings.navbar_position,
+        theme.settings.header_mobile_fixed ? 'header-mobile-fixed',
         theme.settings.header_top_layout ? 'dxpr-theme-header--' ~ theme.settings.header_top_layout|clean_class,
         theme.settings.header_style ? 'dxpr-theme-header--' ~ theme.settings.header_style|clean_class,
         theme.settings.menu_hover ? 'dxpr-theme-header--hover-' ~ theme.settings.menu_hover|clean_class,
@@ -135,7 +136,7 @@
 
         {# Navigation (collapsible) #}
         {% if page.navigation_collapsible %}
-            <nav role="navigation" id="dxpr-theme-main-menu" class="navbar-expand-lg dxpr-theme-main-menu {{ mark_menu }}">
+            <nav role="navigation" id="dxpr-theme-main-menu" class="navbar-expand-lg dxpr-theme-main-menu collapse {{ mark_menu }}">
             {{ page.navigation_collapsible }}
             </nav>
         {% endif %}

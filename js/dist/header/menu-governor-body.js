@@ -3,10 +3,10 @@
  * @param {number} navBreakMenu - The breakpoint width for switching between mobile and desktop menu classes.
  */
 function dxpr_themeMenuGovernorBodyClass() {
-  let navBreakMenu = 1200;
-  if ("dxpr_themeNavBreakpoint" in window) {
-    navBreakMenu = window.dxpr_themeNavBreakpoint;
-  }
+  const navBreakMenu =
+    window.dxpr_themeNavBreakpoint ??
+    drupalSettings?.dxpr_themeSettings?.headerMobileBreakpoint ?? 1200;
+
   if (window.innerWidth > navBreakMenu) {
     const elementNavMobile = document.querySelector(
       ".body--dxpr-theme-nav-mobile",

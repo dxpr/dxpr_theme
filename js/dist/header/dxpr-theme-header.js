@@ -14,11 +14,12 @@ const { handleOverlayPosition } = require("./overlay-position");
 const { applyFixedHeaderStyles } = require("./apply-fixed-header-styles");
 const { dxpr_themeMenuGovernorBodyClass } = require("./menu-governor-body");
 
-(function (Drupal, once) {
+(function (Drupal, drupalSettings, once) {
   let dxpr_themeMenuState = "";
 
   const navBreak =
-    "dxpr_themeNavBreakpoint" in window ? window.dxpr_themeNavBreakpoint : 1200;
+    window.dxpr_themeNavBreakpoint ??
+    drupalSettings?.dxpr_themeSettings?.headerMobileBreakpoint ?? 1200;
 
   if (
     document.querySelectorAll(".dxpr-theme-header--sticky").length > 0 &&
@@ -30,13 +31,7 @@ const { dxpr_themeMenuGovernorBodyClass } = require("./menu-governor-body");
   }
 
   function dxpr_themeMenuGovernor(context) {
-    // Bootstrap dropdown multi-column smart menu
-    let navMenuBreak = 1200;
-    if ("dxpr_themeNavBreakpoint" in window) {
-      navMenuBreak = window.dxpr_themeNavBreakpoint;
-    }
-
-    if (window.innerWidth > navMenuBreak) {
+    if (window.innerWidth > navBreak) {
       setupDesktopMenu();
 
       if (dxpr_themeMenuState === "top") {
@@ -71,13 +66,11 @@ const { dxpr_themeMenuGovernorBodyClass } = require("./menu-governor-body");
   // Fixed header on mobile and tablet
   const { headerMobileHeight } = drupalSettings.dxpr_themeSettings;
   const headerFixed = drupalSettings.dxpr_themeSettings.headerMobileFixed;
-  const navThemeBreak =
-    "dxpr_themeNavBreakpoint" in window ? window.dxpr_themeNavBreakpoint : 1200;
 
   if (
     headerFixed &&
     document.querySelectorAll(".dxpr-theme-header").length > 0 &&
-    window.innerWidth <= navThemeBreak
+    window.innerWidth <= navBreak
   ) {
     // Injecting apply-fixed-header-styles.js
     applyFixedHeaderStyles(headerMobileHeight);
@@ -92,6 +85,16 @@ const { dxpr_themeMenuGovernorBodyClass } = require("./menu-governor-body");
       if (document.querySelectorAll("#dxpr-theme-main-menu .nav").length > 0) {
         dxpr_themeMenuGovernorBodyClass();
         dxpr_themeMenuGovernor(document);
+
+        // Add --drupal-displace-offset-top Drupal 9.x.
+        const html = document.documentElement;
+        const toolbar = document.getElementById('toolbar-bar');
+        if (!html.style.getPropertyValue('--drupal-displace-offset-top')) {
+          html.style.setProperty('--drupal-displace-offset-top', '0px');
+        }
+        if (toolbar) {
+          html.style.setProperty('--drupal-displace-offset-top', toolbar.offsetHeight + 'px');
+        }
       }
     }, 50),
   );
@@ -103,4 +106,4 @@ const { dxpr_themeMenuGovernorBodyClass } = require("./menu-governor-body");
       dxpr_themeMenuGovernor(document);
     }
   });
-})(Drupal, once);
+})(Drupal, drupalSettings, once);
