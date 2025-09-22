@@ -66,16 +66,9 @@ p:last-child {
   margin-bottom: 30px;
 }
 
-// Bootstrap long dropdown multi-column helper
-// @see dxpr-theme.js
+// Bootstrap enhanced dropdown helper
 .dropdown-menu {
-  min-width: 160px;
-
-  li {
-    display: block;
-    float: left;
-    min-width: 160px;
-  }
+  position: absolute !important;
 }
 
 div.lead {

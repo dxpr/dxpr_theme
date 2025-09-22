@@ -373,23 +373,11 @@ html.js .gin--vertical-toolbar .dxpr-theme-header--fixed {
   .menu {
     background-color: var(--dxt-setting-menu-background);
 
-    a {
+    a.dropdown-item {
       &:hover,
       &:focus {
         background-color: var(--dxt-setting-menu-hover-background);
         color: var(--dxt-setting-menu-hover-text-color);
-      }
-    }
-
-    .bs-dropdown-caret {
-      &:hover,
-      &:focus {
-        background-color: var(--dxt-setting-menu-hover-text-color);
-        color: var(--dxt-setting-menu-hover-text-color);
-
-        &::after {
-          border-top-color: var(--dxt-setting-menu-hover-background);
-        }
       }
     }
   }
