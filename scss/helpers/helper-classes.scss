@@ -156,8 +156,16 @@
   .dxpr-theme-util-background-body { background-color: dxpr-color('body'); }
   .dxpr-theme-util-background-gray { background-color: dxpr-color('text'); }
   .dxpr-theme-util-background-primary, .bg-primary { background-color: dxpr-color('base') !important; }
-  .dxpr-theme-util-background-accent1 { background-color: dxpr-color('accent1'); }
-  .dxpr-theme-util-background-accent2 { background-color: dxpr-color('accent2'); }
+
+  .dxpr-theme-util-background-accent1 {
+    background-color: dxpr-color('accent1');
+    color: dxpr-color('accent1text') !important;
+  }
+
+  .dxpr-theme-util-background-accent2 {
+    background-color: dxpr-color('accent2');
+    color: dxpr-color('accent2text') !important;
+  }
   .dxpr-theme-util-background-card { background-color: dxpr-color('card'); }
   .dxpr-theme-util-background-card-text { background-color: dxpr-color('cardtext'); }
   .dxpr-theme-util-background-white { background-color: white; }
@@ -178,8 +186,6 @@
   // Text colors for colored backgrounds
   .bg-primary { color: dxpr-color('basetext') !important; }
   .dxpr-theme-util-background-primary { color: dxpr-color('basetext') !important; }
-  .dxpr-theme-util-background-accent1 { color: dxpr-color('accent1text') !important; }
-  .dxpr-theme-util-background-accent2 { color: dxpr-color('accent2text') !important; }
   .dxpr-theme-util-color-card { color: dxpr-color('card'); }
   .dxpr-theme-util-color-card-text { color: dxpr-color('cardtext'); }
   .dxpr-theme-util-color-white { color: white; }
