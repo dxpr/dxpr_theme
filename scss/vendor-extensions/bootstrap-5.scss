@@ -11,542 +11,580 @@ html body {
   margin-top: 0;
 }
 
-.row > * {
-  margin-bottom: 30px;
-}
+.html {
+  .row > * {
+    margin-bottom: 30px;
+  }
 
-.block:first-child h2.block-title {
-    margin-top: 10px;
-}
+  .block:first-child h2.block-title {
+      margin-top: 10px;
+  }
 
-.region-sidebar-second .block:first-child h2.block-title,
-.region-sidebar-first .block:first-child h2.block-title {
-    margin-top: 0;
-}
+  .region-sidebar-second .block:first-child h2.block-title,
+  .region-sidebar-first .block:first-child h2.block-title {
+      margin-top: 0;
+  }
 
-p:last-child {
-    margin-bottom: 10px;
-}
-
-.container {
-  max-width: 1600px;
-  width: 100%;
+  p:last-child {
+      margin-bottom: 10px;
+  }
 
   .container {
-    padding-left: 0;
+    max-width: 1600px;
+    width: 100%;
+
+    .container {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+
+  // This will all users to create multiple full width backgrounds per container
+  .container-fluid {
+    padding-left :0;
     padding-right: 0;
-  }
-}
 
-// This will all users to create multiple full width backgrounds per container
-.container-fluid {
-  padding-left :0;
-  padding-right: 0;
-
-  .navbar-right,
-  .navbar-left {
-    margin-left: 0; //remove negative margins
-    margin-right: 0;
-  }
-}
-
-.dxpr-theme-fluid {
-  .navbar-right,
-  .navbar-left {
-    margin-left: 0; //remove negative margins
-    margin-right: 0;
-  }
-}
-
-.row {
-  margin-bottom: 0;
-}
-
-.column {
-  margin-bottom: 30px;
-}
-
-// Bootstrap enhanced dropdown helper
-.dropdown-menu {
-  position: absolute !important;
-}
-
-div.lead {
-  margin-bottom: 0;
-}
-
-.btn-default,
-.btn-group > .btn-default,
-.btn-primary,
-.btn-group > .btn-primary,
-.html .fake-submit {
-  background: dxpr-color('base') !important;
-  border-color: dxpr-color('base') !important;
-  color: dxpr-color('basetext') !important;
-
-  a {
-    color: dxpr-color('basetext') !important;
-
-    &:hover,
-    &:focus {
-      color: dxpr-color('basetext') !important;
+    .navbar-right,
+    .navbar-left {
+      margin-left: 0; //remove negative margins
+      margin-right: 0;
     }
   }
-}
 
-.btn-secondary,
-.btn-group > .btn-secondary {
-  background: dxpr-color('accent1') !important;
-  border-color: dxpr-color('accent1') !important;
-  color: dxpr-color('accent1text') !important;
-
-  a {
-    color: dxpr-color('accent1text') !important;
-
-    &:hover,
-    &:focus {
-      color: dxpr-color('accent1text') !important;
+  .dxpr-theme-fluid {
+    .navbar-right,
+    .navbar-left {
+      margin-left: 0; //remove negative margins
+      margin-right: 0;
     }
   }
-}
 
-.btn-default:hover,
-.btn-default:focus,
-.btn-default.focus,
-.btn-default:active,
-.btn-default.active,
-.btn-primary:hover,
-.btn-primary:focus,
-.btn-primary.focus,
-.btn-primary:active,
-.btn-primary.active,
-a.bg-primary:hover,
-a.bg-primary:focus {
-  background-color: dxpr-color('accent1');
-  border-color: dxpr-color('accent1');
-  color: dxpr-color('accent1text');
-
-  a {
-    color: dxpr-color('accent1text');
+  .row {
+    margin-bottom: 0;
   }
-}
 
-.btn-secondary:hover,
-.btn-secondary:focus,
-.btn-secondary.focus,
-.btn-secondary:active,
-.btn-secondary.active {
-  background-color: dxpr-color('accent2');
-  border-color: dxpr-color('accent2');
-  color: dxpr-color('accent2text');
-
-  a {
-    color: dxpr-color('accent2text');
+  .column {
+    margin-bottom: 30px;
   }
-}
 
-a.text-primary:hover,
-a.text-primary:focus {
-  color: dxpr-color('accent1');
-}
+  // Bootstrap long dropdown multi-column helper
+  // @see dxpr-theme.js
+  .dropdown-menu {
+    min-width: 160px;
 
-// Bootstrap 5 Outline Button Styles
-.btn-outline-primary {
-  background-color: transparent;
-  border-color: dxpr-color('base');
-  color: dxpr-color('base');
+    li {
+      display: block;
+      float: left;
+      min-width: 160px;
+    }
+  }
 
-  &:hover,
-  &:focus,
-  &.focus,
-  &:active,
-  &.active {
-    background-color: dxpr-color('base');
+  div.lead {
+    margin-bottom: 0;
+  }
+
+  .btn-default,
+  .btn-group > .btn-default,
+  .btn-primary,
+  .btn-group > .btn-primary,
+  .html .fake-submit {
+    background: dxpr-color('base');
     border-color: dxpr-color('base');
     color: dxpr-color('basetext');
+
+    a {
+      color: dxpr-color('basetext');
+
+      &:hover,
+      &:focus {
+        color: dxpr-color('basetext');
+      }
+    }
   }
 
-  &:not(:disabled, .disabled):active,
-  &:not(:disabled, .disabled).active {
+  .btn-secondary,
+  .btn-group > .btn-secondary {
+    background: dxpr-color('accent1');
+    border-color: dxpr-color('accent1');
+    color: dxpr-color('accent1text');
+
+    a {
+      color: dxpr-color('accent1text');
+
+      &:hover,
+      &:focus {
+        color: dxpr-color('accent1text');
+      }
+    }
+  }
+
+  .btn-default:hover,
+  .btn-default:focus,
+  .btn-default.focus,
+  .btn-default:active,
+  .btn-default.active,
+  .btn-primary:hover,
+  .btn-primary:focus,
+  .btn-primary.focus,
+  .btn-primary:active,
+  .btn-primary.active,
+  a.bg-primary:hover,
+  a.bg-primary:focus {
     background-color: dxpr-color('accent1');
     border-color: dxpr-color('accent1');
     color: dxpr-color('accent1text');
-  }
-}
 
-.btn-outline-secondary {
-  background-color: transparent;
-  border-color: dxpr-color('accent1');
-  color: dxpr-color('accent1');
-
-  &:hover,
-  &:focus,
-  &.focus,
-  &:active,
-  &.active {
-    background-color: dxpr-color('accent1');
-    border-color: dxpr-color('accent1');
-    color: dxpr-color('accent1text');
+    a {
+      color: dxpr-color('accent1text');
+    }
   }
 
-  &:not(:disabled, .disabled):active,
-  &:not(:disabled, .disabled).active {
+  .btn-secondary:hover,
+  .btn-secondary:focus,
+  .btn-secondary.focus,
+  .btn-secondary:active,
+  .btn-secondary.active {
     background-color: dxpr-color('accent2');
     border-color: dxpr-color('accent2');
     color: dxpr-color('accent2text');
+
+    a {
+      color: dxpr-color('accent2text');
+    }
   }
-}
 
-// Additional outline button variants using theme colors
-.btn-outline-success {
-  background-color: transparent;
-  border-color: dxpr-color('accent1');
-  color: dxpr-color('accent1');
-
-  &:hover,
-  &:focus,
-  &.focus,
-  &:active,
-  &.active {
-    background-color: dxpr-color('accent1');
-    border-color: dxpr-color('accent1');
-    color: dxpr-color('accent1text');
-  }
-}
-
-.btn-outline-info {
-  background-color: transparent;
-  border-color: dxpr-color('accent2');
-  color: dxpr-color('accent2');
-
-  &:hover,
-  &:focus,
-  &.focus,
-  &:active,
-  &.active {
-    background-color: dxpr-color('accent2');
-    border-color: dxpr-color('accent2');
-    color: dxpr-color('accent2text');
-  }
-}
-
-.btn-outline-dark {
-  background-color: transparent;
-  border-color: dxpr-color('headings');
-  color: dxpr-color('headings');
-
-  &:hover,
-  &:focus,
-  &.focus,
-  &:active,
-  &.active {
-    background-color: dxpr-color('headings');
-    border-color: dxpr-color('headings');
-    color: dxpr-color('body');
-  }
-}
-
-.btn-outline-light {
-  background-color: transparent;
-  border-color: dxpr-color('graylight');
-  color: dxpr-color('graylight');
-
-  &:hover,
-  &:focus,
-  &.focus,
-  &:active,
-  &.active {
-    background-color: dxpr-color('graylight');
-    border-color: dxpr-color('graylight');
-    color: dxpr-color('text');
-  }
-}
-
-// Override Bootstrap background classes to use proper text colors
-.bg-primary {
-  color: dxpr-color('basetext') !important;
-  
-  *, h1, h2, h3, h4, h5, h6, p, span, div, a {
-    color: dxpr-color('basetext');
-  }
-}
-
-.bg-secondary {
-  background-color: dxpr-color('accent1') !important;
-  color: dxpr-color('accent1text') !important;
-  
-  *, h1, h2, h3, h4, h5, h6, p, span, div, a {
-    color: dxpr-color('accent1text');
-  }
-}
-
-// Bootstrap 5.3 Subtle Background Variants
-.bg-primary-subtle {
-  background-color: dxpr-color('basesubtle') !important;
-  color: dxpr-color('basesubtletext') !important;
-  
-  *, h1, h2, h3, h4, h5, h6, p, span, div, a {
-    color: dxpr-color('basesubtletext');
-  }
-}
-
-.bg-secondary-subtle {
-  background-color: dxpr-color('accent1subtle') !important;
-  color: dxpr-color('accent1subtletext') !important;
-  
-  *, h1, h2, h3, h4, h5, h6, p, span, div, a {
-    color: dxpr-color('accent1subtletext');
-  }
-}
-
-.bg-dark-subtle {
-  background-color: dxpr-color('headingssubtle') !important;
-  color: dxpr-color('headingssubtletext') !important;
-  
-  *, h1, h2, h3, h4, h5, h6, p, span, div, a {
-    color: dxpr-color('headingssubtletext');
-  }
-}
-
-.bg-info-subtle {
-  background-color: dxpr-color('accent2subtle') !important;
-  color: dxpr-color('accent2subtletext') !important;
-  
-  *, h1, h2, h3, h4, h5, h6, p, span, div, a {
-    color: dxpr-color('accent2subtletext');
-  }
-}
-
-.bg-success-subtle {
-  background-color: dxpr-color('accent1subtle') !important;
-  color: dxpr-color('accent1subtletext') !important;
-  
-  *, h1, h2, h3, h4, h5, h6, p, span, div, a {
-    color: dxpr-color('accent1subtletext');
-  }
-}
-
-
-.text-white {
-  h1, h2, h3, h4, h5, h6, th {
-    color: #fff;
-  }
-}
-
-.text-primary {
-  h1, h2, h3, h4, h5, h6, th {
+  a.text-primary:hover,
+  a.text-primary:focus {
     color: dxpr-color('accent1');
   }
-}
 
-.text-secondary {
-  h1, h2, h3, h4, h5, h6, th {
+  // Bootstrap 5 Outline Button Styles
+  .btn-outline-primary {
+    background-color: transparent;
+    border-color: dxpr-color('base');
+    color: dxpr-color('base');
+
+    &:hover,
+    &:focus,
+    &.focus,
+    &:active,
+    &.active {
+      background-color: dxpr-color('base');
+      border-color: dxpr-color('base');
+      color: dxpr-color('basetext');
+    }
+
+    &:not(:disabled, .disabled):active,
+    &:not(:disabled, .disabled).active {
+      background-color: dxpr-color('accent1');
+      border-color: dxpr-color('accent1');
+      color: dxpr-color('accent1text');
+    }
+  }
+
+  .btn-outline-secondary {
+    background-color: transparent;
+    border-color: dxpr-color('accent1');
+    color: dxpr-color('accent1');
+
+    &:hover,
+    &:focus,
+    &.focus,
+    &:active,
+    &.active {
+      background-color: dxpr-color('accent1');
+      border-color: dxpr-color('accent1');
+      color: dxpr-color('accent1text');
+    }
+
+    &:not(:disabled, .disabled):active,
+    &:not(:disabled, .disabled).active {
+      background-color: dxpr-color('accent2');
+      border-color: dxpr-color('accent2');
+      color: dxpr-color('accent2text');
+    }
+  }
+
+  // Additional outline button variants using theme colors
+  .btn-outline-success {
+    background-color: transparent;
+    border-color: dxpr-color('accent1');
+    color: dxpr-color('accent1');
+
+    &:hover,
+    &:focus,
+    &.focus,
+    &:active,
+    &.active {
+      background-color: dxpr-color('accent1');
+      border-color: dxpr-color('accent1');
+      color: dxpr-color('accent1text');
+    }
+  }
+
+  .btn-outline-info {
+    background-color: transparent;
+    border-color: dxpr-color('accent2');
     color: dxpr-color('accent2');
-  }
-}
 
-.wrap-containers .nav {
-  > li {
-    > a.is-active {
-      background-color: #eee;
-      color: dxpr-color('base');
-      text-decoration: none;
+    &:hover,
+    &:focus,
+    &.focus,
+    &:active,
+    &.active {
+      background-color: dxpr-color('accent2');
+      border-color: dxpr-color('accent2');
+      color: dxpr-color('accent2text');
     }
   }
-}
 
-.region-sidebar-first .nav,
-.region-sidebar-second .nav {
-  float: none;
+  .btn-outline-dark {
+    background-color: transparent;
+    border-color: dxpr-color('headings');
+    color: dxpr-color('headings');
 
-  > li {
-    display: block;
-    float: none;
-
-    > a.is-active {
-      display: block;
+    &:hover,
+    &:focus,
+    &.focus,
+    &:active,
+    &.active {
+      background-color: dxpr-color('headings');
+      border-color: dxpr-color('headings');
+      color: dxpr-color('body');
     }
   }
-}
 
-.block .nav > li > a .glyphicon {
-  display: inline-block;
-  font-size: $font-size-small;
-  margin-left: -13px;
-  padding-right: 4px;
-}
+  .btn-outline-light {
+    background-color: transparent;
+    border-color: dxpr-color('graylight');
+    color: dxpr-color('graylight');
 
-.card, .jumbotron {
-  background-color: dxpr-color('card');
-  color: dxpr-color('cardtext');
-
-  a {
-    color: dxpr-color('cardtext');
+    &:hover,
+    &:focus,
+    &.focus,
+    &:active,
+    &.active {
+      background-color: dxpr-color('graylight');
+      border-color: dxpr-color('graylight');
+      color: dxpr-color('text');
+    }
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    color: dxpr-color('cardtext');
+  // Override Bootstrap background classes to use proper text colors
+  .bg-primary {
+    background-color: dxpr-color('base') !important;
+    color: dxpr-color('basetext') !important;
+
+    h1, h2, h3, h4, h5, h6 {
+      color: dxpr-color('basetext');
+    }
   }
 
-  .nav > li > a {
-    .glyphicon {
+  .bg-secondary {
+    background-color: dxpr-color('accent1') !important;
+    color: dxpr-color('accent1text');
+
+    h1, h2, h3, h4, h5, h6 {
+      color: dxpr-color('accent1text');
+    }
+  }
+
+  // Bootstrap 5.3 Subtle Background Variants
+  .bg-primary-subtle {
+    background-color: dxpr-color('basesubtle') !important;
+    color: dxpr-color('basesubtletext');
+
+    h1, h2, h3, h4, h5, h6 {
+      color: dxpr-color('basesubtletext');
+    }
+  }
+
+  .bg-secondary-subtle {
+    background-color: dxpr-color('accent1subtle') !important;
+    color: dxpr-color('accent1subtletext');
+
+    h1, h2, h3, h4, h5, h6 {
+      color: dxpr-color('accent1subtletext');
+    }
+  }
+
+  .bg-dark-subtle {
+    background-color: dxpr-color('headingssubtle') !important;
+    color: dxpr-color('headingssubtletext');
+
+    h1, h2, h3, h4, h5, h6 {
+      color: dxpr-color('headingssubtletext');
+    }
+  }
+
+  .text-white {
+    h1, h2, h3, h4, h5, h6, th {
+      color: #fff;
+    }
+  }
+
+  .text-primary {
+    h1, h2, h3, h4, h5, h6, th {
       color: dxpr-color('accent1');
     }
   }
 
-  .nav > li > a:hover,
-  .nav > li > a:focus,
-  .nav > li > a.is-active {
-    background: dxpr-color('base');
-    color: dxpr-color('silver');
-
-    .glyphicon {
-      color: dxpr-color('silver');
+  .text-secondary {
+    h1, h2, h3, h4, h5, h6, th {
+      color: dxpr-color('accent2');
     }
   }
-}
 
-.list-inline {
-  margin: 0;
-  padding: 0;
-
-  > li {
-    padding-left: 0;
+  .wrap-containers .nav {
+    > li {
+      > a.is-active {
+        background-color: #eee;
+        color: dxpr-color('base');
+        text-decoration: none;
+      }
+    }
   }
 
-  a {
+  .region-sidebar-first .nav,
+  .region-sidebar-second .nav {
+    float: none;
+
+    > li {
+      display: block;
+      float: none;
+
+      > a.is-active {
+        display: block;
+      }
+    }
+  }
+
+  .block .nav > li > a .glyphicon {
+    display: inline-block;
+    font-size: $font-size-small;
+    margin-left: -13px;
+    padding-right: 4px;
+  }
+
+  .card, .jumbotron {
+    background-color: dxpr-color('card');
+    color: dxpr-color('cardtext');
+
+    a {
+      color: dxpr-color('cardtext');
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      color: dxpr-color('cardtext');
+    }
+
+    .nav > li > a {
+      .glyphicon {
+        color: dxpr-color('accent1');
+      }
+    }
+
+    .nav > li > a:hover,
+    .nav > li > a:focus,
+    .nav > li > a.is-active {
+      background: dxpr-color('base');
+      color: dxpr-color('silver');
+
+      .glyphicon {
+        color: dxpr-color('silver');
+      }
+    }
+  }
+
+  .list-inline {
+    margin: 0;
+    padding: 0;
+
+    > li {
+      padding-left: 0;
+    }
+
+    a {
+      color: inherit;
+    }
+  }
+
+  .field.list-inline {
+    div {
+      display: inline-block;
+    }
+
+    .field--item::after {
+      content: ', ';
+    }
+
+    .field--item:last-child::after {
+      content: '';
+    }
+  }
+
+  blockquote {
+    border-color: dxpr-color('silver');
+  }
+
+  blockquote footer, blockquote small, blockquote .small {
     color: inherit;
   }
-}
 
-.field.list-inline {
-  div {
-    display: inline-block;
+  .img-circle, .img-rounded, .img-thumbnail {
+    border: 3px solid dxpr-color('graylighter');
   }
 
-  .field--item::after {
-    content: ', ';
+  .center-block {
+    float: none;
   }
 
-  .field--item:last-child::after {
-    content: '';
-  }
-}
+  // Tabs
+  // -------------------------
 
-blockquote {
-  border-color: dxpr-color('silver');
-}
-
-blockquote footer, blockquote small, blockquote .small {
-  color: inherit;
-}
-
-.img-circle, .img-rounded, .img-thumbnail {
-  border: 3px solid dxpr-color('graylighter');
-}
-
-.center-block {
-  float: none;
-}
-
-// Tabs
-// -------------------------
-
-// Style Tabs as card as override jQuery ui tabs styling
-.html .nav-tabs {
-  border: none;
-  border-bottom: 1px solid dxpr-color('graylighter');
-  border-radius: 0;
-  margin: 0;
-  padding: 0;
-
-  > li {
+  // Style Tabs as card as override jQuery ui tabs styling
+  .html .nav-tabs {
     border: none;
+    border-bottom: 1px solid dxpr-color('graylighter');
     border-radius: 0;
     margin: 0;
     padding: 0;
 
-    > a {
-      background-color: transparent;
-      border: 1px solid transparent;
-      border-radius: 0;
-      margin: 0;
-      padding: 10px 15px;
-
-      &:hover {
-        color: dxpr-color('graylighter');
-      }
-
-      &.active {
-        background-color: transparent;
-        border: 1px solid dxpr-color('graylighter');
-        border-bottom-color: dxpr-color('body');
-        color: dxpr-color('base');
-        cursor: pointer;
-
-        &:hover,
-        &:focus {
-          color: dxpr-color('base');
-          cursor: default;
-          outline: none;
-        }
-      }
-    }
-  }
-}
-
-.az-tabs .nav-tabs > li > a.active[role="tab"] {
-  background-color: #fff;
-}
-
-.region-content nav.tabs::after {
-  clear:both;
-  content:" ";
-  display:table;
-}
-
-.html .dxpr-theme-mini-tabs-wrapper {
-  display: block;
-  float: left;
-  margin-bottom: 10px;
-  pointer-events: none;
-
-  .tabs--primary {
-    border: none;
-    box-shadow: 0 3px 10px 0 rgb(50 50 50 / 23%);
-
-    li {
+    > li {
       border: none;
+      border-radius: 0;
       margin: 0;
       padding: 0;
 
-      a {
-        background-color: dxpr-color('header');
-        border: none;
-        color: dxpr-color('headertext');
-        font-size: 12px;
-        line-height: 1.4286;
+      > a {
+        background-color: transparent;
+        border: 1px solid transparent;
+        border-radius: 0;
         margin: 0;
-        padding: 8px;
-        pointer-events: auto;
-        text-transform: uppercase;
+        padding: 10px 15px;
 
-        &:hover,
-        &:focus {
-          text-decoration: underline;
+        &:hover {
+          color: dxpr-color('graylighter');
         }
-      }
 
-      &.active {
-        bottom: auto;
-
-        a {
-          border: none;
+        &.active {
+          background-color: transparent;
+          border: 1px solid dxpr-color('graylighter');
+          border-bottom-color: dxpr-color('body');
           color: dxpr-color('base');
+          cursor: pointer;
+
+          &:hover,
+          &:focus {
+            color: dxpr-color('base');
+            cursor: default;
+            outline: none;
+          }
         }
       }
     }
   }
+
+  .az-tabs .nav-tabs > li > a.active[role="tab"] {
+    background-color: #fff;
+  }
+
+  .region-content nav.tabs::after {
+    clear:both;
+    content:" ";
+    display:table;
+  }
+
+  .html .dxpr-theme-mini-tabs-wrapper {
+    display: block;
+    float: left;
+    margin-bottom: 10px;
+    pointer-events: none;
+
+    .tabs--primary {
+      border: none;
+      box-shadow: 0 3px 10px 0 rgb(50 50 50 / 23%);
+
+      li {
+        border: none;
+        margin: 0;
+        padding: 0;
+
+        a {
+          background-color: dxpr-color('header');
+          border: none;
+          color: dxpr-color('headertext');
+          font-size: 12px;
+          line-height: 1.4286;
+          margin: 0;
+          padding: 8px;
+          pointer-events: auto;
+          text-transform: uppercase;
+
+          &:hover,
+          &:focus {
+            text-decoration: underline;
+          }
+        }
+
+        &.active {
+          bottom: auto;
+
+          a {
+            border: none;
+            color: dxpr-color('base');
+          }
+        }
+      }
+    }
+  }
+
+  // Tabbable tabs
+  // -------------------------
+
+  // Hide tabbable panes to start, show them when `.active`
+  .tab-content {
+    > .tab-pane {
+      display: none;
+    }
+
+    > .active {
+      display: block;
+    }
+  }
+
+  .tabs-left>.tab-content, .tabs-right>.tab-content {
+    padding: 20px;
+  }
+
+  // Progress Bar
+  // -------------------------
+
+  .progress {
+    border-radius: 0;
+    box-shadow: none;
+    height: 3px;
+    margin-top: 2px;
+    overflow: visible;
+  }
+
+  .progress-bar {
+    background-color: dxpr-color('base');
+    box-shadow: none;
+    line-height: 4px;
+  }
+
+  // Utilities
+  // -------------------------
+
+  .bg-light {
+    background-color: dxpr-color('graylight');
+  }
+
+  .bg-body {
+    background-color: dxpr-color('body');
+  }
+
 }
 
 .body--primary-tabs-float .region-content nav.tabs::after {
@@ -571,50 +609,4 @@ blockquote footer, blockquote small, blockquote .small {
   clear: both;
   float: left;
   margin-bottom: 10px;
-}
-
-// Tabbable tabs
-// -------------------------
-
-// Hide tabbable panes to start, show them when `.active`
-.tab-content {
-  > .tab-pane {
-    display: none;
-  }
-
-  > .active {
-    display: block;
-  }
-}
-
-.tabs-left>.tab-content, .tabs-right>.tab-content {
-  padding: 20px;
-}
-
-// Progress Bar
-// -------------------------
-
-.progress {
-  border-radius: 0;
-  box-shadow: none;
-  height: 3px;
-  margin-top: 2px;
-  overflow: visible;
-}
-
-.progress-bar {
-  background-color: dxpr-color('base');
-  box-shadow: none;
-  line-height: 4px;
-}
-
-// Utilities
-// -------------------------
-
-.bg-light {
-  background-color: dxpr-color('graylight') !important;
-}
-
-.bg-body {
-  background-color: dxpr-color('body') !important;
 }
