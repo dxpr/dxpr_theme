@@ -504,13 +504,16 @@ function header_theme_settings(array &$form, $theme) {
     ],
   ];
 
-  // Would like to use FAPI states here but doesn't work:
-  // https://www.drupal.org/node/2751693
   $form['dxpr_theme_settings']['header']['menu']['menu_border'] = [
     '#title' => t('Customize Menu Border'),
     '#type' => 'details',
     '#collapsible' => TRUE,
     '#collapsed' => TRUE,
+    '#states' => [
+      'visible' => [
+        ':input[name="menu_hover"]' => ['value' => 'border'],
+      ],
+    ],
   ];
 
   $form['dxpr_theme_settings']['header']['menu']['menu_border']['menu_border_position'] = [
