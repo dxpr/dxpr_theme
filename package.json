@@ -5,7 +5,7 @@
   "types": "dxpr-param-types",
   "version": "0.2.0",
   "devDependencies": {
-    "@babel/core": "^7.26.0",
+    "@babel/core": "^7.28.4",
     "@babel/eslint-parser": "^7",
     "@babel/preset-env": "^7.26.0",
     "@lodder/grunt-postcss": "^3.1.1",
