@@ -34,13 +34,13 @@
 
 /* Caret button part of a split button */
 .bs-dropdown-wrapper .bs-dropdown-caret,
-.bs-dropdown-wrapper .bs-dropdown-caret:hover,
-.bs-dropdown-wrapper .bs-dropdown-caret:focus,
-.bs-dropdown-wrapper .bs-dropdown-caret:active,
 .dropdown-menu .bs-dropdown-caret,
-.dropdown-menu .bs-dropdown-caret:hover,
+.bs-dropdown-wrapper .bs-dropdown-caret:active,
+.bs-dropdown-wrapper .bs-dropdown-caret:focus,
+.bs-dropdown-wrapper .bs-dropdown-caret:hover,
+.dropdown-menu .bs-dropdown-caret:active,
 .dropdown-menu .bs-dropdown-caret:focus,
-.dropdown-menu .bs-dropdown-caret:active {
+.dropdown-menu .bs-dropdown-caret:hover {
     flex-shrink: 0;
     width: var(--bs-dropdown-caret-width);
     padding-left: var(--bs-dropdown-caret-padding-x);
