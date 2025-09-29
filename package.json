@@ -11,7 +11,7 @@
     "@lodder/grunt-postcss": "^3.1.1",
     "autoprefixer": "^10.4.20",
     "babel-eslint": "^10",
-    "babel-loader": "^9.2.1",
+    "babel-loader": "^10.0.0",
     "browserslist": "^4",
     "eslint": "^8.57.0",
     "eslint-config-airbnb": "^19",
