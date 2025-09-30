@@ -16,7 +16,7 @@
       height: var(--dxt-setting-header-top-height);
       position: relative;
 
-      > div, section, ul.menu {
+      > div, section, ul.nav {
         height: var(--dxt-setting-header-top-height);
       }
 
@@ -146,7 +146,7 @@
 
     &.dxpr-theme-header--logo-left-menu-left,
     &.dxpr-theme-header--logo-center-menu-left {
-      .menu,
+      .nav,
       .block,
       .navbar-nav {
         float: left;
@@ -154,7 +154,7 @@
     }
 
     &.dxpr-theme-header--logo-right-menu-left {
-      .menu,
+      .nav,
       .block,
       .navbar-nav {
         float: left;
@@ -217,7 +217,6 @@
     .block,
     .navbar-nav {
       float: right;
-      position:static;
     }
 
     .dropdown {
@@ -364,13 +363,13 @@ html.js .gin--vertical-toolbar .dxpr-theme-header--fixed {
     background-color: var(--dxt-setting-header-block-background);
   }
 
-  .block,
-  .block a,
+  .block:not(.contextual-region),
+  .block:not(.contextual-region) a,
   .block .btn-link {
     color: var(--dxt-setting-header-block-text-color);
   }
 
-  .menu {
+  .nav {
     background-color: var(--dxt-setting-menu-background);
 
     a.dropdown-item {
@@ -382,9 +381,9 @@ html.js .gin--vertical-toolbar .dxpr-theme-header--fixed {
     }
   }
 
-  .menu,
-  .menu a,
-  .menu span {
+  .nav,
+  .nav a,
+  .nav span {
     color: var(--dxt-setting-menu-text-color);
   }
 

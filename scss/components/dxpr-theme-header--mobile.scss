@@ -44,6 +44,7 @@ html.html--dxpr-theme-nav-mobile--open {
       .navbar-header {
         display: flex;
         flex-wrap: nowrap;
+        height: 100%;
 
         .region-navigation {
           flex-grow: 1;
@@ -118,7 +119,7 @@ html.html--dxpr-theme-nav-mobile--open {
       border: 0 none;
       cursor: pointer;
       float: right;
-      margin: 15px 0;
+      margin: 3px 0 0;
       outline: none;
       padding: 10px 32px 16px 0;
       position: relative;

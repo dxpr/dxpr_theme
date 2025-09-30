@@ -56,7 +56,8 @@ pre, code, table {
   }
 }
 
-body.user-logged-in {
+/* Applies to non-gin admin. */
+body.user-logged-in:not([data-gin-accent]) {
   &.toolbar-horizontal,
   &.toolbar-vertical,
   &.toolbar-fixed {
