@@ -24,7 +24,7 @@ module.exports = {
             presets: [
               [
                 '@babel/preset-env',
-                { targets: { ie: '11' }, modules: 'commonjs' }
+                { modules: 'commonjs' }
               ]
             ],
             plugins: [
@@ -43,7 +43,7 @@ module.exports = {
             presets: [
               [
                 '@babel/preset-env',
-                { targets: { ie: '11' }, modules: false }
+                { modules: false }
               ]
             ],
             plugins: [
