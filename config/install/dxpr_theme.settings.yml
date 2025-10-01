@@ -137,9 +137,6 @@ dropdown_hover_background: ''
 dropdown_hover_background_custom: ''
 dropdown_hover_text_color: ''
 dropdown_hover_text_color_custom: ''
-header_side_align: left
-header_side_direction: left
-header_side_width: '300'
 hamburger_menu: 'three-dash'
 hamburger_animation: 'cross'
 menu_type: uppercase
