@@ -288,8 +288,12 @@ function dxpr_theme_preprocess_menu_local_tasks(&$variables) {
     $show_local_tasks = $config->get('show_local_tasks');
 
     if ($show_local_tasks === TRUE) {
-      // Hide tabs when admin_toolbar_tools is showing local tasks.
-      $variables['hide_tabs'] = TRUE;
+      // Only hide tabs for users who have permission to access the toolbar.
+      $current_user = \Drupal::currentUser();
+      if ($current_user->hasPermission('access toolbar')) {
+        // Hide tabs when admin_toolbar_tools is showing local tasks.
+        $variables['hide_tabs'] = TRUE;
+      }
     }
   }
 }
