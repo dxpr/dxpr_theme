@@ -43,10 +43,14 @@
           ? (item.url.toString() == '#' ? '#' : item.url)
           : null %}
 
+        {# Determine split vs full toggle based ONLY on href value #}
+        {% set item_url_string = item_link_tag == 'a' ? (item.url.toString() | trim) : '' %}
+        {% set has_navigable_href = item_url_string != '#' and item_url_string != '' %}
+
         {% if menu_level == 0 %}
           {# Top-level items #}
           {% if item.below %}
-            {% if menu_type == 'split' %}
+            {% if has_navigable_href %}
               {# Split Dropdown #}
               {% set item_classes = ['nav-item', 'dropdown', item.in_active_trail ? 'active'] %}
               <li{{ item.attributes.addClass(item_classes) }} role="none">
@@ -115,7 +119,7 @@
           {% if item.below %}
             {% set item_classes = ['bs-dropdown-submenu', item.in_active_trail ? 'active'] %}
 
-            {% if menu_type == 'split' %}
+            {% if has_navigable_href %}
               {# Nested Split Submenu Item #}
               <li{{ item.attributes.addClass(item_classes) }} role="none">
                 <div class="bs-dropdown-item-wrapper">
