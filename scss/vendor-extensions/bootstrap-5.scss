@@ -291,29 +291,29 @@ html body {
 
   // Bootstrap 5.3 Subtle Background Variants
   .bg-primary-subtle {
-    background-color: dxpr-color('basesubtle') !important;
-    color: dxpr-color('basesubtletext');
+    background-color: var(--dxt-color-basesubtle) !important;
+    color: var(--dxt-color-basesubtletext);
 
     h1, h2, h3, h4, h5, h6 {
-      color: dxpr-color('basesubtletext');
+      color: var(--dxt-color-basesubtletext);
     }
   }
 
   .bg-secondary-subtle {
-    background-color: dxpr-color('accent1subtle') !important;
-    color: dxpr-color('accent1subtletext');
+    background-color: var(--dxt-color-accent1subtle) !important;
+    color: var(--dxt-color-accent1subtletext);
 
     h1, h2, h3, h4, h5, h6 {
-      color: dxpr-color('accent1subtletext');
+      color: var(--dxt-color-accent1subtletext);
     }
   }
 
   .bg-dark-subtle {
-    background-color: dxpr-color('headingssubtle') !important;
-    color: dxpr-color('headingssubtletext');
+    background-color: var(--dxt-color-headingssubtle) !important;
+    color: var(--dxt-color-headingssubtletext);
 
     h1, h2, h3, h4, h5, h6 {
-      color: dxpr-color('headingssubtletext');
+      color: var(--dxt-color-headingssubtletext);
     }
   }
 
