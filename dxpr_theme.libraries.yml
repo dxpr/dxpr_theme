@@ -3,6 +3,7 @@ global-styling:
     js/minified/dxpr-theme-header.bundle.min.js: { minified: true }
   dependencies:
     - core/drupal
+    - core/drupalSettings
     - core/once
 
 bootstrap-5:
