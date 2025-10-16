@@ -369,13 +369,6 @@ html.js .gin--vertical-toolbar .dxpr-theme-header--fixed {
 
   .nav {
     background-color: var(--dxt-setting-menu-background);
-
-    a.dropdown-item {
-      &:hover,
-      &:focus {
-        background-color: var(--dxt-setting-menu-hover-background);
-      }
-    }
   }
 
   .nav,
@@ -386,14 +379,6 @@ html.js .gin--vertical-toolbar .dxpr-theme-header--fixed {
 
   .dropdown-menu {
     background-color: var(--dxt-setting-dropdown-background);
-
-    a,
-    button {
-      &:hover,
-      &:focus {
-        background-color: var(--dxt-setting-dropdown-hover-background);
-      }
-    }
   }
 
   .dropdown,
