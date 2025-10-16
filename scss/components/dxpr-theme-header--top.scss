@@ -220,6 +220,10 @@
       }
     }
 
+    #block-dxpr-theme-main-menu {
+      position: static; // needed for full width dropdown menus
+    }
+
     #block-dxpr-theme-main-menu .dropdown-menu {
       // @todo remove this when safari fixes their bug
       // transform CSS forces a redraw of the element and this fixes a safari-only
