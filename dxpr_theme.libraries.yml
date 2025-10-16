@@ -1,6 +1,5 @@
 global-styling:
   js:
-    js/minified/dxpr-theme-multilevel-mobile-nav.bundle.min.js: { minified: true }
     js/minified/dxpr-theme-header.bundle.min.js: { minified: true }
   dependencies:
     - core/drupal
@@ -66,11 +65,6 @@ dxpr-theme-header--top:
   css:
     theme:
       css/components/dxpr-theme-header--top.css: { minified: true }
-
-dxpr-theme-header--side:
-  css:
-    theme:
-      css/components/dxpr-theme-header--side.css: { minified: true }
 
 dxpr-theme-header--mobile:
   css:
@@ -193,3 +187,14 @@ custom_animations:
   css:
     theme:
       css/animations-dxpr.css: {}
+
+enhanced-dropdowns:
+  version: 1.x
+  js:
+    vendor/enhanced-dropdowns/dist/js/enhanced-dropdowns.min.js: { minified: true }
+    js/minified/enhanced-dropdowns.min.js: { minified: true }
+  css:
+    theme:
+      vendor/enhanced-dropdowns/dist/css/main.min.css: { minified: true }
+  dependencies:
+    - core/drupal

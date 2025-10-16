@@ -39,7 +39,6 @@ libraries:
 #  dxpr_theme/dxpr-theme-full-screen-search: false
 #  dxpr_theme/dxpr-theme-header: false
 #  dxpr_theme/dxpr-theme-header--top: false
-#  dxpr_theme/dxpr-theme-header--side: false
 #  dxpr_theme/dxpr-theme-header--mobile: false
 #  dxpr_theme/dxpr-theme-secondary-header: false
 #  dxpr_theme/dxpr-theme-admin: false
