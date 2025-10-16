@@ -131,6 +131,11 @@ function dxpr_theme_preprocess_html(&$variables) {
     $variables['#attached']['drupalSettings']['dxpr_themeSettings']['headerOffset'] = $header_scroll_offset;
   }
 
+  // Mobile header breakpoint.
+  if ($header_mobile_breakpoint = theme_get_setting('header_mobile_breakpoint')) {
+    $variables['#attached']['drupalSettings']['dxpr_themeSettings']['headerMobileBreakpoint'] = $header_mobile_breakpoint;
+  }
+
   // Fixed mobile header.
   if ($header_mobile_fixed = theme_get_setting('header_mobile_fixed')) {
     $variables['#attached']['drupalSettings']['dxpr_themeSettings']['headerMobileFixed'] = $header_mobile_fixed;
@@ -253,7 +258,7 @@ function dxpr_theme_preprocess_page(&$variables) {
     'dxpr_theme/typography',
     // DXPR THEME Components.
     // @todo Include only if needed.
-    'dxpr_theme/dxpr-theme-header--side',
+    'dxpr_theme/enhanced-dropdowns',
     'dxpr_theme/admin',
     // Overrides.
     // @todo Include only if needed.

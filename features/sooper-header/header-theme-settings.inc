@@ -21,22 +21,11 @@ function header_theme_settings(array &$form, $theme) {
     '#weight' => 10,
   ];
 
-  $form['dxpr_theme_settings']['header']['header_position'] = [
-    '#type' => 'checkbox',
-    '#title' => t('Side-Header'),
-    '#default_value' => ((theme_get_setting('header_position') !== NULL)) ? theme_get_setting('header_position') : 0,
-  ];
-
   $form['dxpr_theme_settings']['header']['header_top'] = [
-    '#title' => t('Top Header Options'),
+    '#title' => t('Header Options'),
     '#type' => 'details',
     '#collapsible' => TRUE,
     '#collapsed' => TRUE,
-    '#states' => [
-      'visible' => [
-        ':input[name="header_position"]' => ['checked' => FALSE],
-      ],
-    ],
   ];
 
   $form['dxpr_theme_settings']['header']['header_top']['header_top_layout'] = [
@@ -55,15 +44,21 @@ function header_theme_settings(array &$form, $theme) {
     ],
   ];
 
+  // Normalize header_style value - treat deprecated values as 'normal'.
+  $header_style = theme_get_setting('header_style');
+  $valid_header_styles = ['normal', 'overlay'];
+  if (!in_array($header_style, $valid_header_styles, TRUE)) {
+    $header_style = 'normal';
+  }
+
   $form['dxpr_theme_settings']['header']['header_top']['header_style'] = [
     '#type' => 'radios',
     '#title' => t('Header Style'),
     '#description' => t('Create transparent headers and free floating navbars. Overlays the header over the page title and content.'),
-    '#default_value' => ((theme_get_setting('header_style') !== NULL)) ? theme_get_setting('header_style') : 'normal',
+    '#default_value' => $header_style,
     '#options' => [
       'normal' => t('Normal'),
       'overlay' => t('Overlay'),
-      'navbar_pull_down' => t('Pull-down Navbar'),
     ],
   ];
 
@@ -437,61 +432,10 @@ function header_theme_settings(array &$form, $theme) {
   ];
 
   $form['dxpr_theme_settings']['header']['header_side'] = [
-    '#title' => t('Side Header & Mobile Menu Options'),
+    '#title' => t('Mobile Menu Options'),
     '#type' => 'details',
     '#collapsible' => TRUE,
     '#collapsed' => TRUE,
-  ];
-
-  $form['dxpr_theme_settings']['header']['header_side']['header_side_align'] = [
-    '#type' => 'radios',
-    '#title' => t('Align Content'),
-    '#description' => t('Different header aligns give a different view at your menu and logo.'),
-    '#default_value' => ((theme_get_setting('header_side_align') !== NULL)) ? theme_get_setting('header_side_align') : 'left',
-    '#options' => [
-      'left' => t('Left'),
-      'center' => t('Center'),
-      'right' => t('Right'),
-    ],
-  ];
-
-  $form['dxpr_theme_settings']['header']['header_side']['header_side_width'] = [
-    '#type' => 'range',
-    '#title' => t('Width'),
-    '#default_value' => ((theme_get_setting('header_side_width') !== NULL)) ? theme_get_setting('header_side_width') : 300,
-    '#min' => 50,
-    '#max' => 500,
-    '#step' => 5,
-    '#description' => t('Width of the side-header. Default is 300.'),
-    '#attributes' => [
-      'class' => ['dxb-slider', 'header-side-width-range'],
-      'data-dxb-slider' => TRUE,
-    ],
-  ];
-
-  $form['dxpr_theme_settings']['header']['header_side']['header_side_logo_height'] = [
-    '#type' => 'range',
-    '#title' => t('Logo Height'),
-    '#default_value' => theme_get_setting('header_side_logo_height') ?: 30,
-    '#min' => 10,
-    '#max' => 500,
-    '#step' => 1,
-    '#description' => t('Height of the logo in the side-header. Default is 30px.'),
-    '#attributes' => [
-      'class' => ['dxb-slider', 'header-side-logo-height-range'],
-      'data-dxb-slider' => TRUE,
-    ],
-  ];
-
-  $form['dxpr_theme_settings']['header']['header_side']['header_side_direction'] = [
-    '#type' => 'radios',
-    '#title' => t('Mobile menu open direction'),
-    '#default_value' => ((theme_get_setting('header_side_direction') !== NULL)) ? theme_get_setting('header_side_direction') : 'left',
-    '#description' => t('Open menu from the right'),
-    '#options' => [
-      'left' => t('Left to Right'),
-      'right' => t('Right to Left'),
-    ],
   ];
 
   $form['dxpr_theme_settings']['header']['header_side']['hamburger_menu'] = [
@@ -523,11 +467,8 @@ function header_theme_settings(array &$form, $theme) {
     '#collapsed' => TRUE,
   ];
 
-  $form['dxpr_theme_settings']['header']['menu']['mark_menu_with_children'] = [
-    '#type' => 'checkbox',
-    '#title' => t('Mark items with children'),
-    '#default_value' => ((theme_get_setting('mark_menu_with_children') !== NULL)) ? theme_get_setting('mark_menu_with_children') : FALSE,
-  ];
+  // Deprecated: This setting is no longer used. Menu items with children are
+  // always marked with visual indicators (carets) for accessibility.
 
   $form['dxpr_theme_settings']['header']['menu']['dropdown_width'] = [
     '#type' => 'range',
@@ -566,13 +507,16 @@ function header_theme_settings(array &$form, $theme) {
     ],
   ];
 
-  // Would like to use FAPI states here but doesn't work:
-  // https://www.drupal.org/node/2751693
   $form['dxpr_theme_settings']['header']['menu']['menu_border'] = [
     '#title' => t('Customize Menu Border'),
     '#type' => 'details',
     '#collapsible' => TRUE,
     '#collapsed' => TRUE,
+    '#states' => [
+      'visible' => [
+        ':input[name="menu_hover"]' => ['value' => 'border'],
+      ],
+    ],
   ];
 
   $form['dxpr_theme_settings']['header']['menu']['menu_border']['menu_border_position'] = [
@@ -605,11 +549,6 @@ function header_theme_settings(array &$form, $theme) {
     '#min' => 0,
     '#max' => 100,
     '#step' => 1,
-    '#states' => [
-      'visible' => [
-        ':input[name="header_position"]' => ['checked' => FALSE],
-      ],
-    ],
     '#attributes' => [
       'class' => ['dxb-slider', 'menu-border-position-offset-range'],
       'data-dxb-slider' => TRUE,
@@ -625,7 +564,6 @@ function header_theme_settings(array &$form, $theme) {
     '#step' => 1,
     '#states' => [
       'visible' => [
-        ':input[name="header_position"]' => ['checked' => FALSE],
         ':input[name="header_top_fixed"]' => ['checked' => TRUE],
         ':input[name="header_top_sticky"]' => ['checked' => TRUE],
       ],

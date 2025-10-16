@@ -1,0 +1,218 @@
+/**
+ * Bootstrap 5 Enhanced Dropdowns
+ * Adds support for split dropdown buttons and better accessibility
+ * Version 1.0.0
+ */
+
+:root {
+    --bs-dropdown-caret-width: 2.5rem; /* Width for caret togglers (~40px) */
+    --bs-dropdown-caret-padding-x: 0.625rem; /* 10px horizontal padding inside caret */
+    --bs-dropdown-indent-step: 1.25rem; /* Standard indentation step between menu levels */
+}
+
+/* Wrapper for split buttons */
+.bs-dropdown-wrapper,
+.bs-dropdown-item-wrapper {
+    display: flex;
+    align-items: stretch; /* Make children full height */
+    padding: 0; /* Reset padding, children will have it */
+    border-radius: var(--bs-border-radius, 0.375rem); /* Apply radius to wrapper */
+    overflow: hidden; /* Keep children's rounded corners neat */
+}
+
+/* Text part of a split button */
+.bs-dropdown-wrapper > .nav-link,
+.bs-dropdown-item-wrapper > .dropdown-item {
+    flex-grow: 1; /* Text takes available space */
+    border-radius: 0; /* Remove individual radius, wrapper has it */
+}
+
+.bs-dropdown-wrapper > .nav-link::after,
+.bs-dropdown-item-wrapper > .dropdown-item:not(.dropdown-toggle)::after {
+    display: none; /* Remove default caret from text part */
+}
+
+/* Caret button part of a split button */
+.bs-dropdown-wrapper .bs-dropdown-caret,
+.dropdown-menu .bs-dropdown-caret,
+.bs-dropdown-wrapper .bs-dropdown-caret:active,
+.bs-dropdown-wrapper .bs-dropdown-caret:focus,
+.bs-dropdown-wrapper .bs-dropdown-caret:hover,
+.dropdown-menu .bs-dropdown-caret:active,
+.dropdown-menu .bs-dropdown-caret:focus,
+.dropdown-menu .bs-dropdown-caret:hover {
+    flex-shrink: 0;
+    width: var(--bs-dropdown-caret-width);
+    padding-left: var(--bs-dropdown-caret-padding-x);
+    padding-right: var(--bs-dropdown-caret-padding-x);
+    border: none;
+    background-color: transparent;
+    color: inherit;
+    border-left: 1px solid var(--bs-border-color-translucent, rgb(0 0 0 / 10%));
+    border-radius: 0; /* Wrapper handles radius */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative; /* For caret positioning */
+    font-size: inherit;
+    line-height: inherit;
+}
+
+.bs-dropdown-caret::after {
+    display: inline-block;
+    margin-left: .255em;
+    vertical-align: .255em;
+    content: "";
+    border-top: .3em solid;
+    border-right: .3em solid transparent;
+    border-bottom: 0;
+    border-left: .3em solid transparent;
+    transition: transform 0.2s ease-in-out;
+}
+
+/* Focus visible for accessibility */
+.bs-dropdown-wrapper > .nav-link:focus-visible,
+.bs-dropdown-item-wrapper > .dropdown-item:focus-visible,
+.bs-dropdown-wrapper > .bs-dropdown-caret:focus-visible,
+.bs-dropdown-item-wrapper > .bs-dropdown-caret:focus-visible {
+    box-shadow: 0 0 0 var(--bs-focus-ring-width, 0.25rem) var(--bs-focus-ring-color);
+}
+
+.bs-dropdown-caret[aria-expanded="true"]::after {
+    transform: rotate(180deg);
+}
+
+/* Hover/Focus on individual parts of split button */
+.navbar-nav .bs-dropdown-wrapper > .nav-link:hover,
+.navbar-nav .bs-dropdown-wrapper > .nav-link:focus,
+.bs-dropdown-item-wrapper > .dropdown-item:hover,
+.bs-dropdown-item-wrapper > .dropdown-item:focus,
+.bs-dropdown-wrapper > .bs-dropdown-caret:hover,
+.bs-dropdown-wrapper > .bs-dropdown-caret:focus,
+.bs-dropdown-item-wrapper > .bs-dropdown-caret:hover,
+.bs-dropdown-item-wrapper > .bs-dropdown-caret:focus {
+    color: var(--bs-primary-text-emphasis);
+    background-color: var(--bs-primary-bg-subtle);
+    outline: none;
+}
+
+/* Dropdown Menu Base */
+.dropdown-menu {
+    max-height: calc(100vh - 100px); /* Limit dropdown height to prevent viewport overflow */
+    overflow-y: auto; /* Enable scrolling within long dropdowns */
+}
+
+/* Submenu (Level 2+) Styling */
+.bs-dropdown-submenu {
+    position: relative;
+}
+
+.bs-dropdown-submenu > .dropdown-menu {
+    display: none; /* Controlled by JS/Bootstrap for show/hide */
+    width: 100%; /* Occupy full width of parent list item */
+    position: static !important; /* Always in document flow for L2+ dropdowns */
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Visible submenu */
+.bs-dropdown-submenu.show > .dropdown-menu {
+    display: block;
+    position: absolute;
+}
+
+/* Indentation for menu levels */
+.navbar-nav .dropdown-menu .dropdown-item {
+    padding-top: .75rem;
+    padding-bottom: .75rem;
+}
+
+.bs-dropdown-submenu > .dropdown-menu .dropdown-item {
+    padding-left: calc(var(--bs-dropdown-item-padding-x, 1rem) + var(--bs-dropdown-indent-step));
+}
+
+/* Mobile Adjustments */
+@media (width <= 991.98px) {
+    .navbar-collapse {
+        max-height: calc(100vh - 70px);
+        overflow-y: auto;
+    }
+    
+    .dropdown-menu {
+        box-shadow: none;
+        border: none;
+    }
+    
+    .dropdown-item,
+    .bs-dropdown-item-wrapper {
+        border-bottom: none; /* Ensure no horizontal border */
+    }
+    
+    .dropdown-item:last-child,
+    .bs-dropdown-item-wrapper:last-child {
+        border-bottom: none; /* Ensure last item definitely has no border */
+    }
+    
+    /* Nested mobile carets rotation */
+    .bs-dropdown-submenu > .dropdown-toggle::after,
+    .bs-dropdown-submenu > .bs-dropdown-caret::after {
+        transform: rotate(-90deg); /* Point right when closed */
+    }
+    
+    .bs-dropdown-submenu > .dropdown-toggle[aria-expanded="true"]::after,
+    .bs-dropdown-submenu > .bs-dropdown-caret[aria-expanded="true"]::after {
+        transform: rotate(0deg); /* Point down when open */
+    }
+}
+
+// Desktop-only multi-column and full-width dropdown enhancements
+@media (width >= 992px) { // Bootstrap's lg breakpoint
+
+    .nav-item.dropdown.dropdown-full-width {
+        position: static !important;
+
+        > .dropdown-menu {
+            left: 0;
+            right: 0; 
+            width: auto; 
+            max-width: none; 
+            margin-top: 0; // Reset default Bootstrap dropdown offset if parent is static
+            // Add padding to match container gutters, assuming navbar itself is edge-to-edge
+            padding-left: var(--bs-gutter-x, 0.75rem);
+            padding-right: var(--bs-gutter-x, 0.75rem);
+        }
+    }
+
+    .dropdown-menu {
+        &.dropdown-menu-columns-2,
+        &.dropdown-menu-columns-3,
+        &.dropdown-menu-columns-4,
+        &.dropdown-menu-columns-5 {
+            column-gap: 0; // Items have their own padding, direct gap might be excessive
+        }
+
+        &.dropdown-menu-columns-2 { column-count: 2; }
+        &.dropdown-menu-columns-3 { column-count: 3; }
+        &.dropdown-menu-columns-4 { column-count: 4; }
+        &.dropdown-menu-columns-5 { column-count: 5; }
+
+        // Styles for items within multi-column dropdowns
+        &[class*="dropdown-menu-columns-"] {
+            > li { // Target the LI if items are wrapped in LIs
+                 break-inside: avoid-column;
+                 -webkit-column-break-inside: avoid; // Safari/Chrome
+                 page-break-inside: avoid; // Firefox
+                 display: block; 
+                 width: 100%;    
+
+                 > .dropdown-item { // Reset padding for the A tag inside the LI
+                    padding-left: var(--bs-dropdown-item-padding-x, 1rem) !important;
+                    padding-right: var(--bs-dropdown-item-padding-x, 1rem) !important;
+                 }
+            }
+        }
+    }
+} 

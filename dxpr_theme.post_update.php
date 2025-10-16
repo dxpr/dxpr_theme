@@ -83,3 +83,43 @@ function dxpr_theme_post_update_n2_settings_update() {
 
   return t('Theme settings CSS file has been updated.');
 }
+
+/**
+ * Remove obsolete settings and rebuild theme CSS.
+ */
+function dxpr_theme_post_update_n3_settings_update() {
+  /** @var \Drupal\Core\Extension\ThemeHandler $theme_handler */
+  $theme_handler = \Drupal::service('theme_handler');
+  $theme_list = $theme_handler->listInfo();
+
+  require_once $theme_handler
+    ->getTheme('dxpr_theme')
+    ->getPath() . '/dxpr_theme_callbacks.inc';
+
+  $obsolete_settings = [
+    'header_position',
+    'header_side_align',
+    'header_side_width',
+    'header_side_logo_height',
+    'header_side_direction',
+  ];
+
+  /** @var \Drupal\Core\Extension\Extension $theme */
+  foreach ($theme_list as $theme) {
+    $theme_name = $theme->getName();
+    if ('dxpr_theme' === ($theme->info['base theme'] ?? '') || 'dxpr_theme' === $theme_name) {
+      $config = \Drupal::configFactory()
+        ->getEditable($theme_name . '.settings');
+      foreach ($obsolete_settings as $key) {
+        $config->clear($key);
+      }
+      $config->save();
+
+      if (function_exists('dxpr_theme_css_cache_build')) {
+        dxpr_theme_css_cache_build($theme_name);
+      }
+    }
+  }
+
+  return t('Theme settings CSS file has been updated.');
+}

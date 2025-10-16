@@ -46,10 +46,6 @@ html.html--dxpr-theme-nav-mobile--open {
         flex-wrap: nowrap;
         height: 100%;
 
-        * {
-          height: 100%;
-        }
-
         .region-navigation {
           flex-grow: 1;
         }
@@ -62,12 +58,47 @@ html.html--dxpr-theme-nav-mobile--open {
       }
     }
 
-    .navbar-toggle {
-      height: var(--dxt-setting-header-mobile-height);
+    .dxpr-theme-main-menu {
+      background: var(--dxt-setting-dropdown-background);
+      box-shadow: 0 5px 5px rgb(0 0 0 / 2%);
+      left: 0;
+      padding-left: calc(var(--dxt-setting-gutter-vertical-mobile, 0) / 2);
+      padding-right: calc(var(--dxt-setting-gutter-vertical-mobile, 0) / 2);
+      position: absolute;
+      width: 100%;
+      z-index: 100;
+
+      .nav-link {
+        font-size: var(--dxt-setting-nav-mobile-font-size);
+      }
+
+      ul, li {
+        width: 100%;
+      }
+
+      ul.navbar-nav {
+        width: 100%;
+      }
+
+      ul.dropdown-menu {
+        position: static;
+
+        .dropdown-item,
+        .bs-dropdown-item-wrapper > .dropdown-item {
+          background-color: var(--dxt-setting-dropdown-background) !important;
+          font-size: var(--dxt-setting-nav-mobile-font-size);
+
+          --bs-dropdown-indent-step: calc(var(--dxt-setting-nav-font-size) / 2);
+
+          &:hover, &:focus {
+            background-color: var(--dxt-setting-dropdown-hover-background) !important;
+          }
+        }
+      }
     }
 
-    .block {
-      padding: 20px;
+    .navbar-toggle {
+      height: var(--dxt-setting-header-mobile-height);
     }
 
     .block-dxpr-theme-helper {
@@ -79,10 +110,16 @@ html.html--dxpr-theme-nav-mobile--open {
         float: none !important;
     }
 
+    .wrap-toggle {
+      align-content: center;
+      flex: 1 1 auto;
+    }
+
     #dxpr-theme-menu-toggle {
+      border: 0 none;
       cursor: pointer;
       float: right;
-      margin: 15px 0;
+      margin: 3px 0 0;
       outline: none;
       padding: 10px 32px 16px 0;
       position: relative;
@@ -189,6 +226,7 @@ html.html--dxpr-theme-nav-mobile--open {
 
     .nav {
       float: none!important;
+      margin-bottom: 7.5px;
       margin-top: 7.5px;
     }
 
@@ -211,30 +249,11 @@ html.html--dxpr-theme-nav-mobile--open {
     left: 0;
     position: fixed;
     right: 0;
-    top: 0;
-
-    &.header-mobile-admin-fixed {
-      top: 39px;
-    }
-
-    &.header-mobile-admin-fixed-active {
-      top: 78px;
-    }
   }
 
   // Add spacing only when site name is present to avoid gaps when it's disabled
   .wrap-branding:has(.name.navbar-brand) {
    padding-bottom: 50px;
-  }
-}
-
-// Fix for FOUC on mobile menu.
-@media all and (width <= 1200px) {
-  #dxpr-theme-main-menu {
-    height: 100%;
-    position: fixed;
-    top: 0;
-    width: 300px;
   }
 }
 
@@ -248,7 +267,7 @@ html.html--dxpr-theme-nav-mobile--open {
   #dxpr-theme-main-menu,
   #dxpr-theme-main-menu .menu__breadcrumbs,
   #dxpr-theme-main-menu .menu__level {
-    text-align: var(--dxt-setting-header-side-align);
+    text-align: left;
     width: 100% !important;
   }
 }
