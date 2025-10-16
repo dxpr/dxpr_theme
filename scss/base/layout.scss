@@ -213,6 +213,11 @@ body.full-width-content {
   }
 }
 
+// Card view mode - ensure images have no border radius
+body .card.node--view-mode-card img {
+  border-radius: 0 !important;
+}
+
 .teaser {
   margin-bottom: 30px;
 }
