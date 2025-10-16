@@ -7,8 +7,6 @@
 }
 
 .body--dxpr-theme-nav-desktop {
-  // extra z-indexing for pull-down header that needs to cover slider
-  // this should not be active in mobile mode due to owl carousel layout bugs
   .navbar-container > .row > .col-sm-12 {
     position: relative;
     z-index: 405;

@@ -80,21 +80,12 @@ function header_theme_settings_css(string $theme, string &$css, array $palette) 
     $css .= "}\n\n";
   }
 
-  if (theme_get_setting('header_style', $theme) == 'navbar_pull_down') {
-    $css .= ".body--dxpr-theme-nav-desktop.body--dxpr-theme-header-not-overlay .dxpr-theme-header--top .col-sm-12 {\n";
-    $css .= "  margin-bottom: calc(-1 * $header_top_height_var / 2);\n";
-    $css .= "}\n\n";
-  }
-
   // Sticky footer settings.
   if (theme_get_setting('sticky_footer', $theme)) {
     $header_top_height = $header_top_height_var;
 
     if (theme_get_setting('header_top_layout', $theme) == 'centered') {
       $header_top_height = "calc($header_top_height_var * 2)";
-    }
-    if (theme_get_setting('header_style', $theme) == 'navbar_pull_down') {
-      $header_top_height = "calc($header_top_height_var / 2)";
     }
 
     $css .= ".html--dxpr-theme-sticky-footer .body--dxpr-theme-nav-desktop .dxpr-theme-header--top {\n";

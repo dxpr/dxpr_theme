@@ -44,15 +44,21 @@ function header_theme_settings(array &$form, $theme) {
     ],
   ];
 
+  // Normalize header_style value - treat deprecated values as 'normal'.
+  $header_style = theme_get_setting('header_style');
+  $valid_header_styles = ['normal', 'overlay'];
+  if (!in_array($header_style, $valid_header_styles, TRUE)) {
+    $header_style = 'normal';
+  }
+
   $form['dxpr_theme_settings']['header']['header_top']['header_style'] = [
     '#type' => 'radios',
     '#title' => t('Header Style'),
     '#description' => t('Create transparent headers and free floating navbars. Overlays the header over the page title and content.'),
-    '#default_value' => ((theme_get_setting('header_style') !== NULL)) ? theme_get_setting('header_style') : 'normal',
+    '#default_value' => $header_style,
     '#options' => [
       'normal' => t('Normal'),
       'overlay' => t('Overlay'),
-      'navbar_pull_down' => t('Pull-down Navbar'),
     ],
   ];
 
