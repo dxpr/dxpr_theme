@@ -1,0 +1,66 @@
+{
+  "name": "reinvented-color-wheel",
+  "version": "0.4.0",
+  "description": "A vanilla-js touch-friendly HSV color picker inspired by Farbtastic Color Picker.",
+  "repository": "luncheon/reinvented-color-wheel",
+  "main": "cjs/reinvented-color-wheel.js",
+  "module": "es/reinvented-color-wheel.js",
+  "types": "es/reinvented-color-wheel.d.ts",
+  "jsdelivr": "iife/reinvented-color-wheel.min.js",
+  "unpkg": "iife/reinvented-color-wheel.min.js",
+  "files": [
+    "css/",
+    "es/",
+    "cjs/",
+    "iife/",
+    "react/index.d.ts",
+    "react/index.js",
+    "webcomponents/index.d.ts",
+    "webcomponents/index.js"
+  ],
+  "scripts": {
+    "clean": "rimraf css/*.min.css es/ cjs/ iife/ react/index.d.ts react/index.js react/sample.js webcomponents/index.js webcomponents/sample.js",
+    "build": "npm run clean && npm run build:css:min && npm run build:es && npm run build:react && npm run build:wc && npm run build:bundle && npm run copy",
+    "build:css:min": "cleancss css/reinvented-color-wheel.css -o css/reinvented-color-wheel.min.css",
+    "build:es": "tsc -p . --outDir es/",
+    "build:react": "tsc -p react && esbuild --bundle --tsconfig=react/tsconfig.json --define:process.env.NODE_ENV=\\'development\\' --outfile=react/sample.js react/sample.tsx",
+    "build:wc": "node webcomponents/build.js",
+    "build:bundle": "rollup -c",
+    "copy": "copyfiles -f iife/reinvented-color-wheel.min.js css/reinvented-color-wheel.min.css docs/",
+    "test": "jest",
+    "verify": "cd verify/ts2.1 && npm ci && npm t"
+  },
+  "keywords": [
+    "color",
+    "wheel",
+    "picker",
+    "color-picker",
+    "vanilla",
+    "vanilla-js",
+    "react",
+    "webcomponents"
+  ],
+  "author": "",
+  "license": "WTFPL",
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^19.0.0",
+    "@rollup/plugin-node-resolve": "^13.0.0",
+    "@types/react": "^17.0.11",
+    "clean-css-cli": "^5.3.0",
+    "copyfiles": "^2.4.1",
+    "esbuild": "^0.11.23",
+    "esbuild-svelte": "^0.5.1",
+    "jest": "^27.0.5",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.52.2",
+    "rollup-plugin-filesize": "^9.1.1",
+    "rollup-plugin-terser": "^7.0.2",
+    "ts-jest": "^27.0.3",
+    "typescript": "^4.3.4"
+  },
+  "dependencies": {
+    "pure-color": "^1.3.0"
+  }
+}
