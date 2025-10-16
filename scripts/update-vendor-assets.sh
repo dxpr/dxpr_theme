@@ -9,7 +9,10 @@ declare -A packages=(
   ["./node_modules/reinvented-color-wheel"]="vendor/color-wheel"
 )
 
-echo "Creating vendor directories and copying packages..."
+echo "Emptying vendor folder..."
+rm -rf vendor/*
+
+echo "Copying vendor packages..."
 for src in "${!packages[@]}"; do
   dest="${packages[$src]}"
   mkdir -p "$dest"
