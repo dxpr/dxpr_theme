@@ -10,7 +10,10 @@ declare -A packages=(
   ["./node_modules/bs-enhanced-dropdowns"]="vendor/enhanced-dropdowns"
 )
 
-echo "Creating vendor directories and copying packages..."
+echo "Emptying vendor folder..."
+rm -rf vendor/*
+
+echo "Copying vendor packages..."
 for src in "${!packages[@]}"; do
   dest="${packages[$src]}"
   mkdir -p "$dest"
