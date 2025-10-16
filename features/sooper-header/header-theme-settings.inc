@@ -467,11 +467,8 @@ function header_theme_settings(array &$form, $theme) {
     '#collapsed' => TRUE,
   ];
 
-  $form['dxpr_theme_settings']['header']['menu']['mark_menu_with_children'] = [
-    '#type' => 'checkbox',
-    '#title' => t('Mark items with children'),
-    '#default_value' => ((theme_get_setting('mark_menu_with_children') !== NULL)) ? theme_get_setting('mark_menu_with_children') : FALSE,
-  ];
+  // Deprecated: This setting is no longer used. Menu items with children are
+  // always marked with visual indicators (carets) for accessibility.
 
   $form['dxpr_theme_settings']['header']['menu']['dropdown_width'] = [
     '#type' => 'range',
