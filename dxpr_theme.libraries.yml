@@ -162,13 +162,13 @@ admin:
 
 admin.themesettings:
   js:
-    vendor/color-wheel/reinvented-color-wheel.min.js: { minified: true }
+    vendor/color-wheel/iife/reinvented-color-wheel.min.js: { minified: true }
     js/minified/dxpr-theme-settings-admin.bundle.min.js: { minified: true }
     js/minified/dxpr-theme-settings-sidebar.bundle.min.js: { minified: true }
     vendor/dxb_slider/dxb-slider.min.js: { minified: true }
   css:
     component:
-      vendor/color-wheel/reinvented-color-wheel.min.css: { minified: true}
+      vendor/color-wheel/css/reinvented-color-wheel.min.css: { minified: true}
       css/dxpr-theme.admin.themesettings.css: {}
       vendor/dxb_slider/dxb-slider.min.css: { minified: true }
   dependencies:
