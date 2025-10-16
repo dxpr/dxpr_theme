@@ -15,11 +15,40 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
-        exclude: /node_modules/,
+        include: path.resolve(__dirname, 'js/dist/settings-admin'),
+        type: 'javascript/dynamic',
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-env'],
+            babelrc: false,
+            presets: [
+              [
+                '@babel/preset-env',
+                { modules: 'commonjs' }
+              ]
+            ],
+            plugins: [
+              ['@babel/plugin-transform-runtime', { useESModules: false }]
+            ],
+          },
+        },
+      },
+      {
+        test: /\.js$/,
+        exclude: [/node_modules/, path.resolve(__dirname, 'js/dist/settings-admin')],
+        use: {
+          loader: 'babel-loader',
+          options: {
+            babelrc: false,
+            presets: [
+              [
+                '@babel/preset-env',
+                { modules: false }
+              ]
+            ],
+            plugins: [
+              ['@babel/plugin-transform-runtime', { useESModules: false }]
+            ],
           },
         },
       },
