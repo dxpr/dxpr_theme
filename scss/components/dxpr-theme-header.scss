@@ -193,13 +193,30 @@
   text-align: left;
 }
 
-// MENU BORDER HOVER EFFECT
+// MENU HOVER BACKGROUND EFFECT
 #navbar.dxpr-theme-header--hover-background .nav {
   .active > a,
   a:hover,
   a:hover .nav a:focus,
   a.is-active {
     background-color: var(--dxt-setting-menu-hover-background, dxpr-color('base')) !important;
+  }
+
+  a.dropdown-item {
+    &:hover,
+    &:focus {
+      background-color: var(--dxt-setting-menu-hover-background) !important;
+    }
+  }
+}
+
+#navbar.dxpr-theme-header--hover-background .dropdown-menu {
+  a,
+  button {
+    &:hover,
+    &:focus {
+      background-color: var(--dxt-setting-dropdown-hover-background) !important;
+    }
   }
 }
 
