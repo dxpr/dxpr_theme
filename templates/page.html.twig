@@ -102,7 +102,6 @@
         theme.settings.header_top_fixed and not theme.settings.header_top_sticky ? 'dxpr-theme-header--fixed',
       ]
     %}
-    {% set mark_menu = theme.settings.mark_menu_with_children ? 'dxpr-theme-menu--has-children' : '' %}
     {% set navbar_attributes = navbar_attributes.removeClass('container').addClass(navbar_classes) %}
     {% if theme.settings.header_top_fixed and theme.settings.header_top_sticky %}
       {% set navbar_attributes = navbar_attributes.setAttribute('data-spy', 'affix').setAttribute('data-offset-top', theme.settings.header_top_height_sticky_offset) %}
@@ -136,7 +135,7 @@
 
         {# Navigation (collapsible) #}
         {% if page.navigation_collapsible %}
-            <nav role="navigation" id="dxpr-theme-main-menu" class="navbar-expand-lg dxpr-theme-main-menu collapse {{ mark_menu }}">
+            <nav role="navigation" id="dxpr-theme-main-menu" class="navbar-expand-lg dxpr-theme-main-menu collapse">
             {{ page.navigation_collapsible }}
             </nav>
         {% endif %}
