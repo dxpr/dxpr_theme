@@ -17,9 +17,7 @@ function hitDetection() {
     .getBoundingClientRect();
 
   // Get the bounding rectangle of the main navbar
-  const navbarRect = document
-    .querySelector("#navbar")
-    .getBoundingClientRect();
+  const navbarRect = document.querySelector("#navbar").getBoundingClientRect();
 
   // If navbar overlaps with tabs, adjust margin-top of the tabs
   if (dxprThemeCollisionCheck(navbarRect, tabsRect)) {

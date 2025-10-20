@@ -19,13 +19,13 @@
     display: none !important;
   }
 
+  border-top: 1px solid var(--bs-border-color);
   display: flex !important;
   flex-direction: row !important;
+  gap: 16px;
   justify-content: space-between;
-  gap: 1rem;
-  margin-top: 1rem;
-  padding-top: 1rem;
-  border-top: 1px solid var(--bs-border-color);
+  margin-top: 16px;
+  padding-top: 16px;
   width: 100% !important;
 }
 
