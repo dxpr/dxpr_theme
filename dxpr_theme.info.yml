@@ -43,6 +43,8 @@ libraries-override:
 libraries-extend:
   gin/gin_toolbar:
     - dxpr_theme/gin_toolbar
+  diff/diff.general:
+    - dxpr_theme/drupal-diff
 
 config:
   install:

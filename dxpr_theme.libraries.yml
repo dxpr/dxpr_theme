@@ -130,6 +130,16 @@ drupal-book:
     theme:
       css/vendor-extensions/drupal-book.css: { minified: true }
 
+drupal-diff:
+  css:
+    theme:
+      css/vendor-extensions/drupal-diff.css: { minified: true }
+  js:
+    js/minified/drupal-diff.min.js: { minified: true }
+  dependencies:
+    - core/drupal
+    - core/once
+
 dxpr-theme-builder:
   css:
     theme:

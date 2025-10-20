@@ -1,0 +1,42 @@
+//
+// Author: DXPR Theme for Diff module. Copyright DXPR.
+//
+
+@import "../includes/variables";
+
+.diff-revision__items-group {
+  &:first-child {
+    background-color: #dfd;
+  }
+
+  &:last-child {
+    background-color: #fdd;
+  }
+}
+
+.diff-navigation {
+  label {
+    display: none !important;
+  }
+
+  border-top: 1px solid var(--bs-border-color);
+  display: flex !important;
+  flex-direction: row !important;
+  gap: 16px;
+  justify-content: space-between;
+  margin-top: 16px;
+  padding-top: 16px;
+  width: 100% !important;
+}
+
+.diff-navigation__link.prev-link {
+  order: 0 !important;
+
+  a::before {
+    content: "< ";
+  }
+}
+
+.diff-navigation__link.next-link a::after {
+  content: " >";
+}
