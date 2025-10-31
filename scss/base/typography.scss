@@ -197,19 +197,6 @@ hr, .card hr {
   border-top-color: dxpr-color('cardtext'); // card text color
 }
 
-.submitted {
-  color: dxpr-color('graylight');
-
-  a {
-    color: dxpr-color('graylight');
-    text-decoration: underline;
-
-    &:hover, &:focus {
-      text-decoration: none;
-    }
-  }
-}
-
 .node .links {
   clear: both;
 }
