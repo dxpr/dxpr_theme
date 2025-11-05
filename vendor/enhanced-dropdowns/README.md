@@ -16,6 +16,7 @@ A powerful enhancement for Bootstrap 5 navigation menus, featuring split dropdow
     -   The JavaScript primarily uses the presence and value of `href` on anchor tags to distinguish between navigational links and toggle-only actions, especially for full `dropdown-toggle` items.
 -   **Multi-level Submenus**: Supports nested dropdowns (currently styled for up to 3 levels effectively).
 -   **Automatic Multi-Column Layout (Desktop)**: Top-level dropdowns automatically arrange items into 1 to 5 columns on larger screens (>=992px) based on item count. Dropdowns with 3 or more columns expand to the full width of the navbar.
+-   **Viewport Edge Detection**: Dropdowns automatically reposition when they would overflow the viewport edge, ensuring content remains visible and accessible.
 -   **Enhanced Keyboard Navigation**: Intuitive navigation using Arrow keys, Enter, Space, Escape, and Tab.
 -   **ARIA Accessibility**: Implements ARIA roles and attributes for screen readers and assistive technologies.
 -   **Focus Management**: Ensures logical focus flow when opening, closing, and navigating menus.
