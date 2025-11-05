@@ -69,13 +69,12 @@ html body {
 
   // Bootstrap long dropdown multi-column helper
   // @see dxpr-theme.js
-  .dropdown-menu {
-    min-width: 160px;
+  .dropdown-menu:not(.dropdown-full-width .dropdown-menu) {
 
     li {
       display: block;
       float: left;
-      min-width: 160px;
+      min-width: var(--dxt-setting-dropdown-width);
     }
   }
 

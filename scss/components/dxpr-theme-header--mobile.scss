@@ -84,6 +84,7 @@ html.html--dxpr-theme-nav-mobile--open {
         position: static;
 
         li {
+          min-width: var(--dxt-setting-dropdown-width);
           width: var(--dxt-setting-dropdown-width);
         }
 
