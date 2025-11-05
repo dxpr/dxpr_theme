@@ -12,11 +12,11 @@
 
 function setupStickyHeader() {
   const headerHeight = parseFloat(
-    drupalSettings.dxpr_themeSettings.headerHeight,
+    drupalSettings?.dxpr_themeSettings?.headerHeight ?? 100,
   );
 
   const headerScroll = parseFloat(
-    drupalSettings.dxpr_themeSettings.headerOffset,
+    drupalSettings?.dxpr_themeSettings?.headerOffset ?? 60,
   );
 
   if (headerHeight && headerScroll) {

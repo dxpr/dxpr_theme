@@ -4,7 +4,7 @@
 function setupMobileMenu() {
   // Close/open menu function
   const closeMenu = function () {
-    if (drupalSettings.dxpr_themeSettings.hamburgerAnimation === "cross") {
+    if (drupalSettings?.dxpr_themeSettings?.hamburgerAnimation === "cross") {
       document
         .querySelector("#dxpr-theme-menu-toggle")
         .classList.toggle("navbar-toggle--active");

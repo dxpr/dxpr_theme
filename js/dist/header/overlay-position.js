@@ -25,7 +25,7 @@ function handleOverlayPosition(drupalSettings) {
       );
       const secondaryHeader = document.querySelector("#secondary-header");
 
-      if (drupalSettings.dxpr_themeSettings.secondHeaderSticky) {
+      if (drupalSettings?.dxpr_themeSettings?.secondHeaderSticky) {
         // Position overlay below the secondary header and remove sticky class
         navbarOverlay.style.cssText = `top:${secHeaderRect.bottom}px !important;`;
         secondaryHeader.classList.remove("dxpr-theme-secondary-header--sticky");
