@@ -110,6 +110,7 @@ html.html--dxpr-theme-nav-mobile--open {
 
           &:hover, &:focus {
             background-color: var(--dxt-setting-dropdown-hover-background) !important;
+            color: var(--dxt-setting-dropdown-hover-text-color) !important;
           }
         }
       }
@@ -259,6 +260,7 @@ html.html--dxpr-theme-nav-mobile--open {
       &:hover,
       &:focus {
         background-color: var(--dxt-setting-menu-hover-background);
+        color: var(--dxt-setting-menu-hover-text-color);
       }
     }
 
