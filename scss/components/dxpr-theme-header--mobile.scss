@@ -290,7 +290,7 @@ html.html--dxpr-theme-nav-mobile--open {
   #dxpr-theme-main-menu,
   #dxpr-theme-main-menu .menu__breadcrumbs,
   #dxpr-theme-main-menu .menu__level {
-    text-align: left;
+    text-align: var(--dxt-setting-header-side-align);
     width: 100% !important;
   }
 }
