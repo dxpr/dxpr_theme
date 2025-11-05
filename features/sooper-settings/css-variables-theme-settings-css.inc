@@ -289,6 +289,8 @@ function _dxpr_theme_get_css_settings(): array {
     'menu_hover_background' => [],
     'menu_hover_text_color' => [],
     'menu_text_color' => [],
+    'mobile_menu_background' => [],
+    'mobile_menu_text_color' => [],
     'nav_font_face' => [],
     'nav_font_size' => ['suffix' => 'rem'],
     'nav_mobile_font_size' => ['suffix' => 'rem'],

@@ -14,6 +14,16 @@
  *   Theme machine name.
  */
 function header_theme_settings(array &$form, $theme) {
+  // Attach color palette for live preview of navigation color settings.
+  $schemes = _dxpr_theme_get_color_schemes($theme);
+  $palette = unserialize(theme_get_setting('color_palette') ?? '', ['allowed_classes' => FALSE]);
+  $palette = $palette ?: ($schemes['default']['colors'] ?? []);
+
+  $form['#attached']['drupalSettings']['dxpr_themeSettings']['colors'] = [
+    'palette' => $palette,
+    'schemes' => $schemes,
+  ];
+
   $form['dxpr_theme_settings']['header'] = [
     '#title' => t('Header & Main Menu'),
     '#type' => 'details',
@@ -427,6 +437,42 @@ function header_theme_settings(array &$form, $theme) {
     '#states' => [
       'visible' => [
         ':input[name="dropdown_hover_text_color"]' => ['value' => 'custom'],
+      ],
+    ],
+  ];
+
+  $form['dxpr_theme_settings']['header']['header_top']['navcolors']['mobile_menu_background'] = [
+    '#type' => 'select',
+    '#title' => t('Mobile Menu Background'),
+    '#default_value' => theme_get_setting('mobile_menu_background'),
+    '#options' => _dxpr_theme_color_options($theme),
+  ];
+
+  $form['dxpr_theme_settings']['header']['header_top']['navcolors']['mobile_menu_background_custom'] = [
+    '#type' => 'textfield',
+    '#title' => t('Custom Mobile Menu Background'),
+    '#default_value' => ((theme_get_setting('mobile_menu_background_custom') !== NULL)) ? theme_get_setting('mobile_menu_background_custom') : theme_get_setting('mobile_menu_background_custom'),
+    '#states' => [
+      'visible' => [
+        ':input[name="mobile_menu_background"]' => ['value' => 'custom'],
+      ],
+    ],
+  ];
+
+  $form['dxpr_theme_settings']['header']['header_top']['navcolors']['mobile_menu_text_color'] = [
+    '#type' => 'select',
+    '#title' => t('Mobile Menu Text'),
+    '#default_value' => theme_get_setting('mobile_menu_text_color'),
+    '#options' => _dxpr_theme_color_options($theme),
+  ];
+
+  $form['dxpr_theme_settings']['header']['header_top']['navcolors']['mobile_menu_text_color_custom'] = [
+    '#type' => 'textfield',
+    '#title' => t('Custom Mobile Menu Text Color'),
+    '#default_value' => ((theme_get_setting('mobile_menu_text_color_custom') !== NULL)) ? theme_get_setting('mobile_menu_text_color_custom') : theme_get_setting('mobile_menu_text_color_custom'),
+    '#states' => [
+      'visible' => [
+        ':input[name="mobile_menu_text_color"]' => ['value' => 'custom'],
       ],
     ],
   ];
