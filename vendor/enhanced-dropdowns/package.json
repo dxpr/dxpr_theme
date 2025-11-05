@@ -1,7 +1,7 @@
 {
   "name": "bs-enhanced-dropdowns",
   "displayName": "Bootstrap 5 Enhanced Dropdowns",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "This project provides an enhanced navigation menu system for Bootstrap 5, featuring split dropdown buttons, multi-level submenus, improved keyboard accessibility, and intelligent handling of link behavior based on the `href` attribute.",
   "type": "module",
   "main": "dist/js/enhanced-dropdowns.js",

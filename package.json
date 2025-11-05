@@ -60,7 +60,7 @@
     "build:size": "npm run build && ls -lh js/minified/*.min.js | awk '{print $5, $9}'"
   },
   "dependencies": {
-    "bs-enhanced-dropdowns": "^1.1.0",
+    "bs-enhanced-dropdowns": "^1.1.1",
     "dxb_slider": "^2.0.0",
     "postcss": "^8.5.6",
     "reinvented-color-wheel": "^0.4.0"

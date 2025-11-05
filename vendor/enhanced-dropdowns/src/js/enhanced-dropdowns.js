@@ -40,12 +40,18 @@ class BootstrapEnhancedDropdowns {
   }
 
   _getPopperConfig(toggleElement, referenceElement = null) {
+    // Mobile: disable Popper entirely (let CSS handle positioning)
+    if (window.innerWidth <= 991.98) {
+      return { popperConfig: null };
+    }
+
     // Full-width dropdowns don't use Popper (they use CSS position: static)
     if (this._isFullWidthDropdown(toggleElement)) {
       return { popperConfig: null };
     }
 
     // Regular dropdowns get edge detection via Popper modifiers
+    // Only flip horizontally (left/right), not vertically (up/down)
     const config = {
       popperConfig: {
         modifiers: [
@@ -53,7 +59,8 @@ class BootstrapEnhancedDropdowns {
             name: 'flip',
             enabled: true,
             options: {
-              fallbackPlacements: ['bottom-end', 'bottom-start', 'top-end', 'top-start'],
+              fallbackPlacements: ['bottom-end', 'bottom-start'],
+              allowedAutoPlacements: ['bottom-start', 'bottom-end']
             }
           },
           {
