@@ -65,8 +65,10 @@ const { dxpr_themeMenuGovernorBodyClass } = require("./menu-governor-body");
   }
 
   // Fixed header on mobile and tablet
-  const headerMobileHeight = drupalSettings?.dxpr_themeSettings?.headerMobileHeight ?? 60;
-  const headerFixed = drupalSettings?.dxpr_themeSettings?.headerMobileFixed ?? false;
+  const headerMobileHeight =
+    drupalSettings?.dxpr_themeSettings?.headerMobileHeight ?? 60;
+  const headerFixed =
+    drupalSettings?.dxpr_themeSettings?.headerMobileFixed ?? false;
 
   if (
     headerFixed &&
