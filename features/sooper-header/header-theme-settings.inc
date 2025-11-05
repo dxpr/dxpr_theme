@@ -506,6 +506,18 @@ function header_theme_settings(array &$form, $theme) {
     ],
   ];
 
+  $form['dxpr_theme_settings']['header']['header_side']['header_side_align'] = [
+    '#type' => 'radios',
+    '#title' => t('Mobile Menu Alignment'),
+    '#description' => t('Control the alignment of mobile menu content.'),
+    '#default_value' => ((theme_get_setting('header_side_align') !== NULL)) ? theme_get_setting('header_side_align') : 'left',
+    '#options' => [
+      'left' => t('Left'),
+      'center' => t('Center'),
+      'right' => t('Right'),
+    ],
+  ];
+
   $form['dxpr_theme_settings']['header']['menu'] = [
     '#title' => t('Main Menu Links'),
     '#type' => 'details',

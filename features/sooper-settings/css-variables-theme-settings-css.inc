@@ -289,6 +289,7 @@ function _dxpr_theme_get_css_settings(): array {
     'menu_hover_background' => [],
     'menu_hover_text_color' => [],
     'menu_text_color' => [],
+    'header_side_align' => [],
     'mobile_menu_background' => [],
     'mobile_menu_text_color' => [],
     'nav_font_face' => [],
