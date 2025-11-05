@@ -275,63 +275,74 @@ function dxpr_theme_preprocess_page(&$variables) {
 /**
  * Implements hook_preprocess_menu().
  *
- * Fixes active trail detection for Views-generated menu links.
+ * Workaround for Drupal core regression where Views-generated menu links don't
+ * receive proper active trail detection. Compares menu item URLs against the
+ * current page path to set active states and propagates to parent items.
+ *
+ * @see https://www.drupal.org/project/dxpr_theme/issues/3553914
+ * @see https://www.drupal.org/project/drupal/issues/3359511
+ *
+ * @todo Remove when core issue #3359511 is resolved.
  */
 function dxpr_theme_preprocess_menu(&$variables) {
-  // Get current route for comparison.
-  $current_route_name = \Drupal::routeMatch()->getRouteName();
-  $current_path = \Drupal::service('path.current')->getPath();
-
-  // Process each menu item to fix active trail for Views menu links.
-  if (isset($variables['items'])) {
-    dxpr_theme_menu_set_active_trail($variables['items'], $current_route_name, $current_path);
+  if (empty($variables['items'])) {
+    return;
   }
+
+  $current_path = \Drupal::service('path.current')->getPath();
+  dxpr_theme_menu_set_active_trail($variables['items'], $current_path);
+
+  // Ensure menu is cached per URL to prevent wrong active states.
+  $variables['#cache']['contexts'][] = 'url.path';
 }
 
 /**
- * Helper function to recursively set active trail for menu items.
+ * Recursively sets active trail on menu items by comparing URL paths.
  *
  * @param array $items
- *   Menu items array.
- * @param string $current_route_name
- *   Current route name.
+ *   Menu items array (passed by reference).
  * @param string $current_path
- *   Current path.
+ *   Current page path (e.g., "/test-view").
+ *
+ * @return bool
+ *   TRUE if any item in this level or below is active.
  */
-function dxpr_theme_menu_set_active_trail(array &$items, $current_route_name, $current_path) {
-  foreach ($items as &$item) {
-    // Check if this menu item matches the current page.
-    if (isset($item['url'])) {
-      try {
-        // Get the route name for this menu item.
-        if ($item['url']->isRouted()) {
-          $item_route_name = $item['url']->getRouteName();
+function dxpr_theme_menu_set_active_trail(array &$items, $current_path) {
+  $has_active = FALSE;
 
-          // Compare route names.
-          if ($item_route_name === $current_route_name) {
-            $item['in_active_trail'] = TRUE;
-            $item['is_active'] = TRUE;
-          }
-        }
-        else {
-          // For external URLs, compare the path.
-          $item_path = $item['url']->toString();
-          if ($item_path === $current_path) {
-            $item['in_active_trail'] = TRUE;
-            $item['is_active'] = TRUE;
-          }
-        }
+  foreach ($items as &$item) {
+    if (empty($item['url'])) {
+      continue;
+    }
+
+    $is_active = FALSE;
+    $child_active = FALSE;
+
+    try {
+      $item_path = $item['url']->toString();
+      if ($item_path === $current_path) {
+        $item['in_active_trail'] = TRUE;
+        $item['is_active'] = TRUE;
+        $is_active = TRUE;
       }
-      catch (\Exception $e) {
-        // Silently continue if URL cannot be processed.
+    }
+    catch (\Exception $e) {
+      // Silently continue if URL cannot be processed.
+    }
+
+    if (!empty($item['below'])) {
+      $child_active = dxpr_theme_menu_set_active_trail($item['below'], $current_path);
+      if ($child_active && empty($item['in_active_trail'])) {
+        $item['in_active_trail'] = TRUE;
       }
     }
 
-    // Recursively process child items.
-    if (!empty($item['below'])) {
-      dxpr_theme_menu_set_active_trail($item['below'], $current_route_name, $current_path);
+    if ($is_active || $child_active) {
+      $has_active = TRUE;
     }
   }
+
+  return $has_active;
 }
 
 /**
