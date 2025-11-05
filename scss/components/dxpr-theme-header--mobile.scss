@@ -70,27 +70,30 @@ html.html--dxpr-theme-nav-mobile--open {
       z-index: 100;
 
       a {
-        color: var(--dxt-setting-mobile-menu-text-color);
-
-        &:hover,
-        &:focus {
-          color: var(--dxt-setting-mobile-menu-text-color);
-        }
+        color: var(--dxt-setting-mobile-menu-text-color) !important;
       }
 
       .nav-link {
         font-size: var(--dxt-setting-nav-mobile-font-size);
+
+        &:hover,
+        &:focus {
+          color: var(--dxt-setting-menu-hover-text-color);
+        }
       }
 
       ul, li {
         width: 100%;
       }
 
+      ul.nav,
       ul.navbar-nav {
+        background-color: var(--dxt-setting-mobile-menu-background) !important;
         width: 100%;
       }
 
       ul.dropdown-menu {
+        background-color: var(--dxt-setting-mobile-menu-background) !important;
         position: static;
 
         li {
@@ -109,8 +112,8 @@ html.html--dxpr-theme-nav-mobile--open {
           --bs-dropdown-indent-step: calc(var(--dxt-setting-nav-font-size) / 2);
 
           &:hover, &:focus {
-            background-color: var(--dxt-setting-dropdown-hover-background) !important;
-            color: var(--dxt-setting-dropdown-hover-text-color) !important;
+            background-color: var(--dxt-setting-menu-hover-background) !important;
+            color: var(--dxt-setting-menu-hover-text-color) !important;
           }
         }
       }
