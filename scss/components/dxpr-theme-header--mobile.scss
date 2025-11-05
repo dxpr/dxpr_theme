@@ -59,9 +59,9 @@ html.html--dxpr-theme-nav-mobile--open {
     }
 
     .dxpr-theme-main-menu {
-      background: dxpr-color('headerside');
+      background: var(--dxt-setting-mobile-menu-background);
       box-shadow: 0 5px 5px rgb(0 0 0 / 2%);
-      color: dxpr-color('headersidetext');
+      color: var(--dxt-setting-mobile-menu-text-color);
       left: 0;
       padding-left: calc(var(--dxt-setting-gutter-vertical-mobile, 0) / 2);
       padding-right: calc(var(--dxt-setting-gutter-vertical-mobile, 0) / 2);
@@ -70,11 +70,11 @@ html.html--dxpr-theme-nav-mobile--open {
       z-index: 100;
 
       a {
-        color: dxpr-color('headersidetext');
+        color: var(--dxt-setting-mobile-menu-text-color);
 
         &:hover,
         &:focus {
-          color: dxpr-color('headersidetext');
+          color: var(--dxt-setting-mobile-menu-text-color);
         }
       }
 
@@ -100,8 +100,8 @@ html.html--dxpr-theme-nav-mobile--open {
 
         .dropdown-item,
         .bs-dropdown-item-wrapper > .dropdown-item {
-          background-color: dxpr-color('headerside') !important;
-          color: dxpr-color('headersidetext') !important;
+          background-color: var(--dxt-setting-mobile-menu-background) !important;
+          color: var(--dxt-setting-mobile-menu-text-color) !important;
           font-size: var(--dxt-setting-nav-mobile-font-size);
           white-space: normal;
           word-wrap: break-word;

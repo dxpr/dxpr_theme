@@ -77,6 +77,8 @@ function massageFieldValue(setting, value, cssVarColorsPrefix) {
     case "dropdown_text_color":
     case "dropdown_hover_background":
     case "dropdown_hover_text_color":
+    case "mobile_menu_background":
+    case "mobile_menu_text_color":
       if (
         Object.prototype.hasOwnProperty.call(
           drupalSettings.dxpr_themeSettings.colors.palette,
