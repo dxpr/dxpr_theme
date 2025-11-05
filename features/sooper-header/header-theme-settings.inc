@@ -470,16 +470,32 @@ function header_theme_settings(array &$form, $theme) {
   // Deprecated: This setting is no longer used. Menu items with children are
   // always marked with visual indicators (carets) for accessibility.
 
+  $form['dxpr_theme_settings']['header']['menu']['dropdown_width_auto'] = [
+    '#type' => 'radios',
+    '#title' => t('Dropdown width'),
+    '#default_value' => ((theme_get_setting('dropdown_width_auto') !== NULL)) ? theme_get_setting('dropdown_width_auto') : '1',
+    '#options' => [
+      '1' => t('Automatic (fits content)'),
+      '0' => t('Fixed width'),
+    ],
+  ];
+
   $form['dxpr_theme_settings']['header']['menu']['dropdown_width'] = [
     '#type' => 'range',
-    '#title' => t('Dropdown width'),
-    '#default_value' => ((theme_get_setting('dropdown_width') !== NULL)) ? theme_get_setting('dropdown_width') : '160',
+    '#title' => t('Fixed dropdown width'),
+    '#title_display' => 'invisible',
+    '#default_value' => ((theme_get_setting('dropdown_width') !== NULL)) ? theme_get_setting('dropdown_width') : '200',
     '#min' => 100,
     '#max' => 500,
     '#step' => 5,
     '#attributes' => [
       'class' => ['dxb-slider', 'dropdown-width-range'],
       'data-dxb-slider' => TRUE,
+    ],
+    '#states' => [
+      'visible' => [
+        ':input[name="dropdown_width_auto"]' => ['value' => '0'],
+      ],
     ],
   ];
 

@@ -83,10 +83,17 @@ html.html--dxpr-theme-nav-mobile--open {
       ul.dropdown-menu {
         position: static;
 
+        li {
+          min-width: var(--dxt-setting-dropdown-width);
+          width: var(--dxt-setting-dropdown-width);
+        }
+
         .dropdown-item,
         .bs-dropdown-item-wrapper > .dropdown-item {
           background-color: var(--dxt-setting-dropdown-background) !important;
           font-size: var(--dxt-setting-nav-mobile-font-size);
+          white-space: normal;
+          word-wrap: break-word;
 
           --bs-dropdown-indent-step: calc(var(--dxt-setting-nav-font-size) / 2);
 
