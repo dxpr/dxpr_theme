@@ -277,7 +277,15 @@ function dxpr_theme_preprocess_page(&$variables) {
  *
  * Fixes active trail detection for Views-generated menu links.
  *
+ * This is a workaround for a Drupal core regression introduced in 9.5.9
+ * where menu items created for Views don't receive 'in_active_trail' because
+ * route parameters (view_id, display_id) aren't stored in menu_tree table.
+ *
  * @see https://www.drupal.org/project/dxpr_theme/issues/3553914
+ * @see https://www.drupal.org/project/drupal/issues/3359511 (core regression)
+ * @see https://www.drupal.org/project/drupal/issues/3388353 (duplicate)
+ *
+ * @todo Remove this preprocessing once core issue #3359511 is fixed.
  */
 function dxpr_theme_preprocess_menu(&$variables) {
   if (empty($variables['items'])) {
