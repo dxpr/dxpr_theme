@@ -441,21 +441,14 @@ function header_theme_settings(array &$form, $theme) {
     ],
   ];
 
-  $form['dxpr_theme_settings']['header']['header_side'] = [
-    '#title' => t('Mobile Menu Options'),
-    '#type' => 'details',
-    '#collapsible' => TRUE,
-    '#collapsed' => TRUE,
-  ];
-
-  $form['dxpr_theme_settings']['header']['header_side']['mobile_menu_background'] = [
+  $form['dxpr_theme_settings']['header']['header_top']['navcolors']['mobile_menu_background'] = [
     '#type' => 'select',
     '#title' => t('Mobile Menu Background'),
     '#default_value' => theme_get_setting('mobile_menu_background'),
     '#options' => _dxpr_theme_color_options($theme),
   ];
 
-  $form['dxpr_theme_settings']['header']['header_side']['mobile_menu_background_custom'] = [
+  $form['dxpr_theme_settings']['header']['header_top']['navcolors']['mobile_menu_background_custom'] = [
     '#type' => 'textfield',
     '#title' => t('Custom Mobile Menu Background'),
     '#default_value' => ((theme_get_setting('mobile_menu_background_custom') !== NULL)) ? theme_get_setting('mobile_menu_background_custom') : theme_get_setting('mobile_menu_background_custom'),
@@ -466,14 +459,14 @@ function header_theme_settings(array &$form, $theme) {
     ],
   ];
 
-  $form['dxpr_theme_settings']['header']['header_side']['mobile_menu_text_color'] = [
+  $form['dxpr_theme_settings']['header']['header_top']['navcolors']['mobile_menu_text_color'] = [
     '#type' => 'select',
     '#title' => t('Mobile Menu Text'),
     '#default_value' => theme_get_setting('mobile_menu_text_color'),
     '#options' => _dxpr_theme_color_options($theme),
   ];
 
-  $form['dxpr_theme_settings']['header']['header_side']['mobile_menu_text_color_custom'] = [
+  $form['dxpr_theme_settings']['header']['header_top']['navcolors']['mobile_menu_text_color_custom'] = [
     '#type' => 'textfield',
     '#title' => t('Custom Mobile Menu Text Color'),
     '#default_value' => ((theme_get_setting('mobile_menu_text_color_custom') !== NULL)) ? theme_get_setting('mobile_menu_text_color_custom') : theme_get_setting('mobile_menu_text_color_custom'),
@@ -482,6 +475,13 @@ function header_theme_settings(array &$form, $theme) {
         ':input[name="mobile_menu_text_color"]' => ['value' => 'custom'],
       ],
     ],
+  ];
+
+  $form['dxpr_theme_settings']['header']['header_side'] = [
+    '#title' => t('Mobile Menu Options'),
+    '#type' => 'details',
+    '#collapsible' => TRUE,
+    '#collapsed' => TRUE,
   ];
 
   $form['dxpr_theme_settings']['header']['header_side']['hamburger_menu'] = [
