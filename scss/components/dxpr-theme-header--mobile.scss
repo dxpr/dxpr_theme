@@ -287,11 +287,16 @@ html.html--dxpr-theme-nav-mobile--open {
     display: block;
   }
 
-  #dxpr-theme-main-menu,
-  #dxpr-theme-main-menu .menu__breadcrumbs,
-  #dxpr-theme-main-menu .menu__level {
+  .body--dxpr-theme-nav-mobile #dxpr-theme-main-menu,
+  .body--dxpr-theme-nav-mobile #dxpr-theme-main-menu ul,
+  .body--dxpr-theme-nav-mobile #dxpr-theme-main-menu li {
     text-align: var(--dxt-setting-header-side-align);
-    width: 100% !important;
+  }
+
+  .navbar-nav .nav-link.dropdown-toggle,
+  .navbar-nav .media-library-view--widget .view-header a.dropdown-toggle,
+  .media-library-view--widget .view-header .navbar-nav a.dropdown-toggle {
+    display: block;
   }
 }
 
