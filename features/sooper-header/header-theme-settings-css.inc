@@ -96,15 +96,15 @@ function header_theme_settings_css(string $theme, string &$css, array $palette) 
     $header_top_height_scroll_var = _dxpr_theme_setting_get_css_var('header_top_height_scroll');
 
     $css .= ".html--dxpr-theme-sticky-footer .body--dxpr-theme-nav-desktop .dxpr-theme-header--top.affix {\n";
-    $css .= "  min-height: $header_top_height_scroll_var;\n";
+    $css .= "  height: $header_top_height_scroll_var;\n";
     $css .= "}\n\n";
 
     $css .= ".html--dxpr-theme-sticky-footer .body--dxpr-theme-nav-mobile .dxpr-theme-header {\n";
-    $css .= "  min-height: $header_mobile_height_var;\n";
+    $css .= "  height: $header_mobile_height_var;\n";
     $css .= "}\n\n";
 
     $css .= ".html--dxpr-theme-sticky-footer .body--dxpr-theme-nav-mobile .dxpr-theme-header.affix {\n";
-    $css .= "  min-height: $header_mobile_height_var;\n";
+    $css .= "  height: $header_mobile_height_var;\n";
     $css .= "}\n\n";
   }
 

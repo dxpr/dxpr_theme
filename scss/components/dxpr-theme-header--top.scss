@@ -93,6 +93,10 @@
 
       .dxpr-theme-main-menu {
         height: var(--dxt-setting-header-top-height-scroll);
+
+        > div, section, ul.nav {
+          height: var(--dxt-setting-header-top-height-scroll);
+        }
       }
 
       .nav-child-fixed-width {

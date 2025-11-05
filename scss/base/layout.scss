@@ -305,7 +305,7 @@ body .card.node--view-mode-card img {
   }
 
   .body--dxpr-theme-nav-desktop .dxpr-theme-header--top.affix {
-    min-height: 60px;
+    height: var(--dxt-setting-header-top-height-scroll);
   }
 
   footer {
