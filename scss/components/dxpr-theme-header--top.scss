@@ -235,8 +235,13 @@
       transform: translateZ(0);
 
       li {
-        white-space: normal;
         width: var(--dxt-setting-dropdown-width);
+      }
+
+      .dropdown-item,
+      .bs-dropdown-item-wrapper > .dropdown-item {
+        white-space: normal;
+        word-wrap: break-word;
       }
 
       .dropdown {
