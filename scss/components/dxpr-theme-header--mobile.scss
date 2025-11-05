@@ -255,6 +255,11 @@ html.html--dxpr-theme-nav-mobile--open {
     .nav > li > a {
       padding-bottom: 10px;
       padding-top: 10px;
+
+      &:hover,
+      &:focus {
+        background-color: var(--dxt-setting-menu-hover-background);
+      }
     }
 
     .collapse.in {
