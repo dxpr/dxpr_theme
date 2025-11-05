@@ -170,9 +170,12 @@ function _dxpr_theme_massage_values(string $key, $value, string $theme, array $s
       $value = htmlspecialchars($str, ENT_QUOTES, 'UTF-8');
       break;
 
-    case 'page_title_breadcrumbs_separator':
-      $str = str_replace(['\\', '"'], ['\\\\', '\\"'], $value);
-      $value = htmlspecialchars($str, ENT_QUOTES, 'UTF-8');
+    case 'dropdown_width':
+      // If automatic width is enabled, set to 'auto' instead of fixed width.
+      if (!empty($submitted['dropdown_width_auto'])) {
+        $value = 'auto';
+        $s = '';
+      }
       break;
   }
 
