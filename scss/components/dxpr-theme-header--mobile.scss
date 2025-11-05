@@ -82,6 +82,7 @@ html.html--dxpr-theme-nav-mobile--open {
 
       ul.dropdown-menu {
         position: static;
+        width: var(--dxt-setting-dropdown-width);
 
         .dropdown-item,
         .bs-dropdown-item-wrapper > .dropdown-item {
