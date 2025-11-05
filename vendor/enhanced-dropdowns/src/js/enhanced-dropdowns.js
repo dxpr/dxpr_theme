@@ -28,20 +28,65 @@ class BootstrapEnhancedDropdowns {
   }
     
   setupDropdowns() {
+    this.initAutoColumns(); // Must run first to add dropdown-full-width class
+    this.initPopperConfig();
     this.initSplitButtonDropdowns();
     this.initSubmenuDropdowns();
-    this.initAutoColumns();
   }
-    
-  _createDropdownInstance(toggleElement, menuElement, isSubmenu = false) {
+
+  _isFullWidthDropdown(toggleElement) {
+    const parentNavItem = toggleElement.closest('.nav-item.dropdown');
+    return parentNavItem && parentNavItem.classList.contains('dropdown-full-width');
+  }
+
+  _getPopperConfig(toggleElement, referenceElement = null) {
+    // Full-width dropdowns don't use Popper (they use CSS position: static)
+    if (this._isFullWidthDropdown(toggleElement)) {
+      return { popperConfig: null };
+    }
+
+    // Regular dropdowns get edge detection via Popper modifiers
+    const config = {
+      popperConfig: {
+        modifiers: [
+          {
+            name: 'flip',
+            enabled: true,
+            options: {
+              fallbackPlacements: ['bottom-end', 'bottom-start', 'top-end', 'top-start'],
+            }
+          },
+          {
+            name: 'preventOverflow',
+            enabled: true,
+            options: {
+              boundary: 'viewport',
+              padding: 8
+            }
+          }
+        ]
+      }
+    };
+
+    // For split buttons, position menu relative to wrapper (not just the caret)
+    if (referenceElement) {
+      config.reference = referenceElement;
+    }
+
+    return config;
+  }
+
+  _createDropdownInstance(toggleElement, menuElement, isSubmenu = false, referenceElement = null) {
     // Only add Bootstrap attributes for top-level dropdowns
     // Submenus need manual handling since Bootstrap doesn't support nested dropdowns
     if (!isSubmenu && !toggleElement.hasAttribute('data-bs-toggle')) {
       toggleElement.setAttribute('data-bs-toggle', 'dropdown');
     }
 
-    const dropdownInstance = new bootstrap.Dropdown(toggleElement);
-    dropdownInstance._menu = menuElement; // Manually set menu reference
+    // Submenus always use static positioning (no Popper), top-level dropdowns use Popper config
+    const config = isSubmenu ? { popperConfig: null } : this._getPopperConfig(toggleElement, referenceElement);
+    const dropdownInstance = new bootstrap.Dropdown(toggleElement, config);
+    dropdownInstance._menu = menuElement;
     return dropdownInstance;
   }
 
@@ -120,13 +165,27 @@ class BootstrapEnhancedDropdowns {
     return menu;
   }
 
-  _setupDropdownCommon(toggleElement, menuElement, isSubmenu, ariaTarget, submenuParent = null) {
+  _setupDropdownCommon(toggleElement, menuElement, isSubmenu, ariaTarget, submenuParent = null, referenceElement = null) {
     // Common dropdown setup logic
-    const dropdownInstance = this._createDropdownInstance(toggleElement, menuElement, isSubmenu);
+    const dropdownInstance = this._createDropdownInstance(toggleElement, menuElement, isSubmenu, referenceElement);
     this._attachToggleHandlers(toggleElement, dropdownInstance, isSubmenu);
     this._attachAriaSyncHandlers(toggleElement, ariaTarget, submenuParent, isSubmenu ? menuElement : null);
     this.setupMenuKeyboardNavigation(menuElement, toggleElement, submenuParent !== null);
     return dropdownInstance;
+  }
+
+  initPopperConfig() {
+    // Configure existing dropdowns that use data-bs-toggle="dropdown"
+    const existingToggles = document.querySelectorAll('[data-bs-toggle="dropdown"]');
+
+    existingToggles.forEach(toggle => {
+      // Skip if already initialized or if it's inside our custom structures
+      if (bootstrap.Dropdown.getInstance(toggle)) return;
+      if (toggle.closest('.bs-dropdown-wrapper, .bs-dropdown-item-wrapper')) return;
+
+      const config = this._getPopperConfig(toggle);
+      new bootstrap.Dropdown(toggle, config);
+    });
   }
 
   initSplitButtonDropdowns() {
@@ -141,7 +200,8 @@ class BootstrapEnhancedDropdowns {
       const menu = this._findAssociatedMenuForSplitButton(caretButton, splitButton);
       if (!menu) return;
 
-      this._setupDropdownCommon(caretButton, menu, false, caretButton);
+      // Pass splitButton wrapper as reference so menu aligns with the whole button, not just the caret
+      this._setupDropdownCommon(caretButton, menu, false, caretButton, null, splitButton);
     });
   }
     
