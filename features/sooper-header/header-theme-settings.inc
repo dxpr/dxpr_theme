@@ -471,15 +471,19 @@ function header_theme_settings(array &$form, $theme) {
   // always marked with visual indicators (carets) for accessibility.
 
   $form['dxpr_theme_settings']['header']['menu']['dropdown_width_auto'] = [
-    '#type' => 'checkbox',
-    '#title' => t('Automatic dropdown width'),
-    '#description' => t('When enabled, dropdowns will automatically size to fit their content. When disabled, you can set a fixed width below.'),
-    '#default_value' => ((theme_get_setting('dropdown_width_auto') !== NULL)) ? theme_get_setting('dropdown_width_auto') : TRUE,
+    '#type' => 'radios',
+    '#title' => t('Dropdown width'),
+    '#default_value' => ((theme_get_setting('dropdown_width_auto') !== NULL)) ? theme_get_setting('dropdown_width_auto') : '1',
+    '#options' => [
+      '1' => t('Automatic (fits content)'),
+      '0' => t('Fixed width'),
+    ],
   ];
 
   $form['dxpr_theme_settings']['header']['menu']['dropdown_width'] = [
     '#type' => 'range',
-    '#title' => t('Dropdown width'),
+    '#title' => t('Fixed dropdown width'),
+    '#title_display' => 'invisible',
     '#default_value' => ((theme_get_setting('dropdown_width') !== NULL)) ? theme_get_setting('dropdown_width') : '200',
     '#min' => 100,
     '#max' => 500,
@@ -490,7 +494,7 @@ function header_theme_settings(array &$form, $theme) {
     ],
     '#states' => [
       'visible' => [
-        ':input[name="dropdown_width_auto"]' => ['checked' => FALSE],
+        ':input[name="dropdown_width_auto"]' => ['value' => '0'],
       ],
     ],
   ];

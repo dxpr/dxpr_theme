@@ -171,8 +171,8 @@ function _dxpr_theme_massage_values(string $key, $value, string $theme, array $s
       break;
 
     case 'dropdown_width':
-      // If automatic width is enabled, set to 'auto' instead of fixed width.
-      if (!empty($submitted['dropdown_width_auto'])) {
+      // If automatic width is enabled (value = '1' or 1 or TRUE), set to 'auto' instead of fixed width.
+      if (!empty($submitted['dropdown_width_auto']) && $submitted['dropdown_width_auto'] != '0') {
         $value = 'auto';
         $s = '';
       }
