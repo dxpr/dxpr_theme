@@ -191,7 +191,7 @@ function fieldHandler(event, root, cssVarSettingsPrefix, massageValue) {
     value += "em";
   }
 
-  value = massageFieldValue(setting, value);
+  value = massageValue(setting, value);
 
   // Create CSS variable name.
   const cssVarName = setting
@@ -199,8 +199,10 @@ function fieldHandler(event, root, cssVarSettingsPrefix, massageValue) {
     .replace(/[[_]/g, "-")
     .replace("]", "");
 
+  const fullCssVarName = `${cssVarSettingsPrefix}${cssVarName}`;
+
   // Override CSS variable.
-  root.style.setProperty(`${cssVarSettingsPrefix}${cssVarName}`, String(value));
+  root.style.setProperty(fullCssVarName, String(value));
 
   // Workaround for block divider position.
   if (setting === "divider_position") {

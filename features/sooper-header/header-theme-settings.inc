@@ -14,6 +14,16 @@
  *   Theme machine name.
  */
 function header_theme_settings(array &$form, $theme) {
+  // Attach color palette for live preview of navigation color settings.
+  $schemes = _dxpr_theme_get_color_schemes($theme);
+  $palette = unserialize(theme_get_setting('color_palette') ?? '', ['allowed_classes' => FALSE]);
+  $palette = $palette ?: ($schemes['default']['colors'] ?? []);
+
+  $form['#attached']['drupalSettings']['dxpr_themeSettings']['colors'] = [
+    'palette' => $palette,
+    'schemes' => $schemes,
+  ];
+
   $form['dxpr_theme_settings']['header'] = [
     '#title' => t('Header & Main Menu'),
     '#type' => 'details',

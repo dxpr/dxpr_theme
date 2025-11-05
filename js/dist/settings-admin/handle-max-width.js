@@ -15,6 +15,7 @@ function handleMaxWidthSettings(
   Object.values(settings).forEach((setting) => {
     const inputName = getInputName(setting);
     const elements = document.querySelectorAll(`[name="${inputName}"]`);
+
     setPreview(inputName, elements[0] ?? null);
 
     elements.forEach((element) => {
