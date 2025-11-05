@@ -96,11 +96,6 @@ html.html--dxpr-theme-nav-mobile--open {
         background-color: var(--dxt-setting-mobile-menu-background) !important;
         position: static;
 
-        li {
-          min-width: var(--dxt-setting-dropdown-width);
-          width: var(--dxt-setting-dropdown-width);
-        }
-
         .dropdown-item,
         .bs-dropdown-item-wrapper > .dropdown-item {
           background-color: var(--dxt-setting-mobile-menu-background) !important;
