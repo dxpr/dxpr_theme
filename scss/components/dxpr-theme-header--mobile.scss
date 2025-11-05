@@ -59,14 +59,24 @@ html.html--dxpr-theme-nav-mobile--open {
     }
 
     .dxpr-theme-main-menu {
-      background: var(--dxt-setting-dropdown-background);
+      background: dxpr-color('headerside');
       box-shadow: 0 5px 5px rgb(0 0 0 / 2%);
+      color: dxpr-color('headersidetext');
       left: 0;
       padding-left: calc(var(--dxt-setting-gutter-vertical-mobile, 0) / 2);
       padding-right: calc(var(--dxt-setting-gutter-vertical-mobile, 0) / 2);
       position: absolute;
       width: 100%;
       z-index: 100;
+
+      a {
+        color: dxpr-color('headersidetext');
+
+        &:hover,
+        &:focus {
+          color: dxpr-color('headersidetext');
+        }
+      }
 
       .nav-link {
         font-size: var(--dxt-setting-nav-mobile-font-size);
@@ -90,7 +100,8 @@ html.html--dxpr-theme-nav-mobile--open {
 
         .dropdown-item,
         .bs-dropdown-item-wrapper > .dropdown-item {
-          background-color: var(--dxt-setting-dropdown-background) !important;
+          background-color: dxpr-color('headerside') !important;
+          color: dxpr-color('headersidetext') !important;
           font-size: var(--dxt-setting-nav-mobile-font-size);
           white-space: normal;
           word-wrap: break-word;
