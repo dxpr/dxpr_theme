@@ -47,10 +47,13 @@ function dxpr_theme_library_info_alter(&$libraries, $extension) {
  * See the html.html.twig template for the list of variables.
  */
 function dxpr_theme_preprocess_html(&$variables) {
-  // If bootstrap basetheme is not loading bootstrap from CDN load it locally
+  // Only load local Bootstrap when cdn_provider is explicitly set to empty
+  // string, meaning Bootstrap base theme is configured to NOT load from CDN.
+  // When cdn_provider is not set, Bootstrap base theme uses its default
+  // 'jsdelivr' and will load Bootstrap from CDN, so we should not duplicate.
   // This is default behavior starting from DXPR Theme 8.x-1.1.3 and 7.x-2.7.3.
   $bootstrap_cdn = theme_get_setting('cdn_provider');
-  if (!$bootstrap_cdn) {
+  if ($bootstrap_cdn === '') {
     $variables['#attached']['library'][] = 'dxpr_theme/bootstrap3';
   }
 
