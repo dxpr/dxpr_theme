@@ -300,18 +300,21 @@
       height: var(--dxt-setting-header-top-height);
       line-height: var(--dxt-setting-header-top-height);
     }
-
-    // Add spacing only when site name is present to avoid gaps when it's disabled
-    .wrap-branding:has(.name.navbar-brand) {
-      margin-bottom: 80px;
-    }
-
-    // Reduce spacing when header is sticky to prevent excessive gaps
-    &.affix .wrap-branding:has(.name.navbar-brand) {
-      margin-bottom: 60px;
-    }
   }
 
+}
+
+// Overlay header: Add spacing when site name is present to prevent overlap with page content.
+// Only applies to overlay mode where header is positioned absolute over the page.
+// Fixes #578, scoped to overlay only to fix #670.
+.body--dxpr-theme-nav-desktop.body--dxpr-theme-header-overlay {
+  .dxpr-theme-header--top .wrap-branding:has(.name.navbar-brand) {
+    margin-bottom: 80px;
+  }
+
+  .dxpr-theme-header--top.affix .wrap-branding:has(.name.navbar-brand) {
+    margin-bottom: 60px;
+  }
 }
 
 .body--dxpr-theme-header-overlay {

@@ -273,10 +273,14 @@ html.html--dxpr-theme-nav-mobile--open {
     position: fixed;
     right: 0;
   }
+}
 
-  // Add spacing only when site name is present to avoid gaps when it's disabled
+// Overlay header: Add spacing when site name is present to prevent overlap with page content.
+// Only applies to overlay mode where header is positioned absolute over the page.
+// Fixes #578, scoped to overlay only to fix #670.
+.body--dxpr-theme-nav-mobile.body--dxpr-theme-header-overlay {
   .wrap-branding:has(.name.navbar-brand) {
-   padding-bottom: 50px;
+    padding-bottom: 50px;
   }
 }
 
