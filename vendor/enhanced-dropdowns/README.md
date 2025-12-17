@@ -2,172 +2,149 @@
 
 [![npm downloads](https://img.shields.io/npm/dm/bs-enhanced-dropdowns.svg)](https://www.npmjs.com/package/bs-enhanced-dropdowns)
 
-**[Live Demo of Bootstrap 5 Enhanced Dropdowns](https://dxpr.github.io/bs-dropdown-extended/)**
+**[Live Demo](https://dxpr.github.io/bs-dropdown-extended/)** · Split dropdown buttons, multi-level submenus, and improved keyboard accessibility for Bootstrap 5.
 
-A powerful enhancement for Bootstrap 5 navigation menus, featuring split dropdown buttons, multi-level submenus, improved keyboard accessibility, and intelligent handling of link behavior based on the `href` attribute.
+## Table of Contents
 
-## Core Features
+- [Features](#features)
+- [Quick Start](#quick-start)
+- [HTML Patterns](#html-patterns)
+- [Accessibility](#accessibility)
+- [Customization](#customization)
 
--   **Split Dropdown Buttons**: Main link area navigates, separate caret button toggles the dropdown.
--   **Full Toggle Dropdown Links**: Traditional dropdown links where the entire item toggles the menu.
--   **Intelligent `href` Handling**: 
-    -   For **split buttons**, the link part always navigates if `href` is a valid URL.
-    -   For **full toggle links** (e.g., `.dropdown-item.dropdown-toggle`), if `href` is `"#"` or empty, it acts as a dropdown toggle. If `href` is a valid URL, it will navigate *and* attempt to toggle (though typically these are used only for toggling).
-    -   The JavaScript primarily uses the presence and value of `href` on anchor tags to distinguish between navigational links and toggle-only actions, especially for full `dropdown-toggle` items.
--   **Multi-level Submenus**: Supports nested dropdowns (currently styled for up to 3 levels effectively).
--   **Automatic Multi-Column Layout (Desktop)**: Top-level dropdowns automatically arrange items into 1 to 5 columns on larger screens (>=992px) based on item count. Dropdowns with 3 or more columns expand to the full width of the navbar.
--   **Viewport Edge Detection**: Dropdowns automatically reposition when they would overflow the viewport edge, ensuring content remains visible and accessible.
--   **Enhanced Keyboard Navigation**: Intuitive navigation using Arrow keys, Enter, Space, Escape, and Tab.
--   **ARIA Accessibility**: Implements ARIA roles and attributes for screen readers and assistive technologies.
--   **Focus Management**: Ensures logical focus flow when opening, closing, and navigating menus.
--   **Mobile-Friendly**: Responsive design adapts to smaller viewports.
--   **Customizable**: Uses CSS variables for key metrics like indentation and caret size.
+---
 
-## Setup & Usage
+## Features
 
-1.  **Include Bootstrap 5**: Ensure you have Bootstrap 5 CSS and JS included in your HTML.
-    ```html
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    ```
+| Feature | Description |
+|---------|-------------|
+| Split Dropdown Buttons | Link navigates, caret toggles dropdown |
+| Multi-level Submenus | Up to 3 levels deep |
+| Auto Multi-Column | 1-5 columns based on item count (desktop) |
+| Smart Hover | Hover-to-open on desktop, click always works* |
+| Keyboard Navigation | Arrow keys, Enter, Space, Escape, Tab |
+| ARIA Accessibility | Full screen reader support |
+| Mobile-Friendly | Responsive for all viewports |
+| RTL Support | Full right-to-left language support |
 
-2.  **Include Enhanced Dropdown Assets**: Link the provided CSS and JS files in your HTML.
-    ```html
-    <link href="css/enhanced-dropdowns.css" rel="stylesheet">
-    <script src="js/enhanced-dropdowns.js"></script>
-    ```
+*If any dropdown in a navbar has nested submenus, all dropdowns in that navbar become click-only to avoid frustrating hover tunnel navigation.
 
-3.  **Initialize JavaScript**: After the DOM is loaded, create a new instance of `BootstrapEnhancedDropdowns`.
-    ```html
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        new BootstrapEnhancedDropdowns({
-          debug: false // Set to true for console logs during development
-        });
-      });
-    </script>
-    ```
+---
 
-## HTML Structure Examples
+## Quick Start
 
-Wrap your navigation in a `<ul class="navbar-nav" role="menubar">`.
-
-**Key Custom Classes (applied by script or for structure):**
-
--   `.bs-dropdown-wrapper`: Wrapper for top-level split buttons (contains a `.nav-link` and a `.bs-dropdown-caret`).
--   `.bs-dropdown-item-wrapper`: Wrapper for nested split buttons within a dropdown menu (contains a `.dropdown-item` and a `.bs-dropdown-caret`).
--   `.bs-dropdown-caret`: The clickable caret button in a split button setup.
--   `.bs-dropdown-submenu`: Applied to an `<li>` that contains a nested dropdown menu.
--   `.dropdown-menu-columns-X` (e.g., `dropdown-menu-columns-2`): Applied by the script to `.dropdown-menu` on desktop for multi-column layout (X can be 2-5).
--   `.dropdown-full-width`: Applied by the script to the parent `li.nav-item.dropdown` on desktop when its menu has 3+ columns, making the menu span the navbar width.
-
-**1. Simple Nav Link**
-
+**1. Include Bootstrap 5:**
 ```html
-<li class="nav-item" role="none">
-    <a class="nav-link" href="#home" role="menuitem">Home</a>
-</li>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 ```
 
-**2. Top-Level Split Dropdown**
+**2. Include Enhanced Dropdowns:**
+```html
+<link href="css/enhanced-dropdowns.css" rel="stylesheet">
+<script src="js/enhanced-dropdowns.js"></script>
+```
+
+**3. Initialize:**
+```html
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    new BootstrapEnhancedDropdowns();
+  });
+</script>
+```
+
+---
+
+## HTML Patterns
+
+Wrap navigation in `<ul class="navbar-nav" role="menubar">`.
+
+### Split Dropdown (Top-Level)
 
 ```html
 <li class="nav-item dropdown" role="none">
-    <div class="bs-dropdown-wrapper">
-        <a class="nav-link" href="#features" id="featuresLink" role="menuitem">Features</a>
-        <button class="bs-dropdown-caret" type="button" aria-expanded="false" aria-controls="featuresMenu" aria-labelledby="featuresLink">
-            <span class="visually-hidden">Toggle Features submenu</span>
-        </button>
-    </div>
-    <ul class="dropdown-menu" id="featuresMenu" aria-labelledby="featuresLink">
-        <li><a class="dropdown-item" href="#features-overview" role="menuitem">Features Overview</a></li>
-        <!-- More items or submenus -->
-    </ul>
+  <div class="bs-dropdown-wrapper">
+    <a class="nav-link" href="/features" role="menuitem">Features</a>
+    <button class="bs-dropdown-caret" type="button" aria-expanded="false">
+      <span class="visually-hidden">Toggle submenu</span>
+    </button>
+  </div>
+  <ul class="dropdown-menu">
+    <li><a class="dropdown-item" href="/overview" role="menuitem">Overview</a></li>
+  </ul>
 </li>
 ```
 
-**3. Top-Level Full Toggle Dropdown (Standard Bootstrap)**
-   - The script enhances these with better keyboard navigation if they are part of submenus handled by the script.
-   - `data-bs-toggle="dropdown"` is standard Bootstrap for these.
-   - If `href="#"`, it acts purely as a toggle. If `href` has a URL, Bootstrap's default behavior applies (navigates).
+### Standard Bootstrap Dropdown
 
 ```html
 <li class="nav-item dropdown" role="none">
-    <a class="nav-link dropdown-toggle" href="#" id="aboutLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-        About
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="aboutLink">
-        <li><a class="dropdown-item" href="#about-overview" role="menuitem">About Overview</a></li>
-    </ul>
+  <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+    About
+  </a>
+  <ul class="dropdown-menu">
+    <li><a class="dropdown-item" href="/team" role="menuitem">Team</a></li>
+  </ul>
 </li>
 ```
 
-**4. Nested Split Submenu Item**
+### CSS Classes Reference
 
-```html
-<li class="bs-dropdown-submenu" role="none">
-    <div class="bs-dropdown-item-wrapper">
-        <a class="dropdown-item" href="#performance" id="performanceLink" role="menuitem">Performance</a>
-        <button class="bs-dropdown-caret" type="button" aria-expanded="false" aria-controls="performanceMenu" aria-labelledby="performanceLink">
-            <span class="visually-hidden">Toggle Performance submenu</span>
-        </button>
-    </div>
-    <ul class="dropdown-menu" id="performanceMenu" aria-labelledby="performanceLink">
-        <li><a class="dropdown-item" href="#speed" role="menuitem">Speed Analysis</a></li>
-    </ul>
-</li>
-```
+| Class | Purpose |
+|-------|---------|
+| `.bs-dropdown-wrapper` | Wrapper for top-level split buttons |
+| `.bs-dropdown-item-wrapper` | Wrapper for nested split buttons |
+| `.bs-dropdown-caret` | Clickable caret button |
+| `.bs-dropdown-submenu` | Container for nested dropdown |
 
-**5. Nested Full Toggle Submenu Item**
-   - `href="#"` makes this a toggle. If it had a different URL, the script would still treat it primarily as a toggle due to `.dropdown-toggle`.
+See `index.html` and `demo.html` for complete examples.
 
-```html
-<li class="bs-dropdown-submenu" role="none">
-    <a class="dropdown-item dropdown-toggle" href="#" id="securityLink" role="button" aria-expanded="false" aria-controls="securityMenu">
-        Security
-    </a>
-    <ul class="dropdown-menu" id="securityMenu" aria-labelledby="securityLink">
-        <li><a class="dropdown-item" href="#firewall" role="menuitem">Firewall Options</a></li>
-    </ul>
-</li>
-```
+---
 
-## Accessibility (A11y) & User Experience (UX)
+## Accessibility
 
--   **ARIA Roles**: Uses `role="menubar"`, `role="none"` (on `<li>`), `role="menuitem"`, and `role="button"` appropriately.
--   **ARIA States/Properties**: Manages `aria-expanded`, `aria-controls`, and `aria-labelledby` to provide context to assistive technologies.
--   **Keyboard Navigation**:
-    -   `Tab` / `Shift+Tab`: Moves between top-level navigation items and into/out of open menus according to standard tab flow.
-    -   `ArrowDown` / `ArrowUp`: Navigates between items within an open dropdown menu.
-    -   `Enter` / `Space`: Activates a menu item (navigates or opens/closes a submenu).
-    -   `Escape`: Closes the current open dropdown menu and returns focus to its toggle button.
-    -   `ArrowLeft` (within a submenu): Closes the current submenu and returns focus to its parent toggle. For split buttons, this only works if focus is on the first item.
--   **Focus Management**: When a dropdown is opened, focus is moved to the first interactive item. When closed, focus returns to the toggle button.
--   **Clear Visual Cues**: Caret icons indicate dropdown functionality. Hover and focus states are distinct.
--   **Separation of Concerns (Split Buttons)**: Users can click the text part to navigate directly or the caret to explore submenu options, providing a clear and predictable UX.
+### Keyboard Navigation
+
+| Key | Action |
+|-----|--------|
+| `Tab` | Move between top-level items |
+| `↓` / `↑` | Navigate within dropdown |
+| `Enter` / `Space` | Activate item |
+| `Escape` | Close dropdown |
+| `←` | Close submenu, return to parent |
+
+### WCAG Compliance
+
+| Criterion | Level | Description |
+|-----------|-------|-------------|
+| 2.1.1 Keyboard | A | Full navigation via arrows, Enter, Space, Escape, Tab |
+| 2.1.2 No Keyboard Trap | A | Tab and Escape always allow exiting menus |
+| 2.4.7 Focus Visible | AA | Clear focus indicators on all interactive elements |
+| 1.4.13 Content on Hover or Focus | AA | Hover menus persist, dismissible via Escape |
+| 4.1.2 Name, Role, Value | A | ARIA roles and states (`aria-expanded`, `aria-controls`) |
+| 2.5.5 Target Size | AAA | Caret toggles meet 44×44px minimum |
+
+---
 
 ## Customization
 
--   **CSS Variables**: Modify the following variables in `css/enhanced-dropdowns.css` or override them in your own CSS for basic structural changes:
-    -   `--bs-dropdown-caret-width`: Width of the caret button in split layouts.
-    -   `--bs-dropdown-caret-padding-x`: Horizontal padding within the caret button.
-    -   `--bs-dropdown-indent-step`: Indentation amount for each submenu level.
--   **Auto-Column Behavior (Desktop)**: The script automatically applies multi-column layouts to top-level dropdowns based on the number of `<li>` items:
-    -   1-7 items: 1 column (standard Bootstrap behavior, no extra classes)
-    -   8-14 items: 2 columns (`.dropdown-menu-columns-2`)
-    -   15-20 items: 3 columns (`.dropdown-menu-columns-3`, becomes full-width)
-    -   21-27 items: 4 columns (`.dropdown-menu-columns-4`, becomes full-width)
-    -   28+ items: 5 columns (`.dropdown-menu-columns-5`, becomes full-width)
-    This behavior is active on viewports 992px and wider. The full-width effect relies on the parent `li.nav-item.dropdown` getting the `.dropdown-full-width` class, which sets its position to static.
--   **Border Radius**: As an example of Bootstrap customization, you can set global border-radius to 0 in your page-specific CSS if desired:
-    ```css
-    /* In your page-specific <style> tag or CSS file */
-    :root {
-        --bs-border-radius: 0;
-        --bs-border-radius-sm: 0;
-        /* ... and other radius variables ... */
-        --bs-border-radius-pill: 0;
-    }
-    ```
+### CSS Variables
 
-Refer to `index.html` and `demo.html` for complete examples of implementation. 
+| Variable | Purpose |
+|----------|---------|
+| `--bs-dropdown-caret-width` | Caret button width |
+| `--bs-dropdown-caret-padding-x` | Caret horizontal padding |
+| `--bs-dropdown-indent-step` | Submenu indentation |
+
+### Auto-Column Layout
+
+Desktop (≥992px) applies columns automatically:
+
+| Items | Columns | Full Width |
+|-------|---------|------------|
+| 1-7 | 1 | No |
+| 8-14 | 2 | No |
+| 15-20 | 3 | Yes |
+| 21-27 | 4 | Yes |
+| 28+ | 5 | Yes |

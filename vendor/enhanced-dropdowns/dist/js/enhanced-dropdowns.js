@@ -14,7 +14,8 @@ class BootstrapEnhancedDropdowns {
       debug: false,
       ...options
     };
-        
+
+    this._hoverState = new WeakMap();
     this.init();
   }
     
@@ -32,6 +33,7 @@ class BootstrapEnhancedDropdowns {
     this.initPopperConfig();
     this.initSplitButtonDropdowns();
     this.initSubmenuDropdowns();
+    this.initHoverBehavior();
   }
 
   _isFullWidthDropdown(toggleElement) {
@@ -186,12 +188,16 @@ class BootstrapEnhancedDropdowns {
     const existingToggles = document.querySelectorAll('[data-bs-toggle="dropdown"]');
 
     existingToggles.forEach(toggle => {
-      // Skip if already initialized or if it's inside our custom structures
-      if (bootstrap.Dropdown.getInstance(toggle)) return;
+      // Skip if it's inside our custom structures (handled separately)
       if (toggle.closest('.bs-dropdown-wrapper, .bs-dropdown-item-wrapper')) return;
 
-      const config = this._getPopperConfig(toggle);
-      new bootstrap.Dropdown(toggle, config);
+      let dropdownInstance = bootstrap.Dropdown.getInstance(toggle);
+      if (!dropdownInstance) {
+        const config = this._getPopperConfig(toggle);
+        dropdownInstance = new bootstrap.Dropdown(toggle, config);
+      }
+
+      this._attachKeyboardHandler(toggle, dropdownInstance);
     });
   }
 
@@ -345,6 +351,80 @@ class BootstrapEnhancedDropdowns {
       if (itemCount > 0) {
         this._applyColumnClasses(menu, parentLi, numColumns);
       }
+    });
+  }
+
+  _getHoverState(navItem) {
+    if (!this._hoverState.has(navItem)) {
+      this._hoverState.set(navItem, { openTimeout: null, closeTimeout: null });
+    }
+    return this._hoverState.get(navItem);
+  }
+
+  _handleHoverEnter(navItem, dropdownInstance) {
+    const state = this._getHoverState(navItem);
+    if (state.closeTimeout) {
+      clearTimeout(state.closeTimeout);
+      state.closeTimeout = null;
+    }
+    if (!state.openTimeout) {
+      state.openTimeout = setTimeout(() => {
+        state.openTimeout = null;
+        dropdownInstance.show();
+        dropdownInstance._element.blur();
+      }, 150);
+    }
+  }
+
+  _handleHoverLeave(navItem, dropdownInstance) {
+    const state = this._getHoverState(navItem);
+    if (state.openTimeout) {
+      clearTimeout(state.openTimeout);
+      state.openTimeout = null;
+    }
+    if (!state.closeTimeout) {
+      state.closeTimeout = setTimeout(() => {
+        state.closeTimeout = null;
+        dropdownInstance.hide();
+      }, 200);
+    }
+  }
+
+  initHoverBehavior() {
+    if (window.innerWidth < 992 || !window.matchMedia('(hover: hover)').matches) return;
+
+    document.querySelectorAll('.navbar-nav').forEach(navbarNav => {
+      if (navbarNav.querySelectorAll(this.options.submenuSelector).length > 0) return;
+
+      Array.from(navbarNav.children)
+        .filter(child => child.matches('.nav-item.dropdown'))
+        .forEach(navItem => {
+          const splitWrapper = navItem.querySelector(this.options.splitButtonSelector);
+          const toggle = splitWrapper
+            ? splitWrapper.querySelector(this.options.caretSelector)
+            : navItem.querySelector(this.options.fullToggleSelector);
+          if (!toggle) return;
+
+          const dropdownInstance = bootstrap.Dropdown.getInstance(toggle);
+          if (!dropdownInstance) return;
+
+          const menu = navItem.querySelector('.dropdown-menu');
+          if (!menu) return;
+
+          const caretButton = navItem.querySelector(`${this.options.splitButtonSelector} ${this.options.caretSelector}`);
+          const enterHandler = () => this._handleHoverEnter(navItem, dropdownInstance);
+          const leaveHandler = () => this._handleHoverLeave(navItem, dropdownInstance);
+
+          if (caretButton) {
+            caretButton.addEventListener('mouseenter', enterHandler);
+            caretButton.addEventListener('mouseleave', leaveHandler);
+            menu.addEventListener('mouseenter', enterHandler);
+            menu.addEventListener('mouseleave', leaveHandler);
+          } else {
+            navItem.addEventListener('mouseenter', enterHandler);
+            navItem.addEventListener('mouseleave', leaveHandler);
+          }
+        });
     });
   }
 }
