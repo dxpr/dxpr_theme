@@ -1,12 +1,4 @@
-// Admin fixes for Drupal using Bootstrap
-
-body.admin-menu {
-  margin-top: 28px !important;
-
-  .navbar-fixed-top {
-    top: 30px;
-  }
-}
+// Admin fixes for Drupal core toolbar
 
 body.toolbar-fixed .toolbar-oriented .toolbar-bar {
   z-index: 450 !important;
