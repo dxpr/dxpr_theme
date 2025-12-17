@@ -319,6 +319,8 @@ html.js .gin--vertical-toolbar {
   .dxpr-theme-header--fixed,
   .dxpr-theme-header--top.affix {
     left: var(--gin-toolbar-x-offset, 256px);
+    // Gin toolbar has 1px bottom border that creates visual gap - overlap it.
+    top: calc(var(--drupal-displace-offset-top, 0px) - 1px);
     width: calc(100% - var(--gin-toolbar-x-offset, 256px));
   }
 

@@ -280,6 +280,11 @@ html.html--dxpr-theme-nav-mobile--open {
     z-index: 405;
   }
 
+  // Gin toolbar has 1px bottom border that creates visual gap - overlap it.
+  &.gin--vertical-toolbar #navbar.header-mobile-fixed {
+    top: calc(var(--drupal-displace-offset-top, 0px) - 1px);
+  }
+
   // Body padding for mobile fixed header - content needs space for the fixed header.
   &:has(#navbar.header-mobile-fixed) {
     padding-top: calc(var(--dxt-setting-header-mobile-height) + var(--drupal-displace-offset-top, 0px)) !important;
