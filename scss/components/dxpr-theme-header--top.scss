@@ -330,6 +330,12 @@ html.js .gin--vertical-toolbar {
     left: var(--gin-toolbar-x-offset, 256px);
     width: calc(100% - var(--gin-toolbar-x-offset, 256px));
   }
+
+  // Reset body padding for Gin - Gin handles its own layout via displacement API.
+  // Must use !important to override dynamically generated theme settings CSS.
+  &.body--dxpr-theme-nav-desktop.body--dxpr-theme-header-fixed.body--dxpr-theme-header-not-overlay {
+    padding-top: 0 !important;
+  }
 }
 
 /* Custom colors */
