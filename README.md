@@ -43,6 +43,20 @@ You need to install `docker` and `docker-compose` to your workstation.
 You can keep using whatever to run your webserver,
 we just use docker to run our scripts.
 
+### npm Scripts
+
+| Command | Description |
+|---------|-------------|
+| `npm run build` | Build JS with webpack, babel, terser |
+| `npm run lint:scss` | Stylelint SCSS files |
+| `npm run lint:scss:fix` | Stylelint SCSS with auto-fix |
+
+### Shell Scripts
+
+| Script | Description |
+|--------|-------------|
+| `scripts/update-vendor-assets.sh` | Update vendor packages and copy to `vendor/` |
+| `scripts/create_subtheme.sh` | Create a new subtheme |
 
 ### How to watch and build files
 
