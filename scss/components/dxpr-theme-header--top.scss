@@ -330,6 +330,15 @@ html.js .gin--vertical-toolbar {
   }
 }
 
+// Gin horizontal/classic toolbar: overlap 1px border (no sidebar offset needed).
+html.js .gin--horizontal-toolbar,
+html.js .gin--classic-toolbar {
+  .dxpr-theme-header--fixed,
+  .dxpr-theme-header--top.affix {
+    top: calc(var(--drupal-displace-offset-top, 0px) - 1px);
+  }
+}
+
 /* Custom colors */
 .html #navbar.dxpr-theme-header--top .container-row > .col-sm-12 {
   background-color: var(--dxt-setting-navbar-background);

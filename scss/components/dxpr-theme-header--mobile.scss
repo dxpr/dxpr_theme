@@ -281,7 +281,10 @@ html.html--dxpr-theme-nav-mobile--open {
   }
 
   // Gin toolbar has 1px bottom border that creates visual gap - overlap it.
-  &.gin--vertical-toolbar #navbar.header-mobile-fixed {
+  // Applies to all Gin toolbar modes: vertical, horizontal, and classic.
+  &.gin--vertical-toolbar #navbar.header-mobile-fixed,
+  &.gin--horizontal-toolbar #navbar.header-mobile-fixed,
+  &.gin--classic-toolbar #navbar.header-mobile-fixed {
     top: calc(var(--drupal-displace-offset-top, 0px) - 1px);
   }
 
