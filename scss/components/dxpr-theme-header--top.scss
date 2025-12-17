@@ -314,7 +314,8 @@
 
 // Gin vertical toolbar: adjust header for side toolbar.
 html.js .gin--vertical-toolbar {
-  .dxpr-theme-header--fixed {
+  .dxpr-theme-header--fixed,
+  .dxpr-theme-header--top.affix {
     left: var(--gin-toolbar-x-offset, 256px);
     width: calc(100% - var(--gin-toolbar-x-offset, 256px));
   }
