@@ -15,14 +15,10 @@ html.html--dxpr-theme-nav-mobile--open {
 }
 
 .body--dxpr-theme-nav-mobile {
-  // Mobile header is static by default, reset desktop fixed header padding.
-  &.body--dxpr-theme-header-fixed.body--dxpr-theme-header-not-overlay {
+  // Mobile header is static by default, reset any desktop fixed header padding.
+  // Only reset when mobile fixed header is NOT enabled.
+  &.body--dxpr-theme-header-fixed.body--dxpr-theme-header-not-overlay:not(:has(#navbar.header-mobile-fixed)) {
     padding-top: 0 !important;
-  }
-
-  // Mobile fixed header: add padding using displacement API for admin toolbar.
-  &:has(#navbar.header-mobile-fixed) {
-    padding-top: calc(var(--dxt-setting-header-mobile-height) + var(--drupal-displace-offset-top, 0px)) !important;
   }
 
   .page-title-full-width-container {
@@ -281,6 +277,16 @@ html.html--dxpr-theme-nav-mobile--open {
     right: 0;
     top: var(--drupal-displace-offset-top, 0px);
     z-index: 405;
+  }
+
+  // Body padding for mobile fixed header - content needs space for the fixed header.
+  &:has(#navbar.header-mobile-fixed) {
+    padding-top: calc(var(--dxt-setting-header-mobile-height) + var(--drupal-displace-offset-top, 0px)) !important;
+  }
+
+  // Gin vertical toolbar: only header height padding needed, Gin handles toolbar spacing.
+  &.gin--vertical-toolbar:has(#navbar.header-mobile-fixed) {
+    padding-top: var(--dxt-setting-header-mobile-height) !important;
   }
 }
 
