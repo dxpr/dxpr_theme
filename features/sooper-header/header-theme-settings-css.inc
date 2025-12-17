@@ -58,16 +58,13 @@ function header_theme_settings_css(string $theme, string &$css, array $palette) 
   $css .= "}\n\n";
 
   if (theme_get_setting('header_style', $theme) == 'overlay') {
-    // For overlay header add a big gap in the top of the page title
-    // to make room for the header.
+    // Overlay header: add gap in page title for header.
     $css .= ".body--dxpr-theme-nav-desktop.body--dxpr-theme-header-overlay .page-title-full-width-container {\n";
     $css .= "  padding-top: calc($header_top_height_var + 30px);\n";
     $css .= "}\n\n";
   }
   elseif (theme_get_setting('header_top_fixed', $theme)) {
-    // For fixed headers add padding to prevent content from going under header.
-    // The header is positioned at top: var(--drupal-displace-offset-top), so body
-    // padding only needs to account for header height, not toolbar displacement.
+    // Fixed header: add body padding for header height.
     $css .= ".body--dxpr-theme-nav-desktop.body--dxpr-theme-header-fixed.body--dxpr-theme-header-not-overlay {\n";
     $css .= "  padding-top: $header_top_height_var !important;\n";
     $css .= "}\n\n";

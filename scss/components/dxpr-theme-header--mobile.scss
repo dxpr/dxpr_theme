@@ -15,15 +15,12 @@ html.html--dxpr-theme-nav-mobile--open {
 }
 
 .body--dxpr-theme-nav-mobile {
-  // Reset desktop fixed header padding on mobile (header is static by default).
-  // Uses !important to override Gin's padding-block-start rule.
+  // Mobile header is static by default, reset desktop fixed header padding.
   &.body--dxpr-theme-header-fixed.body--dxpr-theme-header-not-overlay {
     padding-top: 0 !important;
   }
 
-  // When mobile fixed header is enabled, add padding to prevent content overlap.
-  // Uses :has() to detect when navbar has header-mobile-fixed class.
-  // Uses Drupal's displacement API CSS variable to account for admin toolbar.
+  // Mobile fixed header: add padding using displacement API for admin toolbar.
   &:has(#navbar.header-mobile-fixed) {
     padding-top: calc(var(--dxt-setting-header-mobile-height) + var(--drupal-displace-offset-top, 0px)) !important;
   }
@@ -276,8 +273,7 @@ html.html--dxpr-theme-nav-mobile--open {
     }
   }
 
-  // Mobile fixed header positioning using Drupal's displacement API.
-  // The --drupal-displace-offset-top variable accounts for admin toolbar height.
+  // Mobile fixed header positioning using displacement API.
   #navbar.header-mobile-fixed {
     box-sizing: border-box;
     left: 0;

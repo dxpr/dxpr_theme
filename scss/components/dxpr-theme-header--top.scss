@@ -1,9 +1,6 @@
 @import "../includes/variables";
 
 .body--dxpr-theme-nav-desktop {
-  // Note: Desktop fixed header body padding is handled dynamically in
-  // header-theme-settings-css.inc using Drupal's displacement API.
-
   .navbar-toggler {
     display: none;
   }
@@ -30,7 +27,6 @@
       max-height: 100%;
     }
 
-    // Desktop fixed header positioning using Drupal's displacement API.
     &.dxpr-theme-header--fixed {
       left: 0;
       position: fixed;
@@ -43,12 +39,6 @@
       box-shadow: 0 3px 10px 0 rgb(50 50 50 / 5%);
     }
 
-    // &.affix {
-    //   border-bottom: 1px solid rgba(0,0,0,0.04);
-    // }
-
-    // Overlay header positioning using Drupal's displacement API.
-    // Adds 30px design offset below toolbar for visual spacing.
     &.dxpr-theme-header--overlay {
       left: 0;
       position: absolute;
@@ -322,17 +312,14 @@
   }
 }
 
-// Gin admin theme toolbar fixes.
-// Gin vertical toolbar is positioned on the side, not top, so we need specific handling.
+// Gin vertical toolbar: adjust header for side toolbar.
 html.js .gin--vertical-toolbar {
-  // Adjust header width and position for side toolbar.
   .dxpr-theme-header--fixed {
     left: var(--gin-toolbar-x-offset, 256px);
     width: calc(100% - var(--gin-toolbar-x-offset, 256px));
   }
 
-  // Reset body padding for Gin - Gin handles its own layout via displacement API.
-  // Must use !important to override dynamically generated theme settings CSS.
+  // Reset body padding - Gin handles its own layout.
   &.body--dxpr-theme-nav-desktop.body--dxpr-theme-header-fixed.body--dxpr-theme-header-not-overlay {
     padding-top: 0 !important;
   }
