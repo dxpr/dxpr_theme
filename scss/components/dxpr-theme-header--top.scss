@@ -1,10 +1,8 @@
 @import "../includes/variables";
 
 .body--dxpr-theme-nav-desktop {
-  // Desktop fixed header body padding using Drupal's displacement API.
-  &.body--dxpr-theme-header-fixed.body--dxpr-theme-header-not-overlay {
-    padding-top: calc(var(--dxt-setting-header-top-height) + var(--drupal-displace-offset-top, 0px));
-  }
+  // Note: Desktop fixed header body padding is handled dynamically in
+  // header-theme-settings-css.inc using Drupal's displacement API.
 
   .navbar-toggler {
     display: none;
@@ -331,11 +329,6 @@ html.js .gin--vertical-toolbar {
   .dxpr-theme-header--fixed {
     left: var(--gin-toolbar-x-offset, 256px);
     width: calc(100% - var(--gin-toolbar-x-offset, 256px));
-  }
-
-  // Body padding only needs header height since toolbar is on the side.
-  &.body--dxpr-theme-header-fixed.body--dxpr-theme-header-top {
-    padding-top: var(--dxt-setting-header-top-height) !important;
   }
 }
 

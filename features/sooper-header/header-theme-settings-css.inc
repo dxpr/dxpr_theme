@@ -65,18 +65,11 @@ function header_theme_settings_css(string $theme, string &$css, array $palette) 
     $css .= "}\n\n";
   }
   elseif (theme_get_setting('header_top_fixed', $theme)) {
-    // For fixed headers create small padding to prevent fixed
-    // header from hiding toolbars.
+    // For fixed headers add padding to prevent content from going under header.
+    // The header is positioned at top: var(--drupal-displace-offset-top), so body
+    // padding only needs to account for header height, not toolbar displacement.
     $css .= ".body--dxpr-theme-nav-desktop.body--dxpr-theme-header-fixed.body--dxpr-theme-header-not-overlay {\n";
     $css .= "  padding-top: $header_top_height_var !important;\n";
-    $css .= "}\n\n";
-
-    $css .= "html.js .body--dxpr-theme-nav-desktop.toolbar-fixed.toolbar-horizontal.body--dxpr-theme-header-fixed.body--dxpr-theme-header-not-overlay {\n";
-    $css .= "  padding-top: calc($header_top_height_var + 39px) !important;\n";
-    $css .= "}\n\n";
-
-    $css .= "html.js .body--dxpr-theme-nav-desktop.toolbar-fixed.toolbar-horizontal.toolbar-tray-open.toolbar-horizontal.body--dxpr-theme-header-fixed.body--dxpr-theme-header-not-overlay {\n";
-    $css .= "  padding-top: calc($header_top_height_var + 80px) !important;\n";
     $css .= "}\n\n";
   }
 
