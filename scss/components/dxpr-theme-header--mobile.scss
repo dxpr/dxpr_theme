@@ -15,8 +15,10 @@ html.html--dxpr-theme-nav-mobile--open {
 }
 
 .body--dxpr-theme-nav-mobile {
+  // When mobile fixed header is enabled, add padding to prevent content overlap.
+  // Uses Drupal's displacement API CSS variable to account for admin toolbar.
   &.body--dxpr-theme-header-fixed.body--dxpr-theme-header-not-overlay {
-    padding-top: 0;
+    padding-top: calc(var(--dxt-setting-header-mobile-height) + var(--drupal-displace-offset-top, 0px));
   }
 
   .page-title-full-width-container {
@@ -267,11 +269,15 @@ html.html--dxpr-theme-nav-mobile--open {
     }
   }
 
+  // Mobile fixed header positioning using Drupal's displacement API.
+  // The --drupal-displace-offset-top variable accounts for admin toolbar height.
   #navbar.header-mobile-fixed {
     box-sizing: border-box;
     left: 0;
     position: fixed;
     right: 0;
+    top: var(--drupal-displace-offset-top, 0px);
+    z-index: 405;
   }
 }
 
@@ -293,12 +299,4 @@ html.html--dxpr-theme-nav-mobile--open {
   .media-library-view--widget .view-header .navbar-nav a.dropdown-toggle {
     display: block;
   }
-}
-
-
-#toolbar-bar.header-mobile-fixed {
-  left: 0;
-  position: fixed;
-  right: 0;
-  z-index: 406;
 }
