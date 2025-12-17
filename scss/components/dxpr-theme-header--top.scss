@@ -220,7 +220,7 @@
     }
 
     .dropdown {
-      span {
+      span:not(.dropdown-toggle) {
         padding: 0 15px;
         pointer-events: none;
       }
