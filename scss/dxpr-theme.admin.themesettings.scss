@@ -60,21 +60,24 @@ body.path-admin #system-theme-settings,
     box-sizing: border-box;
   }
 
-  #edit-actions {
-    background: white;
-    border: none;
-    border-top: 1px solid $border-color;
-    bottom: 0;
-    margin: 0 -12px;
-    padding: 0 12px;
+  #edit-actions.form-actions {
+    background: white !important;
+    border: none !important;
+    border-top: 1px solid $border-color !important;
+    bottom: -12px;
+    margin: 0 -12px -12px !important;
+    padding: 0 12px 12px !important;
     position: sticky;
     z-index: 101;
   }
 
-  #edit-submit {
-    border: none;
+  #edit-actions #edit-submit {
+    background: #000 !important;
+    background-color: #000 !important;
+    border: none !important;
+    color: #fff !important;
     font-size: 16px;
-    margin: 12px 0;
+    margin: 12px 0 0;
     padding: 12px;
     width: 100%;
   }
