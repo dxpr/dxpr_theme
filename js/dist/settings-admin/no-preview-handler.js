@@ -133,8 +133,10 @@ function updatePreviewClass(input, action) {
 
   if (action) {
     label.classList.add("no-preview");
+    label.title = "Setting does not support live preview, save form to see changes";
   } else {
     label.classList.remove("no-preview");
+    label.removeAttribute("title");
   }
 }
 
