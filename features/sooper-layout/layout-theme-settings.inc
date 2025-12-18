@@ -212,7 +212,7 @@ function layout_theme_settings(array &$form, $theme) {
     '#min' => 0,
     '#max' => 100,
     '#step' => 1,
-    '#description' => t('Width of the horizontal gutter in DXPR Theme mobile view (<1200px). 0 - 100px. Default is 10.'),
+    '#description' => t('Width of the horizontal gutter in DXPR Theme mobile view (under 1200px). 0 - 100px. Default is 10.'),
     '#attributes' => [
       'class' => ['dxb-slider', 'gutter-horizontal-mobile-range'],
       'data-dxb-slider' => TRUE,
@@ -226,7 +226,7 @@ function layout_theme_settings(array &$form, $theme) {
     '#min' => 0,
     '#max' => 100,
     '#step' => 1,
-    '#description' => t('Width of the vertical gutter in DXPR Theme mobile view (<1200px). 0 - 100px. Default is 10px.'),
+    '#description' => t('Width of the vertical gutter in DXPR Theme mobile view (under 1200px). 0 - 100px. Default is 10px.'),
     '#attributes' => [
       'class' => ['dxb-slider', 'gutter-vertical-mobile-range'],
       'data-dxb-slider' => TRUE,
