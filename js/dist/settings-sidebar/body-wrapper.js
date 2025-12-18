@@ -17,7 +17,7 @@ function createBodyWrapper() {
   // Set displacement API variable for right offset to match sidebar width
   document.documentElement.style.setProperty(
     "--drupal-displace-offset-right",
-    "35vw",
+    "40vw",
   );
 }
 

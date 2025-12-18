@@ -21,7 +21,7 @@ body.path-admin #system-theme-settings,
   position: fixed;
   right: 0;
   top: var(--drupal-displace-offset-top, 0);
-  width: 35vw;
+  width: 40vw;
   z-index: 9999;
 
   * { color: var(--dxt-admin-text); }
@@ -354,25 +354,29 @@ body.path-admin #system-theme-settings,
           display: block;
           font-size: 14px;
           margin-bottom: 0;
+          outline: none;
           padding: 10px 16px;
-          transition: background-color 0.15s ease, color 0.15s ease;
+          transition: background-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
 
-          &:hover,
-          &:active {
-            background: rgba(0, 0, 0, 0.04);
-            border: none;
-            outline: none;
+          &:hover {
+            background: rgba(255, 255, 255, 0.6);
+            color: var(--dxt-admin-text);
             text-decoration: none;
           }
 
           &:focus {
+            outline: none;
             text-decoration: none;
           }
 
-          &:hover .vertical-tabs__menu-item-title,
-          &:focus .vertical-tabs__menu-item-title,
-          &:active .vertical-tabs__menu-item-title {
-            text-decoration: none;
+          &:focus-visible {
+            background: rgba(255, 255, 255, 0.6);
+            box-shadow: 0 0 0 2px var(--dxt-admin-accent);
+          }
+
+          &:active {
+            background: rgba(255, 255, 255, 0.8);
+            color: var(--dxt-admin-text);
           }
 
           .vertical-tabs__menu-item-title {
@@ -382,14 +386,22 @@ body.path-admin #system-theme-settings,
       }
 
       .is-selected {
-        background-color: var(--dxt-admin-accent);
+        background-color: #fff;
         border-radius: 24px;
+        box-shadow: 0 2px 8px rgb(0 0 0 / 8%);
 
         a {
-          border: none;
-          color: #fff;
+          color: var(--dxt-admin-text);
 
-          &:hover,
+          &:hover {
+            background: transparent;
+          }
+
+          &:focus-visible {
+            background: transparent;
+            box-shadow: 0 0 0 2px var(--dxt-admin-accent);
+          }
+
           &:active {
             background: transparent;
           }
@@ -766,7 +778,7 @@ body.path-admin #system-theme-settings,
 }
 
 .dxpr-body-wrapper {
-  margin-right: 35vw !important;
+  margin-right: 40vw !important;
 }
 
 .type-preview {
