@@ -1,25 +1,15 @@
 @charset "UTF-8";
 
 #system-theme-settings {
-  // Color palette - Primary
+  // Color palette - Primary (3 colors)
   --dxt-admin-color-primary-50: #eaedfa;
-  --dxt-admin-color-primary-100: #bfc8f0;
-  --dxt-admin-color-primary-200: #a0ade9;
-  --dxt-admin-color-primary-300: #7588e0;
-  --dxt-admin-color-primary-400: #5a71d9;
   --dxt-admin-color-primary-500: #314dd0;
   --dxt-admin-color-primary-600: #2d46bd;
-  --dxt-admin-color-primary-700: #233794;
-  --dxt-admin-color-primary-800: #1b2a72;
-  --dxt-admin-color-primary-900: #152057;
 
-  // Color palette - Neutral
+  // Color palette - Neutral (10 colors)
   --dxt-admin-color-neutral-0: #fff;
-  --dxt-admin-color-neutral-50: #f5f5f5;
   --dxt-admin-color-neutral-100: #f2f2f7;
-  --dxt-admin-color-neutral-150: #e8e8ed;
   --dxt-admin-color-neutral-200: #e5e5ea;
-  --dxt-admin-color-neutral-250: #dadfe7;
   --dxt-admin-color-neutral-300: #d1d5db;
   --dxt-admin-color-neutral-400: #9ca3af;
   --dxt-admin-color-neutral-500: #8e8e93;
@@ -28,23 +18,26 @@
   --dxt-admin-color-neutral-800: #374151;
   --dxt-admin-color-neutral-900: #1c1c1e;
 
-  // Semantic color aliases
+  // Color palette - Shadow (4 colors)
+  --dxt-admin-color-shadow-8: rgba(0, 0, 0, 0.08);
+  --dxt-admin-color-shadow-10: rgba(0, 0, 0, 0.1);
+  --dxt-admin-color-shadow-15: rgba(0, 0, 0, 0.15);
+  --dxt-admin-color-shadow-20: rgba(0, 0, 0, 0.2);
+
+  // Semantic aliases
   --dxt-admin-bg: var(--dxt-admin-color-neutral-100);
   --dxt-admin-accent: var(--dxt-admin-color-primary-500);
   --dxt-admin-accent-hover: var(--dxt-admin-color-primary-600);
   --dxt-admin-accent-light: var(--dxt-admin-color-primary-50);
   --dxt-admin-text: var(--dxt-admin-color-neutral-900);
   --dxt-admin-text-muted: var(--dxt-admin-color-neutral-500);
+  --dxt-admin-text-disabled: var(--dxt-admin-color-neutral-400);
   --dxt-admin-border: var(--dxt-admin-color-neutral-300);
-  --dxt-admin-border-light: var(--dxt-admin-color-neutral-250);
   --dxt-admin-surface: var(--dxt-admin-color-neutral-0);
-  --dxt-admin-surface-disabled: var(--dxt-admin-color-neutral-50);
-  --dxt-admin-input-bg: var(--dxt-admin-color-neutral-150);
+  --dxt-admin-surface-alt: var(--dxt-admin-color-neutral-200);
   --dxt-admin-toggle-off: var(--dxt-admin-color-neutral-500);
   --dxt-admin-toggle-off-hover: var(--dxt-admin-color-neutral-600);
-  --dxt-admin-toggle-off-focus: var(--dxt-admin-color-neutral-700);
-  --dxt-admin-toggle-disabled-bg: var(--dxt-admin-color-neutral-200);
-  --dxt-admin-toggle-disabled-thumb: var(--dxt-admin-color-neutral-500);
+  --dxt-admin-toggle-off-active: var(--dxt-admin-color-neutral-700);
   --dxt-admin-focus-ring: rgba(49, 77, 208, 0.25);
   --dxt-admin-selected-bg: rgba(49, 77, 208, 0.15);
   --dxt-admin-selected-bg-hover: rgba(49, 77, 208, 0.2);
@@ -52,13 +45,6 @@
   --dxt-admin-search-bg-focus: rgba(118, 118, 128, 0.12);
   --dxt-admin-tab-hover: rgba(255, 255, 255, 0.6);
   --dxt-admin-tab-active: rgba(255, 255, 255, 0.8);
-
-  // Shadow colors
-  --dxt-admin-color-shadow-5: rgba(0, 0, 0, 0.05);
-  --dxt-admin-color-shadow-8: rgba(0, 0, 0, 0.08);
-  --dxt-admin-color-shadow-10: rgba(0, 0, 0, 0.1);
-  --dxt-admin-color-shadow-15: rgba(0, 0, 0, 0.15);
-  --dxt-admin-color-shadow-20: rgba(0, 0, 0, 0.2);
 
   // Border radius scale
   --dxt-radius-sm: 8px;
@@ -94,7 +80,7 @@
     padding: 8px 16px 12px;
     position: sticky;
     top: 0;
-    z-index: 100;
+    z-index: 1030;
   }
 
   #dxpr-settings-search {
@@ -402,8 +388,17 @@
     margin-top: 0;
   }
 
+  // Hide all form headers, then show subsequent ones (for base theme separator)
   .form-header {
     display: none;
+  }
+
+  .form-header ~ .form-header {
+    border-top: 1px solid var(--dxt-admin-border);
+    display: block;
+    margin-top: 24px;
+    padding-top: 24px;
+    text-align: center;
   }
 
   .vertical-tabs {
@@ -660,12 +655,12 @@
 
       // Disabled state
       &:has(input[type="radio"]:disabled) {
-        background: var(--dxt-admin-surface-disabled);
+        background: var(--dxt-admin-surface-alt);
         cursor: not-allowed;
         pointer-events: none;
 
         label.option {
-          color: var(--dxt-admin-color-neutral-400);
+          color: var(--dxt-admin-text-disabled);
           cursor: not-allowed;
         }
       }
@@ -722,12 +717,6 @@
     flex-shrink: 0;
     transform: scale(0.7);
     transform-origin: top left;
-    z-index: 10;
-  }
-
-  .reinvented-color-wheel {
-    position: sticky;
-    top: 80px;
   }
 
   .color-form {
@@ -781,10 +770,10 @@
   }
 
   .color-placeholder {
-    height: 0;
-    padding: 0 24px 100px;
-    top: calc(var(--dxt-setting-header-top-height) + 100px);
-    z-index: 404;
+    position: fixed;
+    right: 60px;
+    top: calc(var(--drupal-displace-offset-top, 0px) + 80px);
+    z-index: 10;
   }
 
   .color-palette {
@@ -1024,15 +1013,15 @@
 
       // Disabled state
       &:disabled {
-        background-color: var(--dxt-admin-toggle-disabled-bg) !important;
+        background-color: var(--dxt-admin-surface-alt) !important;
         cursor: not-allowed;
 
         &::after {
-          background-color: var(--dxt-admin-toggle-disabled-thumb) !important;
+          background-color: var(--dxt-admin-text-muted) !important;
         }
 
         &:checked {
-          background-color: var(--dxt-admin-toggle-disabled-bg) !important;
+          background-color: var(--dxt-admin-surface-alt) !important;
         }
       }
     }
@@ -1145,7 +1134,7 @@
 
       // Track styling
       &::-webkit-slider-runnable-track {
-        background-image: linear-gradient(var(--dxt-admin-accent), var(--dxt-admin-accent)), linear-gradient(var(--dxt-admin-border-light), var(--dxt-admin-border-light));
+        background-image: linear-gradient(var(--dxt-admin-accent), var(--dxt-admin-accent)), linear-gradient(var(--dxt-admin-border), var(--dxt-admin-border));
         background-position: left center;
         background-repeat: no-repeat;
         background-size: var(--value-percent) 7px, 100% 7px;
@@ -1153,7 +1142,7 @@
       }
 
       &::-moz-range-track {
-        background-image: linear-gradient(var(--dxt-admin-accent), var(--dxt-admin-accent)), linear-gradient(var(--dxt-admin-border-light), var(--dxt-admin-border-light));
+        background-image: linear-gradient(var(--dxt-admin-accent), var(--dxt-admin-accent)), linear-gradient(var(--dxt-admin-border), var(--dxt-admin-border));
         background-position: left center;
         background-repeat: no-repeat;
         background-size: var(--value-percent) 7px, 100% 7px;
@@ -1163,7 +1152,7 @@
       // Thumb styling - square design
       &::-webkit-slider-thumb {
         background: var(--dxt-admin-surface);
-        border: 1px solid var(--dxt-admin-border-light);
+        border: 1px solid var(--dxt-admin-border);
         border-radius: 0;
         box-shadow: none;
         cursor: pointer;
@@ -1175,7 +1164,7 @@
 
       &::-moz-range-thumb {
         background: var(--dxt-admin-surface);
-        border: 1px solid var(--dxt-admin-border-light);
+        border: 1px solid var(--dxt-admin-border);
         border-radius: 0;
         box-shadow: none;
         cursor: pointer;
@@ -1231,37 +1220,36 @@
         pointer-events: none;
 
         &::-webkit-slider-runnable-track {
-          background-image: linear-gradient(var(--dxt-admin-border-light), var(--dxt-admin-border-light)), linear-gradient(var(--dxt-admin-border-light), var(--dxt-admin-border-light));
+          background-image: linear-gradient(var(--dxt-admin-border), var(--dxt-admin-border)), linear-gradient(var(--dxt-admin-border), var(--dxt-admin-border));
         }
 
         &::-moz-range-track {
-          background-image: linear-gradient(var(--dxt-admin-border-light), var(--dxt-admin-border-light)), linear-gradient(var(--dxt-admin-border-light), var(--dxt-admin-border-light));
+          background-image: linear-gradient(var(--dxt-admin-border), var(--dxt-admin-border)), linear-gradient(var(--dxt-admin-border), var(--dxt-admin-border));
         }
 
         &::-webkit-slider-thumb {
-          background: var(--dxt-admin-surface-disabled);
-          border-color: var(--dxt-admin-border-light);
+          background: var(--dxt-admin-surface-alt);
+          border-color: var(--dxt-admin-border);
         }
 
         &::-moz-range-thumb {
-          background: var(--dxt-admin-surface-disabled);
-          border-color: var(--dxt-admin-border-light);
+          background: var(--dxt-admin-surface-alt);
+          border-color: var(--dxt-admin-border);
         }
       }
     }
 
-    // Value input field
+    // Value input field - same size as toggle (70x40)
     .dxb-slider-value {
       background: var(--dxt-admin-surface);
-      border: 1px solid var(--dxt-admin-border-light);
+      border: 1px solid var(--dxt-admin-border);
       border-radius: 0;
       box-shadow: none;
-      // font-size: 14px !important;
-      height: 42px;
+      height: 40px;
       margin-inline-start: 0;
       padding: 8px 4px;
       text-align: center;
-      width: 52px;
+      width: 70px;
 
       &:focus {
         border-color: var(--dxt-admin-accent);
