@@ -13,13 +13,15 @@ function initSearchFunctionality() {
   const searchContainer = document.createElement("div");
   searchContainer.className = "dxpr-search-container";
   searchContainer.innerHTML =
-    '<input type="text" id="dxpr-settings-search" placeholder="Search settings" autocomplete="off">';
+    '<input type="text" id="dxpr-settings-search" placeholder="Search settings" autocomplete="off">' +
+    '<button type="button" id="dxpr-settings-search-clear" class="dxpr-search-clear" aria-label="Clear search">&times;</button>';
 
   // Insert search at the top of theme settings
   const { firstChild } = themeSettings;
   themeSettings.insertBefore(searchContainer, firstChild);
 
   const searchInput = document.getElementById("dxpr-settings-search");
+  const clearButton = document.getElementById("dxpr-settings-search-clear");
   let searchableElements = [];
 
   // Index all searchable elements
@@ -191,14 +193,40 @@ function initSearchFunctionality() {
     });
   };
 
+  // Update clear button visibility
+  const updateClearButton = () => {
+    clearButton.style.display = searchInput.value.length > 0 ? "block" : "none";
+  };
+
   // Debounced search for performance
   let searchTimeout;
   searchInput.addEventListener("input", () => {
+    updateClearButton();
     clearTimeout(searchTimeout);
     searchTimeout = setTimeout(() => {
       performSearch(searchInput.value);
     }, 150);
   });
+
+  // Clear button click handler
+  clearButton.addEventListener("click", () => {
+    searchInput.value = "";
+    updateClearButton();
+    performSearch("");
+    searchInput.focus();
+  });
+
+  // ESC key to clear search when input is focused
+  searchInput.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && searchInput.value.length > 0) {
+      searchInput.value = "";
+      updateClearButton();
+      performSearch("");
+    }
+  });
+
+  // Initialize clear button state
+  updateClearButton();
 
   // Initialize search index with delay to ensure DOM is ready
   setTimeout(() => {

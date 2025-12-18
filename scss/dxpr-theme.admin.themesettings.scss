@@ -133,7 +133,7 @@
     border: none;
     border-radius: var(--dxt-radius-md);
     outline: none;
-    padding: 12px 16px;
+    padding: 12px 40px 12px 16px;
     transition: background-color 0.2s ease;
     width: 100%;
 
@@ -145,6 +145,30 @@
     &::placeholder {
       color: var(--dxt-admin-text-muted);
       opacity: 1;
+    }
+  }
+
+  .dxpr-search-clear {
+    align-items: center;
+    background: var(--dxt-admin-text-muted) !important;
+    border: none !important;
+    border-radius: 50%;
+    color: var(--dxt-admin-bg) !important;
+    cursor: pointer;
+    display: none;
+    font-size: 12px !important;
+    height: 18px;
+    justify-content: center;
+    line-height: 1;
+    padding: 0 !important;
+    position: absolute;
+    right: 28px;
+    top: calc(50% - 3px);
+    transform: translateY(-50%);
+    width: 18px;
+
+    &:hover {
+      background: var(--dxt-admin-text) !important;
     }
   }
 
