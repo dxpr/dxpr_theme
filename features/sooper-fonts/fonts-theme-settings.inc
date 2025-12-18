@@ -52,7 +52,7 @@ function fonts_theme_settings(array &$form, $theme) {
 
   $form['dxpr_theme_settings']['fonts']['headings_font_face_selector'] = [
     '#type' => 'textfield',
-    '#title' => '&nbsp;',
+    '#title' => t('CSS Selector'),
     '#default_value' => ((theme_get_setting('headings_font_face_selector') !== NULL)) ? theme_get_setting('headings_font_face_selector') : 'h1,h2,h3,h4,h5,h6,label,.field--label,.page-title, .html .tp-caption',
   ];
 
@@ -65,7 +65,7 @@ function fonts_theme_settings(array &$form, $theme) {
 
   $form['dxpr_theme_settings']['fonts']['nav_font_face_selector'] = [
     '#type' => 'textfield',
-    '#title' => '&nbsp;',
+    '#title' => t('CSS Selector'),
     '#default_value' => ((theme_get_setting('nav_font_face_selector') !== NULL)) ? theme_get_setting('nav_font_face_selector') : '.dxpr-theme-header .nav',
   ];
 
@@ -78,7 +78,7 @@ function fonts_theme_settings(array &$form, $theme) {
 
   $form['dxpr_theme_settings']['fonts']['sitename_font_face_selector'] = [
     '#type' => 'textfield',
-    '#title' => '&nbsp;',
+    '#title' => t('CSS Selector'),
     '#default_value' => ((theme_get_setting('sitename_font_face_selector') !== NULL)) ? theme_get_setting('sitename_font_face_selector') : '.site-name, .navbar-brand',
   ];
 
@@ -91,7 +91,7 @@ function fonts_theme_settings(array &$form, $theme) {
 
   $form['dxpr_theme_settings']['fonts']['blockquote_font_face_selector'] = [
     '#type' => 'textfield',
-    '#title' => '&nbsp;',
+    '#title' => t('CSS Selector'),
     '#default_value' => ((theme_get_setting('blockquote_font_face_selector') !== NULL)) ? theme_get_setting('blockquote_font_face_selector') : 'blockquote, blockquote p',
   ];
 
@@ -220,7 +220,7 @@ function _dxpr_theme_font_previews() {
   foreach (dxpr_theme_local_webfonts() as $key => $font_name) {
     $font = explode('|', $key);
     $local_name = $font[2];
-    $output .= '  <div class="font-preview font-local" style="font-family:' . $local_name . '">';
+    $output .= '  <div class="font-preview font-local" style="--preview-font: \'' . $local_name . '\'">';
     $output .= '  <p class="font-name">' . $font_name . '</p><p class="font-test">The quick brown fox jumps over the lazy dog.</p>';
     $output .= '  <p class="font-test-small">The quick brown fox jumps over the lazy dog.</p>';
     $output .= '  <p class="font-test-accents">&#36; &euro; &pound; &yen; &agrave; &egrave; &igrave; &ograve; &ugrave; &Agrave; &Egrave; &Igrave; &Ograve; &Ugrave; &aacute; &eacute; &iacute; &oacute; &uacute; &yacute; &Aacute; &Eacute; &Iacute; &Oacute; &Uacute; &Yacute;</p>';

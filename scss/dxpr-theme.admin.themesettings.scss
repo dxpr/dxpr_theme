@@ -81,6 +81,39 @@
     line-height: 1.2 !important;
   }
 
+  // Link styling - WCAG AAA compliant
+  a:not(.vertical-tabs__menu-item a) {
+    color: var(--dxt-admin-accent);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition: color 0.15s ease, text-decoration-color 0.15s ease;
+
+    &:visited {
+      color: #5e35b1; // Purple for visited links
+    }
+
+    &:hover {
+      color: var(--dxt-admin-accent-hover);
+      text-decoration-thickness: 2px;
+    }
+
+    &:focus {
+      outline: 2px solid var(--dxt-admin-accent);
+      outline-offset: 2px;
+      text-decoration: none;
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--dxt-admin-accent);
+      outline-offset: 2px;
+    }
+
+    &:active {
+      color: var(--dxt-admin-accent-hover);
+      text-decoration-thickness: 2px;
+    }
+  }
+
   // Search functionality - fixed at top of sidebar
   .dxpr-search-container {
     background: var(--dxt-admin-bg);
@@ -851,6 +884,12 @@
     font-size: 30px;
     padding: 10px 0;
 
+    // Override global font-family !important with CSS variable
+    &,
+    & * {
+      font-family: var(--preview-font) !important;
+    }
+
     p {
       margin: 10px 0;
     }
@@ -886,6 +925,32 @@
       label {
         margin-bottom: 6px;
       }
+    }
+
+    // Group font select + CSS selector pairs closer together
+    // CSS selector fields - tighter spacing with font select above
+    .form-item-body-font-face-selector,
+    .form-item-headings-font-face-selector,
+    .form-item-nav-font-face-selector,
+    .form-item-sitename-font-face-selector,
+    .form-item-blockquote-font-face-selector {
+      margin-bottom: 24px; // Space after each pair
+      padding-top: 4px; // Tighter connection to font select above
+
+      label {
+        color: var(--dxt-admin-text-muted);
+        font-size: 13px !important;
+        font-weight: 500;
+      }
+    }
+
+    // Font select fields - minimal bottom spacing
+    .form-item-body-font-face,
+    .form-item-headings-font-face,
+    .form-item-nav-font-face,
+    .form-item-sitename-font-face,
+    .form-item-blockquote-font-face {
+      padding-bottom: 0;
     }
   }
 
