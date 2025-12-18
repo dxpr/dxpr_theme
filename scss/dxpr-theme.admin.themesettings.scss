@@ -949,7 +949,10 @@
   }
 
   .js-form-type-checkbox {
-    display: block;
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
     margin-bottom: 0;
     position: relative;
 
@@ -964,9 +967,9 @@
       box-shadow: none !important;
       cursor: pointer;
       flex-shrink: 0;
-      float: right;
       height: 40px !important;
       margin: 0 !important;
+      order: -1;
       outline: none !important;
       position: relative;
       transition: background-color 0.2s ease;
@@ -1035,20 +1038,19 @@
     }
 
     label {
-      display: block;
+      flex: 1;
       font-size: 19px !important;
       line-height: 1.4;
-      margin-bottom: 4px;
-      padding-right: 80px;
-      width: 100%;
+      margin: 0;
     }
 
     .description {
-      clear: both;
       color: var(--dxt-admin-text-muted);
+      flex-basis: 100%;
       font-size: 13px !important;
       line-height: 1.4;
       margin-top: 6px;
+      padding-left: 80px;
     }
 
     .switcher {
