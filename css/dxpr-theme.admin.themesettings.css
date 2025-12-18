@@ -919,6 +919,10 @@
 #system-theme-settings .form-checkboxes .js-form-type-checkbox label {
   padding-right: 0;
 }
+#system-theme-settings .core-theme-settings .js-form-type-checkbox label::before,
+#system-theme-settings .form-checkboxes .js-form-type-checkbox label::before {
+  display: none !important;
+}
 #system-theme-settings .dxb-slider-wrapper {
   align-items: center;
   display: flex;
