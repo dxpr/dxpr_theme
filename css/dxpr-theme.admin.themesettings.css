@@ -865,6 +865,11 @@
 #system-theme-settings .js-form-type-checkbox .switcher {
   display: none;
 }
+#system-theme-settings .core-theme-settings .js-form-type-checkbox,
+#system-theme-settings .form-checkboxes .js-form-type-checkbox {
+  margin-bottom: 0;
+  padding: 8px 0;
+}
 #system-theme-settings .core-theme-settings .js-form-type-checkbox input[type=checkbox],
 #system-theme-settings .form-checkboxes .js-form-type-checkbox input[type=checkbox] {
   appearance: none !important;

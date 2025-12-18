@@ -1051,6 +1051,9 @@
   .core-theme-settings,
   .form-checkboxes {
     .js-form-type-checkbox {
+      margin-bottom: 0;
+      padding: 8px 0;
+
       input[type="checkbox"] {
         appearance: none !important;
         background-color: transparent !important;
