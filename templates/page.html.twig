@@ -104,7 +104,7 @@
     %}
     {% set navbar_attributes = navbar_attributes.removeClass('container').addClass(navbar_classes) %}
     {% if theme.settings.header_top_fixed and theme.settings.header_top_sticky %}
-      {% set navbar_attributes = navbar_attributes.setAttribute('data-spy', 'affix').setAttribute('data-offset-top', theme.settings.header_top_height_sticky_offset) %}
+      {% set navbar_attributes = navbar_attributes.setAttribute('data-spy', 'affix').setAttribute('data-affix-offset-top', theme.settings.header_top_height_sticky_offset) %}
     {% endif %}
     {% set hamburger_menu = theme.settings.hamburger_menu ? theme.settings.hamburger_menu : 'three-dash' %}
 

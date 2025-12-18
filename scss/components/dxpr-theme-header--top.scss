@@ -1,10 +1,6 @@
 @import "../includes/variables";
 
 .body--dxpr-theme-nav-desktop {
-  &.body--dxpr-theme-header-fixed.body--dxpr-theme-header-not-overlay {
-    padding-top: 100px;
-  }
-
   .navbar-toggler {
     display: none;
   }
@@ -33,9 +29,10 @@
 
     &.dxpr-theme-header--fixed {
       left: 0;
+      margin: 0;
       position: fixed;
       right: 0;
-      top: 0;
+      top: var(--drupal-displace-offset-top, 0);
     }
 
     &.dxpr-theme-header--fixed,
@@ -43,14 +40,11 @@
       box-shadow: 0 3px 10px 0 rgb(50 50 50 / 5%);
     }
 
-    // &.affix {
-    //   border-bottom: 1px solid rgba(0,0,0,0.04);
-    // }
     &.dxpr-theme-header--overlay {
       left: 0;
       position: absolute;
       right: 0;
-      top: 39px;
+      top: calc(var(--drupal-displace-offset-top, 0) + 30px);
 
       &.dxpr-theme-header--fixed {
         position: fixed;
@@ -61,15 +55,16 @@
       }
 
       &.affix {
-        top: 0;
+        top: var(--drupal-displace-offset-top, 0);
       }
     }
 
     &.affix {
       left: 0;
+      margin: 0;
       opacity: 1;
       position: fixed;
-      top: 0;
+      top: var(--drupal-displace-offset-top, 0);
 
       .navbar-header {
         padding-bottom: 0;
@@ -114,8 +109,7 @@
     .wrap-branding {
       align-items: center;
       display: flex;
-      flex-direction: row;
-      flex-wrap: nowrap;
+      flex-flow: row nowrap;
 
       .logo,
       .navbar-brand {
@@ -319,47 +313,40 @@
   }
 }
 
-// Toolbar fixes
-html.js .body--dxpr-theme-nav-desktop {
-  &.toolbar-fixed.toolbar-horizontal .dxpr-theme-header--top.dxpr-theme-header--overlay {
-    top: 69px;
+// Gin vertical toolbar: adjust header for side toolbar.
+html.js .gin--vertical-toolbar {
+  .dxpr-theme-header--fixed,
+  .dxpr-theme-header--top.affix {
+    left: var(--gin-toolbar-x-offset, 256px);
+
+    // Gin toolbar has 1px bottom border that creates visual gap - overlap it.
+    top: calc(var(--drupal-displace-offset-top, 0) - 1px);
+    width: calc(100% - var(--gin-toolbar-x-offset, 256px));
   }
 
-  &.toolbar-fixed.toolbar-horizontal.toolbar-tray-open.toolbar-horizontal .dxpr-theme-header--top.dxpr-theme-header--overlay {
-    top: 118px;
-  }
-
-  &.toolbar-fixed.toolbar-horizontal .dxpr-theme-header--top.dxpr-theme-header--fixed,
-  &.toolbar-fixed.toolbar-horizontal .dxpr-theme-header--top.affix {
-    top: 39px!important;
-  }
-
-  &.toolbar-fixed.toolbar-horizontal.toolbar-tray-open.toolbar-horizontal .dxpr-theme-header--top.dxpr-theme-header--fixed,
-  &.toolbar-fixed.toolbar-horizontal.toolbar-tray-open.toolbar-horizontal .dxpr-theme-header--top.affix {
-    top: 80px!important;
-  }
-
-  &.gin--vertical-toolbar.toolbar-fixed.toolbar-horizontal .dxpr-theme-header--top.dxpr-theme-header--fixed,
-  &.gin--vertical-toolbar.toolbar-fixed.toolbar-horizontal .dxpr-theme-header--top.affix {
-    top: 0!important;
-  }
-
-  &.body--dxpr-theme-header-fixed.toolbar-fixed.toolbar-horizontal.toolbar-tray-open.toolbar-horizontal.body--dxpr-theme-header-not-overlay {
-    padding-top: 180px!important;
-  }
-
-  &.body--dxpr-theme-header-fixed.toolbar-fixed.toolbar-horizontal.body--dxpr-theme-header-not-overlay {
-    padding-top: 139px!important;
-  }
-
-  &.gin--vertical-toolbar.toolbar-fixed.toolbar-horizontal.body--dxpr-theme-header-fixed.body--dxpr-theme-header-top {
-    padding-top: var(--dxt-setting-header-top-height) !important;
+  // Reset body padding - Gin handles its own layout.
+  &.body--dxpr-theme-nav-desktop.body--dxpr-theme-header-fixed.body--dxpr-theme-header-not-overlay {
+    padding-top: 0 !important;
   }
 }
 
-html.js .gin--vertical-toolbar .dxpr-theme-header--fixed {
-  left: var(--gin-toolbar-x-offset, 256px);
-  width: calc(100% - var(--gin-toolbar-x-offset, 256px));
+// Gin horizontal/classic toolbar: overlap 1px border (no sidebar offset needed).
+html.js .gin--horizontal-toolbar,
+html.js .gin--classic-toolbar,
+html.js .gin--core-navigation,
+html.js .gin--navigation-top-bar {
+  .dxpr-theme-header--fixed,
+  .dxpr-theme-header--top.affix {
+    top: calc(var(--drupal-displace-offset-top, 0) - 1px);
+  }
+}
+
+// Gin + Navigation module: displacement reports 60px but toolbar is 54px, needs 6px offset.
+html.js .gin--navigation {
+  .dxpr-theme-header--fixed,
+  .dxpr-theme-header--top.affix {
+    top: calc(var(--drupal-displace-offset-top, 0) - 6px);
+  }
 }
 
 /* Custom colors */

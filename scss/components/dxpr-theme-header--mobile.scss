@@ -15,8 +15,10 @@ html.html--dxpr-theme-nav-mobile--open {
 }
 
 .body--dxpr-theme-nav-mobile {
-  &.body--dxpr-theme-header-fixed.body--dxpr-theme-header-not-overlay {
-    padding-top: 0;
+  // Mobile header is static by default, reset any desktop fixed header padding.
+  // Only reset when mobile fixed header is NOT enabled.
+  &.body--dxpr-theme-header-fixed.body--dxpr-theme-header-not-overlay:not(:has(#navbar.header-mobile-fixed)) {
+    padding-top: 0 !important;
   }
 
   .page-title-full-width-container {
@@ -60,8 +62,7 @@ html.html--dxpr-theme-nav-mobile--open {
       .wrap-branding {
         align-items: center;
         display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
+        flex-flow: row nowrap;
 
         .logo,
         .navbar-brand {
@@ -279,11 +280,39 @@ html.html--dxpr-theme-nav-mobile--open {
     }
   }
 
+  // Mobile fixed header positioning using displacement API.
   #navbar.header-mobile-fixed {
     box-sizing: border-box;
     left: 0;
+    margin: 0;
     position: fixed;
     right: 0;
+    top: var(--drupal-displace-offset-top, 0);
+    z-index: 405;
+  }
+
+  // Gin toolbar has 1px bottom border that creates visual gap - overlap it.
+  // Applies to most Gin toolbar modes.
+  &.gin--vertical-toolbar #navbar.header-mobile-fixed,
+  &.gin--horizontal-toolbar #navbar.header-mobile-fixed,
+  &.gin--classic-toolbar #navbar.header-mobile-fixed,
+  &.gin--core-navigation #navbar.header-mobile-fixed {
+    top: calc(var(--drupal-displace-offset-top, 0) - 1px);
+  }
+
+  // Gin + Navigation module: displacement reports 60px but toolbar is 54px, needs 6px offset.
+  &.gin--navigation #navbar.header-mobile-fixed {
+    top: calc(var(--drupal-displace-offset-top, 0) - 6px);
+  }
+
+  // Body padding for mobile fixed header - content needs space for the fixed header.
+  &:has(#navbar.header-mobile-fixed) {
+    padding-top: calc(var(--dxt-setting-header-mobile-height) + var(--drupal-displace-offset-top, 0)) !important;
+  }
+
+  // Gin vertical toolbar: only header height padding needed, Gin handles toolbar spacing.
+  &.gin--vertical-toolbar:has(#navbar.header-mobile-fixed) {
+    padding-top: var(--dxt-setting-header-mobile-height) !important;
   }
 }
 
@@ -305,12 +334,4 @@ html.html--dxpr-theme-nav-mobile--open {
   .media-library-view--widget .view-header .navbar-nav a.dropdown-toggle {
     display: block;
   }
-}
-
-
-#toolbar-bar.header-mobile-fixed {
-  left: 0;
-  position: fixed;
-  right: 0;
-  z-index: 406;
 }
