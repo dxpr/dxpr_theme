@@ -1276,3 +1276,8 @@
 html.html--dxpr-theme-sticky-footer:has(#system-theme-settings) {
   height: auto !important;
 }
+
+// Account for admin toolbar when scrolling to styleguide sections
+.bd-cheatsheet section[id] {
+  scroll-margin-top: var(--drupal-displace-offset-top, 0px);
+}
