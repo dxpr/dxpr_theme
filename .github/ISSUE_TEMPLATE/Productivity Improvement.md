@@ -2,7 +2,7 @@
 name: Productivity Improvement
 about: Use this template to propose product team productivity improvements.
 title: "PRODUCITIVTY PROBLEM STATEMENT"
-labels: 6.x,productivity
+labels: 8.x,productivity
 ---
 
 ## What is the DXPR engineering productivity problem to solve?

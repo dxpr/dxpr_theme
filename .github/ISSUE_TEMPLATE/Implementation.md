@@ -2,7 +2,7 @@
 name: Implementation
 about: Use this template for small discrete tasks that are part of large issues.
 title: "TASK DESCRIPTION"
-labels: 6.x,implementation
+labels: 8.x,implementation
 ---
 
 <!--

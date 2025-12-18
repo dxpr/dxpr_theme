@@ -2,7 +2,7 @@
 name: Bug
 about: Use this template to report bugs.
 title: "PROBLEM STATEMENT"
-labels: 6.x,bug
+labels: 8.x,bug
 ---
 
 <!---

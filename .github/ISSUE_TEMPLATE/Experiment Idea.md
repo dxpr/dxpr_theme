@@ -2,7 +2,7 @@
 name: Experiment Idea
 about: Use this template to report bugs.
 title: "DESCRIBE YOUR IDEA"
-labels: 6.x,experiment,experiment idea
+labels: 8.x,experiment,experiment idea
 ---
 
 ## Experiment summary
