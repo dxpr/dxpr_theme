@@ -364,9 +364,8 @@ function dxpr_theme_preprocess_menu_local_tasks(&$variables) {
       // Only hide tabs for users who have permission to access the toolbar.
       $current_user = \Drupal::currentUser();
       if ($current_user->hasPermission('access toolbar')) {
-        // Hide primary tabs only when admin_toolbar_tools is showing local tasks.
-        // Secondary tabs should always be visible as they provide important navigation.
-        $variables['hide_primary_tabs'] = TRUE;
+        // Hide tabs when admin_toolbar_tools is showing local tasks.
+        $variables['hide_tabs'] = TRUE;
       }
     }
   }

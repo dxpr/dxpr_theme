@@ -6,7 +6,8 @@
  * Available variables:
  * - primary: HTML list items representing primary tasks.
  * - secondary: HTML list items representing primary tasks.
- * - hide_primary_tabs: Boolean to conditionally hide primary tabs when admin_toolbar_tools shows local tasks.
+ * - hide_tabs: Boolean to conditionally hide primary tabs when admin_toolbar_tools shows local tasks.
+ *   Secondary tabs are always shown since they are not displayed in the admin toolbar.
  *
  * Each item in these variables (primary and secondary) can be individually
  * themed in menu-local-task.html.twig.
@@ -17,9 +18,11 @@
  */
 #}
 
-{{ attach_library('dxpr_theme/drupal-tabs') }}
+{% if (primary and not hide_tabs) or secondary %}
+  {{ attach_library('dxpr_theme/drupal-tabs') }}
+{% endif %}
 
-{% if primary and not hide_primary_tabs %}
+{% if primary and not hide_tabs %}
   <div class="dxpr-theme-mini-tabs-wrapper" data-drupal-nav-primary-tabs>
     <h2 class="visually-hidden">{{ 'Primary tabs'|t }}</h2>
     <ul class="tabs tabs--primary nav nav-tabs">{{ primary }}</ul>
