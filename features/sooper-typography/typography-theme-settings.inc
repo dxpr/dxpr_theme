@@ -323,7 +323,8 @@ function typography_theme_settings(array &$form, $theme) {
 
   $form['dxpr_theme_settings']['typography']['divider']['divider_length'] = [
     '#type' => 'range',
-    '#title' => t('Divider Length') . ' <small>' . t('(0 = full width)') . '</small>',
+    '#title' => t('Divider Length'),
+    '#description' => t('Set to 0 for full width.'),
     '#default_value' => ((theme_get_setting('divider_length') !== NULL)) ? theme_get_setting('divider_length') : 100,
     '#min' => 0,
     '#max' => 500,
