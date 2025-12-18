@@ -31,7 +31,7 @@ function fonts_theme_settings(array &$form, $theme) {
   // Regular Fonts Settings.
   $form['dxpr_theme_settings']['fonts']['body_font_face'] = [
     '#type' => 'select',
-    '#title' => t('Base font'),
+    '#title' => t('Base Font'),
     '#default_value' => theme_get_setting('body_font_face'),
     '#options' => $font_list,
     '#prefix' => '<p>' . t('Choose from @count webfonts', ['@count' => $font_count]) . '</p>',
@@ -71,7 +71,7 @@ function fonts_theme_settings(array &$form, $theme) {
 
   $form['dxpr_theme_settings']['fonts']['sitename_font_face'] = [
     '#type' => 'select',
-    '#title' => t('Site name'),
+    '#title' => t('Site Name'),
     '#default_value' => theme_get_setting('sitename_font_face'),
     '#options' => $font_list,
   ];

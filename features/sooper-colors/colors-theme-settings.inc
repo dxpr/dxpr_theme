@@ -52,7 +52,7 @@ function colors_theme_settings(array &$form, $theme) {
 
   $form['dxpr_theme_settings']['colors']['wrapper']['color_scheme'] = [
     '#type' => 'select',
-    '#title' => t('Color set'),
+    '#title' => t('Color Set'),
     '#default_value' => theme_get_setting('color_scheme') ?? 'default',
     '#options' => $scheme_options,
   ];

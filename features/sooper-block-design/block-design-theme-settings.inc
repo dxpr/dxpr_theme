@@ -95,7 +95,7 @@ function block_design_theme_settings(array &$form, $theme) {
 
   $form['dxpr_theme_settings']['block']['block_advanced']['block_el']['block_padding'] = [
     '#type' => 'range',
-    '#title' => t('Block padding'),
+    '#title' => t('Block Padding'),
     '#default_value' => ((theme_get_setting('block_padding') !== NULL)) ? theme_get_setting('block_padding') : 0,
     '#min' => 0,
     '#max' => 30,
@@ -229,7 +229,7 @@ function block_design_theme_settings(array &$form, $theme) {
 
   $form['dxpr_theme_settings']['block']['block_advanced']['title_el']['title_padding'] = [
     '#type' => 'range',
-    '#title' => t('Title padding'),
+    '#title' => t('Title Padding'),
     '#default_value' => ((theme_get_setting('title_padding') !== NULL)) ? theme_get_setting('title_padding') : 10,
     '#min' => 0,
     '#max' => 30,
@@ -325,7 +325,7 @@ function block_design_theme_settings(array &$form, $theme) {
     '#type' => 'checkbox',
     '#title' => t('Title Sticker Mode'),
     '#default_value' => ((theme_get_setting('title_sticker') !== NULL)) ? theme_get_setting('title_sticker') : 0,
-    '#description' => t("In Sticker mode the title's width is flexible. By default the title takes the full width of the block"),
+    '#description' => t("When enabled, the title width adjusts to fit its content instead of spanning the full block width."),
     '#prefix' => '<br>',
   ];
 
@@ -345,7 +345,7 @@ function block_design_theme_settings(array &$form, $theme) {
   $form['dxpr_theme_settings']['block']['block_advanced']['divider_el']['block_divider_custom'] = [
     '#type' => 'checkbox',
     '#title' => t('Customize Divider'),
-    '#description' => t('Turn on to customize block divider specifically. To customize the divider default styling globally across the website find the Divider settings in the Typography tab.'),
+    '#description' => t('Override the global divider styles from the Typography tab for this block only.'),
     '#default_value' => ((theme_get_setting('block_divider_custom') !== NULL)) ? theme_get_setting('block_divider_custom') : 0,
     '#states' => [
       'visible' => [
@@ -454,7 +454,7 @@ function block_design_theme_settings(array &$form, $theme) {
     '#type' => 'details',
     '#collapsible' => TRUE,
     '#collapsed' => TRUE,
-    '#description' => t('The custom block design only applies to selected regions.'),
+    '#description' => t('Block design styles only apply to selected regions.'),
     '#suffix' => '</div></div>',
   ];
 

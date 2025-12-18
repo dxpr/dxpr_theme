@@ -76,7 +76,8 @@ function typography_theme_settings(array &$form, $theme) {
 
   $form['dxpr_theme_settings']['typography']['scale_factor'] = [
     '#type' => 'range',
-    '#title' => t('Typography Scale Factor') . ' <small>' . t('(This overrides advanced type controls)') . '</small>',
+    '#title' => t('Typography Scale Factor'),
+    '#description' => t('This overrides advanced type controls.'),
     '#default_value' => ((theme_get_setting('scale_factor') !== NULL)) ? theme_get_setting('scale_factor') : 1,
     '#min' => 1,
     '#max' => 2,
@@ -89,7 +90,7 @@ function typography_theme_settings(array &$form, $theme) {
 
   $form['dxpr_theme_settings']['typography']['advanced_type'] = [
     '#title' => t('Advanced Type Controls'),
-    '#description' => t('If you change the main contorls above these advanced controls are automatically generated and need might re-adjustment.'),
+    '#description' => t('The Scale Factor control above will recalculate these font sizes when changed.'),
     '#type' => 'details',
     '#collapsible' => TRUE,
     '#collapsed' => TRUE,
@@ -322,7 +323,8 @@ function typography_theme_settings(array &$form, $theme) {
 
   $form['dxpr_theme_settings']['typography']['divider']['divider_length'] = [
     '#type' => 'range',
-    '#title' => t('Divider Length') . ' <small>' . t('(0 = full width)') . '</small>',
+    '#title' => t('Divider Length'),
+    '#description' => t('Set to 0 for full width.'),
     '#default_value' => ((theme_get_setting('divider_length') !== NULL)) ? theme_get_setting('divider_length') : 100,
     '#min' => 0,
     '#max' => 500,
