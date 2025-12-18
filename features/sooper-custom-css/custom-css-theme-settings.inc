@@ -18,7 +18,7 @@ function custom_css_theme_settings(array &$form, $theme) {
     '#title' => t('Custom CSS & JS'),
     '#type' => 'details',
     '#group' => 'dxpr_theme_settings',
-    '#description' => t("This CSS will be attached after the theme and allows you to customize your site without needing the additional complexity of a subtheme."),
+    '#description' => t("Add custom CSS and JavaScript without creating a subtheme."),
     '#collapsible' => TRUE,
     '#collapsed' => TRUE,
     '#weight' => 30,
@@ -33,7 +33,7 @@ function custom_css_theme_settings(array &$form, $theme) {
 
   $form['dxpr_theme_settings']['custom_css']['custom_javascript_site'] = [
     '#type' => 'textarea',
-    '#title' => t('Sitewide Javascript (include script tags)'),
+    '#title' => t('Sitewide JavaScript'),
     '#default_value' => theme_get_setting('custom_javascript_site'),
     '#rows' => 15,
   ];

@@ -45,9 +45,8 @@ function page_title_theme_settings(array &$form, $theme) {
 
   $form['dxpr_theme_settings']['page_title']['page_title_breadcrumbs_separator'] = [
     '#type' => 'textfield',
-    '#title' => t('Breadcrumbs separator'),
+    '#title' => t('Breadcrumbs Separator'),
     '#default_value' => (theme_get_setting('page_title_breadcrumbs_separator')) ? theme_get_setting('page_title_breadcrumbs_separator') : '/',
-    '#description' => t('Add custom breadcrumbs separator symbol. Leave empty for default separator.'),
     '#states' => [
       'visible' => [
         ':input[name="page_title_breadcrumbs"]' => ['checked' => TRUE],
@@ -70,7 +69,6 @@ function page_title_theme_settings(array &$form, $theme) {
       'center' => t('Center'),
       'right' => t('Right'),
     ],
-    '#description' => t('Choose position of Page Title within page title header.'),
   ];
 
   $form['dxpr_theme_settings']['page_title']['title_type'] = [
@@ -91,7 +89,7 @@ function page_title_theme_settings(array &$form, $theme) {
     '#min' => 50,
     '#max' => 500,
     '#step' => 5,
-    '#description' => t('height of the header. 50px - 500px. Default is 120px.'),
+    '#description' => t('Height of the page title area.'),
     '#attributes' => [
       'class' => ['dxb-slider', 'page-title-height-range'],
       'data-dxb-slider' => TRUE,
@@ -114,7 +112,6 @@ function page_title_theme_settings(array &$form, $theme) {
       'fade-in-up-dxpr' => t('Fade in up'),
     ],
     '#prefix' => '<br class="clear-both"><br class="clear-both">',
-    '#description' => t('Choose an animation.'),
   ];
 
   $form['dxpr_theme_settings']['page_title']['background'] = [
@@ -127,16 +124,16 @@ function page_title_theme_settings(array &$form, $theme) {
   // @see dxpr_theme_helper.module dxpr_theme_helper_settings_form_submit()
   $form['dxpr_theme_settings']['page_title']['background']['page_title_image_path'] = [
     '#type' => 'textfield',
-    '#title' => t('Path to background image'),
+    '#title' => t('Background Image Path'),
     '#default_value' => theme_get_setting('page_title_image_path'),
-    '#description' => t('The path to the file you would like to use as your page title background image. If you upload a file below it will automatically populate this text field'),
+    '#description' => t('Automatically populated when you upload an image below.'),
   ];
   $form['dxpr_theme_settings']['page_title']['background']['page_title_image'] = [
     '#type' => 'media_library',
     '#allowed_bundles' => ['image'],
-    '#title' => t('Upload Background'),
+    '#title' => t('Upload Background Image'),
     '#default_value' => theme_get_setting('page_title_image'),
-    '#description' => t('The default page title image can also be changed per node, using the Header image field in the node form.'),
+    '#description' => t('Override per node using the Header Image field.'),
   ];
 
   $form['dxpr_theme_settings']['page_title']['background']['page_title_image_opacity'] = [
@@ -146,7 +143,7 @@ function page_title_theme_settings(array &$form, $theme) {
     '#min' => 0,
     '#max' => 1,
     '#step' => 0.01,
-    '#description' => t('Use this to blend the background image with a color. 0 is fully transparent and 1 is fully opaque.'),
+    '#description' => t('Blend the background image with the background color. 0 = transparent, 1 = opaque.'),
     '#attributes' => [
       'class' => ['dxb-slider', 'page-title-image-opacity-range'],
       'data-dxb-slider' => TRUE,
@@ -155,23 +152,23 @@ function page_title_theme_settings(array &$form, $theme) {
 
   $form['dxpr_theme_settings']['page_title']['background']['page_title_image_style'] = [
     '#type' => 'radios',
-    '#title' => t('Background Style'),
+    '#title' => t('Background Size'),
     '#default_value' => ((theme_get_setting('page_title_image_style') !== NULL)) ? theme_get_setting('page_title_image_style') : 'cover',
     '#options' => [
-      'cover' => t('Cover'),
-      'contain' => t('Contain'),
-      'no_repeat' => t('No Repeat'),
-      'repeat' => t('Repeat'),
+      'cover' => t('Cover (fill area)'),
+      'contain' => t('Contain (fit inside)'),
+      'no_repeat' => t('Actual size'),
+      'repeat' => t('Tile'),
     ],
   ];
 
   $form['dxpr_theme_settings']['page_title']['background']['page_title_image_mode'] = [
     '#type' => 'radios',
-    '#title' => t('Background Mode'),
+    '#title' => t('Background Scroll Behavior'),
     '#default_value' => ((theme_get_setting('page_title_image_mode') !== NULL)) ? theme_get_setting('page_title_image_mode') : 'normal',
     '#options' => [
-      'normal' => t('Normal'),
-      'fixed' => t('Fixed (Parallax)'),
+      'normal' => t('Scroll with page'),
+      'fixed' => t('Fixed (parallax effect)'),
     ],
   ];
 
@@ -180,14 +177,14 @@ function page_title_theme_settings(array &$form, $theme) {
     '#title' => t('Background Position'),
     '#default_value' => ((theme_get_setting('page_title_image_position') !== NULL)) ? theme_get_setting('page_title_image_position') : 'center_center',
     '#options' => [
-      'center_center' => t('Center Center'),
-      'left_top' => t('Left Top'),
-      'left_center' => t('Left Center'),
-      'left_bottom' => t('Left Bottom'),
-      'right_top' => t('Right Top'),
-      'right_center' => t('Right Center'),
-      'right_bottom' => t('Right Bottom'),
-      'center_bottom' => t('Center Bottom'),
+      'center_center' => t('Center'),
+      'left_top' => t('Top left'),
+      'left_center' => t('Center left'),
+      'left_bottom' => t('Bottom left'),
+      'right_top' => t('Top right'),
+      'right_center' => t('Center right'),
+      'right_bottom' => t('Bottom right'),
+      'center_bottom' => t('Bottom center'),
     ],
   ];
 }

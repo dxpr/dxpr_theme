@@ -41,7 +41,6 @@ function header_theme_settings(array &$form, $theme) {
   $form['dxpr_theme_settings']['header']['header_top']['header_top_layout'] = [
     '#type' => 'radios',
     '#title' => t('Layout'),
-    '#description' => t('Different header layouts give a different view at your menu and logo.'),
     '#default_value' => ((theme_get_setting('header_top_layout') !== NULL)) ? theme_get_setting('header_top_layout') : '0',
     '#options' => [
       '0' => t('Normal (Logo left, Menu Right)'),
@@ -64,7 +63,7 @@ function header_theme_settings(array &$form, $theme) {
   $form['dxpr_theme_settings']['header']['header_top']['header_style'] = [
     '#type' => 'radios',
     '#title' => t('Header Style'),
-    '#description' => t('Create transparent headers and free floating navbars. Overlays the header over the page title and content.'),
+    '#description' => t('Overlay mode places the header over page content, allowing transparent backgrounds.'),
     '#default_value' => $header_style,
     '#options' => [
       'normal' => t('Normal'),
@@ -79,7 +78,7 @@ function header_theme_settings(array &$form, $theme) {
     '#min' => 0,
     '#max' => 1,
     '#step' => 0.01,
-    '#description' => t('Creates RGBa translucent background color. 0 is fully transparent and 1 is fully opaque.'),
+    '#description' => t('0 = transparent, 1 = opaque.'),
     '#attributes' => [
       'class' => ['dxb-slider', 'header-top-bg-opacity-range'],
       'data-dxb-slider' => TRUE,
@@ -93,7 +92,7 @@ function header_theme_settings(array &$form, $theme) {
     '#min' => 10,
     '#max' => 200,
     '#step' => 1,
-    '#description' => t('Initial height of the header. 10px - 200px. Default is 100.'),
+    '#description' => t('Initial height of the header.'),
     '#attributes' => [
       'class' => ['dxb-slider', 'header-top-height-range'],
       'data-dxb-slider' => TRUE,
@@ -107,7 +106,7 @@ function header_theme_settings(array &$form, $theme) {
     '#min' => 10,
     '#max' => 100,
     '#step' => 1,
-    '#description' => t('Height of the logo within the header. 10% - 100%. Default is 50%.'),
+    '#description' => t('Logo height as percentage of the header height.'),
     '#attributes' => [
       'class' => ['dxb-slider', 'logo-height-range'],
       'data-dxb-slider' => TRUE,
@@ -118,14 +117,14 @@ function header_theme_settings(array &$form, $theme) {
     '#type' => 'checkbox',
     '#title' => t('Fixed Position'),
     '#default_value' => ((theme_get_setting('header_top_fixed') !== NULL)) ? theme_get_setting('header_top_fixed') : FALSE,
-    '#description' => t('A Fixed header stays in the top of the browser when a user scrolls.'),
+    '#description' => t('Header stays visible at the top when scrolling.'),
   ];
 
   $form['dxpr_theme_settings']['header']['header_top']['header_top_sticky'] = [
     '#type' => 'checkbox',
     '#title' => t('Sticky Header'),
     '#default_value' => ((theme_get_setting('header_top_sticky') !== NULL)) ? theme_get_setting('header_top_sticky') : FALSE,
-    '#description' => t('A sticky can first be positioned at a distance from the top edge of the window and when the user scrolls past a certain point it will stick to the top of the window.'),
+    '#description' => t('Header appears after scrolling past a specified offset.'),
     '#states' => [
       'visible' => [
         ':input[name="header_top_fixed"]' => ['checked' => TRUE],
@@ -137,7 +136,6 @@ function header_theme_settings(array &$form, $theme) {
     '#type' => 'checkbox',
     '#title' => t('Sticky Second Header'),
     '#default_value' => ((theme_get_setting('second_header_sticky') !== NULL)) ? theme_get_setting('second_header_sticky') : FALSE,
-    '#description' => t('A sticky can first be positioned at a distance from the top edge of the window and when the user scrolls past a certain point it will stick to the top of the window.'),
     '#states' => [
       'visible' => [
         ':input[name="header_style"]' => ['value' => 'overlay'],
@@ -167,7 +165,7 @@ function header_theme_settings(array &$form, $theme) {
       'always' => t('Always Show'),
       'after_scroll' => t('Hide initially. Show after scroll offset'),
     ],
-    '#description' => t('Hide menu before or after scrolling. Turn on "Overlay Mode" to prevent your menu creating an empty space at the top of your layout.'),
+    '#description' => t('Use Overlay mode to prevent empty space at the top when hidden initially.'),
     '#states' => [
       'visible' => [
         ':input[name="header_top_fixed"]' => ['checked' => TRUE],
@@ -183,7 +181,7 @@ function header_theme_settings(array &$form, $theme) {
     '#min' => 0,
     '#max' => 2096,
     '#step' => 10,
-    '#description' => t('Scroll distance before header jumps to its fixed position at the top of page. 0 - 2096px. Default is 60.'),
+    '#description' => t('Scroll distance before header becomes fixed.'),
     '#states' => [
       'visible' => [
         ':input[name="header_top_fixed"]' => ['checked' => TRUE],
@@ -203,7 +201,7 @@ function header_theme_settings(array &$form, $theme) {
     '#min' => 10,
     '#max' => 200,
     '#step' => 1,
-    '#description' => t('Header height after scrolling past scroll offset. Default is 50.'),
+    '#description' => t('Header height after scrolling past scroll offset.'),
     '#states' => [
       'visible' => [
         ':input[name="header_top_fixed"]' => ['checked' => TRUE],
@@ -223,7 +221,7 @@ function header_theme_settings(array &$form, $theme) {
     '#min' => 0,
     '#max' => 1,
     '#step' => 0.01,
-    '#description' => t('Creates RGBa translucent background color. 0 is fully transparent and 1 is fully opaque.'),
+    '#description' => t('0 = transparent, 1 = opaque.'),
     '#states' => [
       'visible' => [
         ':input[name="header_top_fixed"]' => ['checked' => TRUE],
@@ -486,19 +484,17 @@ function header_theme_settings(array &$form, $theme) {
 
   $form['dxpr_theme_settings']['header']['header_side']['hamburger_menu'] = [
     '#type' => 'radios',
-    '#title' => t('Hamburger Menu'),
-    '#description' => t('Hamburger menu.'),
+    '#title' => t('Hamburger Icon Style'),
     '#default_value' => ((theme_get_setting('hamburger_menu') !== NULL)) ? theme_get_setting('hamburger_menu') : 'three-dash',
     '#options' => [
-      'three-dash' => t('Three dash'),
-      'two-dash' => t('Two dash'),
+      'three-dash' => t('Three lines'),
+      'two-dash' => t('Two lines'),
     ],
   ];
 
   $form['dxpr_theme_settings']['header']['header_side']['hamburger_animation'] = [
     '#type' => 'radios',
     '#title' => t('Hamburger Animation'),
-    '#description' => t('Hamburger Animation.'),
     '#default_value' => ((theme_get_setting('hamburger_animation') !== NULL)) ? theme_get_setting('hamburger_animation') : 'cross',
     '#options' => [
       'none' => t('None'),
@@ -509,7 +505,6 @@ function header_theme_settings(array &$form, $theme) {
   $form['dxpr_theme_settings']['header']['header_side']['header_side_align'] = [
     '#type' => 'radios',
     '#title' => t('Mobile Menu Alignment'),
-    '#description' => t('Control the alignment of mobile menu content.'),
     '#default_value' => ((theme_get_setting('header_side_align') !== NULL)) ? theme_get_setting('header_side_align') : 'left',
     '#options' => [
       'left' => t('Left'),
@@ -529,7 +524,7 @@ function header_theme_settings(array &$form, $theme) {
   // always marked with visual indicators (carets) for accessibility.
   $form['dxpr_theme_settings']['header']['menu']['dropdown_width_auto'] = [
     '#type' => 'radios',
-    '#title' => t('Dropdown width'),
+    '#title' => t('Dropdown Width'),
     '#default_value' => ((theme_get_setting('dropdown_width_auto') !== NULL)) ? theme_get_setting('dropdown_width_auto') : '1',
     '#options' => [
       '1' => t('Automatic (fits content)'),
@@ -539,7 +534,7 @@ function header_theme_settings(array &$form, $theme) {
 
   $form['dxpr_theme_settings']['header']['menu']['dropdown_width'] = [
     '#type' => 'range',
-    '#title' => t('Fixed dropdown width'),
+    '#title' => t('Fixed Dropdown Width'),
     '#title_display' => 'invisible',
     '#default_value' => ((theme_get_setting('dropdown_width') !== NULL)) ? theme_get_setting('dropdown_width') : '200',
     '#min' => 100,
@@ -693,7 +688,7 @@ function header_theme_settings(array &$form, $theme) {
     '#min' => 480,
     '#max' => 4100,
     '#step' => 10,
-    '#description' => t('Point below where DXPR Theme switches to mobile header and navigation. If you set this to the maximum value (4100) the desktop style will never show. Default is 1200.'),
+    '#description' => t('Viewport width below which mobile header is used. Set to maximum (4100) to always use mobile style.'),
     '#attributes' => [
       'class' => ['dxb-slider', 'header-mobile-breakpoint-range'],
       'data-dxb-slider' => TRUE,
@@ -707,7 +702,7 @@ function header_theme_settings(array &$form, $theme) {
     '#min' => 10,
     '#max' => 200,
     '#step' => 1,
-    '#description' => t('Height of header in mobile view. 10px - 200px. Default is 60.'),
+    '#description' => t('Height of header in mobile view.'),
     '#attributes' => [
       'class' => ['dxb-slider', 'header-mobile-height-range'],
       'data-dxb-slider' => TRUE,
@@ -718,6 +713,6 @@ function header_theme_settings(array &$form, $theme) {
     '#type' => 'checkbox',
     '#title' => t('Fixed Position'),
     '#default_value' => ((theme_get_setting('header_mobile_fixed') !== NULL)) ? theme_get_setting('header_mobile_fixed') : FALSE,
-    '#description' => t('A Fixed header stays in the top of the browser when a user scrolls.'),
+    '#description' => t('Header stays visible at the top when scrolling.'),
   ];
 }

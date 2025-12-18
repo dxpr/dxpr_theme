@@ -89,7 +89,7 @@ function typography_theme_settings(array &$form, $theme) {
 
   $form['dxpr_theme_settings']['typography']['advanced_type'] = [
     '#title' => t('Advanced Type Controls'),
-    '#description' => t('If you change the main contorls above these advanced controls are automatically generated and need might re-adjustment.'),
+    '#description' => t('Changing the main controls above will override these values.'),
     '#type' => 'details',
     '#collapsible' => TRUE,
     '#collapsed' => TRUE,
