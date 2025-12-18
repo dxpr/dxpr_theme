@@ -1,19 +1,74 @@
 @charset "UTF-8";
 
-// DXPR theme-specific selectors for higher CSS specificity without !important
-body.body--dxpr-theme-header-top #system-theme-settings,
-body.body--dxpr-theme-header-not-overlay #system-theme-settings,
-body.body--dxpr-theme-header-normal #system-theme-settings,
-body.path-admin #system-theme-settings,
 #system-theme-settings {
-  // Color palette
-  --dxt-admin-bg: #f2f2f7;
-  --dxt-admin-accent: #007aff;
-  --dxt-admin-text: #1c1c1e;
-  --dxt-admin-text-muted: #8e8e93;
+  // Color palette - Primary
+  --dxt-admin-color-primary-50: #eaedfa;
+  --dxt-admin-color-primary-100: #bfc8f0;
+  --dxt-admin-color-primary-200: #a0ade9;
+  --dxt-admin-color-primary-300: #7588e0;
+  --dxt-admin-color-primary-400: #5a71d9;
+  --dxt-admin-color-primary-500: #314dd0;
+  --dxt-admin-color-primary-600: #2d46bd;
+  --dxt-admin-color-primary-700: #233794;
+  --dxt-admin-color-primary-800: #1b2a72;
+  --dxt-admin-color-primary-900: #152057;
+
+  // Color palette - Neutral
+  --dxt-admin-color-neutral-0: #fff;
+  --dxt-admin-color-neutral-50: #f5f5f5;
+  --dxt-admin-color-neutral-100: #f2f2f7;
+  --dxt-admin-color-neutral-150: #e8e8ed;
+  --dxt-admin-color-neutral-200: #e5e5ea;
+  --dxt-admin-color-neutral-250: #dadfe7;
+  --dxt-admin-color-neutral-300: #d1d5db;
+  --dxt-admin-color-neutral-400: #9ca3af;
+  --dxt-admin-color-neutral-500: #8e8e93;
+  --dxt-admin-color-neutral-600: #636366;
+  --dxt-admin-color-neutral-700: #48484a;
+  --dxt-admin-color-neutral-800: #374151;
+  --dxt-admin-color-neutral-900: #1c1c1e;
+
+  // Semantic color aliases
+  --dxt-admin-bg: var(--dxt-admin-color-neutral-100);
+  --dxt-admin-accent: var(--dxt-admin-color-primary-500);
+  --dxt-admin-accent-hover: var(--dxt-admin-color-primary-600);
+  --dxt-admin-accent-light: var(--dxt-admin-color-primary-50);
+  --dxt-admin-text: var(--dxt-admin-color-neutral-900);
+  --dxt-admin-text-muted: var(--dxt-admin-color-neutral-500);
+  --dxt-admin-border: var(--dxt-admin-color-neutral-300);
+  --dxt-admin-border-light: var(--dxt-admin-color-neutral-250);
+  --dxt-admin-surface: var(--dxt-admin-color-neutral-0);
+  --dxt-admin-surface-disabled: var(--dxt-admin-color-neutral-50);
+  --dxt-admin-input-bg: var(--dxt-admin-color-neutral-150);
+  --dxt-admin-toggle-off: var(--dxt-admin-color-neutral-500);
+  --dxt-admin-toggle-off-hover: var(--dxt-admin-color-neutral-600);
+  --dxt-admin-toggle-off-focus: var(--dxt-admin-color-neutral-700);
+  --dxt-admin-toggle-disabled-bg: var(--dxt-admin-color-neutral-200);
+  --dxt-admin-toggle-disabled-thumb: var(--dxt-admin-color-neutral-500);
+  --dxt-admin-focus-ring: rgba(49, 77, 208, 0.25);
+  --dxt-admin-selected-bg: rgba(49, 77, 208, 0.15);
+  --dxt-admin-selected-bg-hover: rgba(49, 77, 208, 0.2);
+  --dxt-admin-search-bg: rgba(118, 118, 128, 0.08);
+  --dxt-admin-search-bg-focus: rgba(118, 118, 128, 0.12);
+  --dxt-admin-tab-hover: rgba(255, 255, 255, 0.6);
+  --dxt-admin-tab-active: rgba(255, 255, 255, 0.8);
+
+  // Shadow colors
+  --dxt-admin-color-shadow-5: rgba(0, 0, 0, 0.05);
+  --dxt-admin-color-shadow-8: rgba(0, 0, 0, 0.08);
+  --dxt-admin-color-shadow-10: rgba(0, 0, 0, 0.1);
+  --dxt-admin-color-shadow-15: rgba(0, 0, 0, 0.15);
+  --dxt-admin-color-shadow-20: rgba(0, 0, 0, 0.2);
+
+  // Border radius scale
+  --dxt-radius-sm: 8px;
+  --dxt-radius-md: 12px;
+  --dxt-radius-lg: 16px;
+  --dxt-radius-xl: 24px;
+  --dxt-radius-full: 9999px;
 
   background: var(--dxt-admin-bg);
-  border-left: 1px solid rgb(0 0 0 / 8%);
+  border-left: 1px solid var(--dxt-admin-color-shadow-8);
   height: calc(100vh - var(--drupal-displace-offset-top, 0));
   margin: 0;
   overflow-y: auto;
@@ -24,12 +79,17 @@ body.path-admin #system-theme-settings,
   width: 40vw;
   z-index: 9999;
 
-  * { color: var(--dxt-admin-text); }
+  * {
+    color: var(--dxt-admin-text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !important;
+    line-height: 1.2 !important;
+    font-size: 16px !important;
+  }
 
   // Search functionality
   .dxpr-search-container {
     background: var(--dxt-admin-bg);
-    box-shadow: 0 4px 16px rgb(0 0 0 / 10%);
+    box-shadow: 0 4px 16px var(--dxt-admin-color-shadow-10);
     margin: 0;
     padding: 8px 16px 12px;
     position: sticky;
@@ -38,17 +98,16 @@ body.path-admin #system-theme-settings,
   }
 
   #dxpr-settings-search {
-    background: rgba(118, 118, 128, 0.12);
+    background: var(--dxt-admin-search-bg);
     border: none;
-    border-radius: 0;
-    font-size: 17px;
+    border-radius: var(--dxt-radius-md);
     outline: none;
-    padding: 8px 12px;
+    padding: 12px 16px;
     transition: background-color 0.2s ease;
     width: 100%;
 
     &:focus {
-      background: rgba(118, 118, 128, 0.18);
+      background: var(--dxt-admin-search-bg-focus);
       box-shadow: none;
     }
 
@@ -67,7 +126,7 @@ body.path-admin #system-theme-settings,
     background: var(--dxt-admin-bg) !important;
     border: none !important;
     bottom: 0;
-    box-shadow: 0 -4px 16px rgb(0 0 0 / 10%);
+    box-shadow: 0 -4px 16px var(--dxt-admin-color-shadow-10);
     margin: 0 !important;
     padding: 12px 16px !important;
     position: sticky;
@@ -78,13 +137,21 @@ body.path-admin #system-theme-settings,
     background: var(--dxt-admin-accent) !important;
     background-color: var(--dxt-admin-accent) !important;
     border: none !important;
-    border-radius: 0;
-    color: #fff !important;
-    font-size: 17px;
+    border-radius: var(--dxt-radius-md);
+    color: var(--dxt-admin-surface) !important;
     font-weight: 600;
     margin: 0;
-    padding: 14px;
+    padding: 16px;
+    transition: background-color 0.2s ease, transform 0.1s ease;
     width: 100%;
+
+    &:hover {
+      background-color: var(--dxt-admin-accent-hover) !important;
+    }
+
+    &:active {
+      transform: scale(0.98);
+    }
   }
 
   .settings-header {
@@ -119,7 +186,6 @@ body.path-admin #system-theme-settings,
     .panel-title {
       background: transparent;
       border: none;
-      font-size: inherit;
 
       .panel-title {
         background: none;
@@ -136,14 +202,12 @@ body.path-admin #system-theme-settings,
 
     .card-header {
       background: transparent;
-            font-size: 17px;
       font-weight: 600;
       padding: 12px 16px;
     }
 
     summary {
       border: unset;
-      font-size: 20px;
       font-weight: 700;
       padding: 16px;
 
@@ -167,16 +231,16 @@ body.path-admin #system-theme-settings,
 
     .description {
       color: var(--dxt-admin-text-muted);
-      font-size: 13px;
+      font-size: 13px !important;
       margin: 0;
       padding: 4px 0;
     }
 
     // Inner content padding
-    .details-wrapper,
-    .fieldset-wrapper {
-      padding: 0 16px 16px;
-    }
+    // .details-wrapper,
+    // .fieldset-wrapper {
+    //   padding: 0 16px 16px;
+    // }
   }
 
   label,
@@ -184,7 +248,7 @@ body.path-admin #system-theme-settings,
     background-color: unset;
     border: none;
     display: block;
-    font-size: 17px;
+    font-size: 19px !important;
     margin-bottom: 6px;
     outline: none;
     width: 100%;
@@ -202,7 +266,7 @@ body.path-admin #system-theme-settings,
       height: 16px;
       margin-left: .4em;
       position: absolute;
-      right: -20px;
+      right: 0;
       top: 2px;
       width: 16px;
     }
@@ -211,7 +275,7 @@ body.path-admin #system-theme-settings,
   .no-preview-info {
     bottom: 0;
     color: var(--dxt-admin-text-muted);
-    font-size: 13px;
+    font-size: 13px !important;
     line-height: 1.3;
     position: absolute;
     right: 16px;
@@ -250,7 +314,6 @@ body.path-admin #system-theme-settings,
     width: auto;
 
     .media-library-item__remove {
-      font-size: small;
       height: auto;
       padding: 6px 10px;
       width: auto;
@@ -289,23 +352,34 @@ body.path-admin #system-theme-settings,
   .form-text,
   .form-textarea,
   .form-file {
-    background: var(--dxt-admin-bg);
+    background: var(--dxt-admin-surface);
     border: none;
-    border-radius: 0;
     box-shadow: none;
-    padding: 10px 12px;
-    transition: background-color 0.2s ease;
+    padding: 14px 16px;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
 
     &:focus {
-      background: #e8e8ed;
+      background: var(--dxt-admin-surface);
+      box-shadow: 0 0 0 2px var(--dxt-admin-accent);
       outline: none;
     }
+  }
+
+  // Monospace font for code input fields (custom CSS/JS and CSS selectors)
+  #edit-custom-css-site,
+  #edit-custom-javascript-site,
+  input[name="body_font_face_selector"],
+  input[name="headings_font_face_selector"],
+  input[name="nav_font_face_selector"],
+  input[name="sitename_font_face_selector"],
+  input[name="blockquote_font_face_selector"] {
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, monospace !important;
   }
 
   .description,
   .help-block {
     color: var(--dxt-admin-text-muted);
-    font-size: 13px;
+    font-size: 13px !important;
     margin-top: 6px;
   }
 
@@ -352,14 +426,18 @@ body.path-admin #system-theme-settings,
           border-radius: 24px;
           color: var(--dxt-admin-text-muted);
           display: block;
-          font-size: 14px;
           margin-bottom: 0;
           outline: none;
           padding: 10px 16px;
           transition: background-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
 
+          strong,
+          span {
+            font-size: 13px !important;
+          }
+
           &:hover {
-            background: rgba(255, 255, 255, 0.6);
+            background: var(--dxt-admin-tab-hover);
             color: var(--dxt-admin-text);
             text-decoration: none;
           }
@@ -370,12 +448,12 @@ body.path-admin #system-theme-settings,
           }
 
           &:focus-visible {
-            background: rgba(255, 255, 255, 0.6);
+            background: var(--dxt-admin-tab-hover);
             box-shadow: 0 0 0 2px var(--dxt-admin-accent);
           }
 
           &:active {
-            background: rgba(255, 255, 255, 0.8);
+            background: var(--dxt-admin-tab-active);
             color: var(--dxt-admin-text);
           }
 
@@ -386,7 +464,7 @@ body.path-admin #system-theme-settings,
       }
 
       .is-selected {
-        background-color: #fff;
+        background-color: var(--dxt-admin-surface);
         border-radius: 24px;
 
         a {
@@ -424,12 +502,27 @@ body.path-admin #system-theme-settings,
   }
 
   .form-select {
-    background: var(--dxt-admin-bg);
+    appearance: none;
+    background-color: var(--dxt-admin-surface);
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="%238e8e93" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>');
+    background-position: right 14px center;
+    background-repeat: no-repeat;
+    background-size: 16px;
     border: none;
-    border-radius: 0;
+    cursor: pointer;
     max-width: 100%;
-    padding: 10px 12px;
+    padding: 14px 44px 14px 16px;
+    transition: box-shadow 0.2s ease;
     width: auto;
+
+    &:focus {
+      box-shadow: 0 0 0 2px var(--dxt-admin-accent);
+      outline: none;
+    }
+
+    &:hover {
+      background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="%231c1c1e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>');
+    }
   }
 
   .form-composite {
@@ -444,14 +537,130 @@ body.path-admin #system-theme-settings,
     }
 
     label {
-      font-size: 15px;
       margin-bottom: 8px;
       width: 100%;
     }
 
+    // DXPR Custom Radio styling - Modern rounded card style
+    .form-radios {
+      background: var(--dxt-admin-surface);
+      border: none;
+      max-width: 100%;
+      overflow: hidden;
+    }
+
+    .js-form-type-radio {
+      align-items: center;
+      background: var(--dxt-admin-surface);
+      border-bottom: 1px solid var(--dxt-admin-bg);
+      display: flex;
+      height: 60px;
+      justify-content: space-between;
+      margin: 0;
+      padding: 0 20px;
+      position: relative;
+      transition: background-color 0.15s ease;
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      // Hover state
+      &:hover {
+        background: var(--dxt-admin-bg);
+
+        label.option {
+          color: var(--dxt-admin-text);
+        }
+      }
+
+      // Focus state
+      &:focus-within {
+        box-shadow: inset 0 0 0 2px var(--dxt-admin-accent);
+        outline: none;
+        z-index: 1;
+      }
+
+      input[type="radio"] {
+        height: 1px;
+        opacity: 0;
+        position: absolute;
+        width: 1px;
+
+        // Focus visible on input
+        &:focus-visible ~ label.option {
+          outline: none;
+        }
+      }
+
+      label.option {
+        align-items: center;
+        color: var(--dxt-admin-text);
+        cursor: pointer;
+        display: flex;
+        flex: 1;
+        font-weight: 400;
+        height: 100%;
+        justify-content: space-between;
+        line-height: 1;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+
+        &::before {
+          display: none;
+        }
+
+        &::after {
+          color: var(--dxt-admin-accent);
+          content: '';
+          flex-shrink: 0;
+          font-weight: 600;
+          height: 24px;
+          margin-left: 12px;
+          width: 24px;
+        }
+      }
+
+      // Selected state
+      &:has(input[type="radio"]:checked) {
+        background: var(--dxt-admin-selected-bg);
+
+        &:hover {
+          background: var(--dxt-admin-selected-bg-hover);
+
+          label.option {
+            color: var(--dxt-admin-text);
+          }
+        }
+
+        label.option::after {
+          // Checkmark SVG as background
+          background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23314dd0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>');
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: 18px 18px;
+          content: '';
+        }
+      }
+
+      // Disabled state
+      &:has(input[type="radio"]:disabled) {
+        background: var(--dxt-admin-surface-disabled);
+        cursor: not-allowed;
+        pointer-events: none;
+
+        label.option {
+          color: var(--dxt-admin-color-neutral-400);
+          cursor: not-allowed;
+        }
+      }
+    }
+
+    // Legacy styling for non-radio form-composite elements
     input ~ label.option,
     input ~ span {
-            cursor: pointer;
+      cursor: pointer;
       display: block;
       font-weight: 400;
       line-height: 22px;
@@ -467,7 +676,7 @@ body.path-admin #system-theme-settings,
         color: var(--dxt-admin-text-muted);
         content: '';
         display: inline-block;
-        font-size: 17px;
+        font-size: 19px !important;
         font-weight: normal;
         margin-right: 12px;
         width: 22px;
@@ -483,7 +692,7 @@ body.path-admin #system-theme-settings,
       &::before {
         color: var(--dxt-admin-accent);
         content: '✓';
-        font-size: 17px;
+        font-size: 19px !important;
         font-weight: 600;
       }
     }
@@ -561,17 +770,20 @@ body.path-admin #system-theme-settings,
 
   .color-palette {
     flex: 1;
-    margin-top: 20px;
+    margin-top: 16px;
 
     label {
+      color: var(--dxt-admin-text-muted);
+      font-weight: 500;
       line-height: 1.2;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
+      text-transform: capitalize;
       width: 100%;
     }
 
     .form-item {
       border-bottom: none;
-      margin-bottom: 16px;
+      margin-bottom: 20px;
       padding: 0;
     }
 
@@ -579,7 +791,8 @@ body.path-admin #system-theme-settings,
       background: none;
 
       input {
-        font-style: italic;
+        font-style: normal;
+        font-weight: 600;
       }
     }
 
@@ -591,13 +804,21 @@ body.path-admin #system-theme-settings,
     }
 
     .form-text {
-      padding: 10px 12px;
+      color: inherit;
+      font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, monospace !important;
+      font-weight: 500;
+      padding: 16px;
+      text-shadow: 0 1px 2px var(--dxt-admin-color-shadow-20);
+      transition: box-shadow 0.2s ease, transform 0.15s ease;
       width: 100%;
 
       &.active {
-        border-radius: 0;
-        box-shadow: 0 0 0 3px var(--dxt-admin-accent);
-        font-weight: bold;
+        box-shadow: 0 0 0 3px var(--dxt-admin-accent), 0 4px 12px var(--dxt-admin-color-shadow-15);
+        transform: scale(1.02);
+      }
+
+      &:hover:not(.active) {
+        box-shadow: 0 2px 8px var(--dxt-admin-color-shadow-10);
       }
     }
   }
@@ -713,34 +934,102 @@ body.path-admin #system-theme-settings,
     margin-bottom: 0;
     position: relative;
 
+    // Custom toggle switch - 70x40px square design
     input[type="checkbox"] {
-      appearance: auto;
+      --bs-form-check-bg-image: none !important;
+      appearance: none !important;
+      background-color: var(--dxt-admin-toggle-off) !important;
+      background-image: none !important;
+      border: none !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
       cursor: pointer;
+      flex-shrink: 0;
       float: right;
-      height: 20px;
-      position: static;
-      width: 40px;
-      z-index: 10;
+      height: 40px !important;
+      margin: 0 !important;
+      outline: none !important;
+      position: relative;
+      transition: background-color 0.2s ease;
+      width: 70px !important;
 
+      // Hide any checkmark from ::before
+      &::before {
+        display: none !important;
+      }
+
+      // Toggle thumb - 34x34px square white thumb
+      &::after {
+        background: var(--dxt-admin-surface) !important;
+        border: none !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        content: '' !important;
+        display: block !important;
+        height: 34px !important;
+        left: 3px !important;
+        outline: none !important;
+        position: absolute !important;
+        top: 3px !important;
+        transition: left 0.2s ease;
+        width: 34px !important;
+      }
+
+      // Hover state
+      &:hover {
+        background-color: var(--dxt-admin-toggle-off-hover) !important;
+      }
+
+      // Focus state
       &:focus {
-        box-shadow: unset;
+        box-shadow: none !important;
+        outline: 2px solid var(--dxt-admin-accent) !important;
+        outline-offset: 2px !important;
+      }
+
+      // Checked (active) state - accent background, thumb moves right
+      &:checked {
+        background-color: var(--dxt-admin-accent) !important;
+
+        &::after {
+          left: 33px !important;
+        }
+
+        &:hover {
+          background-color: var(--dxt-admin-accent-hover) !important;
+        }
+      }
+
+      // Disabled state
+      &:disabled {
+        background-color: var(--dxt-admin-toggle-disabled-bg) !important;
+        cursor: not-allowed;
+
+        &::after {
+          background-color: var(--dxt-admin-toggle-disabled-thumb) !important;
+        }
+
+        &:checked {
+          background-color: var(--dxt-admin-toggle-disabled-bg) !important;
+        }
       }
     }
 
     label {
       display: block;
-      font-size: 17px;
+      font-size: 19px !important;
       line-height: 1.4;
       margin-bottom: 4px;
+      padding-right: 80px;
       width: 100%;
     }
 
     .description {
       clear: both;
       color: var(--dxt-admin-text-muted);
-      font-size: 13px;
-      line-height: 1.3;
-      margin-top: 4px;
+      font-size: 13px !important;
+      line-height: 1.4;
+      margin-top: 6px;
     }
 
     .switcher {
@@ -748,29 +1037,215 @@ body.path-admin #system-theme-settings,
     }
   }
 
-  .core-theme-settings, .form-checkboxes {
+  // Traditional square checkbox styling for .form-checkboxes
+  .core-theme-settings,
+  .form-checkboxes {
     .js-form-type-checkbox {
       input[type="checkbox"] {
-        margin-left: auto;
+        appearance: none !important;
+        background-color: transparent !important;
+        border: 2px solid var(--dxt-admin-border) !important;
+        border-radius: 0 !important;
+        cursor: pointer;
+        flex-shrink: 0;
+        float: left !important;
+        height: 24px !important;
+        margin: 0 12px 0 0 !important;
         position: static;
+        transition: background-color 0.15s ease, border-color 0.15s ease;
+        width: 24px !important;
+
+        // Hide toggle thumb
+        &::after {
+          display: none !important;
+        }
+
+        // Hover state - darker border
+        &:hover {
+          border-color: var(--dxt-admin-color-neutral-600) !important;
+        }
+
+        // Focus state - blue border
+        &:focus {
+          border-color: var(--dxt-admin-accent) !important;
+          box-shadow: none !important;
+          outline: none !important;
+        }
+
+        // Checked state - blue fill with checkmark
+        &:checked {
+          background-color: var(--dxt-admin-accent) !important;
+          background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>') !important;
+          background-position: center !important;
+          background-repeat: no-repeat !important;
+          background-size: 16px 16px !important;
+          border-color: var(--dxt-admin-accent) !important;
+
+          &:hover {
+            background-color: var(--dxt-admin-accent-hover) !important;
+            border-color: var(--dxt-admin-accent-hover) !important;
+          }
+        }
+
+        // Disabled state - light gray
+        &:disabled {
+          background-color: var(--dxt-admin-color-neutral-200) !important;
+          border-color: var(--dxt-admin-color-neutral-300) !important;
+          cursor: not-allowed;
+
+          &:checked {
+            background-color: var(--dxt-admin-color-neutral-300) !important;
+            border-color: var(--dxt-admin-color-neutral-300) !important;
+          }
+        }
+      }
+
+      label {
+        padding-right: 0;
       }
     }
   }
 
+  // Slider component styling
   .dxb-slider-wrapper {
-    input {
-      border: none;
-    }
-
-    .dxb-slider-value {
-      width: 100px;
-    }
+    align-items: center;
+    display: flex;
+    gap: 12px;
 
     .dxb-slider-track {
+      flex: 1;
       min-width: 150px;
+    }
 
-      .dxb-slider {
-        width: 100% !important;
+    // Slider input
+    .dxb-slider {
+      height: 7px;
+      width: 100% !important;
+
+      // Track styling
+      &::-webkit-slider-runnable-track {
+        background-image: linear-gradient(var(--dxt-admin-accent), var(--dxt-admin-accent)), linear-gradient(var(--dxt-admin-border-light), var(--dxt-admin-border-light));
+        background-position: left center;
+        background-repeat: no-repeat;
+        background-size: var(--value-percent) 7px, 100% 7px;
+        height: 7px;
+      }
+
+      &::-moz-range-track {
+        background-image: linear-gradient(var(--dxt-admin-accent), var(--dxt-admin-accent)), linear-gradient(var(--dxt-admin-border-light), var(--dxt-admin-border-light));
+        background-position: left center;
+        background-repeat: no-repeat;
+        background-size: var(--value-percent) 7px, 100% 7px;
+        height: 7px;
+      }
+
+      // Thumb styling - square design
+      &::-webkit-slider-thumb {
+        background: var(--dxt-admin-surface);
+        border: 1px solid var(--dxt-admin-border-light);
+        border-radius: 0;
+        box-shadow: none;
+        cursor: pointer;
+        height: 32px;
+        margin-top: -13px;
+        transition: background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+        width: 32px;
+      }
+
+      &::-moz-range-thumb {
+        background: var(--dxt-admin-surface);
+        border: 1px solid var(--dxt-admin-border-light);
+        border-radius: 0;
+        box-shadow: none;
+        cursor: pointer;
+        height: 32px;
+        transition: background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+        width: 32px;
+      }
+
+      // Hover state
+      &:hover::-webkit-slider-thumb {
+        background: var(--dxt-admin-accent);
+        border-color: var(--dxt-admin-accent);
+        transform: none;
+      }
+
+      &:hover::-moz-range-thumb {
+        background: var(--dxt-admin-accent);
+        border-color: var(--dxt-admin-accent);
+        transform: none;
+      }
+
+      // Focus state
+      &:focus::-webkit-slider-thumb {
+        background: var(--dxt-admin-surface);
+        border-color: var(--dxt-admin-accent);
+        box-shadow: 0 0 0 3px var(--dxt-admin-focus-ring);
+        transform: none;
+      }
+
+      &:focus::-moz-range-thumb {
+        background: var(--dxt-admin-surface);
+        border-color: var(--dxt-admin-accent);
+        box-shadow: 0 0 0 3px var(--dxt-admin-focus-ring);
+        transform: none;
+      }
+
+      // Active state
+      &:active::-webkit-slider-thumb {
+        background: var(--dxt-admin-accent);
+        border-color: var(--dxt-admin-accent);
+        box-shadow: 0 0 0 3px var(--dxt-admin-focus-ring);
+      }
+
+      &:active::-moz-range-thumb {
+        background: var(--dxt-admin-accent);
+        border-color: var(--dxt-admin-accent);
+        box-shadow: 0 0 0 3px var(--dxt-admin-focus-ring);
+      }
+
+      // Disabled state
+      &:disabled {
+        opacity: 0.5;
+        pointer-events: none;
+
+        &::-webkit-slider-runnable-track {
+          background-image: linear-gradient(var(--dxt-admin-border-light), var(--dxt-admin-border-light)), linear-gradient(var(--dxt-admin-border-light), var(--dxt-admin-border-light));
+        }
+
+        &::-moz-range-track {
+          background-image: linear-gradient(var(--dxt-admin-border-light), var(--dxt-admin-border-light)), linear-gradient(var(--dxt-admin-border-light), var(--dxt-admin-border-light));
+        }
+
+        &::-webkit-slider-thumb {
+          background: var(--dxt-admin-surface-disabled);
+          border-color: var(--dxt-admin-border-light);
+        }
+
+        &::-moz-range-thumb {
+          background: var(--dxt-admin-surface-disabled);
+          border-color: var(--dxt-admin-border-light);
+        }
+      }
+    }
+
+    // Value input field
+    .dxb-slider-value {
+      background: var(--dxt-admin-surface);
+      border: 1px solid var(--dxt-admin-border-light);
+      border-radius: 0;
+      box-shadow: none;
+      // font-size: 14px !important;
+      height: 42px;
+      margin-inline-start: 0;
+      padding: 8px 4px;
+      text-align: center;
+      width: 52px;
+
+      &:focus {
+        border-color: var(--dxt-admin-accent);
+        box-shadow: 0 0 0 3px var(--dxt-admin-focus-ring);
+        outline: none;
       }
     }
   }
