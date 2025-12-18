@@ -330,9 +330,11 @@ html.js .gin--vertical-toolbar {
   }
 }
 
-// Gin horizontal/classic toolbar: overlap 1px border (no sidebar offset needed).
+// Gin horizontal/classic/navigation toolbar: overlap 1px border (no sidebar offset needed).
 html.js .gin--horizontal-toolbar,
-html.js .gin--classic-toolbar {
+html.js .gin--classic-toolbar,
+html.js .gin--core-navigation,
+html.js .gin--navigation-top-bar {
   .dxpr-theme-header--fixed,
   .dxpr-theme-header--top.affix {
     top: calc(var(--drupal-displace-offset-top, 0px) - 1px);
