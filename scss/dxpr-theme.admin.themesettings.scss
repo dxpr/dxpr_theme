@@ -63,14 +63,15 @@
   border-left: 1px solid var(--dxt-admin-color-shadow-8);
   bottom: 0;
   margin: 0;
+  max-width: var(--dxt-admin-sidebar-max-width);
   overflow-y: auto;
+
   // Padding for fixed search header (~70px) and save button (~100px)
   padding: 70px 0 100px;
   position: fixed;
   right: calc(var(--drupal-displace-offset-right, 0) - var(--dxt-admin-sidebar-width));
   top: var(--drupal-displace-offset-top, 0);
   width: var(--dxt-admin-sidebar-width);
-  max-width: var(--dxt-admin-sidebar-max-width);
   z-index: 9999;
 
   * {
@@ -85,12 +86,12 @@
     background: var(--dxt-admin-bg);
     box-shadow: 0 4px 16px var(--dxt-admin-color-shadow-10);
     margin: 0;
+    max-width: var(--dxt-admin-sidebar-max-width);
     padding: 8px 16px 12px;
     position: fixed;
     right: calc(var(--drupal-displace-offset-right, 0) - var(--dxt-admin-sidebar-width));
     top: var(--drupal-displace-offset-top, 0);
     width: var(--dxt-admin-sidebar-width);
-    max-width: var(--dxt-admin-sidebar-max-width);
     z-index: 10001;
   }
 
@@ -126,11 +127,11 @@
     bottom: var(--drupal-displace-offset-bottom, 0);
     box-shadow: 0 -4px 16px var(--dxt-admin-color-shadow-10);
     margin: 0 !important;
+    max-width: var(--dxt-admin-sidebar-max-width);
     padding: 12px 16px !important;
     position: fixed;
     right: calc(var(--drupal-displace-offset-right, 0) - var(--dxt-admin-sidebar-width));
     width: var(--dxt-admin-sidebar-width);
-    max-width: var(--dxt-admin-sidebar-max-width);
     z-index: 10000;
   }
 
