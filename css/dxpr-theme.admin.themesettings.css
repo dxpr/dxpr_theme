@@ -897,6 +897,10 @@
 #system-theme-settings .core-theme-settings .js-form-type-checkbox input[type=checkbox]:checked,
 #system-theme-settings .form-checkboxes .js-form-type-checkbox input[type=checkbox]:checked {
   background-color: var(--dxt-admin-accent) !important;
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>') !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-size: 16px 16px !important;
   border-color: var(--dxt-admin-accent) !important;
 }
 #system-theme-settings .core-theme-settings .js-form-type-checkbox input[type=checkbox]:checked:hover,
