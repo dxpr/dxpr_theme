@@ -11,13 +11,13 @@ body.path-admin #system-theme-settings,
   background: white;
   border-left: 1px solid #ddd;
   box-shadow: -4px 0 8px rgb(0 0 0 / 10%);
-  height: 100vh;
+  height: calc(100vh - var(--drupal-displace-offset-top, 0px));
   margin: 0;
   overflow-y: auto;
   padding: 12px;
   position: fixed;
   right: 0;
-  top: 0;
+  top: var(--drupal-displace-offset-top, 0px);
   width: 35vw;
   z-index: 9999;
 
