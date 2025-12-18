@@ -32,7 +32,7 @@
       margin: 0;
       position: fixed;
       right: 0;
-      top: var(--drupal-displace-offset-top, 0px);
+      top: var(--drupal-displace-offset-top, 0);
     }
 
     &.dxpr-theme-header--fixed,
@@ -44,7 +44,7 @@
       left: 0;
       position: absolute;
       right: 0;
-      top: calc(var(--drupal-displace-offset-top, 0px) + 30px);
+      top: calc(var(--drupal-displace-offset-top, 0) + 30px);
 
       &.dxpr-theme-header--fixed {
         position: fixed;
@@ -55,7 +55,7 @@
       }
 
       &.affix {
-        top: var(--drupal-displace-offset-top, 0px);
+        top: var(--drupal-displace-offset-top, 0);
       }
     }
 
@@ -64,7 +64,7 @@
       margin: 0;
       opacity: 1;
       position: fixed;
-      top: var(--drupal-displace-offset-top, 0px);
+      top: var(--drupal-displace-offset-top, 0);
 
       .navbar-header {
         padding-bottom: 0;
@@ -109,8 +109,7 @@
     .wrap-branding {
       align-items: center;
       display: flex;
-      flex-direction: row;
-      flex-wrap: nowrap;
+      flex-flow: row nowrap;
 
       .logo,
       .navbar-brand {
@@ -319,8 +318,9 @@ html.js .gin--vertical-toolbar {
   .dxpr-theme-header--fixed,
   .dxpr-theme-header--top.affix {
     left: var(--gin-toolbar-x-offset, 256px);
+
     // Gin toolbar has 1px bottom border that creates visual gap - overlap it.
-    top: calc(var(--drupal-displace-offset-top, 0px) - 1px);
+    top: calc(var(--drupal-displace-offset-top, 0) - 1px);
     width: calc(100% - var(--gin-toolbar-x-offset, 256px));
   }
 
@@ -337,7 +337,7 @@ html.js .gin--core-navigation,
 html.js .gin--navigation-top-bar {
   .dxpr-theme-header--fixed,
   .dxpr-theme-header--top.affix {
-    top: calc(var(--drupal-displace-offset-top, 0px) - 1px);
+    top: calc(var(--drupal-displace-offset-top, 0) - 1px);
   }
 }
 
@@ -345,7 +345,7 @@ html.js .gin--navigation-top-bar {
 html.js .gin--navigation {
   .dxpr-theme-header--fixed,
   .dxpr-theme-header--top.affix {
-    top: calc(var(--drupal-displace-offset-top, 0px) - 6px);
+    top: calc(var(--drupal-displace-offset-top, 0) - 6px);
   }
 }
 

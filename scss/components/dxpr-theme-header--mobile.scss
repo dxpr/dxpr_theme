@@ -62,8 +62,7 @@ html.html--dxpr-theme-nav-mobile--open {
       .wrap-branding {
         align-items: center;
         display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
+        flex-flow: row nowrap;
 
         .logo,
         .navbar-brand {
@@ -288,7 +287,7 @@ html.html--dxpr-theme-nav-mobile--open {
     margin: 0;
     position: fixed;
     right: 0;
-    top: var(--drupal-displace-offset-top, 0px);
+    top: var(--drupal-displace-offset-top, 0);
     z-index: 405;
   }
 
@@ -298,17 +297,17 @@ html.html--dxpr-theme-nav-mobile--open {
   &.gin--horizontal-toolbar #navbar.header-mobile-fixed,
   &.gin--classic-toolbar #navbar.header-mobile-fixed,
   &.gin--core-navigation #navbar.header-mobile-fixed {
-    top: calc(var(--drupal-displace-offset-top, 0px) - 1px);
+    top: calc(var(--drupal-displace-offset-top, 0) - 1px);
   }
 
   // Gin + Navigation module: displacement reports 60px but toolbar is 54px, needs 6px offset.
   &.gin--navigation #navbar.header-mobile-fixed {
-    top: calc(var(--drupal-displace-offset-top, 0px) - 6px);
+    top: calc(var(--drupal-displace-offset-top, 0) - 6px);
   }
 
   // Body padding for mobile fixed header - content needs space for the fixed header.
   &:has(#navbar.header-mobile-fixed) {
-    padding-top: calc(var(--dxt-setting-header-mobile-height) + var(--drupal-displace-offset-top, 0px)) !important;
+    padding-top: calc(var(--dxt-setting-header-mobile-height) + var(--drupal-displace-offset-top, 0)) !important;
   }
 
   // Gin vertical toolbar: only header height padding needed, Gin handles toolbar spacing.
