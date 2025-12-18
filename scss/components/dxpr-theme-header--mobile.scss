@@ -285,8 +285,8 @@ html.html--dxpr-theme-nav-mobile--open {
   &.gin--vertical-toolbar #navbar.header-mobile-fixed,
   &.gin--horizontal-toolbar #navbar.header-mobile-fixed,
   &.gin--classic-toolbar #navbar.header-mobile-fixed,
-  &.gin--core-navigation #navbar.header-mobile-fixed,
-  &.gin--navigation-top-bar #navbar.header-mobile-fixed {
+  &.gin--navigation #navbar.header-mobile-fixed,
+  &.gin--core-navigation #navbar.header-mobile-fixed {
     top: calc(var(--drupal-displace-offset-top, 0px) - 1px);
   }
 
