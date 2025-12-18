@@ -869,7 +869,7 @@
 #system-theme-settings .form-checkboxes .js-form-type-checkbox input[type=checkbox] {
   appearance: none !important;
   background-color: transparent !important;
-  border: 2px solid var(--dxt-admin-border) !important;
+  border: 2px solid var(--dxt-admin-color-neutral-400) !important;
   border-radius: 0 !important;
   cursor: pointer;
   flex-shrink: 0;
@@ -886,7 +886,7 @@
 }
 #system-theme-settings .core-theme-settings .js-form-type-checkbox input[type=checkbox]:hover,
 #system-theme-settings .form-checkboxes .js-form-type-checkbox input[type=checkbox]:hover {
-  border-color: var(--dxt-admin-color-neutral-600) !important;
+  border-color: var(--dxt-admin-color-neutral-700) !important;
 }
 #system-theme-settings .core-theme-settings .js-form-type-checkbox input[type=checkbox]:focus,
 #system-theme-settings .form-checkboxes .js-form-type-checkbox input[type=checkbox]:focus {

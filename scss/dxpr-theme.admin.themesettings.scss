@@ -1054,7 +1054,7 @@
       input[type="checkbox"] {
         appearance: none !important;
         background-color: transparent !important;
-        border: 2px solid var(--dxt-admin-border) !important;
+        border: 2px solid var(--dxt-admin-color-neutral-400) !important;
         border-radius: 0 !important;
         cursor: pointer;
         flex-shrink: 0;
@@ -1072,7 +1072,7 @@
 
         // Hover state - darker border
         &:hover {
-          border-color: var(--dxt-admin-color-neutral-600) !important;
+          border-color: var(--dxt-admin-color-neutral-700) !important;
         }
 
         // Focus state - blue border
