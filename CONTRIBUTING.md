@@ -1,6 +1,17 @@
 Contributing guidelines
 =======================
 
+### Using GitHub Templates
+
+All issues and pull requests **must** use the templates provided in `.github/`:
+
+- **Issues**: Use the appropriate template from `.github/ISSUE_TEMPLATE/` (Bug,
+  Feature Proposal, Refactoring, etc.). Do not create blank issues.
+- **Pull Requests**: The PR template (`.github/pull_request_template.md`) will
+  auto-populate. Fill out all sections completely.
+
+Issues or PRs that do not use templates will be closed and asked to resubmit.
+
 ### Git workflow
 
 1. Every pull request must be linked to an issue, no exceptions
