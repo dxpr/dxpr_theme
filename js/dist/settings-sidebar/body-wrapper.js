@@ -13,6 +13,12 @@ function createBodyWrapper() {
     wrapper.appendChild(body.firstChild);
   }
   body.appendChild(wrapper);
+
+  // Set displacement API variable for right offset (sidebar is 35vw wide)
+  document.documentElement.style.setProperty(
+    "--drupal-displace-offset-right",
+    "35vw",
+  );
 }
 
 module.exports = { createBodyWrapper };
