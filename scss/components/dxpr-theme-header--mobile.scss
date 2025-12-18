@@ -58,6 +58,18 @@ html.html--dxpr-theme-nav-mobile--open {
           height: 100%;
         }
       }
+
+      .wrap-branding {
+        align-items: center;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+
+        .logo,
+        .navbar-brand {
+          flex-shrink: 0;
+        }
+      }
     }
 
     .dxpr-theme-main-menu {
