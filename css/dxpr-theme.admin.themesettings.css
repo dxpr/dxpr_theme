@@ -1,1 +1,1072 @@
-body.body--dxpr-theme-header-top #system-theme-settings,body.body--dxpr-theme-header-not-overlay #system-theme-settings,body.body--dxpr-theme-header-normal #system-theme-settings,body.path-admin #system-theme-settings,#system-theme-settings{background:#fff;border-left:0.0625rem solid #ddd;-webkit-box-shadow:-0.25rem 0 0.5rem rgba(0,0,0,.1);box-shadow:-0.25rem 0 0.5rem rgba(0,0,0,.1);height:calc(100vh - var(--drupal-displace-offset-top, 0));margin:0;overflow-y:auto;padding:0.75rem;position:fixed;right:0;top:var(--drupal-displace-offset-top, 0);width:35vw;z-index:9999}body.body--dxpr-theme-header-top #system-theme-settings *,body.body--dxpr-theme-header-not-overlay #system-theme-settings *,body.body--dxpr-theme-header-normal #system-theme-settings *,body.path-admin #system-theme-settings *,#system-theme-settings *{color:#333}body.body--dxpr-theme-header-top #system-theme-settings .dxpr-search-container,body.body--dxpr-theme-header-not-overlay #system-theme-settings .dxpr-search-container,body.body--dxpr-theme-header-normal #system-theme-settings .dxpr-search-container,body.path-admin #system-theme-settings .dxpr-search-container,#system-theme-settings .dxpr-search-container{background:#f8f9fa;border-bottom:0.0625rem solid #222330;margin:-0.75rem -0.75rem 1.25rem;padding:0.75rem;position:sticky;top:-0.75rem;z-index:100}body.body--dxpr-theme-header-top #system-theme-settings #dxpr-settings-search,body.body--dxpr-theme-header-not-overlay #system-theme-settings #dxpr-settings-search,body.body--dxpr-theme-header-normal #system-theme-settings #dxpr-settings-search,body.path-admin #system-theme-settings #dxpr-settings-search,#system-theme-settings #dxpr-settings-search{background:#fff;border:0.0625rem solid #ced4da;border-radius:0.25rem;font-size:0.875rem;outline:none;padding:0.5rem 0.75rem;-webkit-transition:border-color .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;transition:border-color .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;transition:border-color .15s ease-in-out,box-shadow .15s ease-in-out;transition:border-color .15s ease-in-out,box-shadow .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;width:100%}body.body--dxpr-theme-header-top #system-theme-settings #dxpr-settings-search:focus,body.body--dxpr-theme-header-not-overlay #system-theme-settings #dxpr-settings-search:focus,body.body--dxpr-theme-header-normal #system-theme-settings #dxpr-settings-search:focus,body.path-admin #system-theme-settings #dxpr-settings-search:focus,#system-theme-settings #dxpr-settings-search:focus{border-color:#4675ff;-webkit-box-shadow:0 0 0 0.125rem rgba(70,117,255,.25);box-shadow:0 0 0 0.125rem rgba(70,117,255,.25)}body.body--dxpr-theme-header-top #system-theme-settings #dxpr-settings-search::-webkit-input-placeholder, body.body--dxpr-theme-header-not-overlay #system-theme-settings #dxpr-settings-search::-webkit-input-placeholder, body.body--dxpr-theme-header-normal #system-theme-settings #dxpr-settings-search::-webkit-input-placeholder, body.path-admin #system-theme-settings #dxpr-settings-search::-webkit-input-placeholder, #system-theme-settings #dxpr-settings-search::-webkit-input-placeholder{color:#6c757d;opacity:1}body.body--dxpr-theme-header-top #system-theme-settings #dxpr-settings-search::-moz-placeholder, body.body--dxpr-theme-header-not-overlay #system-theme-settings #dxpr-settings-search::-moz-placeholder, body.body--dxpr-theme-header-normal #system-theme-settings #dxpr-settings-search::-moz-placeholder, body.path-admin #system-theme-settings #dxpr-settings-search::-moz-placeholder, #system-theme-settings #dxpr-settings-search::-moz-placeholder{color:#6c757d;opacity:1}body.body--dxpr-theme-header-top #system-theme-settings #dxpr-settings-search:-ms-input-placeholder, body.body--dxpr-theme-header-not-overlay #system-theme-settings #dxpr-settings-search:-ms-input-placeholder, body.body--dxpr-theme-header-normal #system-theme-settings #dxpr-settings-search:-ms-input-placeholder, body.path-admin #system-theme-settings #dxpr-settings-search:-ms-input-placeholder, #system-theme-settings #dxpr-settings-search:-ms-input-placeholder{color:#6c757d;opacity:1}body.body--dxpr-theme-header-top #system-theme-settings #dxpr-settings-search::-ms-input-placeholder, body.body--dxpr-theme-header-not-overlay #system-theme-settings #dxpr-settings-search::-ms-input-placeholder, body.body--dxpr-theme-header-normal #system-theme-settings #dxpr-settings-search::-ms-input-placeholder, body.path-admin #system-theme-settings #dxpr-settings-search::-ms-input-placeholder, #system-theme-settings #dxpr-settings-search::-ms-input-placeholder{color:#6c757d;opacity:1}body.body--dxpr-theme-header-top #system-theme-settings #dxpr-settings-search::placeholder,body.body--dxpr-theme-header-not-overlay #system-theme-settings #dxpr-settings-search::placeholder,body.body--dxpr-theme-header-normal #system-theme-settings #dxpr-settings-search::placeholder,body.path-admin #system-theme-settings #dxpr-settings-search::placeholder,#system-theme-settings #dxpr-settings-search::placeholder{color:#6c757d;opacity:1}body.body--dxpr-theme-header-top #system-theme-settings *:not(.reinvented-color-wheel *),body.body--dxpr-theme-header-not-overlay #system-theme-settings *:not(.reinvented-color-wheel *),body.body--dxpr-theme-header-normal #system-theme-settings *:not(.reinvented-color-wheel *),body.path-admin #system-theme-settings *:not(.reinvented-color-wheel *),#system-theme-settings *:not(.reinvented-color-wheel *){-webkit-box-sizing:border-box;box-sizing:border-box}body.body--dxpr-theme-header-top #system-theme-settings #edit-actions.form-actions,body.body--dxpr-theme-header-not-overlay #system-theme-settings #edit-actions.form-actions,body.body--dxpr-theme-header-normal #system-theme-settings #edit-actions.form-actions,body.path-admin #system-theme-settings #edit-actions.form-actions,#system-theme-settings #edit-actions.form-actions{background:#fff !important;border:none !important;border-top:0.0625rem solid #222330 !important;bottom:-0.75rem;margin:0 -0.75rem -0.75rem !important;padding:0 0.75rem 0.75rem !important;position:sticky;z-index:101}body.body--dxpr-theme-header-top #system-theme-settings #edit-actions #edit-submit,body.body--dxpr-theme-header-not-overlay #system-theme-settings #edit-actions #edit-submit,body.body--dxpr-theme-header-normal #system-theme-settings #edit-actions #edit-submit,body.path-admin #system-theme-settings #edit-actions #edit-submit,#system-theme-settings #edit-actions #edit-submit{background:#000 !important;background-color:#000 !important;border:none !important;color:#fff !important;font-size:1rem;margin:0.75rem 0 0;padding:0.75rem;width:100%}body.body--dxpr-theme-header-top #system-theme-settings .settings-header,body.body--dxpr-theme-header-not-overlay #system-theme-settings .settings-header,body.body--dxpr-theme-header-normal #system-theme-settings .settings-header,body.path-admin #system-theme-settings .settings-header,#system-theme-settings .settings-header{margin-bottom:0;padding:1.875rem}body.body--dxpr-theme-header-top #system-theme-settings .form-wrapper,body.body--dxpr-theme-header-top #system-theme-settings .tabs-left>.tab-content,body.body--dxpr-theme-header-top #system-theme-settings .tabs-right>.tab-content,body.body--dxpr-theme-header-top #system-theme-settings .nav-tabs,body.body--dxpr-theme-header-top #system-theme-settings .nav-tabs a,body.body--dxpr-theme-header-top #system-theme-settings .vertical-tabs,body.body--dxpr-theme-header-not-overlay #system-theme-settings .form-wrapper,body.body--dxpr-theme-header-not-overlay #system-theme-settings .tabs-left>.tab-content,body.body--dxpr-theme-header-not-overlay #system-theme-settings .tabs-right>.tab-content,body.body--dxpr-theme-header-not-overlay #system-theme-settings .nav-tabs,body.body--dxpr-theme-header-not-overlay #system-theme-settings .nav-tabs a,body.body--dxpr-theme-header-not-overlay #system-theme-settings .vertical-tabs,body.body--dxpr-theme-header-normal #system-theme-settings .form-wrapper,body.body--dxpr-theme-header-normal #system-theme-settings .tabs-left>.tab-content,body.body--dxpr-theme-header-normal #system-theme-settings .tabs-right>.tab-content,body.body--dxpr-theme-header-normal #system-theme-settings .nav-tabs,body.body--dxpr-theme-header-normal #system-theme-settings .nav-tabs a,body.body--dxpr-theme-header-normal #system-theme-settings .vertical-tabs,body.path-admin #system-theme-settings .form-wrapper,body.path-admin #system-theme-settings .tabs-left>.tab-content,body.path-admin #system-theme-settings .tabs-right>.tab-content,body.path-admin #system-theme-settings .nav-tabs,body.path-admin #system-theme-settings .nav-tabs a,body.path-admin #system-theme-settings .vertical-tabs,#system-theme-settings .form-wrapper,#system-theme-settings .tabs-left>.tab-content,#system-theme-settings .tabs-right>.tab-content,#system-theme-settings .nav-tabs,#system-theme-settings .nav-tabs a,#system-theme-settings .vertical-tabs{border:none;-webkit-box-shadow:none;box-shadow:none}body.body--dxpr-theme-header-top #system-theme-settings details.form-wrapper,body.body--dxpr-theme-header-top #system-theme-settings div.form-wrapper,body.body--dxpr-theme-header-not-overlay #system-theme-settings details.form-wrapper,body.body--dxpr-theme-header-not-overlay #system-theme-settings div.form-wrapper,body.body--dxpr-theme-header-normal #system-theme-settings details.form-wrapper,body.body--dxpr-theme-header-normal #system-theme-settings div.form-wrapper,body.path-admin #system-theme-settings details.form-wrapper,body.path-admin #system-theme-settings div.form-wrapper,#system-theme-settings details.form-wrapper,#system-theme-settings div.form-wrapper{background:rgba(0,0,0,0);border-left:0.0625rem solid #222330;border-radius:0;clear:both;margin-bottom:1.25rem;margin-top:0}body.body--dxpr-theme-header-top #system-theme-settings details.form-wrapper .panel-heading,body.body--dxpr-theme-header-top #system-theme-settings div.form-wrapper .panel-heading,body.body--dxpr-theme-header-not-overlay #system-theme-settings details.form-wrapper .panel-heading,body.body--dxpr-theme-header-not-overlay #system-theme-settings div.form-wrapper .panel-heading,body.body--dxpr-theme-header-normal #system-theme-settings details.form-wrapper .panel-heading,body.body--dxpr-theme-header-normal #system-theme-settings div.form-wrapper .panel-heading,body.path-admin #system-theme-settings details.form-wrapper .panel-heading,body.path-admin #system-theme-settings div.form-wrapper .panel-heading,#system-theme-settings details.form-wrapper .panel-heading,#system-theme-settings div.form-wrapper .panel-heading{background:rgba(0,0,0,0);border:none}body.body--dxpr-theme-header-top #system-theme-settings details.form-wrapper .panel-title,body.body--dxpr-theme-header-top #system-theme-settings div.form-wrapper .panel-title,body.body--dxpr-theme-header-not-overlay #system-theme-settings details.form-wrapper .panel-title,body.body--dxpr-theme-header-not-overlay #system-theme-settings div.form-wrapper .panel-title,body.body--dxpr-theme-header-normal #system-theme-settings details.form-wrapper .panel-title,body.body--dxpr-theme-header-normal #system-theme-settings div.form-wrapper .panel-title,body.path-admin #system-theme-settings details.form-wrapper .panel-title,body.path-admin #system-theme-settings div.form-wrapper .panel-title,#system-theme-settings details.form-wrapper .panel-title,#system-theme-settings div.form-wrapper .panel-title{background:rgba(0,0,0,0);border:none;font-size:inherit}body.body--dxpr-theme-header-top #system-theme-settings details.form-wrapper .panel-title .panel-title,body.body--dxpr-theme-header-top #system-theme-settings div.form-wrapper .panel-title .panel-title,body.body--dxpr-theme-header-not-overlay #system-theme-settings details.form-wrapper .panel-title .panel-title,body.body--dxpr-theme-header-not-overlay #system-theme-settings div.form-wrapper .panel-title .panel-title,body.body--dxpr-theme-header-normal #system-theme-settings details.form-wrapper .panel-title .panel-title,body.body--dxpr-theme-header-normal #system-theme-settings div.form-wrapper .panel-title .panel-title,body.path-admin #system-theme-settings details.form-wrapper .panel-title .panel-title,body.path-admin #system-theme-settings div.form-wrapper .panel-title .panel-title,#system-theme-settings details.form-wrapper .panel-title .panel-title,#system-theme-settings div.form-wrapper .panel-title .panel-title{background:none;outline:none;text-decoration:none}body.body--dxpr-theme-header-top #system-theme-settings details.form-wrapper .panel-title .panel-title:hover,body.body--dxpr-theme-header-top #system-theme-settings details.form-wrapper .panel-title .panel-title:active,body.body--dxpr-theme-header-top #system-theme-settings div.form-wrapper .panel-title .panel-title:hover,body.body--dxpr-theme-header-top #system-theme-settings div.form-wrapper .panel-title .panel-title:active,body.body--dxpr-theme-header-not-overlay #system-theme-settings details.form-wrapper .panel-title .panel-title:hover,body.body--dxpr-theme-header-not-overlay #system-theme-settings details.form-wrapper .panel-title .panel-title:active,body.body--dxpr-theme-header-not-overlay #system-theme-settings div.form-wrapper .panel-title .panel-title:hover,body.body--dxpr-theme-header-not-overlay #system-theme-settings div.form-wrapper .panel-title .panel-title:active,body.body--dxpr-theme-header-normal #system-theme-settings details.form-wrapper .panel-title .panel-title:hover,body.body--dxpr-theme-header-normal #system-theme-settings details.form-wrapper .panel-title .panel-title:active,body.body--dxpr-theme-header-normal #system-theme-settings div.form-wrapper .panel-title .panel-title:hover,body.body--dxpr-theme-header-normal #system-theme-settings div.form-wrapper .panel-title .panel-title:active,body.path-admin #system-theme-settings details.form-wrapper .panel-title .panel-title:hover,body.path-admin #system-theme-settings details.form-wrapper .panel-title .panel-title:active,body.path-admin #system-theme-settings div.form-wrapper .panel-title .panel-title:hover,body.path-admin #system-theme-settings div.form-wrapper .panel-title .panel-title:active,#system-theme-settings details.form-wrapper .panel-title .panel-title:hover,#system-theme-settings details.form-wrapper .panel-title .panel-title:active,#system-theme-settings div.form-wrapper .panel-title .panel-title:hover,#system-theme-settings div.form-wrapper .panel-title .panel-title:active{outline:none;text-decoration:none}body.body--dxpr-theme-header-top #system-theme-settings details.form-wrapper .card-header,body.body--dxpr-theme-header-top #system-theme-settings div.form-wrapper .card-header,body.body--dxpr-theme-header-not-overlay #system-theme-settings details.form-wrapper .card-header,body.body--dxpr-theme-header-not-overlay #system-theme-settings div.form-wrapper .card-header,body.body--dxpr-theme-header-normal #system-theme-settings details.form-wrapper .card-header,body.body--dxpr-theme-header-normal #system-theme-settings div.form-wrapper .card-header,body.path-admin #system-theme-settings details.form-wrapper .card-header,body.path-admin #system-theme-settings div.form-wrapper .card-header,#system-theme-settings details.form-wrapper .card-header,#system-theme-settings div.form-wrapper .card-header{background:rgba(0,0,0,0);border:none;font-size:1.125rem;font-weight:bold}body.body--dxpr-theme-header-top #system-theme-settings details.form-wrapper summary,body.body--dxpr-theme-header-top #system-theme-settings div.form-wrapper summary,body.body--dxpr-theme-header-not-overlay #system-theme-settings details.form-wrapper summary,body.body--dxpr-theme-header-not-overlay #system-theme-settings div.form-wrapper summary,body.body--dxpr-theme-header-normal #system-theme-settings details.form-wrapper summary,body.body--dxpr-theme-header-normal #system-theme-settings div.form-wrapper summary,body.path-admin #system-theme-settings details.form-wrapper summary,body.path-admin #system-theme-settings div.form-wrapper summary,#system-theme-settings details.form-wrapper summary,#system-theme-settings div.form-wrapper summary{border:unset;padding:0.625rem 0.9375rem;--bs-bg-opacity: unset}body.body--dxpr-theme-header-top #system-theme-settings details.form-wrapper summary .details-title,body.body--dxpr-theme-header-top #system-theme-settings div.form-wrapper summary .details-title,body.body--dxpr-theme-header-not-overlay #system-theme-settings details.form-wrapper summary .details-title,body.body--dxpr-theme-header-not-overlay #system-theme-settings div.form-wrapper summary .details-title,body.body--dxpr-theme-header-normal #system-theme-settings details.form-wrapper summary .details-title,body.body--dxpr-theme-header-normal #system-theme-settings div.form-wrapper summary .details-title,body.path-admin #system-theme-settings details.form-wrapper summary .details-title,body.path-admin #system-theme-settings div.form-wrapper summary .details-title,#system-theme-settings details.form-wrapper summary .details-title,#system-theme-settings div.form-wrapper summary .details-title{background:none;color:inherit;outline:none;text-decoration:none}body.body--dxpr-theme-header-top #system-theme-settings details.form-wrapper summary::before,body.body--dxpr-theme-header-top #system-theme-settings div.form-wrapper summary::before,body.body--dxpr-theme-header-not-overlay #system-theme-settings details.form-wrapper summary::before,body.body--dxpr-theme-header-not-overlay #system-theme-settings div.form-wrapper summary::before,body.body--dxpr-theme-header-normal #system-theme-settings details.form-wrapper summary::before,body.body--dxpr-theme-header-normal #system-theme-settings div.form-wrapper summary::before,body.path-admin #system-theme-settings details.form-wrapper summary::before,body.path-admin #system-theme-settings div.form-wrapper summary::before,#system-theme-settings details.form-wrapper summary::before,#system-theme-settings div.form-wrapper summary::before{display:none}body.body--dxpr-theme-header-top #system-theme-settings details.form-wrapper summary::marker,body.body--dxpr-theme-header-top #system-theme-settings div.form-wrapper summary::marker,body.body--dxpr-theme-header-not-overlay #system-theme-settings details.form-wrapper summary::marker,body.body--dxpr-theme-header-not-overlay #system-theme-settings div.form-wrapper summary::marker,body.body--dxpr-theme-header-normal #system-theme-settings details.form-wrapper summary::marker,body.body--dxpr-theme-header-normal #system-theme-settings div.form-wrapper summary::marker,body.path-admin #system-theme-settings details.form-wrapper summary::marker,body.path-admin #system-theme-settings div.form-wrapper summary::marker,#system-theme-settings details.form-wrapper summary::marker,#system-theme-settings div.form-wrapper summary::marker{content:""}body.body--dxpr-theme-header-top #system-theme-settings details.form-wrapper .description,body.body--dxpr-theme-header-top #system-theme-settings div.form-wrapper .description,body.body--dxpr-theme-header-not-overlay #system-theme-settings details.form-wrapper .description,body.body--dxpr-theme-header-not-overlay #system-theme-settings div.form-wrapper .description,body.body--dxpr-theme-header-normal #system-theme-settings details.form-wrapper .description,body.body--dxpr-theme-header-normal #system-theme-settings div.form-wrapper .description,body.path-admin #system-theme-settings details.form-wrapper .description,body.path-admin #system-theme-settings div.form-wrapper .description,#system-theme-settings details.form-wrapper .description,#system-theme-settings div.form-wrapper .description{font-size:0.75rem;margin:0;opacity:.7;padding:0.3125rem 0}body.body--dxpr-theme-header-top #system-theme-settings label,body.body--dxpr-theme-header-top #system-theme-settings legend,body.body--dxpr-theme-header-not-overlay #system-theme-settings label,body.body--dxpr-theme-header-not-overlay #system-theme-settings legend,body.body--dxpr-theme-header-normal #system-theme-settings label,body.body--dxpr-theme-header-normal #system-theme-settings legend,body.path-admin #system-theme-settings label,body.path-admin #system-theme-settings legend,#system-theme-settings label,#system-theme-settings legend{background-color:unset;border:none;display:block;font-size:1rem;margin-bottom:0.5rem;outline:none;width:100%}body.body--dxpr-theme-header-top #system-theme-settings .no-preview,body.body--dxpr-theme-header-not-overlay #system-theme-settings .no-preview,body.body--dxpr-theme-header-normal #system-theme-settings .no-preview,body.path-admin #system-theme-settings .no-preview,#system-theme-settings .no-preview{position:relative}body.body--dxpr-theme-header-top #system-theme-settings .no-preview::after,body.body--dxpr-theme-header-not-overlay #system-theme-settings .no-preview::after,body.body--dxpr-theme-header-normal #system-theme-settings .no-preview::after,body.path-admin #system-theme-settings .no-preview::after,#system-theme-settings .no-preview::after{background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20fill%3D%22none%22%20stroke%3D%22currentColor%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20class%3D%22feather%20feather-eye-off%22%3E%3Cpath%20d%3D%22M17.94%2017.94A10.07%2010.07%200%200%201%2012%2020c-7%200-11-8-11-8a18.45%2018.45%200%200%201%205.06-5.94M9.9%204.24A9.12%209.12%200%200%201%2012%204c7%200%2011%208%2011%208a18.5%2018.5%200%200%201-2.16%203.19m-6.72-1.07a3%203%200%201%201-4.24-4.24M1%201l22%2022%22%2F%3E%3C%2Fsvg%3E");background-size:contain;content:"";display:inline-block;-webkit-filter:invert(100%) brightness(70%);filter:invert(100%) brightness(70%);height:1rem;margin-left:.4em;position:absolute;right:-1.25rem;top:0.125rem;width:1rem}body.body--dxpr-theme-header-top #system-theme-settings .no-preview-info,body.body--dxpr-theme-header-not-overlay #system-theme-settings .no-preview-info,body.body--dxpr-theme-header-normal #system-theme-settings .no-preview-info,body.path-admin #system-theme-settings .no-preview-info,#system-theme-settings .no-preview-info{bottom:0;font-size:0.8125rem;line-height:1.3;position:absolute;right:0}body.body--dxpr-theme-header-top #system-theme-settings .no-preview-info span.no-preview,body.body--dxpr-theme-header-not-overlay #system-theme-settings .no-preview-info span.no-preview,body.body--dxpr-theme-header-normal #system-theme-settings .no-preview-info span.no-preview,body.path-admin #system-theme-settings .no-preview-info span.no-preview,#system-theme-settings .no-preview-info span.no-preview{display:inline-block;margin-right:1.5em}body.body--dxpr-theme-header-top #system-theme-settings .no-preview-info span.no-preview::after,body.body--dxpr-theme-header-not-overlay #system-theme-settings .no-preview-info span.no-preview::after,body.body--dxpr-theme-header-normal #system-theme-settings .no-preview-info span.no-preview::after,body.path-admin #system-theme-settings .no-preview-info span.no-preview::after,#system-theme-settings .no-preview-info span.no-preview::after{height:1em;margin-left:0;width:1em}body.body--dxpr-theme-header-top #system-theme-settings .form-radios .no-preview::after,body.body--dxpr-theme-header-top #system-theme-settings .form-checkboxes .no-preview::after,body.body--dxpr-theme-header-top #system-theme-settings .form-item-block-card .no-preview::after,body.body--dxpr-theme-header-top #system-theme-settings .form-item-block-divider .no-preview::after,body.body--dxpr-theme-header-not-overlay #system-theme-settings .form-radios .no-preview::after,body.body--dxpr-theme-header-not-overlay #system-theme-settings .form-checkboxes .no-preview::after,body.body--dxpr-theme-header-not-overlay #system-theme-settings .form-item-block-card .no-preview::after,body.body--dxpr-theme-header-not-overlay #system-theme-settings .form-item-block-divider .no-preview::after,body.body--dxpr-theme-header-normal #system-theme-settings .form-radios .no-preview::after,body.body--dxpr-theme-header-normal #system-theme-settings .form-checkboxes .no-preview::after,body.body--dxpr-theme-header-normal #system-theme-settings .form-item-block-card .no-preview::after,body.body--dxpr-theme-header-normal #system-theme-settings .form-item-block-divider .no-preview::after,body.path-admin #system-theme-settings .form-radios .no-preview::after,body.path-admin #system-theme-settings .form-checkboxes .no-preview::after,body.path-admin #system-theme-settings .form-item-block-card .no-preview::after,body.path-admin #system-theme-settings .form-item-block-divider .no-preview::after,#system-theme-settings .form-radios .no-preview::after,#system-theme-settings .form-checkboxes .no-preview::after,#system-theme-settings .form-item-block-card .no-preview::after,#system-theme-settings .form-item-block-divider .no-preview::after{display:none}body.body--dxpr-theme-header-top #system-theme-settings .form-item,body.body--dxpr-theme-header-not-overlay #system-theme-settings .form-item,body.body--dxpr-theme-header-normal #system-theme-settings .form-item,body.path-admin #system-theme-settings .form-item,#system-theme-settings .form-item{background-color:unset;margin-bottom:1.25rem;padding-left:0}body.body--dxpr-theme-header-top #system-theme-settings .form-item .js-form-type-radio,body.body--dxpr-theme-header-not-overlay #system-theme-settings .form-item .js-form-type-radio,body.body--dxpr-theme-header-normal #system-theme-settings .form-item .js-form-type-radio,body.path-admin #system-theme-settings .form-item .js-form-type-radio,#system-theme-settings .form-item .js-form-type-radio{min-height:1.25rem}body.body--dxpr-theme-header-top #system-theme-settings .media-library-item,body.body--dxpr-theme-header-not-overlay #system-theme-settings .media-library-item,body.body--dxpr-theme-header-normal #system-theme-settings .media-library-item,body.path-admin #system-theme-settings .media-library-item,#system-theme-settings .media-library-item{width:auto}body.body--dxpr-theme-header-top #system-theme-settings .media-library-item .media-library-item__remove,body.body--dxpr-theme-header-not-overlay #system-theme-settings .media-library-item .media-library-item__remove,body.body--dxpr-theme-header-normal #system-theme-settings .media-library-item .media-library-item__remove,body.path-admin #system-theme-settings .media-library-item .media-library-item__remove,#system-theme-settings .media-library-item .media-library-item__remove{font-size:small;height:auto;padding:0.375rem 0.625rem;width:auto}body.body--dxpr-theme-header-top #system-theme-settings .form-item-field-settings-granularity .option.checkbox.control-label,body.body--dxpr-theme-header-not-overlay #system-theme-settings .form-item-field-settings-granularity .option.checkbox.control-label,body.body--dxpr-theme-header-normal #system-theme-settings .form-item-field-settings-granularity .option.checkbox.control-label,body.path-admin #system-theme-settings .form-item-field-settings-granularity .option.checkbox.control-label,#system-theme-settings .form-item-field-settings-granularity .option.checkbox.control-label{float:left;margin-right:2em}body.body--dxpr-theme-header-top #system-theme-settings .form-item-field-settings-granularity .help-block,body.body--dxpr-theme-header-not-overlay #system-theme-settings .form-item-field-settings-granularity .help-block,body.body--dxpr-theme-header-normal #system-theme-settings .form-item-field-settings-granularity .help-block,body.path-admin #system-theme-settings .form-item-field-settings-granularity .help-block,#system-theme-settings .form-item-field-settings-granularity .help-block{clear:both}body.body--dxpr-theme-header-top #system-theme-settings .radio input[type=radio],body.body--dxpr-theme-header-top #system-theme-settings .radio-inline input[type=radio],body.body--dxpr-theme-header-top #system-theme-settings .checkbox input[type=checkbox],body.body--dxpr-theme-header-top #system-theme-settings .checkbox-inline input[type=checkbox],body.body--dxpr-theme-header-not-overlay #system-theme-settings .radio input[type=radio],body.body--dxpr-theme-header-not-overlay #system-theme-settings .radio-inline input[type=radio],body.body--dxpr-theme-header-not-overlay #system-theme-settings .checkbox input[type=checkbox],body.body--dxpr-theme-header-not-overlay #system-theme-settings .checkbox-inline input[type=checkbox],body.body--dxpr-theme-header-normal #system-theme-settings .radio input[type=radio],body.body--dxpr-theme-header-normal #system-theme-settings .radio-inline input[type=radio],body.body--dxpr-theme-header-normal #system-theme-settings .checkbox input[type=checkbox],body.body--dxpr-theme-header-normal #system-theme-settings .checkbox-inline input[type=checkbox],body.path-admin #system-theme-settings .radio input[type=radio],body.path-admin #system-theme-settings .radio-inline input[type=radio],body.path-admin #system-theme-settings .checkbox input[type=checkbox],body.path-admin #system-theme-settings .checkbox-inline input[type=checkbox],#system-theme-settings .radio input[type=radio],#system-theme-settings .radio-inline input[type=radio],#system-theme-settings .checkbox input[type=checkbox],#system-theme-settings .checkbox-inline input[type=checkbox]{margin-left:0;position:static}body.body--dxpr-theme-header-top #system-theme-settings .form-text,body.body--dxpr-theme-header-top #system-theme-settings .fieldset-wrapper,body.body--dxpr-theme-header-top #system-theme-settings .select-wrapper,body.body--dxpr-theme-header-not-overlay #system-theme-settings .form-text,body.body--dxpr-theme-header-not-overlay #system-theme-settings .fieldset-wrapper,body.body--dxpr-theme-header-not-overlay #system-theme-settings .select-wrapper,body.body--dxpr-theme-header-normal #system-theme-settings .form-text,body.body--dxpr-theme-header-normal #system-theme-settings .fieldset-wrapper,body.body--dxpr-theme-header-normal #system-theme-settings .select-wrapper,body.path-admin #system-theme-settings .form-text,body.path-admin #system-theme-settings .fieldset-wrapper,body.path-admin #system-theme-settings .select-wrapper,#system-theme-settings .form-text,#system-theme-settings .fieldset-wrapper,#system-theme-settings .select-wrapper{max-width:100%;width:100%}body.body--dxpr-theme-header-top #system-theme-settings .fieldset-wrapper,body.body--dxpr-theme-header-not-overlay #system-theme-settings .fieldset-wrapper,body.body--dxpr-theme-header-normal #system-theme-settings .fieldset-wrapper,body.path-admin #system-theme-settings .fieldset-wrapper,#system-theme-settings .fieldset-wrapper{padding:0}body.body--dxpr-theme-header-top #system-theme-settings .form-text,body.body--dxpr-theme-header-top #system-theme-settings .form-textarea,body.body--dxpr-theme-header-top #system-theme-settings .form-file,body.body--dxpr-theme-header-not-overlay #system-theme-settings .form-text,body.body--dxpr-theme-header-not-overlay #system-theme-settings .form-textarea,body.body--dxpr-theme-header-not-overlay #system-theme-settings .form-file,body.body--dxpr-theme-header-normal #system-theme-settings .form-text,body.body--dxpr-theme-header-normal #system-theme-settings .form-textarea,body.body--dxpr-theme-header-normal #system-theme-settings .form-file,body.path-admin #system-theme-settings .form-text,body.path-admin #system-theme-settings .form-textarea,body.path-admin #system-theme-settings .form-file,#system-theme-settings .form-text,#system-theme-settings .form-textarea,#system-theme-settings .form-file{border:0.0625rem solid #222330;-webkit-box-shadow:none;box-shadow:none}body.body--dxpr-theme-header-top #system-theme-settings .description,body.body--dxpr-theme-header-top #system-theme-settings .help-block,body.body--dxpr-theme-header-not-overlay #system-theme-settings .description,body.body--dxpr-theme-header-not-overlay #system-theme-settings .help-block,body.body--dxpr-theme-header-normal #system-theme-settings .description,body.body--dxpr-theme-header-normal #system-theme-settings .help-block,body.path-admin #system-theme-settings .description,body.path-admin #system-theme-settings .help-block,#system-theme-settings .description,#system-theme-settings .help-block{color:#666;font-size:0.875rem;margin-top:0.5rem}body.body--dxpr-theme-header-top #system-theme-settings h2,body.body--dxpr-theme-header-not-overlay #system-theme-settings h2,body.body--dxpr-theme-header-normal #system-theme-settings h2,body.path-admin #system-theme-settings h2,#system-theme-settings h2{margin-bottom:0;margin-top:0}body.body--dxpr-theme-header-top #system-theme-settings .form-header,body.body--dxpr-theme-header-not-overlay #system-theme-settings .form-header,body.body--dxpr-theme-header-normal #system-theme-settings .form-header,body.path-admin #system-theme-settings .form-header,#system-theme-settings .form-header{border-bottom:0.0625rem solid #222330;padding:0.75rem;position:relative}body.body--dxpr-theme-header-top #system-theme-settings .form-header h2,body.body--dxpr-theme-header-not-overlay #system-theme-settings .form-header h2,body.body--dxpr-theme-header-normal #system-theme-settings .form-header h2,body.path-admin #system-theme-settings .form-header h2,#system-theme-settings .form-header h2{font-size:1.25rem}body.body--dxpr-theme-header-top #system-theme-settings .form-header img,body.body--dxpr-theme-header-not-overlay #system-theme-settings .form-header img,body.body--dxpr-theme-header-normal #system-theme-settings .form-header img,body.path-admin #system-theme-settings .form-header img,#system-theme-settings .form-header img{margin-right:0.625rem;width:2.5rem}body.body--dxpr-theme-header-top #system-theme-settings .vertical-tabs,body.body--dxpr-theme-header-not-overlay #system-theme-settings .vertical-tabs,body.body--dxpr-theme-header-normal #system-theme-settings .vertical-tabs,body.path-admin #system-theme-settings .vertical-tabs,#system-theme-settings .vertical-tabs{display:table;margin:0;position:relative;width:100%}body.body--dxpr-theme-header-top #system-theme-settings .vertical-tabs .vertical-tabs__menu,body.body--dxpr-theme-header-not-overlay #system-theme-settings .vertical-tabs .vertical-tabs__menu,body.body--dxpr-theme-header-normal #system-theme-settings .vertical-tabs .vertical-tabs__menu,body.path-admin #system-theme-settings .vertical-tabs .vertical-tabs__menu,#system-theme-settings .vertical-tabs .vertical-tabs__menu{border:none;content:" ";display:table-cell;float:none;height:100%;left:0;margin:0;padding-top:1rem;position:relative;top:0;vertical-align:top;width:7.5rem}body.body--dxpr-theme-header-top #system-theme-settings .vertical-tabs .vertical-tabs__menu .vertical-tabs__menu-item,body.body--dxpr-theme-header-not-overlay #system-theme-settings .vertical-tabs .vertical-tabs__menu .vertical-tabs__menu-item,body.body--dxpr-theme-header-normal #system-theme-settings .vertical-tabs .vertical-tabs__menu .vertical-tabs__menu-item,body.path-admin #system-theme-settings .vertical-tabs .vertical-tabs__menu .vertical-tabs__menu-item,#system-theme-settings .vertical-tabs .vertical-tabs__menu .vertical-tabs__menu-item{background:rgba(0,0,0,0);border:none}body.body--dxpr-theme-header-top #system-theme-settings .vertical-tabs .vertical-tabs__menu .vertical-tabs__menu-item a,body.body--dxpr-theme-header-not-overlay #system-theme-settings .vertical-tabs .vertical-tabs__menu .vertical-tabs__menu-item a,body.body--dxpr-theme-header-normal #system-theme-settings .vertical-tabs .vertical-tabs__menu .vertical-tabs__menu-item a,body.path-admin #system-theme-settings .vertical-tabs .vertical-tabs__menu .vertical-tabs__menu-item a,#system-theme-settings .vertical-tabs .vertical-tabs__menu .vertical-tabs__menu-item a{background:rgba(0,0,0,0);border:none;font-size:0.75rem;margin-bottom:0.0625rem;padding:0.375rem 0.5rem}body.body--dxpr-theme-header-top #system-theme-settings .vertical-tabs .vertical-tabs__menu .vertical-tabs__menu-item a:hover,body.body--dxpr-theme-header-top #system-theme-settings .vertical-tabs .vertical-tabs__menu .vertical-tabs__menu-item a:active,body.body--dxpr-theme-header-not-overlay #system-theme-settings .vertical-tabs .vertical-tabs__menu .vertical-tabs__menu-item a:hover,body.body--dxpr-theme-header-not-overlay #system-theme-settings .vertical-tabs .vertical-tabs__menu .vertical-tabs__menu-item a:active,body.body--dxpr-theme-header-normal #system-theme-settings .vertical-tabs .vertical-tabs__menu .vertical-tabs__menu-item a:hover,body.body--dxpr-theme-header-normal #system-theme-settings .vertical-tabs .vertical-tabs__menu .vertical-tabs__menu-item a:active,body.path-admin #system-theme-settings .vertical-tabs .vertical-tabs__menu .vertical-tabs__menu-item a:hover,body.path-admin #system-theme-settings .vertical-tabs .vertical-tabs__menu .vertical-tabs__menu-item a:active,#system-theme-settings .vertical-tabs .vertical-tabs__menu .vertical-tabs__menu-item a:hover,#system-theme-settings .vertical-tabs .vertical-tabs__menu .vertical-tabs__menu-item a:active{border:none;outline:none;text-decoration:none}body.body--dxpr-theme-header-top #system-theme-settings .vertical-tabs .vertical-tabs__menu .vertical-tabs__menu-item a:focus,body.body--dxpr-theme-header-not-overlay #system-theme-settings .vertical-tabs .vertical-tabs__menu .vertical-tabs__menu-item a:focus,body.body--dxpr-theme-header-normal #system-theme-settings .vertical-tabs .vertical-tabs__menu .vertical-tabs__menu-item a:focus,body.path-admin #system-theme-settings .vertical-tabs .vertical-tabs__menu .vertical-tabs__menu-item a:focus,#system-theme-settings .vertical-tabs .vertical-tabs__menu .vertical-tabs__menu-item a:focus{text-decoration:none}body.body--dxpr-theme-header-top #system-theme-settings .vertical-tabs .vertical-tabs__menu .vertical-tabs__menu-item a:hover .vertical-tabs__menu-item-title,body.body--dxpr-theme-header-top #system-theme-settings .vertical-tabs .vertical-tabs__menu .vertical-tabs__menu-item a:focus .vertical-tabs__menu-item-title,body.body--dxpr-theme-header-top #system-theme-settings .vertical-tabs .vertical-tabs__menu .vertical-tabs__menu-item a:active .vertical-tabs__menu-item-title,body.body--dxpr-theme-header-not-overlay #system-theme-settings .vertical-tabs .vertical-tabs__menu .vertical-tabs__menu-item a:hover .vertical-tabs__menu-item-title,body.body--dxpr-theme-header-not-overlay #system-theme-settings .vertical-tabs .vertical-tabs__menu .vertical-tabs__menu-item a:focus .vertical-tabs__menu-item-title,body.body--dxpr-theme-header-not-overlay #system-theme-settings .vertical-tabs .vertical-tabs__menu .vertical-tabs__menu-item a:active .vertical-tabs__menu-item-title,body.body--dxpr-theme-header-normal #system-theme-settings .vertical-tabs .vertical-tabs__menu .vertical-tabs__menu-item a:hover .vertical-tabs__menu-item-title,body.body--dxpr-theme-header-normal #system-theme-settings .vertical-tabs .vertical-tabs__menu .vertical-tabs__menu-item a:focus .vertical-tabs__menu-item-title,body.body--dxpr-theme-header-normal #system-theme-settings .vertical-tabs .vertical-tabs__menu .vertical-tabs__menu-item a:active .vertical-tabs__menu-item-title,body.path-admin #system-theme-settings .vertical-tabs .vertical-tabs__menu .vertical-tabs__menu-item a:hover .vertical-tabs__menu-item-title,body.path-admin #system-theme-settings .vertical-tabs .vertical-tabs__menu .vertical-tabs__menu-item a:focus .vertical-tabs__menu-item-title,body.path-admin #system-theme-settings .vertical-tabs .vertical-tabs__menu .vertical-tabs__menu-item a:active .vertical-tabs__menu-item-title,#system-theme-settings .vertical-tabs .vertical-tabs__menu .vertical-tabs__menu-item a:hover .vertical-tabs__menu-item-title,#system-theme-settings .vertical-tabs .vertical-tabs__menu .vertical-tabs__menu-item a:focus .vertical-tabs__menu-item-title,#system-theme-settings .vertical-tabs .vertical-tabs__menu .vertical-tabs__menu-item a:active .vertical-tabs__menu-item-title{text-decoration:none}body.body--dxpr-theme-header-top #system-theme-settings .vertical-tabs .vertical-tabs__menu .vertical-tabs__menu-item a .vertical-tabs__menu-item-title,body.body--dxpr-theme-header-not-overlay #system-theme-settings .vertical-tabs .vertical-tabs__menu .vertical-tabs__menu-item a .vertical-tabs__menu-item-title,body.body--dxpr-theme-header-normal #system-theme-settings .vertical-tabs .vertical-tabs__menu .vertical-tabs__menu-item a .vertical-tabs__menu-item-title,body.path-admin #system-theme-settings .vertical-tabs .vertical-tabs__menu .vertical-tabs__menu-item a .vertical-tabs__menu-item-title,#system-theme-settings .vertical-tabs .vertical-tabs__menu .vertical-tabs__menu-item a .vertical-tabs__menu-item-title{font-weight:normal}body.body--dxpr-theme-header-top #system-theme-settings .vertical-tabs .vertical-tabs__menu .is-selected,body.body--dxpr-theme-header-not-overlay #system-theme-settings .vertical-tabs .vertical-tabs__menu .is-selected,body.body--dxpr-theme-header-normal #system-theme-settings .vertical-tabs .vertical-tabs__menu .is-selected,body.path-admin #system-theme-settings .vertical-tabs .vertical-tabs__menu .is-selected,#system-theme-settings .vertical-tabs .vertical-tabs__menu .is-selected{background-color:#e9ecef}body.body--dxpr-theme-header-top #system-theme-settings .vertical-tabs .vertical-tabs__menu .is-selected a,body.body--dxpr-theme-header-not-overlay #system-theme-settings .vertical-tabs .vertical-tabs__menu .is-selected a,body.body--dxpr-theme-header-normal #system-theme-settings .vertical-tabs .vertical-tabs__menu .is-selected a,body.path-admin #system-theme-settings .vertical-tabs .vertical-tabs__menu .is-selected a,#system-theme-settings .vertical-tabs .vertical-tabs__menu .is-selected a{border:none}body.body--dxpr-theme-header-top #system-theme-settings .vertical-tabs .vertical-tabs__menu .is-selected a .vertical-tabs__menu-item-title,body.body--dxpr-theme-header-not-overlay #system-theme-settings .vertical-tabs .vertical-tabs__menu .is-selected a .vertical-tabs__menu-item-title,body.body--dxpr-theme-header-normal #system-theme-settings .vertical-tabs .vertical-tabs__menu .is-selected a .vertical-tabs__menu-item-title,body.path-admin #system-theme-settings .vertical-tabs .vertical-tabs__menu .is-selected a .vertical-tabs__menu-item-title,#system-theme-settings .vertical-tabs .vertical-tabs__menu .is-selected a .vertical-tabs__menu-item-title{text-decoration:underline}body.body--dxpr-theme-header-top #system-theme-settings .vertical-tabs .vertical-tabs__panes,body.body--dxpr-theme-header-not-overlay #system-theme-settings .vertical-tabs .vertical-tabs__panes,body.body--dxpr-theme-header-normal #system-theme-settings .vertical-tabs .vertical-tabs__panes,body.path-admin #system-theme-settings .vertical-tabs .vertical-tabs__panes,#system-theme-settings .vertical-tabs .vertical-tabs__panes{padding:0 0.75rem 0.75rem 0}body.body--dxpr-theme-header-top #system-theme-settings .vertical-tabs .vertical-tabs__panes .details-wrapper,body.body--dxpr-theme-header-not-overlay #system-theme-settings .vertical-tabs .vertical-tabs__panes .details-wrapper,body.body--dxpr-theme-header-normal #system-theme-settings .vertical-tabs .vertical-tabs__panes .details-wrapper,body.path-admin #system-theme-settings .vertical-tabs .vertical-tabs__panes .details-wrapper,#system-theme-settings .vertical-tabs .vertical-tabs__panes .details-wrapper{padding:0.75rem}body.body--dxpr-theme-header-top #system-theme-settings .form-select,body.body--dxpr-theme-header-not-overlay #system-theme-settings .form-select,body.body--dxpr-theme-header-normal #system-theme-settings .form-select,body.path-admin #system-theme-settings .form-select,#system-theme-settings .form-select{max-width:100%;width:auto}body.body--dxpr-theme-header-top #system-theme-settings .form-composite,body.body--dxpr-theme-header-not-overlay #system-theme-settings .form-composite,body.body--dxpr-theme-header-normal #system-theme-settings .form-composite,body.path-admin #system-theme-settings .form-composite,#system-theme-settings .form-composite{display:block}body.body--dxpr-theme-header-top #system-theme-settings .form-composite .form-checkboxes input,body.body--dxpr-theme-header-not-overlay #system-theme-settings .form-composite .form-checkboxes input,body.body--dxpr-theme-header-normal #system-theme-settings .form-composite .form-checkboxes input,body.path-admin #system-theme-settings .form-composite .form-checkboxes input,#system-theme-settings .form-composite .form-checkboxes input{display:block}body.body--dxpr-theme-header-top #system-theme-settings .form-composite input,body.body--dxpr-theme-header-not-overlay #system-theme-settings .form-composite input,body.body--dxpr-theme-header-normal #system-theme-settings .form-composite input,body.path-admin #system-theme-settings .form-composite input,#system-theme-settings .form-composite input{display:none}body.body--dxpr-theme-header-top #system-theme-settings .form-composite label,body.body--dxpr-theme-header-not-overlay #system-theme-settings .form-composite label,body.body--dxpr-theme-header-normal #system-theme-settings .form-composite label,body.path-admin #system-theme-settings .form-composite label,#system-theme-settings .form-composite label{font-size:0.875rem;margin-bottom:0.5rem;width:100%}body.body--dxpr-theme-header-top #system-theme-settings .form-composite input~label.option,body.body--dxpr-theme-header-top #system-theme-settings .form-composite input~span,body.body--dxpr-theme-header-not-overlay #system-theme-settings .form-composite input~label.option,body.body--dxpr-theme-header-not-overlay #system-theme-settings .form-composite input~span,body.body--dxpr-theme-header-normal #system-theme-settings .form-composite input~label.option,body.body--dxpr-theme-header-normal #system-theme-settings .form-composite input~span,body.path-admin #system-theme-settings .form-composite input~label.option,body.path-admin #system-theme-settings .form-composite input~span,#system-theme-settings .form-composite input~label.option,#system-theme-settings .form-composite input~span{cursor:pointer;display:block;font-weight:300;line-height:1.25rem;margin:0 0 0.5rem;width:100%}body.body--dxpr-theme-header-top #system-theme-settings .form-composite input~label.option::before,body.body--dxpr-theme-header-top #system-theme-settings .form-composite input~span::before,body.body--dxpr-theme-header-not-overlay #system-theme-settings .form-composite input~label.option::before,body.body--dxpr-theme-header-not-overlay #system-theme-settings .form-composite input~span::before,body.body--dxpr-theme-header-normal #system-theme-settings .form-composite input~label.option::before,body.body--dxpr-theme-header-normal #system-theme-settings .form-composite input~span::before,body.path-admin #system-theme-settings .form-composite input~label.option::before,body.path-admin #system-theme-settings .form-composite input~span::before,#system-theme-settings .form-composite input~label.option::before,#system-theme-settings .form-composite input~span::before{content:"__";display:inline-block;font-size:1rem;font-weight:normal;opacity:.3;width:1.25rem}body.body--dxpr-theme-header-top #system-theme-settings .form-composite input:checked~label.option,body.body--dxpr-theme-header-top #system-theme-settings .form-composite input:checked~span,body.body--dxpr-theme-header-not-overlay #system-theme-settings .form-composite input:checked~label.option,body.body--dxpr-theme-header-not-overlay #system-theme-settings .form-composite input:checked~span,body.body--dxpr-theme-header-normal #system-theme-settings .form-composite input:checked~label.option,body.body--dxpr-theme-header-normal #system-theme-settings .form-composite input:checked~span,body.path-admin #system-theme-settings .form-composite input:checked~label.option,body.path-admin #system-theme-settings .form-composite input:checked~span,#system-theme-settings .form-composite input:checked~label.option,#system-theme-settings .form-composite input:checked~span{font-style:italic;font-weight:normal}body.body--dxpr-theme-header-top #system-theme-settings .form-composite input:checked~label.option::before,body.body--dxpr-theme-header-top #system-theme-settings .form-composite input:checked~span::before,body.body--dxpr-theme-header-not-overlay #system-theme-settings .form-composite input:checked~label.option::before,body.body--dxpr-theme-header-not-overlay #system-theme-settings .form-composite input:checked~span::before,body.body--dxpr-theme-header-normal #system-theme-settings .form-composite input:checked~label.option::before,body.body--dxpr-theme-header-normal #system-theme-settings .form-composite input:checked~span::before,body.path-admin #system-theme-settings .form-composite input:checked~label.option::before,body.path-admin #system-theme-settings .form-composite input:checked~span::before,#system-theme-settings .form-composite input:checked~label.option::before,#system-theme-settings .form-composite input:checked~span::before{content:"✓";font-size:1.25rem;opacity:1}body.body--dxpr-theme-header-top #system-theme-settings .form-type-checkboxes>label,body.body--dxpr-theme-header-not-overlay #system-theme-settings .form-type-checkboxes>label,body.body--dxpr-theme-header-normal #system-theme-settings .form-type-checkboxes>label,body.path-admin #system-theme-settings .form-type-checkboxes>label,#system-theme-settings .form-type-checkboxes>label{font-weight:bold}body.body--dxpr-theme-header-top #system-theme-settings .farbtastic,body.body--dxpr-theme-header-not-overlay #system-theme-settings .farbtastic,body.body--dxpr-theme-header-normal #system-theme-settings .farbtastic,body.path-admin #system-theme-settings .farbtastic,#system-theme-settings .farbtastic{-ms-flex-negative:0;flex-shrink:0;-webkit-transform:scale(0.7);-ms-transform:scale(0.7);transform:scale(0.7);-webkit-transform-origin:top left;-ms-transform-origin:top left;transform-origin:top left;z-index:10}body.body--dxpr-theme-header-top #system-theme-settings .color-form,body.body--dxpr-theme-header-not-overlay #system-theme-settings .color-form,body.body--dxpr-theme-header-normal #system-theme-settings .color-form,body.path-admin #system-theme-settings .color-form,#system-theme-settings .color-form{display:-webkit-box;display:-ms-flexbox;display:flex;max-width:100%}body.body--dxpr-theme-header-top #system-theme-settings .color-form .form-item,body.body--dxpr-theme-header-not-overlay #system-theme-settings .color-form .form-item,body.body--dxpr-theme-header-normal #system-theme-settings .color-form .form-item,body.path-admin #system-theme-settings .color-form .form-item,#system-theme-settings .color-form .form-item{margin:0 0 1rem}body.body--dxpr-theme-header-top #system-theme-settings .color-form .details-wrapper,body.body--dxpr-theme-header-not-overlay #system-theme-settings .color-form .details-wrapper,body.body--dxpr-theme-header-normal #system-theme-settings .color-form .details-wrapper,body.path-admin #system-theme-settings .color-form .details-wrapper,#system-theme-settings .color-form .details-wrapper{display:-webkit-box;display:-ms-flexbox;display:flex;gap:1rem;width:100%}body.body--dxpr-theme-header-top #system-theme-settings .color-form .form-text,body.body--dxpr-theme-header-not-overlay #system-theme-settings .color-form .form-text,body.body--dxpr-theme-header-normal #system-theme-settings .color-form .form-text,body.path-admin #system-theme-settings .color-form .form-text,#system-theme-settings .color-form .form-text{padding:0.5rem;width:100%}body.body--dxpr-theme-header-top #system-theme-settings .color-form .select-wrapper,body.body--dxpr-theme-header-not-overlay #system-theme-settings .color-form .select-wrapper,body.body--dxpr-theme-header-normal #system-theme-settings .color-form .select-wrapper,body.path-admin #system-theme-settings .color-form .select-wrapper,#system-theme-settings .color-form .select-wrapper{margin-bottom:0.75rem;width:100%}body.body--dxpr-theme-header-top #system-theme-settings .color-form .select-wrapper .form-select,body.body--dxpr-theme-header-not-overlay #system-theme-settings .color-form .select-wrapper .form-select,body.body--dxpr-theme-header-normal #system-theme-settings .color-form .select-wrapper .form-select,body.path-admin #system-theme-settings .color-form .select-wrapper .form-select,#system-theme-settings .color-form .select-wrapper .form-select{width:100%}body.body--dxpr-theme-header-top #system-theme-settings .color-form .form-item-scheme,body.body--dxpr-theme-header-not-overlay #system-theme-settings .color-form .form-item-scheme,body.body--dxpr-theme-header-normal #system-theme-settings .color-form .form-item-scheme,body.path-admin #system-theme-settings .color-form .form-item-scheme,#system-theme-settings .color-form .form-item-scheme{margin-bottom:1rem;width:100%}body.body--dxpr-theme-header-top #system-theme-settings .color-form h2,body.body--dxpr-theme-header-not-overlay #system-theme-settings .color-form h2,body.body--dxpr-theme-header-normal #system-theme-settings .color-form h2,body.path-admin #system-theme-settings .color-form h2,#system-theme-settings .color-form h2{visibility:hidden}body.body--dxpr-theme-header-top #system-theme-settings .color-form .color-preview,body.body--dxpr-theme-header-not-overlay #system-theme-settings .color-form .color-preview,body.body--dxpr-theme-header-normal #system-theme-settings .color-form .color-preview,body.path-admin #system-theme-settings .color-form .color-preview,#system-theme-settings .color-form .color-preview{visibility:hidden}body.body--dxpr-theme-header-top #system-theme-settings .form-item.form-type-vertical-tabs,body.body--dxpr-theme-header-not-overlay #system-theme-settings .form-item.form-type-vertical-tabs,body.body--dxpr-theme-header-normal #system-theme-settings .form-item.form-type-vertical-tabs,body.path-admin #system-theme-settings .form-item.form-type-vertical-tabs,#system-theme-settings .form-item.form-type-vertical-tabs{margin-top:0}body.body--dxpr-theme-header-top #system-theme-settings .color-placeholder,body.body--dxpr-theme-header-not-overlay #system-theme-settings .color-placeholder,body.body--dxpr-theme-header-normal #system-theme-settings .color-placeholder,body.path-admin #system-theme-settings .color-placeholder,#system-theme-settings .color-placeholder{height:0;padding:0 1.5rem 6.25rem;top:calc(var(--dxt-setting-header-top-height) + 6.25rem);z-index:404}body.body--dxpr-theme-header-top #system-theme-settings .color-palette,body.body--dxpr-theme-header-not-overlay #system-theme-settings .color-palette,body.body--dxpr-theme-header-normal #system-theme-settings .color-palette,body.path-admin #system-theme-settings .color-palette,#system-theme-settings .color-palette{-webkit-box-flex:1;-ms-flex:1;flex:1;margin-top:1.25rem}body.body--dxpr-theme-header-top #system-theme-settings .color-palette label,body.body--dxpr-theme-header-not-overlay #system-theme-settings .color-palette label,body.body--dxpr-theme-header-normal #system-theme-settings .color-palette label,body.path-admin #system-theme-settings .color-palette label,#system-theme-settings .color-palette label{line-height:1.2;margin-bottom:0.375rem;width:100%}body.body--dxpr-theme-header-top #system-theme-settings .color-palette .form-item,body.body--dxpr-theme-header-not-overlay #system-theme-settings .color-palette .form-item,body.body--dxpr-theme-header-normal #system-theme-settings .color-palette .form-item,body.path-admin #system-theme-settings .color-palette .form-item,#system-theme-settings .color-palette .form-item{margin-bottom:1rem;padding:0}body.body--dxpr-theme-header-top #system-theme-settings .color-palette .item-selected,body.body--dxpr-theme-header-not-overlay #system-theme-settings .color-palette .item-selected,body.body--dxpr-theme-header-normal #system-theme-settings .color-palette .item-selected,body.path-admin #system-theme-settings .color-palette .item-selected,#system-theme-settings .color-palette .item-selected{background:none}body.body--dxpr-theme-header-top #system-theme-settings .color-palette .item-selected input,body.body--dxpr-theme-header-not-overlay #system-theme-settings .color-palette .item-selected input,body.body--dxpr-theme-header-normal #system-theme-settings .color-palette .item-selected input,body.path-admin #system-theme-settings .color-palette .item-selected input,#system-theme-settings .color-palette .item-selected input{font-style:italic}body.body--dxpr-theme-header-top #system-theme-settings .color-palette .lock,body.body--dxpr-theme-header-not-overlay #system-theme-settings .color-palette .lock,body.body--dxpr-theme-header-normal #system-theme-settings .color-palette .lock,body.path-admin #system-theme-settings .color-palette .lock,#system-theme-settings .color-palette .lock{left:auto;margin-left:0.5rem;position:relative;top:auto}body.body--dxpr-theme-header-top #system-theme-settings .color-palette .form-text,body.body--dxpr-theme-header-not-overlay #system-theme-settings .color-palette .form-text,body.body--dxpr-theme-header-normal #system-theme-settings .color-palette .form-text,body.path-admin #system-theme-settings .color-palette .form-text,#system-theme-settings .color-palette .form-text{padding:0.5rem;width:100%}body.body--dxpr-theme-header-top #system-theme-settings .color-palette .form-text.active,body.body--dxpr-theme-header-not-overlay #system-theme-settings .color-palette .form-text.active,body.body--dxpr-theme-header-normal #system-theme-settings .color-palette .form-text.active,body.path-admin #system-theme-settings .color-palette .form-text.active,#system-theme-settings .color-palette .form-text.active{border-radius:0.25rem;-webkit-box-shadow:0 0 0 0.1875rem #32c832;box-shadow:0 0 0 0.1875rem #32c832;font-weight:bold}body.body--dxpr-theme-header-top #system-theme-settings .font-preview,body.body--dxpr-theme-header-not-overlay #system-theme-settings .font-preview,body.body--dxpr-theme-header-normal #system-theme-settings .font-preview,body.path-admin #system-theme-settings .font-preview,#system-theme-settings .font-preview{font-size:1.875rem;padding:0.625rem 0}body.body--dxpr-theme-header-top #system-theme-settings .font-preview p,body.body--dxpr-theme-header-not-overlay #system-theme-settings .font-preview p,body.body--dxpr-theme-header-normal #system-theme-settings .font-preview p,body.path-admin #system-theme-settings .font-preview p,#system-theme-settings .font-preview p{margin:0.625rem 0}body.body--dxpr-theme-header-top #system-theme-settings .font-preview .font-test,body.body--dxpr-theme-header-not-overlay #system-theme-settings .font-preview .font-test,body.body--dxpr-theme-header-normal #system-theme-settings .font-preview .font-test,body.path-admin #system-theme-settings .font-preview .font-test,#system-theme-settings .font-preview .font-test{font-size:1rem}body.body--dxpr-theme-header-top #system-theme-settings .font-preview .font-test-accents,body.body--dxpr-theme-header-not-overlay #system-theme-settings .font-preview .font-test-accents,body.body--dxpr-theme-header-normal #system-theme-settings .font-preview .font-test-accents,body.path-admin #system-theme-settings .font-preview .font-test-accents,#system-theme-settings .font-preview .font-test-accents{font-size:1rem}body.body--dxpr-theme-header-top #system-theme-settings .font-preview .font-test-small,body.body--dxpr-theme-header-not-overlay #system-theme-settings .font-preview .font-test-small,body.body--dxpr-theme-header-normal #system-theme-settings .font-preview .font-test-small,body.path-admin #system-theme-settings .font-preview .font-test-small,#system-theme-settings .font-preview .font-test-small{font-size:0.8125rem}body.body--dxpr-theme-header-top #system-theme-settings #edit-fonts .form-item:not(.form-wrapper),body.body--dxpr-theme-header-not-overlay #system-theme-settings #edit-fonts .form-item:not(.form-wrapper),body.body--dxpr-theme-header-normal #system-theme-settings #edit-fonts .form-item:not(.form-wrapper),body.path-admin #system-theme-settings #edit-fonts .form-item:not(.form-wrapper),#system-theme-settings #edit-fonts .form-item:not(.form-wrapper){margin-bottom:1rem;width:100%}body.body--dxpr-theme-header-top #system-theme-settings #edit-fonts .form-item:not(.form-wrapper) .form-select,body.body--dxpr-theme-header-not-overlay #system-theme-settings #edit-fonts .form-item:not(.form-wrapper) .form-select,body.body--dxpr-theme-header-normal #system-theme-settings #edit-fonts .form-item:not(.form-wrapper) .form-select,body.path-admin #system-theme-settings #edit-fonts .form-item:not(.form-wrapper) .form-select,#system-theme-settings #edit-fonts .form-item:not(.form-wrapper) .form-select{height:2.5rem;width:100%}body.body--dxpr-theme-header-top #system-theme-settings #edit-fonts .form-item:not(.form-wrapper) .form-text,body.body--dxpr-theme-header-top #system-theme-settings #edit-fonts .form-item:not(.form-wrapper) label,body.body--dxpr-theme-header-not-overlay #system-theme-settings #edit-fonts .form-item:not(.form-wrapper) .form-text,body.body--dxpr-theme-header-not-overlay #system-theme-settings #edit-fonts .form-item:not(.form-wrapper) label,body.body--dxpr-theme-header-normal #system-theme-settings #edit-fonts .form-item:not(.form-wrapper) .form-text,body.body--dxpr-theme-header-normal #system-theme-settings #edit-fonts .form-item:not(.form-wrapper) label,body.path-admin #system-theme-settings #edit-fonts .form-item:not(.form-wrapper) .form-text,body.path-admin #system-theme-settings #edit-fonts .form-item:not(.form-wrapper) label,#system-theme-settings #edit-fonts .form-item:not(.form-wrapper) .form-text,#system-theme-settings #edit-fonts .form-item:not(.form-wrapper) label{width:100%}body.body--dxpr-theme-header-top #system-theme-settings #edit-fonts .form-item:not(.form-wrapper) label,body.body--dxpr-theme-header-not-overlay #system-theme-settings #edit-fonts .form-item:not(.form-wrapper) label,body.body--dxpr-theme-header-normal #system-theme-settings #edit-fonts .form-item:not(.form-wrapper) label,body.path-admin #system-theme-settings #edit-fonts .form-item:not(.form-wrapper) label,#system-theme-settings #edit-fonts .form-item:not(.form-wrapper) label{margin-bottom:0.375rem}body.body--dxpr-theme-header-top #system-theme-settings #edit-typography .form-item:not(.form-wrapper),body.body--dxpr-theme-header-not-overlay #system-theme-settings #edit-typography .form-item:not(.form-wrapper),body.body--dxpr-theme-header-normal #system-theme-settings #edit-typography .form-item:not(.form-wrapper),body.path-admin #system-theme-settings #edit-typography .form-item:not(.form-wrapper),#system-theme-settings #edit-typography .form-item:not(.form-wrapper){margin-bottom:1rem;width:100%}body.body--dxpr-theme-header-top #system-theme-settings #edit-typography .form-item:not(.form-wrapper) label,body.body--dxpr-theme-header-not-overlay #system-theme-settings #edit-typography .form-item:not(.form-wrapper) label,body.body--dxpr-theme-header-normal #system-theme-settings #edit-typography .form-item:not(.form-wrapper) label,body.path-admin #system-theme-settings #edit-typography .form-item:not(.form-wrapper) label,#system-theme-settings #edit-typography .form-item:not(.form-wrapper) label{margin-bottom:0.375rem;width:100%}body.body--dxpr-theme-header-top #system-theme-settings #edit-typography .form-text:not([name=divider_color_custom]),body.body--dxpr-theme-header-not-overlay #system-theme-settings #edit-typography .form-text:not([name=divider_color_custom]),body.body--dxpr-theme-header-normal #system-theme-settings #edit-typography .form-text:not([name=divider_color_custom]),body.path-admin #system-theme-settings #edit-typography .form-text:not([name=divider_color_custom]),#system-theme-settings #edit-typography .form-text:not([name=divider_color_custom]){width:100%}body.body--dxpr-theme-header-top #system-theme-settings #edit-typography .form-item-scale-factor,body.body--dxpr-theme-header-not-overlay #system-theme-settings #edit-typography .form-item-scale-factor,body.body--dxpr-theme-header-normal #system-theme-settings #edit-typography .form-item-scale-factor,body.path-admin #system-theme-settings #edit-typography .form-item-scale-factor,#system-theme-settings #edit-typography .form-item-scale-factor{width:100%}body.body--dxpr-theme-header-top #system-theme-settings #edit-typography .form-item-divider-color,body.body--dxpr-theme-header-top #system-theme-settings #edit-typography .form-item-divider-color-custom,body.body--dxpr-theme-header-not-overlay #system-theme-settings #edit-typography .form-item-divider-color,body.body--dxpr-theme-header-not-overlay #system-theme-settings #edit-typography .form-item-divider-color-custom,body.body--dxpr-theme-header-normal #system-theme-settings #edit-typography .form-item-divider-color,body.body--dxpr-theme-header-normal #system-theme-settings #edit-typography .form-item-divider-color-custom,body.path-admin #system-theme-settings #edit-typography .form-item-divider-color,body.path-admin #system-theme-settings #edit-typography .form-item-divider-color-custom,#system-theme-settings #edit-typography .form-item-divider-color,#system-theme-settings #edit-typography .form-item-divider-color-custom{width:100%}body.body--dxpr-theme-header-top #system-theme-settings #edit-block .form-type-select,body.body--dxpr-theme-header-top #system-theme-settings #edit-block .form-text,body.body--dxpr-theme-header-not-overlay #system-theme-settings #edit-block .form-type-select,body.body--dxpr-theme-header-not-overlay #system-theme-settings #edit-block .form-text,body.body--dxpr-theme-header-normal #system-theme-settings #edit-block .form-type-select,body.body--dxpr-theme-header-normal #system-theme-settings #edit-block .form-text,body.path-admin #system-theme-settings #edit-block .form-type-select,body.path-admin #system-theme-settings #edit-block .form-text,#system-theme-settings #edit-block .form-type-select,#system-theme-settings #edit-block .form-text{width:100%}body.body--dxpr-theme-header-top #system-theme-settings .block-design-settings,body.body--dxpr-theme-header-not-overlay #system-theme-settings .block-design-settings,body.body--dxpr-theme-header-normal #system-theme-settings .block-design-settings,body.path-admin #system-theme-settings .block-design-settings,#system-theme-settings .block-design-settings{margin-bottom:1.25rem;width:100%}body.body--dxpr-theme-header-top #system-theme-settings .block-preview,body.body--dxpr-theme-header-not-overlay #system-theme-settings .block-preview,body.body--dxpr-theme-header-normal #system-theme-settings .block-preview,body.path-admin #system-theme-settings .block-preview,#system-theme-settings .block-preview{margin-top:1.25rem;width:100%}body.body--dxpr-theme-header-top #system-theme-settings .form-item[class$=invoke] .form-text,body.body--dxpr-theme-header-not-overlay #system-theme-settings .form-item[class$=invoke] .form-text,body.body--dxpr-theme-header-normal #system-theme-settings .form-item[class$=invoke] .form-text,body.path-admin #system-theme-settings .form-item[class$=invoke] .form-text,#system-theme-settings .form-item[class$=invoke] .form-text{max-width:none}body.body--dxpr-theme-header-top #system-theme-settings .fonts-previews p,body.body--dxpr-theme-header-not-overlay #system-theme-settings .fonts-previews p,body.body--dxpr-theme-header-normal #system-theme-settings .fonts-previews p,body.path-admin #system-theme-settings .fonts-previews p,#system-theme-settings .fonts-previews p{margin:0 0 1.25rem}body.body--dxpr-theme-header-top #system-theme-settings #edit-import-export label,body.body--dxpr-theme-header-not-overlay #system-theme-settings #edit-import-export label,body.body--dxpr-theme-header-normal #system-theme-settings #edit-import-export label,body.path-admin #system-theme-settings #edit-import-export label,#system-theme-settings #edit-import-export label{width:18.75rem}body.body--dxpr-theme-header-top #system-theme-settings .dxpr-theme-settings-export,body.body--dxpr-theme-header-not-overlay #system-theme-settings .dxpr-theme-settings-export,body.body--dxpr-theme-header-normal #system-theme-settings .dxpr-theme-settings-export,body.path-admin #system-theme-settings .dxpr-theme-settings-export,#system-theme-settings .dxpr-theme-settings-export{height:25rem;white-space:pre;width:100%}body.body--dxpr-theme-header-top #system-theme-settings .js-form-type-checkbox,body.body--dxpr-theme-header-not-overlay #system-theme-settings .js-form-type-checkbox,body.body--dxpr-theme-header-normal #system-theme-settings .js-form-type-checkbox,body.path-admin #system-theme-settings .js-form-type-checkbox,#system-theme-settings .js-form-type-checkbox{display:block;margin-bottom:1rem;position:relative}body.body--dxpr-theme-header-top #system-theme-settings .js-form-type-checkbox input[type=checkbox],body.body--dxpr-theme-header-not-overlay #system-theme-settings .js-form-type-checkbox input[type=checkbox],body.body--dxpr-theme-header-normal #system-theme-settings .js-form-type-checkbox input[type=checkbox],body.path-admin #system-theme-settings .js-form-type-checkbox input[type=checkbox],#system-theme-settings .js-form-type-checkbox input[type=checkbox]{-webkit-appearance:auto;-moz-appearance:auto;appearance:auto;cursor:pointer;float:right;height:1.25rem;position:static;width:2.5rem;z-index:10}body.body--dxpr-theme-header-top #system-theme-settings .js-form-type-checkbox input[type=checkbox]:focus,body.body--dxpr-theme-header-not-overlay #system-theme-settings .js-form-type-checkbox input[type=checkbox]:focus,body.body--dxpr-theme-header-normal #system-theme-settings .js-form-type-checkbox input[type=checkbox]:focus,body.path-admin #system-theme-settings .js-form-type-checkbox input[type=checkbox]:focus,#system-theme-settings .js-form-type-checkbox input[type=checkbox]:focus{-webkit-box-shadow:unset;box-shadow:unset}body.body--dxpr-theme-header-top #system-theme-settings .js-form-type-checkbox label,body.body--dxpr-theme-header-not-overlay #system-theme-settings .js-form-type-checkbox label,body.body--dxpr-theme-header-normal #system-theme-settings .js-form-type-checkbox label,body.path-admin #system-theme-settings .js-form-type-checkbox label,#system-theme-settings .js-form-type-checkbox label{display:block;line-height:1.4;margin-bottom:0.25rem;width:100%}body.body--dxpr-theme-header-top #system-theme-settings .js-form-type-checkbox .description,body.body--dxpr-theme-header-not-overlay #system-theme-settings .js-form-type-checkbox .description,body.body--dxpr-theme-header-normal #system-theme-settings .js-form-type-checkbox .description,body.path-admin #system-theme-settings .js-form-type-checkbox .description,#system-theme-settings .js-form-type-checkbox .description{clear:both;color:#666;font-size:0.875rem;line-height:1.3;margin-top:0.25rem}body.body--dxpr-theme-header-top #system-theme-settings .js-form-type-checkbox .switcher,body.body--dxpr-theme-header-not-overlay #system-theme-settings .js-form-type-checkbox .switcher,body.body--dxpr-theme-header-normal #system-theme-settings .js-form-type-checkbox .switcher,body.path-admin #system-theme-settings .js-form-type-checkbox .switcher,#system-theme-settings .js-form-type-checkbox .switcher{display:none}body.body--dxpr-theme-header-top #system-theme-settings .core-theme-settings .js-form-type-checkbox input[type=checkbox],body.body--dxpr-theme-header-top #system-theme-settings .form-checkboxes .js-form-type-checkbox input[type=checkbox],body.body--dxpr-theme-header-not-overlay #system-theme-settings .core-theme-settings .js-form-type-checkbox input[type=checkbox],body.body--dxpr-theme-header-not-overlay #system-theme-settings .form-checkboxes .js-form-type-checkbox input[type=checkbox],body.body--dxpr-theme-header-normal #system-theme-settings .core-theme-settings .js-form-type-checkbox input[type=checkbox],body.body--dxpr-theme-header-normal #system-theme-settings .form-checkboxes .js-form-type-checkbox input[type=checkbox],body.path-admin #system-theme-settings .core-theme-settings .js-form-type-checkbox input[type=checkbox],body.path-admin #system-theme-settings .form-checkboxes .js-form-type-checkbox input[type=checkbox],#system-theme-settings .core-theme-settings .js-form-type-checkbox input[type=checkbox],#system-theme-settings .form-checkboxes .js-form-type-checkbox input[type=checkbox]{margin-left:auto;position:static}body.body--dxpr-theme-header-top #system-theme-settings .dxb-slider-wrapper input,body.body--dxpr-theme-header-not-overlay #system-theme-settings .dxb-slider-wrapper input,body.body--dxpr-theme-header-normal #system-theme-settings .dxb-slider-wrapper input,body.path-admin #system-theme-settings .dxb-slider-wrapper input,#system-theme-settings .dxb-slider-wrapper input{border:none}body.body--dxpr-theme-header-top #system-theme-settings .dxb-slider-wrapper .dxb-slider-value,body.body--dxpr-theme-header-not-overlay #system-theme-settings .dxb-slider-wrapper .dxb-slider-value,body.body--dxpr-theme-header-normal #system-theme-settings .dxb-slider-wrapper .dxb-slider-value,body.path-admin #system-theme-settings .dxb-slider-wrapper .dxb-slider-value,#system-theme-settings .dxb-slider-wrapper .dxb-slider-value{width:6.25rem}body.body--dxpr-theme-header-top #system-theme-settings .dxb-slider-wrapper .dxb-slider-track,body.body--dxpr-theme-header-not-overlay #system-theme-settings .dxb-slider-wrapper .dxb-slider-track,body.body--dxpr-theme-header-normal #system-theme-settings .dxb-slider-wrapper .dxb-slider-track,body.path-admin #system-theme-settings .dxb-slider-wrapper .dxb-slider-track,#system-theme-settings .dxb-slider-wrapper .dxb-slider-track{min-width:9.375rem}body.body--dxpr-theme-header-top #system-theme-settings .dxb-slider-wrapper .dxb-slider-track .dxb-slider,body.body--dxpr-theme-header-not-overlay #system-theme-settings .dxb-slider-wrapper .dxb-slider-track .dxb-slider,body.body--dxpr-theme-header-normal #system-theme-settings .dxb-slider-wrapper .dxb-slider-track .dxb-slider,body.path-admin #system-theme-settings .dxb-slider-wrapper .dxb-slider-track .dxb-slider,#system-theme-settings .dxb-slider-wrapper .dxb-slider-track .dxb-slider{width:100% !important}.dxpr-body-wrapper{margin-right:35vw !important}.type-preview{clear:both}.type-preview .type-container{padding:2.5rem 5rem}html.html--dxpr-theme-sticky-footer:has(#system-theme-settings){height:auto !important}
+@charset "UTF-8";
+#system-theme-settings {
+  --dxt-admin-color-primary-50: #eaedfa;
+  --dxt-admin-color-primary-500: #314dd0;
+  --dxt-admin-color-primary-600: #2d46bd;
+  --dxt-admin-color-neutral-0: #fff;
+  --dxt-admin-color-neutral-100: #f2f2f7;
+  --dxt-admin-color-neutral-200: #e5e5ea;
+  --dxt-admin-color-neutral-300: #d1d5db;
+  --dxt-admin-color-neutral-400: #9ca3af;
+  --dxt-admin-color-neutral-500: #8e8e93;
+  --dxt-admin-color-neutral-600: #636366;
+  --dxt-admin-color-neutral-700: #48484a;
+  --dxt-admin-color-neutral-800: #374151;
+  --dxt-admin-color-neutral-900: #1c1c1e;
+  --dxt-admin-color-shadow-8: rgba(0, 0, 0, 0.08);
+  --dxt-admin-color-shadow-10: rgba(0, 0, 0, 0.1);
+  --dxt-admin-color-shadow-15: rgba(0, 0, 0, 0.15);
+  --dxt-admin-color-shadow-20: rgba(0, 0, 0, 0.2);
+  --dxt-admin-bg: var(--dxt-admin-color-neutral-100);
+  --dxt-admin-accent: var(--dxt-admin-color-primary-500);
+  --dxt-admin-accent-hover: var(--dxt-admin-color-primary-600);
+  --dxt-admin-accent-light: var(--dxt-admin-color-primary-50);
+  --dxt-admin-text: var(--dxt-admin-color-neutral-900);
+  --dxt-admin-text-muted: var(--dxt-admin-color-neutral-500);
+  --dxt-admin-text-disabled: var(--dxt-admin-color-neutral-400);
+  --dxt-admin-border: var(--dxt-admin-color-neutral-300);
+  --dxt-admin-surface: var(--dxt-admin-color-neutral-0);
+  --dxt-admin-surface-alt: var(--dxt-admin-color-neutral-200);
+  --dxt-admin-toggle-off: var(--dxt-admin-color-neutral-500);
+  --dxt-admin-toggle-off-hover: var(--dxt-admin-color-neutral-600);
+  --dxt-admin-toggle-off-active: var(--dxt-admin-color-neutral-700);
+  --dxt-admin-focus-ring: rgba(49, 77, 208, 0.25);
+  --dxt-admin-selected-bg: rgba(49, 77, 208, 0.15);
+  --dxt-admin-selected-bg-hover: rgba(49, 77, 208, 0.2);
+  --dxt-admin-search-bg: rgba(118, 118, 128, 0.08);
+  --dxt-admin-search-bg-focus: rgba(118, 118, 128, 0.12);
+  --dxt-admin-tab-hover: rgba(255, 255, 255, 0.6);
+  --dxt-admin-tab-active: rgba(255, 255, 255, 0.8);
+  --dxt-radius-sm: 8px;
+  --dxt-radius-md: 12px;
+  --dxt-radius-lg: 16px;
+  --dxt-radius-xl: 24px;
+  --dxt-radius-full: 9999px;
+  background: var(--dxt-admin-bg);
+  border-left: 1px solid var(--dxt-admin-color-shadow-8);
+  height: calc(100vh - var(--drupal-displace-offset-top, 0));
+  margin: 0;
+  overflow-y: auto;
+  padding: 0;
+  position: fixed;
+  right: 0;
+  top: var(--drupal-displace-offset-top, 0);
+  width: 40vw;
+  z-index: 9999;
+}
+#system-theme-settings * {
+  color: var(--dxt-admin-text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !important;
+  line-height: 1.2 !important;
+  font-size: 16px !important;
+}
+#system-theme-settings .dxpr-search-container {
+  background: var(--dxt-admin-bg);
+  box-shadow: 0 4px 16px var(--dxt-admin-color-shadow-10);
+  margin: 0;
+  padding: 8px 16px 12px;
+  position: sticky;
+  top: 0;
+  z-index: 1030;
+}
+#system-theme-settings #dxpr-settings-search {
+  background: var(--dxt-admin-search-bg);
+  border: none;
+  border-radius: var(--dxt-radius-md);
+  outline: none;
+  padding: 12px 16px;
+  transition: background-color 0.2s ease;
+  width: 100%;
+}
+#system-theme-settings #dxpr-settings-search:focus {
+  background: var(--dxt-admin-search-bg-focus);
+  box-shadow: none;
+}
+#system-theme-settings #dxpr-settings-search::placeholder {
+  color: var(--dxt-admin-text-muted);
+  opacity: 1;
+}
+#system-theme-settings *:not(.reinvented-color-wheel *) {
+  box-sizing: border-box;
+}
+#system-theme-settings #edit-actions.form-actions {
+  background: var(--dxt-admin-bg) !important;
+  border: none !important;
+  bottom: 0;
+  box-shadow: 0 -4px 16px var(--dxt-admin-color-shadow-10);
+  margin: 0 !important;
+  padding: 12px 16px !important;
+  position: sticky;
+  z-index: 101;
+}
+#system-theme-settings button,
+#system-theme-settings input[type=submit],
+#system-theme-settings input[type=button],
+#system-theme-settings .btn,
+#system-theme-settings .button {
+  background: var(--dxt-admin-color-neutral-900) !important;
+  border: none !important;
+  border-radius: 0 !important;
+  color: var(--dxt-admin-surface) !important;
+  cursor: pointer;
+  font-weight: 600;
+  padding: 12px 16px;
+  transition: background-color 0.2s ease;
+}
+#system-theme-settings button:hover,
+#system-theme-settings input[type=submit]:hover,
+#system-theme-settings input[type=button]:hover,
+#system-theme-settings .btn:hover,
+#system-theme-settings .button:hover {
+  background: var(--dxt-admin-color-neutral-800) !important;
+}
+#system-theme-settings button:focus,
+#system-theme-settings input[type=submit]:focus,
+#system-theme-settings input[type=button]:focus,
+#system-theme-settings .btn:focus,
+#system-theme-settings .button:focus {
+  outline: 2px solid var(--dxt-admin-accent);
+  outline-offset: 2px;
+}
+#system-theme-settings button:active,
+#system-theme-settings input[type=submit]:active,
+#system-theme-settings input[type=button]:active,
+#system-theme-settings .btn:active,
+#system-theme-settings .button:active {
+  background: var(--dxt-admin-color-neutral-700) !important;
+}
+#system-theme-settings #edit-actions #edit-submit {
+  margin: 0;
+  padding: 16px;
+  width: 100%;
+}
+#system-theme-settings .settings-header {
+  margin-bottom: 0;
+  padding: 20px 16px;
+}
+#system-theme-settings .form-wrapper,
+#system-theme-settings .tabs-left > .tab-content,
+#system-theme-settings .tabs-right > .tab-content,
+#system-theme-settings .nav-tabs,
+#system-theme-settings .nav-tabs a,
+#system-theme-settings .vertical-tabs {
+  border: none;
+  box-shadow: none;
+}
+#system-theme-settings details.form-wrapper,
+#system-theme-settings div.form-wrapper {
+  background: transparent;
+  border: none;
+  clear: both;
+  margin: 0 0 24px;
+  overflow: hidden;
+  padding: 0;
+}
+#system-theme-settings details.form-wrapper .panel-heading,
+#system-theme-settings div.form-wrapper .panel-heading {
+  background: transparent;
+  border: none;
+}
+#system-theme-settings details.form-wrapper .panel-title,
+#system-theme-settings div.form-wrapper .panel-title {
+  background: transparent;
+  border: none;
+}
+#system-theme-settings details.form-wrapper .panel-title .panel-title,
+#system-theme-settings div.form-wrapper .panel-title .panel-title {
+  background: none;
+  outline: none;
+  text-decoration: none;
+}
+#system-theme-settings details.form-wrapper .panel-title .panel-title:hover, #system-theme-settings details.form-wrapper .panel-title .panel-title:active,
+#system-theme-settings div.form-wrapper .panel-title .panel-title:hover,
+#system-theme-settings div.form-wrapper .panel-title .panel-title:active {
+  outline: none;
+  text-decoration: none;
+}
+#system-theme-settings details.form-wrapper .card-header,
+#system-theme-settings div.form-wrapper .card-header {
+  background: transparent;
+  font-weight: 600;
+  padding: 12px 16px;
+}
+#system-theme-settings details.form-wrapper summary,
+#system-theme-settings div.form-wrapper summary {
+  border: unset;
+  font-weight: 700;
+  padding: 16px;
+  --bs-bg-opacity: unset;
+}
+#system-theme-settings details.form-wrapper summary .details-title,
+#system-theme-settings div.form-wrapper summary .details-title {
+  background: none;
+  color: inherit;
+  outline: none;
+  text-decoration: none;
+}
+#system-theme-settings details.form-wrapper summary::before,
+#system-theme-settings div.form-wrapper summary::before {
+  display: none;
+}
+#system-theme-settings details.form-wrapper summary::marker,
+#system-theme-settings div.form-wrapper summary::marker {
+  content: "";
+}
+#system-theme-settings details.form-wrapper .description,
+#system-theme-settings div.form-wrapper .description {
+  color: var(--dxt-admin-text-muted);
+  font-size: 13px !important;
+  margin: 0;
+  padding: 4px 0;
+}
+#system-theme-settings label,
+#system-theme-settings legend {
+  background-color: unset;
+  border: none;
+  display: block;
+  font-size: 19px !important;
+  margin-bottom: 6px;
+  outline: none;
+  width: 100%;
+}
+#system-theme-settings .no-preview {
+  position: relative;
+}
+#system-theme-settings .no-preview::after {
+  background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20fill%3D%22none%22%20stroke%3D%22currentColor%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20class%3D%22feather%20feather-eye-off%22%3E%3Cpath%20d%3D%22M17.94%2017.94A10.07%2010.07%200%200%201%2012%2020c-7%200-11-8-11-8a18.45%2018.45%200%200%201%205.06-5.94M9.9%204.24A9.12%209.12%200%200%201%2012%204c7%200%2011%208%2011%208a18.5%2018.5%200%200%201-2.16%203.19m-6.72-1.07a3%203%200%201%201-4.24-4.24M1%201l22%2022%22%2F%3E%3C%2Fsvg%3E");
+  background-size: contain;
+  content: "";
+  display: inline-block;
+  filter: invert(100%) brightness(70%);
+  height: 16px;
+  margin-left: 0.4em;
+  position: absolute;
+  right: 0;
+  top: 2px;
+  width: 16px;
+}
+#system-theme-settings .no-preview-info {
+  bottom: 0;
+  color: var(--dxt-admin-text-muted);
+  font-size: 13px !important;
+  line-height: 1.3;
+  position: absolute;
+  right: 16px;
+}
+#system-theme-settings .no-preview-info span.no-preview {
+  display: inline-block;
+  margin-right: 1.5em;
+}
+#system-theme-settings .no-preview-info span.no-preview::after {
+  height: 1em;
+  margin-left: 0;
+  width: 1em;
+}
+#system-theme-settings .form-radios .no-preview::after, #system-theme-settings .form-checkboxes .no-preview::after, #system-theme-settings .form-item-block-card .no-preview::after, #system-theme-settings .form-item-block-divider .no-preview::after {
+  display: none;
+}
+#system-theme-settings .form-item {
+  background-color: unset;
+  margin-bottom: 0;
+  padding: 12px 0;
+}
+#system-theme-settings .form-item:last-child {
+  border-bottom: none;
+}
+#system-theme-settings .form-item .js-form-type-radio {
+  min-height: 20px;
+}
+#system-theme-settings .media-library-item {
+  width: auto;
+}
+#system-theme-settings .media-library-item .media-library-item__remove {
+  height: auto;
+  padding: 6px 10px;
+  width: auto;
+}
+#system-theme-settings .form-item-field-settings-granularity .option.checkbox.control-label {
+  float: left;
+  margin-right: 2em;
+}
+#system-theme-settings .form-item-field-settings-granularity .help-block {
+  clear: both;
+}
+#system-theme-settings .radio input[type=radio], #system-theme-settings .radio-inline input[type=radio], #system-theme-settings .checkbox input[type=checkbox], #system-theme-settings .checkbox-inline input[type=checkbox] {
+  margin-left: 0;
+  position: static;
+}
+#system-theme-settings .form-text,
+#system-theme-settings .fieldset-wrapper,
+#system-theme-settings .select-wrapper {
+  max-width: 100%;
+  width: 100%;
+}
+#system-theme-settings .fieldset-wrapper {
+  padding: 0;
+}
+#system-theme-settings .form-text,
+#system-theme-settings .form-textarea,
+#system-theme-settings .form-file {
+  background: var(--dxt-admin-surface);
+  border: none;
+  box-shadow: none;
+  padding: 14px 16px;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+#system-theme-settings .form-text:focus,
+#system-theme-settings .form-textarea:focus,
+#system-theme-settings .form-file:focus {
+  background: var(--dxt-admin-surface);
+  box-shadow: 0 0 0 2px var(--dxt-admin-accent);
+  outline: none;
+}
+#system-theme-settings #edit-custom-css-site,
+#system-theme-settings #edit-custom-javascript-site,
+#system-theme-settings input[name=body_font_face_selector],
+#system-theme-settings input[name=headings_font_face_selector],
+#system-theme-settings input[name=nav_font_face_selector],
+#system-theme-settings input[name=sitename_font_face_selector],
+#system-theme-settings input[name=blockquote_font_face_selector] {
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, monospace !important;
+}
+#system-theme-settings .description,
+#system-theme-settings .help-block {
+  color: var(--dxt-admin-text-muted);
+  font-size: 13px !important;
+  margin-top: 6px;
+}
+#system-theme-settings h2 {
+  margin-bottom: 0;
+  margin-top: 0;
+}
+#system-theme-settings .form-header {
+  display: none;
+}
+#system-theme-settings .form-header ~ .form-header {
+  border-top: 1px solid var(--dxt-admin-border);
+  display: block;
+  margin-top: 24px;
+  padding-top: 24px;
+  text-align: center;
+}
+#system-theme-settings .vertical-tabs {
+  display: table;
+  margin: 0;
+  position: relative;
+  width: 100%;
+}
+#system-theme-settings .vertical-tabs .vertical-tabs__menu {
+  background: transparent;
+  border: none;
+  content: " ";
+  display: table-cell;
+  float: none;
+  height: 100%;
+  left: 0;
+  margin: 0;
+  overflow: visible;
+  padding: 16px;
+  position: relative;
+  top: 0;
+  vertical-align: top;
+  width: 160px;
+}
+#system-theme-settings .vertical-tabs .vertical-tabs__menu .vertical-tabs__menu-item {
+  background: transparent;
+  border: none;
+  border-radius: 24px;
+  margin-bottom: 4px;
+}
+#system-theme-settings .vertical-tabs .vertical-tabs__menu .vertical-tabs__menu-item a {
+  background: transparent;
+  border: none;
+  border-radius: 24px;
+  color: var(--dxt-admin-text-muted);
+  display: block;
+  margin-bottom: 0;
+  outline: none;
+  padding: 10px 16px;
+  transition: background-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+}
+#system-theme-settings .vertical-tabs .vertical-tabs__menu .vertical-tabs__menu-item a strong,
+#system-theme-settings .vertical-tabs .vertical-tabs__menu .vertical-tabs__menu-item a span {
+  font-size: 13px !important;
+}
+#system-theme-settings .vertical-tabs .vertical-tabs__menu .vertical-tabs__menu-item a:hover {
+  background: var(--dxt-admin-tab-hover);
+  color: var(--dxt-admin-text);
+  text-decoration: none;
+}
+#system-theme-settings .vertical-tabs .vertical-tabs__menu .vertical-tabs__menu-item a:focus {
+  outline: none;
+  text-decoration: none;
+}
+#system-theme-settings .vertical-tabs .vertical-tabs__menu .vertical-tabs__menu-item a:focus-visible {
+  background: var(--dxt-admin-tab-hover);
+  box-shadow: 0 0 0 2px var(--dxt-admin-accent);
+}
+#system-theme-settings .vertical-tabs .vertical-tabs__menu .vertical-tabs__menu-item a:active {
+  background: var(--dxt-admin-tab-active);
+  color: var(--dxt-admin-text);
+}
+#system-theme-settings .vertical-tabs .vertical-tabs__menu .vertical-tabs__menu-item a .vertical-tabs__menu-item-title {
+  font-weight: normal;
+}
+#system-theme-settings .vertical-tabs .vertical-tabs__menu .is-selected {
+  background-color: var(--dxt-admin-surface);
+  border-radius: 24px;
+}
+#system-theme-settings .vertical-tabs .vertical-tabs__menu .is-selected a {
+  color: var(--dxt-admin-text);
+}
+#system-theme-settings .vertical-tabs .vertical-tabs__menu .is-selected a:hover {
+  background: transparent;
+}
+#system-theme-settings .vertical-tabs .vertical-tabs__menu .is-selected a:focus-visible {
+  background: transparent;
+  box-shadow: 0 0 0 2px var(--dxt-admin-accent);
+}
+#system-theme-settings .vertical-tabs .vertical-tabs__menu .is-selected a:active {
+  background: transparent;
+}
+#system-theme-settings .vertical-tabs .vertical-tabs__menu .is-selected a .vertical-tabs__menu-item-title {
+  font-weight: 600;
+  text-decoration: none;
+}
+#system-theme-settings .vertical-tabs .vertical-tabs__panes {
+  padding: 0 16px 16px 8px;
+}
+#system-theme-settings .vertical-tabs .vertical-tabs__panes .details-wrapper {
+  padding: 16px;
+}
+#system-theme-settings .form-select {
+  appearance: none;
+  background-color: var(--dxt-admin-surface);
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="%238e8e93" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>');
+  background-position: right 14px center;
+  background-repeat: no-repeat;
+  background-size: 16px;
+  border: none;
+  cursor: pointer;
+  max-width: 100%;
+  padding: 14px 44px 14px 16px;
+  transition: box-shadow 0.2s ease;
+  width: auto;
+}
+#system-theme-settings .form-select:focus {
+  box-shadow: 0 0 0 2px var(--dxt-admin-accent);
+  outline: none;
+}
+#system-theme-settings .form-select:hover {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="%231c1c1e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>');
+}
+#system-theme-settings .form-composite {
+  display: block;
+}
+#system-theme-settings .form-composite .form-checkboxes input {
+  display: block;
+}
+#system-theme-settings .form-composite input {
+  display: none;
+}
+#system-theme-settings .form-composite label {
+  margin-bottom: 8px;
+  width: 100%;
+}
+#system-theme-settings .form-composite .form-radios {
+  background: var(--dxt-admin-surface);
+  border: none;
+  max-width: 100%;
+  overflow: hidden;
+}
+#system-theme-settings .form-composite .js-form-type-radio {
+  align-items: center;
+  background: var(--dxt-admin-surface);
+  border-bottom: 1px solid var(--dxt-admin-bg);
+  display: flex;
+  height: 60px;
+  justify-content: space-between;
+  margin: 0;
+  padding: 0 20px;
+  position: relative;
+  transition: background-color 0.15s ease;
+}
+#system-theme-settings .form-composite .js-form-type-radio:last-child {
+  border-bottom: none;
+}
+#system-theme-settings .form-composite .js-form-type-radio:hover {
+  background: var(--dxt-admin-bg);
+}
+#system-theme-settings .form-composite .js-form-type-radio:hover label.option {
+  color: var(--dxt-admin-text);
+}
+#system-theme-settings .form-composite .js-form-type-radio:focus-within {
+  box-shadow: inset 0 0 0 2px var(--dxt-admin-accent);
+  outline: none;
+  z-index: 1;
+}
+#system-theme-settings .form-composite .js-form-type-radio input[type=radio] {
+  height: 1px;
+  opacity: 0;
+  position: absolute;
+  width: 1px;
+}
+#system-theme-settings .form-composite .js-form-type-radio input[type=radio]:focus-visible ~ label.option {
+  outline: none;
+}
+#system-theme-settings .form-composite .js-form-type-radio label.option {
+  align-items: center;
+  color: var(--dxt-admin-text);
+  cursor: pointer;
+  display: flex;
+  flex: 1;
+  font-weight: 400;
+  height: 100%;
+  justify-content: space-between;
+  line-height: 1;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+#system-theme-settings .form-composite .js-form-type-radio label.option::before {
+  display: none;
+}
+#system-theme-settings .form-composite .js-form-type-radio label.option::after {
+  color: var(--dxt-admin-accent);
+  content: "";
+  flex-shrink: 0;
+  font-weight: 600;
+  height: 24px;
+  margin-left: 12px;
+  width: 24px;
+}
+#system-theme-settings .form-composite .js-form-type-radio:has(input[type=radio]:checked) {
+  background: var(--dxt-admin-selected-bg);
+}
+#system-theme-settings .form-composite .js-form-type-radio:has(input[type=radio]:checked):hover {
+  background: var(--dxt-admin-selected-bg-hover);
+}
+#system-theme-settings .form-composite .js-form-type-radio:has(input[type=radio]:checked):hover label.option {
+  color: var(--dxt-admin-text);
+}
+#system-theme-settings .form-composite .js-form-type-radio:has(input[type=radio]:checked) label.option::after {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23314dd0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 18px 18px;
+  content: "";
+}
+#system-theme-settings .form-composite .js-form-type-radio:has(input[type=radio]:disabled) {
+  background: var(--dxt-admin-surface-alt);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+#system-theme-settings .form-composite .js-form-type-radio:has(input[type=radio]:disabled) label.option {
+  color: var(--dxt-admin-text-disabled);
+  cursor: not-allowed;
+}
+#system-theme-settings .form-composite input ~ label.option,
+#system-theme-settings .form-composite input ~ span {
+  cursor: pointer;
+  display: block;
+  font-weight: 400;
+  line-height: 22px;
+  margin: 0;
+  padding: 12px 0;
+  width: 100%;
+}
+#system-theme-settings .form-composite input ~ label.option:last-of-type,
+#system-theme-settings .form-composite input ~ span:last-of-type {
+  border-bottom: none;
+}
+#system-theme-settings .form-composite input ~ label.option::before,
+#system-theme-settings .form-composite input ~ span::before {
+  color: var(--dxt-admin-text-muted);
+  content: "";
+  display: inline-block;
+  font-size: 19px !important;
+  font-weight: normal;
+  margin-right: 12px;
+  width: 22px;
+}
+#system-theme-settings .form-composite input:checked ~ label.option,
+#system-theme-settings .form-composite input:checked ~ span {
+  color: var(--dxt-admin-text);
+  font-style: normal;
+  font-weight: 400;
+}
+#system-theme-settings .form-composite input:checked ~ label.option::before,
+#system-theme-settings .form-composite input:checked ~ span::before {
+  color: var(--dxt-admin-accent);
+  content: "✓";
+  font-size: 19px !important;
+  font-weight: 600;
+}
+#system-theme-settings .form-type-checkboxes > label {
+  font-weight: 600;
+}
+#system-theme-settings .farbtastic {
+  flex-shrink: 0;
+  transform: scale(0.7);
+  transform-origin: top left;
+}
+#system-theme-settings .color-form {
+  display: flex;
+  max-width: 100%;
+}
+#system-theme-settings .color-form .form-item {
+  border-bottom: none;
+  margin: 0 0 16px;
+  padding: 0;
+}
+#system-theme-settings .color-form .details-wrapper {
+  display: flex;
+  gap: 16px;
+  width: 100%;
+}
+#system-theme-settings .color-form .form-text {
+  padding: 10px 12px;
+  width: 100%;
+}
+#system-theme-settings .color-form .select-wrapper {
+  margin-bottom: 12px;
+  width: 100%;
+}
+#system-theme-settings .color-form .select-wrapper .form-select {
+  width: 100%;
+}
+#system-theme-settings .color-form .form-item-scheme {
+  margin-bottom: 16px;
+  width: 100%;
+}
+#system-theme-settings .color-form h2 {
+  visibility: hidden;
+}
+#system-theme-settings .color-form .color-preview {
+  visibility: hidden;
+}
+#system-theme-settings .form-item.form-type-vertical-tabs {
+  border-bottom: none;
+  margin-top: 0;
+  padding: 0;
+}
+#system-theme-settings .color-placeholder {
+  position: fixed;
+  right: 60px;
+  top: calc(var(--drupal-displace-offset-top, 0px) + 80px);
+  z-index: 10;
+}
+#system-theme-settings .color-palette {
+  flex: 1;
+  margin-top: 16px;
+}
+#system-theme-settings .color-palette label {
+  color: var(--dxt-admin-text-muted);
+  font-weight: 500;
+  line-height: 1.2;
+  margin-bottom: 8px;
+  text-transform: capitalize;
+  width: 100%;
+}
+#system-theme-settings .color-palette .form-item {
+  border-bottom: none;
+  margin-bottom: 20px;
+  padding: 0;
+}
+#system-theme-settings .color-palette .item-selected {
+  background: none;
+}
+#system-theme-settings .color-palette .item-selected input {
+  font-style: normal;
+  font-weight: 600;
+}
+#system-theme-settings .color-palette .lock {
+  left: auto;
+  margin-left: 8px;
+  position: relative;
+  top: auto;
+}
+#system-theme-settings .color-palette .form-text {
+  color: inherit;
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, monospace !important;
+  font-weight: 500;
+  padding: 16px;
+  text-shadow: 0 1px 2px var(--dxt-admin-color-shadow-20);
+  transition: box-shadow 0.2s ease, transform 0.15s ease;
+  width: 100%;
+}
+#system-theme-settings .color-palette .form-text.active {
+  box-shadow: 0 0 0 3px var(--dxt-admin-accent), 0 4px 12px var(--dxt-admin-color-shadow-15);
+  transform: scale(1.02);
+}
+#system-theme-settings .color-palette .form-text:hover:not(.active) {
+  box-shadow: 0 2px 8px var(--dxt-admin-color-shadow-10);
+}
+#system-theme-settings .font-preview {
+  font-size: 30px;
+  padding: 10px 0;
+}
+#system-theme-settings .font-preview p {
+  margin: 10px 0;
+}
+#system-theme-settings .font-preview .font-test {
+  font-size: 16px;
+}
+#system-theme-settings .font-preview .font-test-accents {
+  font-size: 16px;
+}
+#system-theme-settings .font-preview .font-test-small {
+  font-size: 13px;
+}
+#system-theme-settings #edit-fonts .form-item:not(.form-wrapper) {
+  margin-bottom: 0;
+  width: 100%;
+}
+#system-theme-settings #edit-fonts .form-item:not(.form-wrapper) .form-select {
+  height: 44px;
+  width: 100%;
+}
+#system-theme-settings #edit-fonts .form-item:not(.form-wrapper) .form-text,
+#system-theme-settings #edit-fonts .form-item:not(.form-wrapper) label {
+  width: 100%;
+}
+#system-theme-settings #edit-fonts .form-item:not(.form-wrapper) label {
+  margin-bottom: 6px;
+}
+#system-theme-settings #edit-typography .form-item:not(.form-wrapper) {
+  margin-bottom: 0;
+  width: 100%;
+}
+#system-theme-settings #edit-typography .form-item:not(.form-wrapper) label {
+  margin-bottom: 6px;
+  width: 100%;
+}
+#system-theme-settings #edit-typography .form-text:not([name=divider_color_custom]) {
+  width: 100%;
+}
+#system-theme-settings #edit-typography .form-item-scale-factor {
+  width: 100%;
+}
+#system-theme-settings #edit-typography .form-item-divider-color,
+#system-theme-settings #edit-typography .form-item-divider-color-custom {
+  width: 100%;
+}
+#system-theme-settings #edit-block .form-type-select,
+#system-theme-settings #edit-block .form-text {
+  width: 100%;
+}
+#system-theme-settings .block-design-settings {
+  margin-bottom: 20px;
+  width: 100%;
+}
+#system-theme-settings .block-preview {
+  margin-top: 20px;
+  width: 100%;
+}
+#system-theme-settings .form-item[class$=invoke] .form-text {
+  max-width: none;
+}
+#system-theme-settings .fonts-previews p {
+  margin: 0 0 20px;
+}
+#system-theme-settings #edit-import-export label {
+  width: 300px;
+}
+#system-theme-settings .dxpr-theme-settings-export {
+  height: 400px;
+  white-space: pre;
+  width: 100%;
+}
+#system-theme-settings .js-form-type-checkbox {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 0;
+  position: relative;
+}
+#system-theme-settings .js-form-type-checkbox input[type=checkbox] {
+  --bs-form-check-bg-image: none !important;
+  appearance: none !important;
+  background-color: var(--dxt-admin-toggle-off) !important;
+  background-image: none !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  cursor: pointer;
+  flex-shrink: 0;
+  height: 40px !important;
+  margin: 0 !important;
+  order: -1;
+  outline: none !important;
+  position: relative;
+  transition: background-color 0.2s ease;
+  width: 70px !important;
+}
+#system-theme-settings .js-form-type-checkbox input[type=checkbox]::before {
+  display: none !important;
+}
+#system-theme-settings .js-form-type-checkbox input[type=checkbox]::after {
+  background: var(--dxt-admin-surface) !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  content: "" !important;
+  display: block !important;
+  height: 34px !important;
+  left: 3px !important;
+  outline: none !important;
+  position: absolute !important;
+  top: 3px !important;
+  transition: left 0.2s ease;
+  width: 34px !important;
+}
+#system-theme-settings .js-form-type-checkbox input[type=checkbox]:hover {
+  background-color: var(--dxt-admin-toggle-off-hover) !important;
+}
+#system-theme-settings .js-form-type-checkbox input[type=checkbox]:focus {
+  box-shadow: none !important;
+  outline: 2px solid var(--dxt-admin-accent) !important;
+  outline-offset: 2px !important;
+}
+#system-theme-settings .js-form-type-checkbox input[type=checkbox]:checked {
+  background-color: var(--dxt-admin-accent) !important;
+}
+#system-theme-settings .js-form-type-checkbox input[type=checkbox]:checked::after {
+  left: 33px !important;
+}
+#system-theme-settings .js-form-type-checkbox input[type=checkbox]:checked:hover {
+  background-color: var(--dxt-admin-accent-hover) !important;
+}
+#system-theme-settings .js-form-type-checkbox input[type=checkbox]:disabled {
+  background-color: var(--dxt-admin-surface-alt) !important;
+  cursor: not-allowed;
+}
+#system-theme-settings .js-form-type-checkbox input[type=checkbox]:disabled::after {
+  background-color: var(--dxt-admin-text-muted) !important;
+}
+#system-theme-settings .js-form-type-checkbox input[type=checkbox]:disabled:checked {
+  background-color: var(--dxt-admin-surface-alt) !important;
+}
+#system-theme-settings .js-form-type-checkbox label {
+  flex: 1;
+  font-size: 19px !important;
+  line-height: 1.4;
+  margin: 0;
+}
+#system-theme-settings .js-form-type-checkbox .description {
+  color: var(--dxt-admin-text-muted);
+  flex-basis: 100%;
+  font-size: 13px !important;
+  line-height: 1.4;
+  margin-top: 6px;
+  padding-left: 80px;
+}
+#system-theme-settings .js-form-type-checkbox .switcher {
+  display: none;
+}
+#system-theme-settings .core-theme-settings .js-form-type-checkbox,
+#system-theme-settings .form-checkboxes .js-form-type-checkbox {
+  margin-bottom: 0;
+  padding: 8px 0;
+}
+#system-theme-settings .core-theme-settings .js-form-type-checkbox input[type=checkbox],
+#system-theme-settings .form-checkboxes .js-form-type-checkbox input[type=checkbox] {
+  appearance: none !important;
+  background-color: transparent !important;
+  border: 2px solid var(--dxt-admin-color-neutral-400) !important;
+  border-radius: 0 !important;
+  cursor: pointer;
+  flex-shrink: 0;
+  float: left !important;
+  height: 24px !important;
+  margin: 0 12px 0 0 !important;
+  position: static;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+  width: 24px !important;
+}
+#system-theme-settings .core-theme-settings .js-form-type-checkbox input[type=checkbox]::after,
+#system-theme-settings .form-checkboxes .js-form-type-checkbox input[type=checkbox]::after {
+  display: none !important;
+}
+#system-theme-settings .core-theme-settings .js-form-type-checkbox input[type=checkbox]:hover,
+#system-theme-settings .form-checkboxes .js-form-type-checkbox input[type=checkbox]:hover {
+  border-color: var(--dxt-admin-color-neutral-700) !important;
+}
+#system-theme-settings .core-theme-settings .js-form-type-checkbox input[type=checkbox]:focus,
+#system-theme-settings .form-checkboxes .js-form-type-checkbox input[type=checkbox]:focus {
+  border-color: var(--dxt-admin-accent) !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+#system-theme-settings .core-theme-settings .js-form-type-checkbox input[type=checkbox]:checked,
+#system-theme-settings .form-checkboxes .js-form-type-checkbox input[type=checkbox]:checked {
+  background-color: var(--dxt-admin-accent) !important;
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>') !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-size: 16px 16px !important;
+  border-color: var(--dxt-admin-accent) !important;
+}
+#system-theme-settings .core-theme-settings .js-form-type-checkbox input[type=checkbox]:checked:hover,
+#system-theme-settings .form-checkboxes .js-form-type-checkbox input[type=checkbox]:checked:hover {
+  background-color: var(--dxt-admin-accent-hover) !important;
+  border-color: var(--dxt-admin-accent-hover) !important;
+}
+#system-theme-settings .core-theme-settings .js-form-type-checkbox input[type=checkbox]:disabled,
+#system-theme-settings .form-checkboxes .js-form-type-checkbox input[type=checkbox]:disabled {
+  background-color: var(--dxt-admin-color-neutral-200) !important;
+  border-color: var(--dxt-admin-color-neutral-300) !important;
+  cursor: not-allowed;
+}
+#system-theme-settings .core-theme-settings .js-form-type-checkbox input[type=checkbox]:disabled:checked,
+#system-theme-settings .form-checkboxes .js-form-type-checkbox input[type=checkbox]:disabled:checked {
+  background-color: var(--dxt-admin-color-neutral-300) !important;
+  border-color: var(--dxt-admin-color-neutral-300) !important;
+}
+#system-theme-settings .core-theme-settings .js-form-type-checkbox label,
+#system-theme-settings .form-checkboxes .js-form-type-checkbox label {
+  padding-right: 0;
+}
+#system-theme-settings .core-theme-settings .js-form-type-checkbox input ~ label.option::before,
+#system-theme-settings .core-theme-settings .js-form-type-checkbox input:checked ~ label.option::before,
+#system-theme-settings .form-checkboxes .js-form-type-checkbox input ~ label.option::before,
+#system-theme-settings .form-checkboxes .js-form-type-checkbox input:checked ~ label.option::before {
+  content: none !important;
+  display: none !important;
+}
+#system-theme-settings .dxb-slider-wrapper {
+  align-items: center;
+  display: flex;
+  gap: 12px;
+}
+#system-theme-settings .dxb-slider-wrapper .dxb-slider-track {
+  flex: 1;
+  min-width: 150px;
+}
+#system-theme-settings .dxb-slider-wrapper .dxb-slider {
+  height: 7px;
+  width: 100% !important;
+}
+#system-theme-settings .dxb-slider-wrapper .dxb-slider::-webkit-slider-runnable-track {
+  background-image: linear-gradient(var(--dxt-admin-accent), var(--dxt-admin-accent)), linear-gradient(var(--dxt-admin-border), var(--dxt-admin-border));
+  background-position: left center;
+  background-repeat: no-repeat;
+  background-size: var(--value-percent) 7px, 100% 7px;
+  height: 7px;
+}
+#system-theme-settings .dxb-slider-wrapper .dxb-slider::-moz-range-track {
+  background-image: linear-gradient(var(--dxt-admin-accent), var(--dxt-admin-accent)), linear-gradient(var(--dxt-admin-border), var(--dxt-admin-border));
+  background-position: left center;
+  background-repeat: no-repeat;
+  background-size: var(--value-percent) 7px, 100% 7px;
+  height: 7px;
+}
+#system-theme-settings .dxb-slider-wrapper .dxb-slider::-webkit-slider-thumb {
+  background: var(--dxt-admin-surface);
+  border: 1px solid var(--dxt-admin-border);
+  border-radius: 0;
+  box-shadow: none;
+  cursor: pointer;
+  height: 32px;
+  margin-top: -13px;
+  transition: background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+  width: 32px;
+}
+#system-theme-settings .dxb-slider-wrapper .dxb-slider::-moz-range-thumb {
+  background: var(--dxt-admin-surface);
+  border: 1px solid var(--dxt-admin-border);
+  border-radius: 0;
+  box-shadow: none;
+  cursor: pointer;
+  height: 32px;
+  transition: background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+  width: 32px;
+}
+#system-theme-settings .dxb-slider-wrapper .dxb-slider:hover::-webkit-slider-thumb {
+  background: var(--dxt-admin-accent);
+  border-color: var(--dxt-admin-accent);
+  transform: none;
+}
+#system-theme-settings .dxb-slider-wrapper .dxb-slider:hover::-moz-range-thumb {
+  background: var(--dxt-admin-accent);
+  border-color: var(--dxt-admin-accent);
+  transform: none;
+}
+#system-theme-settings .dxb-slider-wrapper .dxb-slider:focus::-webkit-slider-thumb {
+  background: var(--dxt-admin-surface);
+  border-color: var(--dxt-admin-accent);
+  box-shadow: 0 0 0 3px var(--dxt-admin-focus-ring);
+  transform: none;
+}
+#system-theme-settings .dxb-slider-wrapper .dxb-slider:focus::-moz-range-thumb {
+  background: var(--dxt-admin-surface);
+  border-color: var(--dxt-admin-accent);
+  box-shadow: 0 0 0 3px var(--dxt-admin-focus-ring);
+  transform: none;
+}
+#system-theme-settings .dxb-slider-wrapper .dxb-slider:active::-webkit-slider-thumb {
+  background: var(--dxt-admin-accent);
+  border-color: var(--dxt-admin-accent);
+  box-shadow: 0 0 0 3px var(--dxt-admin-focus-ring);
+}
+#system-theme-settings .dxb-slider-wrapper .dxb-slider:active::-moz-range-thumb {
+  background: var(--dxt-admin-accent);
+  border-color: var(--dxt-admin-accent);
+  box-shadow: 0 0 0 3px var(--dxt-admin-focus-ring);
+}
+#system-theme-settings .dxb-slider-wrapper .dxb-slider:disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+#system-theme-settings .dxb-slider-wrapper .dxb-slider:disabled::-webkit-slider-runnable-track {
+  background-image: linear-gradient(var(--dxt-admin-border), var(--dxt-admin-border)), linear-gradient(var(--dxt-admin-border), var(--dxt-admin-border));
+}
+#system-theme-settings .dxb-slider-wrapper .dxb-slider:disabled::-moz-range-track {
+  background-image: linear-gradient(var(--dxt-admin-border), var(--dxt-admin-border)), linear-gradient(var(--dxt-admin-border), var(--dxt-admin-border));
+}
+#system-theme-settings .dxb-slider-wrapper .dxb-slider:disabled::-webkit-slider-thumb {
+  background: var(--dxt-admin-surface-alt);
+  border-color: var(--dxt-admin-border);
+}
+#system-theme-settings .dxb-slider-wrapper .dxb-slider:disabled::-moz-range-thumb {
+  background: var(--dxt-admin-surface-alt);
+  border-color: var(--dxt-admin-border);
+}
+#system-theme-settings .dxb-slider-wrapper .dxb-slider-value {
+  background: var(--dxt-admin-surface);
+  border: 1px solid var(--dxt-admin-border);
+  border-radius: 0;
+  box-shadow: none;
+  height: 40px;
+  margin-inline-start: 0;
+  padding: 8px 4px;
+  text-align: center;
+  width: 70px;
+}
+#system-theme-settings .dxb-slider-wrapper .dxb-slider-value:focus {
+  border-color: var(--dxt-admin-accent);
+  box-shadow: 0 0 0 3px var(--dxt-admin-focus-ring);
+  outline: none;
+}
+
+.dxpr-body-wrapper {
+  margin-right: 40vw !important;
+}
+
+.type-preview {
+  clear: both;
+}
+.type-preview .type-container {
+  padding: 40px 80px;
+}
+
+html.html--dxpr-theme-sticky-footer:has(#system-theme-settings) {
+  height: auto !important;
+}
+
+.bd-cheatsheet section[id] {
+  scroll-margin-top: var(--drupal-displace-offset-top, 0px);
+}
+
+/*# sourceMappingURL=dxpr-theme.admin.themesettings.css.map */
