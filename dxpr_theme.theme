@@ -7,6 +7,7 @@
  * Place your custom PHP code in this file.
  */
 
+use Drupal\Core\Url;
 use Drupal\image\Entity\ImageStyle;
 use Drupal\media\Entity\Media;
 use Drupal\Component\Utility\Html;
@@ -319,7 +320,9 @@ function dxpr_theme_menu_set_active_trail(array &$items, $current_path) {
     $child_active = FALSE;
 
     try {
-      $item_path = $item['url']->toString();
+      $item_path = $item['url'] instanceof
+      Url ? $item['url']->toString()
+        : (string) $item['url'];
       if ($item_path === $current_path) {
         $item['in_active_trail'] = TRUE;
         $item['is_active'] = TRUE;

@@ -527,7 +527,6 @@ function header_theme_settings(array &$form, $theme) {
 
   // Deprecated: This setting is no longer used. Menu items with children are
   // always marked with visual indicators (carets) for accessibility.
-
   $form['dxpr_theme_settings']['header']['menu']['dropdown_width_auto'] = [
     '#type' => 'radios',
     '#title' => t('Dropdown width'),
