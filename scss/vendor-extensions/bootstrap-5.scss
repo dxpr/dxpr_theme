@@ -267,6 +267,36 @@ html body {
     }
   }
 
+  .card, .jumbotron {
+    background-color: dxpr-color('card');
+    color: dxpr-color('cardtext');
+
+    a {
+      color: dxpr-color('cardtext');
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      color: dxpr-color('cardtext');
+    }
+
+    .nav > li > a {
+      .glyphicon {
+        color: dxpr-color('accent1');
+      }
+    }
+
+    .nav > li > a:hover,
+    .nav > li > a:focus,
+    .nav > li > a.is-active {
+      background: dxpr-color('base');
+      color: dxpr-color('silver');
+
+      .glyphicon {
+        color: dxpr-color('silver');
+      }
+    }
+  }
+
   // Override Bootstrap background classes to use proper text colors
   .bg-primary {
     background-color: dxpr-color('base') !important;
@@ -361,36 +391,6 @@ html body {
     font-size: $font-size-small;
     margin-left: -13px;
     padding-right: 4px;
-  }
-
-  .card, .jumbotron {
-    background-color: dxpr-color('card');
-    color: dxpr-color('cardtext');
-
-    a {
-      color: dxpr-color('cardtext');
-    }
-
-    h1, h2, h3, h4, h5, h6 {
-      color: dxpr-color('cardtext');
-    }
-
-    .nav > li > a {
-      .glyphicon {
-        color: dxpr-color('accent1');
-      }
-    }
-
-    .nav > li > a:hover,
-    .nav > li > a:focus,
-    .nav > li > a.is-active {
-      background: dxpr-color('base');
-      color: dxpr-color('silver');
-
-      .glyphicon {
-        color: dxpr-color('silver');
-      }
-    }
   }
 
   .list-inline {
