@@ -155,7 +155,11 @@
   // Color helper classes
   .dxpr-theme-util-background-body { background-color: dxpr-color('body'); }
   .dxpr-theme-util-background-gray { background-color: dxpr-color('text'); }
-  .dxpr-theme-util-background-primary { background-color: dxpr-color('base') !important; }
+
+  .dxpr-theme-util-background-primary {
+    background-color: dxpr-color('base') !important;
+    color: dxpr-color('basetext') !important;
+  }
 
   .dxpr-theme-util-background-accent1 {
     background-color: dxpr-color('accent1');
@@ -184,7 +188,6 @@
   .dxpr-theme-util-color-accent2 { color: dxpr-color('accent2'); }
   
   // Text colors for colored backgrounds
-  .dxpr-theme-util-background-primary { color: dxpr-color('basetext') !important; }
   .dxpr-theme-util-color-card { color: dxpr-color('card'); }
   .dxpr-theme-util-color-card-text { color: dxpr-color('cardtext'); }
   .dxpr-theme-util-color-white { color: white; }
