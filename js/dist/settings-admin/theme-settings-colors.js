@@ -78,7 +78,124 @@ const dxprThemeSettingsColors = {
       ev.target.value = selectedScheme;
     });
 
+    // Handle AI palette generation.
+    this.initAiPaletteGenerator();
+
     this.populateColorFields("current");
+  },
+
+  // Initialize AI palette generator.
+  initAiPaletteGenerator() {
+    const pt = this;
+    const generateButton = document.getElementById("ai-palette-generate");
+    const promptField = document.getElementById("ai-palette-prompt");
+
+    if (!generateButton || !promptField) {
+      return;
+    }
+
+    const submitPrompt = () => {
+      const prompt = promptField.value.trim();
+
+      if (!prompt) {
+        pt.showAiError("Please enter a description.");
+        return;
+      }
+
+      pt.generateAiPalette(prompt);
+    };
+
+    generateButton.addEventListener("click", (ev) => {
+      ev.preventDefault();
+      submitPrompt();
+    });
+
+    // Cmd/Ctrl+Enter to submit.
+    promptField.addEventListener("keydown", (ev) => {
+      if ((ev.metaKey || ev.ctrlKey) && ev.key === "Enter") {
+        ev.preventDefault();
+        submitPrompt();
+      }
+    });
+  },
+
+  // Generate palette using AI.
+  generateAiPalette(prompt) {
+    const pt = this;
+    const generateButton = document.getElementById("ai-palette-generate");
+    const originalText = generateButton.value;
+
+    // Clear any previous error.
+    this.hideAiError();
+
+    // Show loading state.
+    generateButton.disabled = true;
+    generateButton.classList.add("is-loading");
+    generateButton.value = "Generating...";
+
+    fetch(drupalSettings.path.baseUrl + "admin/dxpr-theme/generate-palette", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "X-Requested-With": "XMLHttpRequest",
+      },
+      credentials: "same-origin",
+      body: "prompt=" + encodeURIComponent(prompt),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.error) {
+          pt.showAiError(data.error);
+        } else if (data.colors) {
+          pt.applyAiPalette(data.colors);
+          // Brief success flash on button.
+          generateButton.classList.add("is-success");
+          setTimeout(() => generateButton.classList.remove("is-success"), 1500);
+        }
+      })
+      .catch((error) => {
+        pt.showAiError("Request failed. Please try again.");
+        console.error("AI palette error:", error);
+      })
+      .finally(() => {
+        generateButton.disabled = false;
+        generateButton.classList.remove("is-loading");
+        generateButton.value = originalText;
+      });
+  },
+
+  // Apply AI-generated palette to form fields.
+  applyAiPalette(colors) {
+    Object.keys(colors).forEach((key) => {
+      const colorField = document.getElementById(`edit-color-palette-${key}`);
+      if (colorField) {
+        this.updateColorField(colorField, colors[key], true);
+      }
+    });
+
+    // Set scheme to custom.
+    this.elSchemeSelect.value = "custom";
+
+    // Update live preview.
+    this.setDocumentPalette(colors);
+  },
+
+  // Show error message below prompt.
+  showAiError(message) {
+    const errorDiv = document.getElementById("ai-palette-error");
+    if (errorDiv) {
+      errorDiv.textContent = message;
+      errorDiv.style.display = "block";
+    }
+  },
+
+  // Hide error message.
+  hideAiError() {
+    const errorDiv = document.getElementById("ai-palette-error");
+    if (errorDiv) {
+      errorDiv.textContent = "";
+      errorDiv.style.display = "none";
+    }
   },
 
   // Set field as active.

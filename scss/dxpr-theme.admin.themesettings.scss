@@ -947,6 +947,99 @@
     }
   }
 
+  // Rainbow border animation - reusable AI styling
+  // Colors match DXPR Builder branding
+  --dxt-rainbow-color-1: #94C8EF;
+  --dxt-rainbow-color-2: #F97ED0;
+  --dxt-rainbow-color-3: #715EFF;
+
+  @keyframes dxt-rainbow-border {
+    0% { border-image: linear-gradient(90deg, var(--dxt-rainbow-color-1), var(--dxt-rainbow-color-2), var(--dxt-rainbow-color-3)) 1; }
+    25% { border-image: linear-gradient(90deg, var(--dxt-rainbow-color-3), var(--dxt-rainbow-color-1), var(--dxt-rainbow-color-2)) 1; }
+    50% { border-image: linear-gradient(90deg, var(--dxt-rainbow-color-2), var(--dxt-rainbow-color-3), var(--dxt-rainbow-color-1)) 1; }
+    75% { border-image: linear-gradient(90deg, var(--dxt-rainbow-color-1), var(--dxt-rainbow-color-2), var(--dxt-rainbow-color-3)) 1; }
+    100% { border-image: linear-gradient(90deg, var(--dxt-rainbow-color-1), var(--dxt-rainbow-color-2), var(--dxt-rainbow-color-3)) 1; }
+  }
+
+  @keyframes dxt-ai-spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  // AI Palette Generator styles - minimalistic layout
+  .ai-palette-generator {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 20px;
+
+    // Textarea with rainbow border
+    #ai-palette-prompt {
+      animation: dxt-rainbow-border 20s linear infinite;
+      background: var(--dxt-admin-surface);
+      border: 3px solid;
+      box-sizing: border-box;
+      min-height: 100px;
+      padding: 12px;
+      resize: vertical;
+      transition: box-shadow 0.3s ease;
+      width: 100%;
+
+      &:focus {
+        box-shadow: 0 4px 8px var(--dxt-admin-color-shadow-15);
+        outline: none;
+      }
+
+      &::placeholder {
+        color: var(--dxt-admin-text-muted);
+      }
+    }
+
+    // Hide the form-item wrapper styling
+    .form-item {
+      border: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    // Hide the label
+    .form-item-ai-prompt label {
+      display: none;
+    }
+
+    // Generate button - full width, flush with textarea
+    .ai-generate-btn {
+      margin: 0;
+      min-width: 100%;
+      padding: 14px 16px;
+      transition: background-color 0.2s ease;
+      width: 100%;
+
+      // Loading state
+      &.is-loading {
+        opacity: 0.7;
+        pointer-events: none;
+      }
+
+      // Success state - brief green flash
+      &.is-success {
+        background: #22c55e !important;
+      }
+    }
+
+    // Error message below button
+    .ai-palette-error {
+      background: #fef2f2;
+      border-left: 3px solid #dc2626;
+      color: #991b1b;
+      display: none;
+      font-size: 14px !important;
+      margin-top: 12px;
+      padding: 10px 12px;
+    }
+  }
+
   .font-preview {
     font-size: 30px;
     padding: 10px 0;

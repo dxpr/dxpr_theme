@@ -1,0 +1,5 @@
+name: DXPR Theme AI Palette Generator
+type: module
+description: 'Provides AI-powered color palette generation for DXPR Theme. Requires the AI module to be installed and configured.'
+core_version_requirement: ^10.3 || ^11
+package: DXPR

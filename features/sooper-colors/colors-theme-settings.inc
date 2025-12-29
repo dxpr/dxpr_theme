@@ -26,10 +26,15 @@ function colors_theme_settings(array &$form, $theme) {
   $palette = unserialize(theme_get_setting('color_palette') ?? '', ['allowed_classes' => FALSE]);
   $palette = $palette ?: ($schemes['default']['colors'] ?? []);
 
+  // Check if AI palette module and AI module are available.
+  $ai_palette_available = \Drupal::moduleHandler()->moduleExists('dxpr_theme_ai_palette')
+    && \Drupal::moduleHandler()->moduleExists('ai');
+
   // Attach palette and schemes.
   $form['#attached']['drupalSettings']['dxpr_themeSettings']['colors'] = [
     'palette' => $palette,
     'schemes' => $schemes,
+    'aiPaletteAvailable' => $ai_palette_available,
   ];
 
   // Build form.
@@ -55,7 +60,50 @@ function colors_theme_settings(array &$form, $theme) {
     '#title' => t('Color Set'),
     '#default_value' => theme_get_setting('color_scheme') ?? 'default',
     '#options' => $scheme_options,
+    '#attributes' => [
+      'id' => 'edit-color-scheme',
+    ],
   ];
+
+  // AI Palette Generator.
+  if ($ai_palette_available) {
+    $form['dxpr_theme_settings']['colors']['wrapper']['ai_palette'] = [
+      '#type' => 'container',
+      '#attributes' => [
+        'class' => ['ai-palette-generator'],
+      ],
+    ];
+
+    $form['dxpr_theme_settings']['colors']['wrapper']['ai_palette']['ai_prompt'] = [
+      '#type' => 'textarea',
+      '#title' => t('Describe your color palette'),
+      '#title_display' => 'invisible',
+      '#rows' => 3,
+      '#attributes' => [
+        'id' => 'ai-palette-prompt',
+        'placeholder' => t('E.g., "Modern tech startup" or "Warm bakery tones"'),
+      ],
+    ];
+
+    $form['dxpr_theme_settings']['colors']['wrapper']['ai_palette']['ai_generate'] = [
+      '#type' => 'button',
+      '#value' => t('Generate'),
+      '#attributes' => [
+        'id' => 'ai-palette-generate',
+        'class' => ['button', 'button--primary', 'ai-generate-btn'],
+      ],
+    ];
+
+    $form['dxpr_theme_settings']['colors']['wrapper']['ai_palette']['ai_error'] = [
+      '#type' => 'html_tag',
+      '#tag' => 'div',
+      '#attributes' => [
+        'id' => 'ai-palette-error',
+        'class' => ['ai-palette-error'],
+        'role' => 'alert',
+      ],
+    ];
+  }
 
   $form['dxpr_theme_settings']['colors']['wrapper']['color_palette'] = [
     '#type' => 'html_tag',
