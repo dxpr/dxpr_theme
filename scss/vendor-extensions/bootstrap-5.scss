@@ -316,6 +316,15 @@ html body {
     }
   }
 
+  .bg-dark {
+    background-color: #212529 !important;
+    color: #fff;
+
+    h1, h2, h3, h4, h5, h6 {
+      color: #fff;
+    }
+  }
+
   // Bootstrap 5.3 Subtle Background Variants
   .bg-primary-subtle {
     background-color: var(--dxt-color-basesubtle) !important;
@@ -344,6 +353,15 @@ html body {
     }
   }
 
+  .bg-light-subtle {
+    background-color: #fcfcfd !important;
+    color: #212529;
+
+    h1, h2, h3, h4, h5, h6 {
+      color: #212529;
+    }
+  }
+
   .text-body {
     color: dxpr-color('text');
 
@@ -368,6 +386,39 @@ html body {
     h1, h2, h3, h4, h5, h6, th {
       color: dxpr-color('accent2');
     }
+  }
+
+  .text-dark {
+    color: #212529;
+
+    h1, h2, h3, h4, h5, h6, th {
+      color: #212529;
+    }
+  }
+
+  .text-light {
+    color: #f8f9fa;
+
+    h1, h2, h3, h4, h5, h6, th {
+      color: #f8f9fa;
+    }
+  }
+
+  // Bootstrap 5.3 Emphasis Text Variants
+  .text-primary-emphasis {
+    color: var(--dxt-color-basesubtletext);
+  }
+
+  .text-secondary-emphasis {
+    color: var(--dxt-color-accent1subtletext);
+  }
+
+  .text-light-emphasis {
+    color: #495057;
+  }
+
+  .text-dark-emphasis {
+    color: #495057;
   }
 
   .wrap-containers .nav {
@@ -583,11 +634,46 @@ html body {
   // -------------------------
 
   .bg-light {
-    background-color: dxpr-color('graylight');
+    background-color: #f8f9fa !important;
+    color: #212529;
+
+    h1, h2, h3, h4, h5, h6 {
+      color: #212529;
+    }
   }
 
   .bg-body {
     background-color: dxpr-color('body');
+  }
+
+  .bg-body-secondary {
+    background-color: dxpr-color('graylight');
+  }
+
+  .bg-body-tertiary {
+    background-color: dxpr-color('silver');
+  }
+
+  .bg-black {
+    background-color: #000 !important;
+    color: #fff;
+
+    h1, h2, h3, h4, h5, h6 {
+      color: #fff;
+    }
+  }
+
+  .bg-white {
+    background-color: #fff !important;
+    color: dxpr-color('text');
+
+    h1, h2, h3, h4, h5, h6 {
+      color: dxpr-color('headings');
+    }
+  }
+
+  .bg-transparent {
+    background-color: transparent !important;
   }
 
 }
