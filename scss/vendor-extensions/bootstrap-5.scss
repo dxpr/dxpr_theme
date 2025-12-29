@@ -344,6 +344,14 @@ html body {
     }
   }
 
+  .text-body {
+    color: dxpr-color('text');
+
+    h1, h2, h3, h4, h5, h6, th {
+      color: dxpr-color('text');
+    }
+  }
+
   .text-white {
     h1, h2, h3, h4, h5, h6, th {
       color: #fff;
