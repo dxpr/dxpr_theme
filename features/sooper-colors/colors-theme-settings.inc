@@ -26,8 +26,8 @@ function colors_theme_settings(array &$form, $theme) {
   $palette = unserialize(theme_get_setting('color_palette') ?? '', ['allowed_classes' => FALSE]);
   $palette = $palette ?: ($schemes['default']['colors'] ?? []);
 
-  // Check if AI palette module and AI module are available.
-  $ai_palette_available = \Drupal::moduleHandler()->moduleExists('dxpr_theme_ai_palette')
+  // Check if DXPR Theme Helper and AI module are available.
+  $ai_palette_available = \Drupal::moduleHandler()->moduleExists('dxpr_theme_helper')
     && \Drupal::moduleHandler()->moduleExists('ai');
 
   // Attach palette and schemes.

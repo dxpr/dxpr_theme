@@ -1,9 +1,0 @@
-{
-    "name": "dxpr/dxpr_theme_ai_palette",
-    "description": "Provides AI-powered color palette generation for DXPR Theme",
-    "type": "drupal-module",
-    "license": "GPL-2.0-or-later",
-    "suggest": {
-        "drupal/ai": "Required for AI-powered palette generation functionality"
-    }
-}

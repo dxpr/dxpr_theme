@@ -1,7 +1,0 @@
-dxpr_theme_ai_palette.generate:
-  path: '/admin/dxpr-theme/generate-palette'
-  defaults:
-    _controller: '\Drupal\dxpr_theme_ai_palette\Controller\AiPaletteController::generate'
-  requirements:
-    _permission: 'administer themes'
-  methods: [POST]
