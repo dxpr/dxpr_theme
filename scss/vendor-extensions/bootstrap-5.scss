@@ -421,6 +421,34 @@ html body {
     color: #495057;
   }
 
+  // Bootstrap 5 Font Size Utilities
+  // Map to DXPR theme heading sizes for consistency
+  .fs-1 {
+    font-size: var(--dxt-setting-h1-font-size) !important;
+  }
+
+  .fs-2 {
+    font-size: var(--dxt-setting-h2-font-size) !important;
+  }
+
+  .fs-3 {
+    font-size: var(--dxt-setting-h3-font-size) !important;
+  }
+
+  .fs-4 {
+    font-size: var(--dxt-setting-h4-font-size) !important;
+  }
+
+  // Bootstrap 5 Line Height Utilities
+  // Map to DXPR theme line heights for consistency
+  .lh-base {
+    line-height: var(--dxt-setting-body-line-height) !important;
+  }
+
+  .lh-sm {
+    line-height: var(--dxt-setting-headings-line-height) !important;
+  }
+
   .wrap-containers .nav {
     > li {
       > a.is-active {
