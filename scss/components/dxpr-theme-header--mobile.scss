@@ -159,7 +159,7 @@ html.html--dxpr-theme-nav-mobile--open {
       span::before,
       span::after {
         backface-visibility: hidden;
-        background: dxpr-color('base');
+        background: dxpr-color('headertext');
         border-radius: 1px;
         content: '';
         cursor: pointer;

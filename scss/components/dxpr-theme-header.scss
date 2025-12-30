@@ -195,7 +195,7 @@
   a:hover,
   a:hover .nav a:focus,
   a.is-active {
-    background-color: var(--dxt-setting-menu-hover-background, dxpr-color('base')) !important;
+    background-color: var(--dxt-setting-menu-hover-background, dxpr-color('header')) !important;
   }
 
   a.dropdown-item {
@@ -221,7 +221,7 @@
   a:hover,
   a:focus,
   a.is-active {
-    color: dxpr-color('base') !important;
+    color: var(--dxt-setting-menu-hover-text-color) !important;
   }
 }
 
@@ -240,7 +240,7 @@
 
 .dxpr-theme-header--top.dxpr-theme-header--hover-border .nav > li > a::before {
   background: #eee;
-  background: dxpr-color('base');
+  background: dxpr-color('headertext');
   bottom: 0;
   content: ' ';
   display: block;
