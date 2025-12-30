@@ -6,6 +6,13 @@
       const searchFormInput = searchForm.querySelector(".search-query");
       const searchStatus = document.querySelector("#search-status");
 
+      // Move search form to body to escape parent stacking context
+      // This ensures it appears above all other elements (sidebar, toolbar)
+      if (searchForm && !searchForm.dataset.movedToBody) {
+        document.body.appendChild(searchForm);
+        searchForm.dataset.movedToBody = "true";
+      }
+
       function clearSearchForm() {
         searchForm.classList.toggle("invisible");
         document.body.classList.toggle("body--full-screen-search");
