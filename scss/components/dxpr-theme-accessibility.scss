@@ -1,0 +1,252 @@
+/**
+ * @file
+ * Accessibility Mode Styles.
+ * These styles are applied when accessibility modes are active via body classes.
+ *
+ * APPROACH: Only override CSS variable values. This keeps the code maintainable
+ * and allows the theme's existing styles to cascade naturally.
+ */
+
+@import "../includes/variables";
+
+// ============================================
+// CSS Custom Property Defaults (baseline)
+// ============================================
+:root {
+  --a11y-font-scale: 1;
+  --a11y-line-height-scale: 1;
+  --a11y-letter-spacing: 0em;
+  --a11y-focus-outline-width: 3px;
+  --a11y-focus-outline-color: var(--dxt-color-base, #005fcc);
+  --a11y-focus-outline-offset: 2px;
+}
+
+// ============================================
+// Font Size & Typography Scaling
+// Uses CSS variables that scale with the a11y-font-scale multiplier
+// Note: !important is required because other theme CSS files load after this
+// and would otherwise override these functional accessibility rules
+// ============================================
+body {
+  font-size: calc(var(--dxt-setting-body-font-size) * var(--a11y-font-scale)) !important;
+  letter-spacing: var(--a11y-letter-spacing) !important;
+  line-height: calc(var(--dxt-setting-body-line-height) * var(--a11y-line-height-scale)) !important;
+}
+
+h1, .h1 {
+  font-size: calc(var(--dxt-setting-h1-font-size) * var(--a11y-font-scale)) !important;
+}
+
+h2, .h2 {
+  font-size: calc(var(--dxt-setting-h2-font-size) * var(--a11y-font-scale)) !important;
+}
+
+h3, .h3 {
+  font-size: calc(var(--dxt-setting-h3-font-size) * var(--a11y-font-scale)) !important;
+}
+
+h4, .h4 {
+  font-size: calc(var(--dxt-setting-h4-font-size) * var(--a11y-font-scale)) !important;
+}
+
+// ============================================
+// High Contrast Mode (WCAG AAA 7:1 ratio)
+// Only override CSS variable values - let theme styles cascade
+// ============================================
+body.a11y-high-contrast {
+  // Override all theme color variables with high contrast values
+  --dxt-color-base: #000;
+  --dxt-color-basetext: #fff;
+  --dxt-color-link: #00e;
+  --dxt-color-accent1: #000;
+  --dxt-color-accent1text: #fff;
+  --dxt-color-accent2: #000;
+  --dxt-color-accent2text: #fff;
+  --dxt-color-text: #000;
+  --dxt-color-headings: #000;
+  --dxt-color-body: #fff;
+  --dxt-color-card: #fff;
+  --dxt-color-cardtext: #000;
+  --dxt-color-footer: #000;
+  --dxt-color-footertext: #fff;
+  --dxt-color-secheader: #000;
+  --dxt-color-secheadertext: #fff;
+  --dxt-color-header: #000;
+  --dxt-color-headertext: #fff;
+  --dxt-color-headerside: #000;
+  --dxt-color-headersidetext: #fff;
+  --dxt-color-pagetitle: #000;
+  --dxt-color-pagetitletext: #fff;
+  --dxt-color-graylight: #767676;
+  --dxt-color-graylighter: #f0f0f0;
+  --dxt-color-silver: #e0e0e0;
+}
+
+// ============================================
+// Dark Mode
+// Only override CSS variable values - let theme styles cascade
+// ============================================
+body.a11y-dark-mode {
+  --dxt-color-base: #4675ff;
+  --dxt-color-basetext: #fff;
+  --dxt-color-link: #4675ff;
+  --dxt-color-accent1: #4675ff;
+  --dxt-color-accent1text: #fff;
+  --dxt-color-accent2: #4675ff;
+  --dxt-color-accent2text: #fff;
+  --dxt-color-text: #b0b0b0;
+  --dxt-color-headings: #d0d0d0;
+  --dxt-color-body: #0a0a0a;
+  --dxt-color-card: #1a1a1a;
+  --dxt-color-cardtext: #b0b0b0;
+  --dxt-color-footer: #181818;
+  --dxt-color-footertext: #808a95;
+  --dxt-color-secheader: #181818;
+  --dxt-color-secheadertext: #d0d0d0;
+  --dxt-color-header: #181818;
+  --dxt-color-headertext: #d0d0d0;
+  --dxt-color-headerside: #1a1a1a;
+  --dxt-color-headersidetext: #808a95;
+  --dxt-color-pagetitle: #181818;
+  --dxt-color-pagetitletext: #d0d0d0;
+  --dxt-color-graylight: #404040;
+  --dxt-color-graylighter: #606060;
+  --dxt-color-silver: #3e3e3e;
+}
+
+// ============================================
+// Dyslexia-Friendly Font
+// ============================================
+@font-face {
+  font-display: swap;
+  font-family: OpenDyslexic;
+  font-style: normal;
+  font-weight: 400;
+  src: url('../../fonts/accessibility/OpenDyslexic-Regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-display: swap;
+  font-family: OpenDyslexic;
+  font-style: normal;
+  font-weight: 700;
+  src: url('../../fonts/accessibility/OpenDyslexic-Bold.woff2') format('woff2');
+}
+
+body.a11y-dyslexia-font {
+  // Set CSS variables for themes that use them
+  --dxt-setting-body-font-family: 'OpenDyslexic', -apple-system, blinkmacsystemfont, sans-serif;
+  --dxt-setting-headings-font-family: 'OpenDyslexic', -apple-system, blinkmacsystemfont, sans-serif;
+  --dxt-setting-body-line-height: 1.8;
+
+  // Direct application as fallback
+  font-family: OpenDyslexic, -apple-system, BlinkMacSystemFont, sans-serif !important;
+  letter-spacing: 0.05em;
+  line-height: 1.8;
+  word-spacing: 0.1em;
+
+  // Apply to headings
+  h1, h2, h3, h4, h5, h6,
+  .h1, .h2, .h3, .h4, .h5, .h6 {
+    font-family: OpenDyslexic, -apple-system, BlinkMacSystemFont, sans-serif !important;
+  }
+}
+
+// ============================================
+// Pause Animations / Reduce Motion
+// These require !important to override inline styles and third-party libraries
+// ============================================
+body.a11y-pause-animations {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    animation-duration: 0s !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition: none !important;
+    transition-duration: 0s !important;
+  }
+}
+
+// Also respect system preference
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+// ============================================
+// Link Highlighting
+// This feature requires direct styling as it adds visual affordances
+// ============================================
+body.a11y-link-highlight {
+  a:not(.btn, [class*="button"], .a11y-trigger, .a11y-chip, .a11y-close, [class*="a11y-"]) {
+    background-color: #ff0 !important;
+    color: #000 !important;
+    padding: 0.1em 0.2em;
+    text-decoration: underline !important;
+    text-decoration-thickness: 2px !important;
+
+    &:hover,
+    &:focus {
+      background-color: #00f !important;
+      color: #fff !important;
+    }
+  }
+}
+
+// ============================================
+// Enhanced Focus Indicators
+// ============================================
+body.a11y-focus-indicators {
+  *:focus {
+    outline: var(--a11y-focus-outline-width) solid var(--a11y-focus-outline-color) !important;
+    outline-offset: var(--a11y-focus-outline-offset) !important;
+  }
+
+  a:focus,
+  button:focus,
+  input:focus,
+  select:focus,
+  textarea:focus,
+  [tabindex]:focus {
+    box-shadow: 0 0 0 4px rgb(0 95 204 / 40%) !important;
+    outline: var(--a11y-focus-outline-width) solid var(--a11y-focus-outline-color) !important;
+    outline-offset: var(--a11y-focus-outline-offset) !important;
+  }
+}
+
+// ============================================
+// Grayscale Mode
+// ============================================
+body.a11y-grayscale {
+  filter: grayscale(100%);
+
+  img,
+  video,
+  iframe,
+  svg {
+    filter: grayscale(100%);
+  }
+}
+
+// ============================================
+// Print styles - reset accessibility modes
+// ============================================
+@media print {
+  body.a11y-grayscale,
+  body.a11y-dark-mode,
+  body.a11y-high-contrast {
+    filter: none !important;
+
+    --dxt-color-body: #fff;
+    --dxt-color-text: #000;
+    --dxt-color-headings: #000;
+  }
+}

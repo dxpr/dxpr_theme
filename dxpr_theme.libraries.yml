@@ -209,3 +209,8 @@ enhanced-dropdowns:
       vendor/enhanced-dropdowns/dist/css/main.min.css: { minified: true }
   dependencies:
     - core/drupal
+
+accessibility:
+  css:
+    theme:
+      css/components/dxpr-theme-accessibility.css: { minified: true }
