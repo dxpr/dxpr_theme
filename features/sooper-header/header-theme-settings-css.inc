@@ -64,9 +64,10 @@ function header_theme_settings_css(string $theme, string &$css, array $palette) 
     $css .= "}\n\n";
   }
   elseif (theme_get_setting('header_top_fixed', $theme)) {
-    // Fixed header: add body padding for header height.
+    // Fixed header: add body padding for header height + admin toolbar offset.
+    // Uses Drupal displacement API variable for toolbar height.
     $css .= ".body--dxpr-theme-nav-desktop.body--dxpr-theme-header-fixed.body--dxpr-theme-header-not-overlay {\n";
-    $css .= "  padding-top: $header_top_height_var !important;\n";
+    $css .= "  padding-top: calc($header_top_height_var + var(--drupal-displace-offset-top, 0px)) !important;\n";
     $css .= "}\n\n";
   }
 

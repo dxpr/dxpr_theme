@@ -6,6 +6,31 @@
   --dxt-admin-sidebar-max-width: 1100px;
 }
 
+// CSS-first layout: Set displacement offset when settings form exists
+// This prevents FOUC by positioning sidebar correctly before JS runs
+html:has(#system-theme-settings) {
+  --drupal-displace-offset-right: var(--dxt-admin-sidebar-width);
+}
+
+// Apply margin to body content when settings sidebar is present (CSS-only, no JS wrapper needed)
+// Exclude fixed-position elements like the header which need special handling
+body:has(#system-theme-settings) > *:not(#system-theme-settings, #navbar, script, style, .visually-hidden) {
+  margin-right: var(--dxt-admin-sidebar-width) !important;
+}
+
+// Fixed header should not extend under the settings sidebar
+body:has(#system-theme-settings) #navbar.dxpr-theme-header--fixed,
+body:has(#system-theme-settings) #navbar.affix {
+  right: var(--dxt-admin-sidebar-width) !important;
+  width: calc(100% - var(--dxt-admin-sidebar-width)) !important;
+}
+
+// Body padding for fixed header should include both header height and admin toolbar offset
+// This ensures proper spacing on theme settings page
+html:has(#system-theme-settings) body.body--dxpr-theme-header-fixed.body--dxpr-theme-header-not-overlay {
+  padding-top: calc(var(--dxt-setting-header-top-height, 100px) + var(--drupal-displace-offset-top, 0px)) !important;
+}
+
 #system-theme-settings {
   // Color palette - Primary (3 colors)
   --dxt-admin-color-primary-50: #eaedfa;
@@ -892,6 +917,11 @@
     z-index: 10;
   }
 
+  // Leave space for fixed color wheel
+  .color-palette-wrapper {
+    max-width: calc(100% - 230px);
+  }
+
   .color-palette {
     flex: 1;
     margin-top: 16px;
@@ -944,6 +974,71 @@
       &:hover:not(.active) {
         box-shadow: 0 2px 8px var(--dxt-admin-color-shadow-10);
       }
+    }
+  }
+
+  // Rainbow border animation - reusable AI styling
+  // Colors match DXPR Builder branding
+  --dxt-rainbow-color-1: #94C8EF;
+  --dxt-rainbow-color-2: #F97ED0;
+  --dxt-rainbow-color-3: #715EFF;
+
+  @keyframes dxt-rainbow-border {
+    0% { border-image: linear-gradient(90deg, var(--dxt-rainbow-color-1), var(--dxt-rainbow-color-2), var(--dxt-rainbow-color-3)) 1; }
+    25% { border-image: linear-gradient(90deg, var(--dxt-rainbow-color-3), var(--dxt-rainbow-color-1), var(--dxt-rainbow-color-2)) 1; }
+    50% { border-image: linear-gradient(90deg, var(--dxt-rainbow-color-2), var(--dxt-rainbow-color-3), var(--dxt-rainbow-color-1)) 1; }
+    75% { border-image: linear-gradient(90deg, var(--dxt-rainbow-color-1), var(--dxt-rainbow-color-2), var(--dxt-rainbow-color-3)) 1; }
+    100% { border-image: linear-gradient(90deg, var(--dxt-rainbow-color-1), var(--dxt-rainbow-color-2), var(--dxt-rainbow-color-3)) 1; }
+  }
+
+  // AI Palette Generator
+  .ai-palette-generator {
+    margin-bottom: 20px;
+
+    #ai-palette-prompt {
+      animation: dxt-rainbow-border 20s linear infinite;
+      border: 3px solid;
+      min-height: 100px;
+      padding: 12px;
+      resize: vertical;
+
+      &::placeholder {
+        color: var(--dxt-admin-text-muted);
+      }
+    }
+
+    .form-item {
+      margin: 0;
+      padding: 0;
+    }
+
+    .form-item label {
+      display: none;
+    }
+
+    .ai-generate-btn {
+      box-sizing: border-box;
+      margin: 4px 0 0;
+      padding: 14px 16px;
+      width: 100%;
+
+      &.is-loading {
+        opacity: 0.7;
+        pointer-events: none;
+      }
+
+      &.is-success {
+        background: #22c55e !important;
+      }
+    }
+
+    .ai-palette-error {
+      background: #fef2f2;
+      border-left: 3px solid #dc2626;
+      color: #991b1b;
+      display: none;
+      margin-top: 12px;
+      padding: 10px 12px;
     }
   }
 
@@ -1439,4 +1534,96 @@ html.html--dxpr-theme-sticky-footer:has(#system-theme-settings) {
 // Account for admin toolbar when scrolling to styleguide sections
 .bd-cheatsheet section[id] {
   scroll-margin-top: var(--drupal-displace-offset-top, 0);
+}
+
+// Content-visibility for performance: render off-screen sections lazily
+.bd-cheatsheet article {
+  contain: layout style paint;
+  contain-intrinsic-size: auto 500px;
+  content-visibility: auto;
+}
+
+// Skeleton loader styles for styleguide loading state
+.dxpr-styleguide-skeleton {
+  padding: 40px;
+
+  @keyframes skeleton-shimmer {
+    0% {
+      background-position: -200px 0;
+    }
+
+    100% {
+      background-position: calc(200px + 100%) 0;
+    }
+  }
+
+  .skeleton-header {
+    margin-bottom: 40px;
+  }
+
+  .skeleton-title {
+    animation: skeleton-shimmer 1.5s ease-in-out infinite;
+    background: linear-gradient(90deg, #e5e5ea 0%, #f2f2f7 50%, #e5e5ea 100%);
+    background-size: 200px 100%;
+    border-radius: 4px;
+    height: 48px;
+    margin-bottom: 16px;
+    width: 300px;
+  }
+
+  .skeleton-subtitle {
+    animation: skeleton-shimmer 1.5s ease-in-out infinite;
+    animation-delay: 0.1s;
+    background: linear-gradient(90deg, #e5e5ea 0%, #f2f2f7 50%, #e5e5ea 100%);
+    background-size: 200px 100%;
+    border-radius: 4px;
+    height: 24px;
+    width: 200px;
+  }
+
+  .skeleton-section {
+    margin-bottom: 40px;
+  }
+
+  .skeleton-heading {
+    animation: skeleton-shimmer 1.5s ease-in-out infinite;
+    animation-delay: 0.2s;
+    background: linear-gradient(90deg, #e5e5ea 0%, #f2f2f7 50%, #e5e5ea 100%);
+    background-size: 200px 100%;
+    border-radius: 4px;
+    height: 32px;
+    margin-bottom: 20px;
+    width: 180px;
+  }
+
+  .skeleton-cards {
+    display: flex;
+    gap: 20px;
+  }
+
+  .skeleton-card {
+    animation: skeleton-shimmer 1.5s ease-in-out infinite;
+    animation-delay: 0.3s;
+    background: linear-gradient(90deg, #e5e5ea 0%, #f2f2f7 50%, #e5e5ea 100%);
+    background-size: 200px 100%;
+    border-radius: 8px;
+    flex: 1;
+    height: 150px;
+    max-width: 300px;
+  }
+
+  .skeleton-text {
+    animation: skeleton-shimmer 1.5s ease-in-out infinite;
+    animation-delay: 0.4s;
+    background: linear-gradient(90deg, #e5e5ea 0%, #f2f2f7 50%, #e5e5ea 100%);
+    background-size: 200px 100%;
+    border-radius: 4px;
+    height: 20px;
+    margin-bottom: 12px;
+    width: 100%;
+
+    &.short {
+      width: 60%;
+    }
+  }
 }

@@ -12,6 +12,18 @@ Before you write any code for this project please also check
 https://github.com/dxpr/dxpr_maven/blob/main/CONTRIBUTING.md
 
 
+## AI-Powered Color Palette Generator
+
+DXPR Theme includes an AI-powered color palette generator that creates harmonious
+color schemes from natural language descriptions. Access it in theme settings
+under Colors > Color Set.
+
+**Requirements:**
+- [Drupal AI module](https://www.drupal.org/project/ai) installed and configured with a chat provider
+
+**Usage:** Enter a description like "Modern tech startup" or "Warm bakery tones"
+and click Generate to create a complete color palette.
+
 ## Subtheme CSS File (/css/dxpr_theme_subtheme.css)
 
 **Important**: The `dxpr_theme_subtheme.css` file in your custom subtheme is
