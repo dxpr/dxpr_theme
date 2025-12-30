@@ -10,7 +10,29 @@ function loadStyleguide() {
     const contentRegion = document.querySelector(".region-content");
     if (contentRegion) {
       const styleguideDiv = document.createElement("div");
-      styleguideDiv.innerHTML = "<p>Loading...</p>";
+      // Skeleton loader for better loading UX
+      styleguideDiv.innerHTML = `
+        <div class="dxpr-styleguide-skeleton">
+          <div class="skeleton-header">
+            <div class="skeleton-title"></div>
+            <div class="skeleton-subtitle"></div>
+          </div>
+          <div class="skeleton-content">
+            <div class="skeleton-section">
+              <div class="skeleton-heading"></div>
+              <div class="skeleton-cards">
+                <div class="skeleton-card"></div>
+                <div class="skeleton-card"></div>
+                <div class="skeleton-card"></div>
+              </div>
+            </div>
+            <div class="skeleton-section">
+              <div class="skeleton-heading"></div>
+              <div class="skeleton-text"></div>
+              <div class="skeleton-text short"></div>
+            </div>
+          </div>
+        </div>`;
       contentRegion.insertBefore(styleguideDiv, contentRegion.firstChild);
 
       // Get style guide URL from Drupal settings or construct it

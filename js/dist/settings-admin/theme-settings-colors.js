@@ -110,7 +110,7 @@ const dxprThemeSettingsColors = {
       submitPrompt();
     });
 
-    // Cmd/Ctrl+Enter to submit.
+    // Command/Ctrl+Enter to submit.
     promptField.addEventListener("keydown", (ev) => {
       if ((ev.metaKey || ev.ctrlKey) && ev.key === "Enter") {
         ev.preventDefault();
@@ -133,14 +133,14 @@ const dxprThemeSettingsColors = {
     generateButton.classList.add("is-loading");
     generateButton.value = "Generating...";
 
-    fetch(drupalSettings.path.baseUrl + "admin/dxpr-theme/generate-palette", {
+    fetch(`${drupalSettings.path.baseUrl}admin/dxpr-theme/generate-palette`, {
       method: "POST",
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
         "X-Requested-With": "XMLHttpRequest",
       },
       credentials: "same-origin",
-      body: "prompt=" + encodeURIComponent(prompt),
+      body: `prompt=${encodeURIComponent(prompt)}`,
     })
       .then((response) => response.json())
       .then((data) => {
@@ -155,6 +155,7 @@ const dxprThemeSettingsColors = {
       })
       .catch((error) => {
         pt.showAiError("Request failed. Please try again.");
+        // eslint-disable-next-line no-console
         console.error("AI palette error:", error);
       })
       .finally(() => {

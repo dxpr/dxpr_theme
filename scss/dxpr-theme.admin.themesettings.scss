@@ -6,6 +6,31 @@
   --dxt-admin-sidebar-max-width: 1100px;
 }
 
+// CSS-first layout: Set displacement offset when settings form exists
+// This prevents FOUC by positioning sidebar correctly before JS runs
+html:has(#system-theme-settings) {
+  --drupal-displace-offset-right: var(--dxt-admin-sidebar-width);
+}
+
+// Apply margin to body content when settings sidebar is present (CSS-only, no JS wrapper needed)
+// Exclude fixed-position elements like the header which need special handling
+body:has(#system-theme-settings) > *:not(#system-theme-settings, #navbar, script, style, .visually-hidden) {
+  margin-right: var(--dxt-admin-sidebar-width) !important;
+}
+
+// Fixed header should not extend under the settings sidebar
+body:has(#system-theme-settings) #navbar.dxpr-theme-header--fixed,
+body:has(#system-theme-settings) #navbar.affix {
+  right: var(--dxt-admin-sidebar-width) !important;
+  width: calc(100% - var(--dxt-admin-sidebar-width)) !important;
+}
+
+// Body padding for fixed header should include both header height and admin toolbar offset
+// This ensures proper spacing on theme settings page
+html:has(#system-theme-settings) body.body--dxpr-theme-header-fixed.body--dxpr-theme-header-not-overlay {
+  padding-top: calc(var(--dxt-setting-header-top-height, 100px) + var(--drupal-displace-offset-top, 0px)) !important;
+}
+
 #system-theme-settings {
   // Color palette - Primary (3 colors)
   --dxt-admin-color-primary-50: #eaedfa;
@@ -993,10 +1018,9 @@
 
     .ai-generate-btn {
       box-sizing: border-box;
-      margin-top: 4px;
+      margin: 4px 0 0;
       padding: 14px 16px;
-      width: calc(100% - 6px);
-      margin-left: 3px;
+      width: 100%;
 
       &.is-loading {
         opacity: 0.7;
@@ -1510,4 +1534,96 @@ html.html--dxpr-theme-sticky-footer:has(#system-theme-settings) {
 // Account for admin toolbar when scrolling to styleguide sections
 .bd-cheatsheet section[id] {
   scroll-margin-top: var(--drupal-displace-offset-top, 0);
+}
+
+// Content-visibility for performance: render off-screen sections lazily
+.bd-cheatsheet article {
+  contain: layout style paint;
+  contain-intrinsic-size: auto 500px;
+  content-visibility: auto;
+}
+
+// Skeleton loader styles for styleguide loading state
+.dxpr-styleguide-skeleton {
+  padding: 40px;
+
+  @keyframes skeleton-shimmer {
+    0% {
+      background-position: -200px 0;
+    }
+
+    100% {
+      background-position: calc(200px + 100%) 0;
+    }
+  }
+
+  .skeleton-header {
+    margin-bottom: 40px;
+  }
+
+  .skeleton-title {
+    animation: skeleton-shimmer 1.5s ease-in-out infinite;
+    background: linear-gradient(90deg, #e5e5ea 0%, #f2f2f7 50%, #e5e5ea 100%);
+    background-size: 200px 100%;
+    border-radius: 4px;
+    height: 48px;
+    margin-bottom: 16px;
+    width: 300px;
+  }
+
+  .skeleton-subtitle {
+    animation: skeleton-shimmer 1.5s ease-in-out infinite;
+    animation-delay: 0.1s;
+    background: linear-gradient(90deg, #e5e5ea 0%, #f2f2f7 50%, #e5e5ea 100%);
+    background-size: 200px 100%;
+    border-radius: 4px;
+    height: 24px;
+    width: 200px;
+  }
+
+  .skeleton-section {
+    margin-bottom: 40px;
+  }
+
+  .skeleton-heading {
+    animation: skeleton-shimmer 1.5s ease-in-out infinite;
+    animation-delay: 0.2s;
+    background: linear-gradient(90deg, #e5e5ea 0%, #f2f2f7 50%, #e5e5ea 100%);
+    background-size: 200px 100%;
+    border-radius: 4px;
+    height: 32px;
+    margin-bottom: 20px;
+    width: 180px;
+  }
+
+  .skeleton-cards {
+    display: flex;
+    gap: 20px;
+  }
+
+  .skeleton-card {
+    animation: skeleton-shimmer 1.5s ease-in-out infinite;
+    animation-delay: 0.3s;
+    background: linear-gradient(90deg, #e5e5ea 0%, #f2f2f7 50%, #e5e5ea 100%);
+    background-size: 200px 100%;
+    border-radius: 8px;
+    flex: 1;
+    height: 150px;
+    max-width: 300px;
+  }
+
+  .skeleton-text {
+    animation: skeleton-shimmer 1.5s ease-in-out infinite;
+    animation-delay: 0.4s;
+    background: linear-gradient(90deg, #e5e5ea 0%, #f2f2f7 50%, #e5e5ea 100%);
+    background-size: 200px 100%;
+    border-radius: 4px;
+    height: 20px;
+    margin-bottom: 12px;
+    width: 100%;
+
+    &.short {
+      width: 60%;
+    }
+  }
 }
