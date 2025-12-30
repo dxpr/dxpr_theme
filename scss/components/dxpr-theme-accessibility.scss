@@ -191,11 +191,6 @@ body.a11y-link-highlight {
 // Enhanced Focus Indicators
 // ============================================
 body.a11y-focus-indicators {
-  *:focus {
-    outline: var(--a11y-focus-outline-width) solid var(--a11y-focus-outline-color) !important;
-    outline-offset: var(--a11y-focus-outline-offset) !important;
-  }
-
   a:focus,
   button:focus,
   input:focus,
@@ -213,13 +208,6 @@ body.a11y-focus-indicators {
 // ============================================
 body.a11y-grayscale {
   filter: grayscale(100%);
-
-  img,
-  video,
-  iframe,
-  svg {
-    filter: grayscale(100%);
-  }
 }
 
 // ============================================
