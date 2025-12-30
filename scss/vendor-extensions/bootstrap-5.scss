@@ -289,10 +289,10 @@ html body {
     .nav > li > a:focus,
     .nav > li > a.is-active {
       background: dxpr-color('base');
-      color: dxpr-color('silver');
+      color: dxpr-color('basetext');
 
       .glyphicon {
-        color: dxpr-color('silver');
+        color: dxpr-color('basetext');
       }
     }
   }
@@ -616,7 +616,7 @@ html body {
 
           a {
             border: none;
-            color: dxpr-color('base');
+            color: dxpr-color('headertext');
           }
         }
       }

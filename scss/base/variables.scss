@@ -334,7 +334,7 @@ $schemes: (
   --dxt-setting-divider-thickness: 4px;
   --dxt-setting-dropdown-background: var(--dxt-color-header);
   --dxt-setting-dropdown-hover-background: var(--dxt-color-header);
-  --dxt-setting-dropdown-hover-text-color: var(--dxt-color-base);
+  --dxt-setting-dropdown-hover-text-color: var(--dxt-color-headertext);
   --dxt-setting-dropdown-text-color: var(--dxt-color-headertext);
   --dxt-setting-dropdown-width: 285px;
   --dxt-setting-gutter-container-mobile: 30px;
@@ -373,8 +373,8 @@ $schemes: (
   --dxt-setting-menu-border-position-offset-sticky: 0px;
   --dxt-setting-menu-border-position-offset: 0px;
   --dxt-setting-menu-border-size: 2px;
-  --dxt-setting-menu-hover-background: var(--dxt-color-basesubtle);
-  --dxt-setting-menu-hover-text-color: var(--dxt-color-base);
+  --dxt-setting-menu-hover-background: var(--dxt-color-header);
+  --dxt-setting-menu-hover-text-color: var(--dxt-color-headertext);
   --dxt-setting-menu-text-color: var(--dxt-color-headertext);
   --dxt-setting-mobile-menu-background: var(--dxt-color-headerside);
   --dxt-setting-mobile-menu-text-color: var(--dxt-color-headersidetext);
