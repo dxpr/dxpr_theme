@@ -153,23 +153,9 @@ body.a11y-dyslexia-font {
 }
 
 // ============================================
-// Pause Animations / Reduce Motion
-// These require !important to override inline styles and third-party libraries
+// Reduced Motion (system preference)
+// Best-effort support for users who have enabled reduced motion at OS level
 // ============================================
-body.a11y-pause-animations {
-  *,
-  *::before,
-  *::after {
-    animation: none !important;
-    animation-duration: 0s !important;
-    animation-iteration-count: 1 !important;
-    scroll-behavior: auto !important;
-    transition: none !important;
-    transition-duration: 0s !important;
-  }
-}
-
-// Also respect system preference
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
