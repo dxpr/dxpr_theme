@@ -91,7 +91,8 @@ html.html--dxpr-theme-nav-mobile--open {
 
         &:hover,
         &:focus {
-          color: var(--dxt-setting-menu-hover-text-color);
+          background-color: var(--dxt-setting-mobile-menu-hover-background);
+          color: var(--dxt-setting-mobile-menu-hover-text-color);
         }
       }
 
@@ -120,8 +121,8 @@ html.html--dxpr-theme-nav-mobile--open {
           --bs-dropdown-indent-step: calc(var(--dxt-setting-nav-font-size) / 2);
 
           &:hover, &:focus {
-            background-color: var(--dxt-setting-menu-hover-background) !important;
-            color: var(--dxt-setting-menu-hover-text-color) !important;
+            background-color: var(--dxt-setting-mobile-menu-hover-background) !important;
+            color: var(--dxt-setting-mobile-menu-hover-text-color) !important;
           }
         }
       }
@@ -270,8 +271,8 @@ html.html--dxpr-theme-nav-mobile--open {
 
       &:hover,
       &:focus {
-        background-color: var(--dxt-setting-menu-hover-background);
-        color: var(--dxt-setting-menu-hover-text-color);
+        background-color: var(--dxt-setting-mobile-menu-hover-background);
+        color: var(--dxt-setting-mobile-menu-hover-text-color);
       }
     }
 
