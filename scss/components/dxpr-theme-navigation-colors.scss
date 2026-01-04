@@ -1,24 +1,12 @@
-// Navigation Color Styles
-// Consolidated color rules for navbar, menus, and dropdowns.
-// Separated from layout files for maintainability.
+// DXPR Theme Navigation Colors
 @import "../includes/variables";
-
-// =============================================================================
-// NAVBAR CONTAINER COLORS
-// Applies to both desktop and mobile.
-// =============================================================================
 
 #navbar.dxpr-theme-header--top .navbar-container {
   background-color: var(--dxt-setting-navbar-background);
   color: var(--dxt-setting-navbar-text-color);
 }
 
-// =============================================================================
-// DESKTOP NAVIGATION COLORS
-// =============================================================================
-
 .body--dxpr-theme-nav-desktop #navbar.dxpr-theme-header--top {
-  // Header blocks (search, cart, etc.)
   .block {
     background-color: var(--dxt-setting-header-block-background);
   }
@@ -29,11 +17,10 @@
     color: var(--dxt-setting-header-block-text-color);
   }
 
-  // Main navigation
   .nav {
     background-color: var(--dxt-setting-menu-background);
 
-    // Hover colors for links and span.nav-link (used for dropdown toggles)
+    // span.nav-link used for dropdown toggles
     .active > a,
     .active > span.nav-link,
     a:hover,
@@ -60,11 +47,9 @@
     color: var(--dxt-setting-menu-text-color);
   }
 
-  // Dropdown menus
   .dropdown-menu {
     background-color: var(--dxt-setting-dropdown-background);
 
-    // Hover colors
     a,
     button {
       &:hover,
@@ -82,7 +67,6 @@
   }
 }
 
-// Desktop hover opacity effect
 .body--dxpr-theme-nav-desktop #navbar.dxpr-theme-header--hover-opacity .nav {
   .active > a,
   .active > span.nav-link,
@@ -95,10 +79,6 @@
   }
 }
 
-// =============================================================================
-// MOBILE NAVIGATION COLORS
-// =============================================================================
-
 .body--dxpr-theme-nav-mobile .dxpr-theme-header .dxpr-theme-main-menu {
   background: var(--dxt-setting-mobile-menu-background);
   color: var(--dxt-setting-mobile-menu-text-color);
@@ -108,7 +88,6 @@
     color: var(--dxt-setting-mobile-menu-text-color) !important;
   }
 
-  // Level 1 links - hover colors
   .nav-link {
     &:hover,
     &:focus {
@@ -117,13 +96,11 @@
     }
   }
 
-  // Nav wrapper background
   ul.nav,
   ul.navbar-nav {
     background-color: var(--dxt-setting-mobile-menu-background) !important;
   }
 
-  // Dropdown items
   ul.dropdown-menu {
     background-color: var(--dxt-setting-mobile-menu-background) !important;
 
@@ -140,7 +117,6 @@
     }
   }
 
-  // Level 1 links via .nav > li > a or span.nav-link
   .nav > li > a,
   .nav > li > span.nav-link {
     &:hover,
