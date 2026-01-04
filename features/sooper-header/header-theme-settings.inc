@@ -269,7 +269,7 @@ function header_theme_settings(array &$form, $theme) {
   $form['dxpr_theme_settings']['header']['header_top']['navcolors']['navbar_text_color_custom'] = [
     '#type' => 'textfield',
     '#title' => t('Custom Navbar Text Color'),
-    '#default_value' => ((theme_get_setting('navbar_text_color_custom') !== NULL)) ? theme_get_setting('navbar_text_color_custom') : theme_get_setting('navbar_text_color_custom'),
+    '#default_value' => theme_get_setting('navbar_text_color_custom'),
     '#states' => [
       'visible' => [
         ':input[name="navbar_text_color"]' => ['value' => 'custom'],
@@ -503,7 +503,7 @@ function header_theme_settings(array &$form, $theme) {
   $form['dxpr_theme_settings']['header']['header_top']['navcolors']['mobile_menu_hover_background_custom'] = [
     '#type' => 'textfield',
     '#title' => t('Custom Mobile Menu Hover Background'),
-    '#default_value' => ((theme_get_setting('mobile_menu_hover_background_custom') !== NULL)) ? theme_get_setting('mobile_menu_hover_background_custom') : theme_get_setting('mobile_menu_hover_background_custom'),
+    '#default_value' => theme_get_setting('mobile_menu_hover_background_custom'),
     '#states' => [
       'visible' => [
         ':input[name="mobile_menu_hover_background"]' => ['value' => 'custom'],
@@ -521,7 +521,7 @@ function header_theme_settings(array &$form, $theme) {
   $form['dxpr_theme_settings']['header']['header_top']['navcolors']['mobile_menu_hover_text_color_custom'] = [
     '#type' => 'textfield',
     '#title' => t('Custom Mobile Menu Hover Text Color'),
-    '#default_value' => ((theme_get_setting('mobile_menu_hover_text_color_custom') !== NULL)) ? theme_get_setting('mobile_menu_hover_text_color_custom') : theme_get_setting('mobile_menu_hover_text_color_custom'),
+    '#default_value' => theme_get_setting('mobile_menu_hover_text_color_custom'),
     '#states' => [
       'visible' => [
         ':input[name="mobile_menu_hover_text_color"]' => ['value' => 'custom'],
