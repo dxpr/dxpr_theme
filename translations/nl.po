@@ -1318,8 +1318,8 @@ msgstr ""
 msgid "Header height after scrolling past scroll offset. Default is 50."
 msgstr "Headerhoogte na scrollen voorbij scroll-offset. Standaard is 50."
 #: features/sooper-header/header-theme-settings.inc:201,191,196
-msgid "Customize Navigation Colors"
-msgstr "Navigatiekleuren aanpassen"
+msgid "Custom Header Colors"
+msgstr "Aangepaste headerkleuren"
 #: features/sooper-header/header-theme-settings.inc:216,206,211
 msgid "Custom Navbar Background"
 msgstr "Aangepaste navigatiebalkachtergrond"

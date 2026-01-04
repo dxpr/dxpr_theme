@@ -404,8 +404,8 @@ $schemes: (
   --dxt-setting-menu-hover-text-color: var(--dxt-color-headertext);
   --dxt-setting-menu-text-color: var(--dxt-color-headertext);
   --dxt-setting-mobile-menu-background: var(--dxt-color-headerside);
-  --dxt-setting-mobile-menu-hover-background: transparent;
-  --dxt-setting-mobile-menu-hover-text-color: var(--dxt-color-base);
+  --dxt-setting-mobile-menu-hover-background: var(--dxt-setting-menu-hover-background);
+  --dxt-setting-mobile-menu-hover-text-color: var(--dxt-setting-menu-hover-text-color);
   --dxt-setting-mobile-menu-text-color: var(--dxt-color-headersidetext);
   --dxt-setting-nav-font-face: -apple-system, blinkmacsystemfont, "Segoe UI", roboto, helvetica, arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   --dxt-setting-nav-font-size: 16px;

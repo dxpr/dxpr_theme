@@ -1,0 +1,152 @@
+// Navigation Color Styles
+// Consolidated color rules for navbar, menus, and dropdowns.
+// Separated from layout files for maintainability.
+@import "../includes/variables";
+
+// =============================================================================
+// NAVBAR CONTAINER COLORS
+// Applies to both desktop and mobile.
+// =============================================================================
+
+#navbar.dxpr-theme-header--top .navbar-container {
+  background-color: var(--dxt-setting-navbar-background);
+  color: var(--dxt-setting-navbar-text-color);
+}
+
+// =============================================================================
+// DESKTOP NAVIGATION COLORS
+// =============================================================================
+
+.body--dxpr-theme-nav-desktop #navbar.dxpr-theme-header--top {
+  // Header blocks (search, cart, etc.)
+  .block {
+    background-color: var(--dxt-setting-header-block-background);
+  }
+
+  .block:not(.contextual-region),
+  .block:not(.contextual-region) a,
+  .block .btn-link {
+    color: var(--dxt-setting-header-block-text-color);
+  }
+
+  // Main navigation
+  .nav {
+    background-color: var(--dxt-setting-menu-background);
+
+    // Hover colors for links and span.nav-link (used for dropdown toggles)
+    .active > a,
+    .active > span.nav-link,
+    a:hover,
+    a:focus,
+    a.is-active,
+    span.nav-link:hover,
+    span.nav-link:focus {
+      background-color: var(--dxt-setting-menu-hover-background);
+      color: var(--dxt-setting-menu-hover-text-color);
+    }
+
+    a.dropdown-item {
+      &:hover,
+      &:focus {
+        background-color: var(--dxt-setting-menu-hover-background);
+        color: var(--dxt-setting-menu-hover-text-color);
+      }
+    }
+  }
+
+  .nav,
+  .nav a,
+  .nav span {
+    color: var(--dxt-setting-menu-text-color);
+  }
+
+  // Dropdown menus
+  .dropdown-menu {
+    background-color: var(--dxt-setting-dropdown-background);
+
+    // Hover colors
+    a,
+    button {
+      &:hover,
+      &:focus {
+        background-color: var(--dxt-setting-dropdown-hover-background);
+        color: var(--dxt-setting-dropdown-hover-text-color);
+      }
+    }
+  }
+
+  .dropdown,
+  .dropdown-menu a,
+  .dropdown-menu button {
+    color: var(--dxt-setting-dropdown-text-color);
+  }
+}
+
+// Desktop hover opacity effect
+.body--dxpr-theme-nav-desktop #navbar.dxpr-theme-header--hover-opacity .nav {
+  .active > a,
+  .active > span.nav-link,
+  a:hover,
+  a:focus,
+  a.is-active,
+  span.nav-link:hover,
+  span.nav-link:focus {
+    opacity: 0.8;
+  }
+}
+
+// =============================================================================
+// MOBILE NAVIGATION COLORS
+// =============================================================================
+
+.body--dxpr-theme-nav-mobile .dxpr-theme-header .dxpr-theme-main-menu {
+  background: var(--dxt-setting-mobile-menu-background);
+  color: var(--dxt-setting-mobile-menu-text-color);
+
+  a,
+  span.nav-link {
+    color: var(--dxt-setting-mobile-menu-text-color) !important;
+  }
+
+  // Level 1 links - hover colors
+  .nav-link {
+    &:hover,
+    &:focus {
+      background-color: var(--dxt-setting-mobile-menu-hover-background);
+      color: var(--dxt-setting-mobile-menu-hover-text-color);
+    }
+  }
+
+  // Nav wrapper background
+  ul.nav,
+  ul.navbar-nav {
+    background-color: var(--dxt-setting-mobile-menu-background) !important;
+  }
+
+  // Dropdown items
+  ul.dropdown-menu {
+    background-color: var(--dxt-setting-mobile-menu-background) !important;
+
+    .dropdown-item,
+    .bs-dropdown-item-wrapper > .dropdown-item {
+      background-color: var(--dxt-setting-mobile-menu-background) !important;
+      color: var(--dxt-setting-mobile-menu-text-color) !important;
+
+      &:hover,
+      &:focus {
+        background-color: var(--dxt-setting-mobile-menu-hover-background) !important;
+        color: var(--dxt-setting-mobile-menu-hover-text-color) !important;
+      }
+    }
+  }
+
+  // Level 1 links via .nav > li > a or span.nav-link
+  .nav > li > a,
+  .nav > li > span.nav-link {
+    &:hover,
+    &:focus {
+      background-color: var(--dxt-setting-mobile-menu-hover-background);
+      color: var(--dxt-setting-mobile-menu-hover-text-color);
+    }
+  }
+}

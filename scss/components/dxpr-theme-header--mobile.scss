@@ -72,9 +72,7 @@ html.html--dxpr-theme-nav-mobile--open {
     }
 
     .dxpr-theme-main-menu {
-      background: var(--dxt-setting-mobile-menu-background);
       box-shadow: 0 5px 5px rgb(0 0 0 / 2%);
-      color: var(--dxt-setting-mobile-menu-text-color);
       left: 0;
       padding-left: calc(var(--dxt-setting-gutter-vertical-mobile, 0) / 2);
       padding-right: calc(var(--dxt-setting-gutter-vertical-mobile, 0) / 2);
@@ -82,18 +80,8 @@ html.html--dxpr-theme-nav-mobile--open {
       width: 100%;
       z-index: 100;
 
-      a {
-        color: var(--dxt-setting-mobile-menu-text-color) !important;
-      }
-
       .nav-link {
         font-size: var(--dxt-setting-nav-mobile-font-size);
-
-        &:hover,
-        &:focus {
-          background-color: var(--dxt-setting-mobile-menu-hover-background);
-          color: var(--dxt-setting-mobile-menu-hover-text-color);
-        }
       }
 
       ul, li {
@@ -102,28 +90,19 @@ html.html--dxpr-theme-nav-mobile--open {
 
       ul.nav,
       ul.navbar-nav {
-        background-color: var(--dxt-setting-mobile-menu-background) !important;
         width: 100%;
       }
 
       ul.dropdown-menu {
-        background-color: var(--dxt-setting-mobile-menu-background) !important;
         position: static;
 
         .dropdown-item,
         .bs-dropdown-item-wrapper > .dropdown-item {
-          background-color: var(--dxt-setting-mobile-menu-background) !important;
-          color: var(--dxt-setting-mobile-menu-text-color) !important;
           font-size: var(--dxt-setting-nav-mobile-font-size);
           white-space: normal;
           word-wrap: break-word;
 
           --bs-dropdown-indent-step: calc(var(--dxt-setting-nav-font-size) / 2);
-
-          &:hover, &:focus {
-            background-color: var(--dxt-setting-mobile-menu-hover-background) !important;
-            color: var(--dxt-setting-mobile-menu-hover-text-color) !important;
-          }
         }
       }
     }
@@ -274,12 +253,6 @@ html.html--dxpr-theme-nav-mobile--open {
     .nav > li > a {
       padding-bottom: 10px;
       padding-top: 10px;
-
-      &:hover,
-      &:focus {
-        background-color: var(--dxt-setting-mobile-menu-hover-background);
-        color: var(--dxt-setting-mobile-menu-hover-text-color);
-      }
     }
 
     .collapse.in {

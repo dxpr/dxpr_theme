@@ -235,7 +235,7 @@ function header_theme_settings(array &$form, $theme) {
   ];
 
   $form['dxpr_theme_settings']['header']['header_top']['navcolors'] = [
-    '#title' => t('Customize Navigation Colors'),
+    '#title' => t('Custom Header Colors'),
     '#type' => 'details',
     '#collapsible' => TRUE,
     '#collapsed' => TRUE,
