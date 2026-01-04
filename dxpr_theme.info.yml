@@ -8,7 +8,7 @@ package: DXPR
 
 dependencies:
   - drupal:file
-  - dxpr_theme_helper:dxpr_theme_helper
+  - dxpr_theme_helper:dxpr_theme_helper (>=3.0.0)
   - media_library_form_element:media_library_form_element
 
 regions:
