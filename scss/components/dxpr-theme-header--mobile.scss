@@ -259,10 +259,16 @@ html.html--dxpr-theme-nav-mobile--open {
       float: none!important;
       margin-bottom: 7.5px;
       margin-top: 7.5px;
+      text-align: var(--dxt-setting-header-side-align);
     }
 
     .nav > li {
       float: none;
+      text-align: var(--dxt-setting-header-side-align);
+    }
+
+    .dropdown-menu li {
+      text-align: var(--dxt-setting-header-side-align);
     }
 
     .nav > li > a {

@@ -11,6 +11,46 @@
   .nav-child-fixed-width {
     top: var(--dxt-setting-header-top-height);
   }
+
+  // MENU HOVER COLORS - Desktop only
+  #navbar.dxpr-theme-header--top .nav {
+    .active > a,
+    a:hover,
+    a:focus,
+    a.is-active {
+      background-color: var(--dxt-setting-menu-hover-background);
+      color: var(--dxt-setting-menu-hover-text-color);
+    }
+
+    a.dropdown-item {
+      &:hover,
+      &:focus {
+        background-color: var(--dxt-setting-menu-hover-background);
+        color: var(--dxt-setting-menu-hover-text-color);
+      }
+    }
+  }
+
+  #navbar.dxpr-theme-header--top .dropdown-menu {
+    a,
+    button {
+      &:hover,
+      &:focus {
+        background-color: var(--dxt-setting-dropdown-hover-background);
+        color: var(--dxt-setting-dropdown-hover-text-color);
+      }
+    }
+  }
+
+  // MENU HOVER OPACITY EFFECT
+  #navbar.dxpr-theme-header--hover-opacity .nav {
+    .active > a,
+    a:hover,
+    a:focus,
+    a.is-active {
+      opacity: 0.8;
+    }
+  }
 }
 
 .navbar.container, .navbar.container-fluid {
@@ -187,46 +227,6 @@
 #dxpr-theme-main-menu .menu__breadcrumbs,
 #dxpr-theme-main-menu .menu__level {
   text-align: left;
-}
-
-// MENU HOVER COLORS - Apply custom colors regardless of hover effect
-#navbar.dxpr-theme-header--top .nav {
-  .active > a,
-  a:hover,
-  a:focus,
-  a.is-active {
-    background-color: var(--dxt-setting-menu-hover-background);
-    color: var(--dxt-setting-menu-hover-text-color);
-  }
-
-  a.dropdown-item {
-    &:hover,
-    &:focus {
-      background-color: var(--dxt-setting-menu-hover-background);
-      color: var(--dxt-setting-menu-hover-text-color);
-    }
-  }
-}
-
-#navbar.dxpr-theme-header--top .dropdown-menu {
-  a,
-  button {
-    &:hover,
-    &:focus {
-      background-color: var(--dxt-setting-dropdown-hover-background);
-      color: var(--dxt-setting-dropdown-hover-text-color);
-    }
-  }
-}
-
-// MENU HOVER OPACITY EFFECT
-#navbar.dxpr-theme-header--hover-opacity .nav {
-  .active > a,
-  a:hover,
-  a:focus,
-  a.is-active {
-    opacity: 0.8;
-  }
 }
 
 .dxpr-theme-header--top.dxpr-theme-header--hover-border .nav > li {
