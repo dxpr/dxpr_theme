@@ -11,6 +11,7 @@
   .nav-child-fixed-width {
     top: var(--dxt-setting-header-top-height);
   }
+
 }
 
 .navbar.container, .navbar.container-fluid {
@@ -189,56 +190,12 @@
   text-align: left;
 }
 
-// MENU HOVER BACKGROUND EFFECT
-#navbar.dxpr-theme-header--hover-background .nav {
-  .active > a,
-  a:hover,
-  a:hover .nav a:focus,
-  a.is-active {
-    background-color: var(--dxt-setting-menu-hover-background, dxpr-color('header')) !important;
-  }
-
-  a.dropdown-item {
-    &:hover,
-    &:focus {
-      background-color: var(--dxt-setting-menu-hover-background) !important;
-    }
-  }
-}
-
-#navbar.dxpr-theme-header--hover-background .dropdown-menu {
-  a,
-  button {
-    &:hover,
-    &:focus {
-      background-color: var(--dxt-setting-dropdown-hover-background) !important;
-    }
-  }
-}
-
-#navbar.dxpr-theme-header--hover-text .nav {
-  .active > a,
-  a:hover,
-  a:focus,
-  a.is-active {
-    color: var(--dxt-setting-menu-hover-text-color) !important;
-  }
-}
-
-#navbar.dxpr-theme-header--hover-opacity .nav {
-  .active > a,
-  a:hover,
-  a:focus,
-  a.is-active {
-    opacity: 0.8;
-  }
-}
-
 .dxpr-theme-header--top.dxpr-theme-header--hover-border .nav > li {
   position: relative;
 }
 
-.dxpr-theme-header--top.dxpr-theme-header--hover-border .nav > li > a::before {
+.dxpr-theme-header--top.dxpr-theme-header--hover-border .nav > li > a::before,
+.dxpr-theme-header--top.dxpr-theme-header--hover-border .nav > li > span.nav-link::before {
   background: #eee;
   background: dxpr-color('headertext');
   bottom: 0;
@@ -254,7 +211,9 @@
 }
 
 .dxpr-theme-header--top.dxpr-theme-header--hover-border .nav li.active > a::before,
+.dxpr-theme-header--top.dxpr-theme-header--hover-border .nav li.active > span.nav-link::before,
 .dxpr-theme-header--top.dxpr-theme-header--hover-border .nav a:hover::before,
+.dxpr-theme-header--top.dxpr-theme-header--hover-border .nav span.nav-link:hover::before,
 .dxpr-theme-header--top.dxpr-theme-header--hover-border .nav a.is-active::before {
   transform: scale(1, 1) translate(10px, 0);
 }

@@ -349,39 +349,3 @@ html.js .gin--navigation {
   }
 }
 
-/* Custom colors */
-.html #navbar.dxpr-theme-header--top .container-row > .col-sm-12 {
-  background-color: var(--dxt-setting-navbar-background);
-}
-
-#navbar.dxpr-theme-header--top {
-  .block {
-    background-color: var(--dxt-setting-header-block-background);
-  }
-
-  .block:not(.contextual-region),
-  .block:not(.contextual-region) a,
-  .block .btn-link {
-    color: var(--dxt-setting-header-block-text-color);
-  }
-
-  .nav {
-    background-color: var(--dxt-setting-menu-background);
-  }
-
-  .nav,
-  .nav a,
-  .nav span {
-    color: var(--dxt-setting-menu-text-color);
-  }
-
-  .dropdown-menu {
-    background-color: var(--dxt-setting-dropdown-background);
-  }
-
-  .dropdown,
-  .dropdown-menu a,
-  .dropdown-menu button {
-    color: var(--dxt-setting-dropdown-text-color);
-  }
-}

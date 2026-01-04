@@ -72,6 +72,11 @@ dxpr-theme-header--mobile:
     theme:
       css/components/dxpr-theme-header--mobile.css: { minified: true }
 
+dxpr-theme-navigation-colors:
+  css:
+    theme:
+      css/components/dxpr-theme-navigation-colors.css: { minified: true }
+
 dxpr-theme-secondary-header:
   css:
     theme:

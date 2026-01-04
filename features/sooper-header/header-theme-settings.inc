@@ -235,7 +235,7 @@ function header_theme_settings(array &$form, $theme) {
   ];
 
   $form['dxpr_theme_settings']['header']['header_top']['navcolors'] = [
-    '#title' => t('Customize Navigation Colors'),
+    '#title' => t('Custom Header Colors'),
     '#type' => 'details',
     '#collapsible' => TRUE,
     '#collapsed' => TRUE,
@@ -255,6 +255,24 @@ function header_theme_settings(array &$form, $theme) {
     '#states' => [
       'visible' => [
         ':input[name="navbar_background"]' => ['value' => 'custom'],
+      ],
+    ],
+  ];
+
+  $form['dxpr_theme_settings']['header']['header_top']['navcolors']['navbar_text_color'] = [
+    '#type' => 'select',
+    '#title' => t('Navbar Text'),
+    '#default_value' => theme_get_setting('navbar_text_color'),
+    '#options' => _dxpr_theme_color_options($theme),
+  ];
+
+  $form['dxpr_theme_settings']['header']['header_top']['navcolors']['navbar_text_color_custom'] = [
+    '#type' => 'textfield',
+    '#title' => t('Custom Navbar Text Color'),
+    '#default_value' => theme_get_setting('navbar_text_color_custom'),
+    '#states' => [
+      'visible' => [
+        ':input[name="navbar_text_color"]' => ['value' => 'custom'],
       ],
     ],
   ];
@@ -471,6 +489,42 @@ function header_theme_settings(array &$form, $theme) {
     '#states' => [
       'visible' => [
         ':input[name="mobile_menu_text_color"]' => ['value' => 'custom'],
+      ],
+    ],
+  ];
+
+  $form['dxpr_theme_settings']['header']['header_top']['navcolors']['mobile_menu_hover_background'] = [
+    '#type' => 'select',
+    '#title' => t('Mobile Menu Hover Background'),
+    '#default_value' => theme_get_setting('mobile_menu_hover_background'),
+    '#options' => _dxpr_theme_color_options($theme),
+  ];
+
+  $form['dxpr_theme_settings']['header']['header_top']['navcolors']['mobile_menu_hover_background_custom'] = [
+    '#type' => 'textfield',
+    '#title' => t('Custom Mobile Menu Hover Background'),
+    '#default_value' => theme_get_setting('mobile_menu_hover_background_custom'),
+    '#states' => [
+      'visible' => [
+        ':input[name="mobile_menu_hover_background"]' => ['value' => 'custom'],
+      ],
+    ],
+  ];
+
+  $form['dxpr_theme_settings']['header']['header_top']['navcolors']['mobile_menu_hover_text_color'] = [
+    '#type' => 'select',
+    '#title' => t('Mobile Menu Hover Text'),
+    '#default_value' => theme_get_setting('mobile_menu_hover_text_color'),
+    '#options' => _dxpr_theme_color_options($theme),
+  ];
+
+  $form['dxpr_theme_settings']['header']['header_top']['navcolors']['mobile_menu_hover_text_color_custom'] = [
+    '#type' => 'textfield',
+    '#title' => t('Custom Mobile Menu Hover Text Color'),
+    '#default_value' => theme_get_setting('mobile_menu_hover_text_color_custom'),
+    '#states' => [
+      'visible' => [
+        ':input[name="mobile_menu_hover_text_color"]' => ['value' => 'custom'],
       ],
     ],
   ];
