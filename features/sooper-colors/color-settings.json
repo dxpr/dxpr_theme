@@ -356,6 +356,36 @@
         "silver": "#d7d7d7",
         "body": "#f6f6f6"
       }
+    },
+    "highcontrast": {
+      "title": "WCAG AAA High Contrast",
+      "colors": {
+        "base": "#000000",
+        "basetext": "#ffffff",
+        "link": "#0000ee",
+        "accent1": "#000000",
+        "accent1text": "#ffffff",
+        "accent2": "#000000",
+        "accent2text": "#ffffff",
+        "text": "#000000",
+        "headings": "#000000",
+        "footer": "#000000",
+        "footertext": "#ffffff",
+        "secheader": "#000000",
+        "secheadertext": "#ffffff",
+        "card": "#ffffff",
+        "cardtext": "#000000",
+        "header": "#000000",
+        "headertext": "#ffffff",
+        "headerside": "#000000",
+        "headersidetext": "#ffffff",
+        "pagetitle": "#000000",
+        "pagetitletext": "#ffffff",
+        "graylight": "#767676",
+        "graylighter": "#f0f0f0",
+        "silver": "#e0e0e0",
+        "body": "#ffffff"
+      }
     }
   }
 }
