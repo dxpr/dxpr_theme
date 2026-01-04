@@ -4,6 +4,20 @@
 @import "../includes/variables";
 
 .html {
+  input[type="checkbox"],
+  input[type="radio"] {
+    accent-color: var(--dxt-color-base);
+
+    &:hover {
+      accent-color: var(--dxt-color-headings);
+    }
+
+    &:focus {
+      outline: 3px solid var(--dxt-color-base);
+      outline-offset: 0;
+    }
+  }
+
   .form-control,
   input[type="date"],
   input[type="datetime-local"],
@@ -21,17 +35,21 @@
   textarea,
   select {
     background: transparent;
-    border: 1px solid dxpr-color('graylighter');
+    border: 1px solid currentcolor;
     border-radius: 3px;
     box-shadow: none;
     height: auto;
     line-height: inherit;
     padding: 12px;
 
+    &:hover {
+      border-color: var(--dxt-color-headings);
+    }
+
     &:focus {
-      border-color: dxpr-color('base');
-      box-shadow: none;
-      outline: none;
+      border-color: var(--dxt-color-headings);
+      outline: 3px solid var(--dxt-color-base);
+      outline-offset: 0;
     }
   }
 
@@ -64,6 +82,17 @@
 
   .form-actions .form-submit {
     margin-right: 1em;
+  }
+
+  button,
+  input[type="button"],
+  input[type="submit"],
+  input[type="reset"],
+  .btn {
+    &:focus {
+      outline: 3px solid var(--dxt-color-base);
+      outline-offset: 0;
+    }
   }
 }
 
