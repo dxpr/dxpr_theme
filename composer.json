@@ -25,6 +25,6 @@
     "require": {
         "drupal/bootstrap5": "^3 || ^4",
         "drupal/media_library_form_element": "^2.1",
-        "dxpr/dxpr_theme_helper": "^3.0"
+        "drupal/dxpr_theme_helper": "^3.0"
     }
 }
