@@ -963,7 +963,7 @@ html:has(#system-theme-settings) body.body--dxpr-theme-header-fixed.body--dxpr-t
       font-weight: 500;
       padding: 16px;
       text-shadow: 0 1px 2px var(--dxt-admin-color-shadow-20);
-      transition: box-shadow 0.2s ease, transform 0.15s ease;
+      transition: background-color 0.35s ease, box-shadow 0.2s ease, transform 0.15s ease;
       width: 100%;
 
       &.active {
@@ -973,6 +973,21 @@ html:has(#system-theme-settings) body.body--dxpr-theme-header-fixed.body--dxpr-t
 
       &:hover:not(.active) {
         box-shadow: 0 2px 8px var(--dxt-admin-color-shadow-10);
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        transition: none;
+
+        &.active {
+          transform: none;
+        }
+      }
+
+      // Rainbow border flash when AI updates color
+      &.dxt-admin-ai-updated {
+        border: 3px solid;
+        border-image: linear-gradient(90deg, var(--dxt-rainbow-color-1), var(--dxt-rainbow-color-2), var(--dxt-rainbow-color-3)) 1;
+        padding: 13px; // Compensate for 3px border (16px - 3px)
       }
     }
   }
