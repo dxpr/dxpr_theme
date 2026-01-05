@@ -1557,73 +1557,118 @@ html.html--dxpr-theme-sticky-footer:has(#system-theme-settings) {
     }
   }
 
-  .skeleton-header {
-    margin-bottom: 40px;
-  }
-
-  .skeleton-title {
+  // Base shimmer effect mixin
+  %skeleton-shimmer {
     animation: skeleton-shimmer 1.5s ease-in-out infinite;
     background: linear-gradient(90deg, #e5e5ea 0%, #f2f2f7 50%, #e5e5ea 100%);
     background-size: 200px 100%;
     border-radius: 4px;
-    height: 48px;
-    margin-bottom: 16px;
-    width: 300px;
   }
 
-  .skeleton-subtitle {
-    animation: skeleton-shimmer 1.5s ease-in-out infinite;
-    animation-delay: 0.1s;
-    background: linear-gradient(90deg, #e5e5ea 0%, #f2f2f7 50%, #e5e5ea 100%);
-    background-size: 200px 100%;
-    border-radius: 4px;
-    height: 24px;
-    width: 200px;
-  }
-
-  .skeleton-section {
-    margin-bottom: 40px;
-  }
-
-  .skeleton-heading {
-    animation: skeleton-shimmer 1.5s ease-in-out infinite;
-    animation-delay: 0.2s;
-    background: linear-gradient(90deg, #e5e5ea 0%, #f2f2f7 50%, #e5e5ea 100%);
-    background-size: 200px 100%;
-    border-radius: 4px;
-    height: 32px;
-    margin-bottom: 20px;
-    width: 180px;
-  }
-
-  .skeleton-cards {
+  .skeleton-content {
     display: flex;
-    gap: 20px;
+    flex-direction: column;
+    gap: 24px;
   }
 
-  .skeleton-card {
-    animation: skeleton-shimmer 1.5s ease-in-out infinite;
-    animation-delay: 0.3s;
-    background: linear-gradient(90deg, #e5e5ea 0%, #f2f2f7 50%, #e5e5ea 100%);
-    background-size: 200px 100%;
-    border-radius: 8px;
+  .skeleton-row {
+    display: flex;
+    gap: 24px;
+  }
+
+  .skeleton-col {
     flex: 1;
-    height: 150px;
-    max-width: 300px;
+  }
+
+  // Typography headings with size variants
+  .skeleton-heading {
+    @extend %skeleton-shimmer;
+
+    margin-bottom: 12px;
+    width: 70%;
+
+    &.lg {
+      height: 40px;
+    }
+
+    &.md {
+      height: 32px;
+    }
+
+    &.sm {
+      height: 24px;
+    }
+
+    &.xs {
+      height: 20px;
+    }
   }
 
   .skeleton-text {
-    animation: skeleton-shimmer 1.5s ease-in-out infinite;
-    animation-delay: 0.4s;
-    background: linear-gradient(90deg, #e5e5ea 0%, #f2f2f7 50%, #e5e5ea 100%);
-    background-size: 200px 100%;
-    border-radius: 4px;
-    height: 20px;
-    margin-bottom: 12px;
-    width: 100%;
+    @extend %skeleton-shimmer;
 
-    &.short {
-      width: 60%;
+    animation-delay: 0.1s;
+    height: 16px;
+    margin-top: 8px;
+    width: 90%;
+  }
+
+  // Buttons row
+  .skeleton-buttons {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+
+  .skeleton-button {
+    @extend %skeleton-shimmer;
+
+    animation-delay: 0.15s;
+    border-radius: 4px;
+    height: 38px;
+    width: 80px;
+  }
+
+  // Color columns placeholder
+  .skeleton-colors {
+    @extend %skeleton-shimmer;
+
+    animation-delay: 0.2s;
+    border-radius: 0;
+    height: 48px;
+    margin-bottom: 16px;
+    width: 100%;
+  }
+
+  // Input field placeholder
+  .skeleton-input {
+    @extend %skeleton-shimmer;
+
+    animation-delay: 0.25s;
+    height: 60px;
+    width: 100%;
+  }
+
+  // Cards row
+  .skeleton-cards {
+    display: flex;
+    gap: 16px;
+
+    &.three .skeleton-card {
+      flex: 1;
     }
+
+    &.two .skeleton-card {
+      flex: 1;
+      max-width: 50%;
+    }
+  }
+
+  .skeleton-card {
+    @extend %skeleton-shimmer;
+
+    animation-delay: 0.3s;
+    border-radius: 8px;
+    height: 180px;
   }
 }

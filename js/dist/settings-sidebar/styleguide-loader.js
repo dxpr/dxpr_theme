@@ -10,26 +10,36 @@ function loadStyleguide() {
     const contentRegion = document.querySelector(".region-content");
     if (contentRegion) {
       const styleguideDiv = document.createElement("div");
-      // Skeleton loader for better loading UX
+      // Skeleton loader for better loading UX - matches quick preview section
       styleguideDiv.innerHTML = `
         <div class="dxpr-styleguide-skeleton">
-          <div class="skeleton-header">
-            <div class="skeleton-title"></div>
-            <div class="skeleton-subtitle"></div>
-          </div>
           <div class="skeleton-content">
-            <div class="skeleton-section">
-              <div class="skeleton-heading"></div>
-              <div class="skeleton-cards">
-                <div class="skeleton-card"></div>
-                <div class="skeleton-card"></div>
-                <div class="skeleton-card"></div>
+            <div class="skeleton-row">
+              <div class="skeleton-col">
+                <div class="skeleton-heading lg"></div>
+                <div class="skeleton-heading md"></div>
+                <div class="skeleton-heading sm"></div>
+                <div class="skeleton-heading xs"></div>
+                <div class="skeleton-text"></div>
+              </div>
+              <div class="skeleton-col">
+                <div class="skeleton-buttons">
+                  <div class="skeleton-button"></div>
+                  <div class="skeleton-button"></div>
+                  <div class="skeleton-button"></div>
+                </div>
+                <div class="skeleton-colors"></div>
+                <div class="skeleton-input"></div>
               </div>
             </div>
-            <div class="skeleton-section">
-              <div class="skeleton-heading"></div>
-              <div class="skeleton-text"></div>
-              <div class="skeleton-text short"></div>
+            <div class="skeleton-cards three">
+              <div class="skeleton-card"></div>
+              <div class="skeleton-card"></div>
+              <div class="skeleton-card"></div>
+            </div>
+            <div class="skeleton-cards two">
+              <div class="skeleton-card"></div>
+              <div class="skeleton-card"></div>
             </div>
           </div>
         </div>`;
