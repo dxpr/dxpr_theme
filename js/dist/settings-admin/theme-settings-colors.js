@@ -174,7 +174,10 @@ const dxprThemeSettingsColors = {
 
         // Flash rainbow border.
         colorField.classList.add("dxt-admin-ai-updated");
-        setTimeout(() => colorField.classList.remove("dxt-admin-ai-updated"), 2000);
+        setTimeout(
+          () => colorField.classList.remove("dxt-admin-ai-updated"),
+          2000,
+        );
       }
     });
 
