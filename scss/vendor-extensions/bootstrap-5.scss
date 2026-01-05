@@ -107,6 +107,7 @@ html body {
     }
   }
 
+  // On hover/focus: solid buttons become outline style
   .btn-default:hover,
   .btn-default:focus,
   .btn-default.focus,
@@ -119,12 +120,12 @@ html body {
   .btn-primary.active,
   a.bg-primary:hover,
   a.bg-primary:focus {
-    background-color: dxpr-color('accent1');
-    border-color: dxpr-color('accent1');
-    color: dxpr-color('accent1text');
+    background-color: transparent;
+    border-color: dxpr-color('base');
+    color: dxpr-color('base');
 
     a {
-      color: dxpr-color('accent1text');
+      color: dxpr-color('base');
     }
   }
 
@@ -133,12 +134,12 @@ html body {
   .btn-secondary.focus,
   .btn-secondary:active,
   .btn-secondary.active {
-    background-color: dxpr-color('accent2');
-    border-color: dxpr-color('accent2');
-    color: dxpr-color('accent2text');
+    background-color: transparent;
+    border-color: dxpr-color('text');
+    color: dxpr-color('text');
 
     a {
-      color: dxpr-color('accent2text');
+      color: dxpr-color('text');
     }
   }
 
