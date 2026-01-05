@@ -263,7 +263,8 @@ html body {
     background-color: dxpr-color('card');
     color: dxpr-color('cardtext');
 
-    a {
+    // Exclude buttons to preserve Bootstrap button text colors
+    a:not(.btn) {
       color: dxpr-color('cardtext');
     }
 
