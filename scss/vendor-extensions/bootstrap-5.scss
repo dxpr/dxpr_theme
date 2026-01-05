@@ -292,12 +292,54 @@ html body {
   }
 
   // Override Bootstrap background classes to use proper text colors
+  // Also invert button colors when on matching background for visibility
   .bg-primary {
     background-color: dxpr-color('base') !important;
     color: dxpr-color('basetext') !important;
 
     h1, h2, h3, h4, h5, h6 {
       color: dxpr-color('basetext');
+    }
+
+    // Invert button colors for visibility on primary background
+    .btn-primary,
+    .btn-default {
+      background-color: dxpr-color('basetext');
+      border-color: dxpr-color('basetext');
+      color: dxpr-color('base');
+
+      a {
+        color: dxpr-color('base');
+      }
+
+      &:hover,
+      &:focus,
+      &.focus,
+      &:active,
+      &.active {
+        background-color: transparent;
+        border-color: dxpr-color('basetext');
+        color: dxpr-color('basetext');
+
+        a {
+          color: dxpr-color('basetext');
+        }
+      }
+    }
+
+    .btn-outline-primary {
+      border-color: dxpr-color('basetext');
+      color: dxpr-color('basetext');
+
+      &:hover,
+      &:focus,
+      &.focus,
+      &:active,
+      &.active {
+        background-color: dxpr-color('basetext');
+        border-color: dxpr-color('basetext');
+        color: dxpr-color('base');
+      }
     }
   }
 
@@ -307,6 +349,46 @@ html body {
 
     h1, h2, h3, h4, h5, h6 {
       color: dxpr-color('accent1text');
+    }
+
+    // Invert button colors for visibility on secondary background
+    .btn-secondary {
+      background-color: dxpr-color('accent1text');
+      border-color: dxpr-color('accent1text');
+      color: dxpr-color('accent1');
+
+      a {
+        color: dxpr-color('accent1');
+      }
+
+      &:hover,
+      &:focus,
+      &.focus,
+      &:active,
+      &.active {
+        background-color: transparent;
+        border-color: dxpr-color('accent1text');
+        color: dxpr-color('accent1text');
+
+        a {
+          color: dxpr-color('accent1text');
+        }
+      }
+    }
+
+    .btn-outline-secondary {
+      border-color: dxpr-color('accent1text');
+      color: dxpr-color('accent1text');
+
+      &:hover,
+      &:focus,
+      &.focus,
+      &:active,
+      &.active {
+        background-color: dxpr-color('accent1text');
+        border-color: dxpr-color('accent1text');
+        color: dxpr-color('accent1');
+      }
     }
   }
 
