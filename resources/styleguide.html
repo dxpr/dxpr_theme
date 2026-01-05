@@ -64,20 +64,25 @@
   <nav class="small" id="toc">
     <ul class="list-unstyled">
       <li class="my-2">
+        <a class="btn d-inline-flex align-items-center" href="#quick-preview">Quick Preview</a>
+      </li>
+      <li class="my-2">
         <button class="btn d-inline-flex align-items-center collapsed" data-bs-toggle="collapse" aria-expanded="false"
                 data-bs-target="#contents-collapse" aria-controls="contents-collapse">Contents
         </button>
         <ul class="list-unstyled ps-3 collapse" id="contents-collapse">
           <li><a class="d-inline-flex align-items-center rounded"
-                 href="https://getbootstrap.com/docs/5.1/examples/cheatsheet/#typography">Typography</a></li>
+                 href="#backgrounds">Colors</a></li>
           <li><a class="d-inline-flex align-items-center rounded"
-                 href="https://getbootstrap.com/docs/5.1/examples/cheatsheet/#images">Images</a></li>
+                 href="#card">Cards</a></li>
           <li><a class="d-inline-flex align-items-center rounded"
-                 href="https://getbootstrap.com/docs/5.1/examples/cheatsheet/#tables">Tables</a></li>
+                 href="#typography">Typography</a></li>
           <li><a class="d-inline-flex align-items-center rounded"
-                 href="https://getbootstrap.com/docs/5.1/examples/cheatsheet/#figures">Figures</a></li>
+                 href="#images">Images</a></li>
           <li><a class="d-inline-flex align-items-center rounded"
-                 href="https://getbootstrap.com/docs/5.1/examples/cheatsheet/#backgrounds">Backgrounds</a></li>
+                 href="#tables">Tables</a></li>
+          <li><a class="d-inline-flex align-items-center rounded"
+                 href="#figures">Figures</a></li>
         </ul>
       </li>
       <li class="my-2">
@@ -150,6 +155,95 @@
   </nav>
 </aside>
 <div class="bd-cheatsheet container-fluid">
+  <!-- Quick Preview Section -->
+  <section id="quick-preview" class="py-4 border-bottom">
+    <div class="row">
+      <!-- Typography Column -->
+      <div class="col-md-6">
+        <h1>Heading 1</h1>
+        <h2>Heading 2</h2>
+        <h3>Heading 3</h3>
+        <h4>Heading 4</h4>
+        <p>Body text with a <a href="#">sample link</a> for testing typography and link colors in your theme.</p>
+      </div>
+      <!-- Buttons & Colors Column -->
+      <div class="col-md-6">
+        <div class="mb-3">
+          <button type="button" class="btn btn-primary">Primary</button>
+          <button type="button" class="btn btn-secondary">Secondary</button>
+          <button type="button" class="btn btn-light">Light</button>
+          <button type="button" class="btn btn-dark">Dark</button>
+          <button type="button" class="btn btn-outline-primary">Outline</button>
+        </div>
+        <div class="row g-0 mb-3">
+          <div class="col bg-primary p-3">bg-primary</div>
+          <div class="col bg-secondary p-3">bg-secondary</div>
+          <div class="col bg-dark p-3">bg-dark</div>
+        </div>
+        <div class="mb-3">
+          <label for="preview-input" class="form-label">Form Label</label>
+          <input type="text" class="form-control" id="preview-input" placeholder="Input field">
+        </div>
+      </div>
+    </div>
+    <!-- Card Colors Row 1 -->
+    <div class="row mt-3 g-3">
+      <div class="col">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Default Card</h5>
+            <p class="card-text">Theme card colors.</p>
+            <a href="#" class="btn btn-primary">Button</a>
+          </div>
+          <div class="card-footer">Card footer</div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card bg-primary">
+          <div class="card-body">
+            <h5 class="card-title">Primary Card</h5>
+            <p class="card-text">Primary background.</p>
+            <a href="#" class="btn btn-light">Button</a>
+          </div>
+          <div class="card-footer">Card footer</div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card bg-secondary">
+          <div class="card-body">
+            <h5 class="card-title">Secondary Card</h5>
+            <p class="card-text">Secondary background.</p>
+            <a href="#" class="btn btn-light">Button</a>
+          </div>
+          <div class="card-footer">Card footer</div>
+        </div>
+      </div>
+    </div>
+    <!-- Card Colors Row 2 -->
+    <div class="row mt-3 g-3">
+      <div class="col">
+        <div class="card bg-light">
+          <div class="card-body">
+            <h5 class="card-title">Light Card</h5>
+            <p class="card-text">Light background.</p>
+            <a href="#" class="btn btn-dark">Button</a>
+          </div>
+          <div class="card-footer">Card footer</div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card bg-dark">
+          <div class="card-body">
+            <h5 class="card-title">Dark Card</h5>
+            <p class="card-text">Dark background.</p>
+            <a href="#" class="btn btn-light">Button</a>
+          </div>
+          <div class="card-footer">Card footer</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section id="content">
     <h2 class=" fw-bold pt-3 pt-xl-5 pb-2 pb-xl-3">Contents</h2>
     <article class="my-3" id="backgrounds">
