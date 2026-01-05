@@ -171,6 +171,10 @@ const dxprThemeSettingsColors = {
       const colorField = document.getElementById(`edit-color-palette-${key}`);
       if (colorField) {
         this.updateColorField(colorField, colors[key], true);
+
+        // Flash rainbow border.
+        colorField.classList.add("dxt-admin-ai-updated");
+        setTimeout(() => colorField.classList.remove("dxt-admin-ai-updated"), 2000);
       }
     });
 
