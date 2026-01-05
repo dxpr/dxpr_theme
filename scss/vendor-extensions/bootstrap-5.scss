@@ -292,6 +292,7 @@ html body {
   }
 
   // Override Bootstrap background classes to use proper text colors
+  // Also invert button colors when on matching background for visibility
   .bg-primary {
     background-color: dxpr-color('base') !important;
     color: dxpr-color('basetext') !important;
@@ -299,19 +300,8 @@ html body {
     h1, h2, h3, h4, h5, h6 {
       color: dxpr-color('basetext');
     }
-  }
 
-  .bg-secondary {
-    background-color: dxpr-color('accent1') !important;
-    color: dxpr-color('accent1text');
-
-    h1, h2, h3, h4, h5, h6 {
-      color: dxpr-color('accent1text');
-    }
-  }
-
-  // Invert button colors when on matching background for visibility
-  .bg-primary {
+    // Invert button colors for visibility on primary background
     .btn-primary,
     .btn-default {
       background-color: dxpr-color('basetext');
@@ -354,6 +344,14 @@ html body {
   }
 
   .bg-secondary {
+    background-color: dxpr-color('accent1') !important;
+    color: dxpr-color('accent1text');
+
+    h1, h2, h3, h4, h5, h6 {
+      color: dxpr-color('accent1text');
+    }
+
+    // Invert button colors for visibility on secondary background
     .btn-secondary {
       background-color: dxpr-color('accent1text');
       border-color: dxpr-color('accent1text');
