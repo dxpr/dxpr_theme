@@ -39,7 +39,7 @@
     "postcss-pxtorem": "^6.1.0",
     "prettier": "^3",
     "sass": "^1",
-    "stylelint": "^16.24.0",
+    "stylelint": "^16.26.1",
     "stylelint-config-standard-scss": "^13.1.0",
     "stylelint-formatter-pretty": "^4.0.0",
     "stylelint-order": "^7.0.0",
