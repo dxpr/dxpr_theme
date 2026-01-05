@@ -141,7 +141,6 @@ Variables are organized into several namespaces:
 
 - `--dxt-color-*` - Theme color variables
 - `--dxt-setting-*` - Theme setting variables
-- `--dxt-admin-*` - Admin interface variables
 - `--bs-*` - Bootstrap 5 variables (mapped to DXPR variables where applicable)
 
 ### Color Variables
@@ -327,57 +326,6 @@ aivibe, oceanblue, highcontrast).
 | `--dxt-setting-background-image-attachment` | fixed | Background attachment |
 | `--dxt-setting-background-image-position` | center center | Background position |
 | `--dxt-setting-background-image-style` | cover | Background style |
-
-### Admin Theme Variables
-
-Variables used in the theme settings admin interface.
-
-| Variable | Value | Description |
-|----------|-------|-------------|
-| `--dxt-admin-sidebar-width` | 40vw | Admin sidebar width |
-| `--dxt-admin-sidebar-max-width` | 1100px | Max sidebar width |
-| `--dxt-admin-bg` | #f2f2f7 | Admin background |
-| `--dxt-admin-accent` | #314dd0 | Admin accent color |
-| `--dxt-admin-accent-hover` | #2d46bd | Accent hover |
-| `--dxt-admin-accent-light` | #eaedfa | Light accent |
-| `--dxt-admin-text` | #1c1c1e | Admin text |
-| `--dxt-admin-text-muted` | #8e8e93 | Muted text |
-| `--dxt-admin-text-disabled` | #9ca3af | Disabled text |
-| `--dxt-admin-border` | #d1d5db | Admin border |
-| `--dxt-admin-surface` | #fff | Admin surface |
-| `--dxt-admin-surface-alt` | #e5e5ea | Alternate surface |
-| `--dxt-admin-toggle-off` | #8e8e93 | Toggle off state |
-| `--dxt-admin-toggle-off-hover` | #636366 | Toggle hover |
-| `--dxt-admin-toggle-off-active` | #48484a | Toggle active |
-| `--dxt-admin-focus-ring` | rgb(49 77 208 / 25%) | Focus ring color |
-| `--dxt-admin-selected-bg` | rgb(49 77 208 / 15%) | Selected background |
-| `--dxt-admin-selected-bg-hover` | rgb(49 77 208 / 20%) | Selected hover |
-| `--dxt-admin-search-bg` | rgb(118 118 128 / 8%) | Search background |
-| `--dxt-admin-search-bg-focus` | rgb(118 118 128 / 12%) | Search focus |
-| `--dxt-admin-tab-hover` | rgb(255 255 255 / 60%) | Tab hover state |
-| `--dxt-admin-tab-active` | rgb(255 255 255 / 80%) | Tab active state |
-
-### Admin Color Palette
-
-| Variable | Value | Description |
-|----------|-------|-------------|
-| `--dxt-admin-color-primary-50` | #eaedfa | Light primary |
-| `--dxt-admin-color-primary-500` | #314dd0 | Primary |
-| `--dxt-admin-color-primary-600` | #2d46bd | Dark primary |
-| `--dxt-admin-color-neutral-0` | #fff | Pure white |
-| `--dxt-admin-color-neutral-100` | #f2f2f7 | Almost white |
-| `--dxt-admin-color-neutral-200` | #e5e5ea | Very light gray |
-| `--dxt-admin-color-neutral-300` | #d1d5db | Light gray |
-| `--dxt-admin-color-neutral-400` | #9ca3af | Medium-light gray |
-| `--dxt-admin-color-neutral-500` | #8e8e93 | Medium gray |
-| `--dxt-admin-color-neutral-600` | #636366 | Medium-dark gray |
-| `--dxt-admin-color-neutral-700` | #48484a | Dark gray |
-| `--dxt-admin-color-neutral-800` | #374151 | Very dark gray |
-| `--dxt-admin-color-neutral-900` | #1c1c1e | Near black |
-| `--dxt-admin-color-shadow-8` | rgb(0 0 0 / 8%) | Shadow 8% |
-| `--dxt-admin-color-shadow-10` | rgb(0 0 0 / 10%) | Shadow 10% |
-| `--dxt-admin-color-shadow-15` | rgb(0 0 0 / 15%) | Shadow 15% |
-| `--dxt-admin-color-shadow-20` | rgb(0 0 0 / 20%) | Shadow 20% |
 
 ### Border Radius Variables
 
