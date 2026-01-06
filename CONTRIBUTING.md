@@ -34,7 +34,9 @@ Issues or PRs that do not use templates will be closed and asked to resubmit.
    create artifacts on the fly.
 7. If the issue defines a "Scope of affected files" do not include changes to
    files not in this list unless absolutely necessary. When you do this you must
-   explain why. 
+   explain why.
+8. Do NOT run `npx`, `npm run`, or `grunt` directly to build artifacts. Use the
+   Docker watch process or Docker build commands from the README instead. 
 
 ### Code ownership
 
