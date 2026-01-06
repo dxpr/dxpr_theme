@@ -194,8 +194,7 @@
   position: relative;
 }
 
-.dxpr-theme-header--top.dxpr-theme-header--hover-border .nav > li > a::before,
-.dxpr-theme-header--top.dxpr-theme-header--hover-border .nav > li > span.nav-link::before {
+.dxpr-theme-header--top.dxpr-theme-header--hover-border .nav > li > a::before {
   background: #eee;
   background: dxpr-color('headertext');
   bottom: 0;
@@ -211,9 +210,7 @@
 }
 
 .dxpr-theme-header--top.dxpr-theme-header--hover-border .nav li.active > a::before,
-.dxpr-theme-header--top.dxpr-theme-header--hover-border .nav li.active > span.nav-link::before,
 .dxpr-theme-header--top.dxpr-theme-header--hover-border .nav a:hover::before,
-.dxpr-theme-header--top.dxpr-theme-header--hover-border .nav span.nav-link:hover::before,
 .dxpr-theme-header--top.dxpr-theme-header--hover-border .nav a.is-active::before {
   transform: scale(1, 1) translate(10px, 0);
 }
