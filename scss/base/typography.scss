@@ -6,7 +6,7 @@
 @import "../includes/variables";
 
 // Default font stack fallback.
-$default-font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+$default-font-stack: -apple-system, blinkmacsystemfont, "Segoe UI", roboto, helvetica, arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 
 body, .toooltip {
   font-family: var(--dxt-setting-body-font-face, #{$default-font-stack});
