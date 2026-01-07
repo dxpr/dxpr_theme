@@ -5,35 +5,38 @@
 // Fonts
 @import "../includes/variables";
 
+// Default font stack fallback.
+$default-font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+
 body, .toooltip {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  font-style: normal;
-  font-weight: 400;
+  font-family: var(--dxt-setting-body-font-face-family, #{$default-font-stack});
+  font-style: var(--dxt-setting-body-font-face-style, normal);
+  font-weight: var(--dxt-setting-body-font-face-weight, 400);
 }
 
 h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, label, .field--label {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  font-style: normal;
-  font-weight: 700;
+  font-family: var(--dxt-setting-headings-font-face-family, #{$default-font-stack});
+  font-style: var(--dxt-setting-headings-font-face-style, normal);
+  font-weight: var(--dxt-setting-headings-font-face-weight, 700);
 }
 
 .dxpr-theme-header .nav {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  font-style: normal;
-  font-weight: 400;
+  font-family: var(--dxt-setting-nav-font-face-family, #{$default-font-stack});
+  font-style: var(--dxt-setting-nav-font-face-style, normal);
+  font-weight: var(--dxt-setting-nav-font-face-weight, 400);
 }
 
 .site-name, .navbar-brand {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  font-style: normal;
-  font-weight: 400;
+  font-family: var(--dxt-setting-sitename-font-face-family, #{$default-font-stack});
+  font-style: var(--dxt-setting-sitename-font-face-style, normal);
+  font-weight: var(--dxt-setting-sitename-font-face-weight, 400);
 }
 
 blockquote, blockquote p {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: var(--dxt-setting-blockquote-font-face-family, #{$default-font-stack});
   font-size: var(--dxt-setting-blockquote-font-size);
-  font-style: italic;
-  font-weight: 400;
+  font-style: var(--dxt-setting-blockquote-font-face-style, italic);
+  font-weight: var(--dxt-setting-blockquote-font-face-weight, 400);
   line-height: var(--dxt-setting-blockquote-line-height);
 }
 

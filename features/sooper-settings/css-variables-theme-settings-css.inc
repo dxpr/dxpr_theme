@@ -149,13 +149,18 @@ function _dxpr_theme_massage_values(string $key, $value, string $theme, array $s
       }
       break;
 
-    // Handle Font settings.
+    // Handle Font settings - output family, weight, style as separate variables.
     case 'body_font_face':
     case 'blockquote_font_face':
     case 'headings_font_face':
     case 'nav_font_face':
     case 'sitename_font_face':
-      $value = _dxpr_theme_get_font($value, $theme);
+      $font_data = _dxpr_theme_parse_font_for_css_vars($value, $theme);
+      $value = [
+        'family' => $font_data['family'],
+        'weight' => $font_data['weight'],
+        'style' => $font_data['style'],
+      ];
       break;
 
     case 'title_font_size':
@@ -318,4 +323,69 @@ function _dxpr_theme_get_css_settings(): array {
     'title_sticker' => [],
     'title_type' => [],
   ];
+}
+
+/**
+ * Parse font key into CSS variable components (family, weight, style).
+ *
+ * @param string $font_key
+ *   The font key from theme settings.
+ * @param string $theme
+ *   Theme machine name.
+ *
+ * @return array
+ *   Array with 'family', 'weight', 'style' keys.
+ */
+function _dxpr_theme_parse_font_for_css_vars(string $font_key, string $theme): array {
+  $family = '';
+  $weight = '400';
+  $style = 'normal';
+
+  if (empty($font_key)) {
+    return ['family' => $family, 'weight' => $weight, 'style' => $style];
+  }
+
+  $prefix = substr($font_key, 0, 1);
+
+  // Google font (prefix "0").
+  if ($prefix === '0') {
+    $font_parts = explode(':', substr($font_key, 1));
+    $family_name = str_replace('+', ' ', $font_parts[0]);
+    $variant = $font_parts[1] ?? '';
+
+    // Quote the family name.
+    $family = '"' . $family_name . '", -apple-system, BlinkMacSystemFont, sans-serif';
+
+    // Parse variant for weight and style.
+    if (!empty($variant)) {
+      // Extract numeric weight.
+      if (preg_match('/(\d+)/', $variant, $matches)) {
+        $weight = $matches[1];
+      }
+      elseif (in_array($variant, ['regular', ''])) {
+        $weight = '400';
+      }
+      elseif ($variant === 'bold' || $variant === 'bolditalic') {
+        $weight = '700';
+      }
+
+      // Check for italic.
+      if (stripos($variant, 'italic') !== FALSE) {
+        $style = 'italic';
+      }
+    }
+  }
+  // Local font (prefix "1").
+  elseif ($prefix === '1') {
+    $font_parts = explode('|', substr($font_key, 1));
+    if (count($font_parts) >= 3) {
+      $family = '"' . $font_parts[2] . '", -apple-system, BlinkMacSystemFont, sans-serif';
+    }
+  }
+  // Web-safe font (no prefix).
+  else {
+    $family = _dxpr_theme_font_stack($font_key);
+  }
+
+  return ['family' => $family, 'weight' => $weight, 'style' => $style];
 }
