@@ -4,6 +4,7 @@
  */
 
 const { dxprThemeSettingsColors } = require("./theme-settings-colors");
+const { dxprThemeSettingsFonts } = require("./theme-settings-fonts");
 const { handleMaxWidthSettings } = require("./handle-max-width");
 const {
   setNoPreview,
@@ -25,6 +26,11 @@ const { handleDocumentEvents, setFieldValue } = require("./block-handler");
    * Handles the 'Colors' theme settings page.
    */
   Drupal.behaviors.dxpr_themeSettingsColors = dxprThemeSettingsColors;
+
+  /**
+   * Handles the 'Fonts' theme settings page.
+   */
+  Drupal.behaviors.dxpr_themeSettingsFonts = dxprThemeSettingsFonts;
 
   /**
    * Handle dynamic theme settings.

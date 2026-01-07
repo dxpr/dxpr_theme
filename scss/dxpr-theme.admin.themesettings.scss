@@ -1057,6 +1057,65 @@ html:has(#system-theme-settings) body.body--dxpr-theme-header-fixed.body--dxpr-t
     }
   }
 
+  // AI Font Generator
+  .ai-font-generator {
+    margin-bottom: 24px;
+    padding: 0 16px;
+
+    #ai-font-prompt {
+      animation: dxt-rainbow-border 20s linear infinite;
+      border: 3px solid;
+      min-height: 60px;
+      padding: 12px;
+      resize: vertical;
+      width: 100%;
+
+      &::placeholder {
+        color: var(--dxt-admin-text-muted);
+      }
+    }
+
+    .form-item {
+      margin: 0;
+      padding: 0;
+    }
+
+    .form-item label {
+      display: none;
+    }
+
+    .ai-generate-btn {
+      box-sizing: border-box;
+      margin: 4px 0 0;
+      padding: 14px 16px;
+      width: 100%;
+
+      &.is-loading {
+        opacity: 0.7;
+        pointer-events: none;
+      }
+
+      &.is-success {
+        background: #22c55e !important;
+      }
+    }
+
+    .ai-font-error {
+      background: #fef2f2;
+      border-left: 3px solid #dc2626;
+      color: #991b1b;
+      display: none;
+      margin-top: 12px;
+      padding: 10px 12px;
+    }
+  }
+
+  // AI updated animation for font selects - runs until class removed
+  #edit-fonts .form-select.dxt-admin-ai-updated {
+    animation: dxt-rainbow-border 0.5s linear infinite;
+    border: 3px solid transparent;
+  }
+
   .font-preview {
     font-size: 30px;
     padding: 10px 0;

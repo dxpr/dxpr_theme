@@ -19,6 +19,15 @@ function fonts_theme_settings(array &$form, $theme) {
   $font_list = dxpr_theme_font_list();
   $font_count = count($font_list, COUNT_RECURSIVE);
 
+  // Check if DXPR Theme Helper and AI module are available.
+  $ai_fonts_available = \Drupal::moduleHandler()->moduleExists('dxpr_theme_helper')
+    && \Drupal::moduleHandler()->moduleExists('ai');
+
+  // Attach AI font generator settings.
+  $form['#attached']['drupalSettings']['dxpr_themeSettings']['fonts'] = [
+    'aiFontsAvailable' => $ai_fonts_available,
+  ];
+
   $form['dxpr_theme_settings']['fonts'] = [
     '#title' => t('Fonts'),
     '#type' => 'details',
@@ -27,6 +36,47 @@ function fonts_theme_settings(array &$form, $theme) {
     '#collapsed' => TRUE,
     '#weight' => 20,
   ];
+
+  // AI Font Generator.
+  if ($ai_fonts_available) {
+    $form['dxpr_theme_settings']['fonts']['ai_fonts'] = [
+      '#type' => 'container',
+      '#attributes' => [
+        'class' => ['ai-font-generator'],
+      ],
+      '#weight' => -10,
+    ];
+
+    $form['dxpr_theme_settings']['fonts']['ai_fonts']['ai_font_prompt'] = [
+      '#type' => 'textarea',
+      '#title' => t('Describe your typography style'),
+      '#title_display' => 'invisible',
+      '#rows' => 2,
+      '#attributes' => [
+        'id' => 'ai-font-prompt',
+        'placeholder' => t('E.g., "Modern tech startup" or "Elegant luxury brand" or "Playful children\'s website"'),
+      ],
+    ];
+
+    $form['dxpr_theme_settings']['fonts']['ai_fonts']['ai_font_generate'] = [
+      '#type' => 'button',
+      '#value' => t('Suggest Fonts'),
+      '#attributes' => [
+        'id' => 'ai-font-generate',
+        'class' => ['button', 'button--primary', 'ai-generate-btn'],
+      ],
+    ];
+
+    $form['dxpr_theme_settings']['fonts']['ai_fonts']['ai_font_error'] = [
+      '#type' => 'html_tag',
+      '#tag' => 'div',
+      '#attributes' => [
+        'id' => 'ai-font-error',
+        'class' => ['ai-font-error'],
+        'role' => 'alert',
+      ],
+    ];
+  }
 
   // Regular Fonts Settings.
   $form['dxpr_theme_settings']['fonts']['body_font_face'] = [

@@ -19,18 +19,11 @@ function handleMaxWidthSettings(
     setPreview(inputName, elements[0] ?? null);
 
     elements.forEach((element) => {
-      if (
-        element.id === "edit-box-max-width" ||
-        element.id === "edit-layout-max-width"
-      ) {
-        element.addEventListener("change", (event) => {
-          fieldHandler(event);
-        });
-      } else {
-        element.addEventListener("input", (event) => {
-          fieldHandler(event);
-        });
-      }
+      // Select elements need "change" event, inputs need "input" event.
+      const eventType = element.tagName === "SELECT" ? "change" : "input";
+      element.addEventListener(eventType, (event) => {
+        fieldHandler(event);
+      });
 
       const customField = document.querySelector(
         `[name="${inputName}_custom"]`,
