@@ -59,12 +59,6 @@ function setPreview(name, input, setPreviewClass) {
     "page_title_image_opacity",
     "page_title_image_style",
     "page_title_image_position",
-    // Fonts.
-    "body_font_face",
-    "headings_font_face",
-    "nav_font_face",
-    "sitename_font_face",
-    "blockquote_font_face",
   ];
 
   if (noPreviewFields.includes(name)) {

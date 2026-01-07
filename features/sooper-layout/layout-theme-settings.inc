@@ -113,11 +113,11 @@ function layout_theme_settings(array &$form, $theme) {
   $form['dxpr_theme_settings']['layout']['grid']['gutter_vertical'] = [
     '#type' => 'range',
     '#title' => t('Row Spacing'),
-    '#default_value' => ((theme_get_setting('gutter_vertical') !== NULL)) ? theme_get_setting('gutter_vertical') : 30,
+    '#default_value' => ((theme_get_setting('gutter_vertical') !== NULL)) ? theme_get_setting('gutter_vertical') : 0,
     '#min' => 0,
     '#max' => 100,
     '#step' => 1,
-    '#description' => t('Vertical space between rows. Default is 30px.'),
+    '#description' => t('Vertical space between rows. Default is 0.'),
     '#attributes' => [
       'class' => ['dxb-slider', 'gutter-vertical-range'],
       'data-dxb-slider' => TRUE,
@@ -222,11 +222,11 @@ function layout_theme_settings(array &$form, $theme) {
   $form['dxpr_theme_settings']['layout']['mobile_layout']['gutter_vertical_mobile'] = [
     '#type' => 'range',
     '#title' => t('Row Spacing'),
-    '#default_value' => ((theme_get_setting('gutter_vertical_mobile') !== NULL)) ? theme_get_setting('gutter_vertical_mobile') : 10,
+    '#default_value' => ((theme_get_setting('gutter_vertical_mobile') !== NULL)) ? theme_get_setting('gutter_vertical_mobile') : 0,
     '#min' => 0,
     '#max' => 100,
     '#step' => 1,
-    '#description' => t('Vertical space between rows on viewports under 1200px. Default is 10px.'),
+    '#description' => t('Vertical space between rows on viewports under 1200px. Default is 0.'),
     '#attributes' => [
       'class' => ['dxb-slider', 'gutter-vertical-mobile-range'],
       'data-dxb-slider' => TRUE,

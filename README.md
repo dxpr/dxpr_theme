@@ -249,15 +249,24 @@ aivibe, oceanblue, highcontrast).
 | Variable | Default | Description |
 |----------|---------|-------------|
 | `--dxt-setting-body-font-face` | (system) | Body font family |
+| `--dxt-setting-body-font-weight` | 400 | Body font weight |
+| `--dxt-setting-body-font-style` | normal | Body font style |
 | `--dxt-setting-body-font-size` | 16px | Body font size |
 | `--dxt-setting-body-mobile-font-size` | 14px | Mobile body font size |
 | `--dxt-setting-body-line-height` | 1.6 | Body line height |
 | `--dxt-setting-headings-font-face` | (system) | Headings font family |
+| `--dxt-setting-headings-font-weight` | 700 | Headings font weight |
+| `--dxt-setting-headings-font-style` | normal | Headings font style |
 | `--dxt-setting-headings-line-height` | 1.1 | Headings line height |
 | `--dxt-setting-headings-letter-spacing` | 0em | Headings letter spacing |
 | `--dxt-setting-headings-bold` | normal | Headings bold weight |
 | `--dxt-setting-headings-uppercase` | none | Headings uppercase |
 | `--dxt-setting-sitename-font-face` | (system) | Site name font family |
+| `--dxt-setting-sitename-font-weight` | 400 | Site name font weight |
+| `--dxt-setting-sitename-font-style` | normal | Site name font style |
+| `--dxt-setting-nav-font-face` | (system) | Navigation font family |
+| `--dxt-setting-nav-font-weight` | 400 | Navigation font weight |
+| `--dxt-setting-nav-font-style` | normal | Navigation font style |
 | `--dxt-setting-h1-font-size` | 52px | H1 font size |
 | `--dxt-setting-h1-mobile-font-size` | 52px | H1 mobile font size |
 | `--dxt-setting-h2-font-size` | 38px | H2 font size |
@@ -267,6 +276,8 @@ aivibe, oceanblue, highcontrast).
 | `--dxt-setting-h4-font-size` | 21px | H4 font size |
 | `--dxt-setting-h4-mobile-font-size` | 24px | H4 mobile font size |
 | `--dxt-setting-blockquote-font-face` | (system) | Blockquote font family |
+| `--dxt-setting-blockquote-font-weight` | 400 | Blockquote font weight |
+| `--dxt-setting-blockquote-font-style` | italic | Blockquote font style |
 | `--dxt-setting-blockquote-font-size` | 20px | Blockquote font size |
 | `--dxt-setting-blockquote-mobile-font-size` | 18px | Mobile blockquote font |
 | `--dxt-setting-blockquote-line-height` | 1.5 | Blockquote line height |
