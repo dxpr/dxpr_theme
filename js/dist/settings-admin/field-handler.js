@@ -1,3 +1,11 @@
+const {
+  isFontFaceField,
+  handleFontChange,
+  getFontFamilyValue,
+  getFontWeightValue,
+  getFontStyleValue,
+} = require("./font-loader");
+
 /**
  * Tweak certain settings to valid values.
  *
@@ -106,6 +114,33 @@ function massageFieldValue(setting, value, cssVarColorsPrefix) {
 }
 
 /**
+ * Handles font face field changes with dynamic loading.
+ *
+ * @param {string} setting - The field name.
+ * @param {string} fontKey - The selected font key.
+ * @param {HTMLElement} root - The root element for CSS variables.
+ * @param {string} cssVarSettingsPrefix - The CSS variable prefix.
+ */
+function handleFontFaceField(setting, fontKey, root, cssVarSettingsPrefix) {
+  // Map field name to CSS variable base name.
+  const cssVarBase = setting.replace(/_/g, "-");
+
+  handleFontChange(setting, fontKey, () => {
+    // Set font-family CSS variable.
+    const familyValue = getFontFamilyValue(fontKey);
+    root.style.setProperty(`${cssVarSettingsPrefix}${cssVarBase}-family`, familyValue);
+
+    // Set font-weight CSS variable.
+    const weightValue = getFontWeightValue(fontKey);
+    root.style.setProperty(`${cssVarSettingsPrefix}${cssVarBase}-weight`, weightValue);
+
+    // Set font-style CSS variable.
+    const styleValue = getFontStyleValue(fontKey);
+    root.style.setProperty(`${cssVarSettingsPrefix}${cssVarBase}-style`, styleValue);
+  });
+}
+
+/**
  * Handles the change event for form fields.
  *
  * @param event
@@ -117,6 +152,12 @@ function fieldHandler(event, root, cssVarSettingsPrefix, massageValue) {
   const setting = event.target.name;
   const validUnits = ["px", "em", "rem"];
   let { value } = event.target;
+
+  // Handle font face fields specially.
+  if (isFontFaceField(setting)) {
+    handleFontFaceField(setting, value, root, cssVarSettingsPrefix);
+    return;
+  }
 
   if (event.target.type === "checkbox") {
     value = event.target.checked;
