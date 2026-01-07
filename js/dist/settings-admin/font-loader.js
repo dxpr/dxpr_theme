@@ -6,11 +6,11 @@
 // Track loaded fonts to avoid duplicate requests.
 const loadedFonts = new Set();
 
-// Debounce timers per font field.
-const debounceTimers = {};
+// Delay timers per font field.
+const delayTimers = {};
 
-// Debounce delay in milliseconds.
-const DEBOUNCE_DELAY = 300;
+// Delay duration in milliseconds.
+const DELAY_DURATION = 300;
 
 /**
  * Parse a font key into family and variant.
@@ -41,7 +41,7 @@ function parseFontKey(fontKey) {
       // Extract numeric weight.
       const weightMatch = variant.match(/(\d+)/);
       if (weightMatch) {
-        weight = weightMatch[1];
+        [, weight] = weightMatch;
       }
 
       // Check for italic.
@@ -57,7 +57,12 @@ function parseFontKey(fontKey) {
   if (prefix === "1") {
     const parts = fontKey.substring(1).split("|");
     if (parts.length >= 3) {
-      return { type: "local", family: parts[2], weight: "400", style: "normal" };
+      return {
+        type: "local",
+        family: parts[2],
+        weight: "400",
+        style: "normal",
+      };
     }
   }
 
@@ -152,7 +157,9 @@ function getFontFamilyValue(fontKey) {
 
   // Return quoted font family with fallback.
   const fallback =
-    parsed.type === "websafe" ? "" : ", -apple-system, BlinkMacSystemFont, sans-serif";
+    parsed.type === "websafe"
+      ? ""
+      : ", -apple-system, BlinkMacSystemFont, sans-serif";
   return `"${parsed.family}"${fallback}`;
 }
 
@@ -186,12 +193,12 @@ function getFontStyleValue(fontKey) {
  * @param {function} callback - Callback to execute after font loads.
  */
 function handleFontChange(fieldName, fontKey, callback) {
-  // Clear existing debounce timer.
-  if (debounceTimers[fieldName]) {
-    clearTimeout(debounceTimers[fieldName]);
+  // Clear existing delay timer.
+  if (delayTimers[fieldName]) {
+    clearTimeout(delayTimers[fieldName]);
   }
 
-  debounceTimers[fieldName] = setTimeout(() => {
+  delayTimers[fieldName] = setTimeout(() => {
     const parsed = parseFontKey(fontKey);
 
     if (!parsed) {
@@ -205,10 +212,10 @@ function handleFontChange(fieldName, fontKey, callback) {
         .then(() => callback(fontKey))
         .catch(() => callback(fontKey)); // Still apply even if load fails.
     } else {
-      // For local/websafe fonts, callback immediately.
+      // For local/web-safe fonts, callback immediately.
       callback(fontKey);
     }
-  }, DEBOUNCE_DELAY);
+  }, DELAY_DURATION);
 }
 
 /**

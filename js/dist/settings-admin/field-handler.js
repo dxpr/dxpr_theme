@@ -136,11 +136,17 @@ function handleFontFaceField(setting, fontKey, root, cssVarSettingsPrefix) {
 
     // Set font-weight CSS variable.
     const weightValue = getFontWeightValue(fontKey);
-    root.style.setProperty(`${cssVarSettingsPrefix}${cssVarBaseNoFace}-weight`, weightValue);
+    root.style.setProperty(
+      `${cssVarSettingsPrefix}${cssVarBaseNoFace}-weight`,
+      weightValue,
+    );
 
     // Set font-style CSS variable.
     const styleValue = getFontStyleValue(fontKey);
-    root.style.setProperty(`${cssVarSettingsPrefix}${cssVarBaseNoFace}-style`, styleValue);
+    root.style.setProperty(
+      `${cssVarSettingsPrefix}${cssVarBaseNoFace}-style`,
+      styleValue,
+    );
   });
 }
 
