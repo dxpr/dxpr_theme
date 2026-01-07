@@ -1110,10 +1110,10 @@ html:has(#system-theme-settings) body.body--dxpr-theme-header-fixed.body--dxpr-t
     }
   }
 
-  // AI updated animation for font selects
+  // AI updated animation for font selects - runs until class removed
   #edit-fonts .form-select.dxt-admin-ai-updated {
-    animation: dxt-rainbow-border 0.5s linear 4;
-    border: 3px solid;
+    animation: dxt-rainbow-border 0.5s linear infinite;
+    border: 3px solid transparent;
   }
 
   .font-preview {
