@@ -35,8 +35,15 @@ function css_variables_theme_settings_css(string $theme, string &$css) {
 
         if (is_array($value)) {
           foreach ($value as $name => $val) {
-            $var_name = trim(str_replace('_', '-', $k . '_' . $name), '-');
-            $css_variables[] = '  ' . $prefix . $var_name . ': ' . $val;
+            // Handle font special keys that provide custom variable names.
+            if (str_starts_with($name, '__') && is_array($val)) {
+              $var_name = str_replace('_', '-', $val[0]);
+              $css_variables[] = '  ' . $prefix . $var_name . ': ' . $val[1];
+            }
+            else {
+              $var_name = trim(str_replace('_', '-', $k . '_' . $name), '-');
+              $css_variables[] = '  ' . $prefix . $var_name . ': ' . $val;
+            }
           }
         }
         else {
@@ -150,16 +157,22 @@ function _dxpr_theme_massage_values(string $key, $value, string $theme, array $s
       break;
 
     // Handle Font settings - output family, weight, style as separate variables.
+    // Uses existing -font-face variable for family, and new -font-weight/-font-style.
     case 'body_font_face':
     case 'blockquote_font_face':
     case 'headings_font_face':
     case 'nav_font_face':
     case 'sitename_font_face':
       $font_data = _dxpr_theme_parse_font_for_css_vars($value, $theme);
+      // Build key without "_face" for weight/style variables.
+      // e.g., "body_font_face" becomes "body_font" for weight/style.
+      $base_key = str_replace('_font_face', '_font', $key);
       $value = [
-        'family' => $font_data['family'],
-        'weight' => $font_data['weight'],
-        'style' => $font_data['style'],
+        // Empty string key preserves original variable name (e.g., body-font-face).
+        '' => $font_data['family'],
+        // These use the base key without "face" (e.g., body-font-weight).
+        '__weight' => [$base_key . '_weight', $font_data['weight']],
+        '__style' => [$base_key . '_style', $font_data['style']],
       ];
       break;
 

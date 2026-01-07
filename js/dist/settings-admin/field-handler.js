@@ -123,20 +123,24 @@ function massageFieldValue(setting, value, cssVarColorsPrefix) {
  */
 function handleFontFaceField(setting, fontKey, root, cssVarSettingsPrefix) {
   // Map field name to CSS variable base name.
+  // e.g., "body_font_face" -> "body-font-face"
   const cssVarBase = setting.replace(/_/g, "-");
+  // For weight/style variables, remove "-face" suffix.
+  // e.g., "body-font-face" -> "body-font" -> "body-font-weight"
+  const cssVarBaseNoFace = cssVarBase.replace("-face", "");
 
   handleFontChange(setting, fontKey, () => {
-    // Set font-family CSS variable.
+    // Set font-family CSS variable (uses the existing -font-face variable).
     const familyValue = getFontFamilyValue(fontKey);
-    root.style.setProperty(`${cssVarSettingsPrefix}${cssVarBase}-family`, familyValue);
+    root.style.setProperty(`${cssVarSettingsPrefix}${cssVarBase}`, familyValue);
 
     // Set font-weight CSS variable.
     const weightValue = getFontWeightValue(fontKey);
-    root.style.setProperty(`${cssVarSettingsPrefix}${cssVarBase}-weight`, weightValue);
+    root.style.setProperty(`${cssVarSettingsPrefix}${cssVarBaseNoFace}-weight`, weightValue);
 
     // Set font-style CSS variable.
     const styleValue = getFontStyleValue(fontKey);
-    root.style.setProperty(`${cssVarSettingsPrefix}${cssVarBase}-style`, styleValue);
+    root.style.setProperty(`${cssVarSettingsPrefix}${cssVarBaseNoFace}-style`, styleValue);
   });
 }
 
