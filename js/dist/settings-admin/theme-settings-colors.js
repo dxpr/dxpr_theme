@@ -133,6 +133,10 @@ const dxprThemeSettingsColors = {
     generateButton.classList.add("is-loading");
     generateButton.value = "Generating...";
 
+    // Add rainbow border to all color fields during generation.
+    const colorFields = this.elColorPalette.querySelectorAll(".form-text");
+    colorFields.forEach((field) => field.classList.add("dxt-admin-ai-updated"));
+
     fetch(`${drupalSettings.path.baseUrl}admin/dxpr-theme/generate-palette`, {
       method: "POST",
       headers: {
@@ -162,6 +166,11 @@ const dxprThemeSettingsColors = {
         generateButton.disabled = false;
         generateButton.classList.remove("is-loading");
         generateButton.value = originalText;
+
+        // Remove rainbow border from all color fields after generation.
+        colorFields.forEach((field) =>
+          field.classList.remove("dxt-admin-ai-updated"),
+        );
       });
   },
 
@@ -171,13 +180,6 @@ const dxprThemeSettingsColors = {
       const colorField = document.getElementById(`edit-color-palette-${key}`);
       if (colorField) {
         this.updateColorField(colorField, colors[key], true);
-
-        // Flash rainbow border.
-        colorField.classList.add("dxt-admin-ai-updated");
-        setTimeout(
-          () => colorField.classList.remove("dxt-admin-ai-updated"),
-          2000,
-        );
       }
     });
 
