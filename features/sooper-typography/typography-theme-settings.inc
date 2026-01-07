@@ -15,6 +15,10 @@
  */
 function typography_theme_settings(array &$form, $theme) {
   $form['#attributes']['novalidate'] = 'novalidate';
+
+  // Pass web-safe font stacks to JavaScript for live preview.
+  $form['#attached']['drupalSettings']['dxpr_themeSettings']['fontStacks'] = _dxpr_theme_font_stack();
+
   $form['dxpr_theme_settings']['typography'] = [
     '#title' => t('Typography'),
     '#type' => 'details',
