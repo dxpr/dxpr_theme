@@ -77,6 +77,20 @@ function fonts_theme_settings(array &$form, $theme) {
       ],
     ];
   }
+  else {
+    // Show promotional message when AI module is not available.
+    $form['dxpr_theme_settings']['fonts']['ai_fonts_promo'] = [
+      '#type' => 'html_tag',
+      '#tag' => 'p',
+      '#value' => t('Install the <a href="@url">AI module</a> to generate font pairings with AI.', [
+        '@url' => 'https://drupal.org/project/ai',
+      ]),
+      '#attributes' => [
+        'class' => ['text-muted', 'fst-italic'],
+      ],
+      '#weight' => -10,
+    ];
+  }
 
   // Regular Fonts Settings.
   $form['dxpr_theme_settings']['fonts']['body_font_face'] = [
