@@ -321,7 +321,7 @@ function _dxpr_theme_font_get_weight($font): string {
  *
  * @see font_list()
  */
-function _dxpr_theme_font_stack($font = 'helvetica') {
+function _dxpr_theme_font_stack($font = NULL) {
   $fonts = [
     'SF_Segoe_Roboto' => '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
     'helvetica' => 'Arial, Helvetica, "Nimbus Sans L", "Liberation Sans", "FreeSans", sans-serif',
@@ -337,6 +337,12 @@ function _dxpr_theme_font_stack($font = 'helvetica') {
     'palatino' => '"Palatino Linotype", "URW Palladio L", "Book Antiqua", "Palatino", serif',
     'times' => '"Free Serif", "Times New Roman", Times, serif',
   ];
+
+  // Return all font stacks if no specific font requested.
+  if ($font === NULL) {
+    return $fonts;
+  }
+
   if (!isset($fonts[$font])) {
     $font = 'helvetica';
   }

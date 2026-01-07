@@ -12,6 +12,24 @@ const delayTimers = {};
 // Delay duration in milliseconds.
 const DELAY_DURATION = 300;
 
+// Default fallback font stack.
+const DEFAULT_FONT_STACK =
+  'Arial, Helvetica, "Nimbus Sans L", "Liberation Sans", "FreeSans", sans-serif';
+
+/**
+ * Get web-safe font stacks from drupalSettings (single source of truth from PHP).
+ *
+ * @returns {object} - Font stacks mapping.
+ */
+function getWebSafeFontStacks() {
+  return (
+    (typeof drupalSettings !== "undefined" &&
+      drupalSettings.dxpr_themeSettings &&
+      drupalSettings.dxpr_themeSettings.fontStacks) ||
+    {}
+  );
+}
+
 /**
  * Parse a font key into family and variant.
  *
@@ -155,12 +173,14 @@ function getFontFamilyValue(fontKey) {
     return "";
   }
 
-  // Return quoted font family with fallback.
-  const fallback =
-    parsed.type === "websafe"
-      ? ""
-      : ", -apple-system, BlinkMacSystemFont, sans-serif";
-  return `"${parsed.family}"${fallback}`;
+  // For web-safe fonts, return the full font stack from drupalSettings.
+  if (parsed.type === "websafe") {
+    const fontStacks = getWebSafeFontStacks();
+    return fontStacks[fontKey] || DEFAULT_FONT_STACK;
+  }
+
+  // For Google/local fonts, return quoted font family with fallback.
+  return `"${parsed.family}", -apple-system, BlinkMacSystemFont, sans-serif`;
 }
 
 /**
