@@ -617,6 +617,20 @@ function header_theme_settings(array &$form, $theme) {
     ],
   ];
 
+  $form['dxpr_theme_settings']['header']['menu']['menu_link_spacing'] = [
+    '#type' => 'range',
+    '#title' => t('Link Spacing'),
+    '#description' => t('Horizontal padding between menu links (in pixels).'),
+    '#default_value' => ((theme_get_setting('menu_link_spacing') !== NULL)) ? theme_get_setting('menu_link_spacing') : '10',
+    '#min' => 0,
+    '#max' => 50,
+    '#step' => 1,
+    '#attributes' => [
+      'class' => ['dxb-slider', 'menu-link-spacing-range'],
+      'data-dxb-slider' => TRUE,
+    ],
+  ];
+
   $form['dxpr_theme_settings']['header']['menu']['menu_hover'] = [
     '#type' => 'radios',
     '#title' => t('Hover Style'),

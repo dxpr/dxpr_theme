@@ -19,6 +19,12 @@
       .nav-link {
         font-size: var(--dxt-setting-nav-font-size);
       }
+
+      .nav > li > a,
+      .nav > li > span.nav-link {
+        padding-left: var(--dxt-setting-menu-link-spacing, 10px);
+        padding-right: var(--dxt-setting-menu-link-spacing, 10px);
+      }
     }
 
     #logo {
