@@ -178,6 +178,7 @@ function fieldHandler(event, root, cssVarSettingsPrefix, massageValue) {
     "box_max_width",
     "header_top_height",
     "layout_max_width",
+    "menu_link_spacing",
     "gutter_horizontal",
     "gutter_vertical",
     "gutter_container",

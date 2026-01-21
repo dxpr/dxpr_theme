@@ -4,6 +4,9 @@
 :root {
   --dxt-admin-sidebar-width: 40vw;
   --dxt-admin-sidebar-max-width: 1100px;
+
+  // Default value for menu link spacing - needed for live preview detection
+  --dxt-setting-menu-link-spacing: 10px;
 }
 
 // CSS-first layout: Set displacement offset when settings form exists

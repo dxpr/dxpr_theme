@@ -302,6 +302,7 @@ function _dxpr_theme_get_css_settings(): array {
     'menu_background' => [],
     'menu_border_color' => [],
     'menu_border_position_offset' => ['suffix' => 'rem'],
+    'menu_link_spacing' => ['suffix' => 'rem'],
     'menu_border_position_offset_sticky' => ['suffix' => 'rem'],
     'menu_border_size' => ['suffix' => 'rem'],
     'menu_hover_background' => [],
