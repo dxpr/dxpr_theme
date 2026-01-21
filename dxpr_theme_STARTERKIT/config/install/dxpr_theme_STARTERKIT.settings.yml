@@ -140,6 +140,7 @@ dropdown_hover_text_color_custom: ''
 hamburger_menu: 'three-dash'
 hamburger_animation: 'cross'
 menu_type: uppercase
+menu_link_spacing: '10'
 menu_hover: opacity
 menu_border_position: bottom
 menu_border_animate: drop
