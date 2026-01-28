@@ -286,32 +286,22 @@ html.html--dxpr-theme-nav-mobile--open {
   }
 
   // Body padding for mobile fixed header - content needs space for the fixed header.
-  &:has(#navbar.header-mobile-fixed) {
+  // For anonymous/regular users: Drupal sets --drupal-displace-offset-top to empty string "",
+  // so calc() with it becomes invalid. Use only header height for these users.
+  &:has(#navbar.header-mobile-fixed):not(.toolbar-horizontal, .toolbar-vertical, .toolbar-fixed) {
+    padding-top: var(--dxt-setting-header-mobile-height) !important;
+  }
+
+  // For administrators with toolbar: use calc() with displacement offset.
+  &:has(#navbar.header-mobile-fixed).toolbar-horizontal,
+  &:has(#navbar.header-mobile-fixed).toolbar-vertical,
+  &:has(#navbar.header-mobile-fixed).toolbar-fixed {
     padding-top: calc(var(--dxt-setting-header-mobile-height) + var(--drupal-displace-offset-top, 0)) !important;
   }
 
   // Gin vertical toolbar: only header height padding needed, Gin handles toolbar spacing.
   &.gin--vertical-toolbar:has(#navbar.header-mobile-fixed) {
     padding-top: var(--dxt-setting-header-mobile-height) !important;
-  }
-
-  // When mobile fixed header is active, wrap-containers needs padding to avoid overlap.
-  // For anonymous users and regular logged-in users (without toolbar), add padding.
-  // For administrators with toolbar, body already has padding, so wrap-containers doesn't need it.
-  &:has(#navbar.header-mobile-fixed):not(.toolbar-horizontal, .toolbar-vertical, .toolbar-fixed) .wrap-containers {
-    padding-top: calc(var(--dxt-setting-header-mobile-height) + 3%);
-  }
-
-  // When admin toolbar is present, body already has padding, so wrap-containers doesn't need padding.
-  &:has(#navbar.header-mobile-fixed).toolbar-horizontal .wrap-containers,
-  &:has(#navbar.header-mobile-fixed).toolbar-vertical .wrap-containers,
-  &:has(#navbar.header-mobile-fixed).toolbar-fixed .wrap-containers {
-    padding-top: 0;
-  }
-
-  // Gin vertical toolbar: only header height padding needed, Gin handles toolbar spacing.
-  &.gin--vertical-toolbar:has(#navbar.header-mobile-fixed) .wrap-containers {
-    padding-top: var(--dxt-setting-header-mobile-height);
   }
 }
 
