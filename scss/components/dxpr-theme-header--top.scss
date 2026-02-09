@@ -50,6 +50,7 @@
       left: 0;
       position: absolute;
       right: 0;
+
       // Anonymous users: displacement is "" so avoid calc(); use 30px only.
       top: 30px;
 
