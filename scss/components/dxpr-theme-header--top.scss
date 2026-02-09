@@ -50,7 +50,8 @@
       left: 0;
       position: absolute;
       right: 0;
-      top: calc(var(--drupal-displace-offset-top, 0) + 30px);
+      // Anonymous users: displacement is "" so avoid calc(); use 30px only.
+      top: 30px;
 
       &.dxpr-theme-header--fixed {
         position: fixed;
@@ -308,6 +309,13 @@
     }
   }
 
+}
+
+// Admin with toolbar: overlay top needs displacement (anonymous uses 30px in block above).
+.body--dxpr-theme-nav-desktop.toolbar-horizontal .dxpr-theme-header--top.dxpr-theme-header--overlay,
+.body--dxpr-theme-nav-desktop.toolbar-vertical .dxpr-theme-header--top.dxpr-theme-header--overlay,
+.body--dxpr-theme-nav-desktop.toolbar-fixed .dxpr-theme-header--top.dxpr-theme-header--overlay {
+  top: calc(var(--drupal-displace-offset-top) + 30px);
 }
 
 .body--dxpr-theme-header-overlay {

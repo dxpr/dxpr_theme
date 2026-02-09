@@ -286,8 +286,16 @@ html.html--dxpr-theme-nav-mobile--open {
   }
 
   // Body padding for mobile fixed header - content needs space for the fixed header.
-  &:has(#navbar.header-mobile-fixed) {
-    padding-top: calc(var(--dxt-setting-header-mobile-height) + var(--drupal-displace-offset-top, 0)) !important;
+  // Anonymous users: displacement is "" so avoid calc(); use header height only.
+  &:has(#navbar.header-mobile-fixed):not(.toolbar-horizontal, .toolbar-vertical, .toolbar-fixed) {
+    padding-top: var(--dxt-setting-header-mobile-height) !important;
+  }
+
+  // Admin users with toolbar - displacement API returns valid value.
+  &:has(#navbar.header-mobile-fixed).toolbar-horizontal,
+  &:has(#navbar.header-mobile-fixed).toolbar-vertical,
+  &:has(#navbar.header-mobile-fixed).toolbar-fixed {
+    padding-top: calc(var(--dxt-setting-header-mobile-height) + var(--drupal-displace-offset-top)) !important;
   }
 
   // Gin vertical toolbar: only header height padding needed, Gin handles toolbar spacing.
