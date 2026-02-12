@@ -19,6 +19,7 @@ stylelint-results.json
 
 .npm.installed
 .env
+CLAUDE.md
 
 /vendor/classie*
 /vendor/modernizr*
