@@ -256,7 +256,7 @@ body .card.node--view-mode-card img {
     color: dxpr-color('footertext');
   }
 
-  a {
+  a:not(.btn) {
     color: dxpr-color('footertext');
 
     &:hover,
