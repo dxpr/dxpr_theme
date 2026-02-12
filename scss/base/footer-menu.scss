@@ -35,6 +35,7 @@
 // Item List Menus
 
 .region-footer {
+  flex-direction: column; // this style was removed in bootstrap 5.3.x > 5.3.8 causing footer blocks to left-align instead of center-align. 
   .nav > li > a.is-active {
     background: transparent;
   }
