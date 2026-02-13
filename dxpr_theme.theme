@@ -310,6 +310,7 @@ function dxpr_theme_preprocess_menu(&$variables) {
  */
 function dxpr_theme_menu_set_active_trail(array &$items, $current_path) {
   $has_active = FALSE;
+  $is_front = \Drupal::service('path.matcher')->isFrontPage();
 
   foreach ($items as &$item) {
     if (empty($item['url'])) {
@@ -323,7 +324,7 @@ function dxpr_theme_menu_set_active_trail(array &$items, $current_path) {
       $item_path = $item['url'] instanceof
       Url ? $item['url']->toString()
         : (string) $item['url'];
-      if ($item_path === $current_path) {
+      if ($item_path === $current_path || ($is_front && ($item_path === '/' || $item_path === ''))) {
         $item['in_active_trail'] = TRUE;
         $item['is_active'] = TRUE;
         $is_active = TRUE;
