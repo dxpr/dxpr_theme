@@ -13,7 +13,7 @@ jobs:
 # just check and send reports for now because too many errors
 
   drupal-lint:
-    runs-on: ubuntu-latest
+    runs-on: ubicloud-standard-4
 
     steps:
     - uses: actions/checkout@v4
@@ -23,7 +23,7 @@ jobs:
         TARGET_DRUPAL_CORE_VERSION=$TARGET_DRUPAL_CORE_VERSION docker compose run --rm drupal-lint
 
   drupal-check:
-    runs-on: ubuntu-latest
+    runs-on: ubicloud-standard-4
 
     steps:
     - uses: actions/checkout@v4
@@ -35,7 +35,7 @@ jobs:
       DRUPAL_RECOMMENDED_PROJECT: ${{ secrets.DRUPAL_RECOMMENDED_PROJECT }}
 
   eslint:
-    runs-on: ubuntu-latest
+    runs-on: ubicloud-standard-4
 
     steps:
     - uses: actions/checkout@v4
@@ -52,7 +52,7 @@ jobs:
         path: out/eslint-report.html
 
   publish-artifacts:
-    runs-on: ubuntu-latest
+    runs-on: ubicloud-standard-4
     steps:
     - uses: actions/checkout@v4
 

@@ -8,7 +8,7 @@ on:
 
 jobs:
   update-webfonts:
-    runs-on: ubuntu-latest
+    runs-on: ubicloud-standard-4
     
     permissions:
       contents: write

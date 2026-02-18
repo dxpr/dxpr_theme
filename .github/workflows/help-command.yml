@@ -4,7 +4,7 @@ on:
     types: [help-command]
 jobs:
   help:
-    runs-on: ubuntu-latest
+    runs-on: ubicloud-standard-4
     timeout-minutes: 60
     steps:
     - name: Set Command Reaction

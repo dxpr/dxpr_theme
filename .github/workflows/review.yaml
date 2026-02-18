@@ -8,7 +8,7 @@ env:
 jobs:
 
   drupal-lint:
-    runs-on: ubuntu-latest
+    runs-on: ubicloud-standard-4
     timeout-minutes: 60
     steps:
     - uses: actions/checkout@v4
@@ -18,7 +18,7 @@ jobs:
         TARGET_DRUPAL_CORE_VERSION=$TARGET_DRUPAL_CORE_VERSION docker compose run --rm drupal-lint
 
   eslint:
-    runs-on: ubuntu-latest
+    runs-on: ubicloud-standard-4
     timeout-minutes: 60
     steps:
     - uses: actions/checkout@v4
@@ -35,7 +35,7 @@ jobs:
         path: out/eslint-report.html
 
   stylelint:
-    runs-on: ubuntu-latest
+    runs-on: ubicloud-standard-4
     timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
@@ -52,7 +52,7 @@ jobs:
 
   # review by commenting on code (experimental)
   # eslint-review:
-  #   runs-on: ubuntu-latest
+  #   runs-on: ubicloud-standard-4
   #   steps:
   #   - uses: actions/checkout@v4
 
