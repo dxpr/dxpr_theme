@@ -39,7 +39,7 @@ jobs:
             -o features/sooper-fonts/google-webfonts.json.new
           
           # Validate the downloaded JSON
-          if ! python3 -m json.tool features/sooper-fonts/google-webfonts.json.new > /dev/null 2>&1; then
+          if ! jq empty features/sooper-fonts/google-webfonts.json.new > /dev/null 2>&1; then
             echo "Error: Downloaded JSON is invalid"
             rm features/sooper-fonts/google-webfonts.json.new
             exit 1
