@@ -4,10 +4,10 @@ on:
     types: [created]
 jobs:
   slash-command-dispatch:
-    runs-on: ubuntu-latest
+    runs-on: ubicloud-standard-4
     timeout-minutes: 60
     steps:
-    - uses: peter-evans/slash-command-dispatch@v3
+    - uses: peter-evans/slash-command-dispatch@v5
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         commands: help, release-prepare, release-perform, release-clean, release-rollback, qa-demo-2x-bs3-tests, qa-demo-2x-bs5-tests

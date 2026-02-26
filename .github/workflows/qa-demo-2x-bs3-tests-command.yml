@@ -83,13 +83,13 @@ jobs:
     timeout-minutes: 60
     steps:
       - name: Check out repository code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           repository: ${{ github.event.client_payload.pull_request.head.repo.full_name }}
           ref: refs/pull/${{ github.event.client_payload.pull_request.number }}/merge
 
       - name: get current job log URL
-        uses: Tiryoh/gha-jobid-action@v0
+        uses: Tiryoh/gha-jobid-action@v1
         id: chrome_editor_tests_bs3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -110,7 +110,7 @@ jobs:
       - run: DRIVERS_POOL_SIZE=$DRIVERS_POOL_SIZE ./scripts/qa-demo.test.parallel.github-action.sh
 
       - name: Archive test reports
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         if: always()
         with:
           name: chrome-editor-tests
@@ -137,13 +137,13 @@ jobs:
       DXPR_TARGET_USER: anonymous
     steps:
       - name: Check out repository code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           repository: ${{ github.event.client_payload.pull_request.head.repo.full_name }}
           ref: refs/pull/${{ github.event.client_payload.pull_request.number }}/merge
 
       - name: get current job log URL
-        uses: Tiryoh/gha-jobid-action@v0
+        uses: Tiryoh/gha-jobid-action@v1
         id: chrome_anonymous_tests_bs3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -164,7 +164,7 @@ jobs:
       - run: DRIVERS_POOL_SIZE=$DRIVERS_POOL_SIZE ./scripts/qa-demo.test.parallel.github-action.sh
 
       - name: Archive test reports
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         if: always()
         with:
           name: chrome-anonymous-tests
