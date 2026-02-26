@@ -291,7 +291,8 @@ function dxpr_theme_preprocess_menu(&$variables) {
   }
 
   $current_path = \Drupal::service('path.current')->getPath();
-  dxpr_theme_menu_set_active_trail($variables['items'], $current_path);
+  $is_front = \Drupal::service('path.matcher')->isFrontPage();
+  dxpr_theme_menu_set_active_trail($variables['items'], $current_path, $is_front);
 
   // Ensure menu is cached per URL to prevent wrong active states.
   $variables['#cache']['contexts'][] = 'url.path';
@@ -304,13 +305,14 @@ function dxpr_theme_preprocess_menu(&$variables) {
  *   Menu items array (passed by reference).
  * @param string $current_path
  *   Current page path (e.g., "/test-view").
+ * @param bool $is_front
+ *   Whether the current page is the front page.
  *
  * @return bool
  *   TRUE if any item in this level or below is active.
  */
-function dxpr_theme_menu_set_active_trail(array &$items, $current_path) {
+function dxpr_theme_menu_set_active_trail(array &$items, $current_path, $is_front) {
   $has_active = FALSE;
-  $is_front = \Drupal::service('path.matcher')->isFrontPage();
 
   foreach ($items as &$item) {
     if (empty($item['url'])) {
@@ -324,7 +326,7 @@ function dxpr_theme_menu_set_active_trail(array &$items, $current_path) {
       $item_path = $item['url'] instanceof
       Url ? $item['url']->toString()
         : (string) $item['url'];
-      if ($item_path === $current_path || ($is_front && ($item_path === '/' || $item_path === ''))) {
+      if ($item_path === $current_path || ($is_front && $item_path === '/')) {
         $item['in_active_trail'] = TRUE;
         $item['is_active'] = TRUE;
         $is_active = TRUE;
@@ -335,7 +337,7 @@ function dxpr_theme_menu_set_active_trail(array &$items, $current_path) {
     }
 
     if (!empty($item['below'])) {
-      $child_active = dxpr_theme_menu_set_active_trail($item['below'], $current_path);
+      $child_active = dxpr_theme_menu_set_active_trail($item['below'], $current_path, $is_front);
       if ($child_active && empty($item['in_active_trail'])) {
         $item['in_active_trail'] = TRUE;
       }
