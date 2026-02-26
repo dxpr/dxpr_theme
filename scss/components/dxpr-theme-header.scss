@@ -37,7 +37,10 @@
   a {
     color: dxpr-color('headertext');
     cursor: pointer; // for "nolink" <a> tags
-    outline: none;
+
+    &:focus:not(:focus-visible) {
+      outline: none;
+    }
 
     &.active,
     &:hover,

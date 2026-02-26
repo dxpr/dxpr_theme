@@ -267,7 +267,7 @@ html.js {
     > li {
       float: none;
 
-      &:focus {
+      &:focus:not(:focus-visible) {
         outline: 0;
       }
 
@@ -275,7 +275,7 @@ html.js {
         margin-bottom: 3px;
         margin-right: 0;
 
-        &:focus {
+        &:focus:not(:focus-visible) {
           outline: 0;
         }
       }

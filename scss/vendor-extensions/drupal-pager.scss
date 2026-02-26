@@ -119,7 +119,7 @@
       text-decoration: none;
     }
 
-    &:active {
+    &:active:not(:focus-visible) {
       outline: none;
     }
   }

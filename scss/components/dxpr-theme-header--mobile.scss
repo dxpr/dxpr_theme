@@ -83,7 +83,10 @@ html.html--dxpr-theme-nav-mobile--open {
       cursor: pointer;
       float: right;
       margin: 15px 0;
-      outline: none;
+
+      &:focus:not(:focus-visible) {
+        outline: none;
+      }
       padding: 10px 32px 16px 0;
       position: relative;
       z-index: 410;

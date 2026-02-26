@@ -478,6 +478,9 @@ html body {
           &:focus {
             color: dxpr-color('base');
             cursor: default;
+          }
+
+          &:focus:not(:focus-visible) {
             outline: none;
           }
         }
