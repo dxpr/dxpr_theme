@@ -107,18 +107,11 @@ function dxpr_theme_form_system_theme_settings_alter(&$form, &$form_state, $form
   unset($form['styleguide']);
   unset($form['text_formats']);
 
-  /**
-   * DXPR Theme cache builder
-   * Cannot run as submit function because  it will set outdated values by
-   * using theme_get_setting to retrieve settings from database before the db is
-   * updated. Cannot put cache builder in form scope and use $form_state because
-   * it also needs to initialize default settings by reading the .info file.
-   * By calling the cache builder here it will run twice: once before the
-   * settings are saved and once after the redirect with the updated settings.
-   * @todo come up with a less 'icky' solution
-   */
+  // Include callbacks for CSS cache building.
   require_once \Drupal::service('extension.list.theme')->getPath('dxpr_theme') . '/dxpr_theme_callbacks.inc';
 
+  // Build CSS cache only if it doesn't exist yet (first install or cache clear).
+  // The actual rebuild after settings save is handled by the after_submit handler.
   $dxpr_theme_css_file = _dxpr_theme_css_cache_file($subject_theme);
   if (!file_exists($dxpr_theme_css_file)) {
     dxpr_theme_css_cache_build($subject_theme);
