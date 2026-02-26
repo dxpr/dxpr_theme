@@ -21,18 +21,6 @@ function _dxpr_theme_css_cache_file($theme) {
   return 'public://dxpr_theme/css/themesettings-' . $theme . '.css';
 }
 
-/**
- * Write css files for the color settings.
- *
- * @param string $theme
- *   Theme machine name.
- *
- * phpcs:ignore
- * @deprecated This function is no longer needed. Kept for legacy reasons.
- */
-function dxpr_theme_color_module_css_write($theme) {
-
-}
 
 /**
  * Theme CSS generator from DXPR Theme-settings.php.
