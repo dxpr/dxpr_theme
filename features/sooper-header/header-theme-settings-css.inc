@@ -64,10 +64,16 @@ function header_theme_settings_css(string $theme, string &$css, array $palette) 
     $css .= "}\n\n";
   }
   elseif (theme_get_setting('header_top_fixed', $theme)) {
-    // Fixed header: add body padding for header height + admin toolbar offset.
-    // Uses Drupal displacement API variable for toolbar height.
-    $css .= ".body--dxpr-theme-nav-desktop.body--dxpr-theme-header-fixed.body--dxpr-theme-header-not-overlay {\n";
-    $css .= "  padding-top: calc($header_top_height_var + var(--drupal-displace-offset-top, 0px)) !important;\n";
+    // Fixed header: body padding for header height.
+    // Anonymous users: displacement is "" so avoid calc(); use header height only.
+    $css .= ".body--dxpr-theme-nav-desktop.body--dxpr-theme-header-fixed.body--dxpr-theme-header-not-overlay:not(.toolbar-horizontal, .toolbar-vertical, .toolbar-fixed) {\n";
+    $css .= "  padding-top: $header_top_height_var !important;\n";
+    $css .= "}\n\n";
+    // Admin users with toolbar: add displacement API offset.
+    $css .= ".body--dxpr-theme-nav-desktop.body--dxpr-theme-header-fixed.body--dxpr-theme-header-not-overlay.toolbar-horizontal,\n";
+    $css .= ".body--dxpr-theme-nav-desktop.body--dxpr-theme-header-fixed.body--dxpr-theme-header-not-overlay.toolbar-vertical,\n";
+    $css .= ".body--dxpr-theme-nav-desktop.body--dxpr-theme-header-fixed.body--dxpr-theme-header-not-overlay.toolbar-fixed {\n";
+    $css .= "  padding-top: calc($header_top_height_var + var(--drupal-displace-offset-top)) !important;\n";
     $css .= "}\n\n";
   }
 
