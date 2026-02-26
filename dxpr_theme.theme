@@ -245,25 +245,31 @@ function dxpr_theme_preprocess_page(&$variables) {
     // Bootstrap TAILORING.
     'dxpr_theme/bootstrap-5',
     'dxpr_theme/bootstrap-theme',
-    // @todo Include only if needed.
     // DXPR THEME BASE.
     'dxpr_theme/forms',
     'dxpr_theme/layout',
     'dxpr_theme/page-title',
     'dxpr_theme/typography',
     // DXPR THEME Components.
-    // @todo Include only if needed.
-    'dxpr_theme/dxpr-theme-header--side',
     'dxpr_theme/admin',
-    // Overrides.
-    // @todo Include only if needed.
-    'dxpr_theme/drupal-webform',
-    'dxpr_theme/dxpr-theme-builder',
     // HELPERS.
     'dxpr_theme/helper-classes',
   ];
   foreach ($dxpr_theme_libraries as $dxpr_theme_library) {
     $variables['#attached']['library'][] = $dxpr_theme_library;
+  }
+
+  // Conditional CSS libraries: load only when the corresponding module is
+  // installed to reduce unnecessary CSS payload.
+  $module_handler = \Drupal::moduleHandler();
+  if ($module_handler->moduleExists('menu_ui')) {
+    $variables['#attached']['library'][] = 'dxpr_theme/dxpr-theme-header--side';
+  }
+  if ($module_handler->moduleExists('webform')) {
+    $variables['#attached']['library'][] = 'dxpr_theme/drupal-webform';
+  }
+  if ($module_handler->moduleExists('dxpr_builder')) {
+    $variables['#attached']['library'][] = 'dxpr_theme/dxpr-theme-builder';
   }
 }
 
