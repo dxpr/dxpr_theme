@@ -250,6 +250,7 @@ function _dxpr_theme_get_css_settings(): array {
     'block_divider_spacing' => ['suffix' => 'rem'],
     'block_divider_thickness' => ['suffix' => 'rem'],
     'block_padding' => ['suffix' => 'rem'],
+    'block_text_color' => [],
     'blockquote_font_face' => [],
     'blockquote_font_size' => ['suffix' => 'rem'],
     'blockquote_line_height' => [],

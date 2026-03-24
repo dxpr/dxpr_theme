@@ -93,6 +93,24 @@ function block_design_theme_settings(array &$form, $theme) {
     ],
   ];
 
+  $form['dxpr_theme_settings']['block']['block_advanced']['block_el']['block_text_color'] = [
+    '#type' => 'select',
+    '#title' => t('Block Text Color'),
+    '#default_value' => theme_get_setting('block_text_color'),
+    '#options' => _dxpr_theme_color_options($theme),
+  ];
+
+  $form['dxpr_theme_settings']['block']['block_advanced']['block_el']['block_text_color_custom'] = [
+    '#type' => 'textfield',
+    '#title' => t('Custom Value'),
+    '#default_value' => ((theme_get_setting('block_text_color_custom') !== NULL)) ? theme_get_setting('block_text_color_custom') : '#333333',
+    '#states' => [
+      'visible' => [
+        'select[name="block_text_color"]' => ['value' => 'custom'],
+      ],
+    ],
+  ];
+
   $form['dxpr_theme_settings']['block']['block_advanced']['block_el']['block_padding'] = [
     '#type' => 'range',
     '#title' => t('Block Padding'),
