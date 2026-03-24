@@ -329,6 +329,19 @@ function block_design_theme_settings(array &$form, $theme) {
     '#prefix' => '<br>',
   ];
 
+  $form['dxpr_theme_settings']['block']['block_advanced']['button_el'] = [
+    '#title' => t('Button Element'),
+    '#type' => 'details',
+    '#collapsible' => TRUE,
+    '#collapsed' => TRUE,
+  ];
+
+  $form['dxpr_theme_settings']['block']['block_advanced']['button_el']['button_bold'] = [
+    '#type' => 'checkbox',
+    '#title' => t('Button Bold'),
+    '#default_value' => ((theme_get_setting('button_bold') !== NULL)) ? theme_get_setting('button_bold') : FALSE,
+  ];
+
   $form['dxpr_theme_settings']['block']['block_advanced']['divider_el'] = [
     '#title' => t('Divider Element'),
     '#type' => 'details',

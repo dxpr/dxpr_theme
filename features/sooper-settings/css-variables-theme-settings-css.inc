@@ -105,6 +105,7 @@ function _dxpr_theme_massage_values(string $key, $value, string $theme, array $s
       break;
 
     // Generic: Bold.
+    case 'button_bold':
     case 'headings_bold':
       $value = !empty($value) ? 'bold' : 'normal';
       break;
@@ -250,6 +251,7 @@ function _dxpr_theme_get_css_settings(): array {
     'block_divider_spacing' => ['suffix' => 'rem'],
     'block_divider_thickness' => ['suffix' => 'rem'],
     'block_padding' => ['suffix' => 'rem'],
+    'button_bold' => [],
     'blockquote_font_face' => [],
     'blockquote_font_size' => ['suffix' => 'rem'],
     'blockquote_line_height' => [],
