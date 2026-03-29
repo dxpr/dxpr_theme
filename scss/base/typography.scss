@@ -106,7 +106,7 @@ h3.field--label + ul {
     // }
   }
 
-  a {
+  a:not(.btn) {
     color: dxpr-color('text');
   }
 }
@@ -212,7 +212,7 @@ hr, .card hr {
 .region-sidebar-second {
   color: dxpr-color('graylight');
 
-  a {
+  a:not(.btn) {
     color: dxpr-color('text');
   }
 }

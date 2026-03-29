@@ -9,7 +9,7 @@
   padding-top: 10px;
   z-index: 405;
 
-  a {
+  a:not(.btn) {
     color: dxpr-color('secheadertext');
 
     &:hover,

@@ -29,7 +29,7 @@
   padding: 0;
   z-index: 405;
 
-  a {
+  a:not(.btn) {
     color: dxpr-color('headertext');
     cursor: pointer; // for "nolink" <a> tags
     outline: none;
@@ -69,7 +69,7 @@
   }
 
   .dxpr-theme-main-menu {
-    a {
+    a:not(.btn) {
       color: dxpr-color('headertext');
       text-decoration: none;
 
