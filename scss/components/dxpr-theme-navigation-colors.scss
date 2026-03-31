@@ -30,15 +30,15 @@
     a.is-active,
     span.nav-link:hover,
     span.nav-link:focus {
-      background-color: var(--dxt-setting-menu-hover-background, transparent);
-      color: var(--dxt-setting-menu-hover-text-color, inherit);
+      background-color: var(--dxt-setting-menu-hover-background);
+      color: var(--dxt-setting-menu-hover-text-color);
     }
 
     a.dropdown-item {
       &:hover,
       &:focus {
-        background-color: var(--dxt-setting-menu-hover-background, transparent);
-        color: var(--dxt-setting-menu-hover-text-color, inherit);
+        background-color: var(--dxt-setting-menu-hover-background);
+        color: var(--dxt-setting-menu-hover-text-color);
       }
     }
   }
@@ -56,8 +56,8 @@
     button {
       &:hover,
       &:focus {
-        background-color: var(--dxt-setting-dropdown-hover-background, transparent);
-        color: var(--dxt-setting-dropdown-hover-text-color, inherit);
+        background-color: var(--dxt-setting-dropdown-hover-background);
+        color: var(--dxt-setting-dropdown-hover-text-color);
       }
     }
   }
