@@ -41,7 +41,7 @@ function fonts_theme_settings_css(string $theme, &$css, array $palette) {
       $css .= $selector . " {\n";
       $css .= _dxpr_theme_settings_add_css($font_key, 'font-family');
       $css .= "  font-style: $style;\n";
-      $css .= "  font-weight: $weight;\n";
+      $css .= "  font-weight: $weight !important;\n";
       $css .= "}\n\n";
     }
   }
