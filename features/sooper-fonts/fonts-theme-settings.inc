@@ -117,7 +117,7 @@ function fonts_theme_settings(array &$form, $theme) {
   $form['dxpr_theme_settings']['fonts']['headings_font_face_selector'] = [
     '#type' => 'textfield',
     '#title' => t('CSS Selector'),
-    '#default_value' => ((theme_get_setting('headings_font_face_selector') !== NULL)) ? theme_get_setting('headings_font_face_selector') : 'h1,h2,h3,h4,h5,h6,label,.field--label,.page-title, .html .tp-caption',
+    '#default_value' => ((theme_get_setting('headings_font_face_selector') !== NULL)) ? theme_get_setting('headings_font_face_selector') : 'h1,.h1,h2,.h2,h3,.h3,h4,.h4,h5,.h5,h6,.h6,.display-1,.display-2,.display-3,.display-4,.display-5,.display-6,label,.field--label,.page-title',
   ];
 
   $form['dxpr_theme_settings']['fonts']['nav_font_face'] = [
