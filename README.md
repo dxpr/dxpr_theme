@@ -14,9 +14,10 @@ https://github.com/dxpr/dxpr_maven/blob/main/CONTRIBUTING.md
 
 ## AI-Powered Color Palette Generator
 
-DXPR Theme includes an AI-powered color palette generator that creates harmonious
-color schemes from natural language descriptions. Access it in theme settings
-under Colors > Color Set.
+DXPR Theme includes an AI-powered color palette generator that
+creates harmonious color schemes from natural language
+descriptions. Access it in theme settings under
+Colors > Color Set.
 
 **Requirements:**
 - [Drupal AI module](https://www.drupal.org/project/ai) installed and configured with a chat provider
@@ -145,9 +146,10 @@ Variables are organized into several namespaces:
 
 ### Color Variables
 
-Color variables are defined per color scheme (default, softwarm, powerfulenergetic,
-brighthealthy, calmapproachable, neon, earthy, minimalistmonochrome, darkmode,
-aivibe, oceanblue, highcontrast).
+Color variables are defined per color scheme (default,
+softwarm, powerfulenergetic, brighthealthy,
+calmapproachable, neon, earthy, minimalistmonochrome,
+darkmode, aivibe, oceanblue, highcontrast).
 
 | Variable | Description | Bootstrap Mapping |
 |----------|-------------|-------------------|
