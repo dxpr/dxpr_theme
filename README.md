@@ -1,6 +1,6 @@
 # DXPR Theme
 
-For user documentation and support please check:
+For user documentation and support please check
 https://app.dxpr.com/hc/documentation
 
 For development documentation and support please check:
