@@ -8,8 +8,8 @@ composer global config --no-plugins allow-plugins.dealerdirect/phpcodesniffer-co
 # Install Drupal coding standards
 composer global require drupal/coder
 
-# Install PHP compatibility checker
-composer global require phpcompatibility/php-compatibility
+# Install PHP compatibility checker (10.x for PHPCS 4.x support)
+composer global require phpcompatibility/php-compatibility:^10.0@alpha
 
 export PATH="$PATH:$COMPOSER_HOME/vendor/bin"
 

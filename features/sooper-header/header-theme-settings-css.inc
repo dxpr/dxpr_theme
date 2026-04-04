@@ -65,7 +65,8 @@ function header_theme_settings_css(string $theme, string &$css, array $palette) 
   }
   elseif (theme_get_setting('header_top_fixed', $theme)) {
     // Fixed header: body padding for header height.
-    // Anonymous users: displacement is "" so avoid calc(); use header height only.
+    // Anonymous users: displacement is "" so avoid calc();
+    // use header height only.
     $css .= ".body--dxpr-theme-nav-desktop.body--dxpr-theme-header-fixed.body--dxpr-theme-header-not-overlay:not(.toolbar-horizontal, .toolbar-vertical, .toolbar-fixed) {\n";
     $css .= "  padding-top: $header_top_height_var !important;\n";
     $css .= "}\n\n";
