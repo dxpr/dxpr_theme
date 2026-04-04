@@ -96,6 +96,7 @@ function fonts_theme_settings(array &$form, $theme) {
   $form['dxpr_theme_settings']['fonts']['body_font_face'] = [
     '#type' => 'select',
     '#title' => t('Base Font'),
+    '#ai_description' => 'Primary font for all body/paragraph text. Sets the overall reading experience. Web-safe options: helvetica (clean modern), georgia (elegant serif), verdana (screen-optimized). Google fonts: 0Roboto:400 (versatile), 0Open+Sans:400 (friendly), 0Lato:400 (professional). Format: web-safe name or 0FontName:weight.',
     '#default_value' => theme_get_setting('body_font_face'),
     '#options' => $font_list,
     '#prefix' => '<p>' . t('Choose from @count webfonts', ['@count' => $font_count]) . '</p>',
@@ -104,12 +105,14 @@ function fonts_theme_settings(array &$form, $theme) {
   $form['dxpr_theme_settings']['fonts']['body_font_face_selector'] = [
     '#type' => 'textfield',
     '#title' => t('CSS Selector'),
+    '#ai_description' => 'CSS selector where the body font applies. Default body covers everything. Rarely needs changing unless you want body font only on specific elements.',
     '#default_value' => ((theme_get_setting('body_font_face_selector') !== NULL)) ? theme_get_setting('body_font_face_selector') : 'body',
   ];
 
   $form['dxpr_theme_settings']['fonts']['headings_font_face'] = [
     '#type' => 'select',
     '#title' => t('Headings'),
+    '#ai_description' => 'Font for all headings (h1-h6). Creates visual hierarchy contrast with body font. Classic pairings: serif headings + sans body (0Playfair+Display:700 + Roboto). Same family different weight. Display fonts add personality (0Montserrat:700, 0Poppins:600).',
     '#default_value' => theme_get_setting('headings_font_face'),
     '#options' => $font_list,
   ];
@@ -117,12 +120,14 @@ function fonts_theme_settings(array &$form, $theme) {
   $form['dxpr_theme_settings']['fonts']['headings_font_face_selector'] = [
     '#type' => 'textfield',
     '#title' => t('CSS Selector'),
+    '#ai_description' => 'CSS selector for headings font. Default covers h1-h6, display classes, labels, and page title. Extend to add custom heading classes.',
     '#default_value' => ((theme_get_setting('headings_font_face_selector') !== NULL)) ? theme_get_setting('headings_font_face_selector') : 'h1,.h1,h2,.h2,h3,.h3,h4,.h4,h5,.h5,h6,.h6,.display-1,.display-2,.display-3,.display-4,.display-5,.display-6,label,.field--label,.page-title',
   ];
 
   $form['dxpr_theme_settings']['fonts']['nav_font_face'] = [
     '#type' => 'select',
     '#title' => t('Navigation'),
+    '#ai_description' => 'Font for main navigation links. Often matches headings_font_face or body_font_face. Sans-serif fonts work best for navigation readability at small sizes.',
     '#default_value' => theme_get_setting('nav_font_face'),
     '#options' => $font_list,
   ];
@@ -130,12 +135,14 @@ function fonts_theme_settings(array &$form, $theme) {
   $form['dxpr_theme_settings']['fonts']['nav_font_face_selector'] = [
     '#type' => 'textfield',
     '#title' => t('CSS Selector'),
+    '#ai_description' => 'CSS selector for navigation font. Default .dxpr-theme-header .nav targets the main menu.',
     '#default_value' => ((theme_get_setting('nav_font_face_selector') !== NULL)) ? theme_get_setting('nav_font_face_selector') : '.dxpr-theme-header .nav',
   ];
 
   $form['dxpr_theme_settings']['fonts']['sitename_font_face'] = [
     '#type' => 'select',
     '#title' => t('Site Name'),
+    '#ai_description' => 'Font for the site name/brand text in the header. Can be a distinctive display or logo font. Choose something that represents the brand identity.',
     '#default_value' => theme_get_setting('sitename_font_face'),
     '#options' => $font_list,
   ];
@@ -143,12 +150,14 @@ function fonts_theme_settings(array &$form, $theme) {
   $form['dxpr_theme_settings']['fonts']['sitename_font_face_selector'] = [
     '#type' => 'textfield',
     '#title' => t('CSS Selector'),
+    '#ai_description' => 'CSS selector for site name font. Default covers .site-name and .navbar-brand.',
     '#default_value' => ((theme_get_setting('sitename_font_face_selector') !== NULL)) ? theme_get_setting('sitename_font_face_selector') : '.site-name, .navbar-brand',
   ];
 
   $form['dxpr_theme_settings']['fonts']['blockquote_font_face'] = [
     '#type' => 'select',
     '#title' => t('Blockquote'),
+    '#ai_description' => 'Font for blockquote/pullquote elements. Often an italic serif for literary feel: 0Merriweather:italic, 0Lora:italic. Can match body font for consistency or contrast for emphasis.',
     '#default_value' => theme_get_setting('blockquote_font_face'),
     '#options' => $font_list,
   ];
@@ -156,6 +165,7 @@ function fonts_theme_settings(array &$form, $theme) {
   $form['dxpr_theme_settings']['fonts']['blockquote_font_face_selector'] = [
     '#type' => 'textfield',
     '#title' => t('CSS Selector'),
+    '#ai_description' => 'CSS selector for blockquote font. Default covers blockquote and blockquote p elements.',
     '#default_value' => ((theme_get_setting('blockquote_font_face_selector') !== NULL)) ? theme_get_setting('blockquote_font_face_selector') : 'blockquote, blockquote p',
   ];
 
