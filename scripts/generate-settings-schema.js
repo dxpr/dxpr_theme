@@ -123,7 +123,7 @@ function parseIncFile(filePath, section) {
 
     const setting = {
       section: section,
-      type: normalizeType(typeMatch[1]),
+      type: normalizeType(typeMatch[1], key),
     };
 
     // Extract #title.
@@ -193,13 +193,38 @@ function parseIncFile(filePath, section) {
 
 /**
  * Normalize PHP form type to schema type.
+ *
+ * Detects color fields by key name pattern since PHP uses generic 'textfield'
+ * for color inputs. Also detects theme_color selects (palette color pickers)
+ * vs regular selects.
  */
-function normalizeType(phpType) {
-  switch (phpType) {
-    case 'checkbox': return 'boolean';
-    case 'media_library': return 'media';
-    default: return phpType;
+function normalizeType(phpType, key) {
+  if (phpType === 'checkbox') return 'boolean';
+  if (phpType === 'media_library') return 'media';
+
+  // Detect color textfields by key naming convention.
+  if (phpType === 'textfield') {
+    if (key.endsWith('_custom') || key === 'boxed_layout_boxbg') {
+      return 'color';
+    }
   }
+
+  // Detect theme_color selects (palette color pickers) by key naming.
+  if (phpType === 'select') {
+    const colorSelectPattern = /^(navbar_background|navbar_text_color|header_block_background|header_block_text_color|menu_background|menu_text_color|menu_hover_background|menu_hover_text_color|dropdown_background|dropdown_text_color|dropdown_hover_background|dropdown_hover_text_color|mobile_menu_background|mobile_menu_text_color|mobile_menu_hover_background|mobile_menu_hover_text_color|menu_border_color|divider_color|block_background|block_border_color|title_background|title_border_color|block_divider_color)$/;
+    if (colorSelectPattern.test(key)) {
+      return 'theme_color';
+    }
+  }
+
+  // Detect font selects by key naming.
+  if (phpType === 'select') {
+    if (key.endsWith('_font_face')) {
+      return 'font';
+    }
+  }
+
+  return phpType;
 }
 
 /**

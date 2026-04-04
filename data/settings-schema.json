@@ -1,7 +1,7 @@
 {
   "_meta": {
     "description": "DXPR Theme settings schema. Auto-generated from features/*-theme-settings.inc files.",
-    "generated": "2026-04-04T07:36:08.431Z",
+    "generated": "2026-04-04T07:44:16.520Z",
     "sections": [
       "block-design",
       "colors",
@@ -56,14 +56,13 @@
   },
   "block_background": {
     "section": "block-design",
-    "type": "select",
+    "type": "theme_color",
     "title": "Block Background",
-    "ai_description": "Background color for blocks (when not using block_card). Creates colored block containers. Use a theme palette color or custom.",
-    "options": "_dynamic"
+    "ai_description": "Background color for blocks (when not using block_card). Creates colored block containers. Use a theme palette color or custom."
   },
   "block_background_custom": {
     "section": "block-design",
-    "type": "textfield",
+    "type": "color",
     "title": "Custom Value",
     "ai_description": "Custom hex for block background. Only used when block_background=custom. Light grays (#f5f5f5, #f8f9fa) create subtle card-like blocks.",
     "default": "#eeeeee"
@@ -103,14 +102,13 @@
   },
   "block_border_color": {
     "section": "block-design",
-    "type": "select",
+    "type": "theme_color",
     "title": "Block Border Color",
-    "ai_description": "Color of the block border. Often a light gray (#dee2e6) for subtle definition. Only visible when block_border>0.",
-    "options": "_dynamic"
+    "ai_description": "Color of the block border. Often a light gray (#dee2e6) for subtle definition. Only visible when block_border>0."
   },
   "block_border_color_custom": {
     "section": "block-design",
-    "type": "textfield",
+    "type": "color",
     "title": "Custom Value",
     "ai_description": "Custom hex for block border. Only used when block_border_color=custom.",
     "default": "#eeeeee"
@@ -150,14 +148,13 @@
   },
   "title_background": {
     "section": "block-design",
-    "type": "select",
+    "type": "theme_color",
     "title": "Title Background",
-    "ai_description": "Background color for block titles. Creates colored title bars. Combined with contrasting text creates the inverted title look.",
-    "options": "_dynamic"
+    "ai_description": "Background color for block titles. Creates colored title bars. Combined with contrasting text creates the inverted title look."
   },
   "title_background_custom": {
     "section": "block-design",
-    "type": "textfield",
+    "type": "color",
     "title": "Custom Value",
     "ai_description": "Custom hex for title background. Only used when title_background=custom.",
     "default": "#eeeeee"
@@ -197,14 +194,13 @@
   },
   "title_border_color": {
     "section": "block-design",
-    "type": "select",
+    "type": "theme_color",
     "title": "Title Border Color",
-    "ai_description": "Color of the title border. Often an accent color for decorative emphasis.",
-    "options": "_dynamic"
+    "ai_description": "Color of the title border. Often an accent color for decorative emphasis."
   },
   "title_border_color_custom": {
     "section": "block-design",
-    "type": "textfield",
+    "type": "color",
     "title": "Custom Value",
     "ai_description": "Custom hex for title border. Only used when title_border_color=custom.",
     "default": "#eeeeee"
@@ -233,14 +229,13 @@
   },
   "block_divider_color": {
     "section": "block-design",
-    "type": "select",
+    "type": "theme_color",
     "title": "Divider Color",
-    "ai_description": "Color for block-specific divider. Only active when block_divider=true and block_divider_custom=true.",
-    "options": "_dynamic"
+    "ai_description": "Color for block-specific divider. Only active when block_divider=true and block_divider_custom=true."
   },
   "block_divider_color_custom": {
     "section": "block-design",
-    "type": "textfield",
+    "type": "color",
     "title": "Custom Value",
     "ai_description": "Custom hex for block divider. Only used when block_divider_color=custom.",
     "default": "#eeeeee"
@@ -321,10 +316,9 @@
   },
   "body_font_face": {
     "section": "fonts",
-    "type": "select",
+    "type": "font",
     "title": "Base Font",
-    "ai_description": "Primary font for all body/paragraph text. Sets the overall reading experience. Web-safe options: helvetica (clean modern), georgia (elegant serif), verdana (screen-optimized). Google fonts: 0Roboto:400 (versatile), 0Open+Sans:400 (friendly), 0Lato:400 (professional). Format: web-safe name or 0FontName:weight.",
-    "options": "_dynamic"
+    "ai_description": "Primary font for all body/paragraph text. Sets the overall reading experience. Web-safe options: helvetica (clean modern), georgia (elegant serif), verdana (screen-optimized). Google fonts: 0Roboto:400 (versatile), 0Open+Sans:400 (friendly), 0Lato:400 (professional). Format: web-safe name or 0FontName:weight."
   },
   "body_font_face_selector": {
     "section": "fonts",
@@ -335,10 +329,9 @@
   },
   "headings_font_face": {
     "section": "fonts",
-    "type": "select",
+    "type": "font",
     "title": "Headings",
-    "ai_description": "Font for all headings (h1-h6). Creates visual hierarchy contrast with body font. Classic pairings: serif headings + sans body (0Playfair+Display:700 + Roboto). Same family different weight. Display fonts add personality (0Montserrat:700, 0Poppins:600).",
-    "options": "_dynamic"
+    "ai_description": "Font for all headings (h1-h6). Creates visual hierarchy contrast with body font. Classic pairings: serif headings + sans body (0Playfair+Display:700 + Roboto). Same family different weight. Display fonts add personality (0Montserrat:700, 0Poppins:600)."
   },
   "headings_font_face_selector": {
     "section": "fonts",
@@ -349,10 +342,9 @@
   },
   "nav_font_face": {
     "section": "fonts",
-    "type": "select",
+    "type": "font",
     "title": "Navigation",
-    "ai_description": "Font for main navigation links. Often matches headings_font_face or body_font_face. Sans-serif fonts work best for navigation readability at small sizes.",
-    "options": "_dynamic"
+    "ai_description": "Font for main navigation links. Often matches headings_font_face or body_font_face. Sans-serif fonts work best for navigation readability at small sizes."
   },
   "nav_font_face_selector": {
     "section": "fonts",
@@ -363,10 +355,9 @@
   },
   "sitename_font_face": {
     "section": "fonts",
-    "type": "select",
+    "type": "font",
     "title": "Site Name",
-    "ai_description": "Font for the site name/brand text in the header. Can be a distinctive display or logo font. Choose something that represents the brand identity.",
-    "options": "_dynamic"
+    "ai_description": "Font for the site name/brand text in the header. Can be a distinctive display or logo font. Choose something that represents the brand identity."
   },
   "sitename_font_face_selector": {
     "section": "fonts",
@@ -377,10 +368,9 @@
   },
   "blockquote_font_face": {
     "section": "fonts",
-    "type": "select",
+    "type": "font",
     "title": "Blockquote",
-    "ai_description": "Font for blockquote/pullquote elements. Often an italic serif for literary feel: 0Merriweather:italic, 0Lora:italic. Can match body font for consistency or contrast for emphasis.",
-    "options": "_dynamic"
+    "ai_description": "Font for blockquote/pullquote elements. Often an italic serif for literary feel: 0Merriweather:italic, 0Lora:italic. Can match body font for consistency or contrast for emphasis."
   },
   "blockquote_font_face_selector": {
     "section": "fonts",
@@ -522,209 +512,193 @@
   },
   "navbar_background": {
     "section": "header",
-    "type": "select",
+    "type": "theme_color",
     "title": "Navbar Background",
-    "ai_description": "Background color for the entire navbar area. Use a theme palette color name or custom with navbar_background_custom. Leave empty for transparent. Dark backgrounds create dramatic headers; light/white creates clean modern feel.",
-    "options": "_dynamic"
+    "ai_description": "Background color for the entire navbar area. Use a theme palette color name or custom with navbar_background_custom. Leave empty for transparent. Dark backgrounds create dramatic headers; light/white creates clean modern feel."
   },
   "navbar_background_custom": {
     "section": "header",
-    "type": "textfield",
+    "type": "color",
     "title": "Custom Navbar Background",
     "ai_description": "Custom hex color for navbar background. Only used when navbar_background=custom. Set to match your brand color for branded headers."
   },
   "navbar_text_color": {
     "section": "header",
-    "type": "select",
+    "type": "theme_color",
     "title": "Navbar Text",
-    "ai_description": "Text/link color in the navbar. Must contrast with navbar_background for readability. Light text on dark backgrounds, dark text on light backgrounds.",
-    "options": "_dynamic"
+    "ai_description": "Text/link color in the navbar. Must contrast with navbar_background for readability. Light text on dark backgrounds, dark text on light backgrounds."
   },
   "navbar_text_color_custom": {
     "section": "header",
-    "type": "textfield",
+    "type": "color",
     "title": "Custom Navbar Text Color",
     "ai_description": "Custom hex color for navbar text. Only used when navbar_text_color=custom."
   },
   "header_block_background": {
     "section": "header",
-    "type": "select",
+    "type": "theme_color",
     "title": "Block Background",
-    "ai_description": "Background color for blocks placed in the header region (search, contact info, etc.). Often matches navbar_background or uses a complementary color.",
-    "options": "_dynamic"
+    "ai_description": "Background color for blocks placed in the header region (search, contact info, etc.). Often matches navbar_background or uses a complementary color."
   },
   "header_block_background_custom": {
     "section": "header",
-    "type": "textfield",
+    "type": "color",
     "title": "Custom Block Background",
     "ai_description": "Custom hex color for header block background. Only used when header_block_background=custom."
   },
   "header_block_text_color": {
     "section": "header",
-    "type": "select",
+    "type": "theme_color",
     "title": "Block Text",
-    "ai_description": "Text color in header blocks. Must contrast with header_block_background.",
-    "options": "_dynamic"
+    "ai_description": "Text color in header blocks. Must contrast with header_block_background."
   },
   "header_block_text_color_custom": {
     "section": "header",
-    "type": "textfield",
+    "type": "color",
     "title": "Custom Block Text Color",
     "ai_description": "Custom hex color for header block text. Only used when header_block_text_color=custom."
   },
   "menu_background": {
     "section": "header",
-    "type": "select",
+    "type": "theme_color",
     "title": "Menu Background",
-    "ai_description": "Background color specifically for the main navigation menu area. Often transparent (empty) to inherit from navbar, or a distinct color to visually separate menu from rest of header.",
-    "options": "_dynamic"
+    "ai_description": "Background color specifically for the main navigation menu area. Often transparent (empty) to inherit from navbar, or a distinct color to visually separate menu from rest of header."
   },
   "menu_background_custom": {
     "section": "header",
-    "type": "textfield",
+    "type": "color",
     "title": "Custom Menu Background",
     "ai_description": "Custom hex for menu background. Only used when menu_background=custom."
   },
   "menu_text_color": {
     "section": "header",
-    "type": "select",
+    "type": "theme_color",
     "title": "Menu Text",
-    "ai_description": "Color of main menu link text. Should contrast with menu_background (or navbar_background if menu_background is empty).",
-    "options": "_dynamic"
+    "ai_description": "Color of main menu link text. Should contrast with menu_background (or navbar_background if menu_background is empty)."
   },
   "menu_text_color_custom": {
     "section": "header",
-    "type": "textfield",
+    "type": "color",
     "title": "Custom Menu Text Color",
     "ai_description": "Custom hex for menu text. Only used when menu_text_color=custom."
   },
   "menu_hover_background": {
     "section": "header",
-    "type": "select",
+    "type": "theme_color",
     "title": "Menu Hover Background",
-    "ai_description": "Background color that appears when hovering over a menu item. Creates visual feedback. Use a slightly lighter/darker shade of menu_background, or an accent color for emphasis.",
-    "options": "_dynamic"
+    "ai_description": "Background color that appears when hovering over a menu item. Creates visual feedback. Use a slightly lighter/darker shade of menu_background, or an accent color for emphasis."
   },
   "menu_hover_background_custom": {
     "section": "header",
-    "type": "textfield",
+    "type": "color",
     "title": "Custom Menu Hover Background",
     "ai_description": "Custom hex for menu hover background. Only used when menu_hover_background=custom."
   },
   "menu_hover_text_color": {
     "section": "header",
-    "type": "select",
+    "type": "theme_color",
     "title": "Menu Hover Text",
-    "ai_description": "Text color of menu items on hover. Often an accent/brand color to highlight the active item.",
-    "options": "_dynamic"
+    "ai_description": "Text color of menu items on hover. Often an accent/brand color to highlight the active item."
   },
   "menu_hover_text_color_custom": {
     "section": "header",
-    "type": "textfield",
+    "type": "color",
     "title": "Custom Menu Hover Text Color",
     "ai_description": "Custom hex for menu hover text. Only used when menu_hover_text_color=custom."
   },
   "dropdown_background": {
     "section": "header",
-    "type": "select",
+    "type": "theme_color",
     "title": "Dropdown Background",
-    "ai_description": "Background color of dropdown/submenu panels. Usually white or light gray for readability. Dark dropdowns work on dark-themed sites.",
-    "options": "_dynamic"
+    "ai_description": "Background color of dropdown/submenu panels. Usually white or light gray for readability. Dark dropdowns work on dark-themed sites."
   },
   "dropdown_background_custom": {
     "section": "header",
-    "type": "textfield",
+    "type": "color",
     "title": "Custom Dropdown Background",
     "ai_description": "Custom hex for dropdown background. Only used when dropdown_background=custom."
   },
   "dropdown_text_color": {
     "section": "header",
-    "type": "select",
+    "type": "theme_color",
     "title": "Dropdown Text",
-    "ai_description": "Text color inside dropdown menus. Must contrast with dropdown_background.",
-    "options": "_dynamic"
+    "ai_description": "Text color inside dropdown menus. Must contrast with dropdown_background."
   },
   "dropdown_text_color_custom": {
     "section": "header",
-    "type": "textfield",
+    "type": "color",
     "title": "Custom Dropdown Text Color",
     "ai_description": "Custom hex for dropdown text. Only used when dropdown_text_color=custom."
   },
   "dropdown_hover_background": {
     "section": "header",
-    "type": "select",
+    "type": "theme_color",
     "title": "Dropdown Hover Background",
-    "ai_description": "Background color when hovering over dropdown items. Subtle shade change (e.g., #f5f5f5 on white) provides feedback.",
-    "options": "_dynamic"
+    "ai_description": "Background color when hovering over dropdown items. Subtle shade change (e.g., #f5f5f5 on white) provides feedback."
   },
   "dropdown_hover_background_custom": {
     "section": "header",
-    "type": "textfield",
+    "type": "color",
     "title": "Custom Dropdown Hover Background",
     "ai_description": "Custom hex for dropdown hover background. Only used when dropdown_hover_background=custom."
   },
   "dropdown_hover_text_color": {
     "section": "header",
-    "type": "select",
+    "type": "theme_color",
     "title": "Dropdown Hover Text",
-    "ai_description": "Text color of dropdown items on hover. Often matches brand/accent color.",
-    "options": "_dynamic"
+    "ai_description": "Text color of dropdown items on hover. Often matches brand/accent color."
   },
   "dropdown_hover_text_color_custom": {
     "section": "header",
-    "type": "textfield",
+    "type": "color",
     "title": "Custom Dropdown Hover Text Color",
     "ai_description": "Custom hex for dropdown hover text. Only used when dropdown_hover_text_color=custom."
   },
   "mobile_menu_background": {
     "section": "header",
-    "type": "select",
+    "type": "theme_color",
     "title": "Mobile Menu Background",
-    "ai_description": "Background color of the mobile hamburger menu panel. Usually matches the site header color or uses a dark overlay. Ensure good contrast with mobile_menu_text_color.",
-    "options": "_dynamic"
+    "ai_description": "Background color of the mobile hamburger menu panel. Usually matches the site header color or uses a dark overlay. Ensure good contrast with mobile_menu_text_color."
   },
   "mobile_menu_background_custom": {
     "section": "header",
-    "type": "textfield",
+    "type": "color",
     "title": "Custom Mobile Menu Background",
     "ai_description": "Custom hex for mobile menu background. Only used when mobile_menu_background=custom."
   },
   "mobile_menu_text_color": {
     "section": "header",
-    "type": "select",
+    "type": "theme_color",
     "title": "Mobile Menu Text",
-    "ai_description": "Text color of links in the mobile menu. Must be clearly readable against mobile_menu_background.",
-    "options": "_dynamic"
+    "ai_description": "Text color of links in the mobile menu. Must be clearly readable against mobile_menu_background."
   },
   "mobile_menu_text_color_custom": {
     "section": "header",
-    "type": "textfield",
+    "type": "color",
     "title": "Custom Mobile Menu Text Color",
     "ai_description": "Custom hex for mobile menu text. Only used when mobile_menu_text_color=custom."
   },
   "mobile_menu_hover_background": {
     "section": "header",
-    "type": "select",
+    "type": "theme_color",
     "title": "Mobile Menu Hover Background",
-    "ai_description": "Background color when tapping/hovering mobile menu items. Provides touch feedback.",
-    "options": "_dynamic"
+    "ai_description": "Background color when tapping/hovering mobile menu items. Provides touch feedback."
   },
   "mobile_menu_hover_background_custom": {
     "section": "header",
-    "type": "textfield",
+    "type": "color",
     "title": "Custom Mobile Menu Hover Background",
     "ai_description": "Custom hex for mobile menu hover background. Only used when mobile_menu_hover_background=custom."
   },
   "mobile_menu_hover_text_color": {
     "section": "header",
-    "type": "select",
+    "type": "theme_color",
     "title": "Mobile Menu Hover Text",
-    "ai_description": "Text color of mobile menu items on hover/tap.",
-    "options": "_dynamic"
+    "ai_description": "Text color of mobile menu items on hover/tap."
   },
   "mobile_menu_hover_text_color_custom": {
     "section": "header",
-    "type": "textfield",
+    "type": "color",
     "title": "Custom Mobile Menu Hover Text Color",
     "ai_description": "Custom hex for mobile menu hover text. Only used when mobile_menu_hover_text_color=custom."
   },
@@ -882,14 +856,13 @@
   },
   "menu_border_color": {
     "section": "header",
-    "type": "select",
+    "type": "theme_color",
     "title": "Border Color",
-    "ai_description": "Color of the menu hover border. Usually matches the primary/accent color from the color palette. Use a theme palette color name or custom with menu_border_color_custom.",
-    "options": "_dynamic"
+    "ai_description": "Color of the menu hover border. Usually matches the primary/accent color from the color palette. Use a theme palette color name or custom with menu_border_color_custom."
   },
   "menu_border_color_custom": {
     "section": "header",
-    "type": "textfield",
+    "type": "color",
     "title": "Custom Value",
     "ai_description": "Custom hex for menu border color. Only used when menu_border_color=custom."
   },
@@ -943,7 +916,7 @@
   },
   "boxed_layout_boxbg": {
     "section": "layout",
-    "type": "textfield",
+    "type": "color",
     "title": "Box Background",
     "description": "Background color for the main content area in boxed mode.",
     "ai_description": "Background color visible behind the centered content box when boxed_layout=1. Usually white (#ffffff) or very light gray (#f8f9fa). Only visible when boxed_layout is enabled.",
@@ -1567,14 +1540,13 @@
   },
   "divider_color": {
     "section": "typography",
-    "type": "select",
+    "type": "theme_color",
     "title": "Divider Color",
-    "ai_description": "Color of the divider line. Use a theme palette color name or custom with divider_color_custom. Often a subtle gray or the primary accent color.",
-    "options": "_dynamic"
+    "ai_description": "Color of the divider line. Use a theme palette color name or custom with divider_color_custom. Often a subtle gray or the primary accent color."
   },
   "divider_color_custom": {
     "section": "typography",
-    "type": "textfield",
+    "type": "color",
     "title": "Custom Value",
     "ai_description": "Custom hex color for divider. Only used when divider_color=custom. #eeeeee=very subtle light gray. Use brand accent color for decorative emphasis.",
     "default": "#eeeeee"
