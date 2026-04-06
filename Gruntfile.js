@@ -95,6 +95,10 @@ module.exports = function (grunt) {
         files: ["js/dist/**/*.js", "!js/minified/**/*.js"],
         tasks: ["webpack", "babel", "terser"],
       },
+      schema: {
+        files: ["features/**/*-theme-settings.inc"],
+        tasks: ["generate-schema"],
+      },
     },
   });
 
@@ -104,6 +108,16 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks("grunt-sass");
   grunt.loadNpmTasks("grunt-contrib-watch");
   grunt.loadNpmTasks("@lodder/grunt-postcss");
+
+  grunt.registerTask("generate-schema", "Generate settings-schema.json from PHP inc files", function () {
+    const done = this.async();
+    const { execFile } = require("child_process");
+    execFile("node", ["scripts/generate-settings-schema.js"], { cwd: __dirname }, (err, stdout, stderr) => {
+      if (stdout) grunt.log.write(stdout);
+      if (stderr) grunt.log.error(stderr);
+      done(!err);
+    });
+  });
 
   grunt.registerTask("default", ["watch"]);
 };
