@@ -65,64 +65,17 @@
     <li><strong>Progressive Web App ready:</strong> Apple Touch Icons and Web App Manifest support included</li>
   </ul>
 
-  <h4>Drush CLI &amp; AI Agent Support</h4>
+  <h3>AI Coding Assistant Integration</h3>
+  <p>DXPR Theme includes a built-in <a href="https://agentskills.io/specification">Agent Skills</a> file that teaches AI coding assistants how to manage all 163 theme settings through natural language. Run <code>drush dxt:setup-ai</code> to enable, then ask naturally:</p>
   <ul>
-    <li>16 Drush commands for theme settings, page layout, AI generation, and subtheme creation from the terminal.</li>
-    <li>Full settings schema with 163 settings — get, set, export, import, and reset with validation.</li>
-    <li>Supports the <a href="https://agentskills.io">Agent Skills</a> standard for AI coding assistants (Claude Code, Codex, Gemini CLI, Copilot, Cursor).</li>
-    <li>Run <code>drush dxt:setup-ai</code> to install skill files.</li>
+    <li>"Set the header layout to centered with a sticky navbar"</li>
+    <li>"Generate a warm color palette for a bakery website"</li>
+    <li>"Make the body font size 18px and switch headings to Playfair Display"</li>
+    <li>"Export all theme settings so I can import them on staging"</li>
+    <li>"Set this page to full-width layout and hide the sidebar"</li>
+    <li>"Generate a modern font pairing for a tech startup"</li>
   </ul>
-
-<h3>Drush Command Reference</h3>
-
-<table>
-  <thead>
-    <tr>
-      <th>Category</th>
-      <th>Commands</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>Theme Settings</strong></td>
-      <td><code>dxt:config:list</code>, <code>dxt:config:get</code>, <code>dxt:config:set</code></td>
-      <td>List, read, and update all 163 theme settings with schema validation</td>
-    </tr>
-    <tr>
-      <td><strong>Import/Export</strong></td>
-      <td><code>dxt:config:export</code>, <code>dxt:config:import</code>, <code>dxt:config:reset</code></td>
-      <td>Export settings to YAML, import from file, reset to defaults</td>
-    </tr>
-    <tr>
-      <td><strong>Page Layout</strong></td>
-      <td><code>dxt:page:get</code>, <code>dxt:page:set</code></td>
-      <td>Get and set per-node layout overrides (full width, hidden regions, content width)</td>
-    </tr>
-    <tr>
-      <td><strong>AI Generation</strong></td>
-      <td><code>dxt:generate:palette</code>, <code>dxt:generate:fonts</code></td>
-      <td>Generate color palettes and font pairings from natural language prompts</td>
-    </tr>
-    <tr>
-      <td><strong>Setup</strong></td>
-      <td><code>dxt:subtheme:create</code>, <code>dxt:setup-ai</code></td>
-      <td>Create subthemes from starterkit, install AI skill files for Claude Code, Codex, Gemini, Copilot, Cursor</td>
-    </tr>
-  </tbody>
-</table>
-
-<h3>AI Coding Assistant Integration</h3>
-
-<p>DXPR Theme ships with a built-in <a href="https://agentskills.io/specification">Agent Skills</a> file that teaches AI coding assistants how to manage theme settings through natural language. Compatible with Claude Code, Codex CLI, Gemini CLI, GitHub Copilot, Cursor, and other tools supporting the standard.</p>
-
-<p>After installing the theme, run <code>drush dxt:setup-ai</code> to enable AI assistant support. Your AI will then respond to natural language like:</p>
-<ul>
-  <li>"List all theme settings in the header section"</li>
-  <li>"Set the header layout to centered"</li>
-  <li>"Generate a warm color palette for a bakery"</li>
-  <li>"Export theme settings to a file"</li>
-</ul>
+  <p>Compatible with Claude Code, Codex CLI, Gemini CLI, GitHub Copilot, Cursor, and other tools supporting the standard.</p>
 
   <h4>Developer Experience</h4>
   <ul>
