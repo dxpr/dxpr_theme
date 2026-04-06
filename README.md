@@ -25,6 +25,96 @@ Colors > Color Set.
 **Usage:** Enter a description like "Modern tech startup" or "Warm bakery tones"
 and click Generate to create a complete color palette.
 
+## Drush Command Reference
+
+DXPR Theme ships Drush commands (via DXPR Theme Helper) under the
+`dxt:` namespace for CLI and AI-agent theme management.
+
+### Theme Settings (`dxt:config:*`)
+
+| Command | Alias | Description |
+|---------|-------|-------------|
+| `dxt:config:list` | `dxt-cl` | Lists all theme settings with current values |
+| `dxt:config:get <key>` | `dxt-cg` | Gets a setting value with schema metadata |
+| `dxt:config:set <key> <value>` | `dxt-cs` | Sets a setting with validation (`--dry-run`) |
+| `dxt:config:export` | `dxt-ce` | Exports settings to YAML file |
+| `dxt:config:import <file>` | `dxt-ci` | Imports settings from YAML file (`--dry-run`) |
+| `dxt:config:reset` | `dxt-cr` | Resets settings to defaults (`--dry-run`) |
+
+### Page Layout (`dxt:page:*`)
+
+| Command | Alias | Description |
+|---------|-------|-------------|
+| `dxt:page:get <nid>` | `dxt-pg` | Gets per-node theme layout field values |
+| `dxt:page:set <nid>` | `dxt-ps` | Sets per-node layout overrides (`--dry-run`) |
+
+### AI Generation (`dxt:generate:*`)
+
+| Command | Alias | Description |
+|---------|-------|-------------|
+| `dxt:generate:palette` | `dxt-gp` | Generates color palette from text prompt |
+| `dxt:generate:fonts` | `dxt-gf` | Generates font pairing from text prompt |
+
+### Subtheme & Setup
+
+| Command | Alias | Description |
+|---------|-------|-------------|
+| `dxt:subtheme:create` | `dxt-sc` | Creates a DXPR subtheme from starterkit |
+| `dxt:setup-ai` | `dxt-sa` | Installs AI skill files for Claude Code (`--host`, `--check`) |
+
+```bash
+# List all theme settings
+drush dxt:config:list
+
+# Get a specific setting with full metadata
+drush dxt:config:get header_top_layout
+
+# Set header layout to centered
+drush dxt:config:set header_top_layout centered
+
+# Export/import theme settings
+drush dxt:config:export --file=/tmp/theme.yml
+drush dxt:config:import /tmp/theme.yml
+
+# Generate a color palette from a description
+drush dxt:generate:palette "Modern tech startup with blue accents"
+
+# Get per-node layout overrides
+drush dxt:page:get 42
+drush dxt:page:set 42 --layout=fullwidth
+```
+
+## AI Coding Assistant Integration
+
+DXPR Theme ships with a built-in skill file
+(`.claude/skills/dxt/SKILL.md`) that teaches AI coding assistants how
+to manage theme settings through natural language. After installation,
+use the `/dxt` slash command or ask naturally:
+
+```
+/dxt list all theme settings
+/dxt set the header layout to centered
+/dxt generate a warm color palette
+/dxt export theme settings to a file
+```
+
+### Quick Setup
+
+```bash
+# Install skill files for AI tool discovery
+drush dxt:setup-ai
+
+# Claude Code only
+drush dxt:setup-ai --host=claude
+
+# Codex/Gemini/Copilot/Cursor only
+drush dxt:setup-ai --host=agents
+```
+
+Compatible with Claude Code, Codex CLI, Gemini CLI, GitHub Copilot,
+Cursor, and other tools supporting the
+[Agent Skills standard](https://agentskills.io/specification).
+
 ## Subtheme CSS File (/css/dxpr_theme_subtheme.css)
 
 **Important**: The `dxpr_theme_subtheme.css` file in your custom subtheme is
