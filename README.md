@@ -1,4 +1,8 @@
-# DXPR Theme
+> Part of [DXPR Theme](https://dxpr.com/c/premium-drupal-theme): The Premium Drupal Theme
+>
+> [Documentation](https://dxpr.com/docs) | [Try Free](https://dxpr.com/try) | [dxpr.com](https://dxpr.com)
+
+# DXPR Theme: Premium Responsive Bootstrap Theme for Drupal
 
 For user documentation and support please check:
 https://app.dxpr.com/hc/documentation
@@ -425,3 +429,11 @@ These Drupal system variables are used for admin toolbar integration:
 | `--drupal-displace-offset-right` | Right displacement (settings sidebar) |
 | `--drupal-displace-offset-left` | Left displacement |
 | `--drupal-displace-offset-bottom` | Bottom displacement |
+
+---
+
+## Related DXPR Modules
+
+- [DXPR Builder](https://www.drupal.org/project/dxpr_builder): AI-powered drag-and-drop page builder for Drupal
+- [DXPR Theme Helper](https://www.drupal.org/project/dxpr_theme_helper): Helper module for DXPR Theme settings and page layout control
+- [Speculative Loading](https://www.drupal.org/project/speculative_loading): Near-instant page navigation with prefetch and prerender
