@@ -1,4 +1,10 @@
-# DXPR Theme
+> **DXPR Theme** is a premium [Drupal theme](https://dxpr.com/c/premium-drupal-theme) with 150+ configuration options, deep Bootstrap 5 integration, AI-powered color palette generation, and full WCAG AAA accessibility support.
+>
+> [Getting Started](https://dxpr.com/c/getting-started) |
+> [Pricing](https://dxpr.com/pricing) |
+> [Try Free Demo](https://dxpr.com/try)
+
+# DXPR Theme - Premium Responsive Bootstrap Theme for Drupal
 
 For user documentation and support please check:
 https://app.dxpr.com/hc/documentation
@@ -425,3 +431,14 @@ These Drupal system variables are used for admin toolbar integration:
 | `--drupal-displace-offset-right` | Right displacement (settings sidebar) |
 | `--drupal-displace-offset-left` | Left displacement |
 | `--drupal-displace-offset-bottom` | Bottom displacement |
+
+---
+
+## Related Modules
+
+- [DXPR Builder](https://www.drupal.org/project/dxpr_builder) - AI-powered drag-and-drop page builder; DXPR Theme provides `dxpr_builder_classes` utility styles for the builder
+- [DXPR Theme Helper](https://www.drupal.org/project/dxpr_theme_helper) - Required companion module for theme settings and page layout control
+- [Bootstrap 5](https://www.drupal.org/project/bootstrap5) - Base theme providing the Bootstrap 5 framework
+- [Media Library Form Element](https://www.drupal.org/project/media_library_form_element) - Required dependency for media selection in theme settings
+- [Diff](https://www.drupal.org/project/diff) - Content revision comparison; DXPR Theme extends with custom styling via `libraries-extend`
+- [Gin](https://www.drupal.org/project/gin) - Admin theme; DXPR Theme overrides Gin base styles and extends the Gin toolbar
