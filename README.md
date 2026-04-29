@@ -436,8 +436,9 @@ These Drupal system variables are used for admin toolbar integration:
 
 ## Related Modules
 
-- [DXPR Builder](https://www.drupal.org/project/dxpr_builder) - AI-powered drag-and-drop page builder for Drupal
-- [DXPR Theme Helper](https://www.drupal.org/project/dxpr_theme_helper) - Helper module for DXPR Theme settings and page layout control
-- [Speculative Loading](https://www.drupal.org/project/speculative_loading) - Near-instant page navigation with prefetch and prerender
-- [Bootstrap 5](https://www.drupal.org/project/bootstrap5) - Bootstrap 5 base theme for Drupal
-- [Metatag](https://www.drupal.org/project/metatag) - Manage meta tags for improved SEO
+- [DXPR Builder](https://www.drupal.org/project/dxpr_builder) - AI-powered drag-and-drop page builder; DXPR Theme provides `dxpr_builder_classes` utility styles for the builder
+- [DXPR Theme Helper](https://www.drupal.org/project/dxpr_theme_helper) - Required companion module for theme settings and page layout control
+- [Bootstrap 5](https://www.drupal.org/project/bootstrap5) - Base theme providing the Bootstrap 5 framework
+- [Media Library Form Element](https://www.drupal.org/project/media_library_form_element) - Required dependency for media selection in theme settings
+- [Diff](https://www.drupal.org/project/diff) - Content revision comparison; DXPR Theme extends with custom styling via `libraries-extend`
+- [Gin](https://www.drupal.org/project/gin) - Admin theme; DXPR Theme overrides Gin base styles and extends the Gin toolbar
