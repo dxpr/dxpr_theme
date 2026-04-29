@@ -1,8 +1,10 @@
-> Part of [DXPR Theme](https://dxpr.com/c/premium-drupal-theme): The Premium Drupal Theme
+> **DXPR Theme** is a premium [Drupal theme](https://dxpr.com/c/premium-drupal-theme) with 150+ configuration options, deep Bootstrap 5 integration, AI-powered color palette generation, and full WCAG AAA accessibility support.
 >
-> [Documentation](https://dxpr.com/docs) | [Try Free](https://dxpr.com/try) | [dxpr.com](https://dxpr.com)
+> [Getting Started](https://dxpr.com/c/getting-started) |
+> [Pricing](https://dxpr.com/pricing) |
+> [Try Free Demo](https://dxpr.com/try)
 
-# DXPR Theme: Premium Responsive Bootstrap Theme for Drupal
+# DXPR Theme - Premium Responsive Bootstrap Theme for Drupal
 
 For user documentation and support please check:
 https://app.dxpr.com/hc/documentation
@@ -432,8 +434,10 @@ These Drupal system variables are used for admin toolbar integration:
 
 ---
 
-## Related DXPR Modules
+## Related Modules
 
-- [DXPR Builder](https://www.drupal.org/project/dxpr_builder): AI-powered drag-and-drop page builder for Drupal
-- [DXPR Theme Helper](https://www.drupal.org/project/dxpr_theme_helper): Helper module for DXPR Theme settings and page layout control
-- [Speculative Loading](https://www.drupal.org/project/speculative_loading): Near-instant page navigation with prefetch and prerender
+- [DXPR Builder](https://www.drupal.org/project/dxpr_builder) - AI-powered drag-and-drop page builder for Drupal
+- [DXPR Theme Helper](https://www.drupal.org/project/dxpr_theme_helper) - Helper module for DXPR Theme settings and page layout control
+- [Speculative Loading](https://www.drupal.org/project/speculative_loading) - Near-instant page navigation with prefetch and prerender
+- [Bootstrap 5](https://www.drupal.org/project/bootstrap5) - Bootstrap 5 base theme for Drupal
+- [Metatag](https://www.drupal.org/project/metatag) - Manage meta tags for improved SEO
