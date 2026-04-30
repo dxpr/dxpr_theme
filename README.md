@@ -1,4 +1,10 @@
-# DXPR Theme
+> **DXPR Theme** is a premium [Drupal theme](https://dxpr.com/c/premium-drupal-theme) with 150+ configuration options, deep Bootstrap 5 integration, AI-powered color palette generation, and full WCAG AAA accessibility support.
+>
+> [Getting Started](https://dxpr.com/c/marketing-cms) |
+> [Pricing](https://dxpr.com/pricing) |
+> [Try Free Demo](https://try.dxpr.com)
+
+# DXPR Theme - Premium Responsive Bootstrap Theme for Drupal
 
 For user documentation and support please check:
 https://app.dxpr.com/hc/documentation
