@@ -123,3 +123,40 @@ function dxpr_theme_post_update_n3_settings_update() {
 
   return t('Theme settings CSS file has been updated.');
 }
+
+/**
+ * Migrate existing sites from "default" to "dxpr-theme-2025" color scheme.
+ *
+ * The default scheme changed from blue/green to monochrome. Existing sites
+ * that use the old default are migrated to "dxpr-theme-2025" to preserve their look.
+ */
+function dxpr_theme_post_update_n4_migrate_default_scheme() {
+  /** @var \Drupal\Core\Extension\ThemeHandler $theme_handler */
+  $theme_handler = \Drupal::service('theme_handler');
+  $theme_list = $theme_handler->listInfo();
+
+  require_once $theme_handler
+    ->getTheme('dxpr_theme')
+    ->getPath() . '/dxpr_theme_callbacks.inc';
+
+  /** @var \Drupal\Core\Extension\Extension $theme */
+  foreach ($theme_list as $theme) {
+    $theme_name = $theme->getName();
+    if ('dxpr_theme' === ($theme->info['base theme'] ?? '') || 'dxpr_theme' === $theme_name) {
+      $config = \Drupal::configFactory()
+        ->getEditable($theme_name . '.settings');
+      $scheme = $config->get('color_scheme');
+
+      if ($scheme === 'default' || $scheme === NULL) {
+        $config->set('color_scheme', 'dxpr-theme-2025');
+        $config->save();
+      }
+
+      if (function_exists('dxpr_theme_css_cache_build')) {
+        dxpr_theme_css_cache_build($theme_name);
+      }
+    }
+  }
+
+  return t('Sites using the old default color scheme have been migrated to "dxpr-theme-2025".');
+}

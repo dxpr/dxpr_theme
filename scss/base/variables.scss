@@ -166,7 +166,7 @@ $schemes: (
     "silver": #b0b0b0,
     "body": #101010,
   ),
-  "default": (
+  "dxpr-theme-2025": (
     "base": #284ed9,
     "basetext": #fff,
     "link": #284ed9,
@@ -192,6 +192,33 @@ $schemes: (
     "graylighter": #ededed,
     "silver": #f1f1f1,
     "body": #efefef,
+  ),
+  "default": (
+    "base": #000,
+    "basetext": #fff,
+    "link": #000,
+    "accent1": #353740,
+    "accent1text": #fff,
+    "accent2": #F7F7F8,
+    "accent2text": #353740,
+    "text": #353740,
+    "headings": #171717,
+    "footer": #fff,
+    "footertext": #353740,
+    "secheader": #000,
+    "secheadertext": #fff,
+    "card": #F7F7F8,
+    "cardtext": #171717,
+    "header": #fff,
+    "headertext": #171717,
+    "headerside": #fff,
+    "headersidetext": #171717,
+    "pagetitle": #fff,
+    "pagetitletext": #171717,
+    "graylight": #6E6E80,
+    "graylighter": #E5E5E5,
+    "silver": #F7F7F8,
+    "body": #fff,
   ),
   "earthy": (
     "base": #8b5f32,
@@ -679,10 +706,10 @@ $schemes: (
   --dxt-setting-header-top-height-scroll: 50px;
   --dxt-setting-header-top-height-sticky-offset: 60px;
   --dxt-setting-header-top-height: 100px;
-  --dxt-setting-headings-bold: normal;
+  --dxt-setting-headings-bold: bold;
   --dxt-setting-headings-font-face: -apple-system, blinkmacsystemfont, "Segoe UI", roboto, helvetica, arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   --dxt-setting-headings-letter-spacing: 0em;
-  --dxt-setting-headings-line-height: 1.1;
+  --dxt-setting-headings-line-height: 1.2;
   --dxt-setting-headings-uppercase: none;
   --dxt-setting-layout-max-width: 1320px;
   --dxt-setting-logo-height: 35%;
@@ -690,7 +717,7 @@ $schemes: (
   --dxt-setting-menu-border-position-offset-sticky: 0px;
   --dxt-setting-menu-border-position-offset: 0px;
   --dxt-setting-menu-border-size: 2px;
-  --dxt-setting-menu-link-spacing: 10px;
+  --dxt-setting-menu-link-spacing: 20px;
   --dxt-setting-nav-font-face: -apple-system, blinkmacsystemfont, "Segoe UI", roboto, helvetica, arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   --dxt-setting-nav-font-size: 16px;
   --dxt-setting-nav-mobile-font-size: 14px;
@@ -701,7 +728,7 @@ $schemes: (
   --dxt-setting-page-title-image-opacity: 1;
   --dxt-setting-page-title-image-position: center center;
   --dxt-setting-page-title-image-style: cover;
-  --dxt-setting-scale-factor: 1.34;
+  --dxt-setting-scale-factor: 1.25;
   --dxt-setting-sitename-font-face: -apple-system, blinkmacsystemfont, "Segoe UI", roboto, helvetica, arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   --dxt-setting-title-align: left;
   --dxt-setting-title-background: transparent;
