@@ -157,8 +157,9 @@ function _dxpr_theme_massage_values(string $key, $value, string $theme, array $s
       }
       break;
 
-    // Handle Font settings - output family, weight, style as separate variables.
-    // Uses existing -font-face variable for family, and new -font-weight/-font-style.
+    // Handle Font settings - output family, weight, style
+    // as separate variables. Uses existing -font-face
+    // variable for family, and new -font-weight/-font-style.
     case 'body_font_face':
     case 'blockquote_font_face':
     case 'headings_font_face':
@@ -169,7 +170,8 @@ function _dxpr_theme_massage_values(string $key, $value, string $theme, array $s
       // e.g., "body_font_face" becomes "body_font" for weight/style.
       $base_key = str_replace('_font_face', '_font', $key);
       $value = [
-        // Empty string key preserves original variable name (e.g., body-font-face).
+        // Empty string key preserves original variable
+        // name (e.g., body-font-face).
         '' => $font_data['family'],
         // These use the base key without "face" (e.g., body-font-weight).
         '__weight' => [$base_key . '_weight', $font_data['weight']],
@@ -190,7 +192,8 @@ function _dxpr_theme_massage_values(string $key, $value, string $theme, array $s
       break;
 
     case 'dropdown_width':
-      // If automatic width is enabled (value = '1' or 1 or TRUE), set to 'auto' instead of fixed width.
+      // If automatic width is enabled (value = '1' or 1
+      // or TRUE), set to 'auto' instead of fixed width.
       if (!empty($submitted['dropdown_width_auto']) && $submitted['dropdown_width_auto'] != '0') {
         $value = 'auto';
         $s = '';

@@ -422,6 +422,7 @@ function dxpr_theme_preprocess_region(&$variables) {
   switch ($variables['region']) {
     case 'secondary_header':
       $variables['#attached']['library'][] = 'dxpr_theme/dxpr-theme-secondary-header';
+      // Fall through to also attach navigation libraries.
     case 'navigation':
     case 'navigation_collapsible':
       $variables['#attached']['library'][] = 'dxpr_theme/dxpr-theme-header';

@@ -1,0 +1,1554 @@
+{
+  "_meta": {
+    "description": "DXPR Theme settings schema. Auto-generated from features/*-theme-settings.inc files.",
+    "generated": "2026-05-18T09:43:18.076Z",
+    "sections": [
+      "block-design",
+      "colors",
+      "custom-css",
+      "fonts",
+      "header",
+      "layout",
+      "page-title",
+      "typography"
+    ],
+    "fields": {
+      "section": "Settings category",
+      "type": "Value type: boolean, range, radios, select, textfield, textarea, checkboxes, font, color, theme_color, media, path, serialized_palette",
+      "title": "Short human label (shown in GUI)",
+      "description": "Terse GUI description",
+      "ai_description": "Design-oriented guidance for AI agents: visual effects, value ranges for different styles, relationships",
+      "options": "Valid values for radios/select/checkboxes (object or _dynamic)",
+      "min": "Minimum value for range type",
+      "max": "Maximum value for range type",
+      "step": "Step increment for range type",
+      "unit": "CSS unit (px, %, em) for range type",
+      "default": "Default value"
+    }
+  },
+  "block_preset": {
+    "section": "block-design",
+    "type": "select",
+    "title": "Block Design Preset",
+    "ai_description": "Quick-apply design preset for sidebar blocks and widget areas. (empty)=theme defaults. block_boxed=white boxes with shadow. block_outline=bordered blocks. block_card=Bootstrap card style. title_inverted=dark title bar. title_sticker=compact title. default_divider=title with divider. custom=full manual control.",
+    "options": {
+      "": "None (Theme Defaults)",
+      "block_boxed": "Block Boxed",
+      "block_outline": "Block Outline",
+      "block_card": "Block Card Style",
+      "title_inverted": "Title Inverted",
+      "title_inverted_shape": "Title Inverted Pill",
+      "title_sticker": "Title Sticker",
+      "title_sticker_color": "Title Sticker Colored",
+      "title_outline": "Title Outline",
+      "default_divider": "Divider",
+      "hairline_divider": "Hairline Divider",
+      "custom": "Custom"
+    },
+    "default": "none"
+  },
+  "block_card": {
+    "section": "block-design",
+    "type": "select",
+    "title": "Block Card Style",
+    "ai_description": "Bootstrap card class applied to blocks. (empty)=no card. card card-body=default white card. bg-primary=primary color card. Use accent variants for colored sidebar sections. Overrides block_padding, block_border when set.",
+    "options": "_dynamic"
+  },
+  "block_background": {
+    "section": "block-design",
+    "type": "theme_color",
+    "title": "Block Background",
+    "ai_description": "Background color for blocks (when not using block_card). Creates colored block containers. Use a theme palette color or custom."
+  },
+  "block_background_custom": {
+    "section": "block-design",
+    "type": "color",
+    "title": "Custom Value",
+    "ai_description": "Custom hex for block background. Only used when block_background=custom. Light grays (#f5f5f5, #f8f9fa) create subtle card-like blocks.",
+    "default": "#eeeeee"
+  },
+  "block_padding": {
+    "section": "block-design",
+    "type": "range",
+    "title": "Block Padding",
+    "ai_description": "Internal padding inside blocks. 0=no padding. 10-15px=compact. 20-30px=comfortable. Disabled when block_card is set.",
+    "min": 0,
+    "max": 30,
+    "step": 1,
+    "unit": "px",
+    "default": 0
+  },
+  "block_border_radius": {
+    "section": "block-design",
+    "type": "range",
+    "title": "Block Border Radius",
+    "ai_description": "Rounded corners on blocks. 0=sharp corners (corporate). 4-8px=subtle rounding (modern standard). 12-20px=noticeably rounded (friendly). Disabled when block_card is set.",
+    "min": 0,
+    "max": 100,
+    "step": 1,
+    "unit": "px",
+    "default": 0
+  },
+  "block_border": {
+    "section": "block-design",
+    "type": "range",
+    "title": "Block Border",
+    "ai_description": "Border width around blocks. 0=no border. 1px=subtle outline. 2-3px=visible frame. Disabled when block_card is set.",
+    "min": 0,
+    "max": 30,
+    "step": 1,
+    "unit": "px",
+    "default": 0
+  },
+  "block_border_color": {
+    "section": "block-design",
+    "type": "theme_color",
+    "title": "Block Border Color",
+    "ai_description": "Color of the block border. Often a light gray (#dee2e6) for subtle definition. Only visible when block_border>0."
+  },
+  "block_border_color_custom": {
+    "section": "block-design",
+    "type": "color",
+    "title": "Custom Value",
+    "ai_description": "Custom hex for block border. Only used when block_border_color=custom.",
+    "default": "#eeeeee"
+  },
+  "title_font_size": {
+    "section": "block-design",
+    "type": "radios",
+    "title": "Title Font Size",
+    "ai_description": "Heading level for block titles. h2=large section heading. h3=standard block title (default). h4=smaller heading. body=paragraph-sized (subtle).",
+    "options": {
+      "h1": "h1",
+      "h2": "h2",
+      "h3": "h3",
+      "h4": "h4",
+      "body": "Paragraph"
+    },
+    "default": "h3"
+  },
+  "title_align": {
+    "section": "block-design",
+    "type": "radios",
+    "title": "Title Align",
+    "ai_description": "Block title text alignment. left=standard (default). center=formal/symmetrical. right=unconventional.",
+    "options": {
+      "left": "Left",
+      "center": "Center",
+      "right": "Right"
+    },
+    "default": "left"
+  },
+  "title_card": {
+    "section": "block-design",
+    "type": "select",
+    "title": "Title Card Style",
+    "ai_description": "Bootstrap card styling on the title element separately from the block body. Creates a highlighted title bar.",
+    "options": "_dynamic"
+  },
+  "title_background": {
+    "section": "block-design",
+    "type": "theme_color",
+    "title": "Title Background",
+    "ai_description": "Background color for block titles. Creates colored title bars. Combined with contrasting text creates the inverted title look."
+  },
+  "title_background_custom": {
+    "section": "block-design",
+    "type": "color",
+    "title": "Custom Value",
+    "ai_description": "Custom hex for title background. Only used when title_background=custom.",
+    "default": "#eeeeee"
+  },
+  "title_padding": {
+    "section": "block-design",
+    "type": "range",
+    "title": "Title Padding",
+    "ai_description": "Padding inside the title element. 5-10px=compact. 15-20px=comfortable. 25-30px=spacious title bar. Disabled when title_card is set.",
+    "min": 0,
+    "max": 30,
+    "step": 1,
+    "unit": "px",
+    "default": 10
+  },
+  "title_border": {
+    "section": "block-design",
+    "type": "range",
+    "title": "Title Border",
+    "ai_description": "Border width on block titles. 0=no border. 1-2px=subtle underline/frame. 3+px=bold accent.",
+    "min": 0,
+    "max": 30,
+    "step": 1,
+    "unit": "px",
+    "default": 0
+  },
+  "title_border_radius": {
+    "section": "block-design",
+    "type": "range",
+    "title": "Title Border Radius",
+    "ai_description": "Rounded corners on the title element. 0=sharp. 4-8px=subtle.",
+    "min": 0,
+    "max": 30,
+    "step": 1,
+    "unit": "px",
+    "default": 0
+  },
+  "title_border_color": {
+    "section": "block-design",
+    "type": "theme_color",
+    "title": "Title Border Color",
+    "ai_description": "Color of the title border. Often an accent color for decorative emphasis."
+  },
+  "title_border_color_custom": {
+    "section": "block-design",
+    "type": "color",
+    "title": "Custom Value",
+    "ai_description": "Custom hex for title border. Only used when title_border_color=custom.",
+    "default": "#eeeeee"
+  },
+  "title_sticker": {
+    "section": "block-design",
+    "type": "boolean",
+    "title": "Title Sticker Mode",
+    "ai_description": "When enabled, title element shrinks to fit its text content instead of spanning full block width. Creates compact modern title label. Works well with title_background. Overrides title_align.",
+    "default": 0
+  },
+  "block_divider": {
+    "section": "block-design",
+    "type": "boolean",
+    "title": "Add Divider to Block",
+    "ai_description": "Add a horizontal divider line between block title and content. Creates clean visual separation. Popular in minimal/editorial designs.",
+    "default": 0
+  },
+  "block_divider_custom": {
+    "section": "block-design",
+    "type": "boolean",
+    "title": "Customize Divider",
+    "description": "Override the global divider styles from the Typography tab for this block only.",
+    "ai_description": "Enable to override global divider settings with block-specific divider styling. Disable to inherit global divider_thickness/length/color.",
+    "default": 0
+  },
+  "block_divider_color": {
+    "section": "block-design",
+    "type": "theme_color",
+    "title": "Divider Color",
+    "ai_description": "Color for block-specific divider. Only active when block_divider=true and block_divider_custom=true."
+  },
+  "block_divider_color_custom": {
+    "section": "block-design",
+    "type": "color",
+    "title": "Custom Value",
+    "ai_description": "Custom hex for block divider. Only used when block_divider_color=custom.",
+    "default": "#eeeeee"
+  },
+  "block_divider_thickness": {
+    "section": "block-design",
+    "type": "range",
+    "title": "Divider Thickness",
+    "ai_description": "Thickness of block dividers. 1-2px=hairline. 3-4px=standard. Only active when block_divider=true and block_divider_custom=true.",
+    "min": 0,
+    "max": 20,
+    "step": 1,
+    "unit": "px",
+    "default": 4
+  },
+  "block_divider_length": {
+    "section": "block-design",
+    "type": "range",
+    "title": "Divider Length",
+    "ai_description": "Width of block dividers. 0=full width. Short lengths (30-80px) create accent marks. Only active when block_divider=true and block_divider_custom=true.",
+    "min": 0,
+    "max": 500,
+    "step": 1,
+    "unit": "px",
+    "default": 10
+  },
+  "block_divider_spacing": {
+    "section": "block-design",
+    "type": "range",
+    "title": "Divider Spacing",
+    "ai_description": "Vertical space above and below the block divider. 10-15px=tight. 20px=standard. 30+px=generous. Only active when block_divider=true and block_divider_custom=true.",
+    "min": 0,
+    "max": 100,
+    "step": 1,
+    "unit": "px",
+    "default": 20
+  },
+  "block_design_regions": {
+    "section": "block-design",
+    "type": "checkboxes",
+    "title": "Regions",
+    "ai_description": "Select which theme regions these block design settings apply to. Common choices: sidebar_first, sidebar_second (sidebar widgets), footer (footer blocks), content (main content blocks).",
+    "options": {
+      "secondary_header": "Secondary Header",
+      "navigation": "Navigation",
+      "slider": "Hero Region",
+      "header": "Page Title",
+      "highlighted": "Highlighted",
+      "help": "Help",
+      "sidebar_first": "Sidebar First",
+      "sidebar_second": "Sidebar Second",
+      "content_top": "Content Top",
+      "content_bottom": "Content Bottom",
+      "content": "Main Content",
+      "footer": "Footer"
+    },
+    "default": []
+  },
+  "color_scheme": {
+    "section": "colors",
+    "type": "select",
+    "title": "Color Set",
+    "ai_description": "Select a predefined color scheme or custom to define individual palette colors. Available schemes are defined in the theme's color-settings.json. Use dxt:generate:palette to create a scheme from a natural language description.",
+    "options": "_dynamic",
+    "default": "default"
+  },
+  "custom_css_site": {
+    "section": "custom-css",
+    "type": "textarea",
+    "title": "Sitewide CSS",
+    "ai_description": "Raw CSS code injected on every page. Use for quick overrides without creating a subtheme. Avoid duplicating what theme settings already control."
+  },
+  "custom_javascript_site": {
+    "section": "custom-css",
+    "type": "textarea",
+    "title": "Sitewide JavaScript",
+    "ai_description": "Raw JavaScript code injected on every page. Use for tracking snippets, custom interactions, or third-party widget initialization. Runs after DOM ready."
+  },
+  "body_font_face": {
+    "section": "fonts",
+    "type": "font",
+    "title": "Base Font",
+    "ai_description": "Primary font for all body/paragraph text. Sets the overall reading experience. Web-safe options: helvetica (clean modern), georgia (elegant serif), verdana (screen-optimized). Google fonts: 0Roboto:400 (versatile), 0Open+Sans:400 (friendly), 0Lato:400 (professional). Format: web-safe name or 0FontName:weight."
+  },
+  "body_font_face_selector": {
+    "section": "fonts",
+    "type": "textfield",
+    "title": "CSS Selector",
+    "ai_description": "CSS selector where the body font applies. Default body covers everything. Rarely needs changing unless you want body font only on specific elements.",
+    "default": "body"
+  },
+  "headings_font_face": {
+    "section": "fonts",
+    "type": "font",
+    "title": "Headings",
+    "ai_description": "Font for all headings (h1-h6). Creates visual hierarchy contrast with body font. Classic pairings: serif headings + sans body (0Playfair+Display:700 + Roboto). Same family different weight. Display fonts add personality (0Montserrat:700, 0Poppins:600)."
+  },
+  "headings_font_face_selector": {
+    "section": "fonts",
+    "type": "textfield",
+    "title": "CSS Selector",
+    "ai_description": "CSS selector for headings font. Default covers h1-h6, display classes, labels, and page title. Extend to add custom heading classes.",
+    "default": "h1,.h1,h2,.h2,h3,.h3,h4,.h4,h5,.h5,h6,.h6,.display-1,.display-2,.display-3,.display-4,.display-5,.display-6,label,.field--label,.page-title"
+  },
+  "nav_font_face": {
+    "section": "fonts",
+    "type": "font",
+    "title": "Navigation",
+    "ai_description": "Font for main navigation links. Often matches headings_font_face or body_font_face. Sans-serif fonts work best for navigation readability at small sizes."
+  },
+  "nav_font_face_selector": {
+    "section": "fonts",
+    "type": "textfield",
+    "title": "CSS Selector",
+    "ai_description": "CSS selector for navigation font. Default .dxpr-theme-header .nav targets the main menu.",
+    "default": ".dxpr-theme-header .nav"
+  },
+  "sitename_font_face": {
+    "section": "fonts",
+    "type": "font",
+    "title": "Site Name",
+    "ai_description": "Font for the site name/brand text in the header. Can be a distinctive display or logo font. Choose something that represents the brand identity."
+  },
+  "sitename_font_face_selector": {
+    "section": "fonts",
+    "type": "textfield",
+    "title": "CSS Selector",
+    "ai_description": "CSS selector for site name font. Default covers .site-name and .navbar-brand.",
+    "default": ".site-name, .navbar-brand"
+  },
+  "blockquote_font_face": {
+    "section": "fonts",
+    "type": "font",
+    "title": "Blockquote",
+    "ai_description": "Font for blockquote/pullquote elements. Often an italic serif for literary feel: 0Merriweather:italic, 0Lora:italic. Can match body font for consistency or contrast for emphasis."
+  },
+  "blockquote_font_face_selector": {
+    "section": "fonts",
+    "type": "textfield",
+    "title": "CSS Selector",
+    "ai_description": "CSS selector for blockquote font. Default covers blockquote and blockquote p elements.",
+    "default": "blockquote, blockquote p"
+  },
+  "header_top_layout": {
+    "section": "header",
+    "type": "radios",
+    "title": "Layout",
+    "ai_description": "Visual arrangement of logo and navigation. 0=logo left, menu right (standard business/corporate, most versatile). centered=logo stacked above centered menu (boutique, restaurant, elegant). centered_inline=logo centered between split menu halves (fashion, luxury). logo_left_menu_left=both left-aligned (editorial, news). logo_center_menu_left=logo centered, menu left (portfolio). logo_center_menu_right=logo centered, menu right (portfolio variant). logo_right_menu_left=logo right, menu left (RTL-friendly, unconventional).",
+    "options": {
+      "0": "Normal (Logo left, Menu Right)",
+      "centered": "Centered (stacked)",
+      "centered_inline": "Centered (inline)",
+      "logo_left_menu_left": "Logo Left, Menu Left",
+      "logo_center_menu_left": "Logo Center, Menu Left",
+      "logo_center_menu_right": "Logo Center, Menu Right",
+      "logo_right_menu_left": "Logo Right, Menu Left"
+    },
+    "default": "0"
+  },
+  "header_style": {
+    "section": "header",
+    "type": "radios",
+    "title": "Header Style",
+    "description": "Overlay mode places the header over page content, allowing transparent backgrounds.",
+    "ai_description": "normal=standard header with its own background band above page content. overlay=header floats transparently over page content (hero images show through). Overlay is dramatic for landing pages with hero images; pair with reduced header_top_bg_opacity for glass effect.",
+    "options": {
+      "normal": "Normal",
+      "overlay": "Overlay"
+    }
+  },
+  "header_top_bg_opacity": {
+    "section": "header",
+    "type": "range",
+    "title": "Header Opacity",
+    "description": "0 = transparent, 1 = opaque.",
+    "ai_description": "Header background transparency. 1=fully opaque (solid). 0.8-0.95=subtle transparency (glass/frosted effect). 0.5=semi-transparent (content visible behind). 0=fully transparent (header floats invisibly). Best combined with header_style=overlay for hero sections.",
+    "min": 0,
+    "max": 1,
+    "step": 0.01,
+    "default": 1
+  },
+  "header_top_height": {
+    "section": "header",
+    "type": "range",
+    "title": "Height",
+    "description": "Initial height of the header.",
+    "ai_description": "Header height controls visual prominence. 60-80px=compact modern header (SaaS, tech). 100px=standard balanced. 120-150px=tall prominent header (luxury, portfolio). 150-200px=very tall statement header. Pairs with logo_height percentage.",
+    "min": 10,
+    "max": 200,
+    "step": 1,
+    "unit": "px",
+    "default": 100
+  },
+  "logo_height": {
+    "section": "header",
+    "type": "range",
+    "title": "Logo Height",
+    "description": "Logo height as percentage of the header height.",
+    "ai_description": "Logo height as percentage of header height. 50%=logo uses half the header (balanced). 70-80%=logo dominates header (brand-focused). 30-40%=subtle small logo (minimalist). Actual pixel height = header_top_height x logo_height/100.",
+    "min": 10,
+    "max": 100,
+    "step": 1,
+    "unit": "px"
+  },
+  "header_top_fixed": {
+    "section": "header",
+    "type": "boolean",
+    "title": "Fixed Position",
+    "description": "Header stays visible at the top when scrolling.",
+    "ai_description": "Enable to keep header always visible at top of viewport while scrolling. Essential for sites with important navigation. Disable for content-focused reading experiences (blogs, articles) where you want maximum content space.",
+    "default": false
+  },
+  "header_top_sticky": {
+    "section": "header",
+    "type": "boolean",
+    "title": "Sticky Header",
+    "description": "Header appears after scrolling past a specified offset.",
+    "ai_description": "Requires header_top_fixed=true. When enabled, header shrinks/transforms after scrolling past header_top_height_sticky_offset. Creates a compact navigation that appears on scroll, a common modern UX pattern. Configure the smaller size with header_top_height_scroll.",
+    "default": false
+  },
+  "second_header_sticky": {
+    "section": "header",
+    "type": "boolean",
+    "title": "Sticky Second Header",
+    "ai_description": "Makes the secondary header bar also stick when scrolling. Only relevant when header_style=overlay and header_top_sticky=true. Usually disabled to keep sticky header compact.",
+    "default": false
+  },
+  "header_top_sticky_show": {
+    "section": "header",
+    "type": "radios",
+    "title": "Hide before Scrolling",
+    "description": "Use Overlay mode to prevent empty space at the top when hidden initially.",
+    "ai_description": "always=sticky header always visible as you scroll. after_scroll=header hides initially and only appears after scrolling down (saves space, reveals on intent). The after_scroll pattern is popular on mobile-first and content-heavy sites.",
+    "options": {
+      "always": "Always Show",
+      "after_scroll": "Hide initially. Show after scroll offset"
+    },
+    "default": "always"
+  },
+  "header_top_height_sticky_offset": {
+    "section": "header",
+    "type": "range",
+    "title": "Scroll offset",
+    "description": "Scroll distance before header becomes fixed.",
+    "ai_description": "How far user must scroll (in px) before sticky header appears. 60px=appears quickly. 200-400px=appears after scrolling past hero section. Match to your hero/banner height for smooth transition.",
+    "min": 0,
+    "max": 2096,
+    "step": 10,
+    "unit": "px",
+    "default": 60
+  },
+  "header_top_height_scroll": {
+    "section": "header",
+    "type": "range",
+    "title": "Height",
+    "description": "Header height after scrolling past scroll offset.",
+    "ai_description": "Height of the header after it enters sticky mode. Usually smaller than header_top_height for a compact scrolled state. 40-60px=compact. 70-90px=moderate. Common pattern: header_top_height=100, header_top_height_scroll=60.",
+    "min": 10,
+    "max": 200,
+    "step": 1,
+    "unit": "px",
+    "default": 50
+  },
+  "header_top_bg_opacity_scroll": {
+    "section": "header",
+    "type": "range",
+    "title": "Background Opacity",
+    "description": "0 = transparent, 1 = opaque.",
+    "ai_description": "Background opacity after entering sticky mode. Usually 1 (fully opaque) so sticky header is readable against any content. Set to 0.9-0.95 for subtle glass effect in sticky state.",
+    "min": 0,
+    "max": 1,
+    "step": 0.01,
+    "default": 1
+  },
+  "navbar_background": {
+    "section": "header",
+    "type": "theme_color",
+    "title": "Navbar Background",
+    "ai_description": "Background color for the entire navbar area. Use a theme palette color name or custom with navbar_background_custom. Leave empty for transparent. Dark backgrounds create dramatic headers; light/white creates clean modern feel."
+  },
+  "navbar_background_custom": {
+    "section": "header",
+    "type": "color",
+    "title": "Custom Navbar Background",
+    "ai_description": "Custom hex color for navbar background. Only used when navbar_background=custom. Set to match your brand color for branded headers."
+  },
+  "navbar_text_color": {
+    "section": "header",
+    "type": "theme_color",
+    "title": "Navbar Text",
+    "ai_description": "Text/link color in the navbar. Must contrast with navbar_background for readability. Light text on dark backgrounds, dark text on light backgrounds."
+  },
+  "navbar_text_color_custom": {
+    "section": "header",
+    "type": "color",
+    "title": "Custom Navbar Text Color",
+    "ai_description": "Custom hex color for navbar text. Only used when navbar_text_color=custom."
+  },
+  "header_block_background": {
+    "section": "header",
+    "type": "theme_color",
+    "title": "Block Background",
+    "ai_description": "Background color for blocks placed in the header region (search, contact info, etc.). Often matches navbar_background or uses a complementary color."
+  },
+  "header_block_background_custom": {
+    "section": "header",
+    "type": "color",
+    "title": "Custom Block Background",
+    "ai_description": "Custom hex color for header block background. Only used when header_block_background=custom."
+  },
+  "header_block_text_color": {
+    "section": "header",
+    "type": "theme_color",
+    "title": "Block Text",
+    "ai_description": "Text color in header blocks. Must contrast with header_block_background."
+  },
+  "header_block_text_color_custom": {
+    "section": "header",
+    "type": "color",
+    "title": "Custom Block Text Color",
+    "ai_description": "Custom hex color for header block text. Only used when header_block_text_color=custom."
+  },
+  "menu_background": {
+    "section": "header",
+    "type": "theme_color",
+    "title": "Menu Background",
+    "ai_description": "Background color specifically for the main navigation menu area. Often transparent (empty) to inherit from navbar, or a distinct color to visually separate menu from rest of header."
+  },
+  "menu_background_custom": {
+    "section": "header",
+    "type": "color",
+    "title": "Custom Menu Background",
+    "ai_description": "Custom hex for menu background. Only used when menu_background=custom."
+  },
+  "menu_text_color": {
+    "section": "header",
+    "type": "theme_color",
+    "title": "Menu Text",
+    "ai_description": "Color of main menu link text. Should contrast with menu_background (or navbar_background if menu_background is empty)."
+  },
+  "menu_text_color_custom": {
+    "section": "header",
+    "type": "color",
+    "title": "Custom Menu Text Color",
+    "ai_description": "Custom hex for menu text. Only used when menu_text_color=custom."
+  },
+  "menu_hover_background": {
+    "section": "header",
+    "type": "theme_color",
+    "title": "Menu Hover Background",
+    "ai_description": "Background color that appears when hovering over a menu item. Creates visual feedback. Use a slightly lighter/darker shade of menu_background, or an accent color for emphasis."
+  },
+  "menu_hover_background_custom": {
+    "section": "header",
+    "type": "color",
+    "title": "Custom Menu Hover Background",
+    "ai_description": "Custom hex for menu hover background. Only used when menu_hover_background=custom."
+  },
+  "menu_hover_text_color": {
+    "section": "header",
+    "type": "theme_color",
+    "title": "Menu Hover Text",
+    "ai_description": "Text color of menu items on hover. Often an accent/brand color to highlight the active item."
+  },
+  "menu_hover_text_color_custom": {
+    "section": "header",
+    "type": "color",
+    "title": "Custom Menu Hover Text Color",
+    "ai_description": "Custom hex for menu hover text. Only used when menu_hover_text_color=custom."
+  },
+  "dropdown_background": {
+    "section": "header",
+    "type": "theme_color",
+    "title": "Dropdown Background",
+    "ai_description": "Background color of dropdown/submenu panels. Usually white or light gray for readability. Dark dropdowns work on dark-themed sites."
+  },
+  "dropdown_background_custom": {
+    "section": "header",
+    "type": "color",
+    "title": "Custom Dropdown Background",
+    "ai_description": "Custom hex for dropdown background. Only used when dropdown_background=custom."
+  },
+  "dropdown_text_color": {
+    "section": "header",
+    "type": "theme_color",
+    "title": "Dropdown Text",
+    "ai_description": "Text color inside dropdown menus. Must contrast with dropdown_background."
+  },
+  "dropdown_text_color_custom": {
+    "section": "header",
+    "type": "color",
+    "title": "Custom Dropdown Text Color",
+    "ai_description": "Custom hex for dropdown text. Only used when dropdown_text_color=custom."
+  },
+  "dropdown_hover_background": {
+    "section": "header",
+    "type": "theme_color",
+    "title": "Dropdown Hover Background",
+    "ai_description": "Background color when hovering over dropdown items. Subtle shade change (e.g., #f5f5f5 on white) provides feedback."
+  },
+  "dropdown_hover_background_custom": {
+    "section": "header",
+    "type": "color",
+    "title": "Custom Dropdown Hover Background",
+    "ai_description": "Custom hex for dropdown hover background. Only used when dropdown_hover_background=custom."
+  },
+  "dropdown_hover_text_color": {
+    "section": "header",
+    "type": "theme_color",
+    "title": "Dropdown Hover Text",
+    "ai_description": "Text color of dropdown items on hover. Often matches brand/accent color."
+  },
+  "dropdown_hover_text_color_custom": {
+    "section": "header",
+    "type": "color",
+    "title": "Custom Dropdown Hover Text Color",
+    "ai_description": "Custom hex for dropdown hover text. Only used when dropdown_hover_text_color=custom."
+  },
+  "mobile_menu_background": {
+    "section": "header",
+    "type": "theme_color",
+    "title": "Mobile Menu Background",
+    "ai_description": "Background color of the mobile hamburger menu panel. Usually matches the site header color or uses a dark overlay. Ensure good contrast with mobile_menu_text_color."
+  },
+  "mobile_menu_background_custom": {
+    "section": "header",
+    "type": "color",
+    "title": "Custom Mobile Menu Background",
+    "ai_description": "Custom hex for mobile menu background. Only used when mobile_menu_background=custom."
+  },
+  "mobile_menu_text_color": {
+    "section": "header",
+    "type": "theme_color",
+    "title": "Mobile Menu Text",
+    "ai_description": "Text color of links in the mobile menu. Must be clearly readable against mobile_menu_background."
+  },
+  "mobile_menu_text_color_custom": {
+    "section": "header",
+    "type": "color",
+    "title": "Custom Mobile Menu Text Color",
+    "ai_description": "Custom hex for mobile menu text. Only used when mobile_menu_text_color=custom."
+  },
+  "mobile_menu_hover_background": {
+    "section": "header",
+    "type": "theme_color",
+    "title": "Mobile Menu Hover Background",
+    "ai_description": "Background color when tapping/hovering mobile menu items. Provides touch feedback."
+  },
+  "mobile_menu_hover_background_custom": {
+    "section": "header",
+    "type": "color",
+    "title": "Custom Mobile Menu Hover Background",
+    "ai_description": "Custom hex for mobile menu hover background. Only used when mobile_menu_hover_background=custom."
+  },
+  "mobile_menu_hover_text_color": {
+    "section": "header",
+    "type": "theme_color",
+    "title": "Mobile Menu Hover Text",
+    "ai_description": "Text color of mobile menu items on hover/tap."
+  },
+  "mobile_menu_hover_text_color_custom": {
+    "section": "header",
+    "type": "color",
+    "title": "Custom Mobile Menu Hover Text Color",
+    "ai_description": "Custom hex for mobile menu hover text. Only used when mobile_menu_hover_text_color=custom."
+  },
+  "hamburger_menu": {
+    "section": "header",
+    "type": "radios",
+    "title": "Hamburger Icon Style",
+    "ai_description": "Mobile menu toggle icon style. three-dash=classic three-line hamburger (universally recognized). two-dash=minimal two-line variant (modern, slightly less recognizable).",
+    "options": {
+      "three-dash": "Three lines",
+      "two-dash": "Two lines"
+    },
+    "default": "three-dash"
+  },
+  "hamburger_animation": {
+    "section": "header",
+    "type": "radios",
+    "title": "Hamburger Animation",
+    "ai_description": "Animation when the hamburger icon is tapped. none=static icon. cross=lines animate into an X when menu opens (polished, signals close). Cross animation is the modern standard.",
+    "options": {
+      "none": "None",
+      "cross": "Cross"
+    },
+    "default": "cross"
+  },
+  "header_side_align": {
+    "section": "header",
+    "type": "radios",
+    "title": "Mobile Menu Alignment",
+    "ai_description": "Horizontal alignment of the mobile menu panel. left=slides in from left (most common). center=drops down centered. right=slides in from right (matches right-aligned hamburger icon).",
+    "options": {
+      "left": "Left",
+      "center": "Center",
+      "right": "Right"
+    },
+    "default": "left"
+  },
+  "dropdown_width_auto": {
+    "section": "header",
+    "type": "radios",
+    "title": "Dropdown Width",
+    "ai_description": "1=dropdown menus auto-size to fit their content (clean, adapts to link length). 0=all dropdowns use a fixed width (dropdown_width) for uniform appearance. Auto is usually better unless you need strict visual alignment.",
+    "options": {
+      "0": "Fixed width",
+      "1": "Automatic (fits content)"
+    },
+    "default": "1"
+  },
+  "dropdown_width": {
+    "section": "header",
+    "type": "range",
+    "title": "Fixed Dropdown Width",
+    "ai_description": "Fixed pixel width for dropdown menus when dropdown_width_auto=0. 200px=compact. 250-300px=standard. 400+px=wide mega-menu style. Only applies when dropdown_width_auto=0.",
+    "min": 100,
+    "max": 500,
+    "step": 5,
+    "unit": "px",
+    "default": "200"
+  },
+  "menu_type": {
+    "section": "header",
+    "type": "radios",
+    "title": "Font Style",
+    "ai_description": "Font treatment for main menu links. (empty)=normal text. uppercase=ALL CAPS (strong, authoritative, suits corporate/tech). bold=heavier weight (prominent nav). lead=larger text (statement navigation). Uppercase + border hover creates a sophisticated nav pattern.",
+    "options": {
+      "": "Normal",
+      "uppercase": "Uppercase",
+      "bold": "Bold",
+      "lead": "Lead text"
+    },
+    "default": ""
+  },
+  "menu_link_spacing": {
+    "section": "header",
+    "type": "range",
+    "title": "Link Spacing",
+    "description": "Horizontal padding between menu links (in pixels).",
+    "ai_description": "Horizontal padding between menu items. 5-10px=compact/dense navigation (many items). 15-20px=balanced spacing. 25-40px=airy spacing (few menu items, luxury feel). 50px=very spread out.",
+    "min": 0,
+    "max": 50,
+    "step": 1,
+    "unit": "px",
+    "default": "10"
+  },
+  "menu_hover": {
+    "section": "header",
+    "type": "radios",
+    "title": "Hover Style",
+    "ai_description": "Visual feedback style when hovering over menu items. opacity=subtle fade (minimal, modern). background=colored fill behind item (corporate, clear). text=only text color changes (subtle). border=underline/overline effect (modern, editorial). Border hover is most popular in contemporary web design; configure with menu_border_* settings.",
+    "options": {
+      "opacity": "Opacity",
+      "background": "Colored Background",
+      "text": "Colored text",
+      "border": "Border"
+    },
+    "default": "opacity"
+  },
+  "menu_border_position": {
+    "section": "header",
+    "type": "radios",
+    "title": "Hover Style",
+    "ai_description": "Position of the hover border line. bottom=underline (most common, modern). top=overline (distinctive, less common). Only applies when menu_hover=border.",
+    "options": {
+      "top": "Top",
+      "bottom": "Bottom"
+    },
+    "default": "bottom"
+  },
+  "menu_border_animate": {
+    "section": "header",
+    "type": "radios",
+    "title": "Animation",
+    "ai_description": "Animation for the hover border appearance. (empty)=instant appear. ltr=slides in from left. rtl=slides in from right. middle=expands from center outward (most popular). drop=fades down from top. The middle animation is the most refined and widely used.",
+    "options": {
+      "": "No Animation",
+      "ltr": "Left to Right",
+      "rtl": "Right to Left",
+      "middle": "Middle Out",
+      "drop": "Fade in from Top"
+    },
+    "default": 0
+  },
+  "menu_border_position_offset": {
+    "section": "header",
+    "type": "range",
+    "title": "Position Offset",
+    "ai_description": "Distance in px between the border and the menu item edge. 0=border touches the item. 5-15px=slight gap for floating effect. Adjust to align with header design.",
+    "min": 0,
+    "max": 100,
+    "step": 1,
+    "unit": "px",
+    "default": "0"
+  },
+  "menu_border_position_offset_sticky": {
+    "section": "header",
+    "type": "range",
+    "title": "Position Offset for Sticky Header",
+    "ai_description": "Border offset specifically for sticky header state. Often different from normal offset because sticky header has different height. Only visible when header_top_fixed and header_top_sticky are enabled.",
+    "min": 0,
+    "max": 100,
+    "step": 1,
+    "unit": "px",
+    "default": "0"
+  },
+  "menu_border_size": {
+    "section": "header",
+    "type": "range",
+    "title": "Border Thickness",
+    "ai_description": "Thickness of the hover border in pixels. 1-2px=subtle hairline (elegant). 3-4px=visible accent line (balanced). 5+px=bold statement border. 2-3px is most common.",
+    "min": 1,
+    "max": 20,
+    "step": 1,
+    "unit": "px",
+    "default": 2
+  },
+  "menu_border_color": {
+    "section": "header",
+    "type": "theme_color",
+    "title": "Border Color",
+    "ai_description": "Color of the menu hover border. Usually matches the primary/accent color from the color palette. Use a theme palette color name or custom with menu_border_color_custom."
+  },
+  "menu_border_color_custom": {
+    "section": "header",
+    "type": "color",
+    "title": "Custom Value",
+    "ai_description": "Custom hex for menu border color. Only used when menu_border_color=custom."
+  },
+  "header_mobile_breakpoint": {
+    "section": "header",
+    "type": "range",
+    "title": "Mobile Breakpoint",
+    "description": "Viewport width below which mobile header is used. Set to maximum (4100) to always use mobile style.",
+    "ai_description": "Viewport width (px) at which desktop header switches to mobile hamburger menu. 992px=tablet breakpoint (shows mobile menu on tablets). 1200px=standard (default, desktop-first). 768px=only phones get mobile menu. Set based on how many menu items fit comfortably.",
+    "min": 480,
+    "max": 4100,
+    "step": 10,
+    "unit": "px",
+    "default": 1200
+  },
+  "header_mobile_height": {
+    "section": "header",
+    "type": "range",
+    "title": "Height",
+    "description": "Height of header in mobile view.",
+    "ai_description": "Height of the header on mobile devices. 50-60px=compact (maximizes content space). 70-80px=comfortable with adequate tap targets. Keep smaller than desktop header_top_height.",
+    "min": 10,
+    "max": 200,
+    "step": 1,
+    "unit": "px",
+    "default": 60
+  },
+  "header_mobile_fixed": {
+    "section": "header",
+    "type": "boolean",
+    "title": "Fixed Position",
+    "description": "Header stays visible at the top when scrolling.",
+    "ai_description": "Fix mobile header to top of screen while scrolling. Enable for important navigation on mobile. Disable for content-reading experiences where screen real estate matters.",
+    "default": false
+  },
+  "boxed_layout": {
+    "section": "layout",
+    "type": "boolean",
+    "title": "Boxed Layout",
+    "description": "When enabled, all container backgrounds are constrained to a centered column instead of spanning full width.",
+    "ai_description": "Controls whether page backgrounds span full viewport or are contained in a centered column. 0 (off)=full-bleed backgrounds spanning entire browser width, modern and immersive, preferred for contemporary SaaS/portfolio/agency sites. 1 (on)=backgrounds constrained to centered box with visible page margins, traditional corporate/blog feel. Most modern designs use 0.",
+    "default": 1
+  },
+  "sticky_footer": {
+    "section": "layout",
+    "type": "boolean",
+    "title": "Sticky Footer",
+    "description": "Keeps the footer at the bottom of the viewport on short pages. Not compatible with boxed layout.",
+    "ai_description": "Prevents footer from floating mid-page when content is shorter than viewport. Enable (1) for most sites. Only relevant when boxed_layout is disabled (0).",
+    "default": 1
+  },
+  "boxed_layout_boxbg": {
+    "section": "layout",
+    "type": "color",
+    "title": "Box Background",
+    "description": "Background color for the main content area in boxed mode.",
+    "ai_description": "Background color visible behind the centered content box when boxed_layout=1. Usually white (#ffffff) or very light gray (#f8f9fa). Only visible when boxed_layout is enabled.",
+    "default": "#ffffff"
+  },
+  "box_max_width": {
+    "section": "layout",
+    "type": "range",
+    "title": "Boxed Container Max-width",
+    "description": "Maximum width of the boxed layout container. Set this higher than the content max-width.",
+    "ai_description": "Maximum width of the boxed container. 1170px is Bootstrap default. 960-1170px for traditional readability, 1400-1600px for modern widescreen layouts. Only applies when boxed_layout=1.",
+    "min": 480,
+    "max": 4100,
+    "step": 10,
+    "unit": "px",
+    "default": 1170
+  },
+  "layout_max_width": {
+    "section": "layout",
+    "type": "range",
+    "title": "Content Max-width",
+    "description": "Maximum width of the main content container. Default is 1170px.",
+    "ai_description": "Maximum width of the main content container. Controls how wide content stretches on large screens. 1170px=Bootstrap default (traditional). 1400-1600px=modern widescreen. 960px=narrow focused reading. Wider values suit image-heavy portfolio/agency sites.",
+    "min": 480,
+    "max": 4100,
+    "step": 10,
+    "unit": "px",
+    "default": 1170
+  },
+  "gutter_horizontal": {
+    "section": "layout",
+    "type": "range",
+    "title": "Column Spacing",
+    "description": "Horizontal space between columns. Default is 20px.",
+    "ai_description": "Space between Bootstrap grid columns. 15-20px=dense content-heavy layouts (news, dashboards). 30-40px=balanced modern designs. 50+px=airy luxury/portfolio spacing with lots of whitespace.",
+    "min": 0,
+    "max": 100,
+    "step": 1,
+    "unit": "px",
+    "default": 20
+  },
+  "gutter_vertical": {
+    "section": "layout",
+    "type": "range",
+    "title": "Row Spacing",
+    "description": "Vertical space between rows. Default is 0.",
+    "ai_description": "Vertical space between grid rows. 0=rows touch (default, spacing managed by content). 10-20px=subtle separation. 30+px=strong visual separation between row elements.",
+    "min": 0,
+    "max": 100,
+    "step": 1,
+    "unit": "px",
+    "default": 0
+  },
+  "gutter_container": {
+    "section": "layout",
+    "type": "range",
+    "title": "Container Padding",
+    "description": "Horizontal padding inside the container. Default is 30px.",
+    "ai_description": "Horizontal padding inside the main container, i.e. the breathing room between content and viewport edge. 15-20px=compact. 30px=standard. 50+px=generous whitespace for luxury/editorial feel.",
+    "min": 0,
+    "max": 500,
+    "step": 1,
+    "unit": "px",
+    "default": 30
+  },
+  "background_image_path": {
+    "section": "layout",
+    "type": "textfield",
+    "title": "Background Image Path",
+    "description": "Path to the background image file. This field is automatically populated when you upload an image below.",
+    "ai_description": "File path to the site-wide body background image. Set via media upload or direct path. Common for textured backgrounds (paper, fabric) or subtle patterns."
+  },
+  "background_image": {
+    "section": "layout",
+    "type": "media",
+    "title": "Upload Background Image",
+    "description": "Upload a default background image. You can override this per node using the Header Image field.",
+    "ai_description": "Upload a site-wide body background image. Creates a textured or photographic backdrop behind all page content. Can be overridden per-node."
+  },
+  "background_image_style": {
+    "section": "layout",
+    "type": "radios",
+    "title": "Background Size",
+    "ai_description": "How the background image fills the viewport. cover=fills entire area, crops to fit (best for photos). contain=shows full image, may leave gaps. no_repeat=actual pixel size. repeat=tiles the image (best for patterns/textures).",
+    "options": {
+      "cover": "Cover (fill area)",
+      "contain": "Contain (fit inside)",
+      "no_repeat": "Actual size",
+      "repeat": "Tile"
+    },
+    "default": "cover"
+  },
+  "background_image_position": {
+    "section": "layout",
+    "type": "radios",
+    "title": "Background Position",
+    "ai_description": "Anchor point for the background image. center_center=safe default for most images. left_top=align to top-left (logos, patterns). Adjust based on the image focal point.",
+    "options": {
+      "center_center": "Center",
+      "left_top": "Top left",
+      "left_center": "Center left",
+      "left_bottom": "Bottom left",
+      "right_top": "Top right",
+      "right_center": "Center right",
+      "right_bottom": "Bottom right",
+      "center_bottom": "Bottom center"
+    },
+    "default": "center_center"
+  },
+  "background_image_attachment": {
+    "section": "layout",
+    "type": "radios",
+    "title": "Background Scroll Behavior",
+    "ai_description": "scroll=background moves with page content (natural feel). fixed=background stays still while content scrolls over it (parallax effect, dramatic but can cause performance issues on mobile).",
+    "options": {
+      "scroll": "Scroll with page",
+      "fixed": "Fixed (parallax effect)"
+    },
+    "default": "fixed"
+  },
+  "gutter_horizontal_mobile": {
+    "section": "layout",
+    "type": "range",
+    "title": "Column Spacing",
+    "description": "Horizontal space between columns on viewports under 1200px. Default is 10px.",
+    "ai_description": "Column spacing on mobile (below header_mobile_breakpoint). Usually smaller than desktop gutter_horizontal. 5-10px=tight mobile layout. 15-20px=comfortable mobile spacing.",
+    "min": 0,
+    "max": 100,
+    "step": 1,
+    "unit": "px",
+    "default": 10
+  },
+  "gutter_vertical_mobile": {
+    "section": "layout",
+    "type": "range",
+    "title": "Row Spacing",
+    "description": "Vertical space between rows on viewports under 1200px. Default is 0.",
+    "ai_description": "Row spacing on mobile devices. Same logic as gutter_vertical but for smaller screens.",
+    "min": 0,
+    "max": 100,
+    "step": 1,
+    "unit": "px",
+    "default": 0
+  },
+  "gutter_container_mobile": {
+    "section": "layout",
+    "type": "range",
+    "title": "Container Padding",
+    "description": "Horizontal padding inside the container on viewports under 1200px. Default is 20px.",
+    "ai_description": "Container padding on mobile. 10-15px=maximizes content width on small screens. 20px=comfortable default. Keep smaller than desktop gutter_container.",
+    "min": 0,
+    "max": 500,
+    "step": 1,
+    "unit": "px",
+    "default": 20
+  },
+  "secondary_header_hide": {
+    "section": "layout",
+    "type": "radios",
+    "title": "Hide on Small Devices",
+    "ai_description": "Controls when the secondary header (top bar with contact info, social links, etc.) hides on smaller screens. hidden_none=always visible. hidden_xs=hide on phones (<768px). hidden_sm=hide on tablets (<992px). hidden_md=hide below desktop (<1200px). Hide early if secondary header is not critical to mobile UX.",
+    "options": {
+      "hidden_none": "Never hide",
+      "hidden_xs": "Extra small devices (below 768px)",
+      "hidden_sm": "Small devices (below 992px)",
+      "hidden_md": "Medium devices (below 1200px)"
+    },
+    "default": "hidden_none"
+  },
+  "full_width_containers": {
+    "section": "layout",
+    "type": "checkboxes",
+    "title": "Full Width Regions",
+    "description": "Select regions that should span the full browser width. Useful for full-width blocks or full-screen backgrounds.",
+    "ai_description": "Select regions whose backgrounds span the full browser width (edge-to-edge). Enable for regions where you want full-bleed color sections or hero images. Most modern designs enable this for all regions. Requires boxed_layout=0 to have visual effect.",
+    "options": {
+      "cnt_secondary_header": "Secondary Header",
+      "cnt_header_nav": "Header / Navigation",
+      "cnt_page_title": "Page Title",
+      "cnt_content_top": "Content Top",
+      "cnt_content": "Content",
+      "cnt_content_bottom": "Content Bottom",
+      "cnt_footer": "Footer"
+    },
+    "default": []
+  },
+  "full_width_content_types": {
+    "section": "layout",
+    "type": "checkboxes",
+    "title": "Full Width Content Types",
+    "description": "Enable full-width sections for these content types. Only works on pages without sidebars.",
+    "ai_description": "Enable full-width content regions for specific content types. Only effective on pages without sidebars. Useful for landing pages and portfolio content types.",
+    "options": "_dynamic"
+  },
+  "hidden_regions": {
+    "section": "layout",
+    "type": "checkboxes",
+    "title": "Hidden Regions",
+    "description": "Selected regions will be hidden site-wide.",
+    "ai_description": "Permanently hide theme regions site-wide. Useful for simplifying layouts, e.g. hide sidebar_first and sidebar_second for a single-column design, hide page_title for a minimal look, hide secondary_header if not using a top bar.",
+    "options": {
+      "navigation": "Navigation (branding)",
+      "navigation_collapsible": "Navigation Collapsible (menu)",
+      "secondary_header": "Secondary Header",
+      "page_title": "Page Title",
+      "highlighted": "Hero Region",
+      "header": "Header",
+      "content_top": "Content Top",
+      "content": "Content",
+      "content_bottom": "Content Bottom",
+      "sidebar_first": "Primary",
+      "sidebar_second": "Secondary",
+      "footer": "Footer"
+    },
+    "default": []
+  },
+  "page_title_breadcrumbs": {
+    "section": "page-title",
+    "type": "boolean",
+    "title": "Show Breadcrumbs",
+    "ai_description": "Show breadcrumb navigation trail (Home > Section > Page) in the page title region. Enable for deep content hierarchies (documentation, e-commerce). Disable for flat sites or landing pages.",
+    "default": 1
+  },
+  "page_title_breadcrumbs_align": {
+    "section": "page-title",
+    "type": "radios",
+    "title": "Align Breadcrumbs",
+    "ai_description": "Horizontal alignment of breadcrumbs. right=out of the way, doesn't compete with title (default). left=prominent, guides navigation. center=balanced, works with centered titles.",
+    "options": {
+      "left": "Left",
+      "center": "Center",
+      "right": "Right"
+    },
+    "default": "right"
+  },
+  "page_title_breadcrumbs_separator": {
+    "section": "page-title",
+    "type": "textfield",
+    "title": "Breadcrumbs Separator",
+    "ai_description": "Character between breadcrumb items. /=clean slash (default). >=arrow style. |=pipe separator. »=guillemet (European style). ·=middle dot (minimal).",
+    "default": "/"
+  },
+  "page_title_home_hide": {
+    "section": "page-title",
+    "type": "boolean",
+    "title": "Hide on Homepage",
+    "ai_description": "Hide the page title region on the homepage. Enable (1) when your homepage has its own hero/banner to avoid a redundant Home title. Disable (0) if homepage needs the title region for branding.",
+    "default": 1
+  },
+  "page_title_align": {
+    "section": "page-title",
+    "type": "radios",
+    "title": "Align Title",
+    "ai_description": "Page title text alignment. left=standard editorial/corporate. center=formal, symmetrical (works well with centered header). right=unconventional, rarely used.",
+    "options": {
+      "left": "Left",
+      "center": "Center",
+      "right": "Right"
+    },
+    "default": "left"
+  },
+  "title_type": {
+    "section": "page-title",
+    "type": "checkboxes",
+    "title": "Font Style",
+    "ai_description": "Font style modifiers for the page title (can combine multiple). uppercase=ALL CAPS (authoritative, corporate). bold=heavier weight. italic=elegant emphasis. Common combo: uppercase+bold for strong headings.",
+    "options": {
+      "uppercase": "Uppercase",
+      "bold": "Bold",
+      "italic": "Italic"
+    },
+    "default": []
+  },
+  "page_title_height": {
+    "section": "page-title",
+    "type": "range",
+    "title": "Height",
+    "description": "Height of the page title area.",
+    "ai_description": "Height of the page title banner region. 80-100px=compact (subtitle or minimal title). 120-150px=standard. 200-300px=tall banner (pairs well with background image). 400-500px=hero-style page title.",
+    "min": 50,
+    "max": 500,
+    "step": 5,
+    "unit": "px",
+    "default": "120"
+  },
+  "page_title_animate": {
+    "section": "page-title",
+    "type": "radios",
+    "title": "Animation",
+    "ai_description": "Entrance animation when the page title appears on load. 0=no animation (clean, professional). fade-in-dxpr=gentle fade (subtle). bounce-in-down-dxpr=bounces into view (playful). fade-in-up-dxpr=slides up and fades in (modern). Use sparingly; no animation is often most professional.",
+    "options": {
+      "0": "No Animation",
+      "bounce-dxpr": "Bounce",
+      "flash-dxpr": "Flash",
+      "pulse-dxpr": "Pulse",
+      "fade-in-dxpr": "Fade in",
+      "bounce-in-down-dxpr": "Bounce in down",
+      "bounce-in-up-dxpr": "Bounce in up",
+      "fade-in-down-dxpr": "Fade in down",
+      "fade-in-up-dxpr": "Fade in up"
+    },
+    "default": "0"
+  },
+  "page_title_image_path": {
+    "section": "page-title",
+    "type": "textfield",
+    "title": "Background Image Path",
+    "description": "Automatically populated when you upload an image below.",
+    "ai_description": "File path to the page title background image. Creates a banner/hero effect behind the page title text. Can be overridden per node with field_dth_page_title_backgrou."
+  },
+  "page_title_image": {
+    "section": "page-title",
+    "type": "media",
+    "title": "Upload Background Image",
+    "description": "Override per node using the Header Image field.",
+    "ai_description": "Upload a background image for the page title region. Creates a visual banner behind the title text. Larger, taller page_title_height values showcase the image better."
+  },
+  "page_title_image_opacity": {
+    "section": "page-title",
+    "type": "range",
+    "title": "Background Image Opacity",
+    "description": "Blend the background image with the background color. 0 = transparent, 1 = opaque.",
+    "ai_description": "Opacity of the page title background image. 1=full intensity. 0.3-0.5=subtle watermark behind title text. 0.6-0.8=visible but doesn't overpower text. Lower opacity improves text readability over busy images.",
+    "min": 0,
+    "max": 1,
+    "step": 0.01,
+    "default": 1
+  },
+  "page_title_image_style": {
+    "section": "page-title",
+    "type": "radios",
+    "title": "Background Size",
+    "ai_description": "How the page title background image fills the region. cover=fills entire region, crops to fit (best for photos, most common). contain=shows full image. no_repeat=actual size. repeat=tiles (patterns).",
+    "options": {
+      "cover": "Cover (fill area)",
+      "contain": "Contain (fit inside)",
+      "no_repeat": "Actual size",
+      "repeat": "Tile"
+    },
+    "default": "cover"
+  },
+  "page_title_image_mode": {
+    "section": "page-title",
+    "type": "radios",
+    "title": "Background Scroll Behavior",
+    "ai_description": "Scroll behavior of page title background. normal=scrolls with page (natural). fixed=stays still while content scrolls (parallax effect, dramatic for tall page titles).",
+    "options": {
+      "normal": "Scroll with page",
+      "fixed": "Fixed (parallax effect)"
+    },
+    "default": "normal"
+  },
+  "page_title_image_position": {
+    "section": "page-title",
+    "type": "radios",
+    "title": "Background Position",
+    "ai_description": "Anchor point for the page title background image. center_center=safe default. Adjust based on the image focal point, e.g. left_top if the subject is in the top-left corner.",
+    "options": {
+      "center_center": "Center",
+      "left_top": "Top left",
+      "left_center": "Center left",
+      "left_bottom": "Bottom left",
+      "right_top": "Top right",
+      "right_center": "Center right",
+      "right_bottom": "Bottom right",
+      "center_bottom": "Bottom center"
+    },
+    "default": "center_center"
+  },
+  "body_line_height": {
+    "section": "typography",
+    "type": "range",
+    "title": "Body Line Height",
+    "ai_description": "Space between lines of body text. 1.4-1.5=standard comfortable reading. 1.6-1.8=airy, open feel (luxury, editorial). 1.2-1.3=compact, dense (dashboards, data-heavy). Higher values improve readability for long-form content.",
+    "min": 0,
+    "max": 3,
+    "step": 0.01,
+    "default": 1.5
+  },
+  "body_font_size": {
+    "section": "typography",
+    "type": "range",
+    "title": "Body Font Size",
+    "ai_description": "Base font size for all body text in pixels. 14px=compact (traditional Drupal). 16px=modern web standard (recommended). 18px=large, accessible (editorial, luxury). 16px is the most widely recommended base size.",
+    "min": 8,
+    "max": 100,
+    "step": 1,
+    "unit": "px",
+    "default": 14
+  },
+  "nav_font_size": {
+    "section": "typography",
+    "type": "range",
+    "title": "Main menu Font Size",
+    "ai_description": "Font size for main menu links. 12-13px=small subtle nav. 14-15px=standard. 16-18px=prominent nav links. Usually similar to or slightly smaller than body_font_size.",
+    "min": 8,
+    "max": 100,
+    "step": 1,
+    "unit": "px",
+    "default": 14
+  },
+  "headings_line_height": {
+    "section": "typography",
+    "type": "range",
+    "title": "Headings Line Height",
+    "ai_description": "Line height for headings. 1.0-1.1=tight (good for large display headings). 1.2-1.3=standard heading spacing. 1.4+=loose. Tighter line-height looks better on larger headings, especially uppercase.",
+    "min": 0,
+    "max": 3,
+    "step": 0.1,
+    "default": 1.05
+  },
+  "scale_factor": {
+    "section": "typography",
+    "type": "range",
+    "title": "Typography Scale Factor",
+    "description": "This overrides advanced type controls.",
+    "ai_description": "Typographic scale ratio multiplied across heading sizes. 1.0=manual control (use individual h1-h4 sizes). 1.125=major second (subtle). 1.25=major third (balanced, most popular). 1.333=perfect fourth. 1.5=perfect fifth (dramatic). 1.618=golden ratio. When >1, overrides individual h1-h4 font sizes.",
+    "min": 1,
+    "max": 2,
+    "step": 0.01,
+    "default": 1
+  },
+  "h1_font_size": {
+    "section": "typography",
+    "type": "range",
+    "title": "H1 Font Size (Page Title)",
+    "ai_description": "Font size for H1 (page titles, main headings). 28-32px=modest. 36-42px=standard (default 36). 48-64px=large display. 72+px=hero statement. Only active when scale_factor=1.",
+    "min": 8,
+    "max": 100,
+    "step": 1,
+    "unit": "px",
+    "default": 36
+  },
+  "h2_font_size": {
+    "section": "typography",
+    "type": "range",
+    "title": "H2 Font Size",
+    "ai_description": "Font size for H2 (section headings). Usually 60-80% of h1. 20-24px=compact. 28-32px=standard. Should be clearly smaller than h1 but larger than h3.",
+    "min": 8,
+    "max": 100,
+    "step": 1,
+    "unit": "px",
+    "default": 16
+  },
+  "h3_font_size": {
+    "section": "typography",
+    "type": "range",
+    "title": "H3 Font Size",
+    "ai_description": "Font size for H3 (subsection headings). 16-18px=subtle. 20-24px=clear. Should be visually distinct from body text but smaller than h2.",
+    "min": 8,
+    "max": 100,
+    "step": 1,
+    "unit": "px",
+    "default": 14
+  },
+  "h4_font_size": {
+    "section": "typography",
+    "type": "range",
+    "title": "H4 Font Size",
+    "ai_description": "Font size for H4 (minor headings, labels). 12-14px=same as body (distinguished by weight). 16-18px=slightly larger. Often same size as body but bold.",
+    "min": 8,
+    "max": 100,
+    "step": 1,
+    "unit": "px",
+    "default": 12
+  },
+  "blockquote_font_size": {
+    "section": "typography",
+    "type": "range",
+    "title": "Blockquote Font Size",
+    "ai_description": "Font size for blockquotes/pullquotes. Usually larger than body to create emphasis. 16-18px=subtle emphasis. 20-24px=clear callout. 28+px=dramatic pullquote.",
+    "min": 8,
+    "max": 100,
+    "step": 1,
+    "unit": "px",
+    "default": 16
+  },
+  "blockquote_line_height": {
+    "section": "typography",
+    "type": "range",
+    "title": "Blockquote Line Height",
+    "ai_description": "Line height for blockquotes. 1.4-1.6=comfortable reading. Often slightly more generous than body_line_height since blockquotes are usually larger text.",
+    "min": 0,
+    "max": 3,
+    "step": 0.1,
+    "default": 1.5
+  },
+  "headings_letter_spacing": {
+    "section": "typography",
+    "type": "range",
+    "title": "Headings Letter Spacing",
+    "ai_description": "Letter spacing (tracking) for headings in em units. 0=normal (default). 0.05-0.1em=slightly open (modern, clean). 0.15-0.2em=wide tracking (luxury, fashion). -0.02 to -0.05em=tight (heavy display headings). Wide tracking works best with uppercase headings.",
+    "min": -0.1,
+    "max": 0.3,
+    "step": 0.01,
+    "default": 0
+  },
+  "headings_uppercase": {
+    "section": "typography",
+    "type": "boolean",
+    "title": "Headings Uppercase",
+    "ai_description": "Transform all headings to UPPERCASE. Creates a strong, authoritative look. Works well with wider headings_letter_spacing (0.05-0.1em). Common in corporate, fashion, and portfolio sites.",
+    "default": false
+  },
+  "headings_bold": {
+    "section": "typography",
+    "type": "boolean",
+    "title": "Headings Bold",
+    "ai_description": "Force all headings to bold weight. Enable for strong visual hierarchy. Some heading fonts already include bold weights, making this redundant.",
+    "default": false
+  },
+  "body_mobile_font_size": {
+    "section": "typography",
+    "type": "range",
+    "title": "Body Font Size",
+    "ai_description": "Body text size on mobile screens. Usually same as desktop (14-16px) or slightly larger for thumb-distance reading. Never go below 14px on mobile for accessibility.",
+    "min": 8,
+    "max": 100,
+    "step": 1,
+    "unit": "px",
+    "default": 14
+  },
+  "nav_mobile_font_size": {
+    "section": "typography",
+    "type": "range",
+    "title": "Nav Font Size",
+    "ai_description": "Navigation text size in the mobile hamburger menu. 14-16px=standard. 18-20px=large touch-friendly links.",
+    "min": 8,
+    "max": 100,
+    "step": 1,
+    "unit": "px",
+    "default": 14
+  },
+  "h1_mobile_font_size": {
+    "section": "typography",
+    "type": "range",
+    "title": "H1 Font Size (Page Title)",
+    "ai_description": "H1 size on mobile. Usually 60-80% of desktop h1 to fit small screens. 24-28px=compact. 32-36px=standard mobile heading.",
+    "min": 8,
+    "max": 100,
+    "step": 1,
+    "unit": "px",
+    "default": 36
+  },
+  "h2_mobile_font_size": {
+    "section": "typography",
+    "type": "range",
+    "title": "H2 Font Size",
+    "ai_description": "H2 size on mobile. Scale proportionally with h1_mobile_font_size.",
+    "min": 8,
+    "max": 100,
+    "step": 1,
+    "unit": "px",
+    "default": 30
+  },
+  "h3_mobile_font_size": {
+    "section": "typography",
+    "type": "range",
+    "title": "H3 Font Size",
+    "ai_description": "H3 size on mobile. Often same as desktop h3 since it is already relatively small.",
+    "min": 8,
+    "max": 100,
+    "step": 1,
+    "unit": "px",
+    "default": 16
+  },
+  "h4_mobile_font_size": {
+    "section": "typography",
+    "type": "range",
+    "title": "H4 Font Size",
+    "ai_description": "H4 size on mobile. Often same as desktop h4.",
+    "min": 8,
+    "max": 100,
+    "step": 1,
+    "unit": "px",
+    "default": 14
+  },
+  "blockquote_mobile_font_size": {
+    "section": "typography",
+    "type": "range",
+    "title": "Blockquote Font Size",
+    "ai_description": "Blockquote size on mobile. Can be slightly larger than desktop to maintain the pullquote emphasis effect on small screens.",
+    "min": 8,
+    "max": 100,
+    "step": 1,
+    "unit": "px",
+    "default": 18
+  },
+  "divider_thickness": {
+    "section": "typography",
+    "type": "range",
+    "title": "Divider Thickness",
+    "ai_description": "Height/thickness of horizontal rule dividers. 1-2px=hairline (subtle, elegant). 3-4px=standard (default 4). 6-8px=bold accent bar. 10+px=thick decorative band.",
+    "min": 8,
+    "max": 20,
+    "step": 1,
+    "unit": "px",
+    "default": 4
+  },
+  "divider_length": {
+    "section": "typography",
+    "type": "range",
+    "title": "Divider Length",
+    "description": "Set to 0 for full width.",
+    "ai_description": "Width of the divider line. 0=full width (spans entire container). 50-100px=short accent mark (modern, minimal). 200-300px=medium decorative line.",
+    "min": 0,
+    "max": 500,
+    "step": 10,
+    "unit": "px",
+    "default": 100
+  },
+  "divider_position": {
+    "section": "typography",
+    "type": "range",
+    "title": "Divider Position",
+    "ai_description": "Horizontal alignment when divider_length is not 0. 1=left aligned. 2=centered (most common for short dividers). 3=right aligned.",
+    "min": 1,
+    "max": 3,
+    "step": 1,
+    "default": 1
+  },
+  "divider_color": {
+    "section": "typography",
+    "type": "theme_color",
+    "title": "Divider Color",
+    "ai_description": "Color of the divider line. Use a theme palette color name or custom with divider_color_custom. Often a subtle gray or the primary accent color."
+  },
+  "divider_color_custom": {
+    "section": "typography",
+    "type": "color",
+    "title": "Custom Value",
+    "ai_description": "Custom hex color for divider. Only used when divider_color=custom. #eeeeee=very subtle light gray. Use brand accent color for decorative emphasis.",
+    "default": "#eeeeee"
+  }
+}
