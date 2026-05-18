@@ -25,7 +25,7 @@ const SETTING_TYPES = new Set([
   'textfield', 'textarea', 'media_library',
 ]);
 
-// Keys to skip — UI-only form fields that don't store config.
+// Keys to skip: UI-only form fields that don't store config.
 const SKIP_KEYS = new Set([
   'ai_prompt', 'ai_font_prompt', 'ai_generate', 'ai_font_generate',
   'ai_error', 'ai_font_error',
@@ -336,7 +336,7 @@ const output = {
       type: 'Value type: boolean, range, radios, select, textfield, textarea, checkboxes, font, color, theme_color, media, path, serialized_palette',
       title: 'Short human label (shown in GUI)',
       description: 'Terse GUI description',
-      ai_description: 'Design-oriented guidance for AI agents — visual effects, value ranges for different styles, relationships',
+      ai_description: 'Design-oriented guidance for AI agents: visual effects, value ranges for different styles, relationships',
       options: 'Valid values for radios/select/checkboxes (object or _dynamic)',
       min: 'Minimum value for range type',
       max: 'Maximum value for range type',

@@ -26,7 +26,7 @@ function layout_theme_settings(array &$form, $theme) {
     '#title' => t('Boxed Layout'),
     '#default_value' => ((theme_get_setting('boxed_layout') !== NULL)) ? theme_get_setting('boxed_layout') : 1,
     '#description' => t('When enabled, all container backgrounds are constrained to a centered column instead of spanning full width.'),
-    '#ai_description' => 'Controls whether page backgrounds span full viewport or are contained in a centered column. 0 (off)=full-bleed backgrounds spanning entire browser width — modern, immersive, preferred for contemporary SaaS/portfolio/agency sites. 1 (on)=backgrounds constrained to centered box with visible page margins — traditional corporate/blog feel. Most modern designs use 0.',
+    '#ai_description' => 'Controls whether page backgrounds span full viewport or are contained in a centered column. 0 (off)=full-bleed backgrounds spanning entire browser width, modern and immersive, preferred for contemporary SaaS/portfolio/agency sites. 1 (on)=backgrounds constrained to centered box with visible page margins, traditional corporate/blog feel. Most modern designs use 0.',
   ];
 
   $form['dxpr_theme_settings']['layout']['sticky_footer'] = [
@@ -139,7 +139,7 @@ function layout_theme_settings(array &$form, $theme) {
     '#max' => 500,
     '#step' => 1,
     '#description' => t('Horizontal padding inside the container. Default is 30px.'),
-    '#ai_description' => 'Horizontal padding inside the main container — the breathing room between content and viewport edge. 15-20px=compact. 30px=standard. 50+px=generous whitespace for luxury/editorial feel.',
+    '#ai_description' => 'Horizontal padding inside the main container, i.e. the breathing room between content and viewport edge. 15-20px=compact. 30px=standard. 50+px=generous whitespace for luxury/editorial feel.',
     '#attributes' => [
       'class' => ['dxb-slider', 'gutter-container-range'],
       'data-dxb-slider' => TRUE,
@@ -349,7 +349,7 @@ function layout_theme_settings(array &$form, $theme) {
     '#multiple' => TRUE,
     '#title' => t('Hidden Regions'),
     '#description' => t('Selected regions will be hidden site-wide.'),
-    '#ai_description' => 'Permanently hide theme regions site-wide. Useful for simplifying layouts — e.g., hide sidebar_first and sidebar_second for a single-column design, hide page_title for a minimal look, hide secondary_header if not using a top bar.',
+    '#ai_description' => 'Permanently hide theme regions site-wide. Useful for simplifying layouts, e.g. hide sidebar_first and sidebar_second for a single-column design, hide page_title for a minimal look, hide secondary_header if not using a top bar.',
     '#default_value' => ((theme_get_setting('hidden_regions') !== NULL)) ? theme_get_setting('hidden_regions') : [],
     '#options' => [
       'navigation' => t('Navigation (branding)'),

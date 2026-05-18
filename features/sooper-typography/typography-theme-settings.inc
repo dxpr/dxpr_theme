@@ -86,7 +86,7 @@ function typography_theme_settings(array &$form, $theme) {
     '#type' => 'range',
     '#title' => t('Typography Scale Factor'),
     '#description' => t('This overrides advanced type controls.'),
-    '#ai_description' => 'Typographic scale ratio multiplied across heading sizes. 1.0=manual control (use individual h1-h4 sizes). 1.125=major second (subtle). 1.25=major third (balanced — most popular). 1.333=perfect fourth. 1.5=perfect fifth (dramatic). 1.618=golden ratio. When >1, overrides individual h1-h4 font sizes.',
+    '#ai_description' => 'Typographic scale ratio multiplied across heading sizes. 1.0=manual control (use individual h1-h4 sizes). 1.125=major second (subtle). 1.25=major third (balanced, most popular). 1.333=perfect fourth. 1.5=perfect fifth (dramatic). 1.618=golden ratio. When >1, overrides individual h1-h4 font sizes.',
     '#default_value' => ((theme_get_setting('scale_factor') !== NULL)) ? theme_get_setting('scale_factor') : 1,
     '#min' => 1,
     '#max' => 2,
