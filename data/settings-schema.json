@@ -1,7 +1,7 @@
 {
   "_meta": {
     "description": "DXPR Theme settings schema. Auto-generated from features/*-theme-settings.inc files.",
-    "generated": "2026-05-18T10:07:09.305Z",
+    "generated": "2026-05-18T10:34:45.799Z",
     "sections": [
       "block-design",
       "colors",
@@ -216,6 +216,7 @@
     "section": "block-design",
     "type": "boolean",
     "title": "Button Bold",
+    "ai_description": "Apply bold font weight to all buttons. When enabled, sets font-weight: bold on .btn elements. When disabled, buttons keep their default or subtheme-defined font weight.",
     "default": false
   },
   "block_divider": {

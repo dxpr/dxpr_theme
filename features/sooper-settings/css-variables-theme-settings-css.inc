@@ -106,6 +106,9 @@ function _dxpr_theme_massage_values(string $key, $value, string $theme, array $s
 
     // Generic: Bold.
     case 'button_bold':
+      $value = !empty($value) ? 'bold' : 'inherit';
+      break;
+
     case 'headings_bold':
       $value = !empty($value) ? 'bold' : 'normal';
       break;

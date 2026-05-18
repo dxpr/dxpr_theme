@@ -360,6 +360,7 @@ function block_design_theme_settings(array &$form, $theme) {
   $form['dxpr_theme_settings']['block']['block_advanced']['button_el']['button_bold'] = [
     '#type' => 'checkbox',
     '#title' => t('Button Bold'),
+    '#ai_description' => 'Apply bold font weight to all buttons. When enabled, sets font-weight: bold on .btn elements. When disabled, buttons keep their default or subtheme-defined font weight.',
     '#default_value' => ((theme_get_setting('button_bold') !== NULL)) ? theme_get_setting('button_bold') : FALSE,
   ];
 
