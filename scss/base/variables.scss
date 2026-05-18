@@ -726,6 +726,16 @@ $schemes: (
           @if $key == "header" {
             --dxt-color-#{$key}-rgb:#{color.red($color),color.green($color),color.blue($color)};
           }
+
+          $rgb: #{color.red($color),color.green($color),color.blue($color)};
+          @if $key == "base" { --bs-primary-rgb: #{$rgb}; }
+          @if $key == "accent1" { --bs-secondary-rgb: #{$rgb}; --bs-link-hover-color-rgb: #{$rgb}; }
+          @if $key == "text" { --bs-body-color-rgb: #{$rgb}; }
+          @if $key == "body" { --bs-body-bg-rgb: #{$rgb}; }
+          @if $key == "headings" { --bs-emphasis-color-rgb: #{$rgb}; --bs-dark-rgb: #{$rgb}; }
+          @if $key == "link" { --bs-link-color-rgb: #{$rgb}; }
+          @if $key == "silver" { --bs-light-rgb: #{$rgb}; --bs-tertiary-bg-rgb: #{$rgb}; }
+          @if $key == "card" { --bs-secondary-bg-rgb: #{$rgb}; }
         }
 
         // Base color variants
