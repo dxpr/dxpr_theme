@@ -1,7 +1,7 @@
 {
   "_meta": {
     "description": "DXPR Theme settings schema. Auto-generated from features/*-theme-settings.inc files.",
-    "generated": "2026-05-18T10:06:12.658Z",
+    "generated": "2026-05-18T10:36:14.974Z",
     "sections": [
       "block-design",
       "colors",

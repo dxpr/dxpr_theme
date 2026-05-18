@@ -76,6 +76,7 @@ function massageFieldValue(setting, value, cssVarColorsPrefix) {
     case "menu_border_color":
     case "navbar_background":
     case "header_block_background":
+    case "block_text_color":
     case "header_block_text_color":
     case "menu_background":
     case "menu_text_color":
