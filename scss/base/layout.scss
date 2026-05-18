@@ -151,9 +151,10 @@ body.full-width-content {
   margin-bottom: var(--dxt-setting-gutter-vertical);
 }
 
-// Apply background only to blocks without preset background classes
+// Apply background and text color only to blocks without preset background classes
 .region-block-design .block:not(.card, [class*="bg-"], [class*="dxpr-theme-util-background"]) {
   background-color: var(--dxt-setting-block-background);
+  color: var(--dxt-setting-block-text-color);
 }
 
 // Apply other block styles only to non-card blocks
