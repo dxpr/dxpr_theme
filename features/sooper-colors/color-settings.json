@@ -178,7 +178,37 @@
       }
     },
     "default": {
-      "title": "DXPR Theme Default",
+      "title": "Default",
+      "colors": {
+        "base": "#000000",
+        "basetext": "#ffffff",
+        "link": "#000000",
+        "accent1": "#353740",
+        "accent1text": "#ffffff",
+        "accent2": "#F7F7F8",
+        "accent2text": "#353740",
+        "text": "#353740",
+        "headings": "#171717",
+        "footer": "#ffffff",
+        "footertext": "#353740",
+        "secheader": "#000000",
+        "secheadertext": "#ffffff",
+        "card": "#F7F7F8",
+        "cardtext": "#171717",
+        "header": "#ffffff",
+        "headertext": "#171717",
+        "headerside": "#ffffff",
+        "headersidetext": "#171717",
+        "pagetitle": "#ffffff",
+        "pagetitletext": "#171717",
+        "graylight": "#6E6E80",
+        "graylighter": "#E5E5E5",
+        "silver": "#F7F7F8",
+        "body": "#ffffff"
+      }
+    },
+    "dxpr-theme-2025": {
+      "title": "DXPR Theme 2025",
       "colors": {
         "base": "#284ed9",
         "basetext": "#ffffff",

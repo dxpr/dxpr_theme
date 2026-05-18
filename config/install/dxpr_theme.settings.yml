@@ -28,7 +28,7 @@ block_design_regions:
   help: 0
   content: 0
   footer: 0
-boxed_layout: 1
+boxed_layout: 0
 sticky_footer: 1
 boxed_layout_boxbg: '#ffffff'
 box_max_width: '1580'
@@ -42,8 +42,8 @@ gutter_container_mobile: '30'
 body_line_height: '1.6'
 body_font_size: '16'
 nav_font_size: '16'
-headings_line_height: '1.1'
-scale_factor: '1.34'
+headings_line_height: '1.2'
+scale_factor: '1.25'
 h1_font_size: '52'
 h2_font_size: '38'
 h3_font_size: '29'
@@ -109,8 +109,8 @@ header_top_layout: '0'
 header_style: normal
 header_top_bg_opacity: '1'
 header_top_height: '100'
-header_top_fixed: 1
-header_top_sticky: 1
+header_top_fixed: 0
+header_top_sticky: 0
 header_top_sticky_show: always
 header_top_height_sticky_offset: '60'
 header_top_height_scroll: '50'
@@ -137,11 +137,11 @@ dropdown_hover_background: ''
 dropdown_hover_background_custom: ''
 dropdown_hover_text_color: ''
 dropdown_hover_text_color_custom: ''
-hamburger_menu: 'three-dash'
+hamburger_menu: 'two-dash'
 hamburger_animation: 'cross'
-menu_type: uppercase
-menu_link_spacing: '10'
-menu_hover: opacity
+menu_type: ''
+menu_link_spacing: '20'
+menu_hover: text
 menu_border_position: bottom
 menu_border_animate: drop
 menu_border_position_offset: '0'
@@ -154,7 +154,7 @@ secondary_header_hide: hidden_none
 custom_css_site: ''
 custom_javascript_site: ''
 block_preset: ''
-block_card: ''
+block_card: 'card card-body'
 block_background: ''
 block_background_custom: '#eeeeee'
 block_padding: '0'
