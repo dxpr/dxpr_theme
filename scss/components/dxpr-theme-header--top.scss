@@ -22,6 +22,24 @@
 
       .nav > li > a,
       .nav > li > span.nav-link {
+        align-items: center;
+        display: flex;
+        height: var(--dxt-setting-header-top-height);
+        line-height: var(--dxt-setting-header-top-height);
+        padding-left: var(--dxt-setting-menu-link-spacing, 10px);
+        padding-right: var(--dxt-setting-menu-link-spacing, 10px);
+      }
+
+      .nav > li > .bs-dropdown-wrapper {
+        align-items: center;
+        height: var(--dxt-setting-header-top-height);
+      }
+
+      .nav > li > .bs-dropdown-wrapper > a {
+        align-items: center;
+        display: flex;
+        height: var(--dxt-setting-header-top-height);
+        line-height: var(--dxt-setting-header-top-height);
         padding-left: var(--dxt-setting-menu-link-spacing, 10px);
         padding-right: var(--dxt-setting-menu-link-spacing, 10px);
       }
