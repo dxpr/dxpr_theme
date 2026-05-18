@@ -60,7 +60,7 @@ function page_title_theme_settings(array &$form, $theme) {
   $form['dxpr_theme_settings']['page_title']['page_title_home_hide'] = [
     '#type' => 'checkbox',
     '#title' => t('Hide on Homepage'),
-    '#ai_description' => 'Hide the page title region on the homepage. Enable (1) when your homepage has its own hero/banner — avoids redundant Home title. Disable (0) if homepage needs the title region for branding.',
+    '#ai_description' => 'Hide the page title region on the homepage. Enable (1) when your homepage has its own hero/banner to avoid a redundant Home title. Disable (0) if homepage needs the title region for branding.',
     '#default_value' => ((theme_get_setting('page_title_home_hide') !== NULL)) ? theme_get_setting('page_title_home_hide') : 1,
   ];
 
@@ -106,7 +106,7 @@ function page_title_theme_settings(array &$form, $theme) {
   $form['dxpr_theme_settings']['page_title']['page_title_animate'] = [
     '#type' => 'radios',
     '#title' => t('Animation'),
-    '#ai_description' => 'Entrance animation when the page title appears on load. 0=no animation (clean, professional). fade-in-dxpr=gentle fade (subtle). bounce-in-down-dxpr=bounces into view (playful). fade-in-up-dxpr=slides up and fades in (modern). Use sparingly — no animation is often most professional.',
+    '#ai_description' => 'Entrance animation when the page title appears on load. 0=no animation (clean, professional). fade-in-dxpr=gentle fade (subtle). bounce-in-down-dxpr=bounces into view (playful). fade-in-up-dxpr=slides up and fades in (modern). Use sparingly; no animation is often most professional.',
     '#default_value' => ((theme_get_setting('page_title_animate') !== NULL)) ? theme_get_setting('page_title_animate') : '0',
     '#options' => [
       '0' => t('No Animation'),
@@ -188,7 +188,7 @@ function page_title_theme_settings(array &$form, $theme) {
   $form['dxpr_theme_settings']['page_title']['background']['page_title_image_position'] = [
     '#type' => 'radios',
     '#title' => t('Background Position'),
-    '#ai_description' => 'Anchor point for the page title background image. center_center=safe default. Adjust based on the image focal point — e.g., left_top if the subject is in the top-left corner.',
+    '#ai_description' => 'Anchor point for the page title background image. center_center=safe default. Adjust based on the image focal point, e.g. left_top if the subject is in the top-left corner.',
     '#default_value' => ((theme_get_setting('page_title_image_position') !== NULL)) ? theme_get_setting('page_title_image_position') : 'center_center',
     '#options' => [
       'center_center' => t('Center'),

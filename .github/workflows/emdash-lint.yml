@@ -27,6 +27,7 @@ jobs:
           --exclude-dir='node_modules' \
           --exclude-dir='vendor' \
           --exclude-dir='.claude' \
+          --exclude-dir='fonts' \
           --exclude='.gitlab-ci.yml' \
           --exclude='emdash-lint.yml' \
           . ; then
@@ -44,6 +45,7 @@ jobs:
           --exclude-dir='node_modules' \
           --exclude-dir='vendor' \
           --exclude-dir='.claude' \
+          --exclude-dir='fonts' \
           . ; then
           FOUND=1
         fi

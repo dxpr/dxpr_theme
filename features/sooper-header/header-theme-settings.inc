@@ -51,7 +51,7 @@ function header_theme_settings(array &$form, $theme) {
       'logo_center_menu_right' => t('Logo Center, Menu Right'),
       'logo_right_menu_left' => t('Logo Right, Menu Left'),
     ],
-    '#ai_description' => 'Visual arrangement of logo and navigation. 0=logo left, menu right (standard business/corporate — most versatile). centered=logo stacked above centered menu (boutique, restaurant, elegant). centered_inline=logo centered between split menu halves (fashion, luxury). logo_left_menu_left=both left-aligned (editorial, news). logo_center_menu_left=logo centered, menu left (portfolio). logo_center_menu_right=logo centered, menu right (portfolio variant). logo_right_menu_left=logo right, menu left (RTL-friendly, unconventional).',
+    '#ai_description' => 'Visual arrangement of logo and navigation. 0=logo left, menu right (standard business/corporate, most versatile). centered=logo stacked above centered menu (boutique, restaurant, elegant). centered_inline=logo centered between split menu halves (fashion, luxury). logo_left_menu_left=both left-aligned (editorial, news). logo_center_menu_left=logo centered, menu left (portfolio). logo_center_menu_right=logo centered, menu right (portfolio variant). logo_right_menu_left=logo right, menu left (RTL-friendly, unconventional).',
   ];
 
   // Normalize header_style value - treat deprecated values as 'normal'.
@@ -65,7 +65,7 @@ function header_theme_settings(array &$form, $theme) {
     '#type' => 'radios',
     '#title' => t('Header Style'),
     '#description' => t('Overlay mode places the header over page content, allowing transparent backgrounds.'),
-    '#ai_description' => 'normal=standard header with its own background band above page content. overlay=header floats transparently over page content (hero images show through). Overlay is dramatic for landing pages with hero images — pair with reduced header_top_bg_opacity for glass effect.',
+    '#ai_description' => 'normal=standard header with its own background band above page content. overlay=header floats transparently over page content (hero images show through). Overlay is dramatic for landing pages with hero images; pair with reduced header_top_bg_opacity for glass effect.',
     '#default_value' => $header_style,
     '#options' => [
       'normal' => t('Normal'),
@@ -131,7 +131,7 @@ function header_theme_settings(array &$form, $theme) {
     '#title' => t('Sticky Header'),
     '#default_value' => ((theme_get_setting('header_top_sticky') !== NULL)) ? theme_get_setting('header_top_sticky') : FALSE,
     '#description' => t('Header appears after scrolling past a specified offset.'),
-    '#ai_description' => 'Requires header_top_fixed=true. When enabled, header shrinks/transforms after scrolling past header_top_height_sticky_offset. Creates a compact navigation that appears on scroll — common modern UX pattern. Configure the smaller size with header_top_height_scroll.',
+    '#ai_description' => 'Requires header_top_fixed=true. When enabled, header shrinks/transforms after scrolling past header_top_height_sticky_offset. Creates a compact navigation that appears on scroll, a common modern UX pattern. Configure the smaller size with header_top_height_scroll.',
     '#states' => [
       'visible' => [
         ':input[name="header_top_fixed"]' => ['checked' => TRUE],
@@ -664,7 +664,7 @@ function header_theme_settings(array &$form, $theme) {
       'bold' => t('Bold'),
       'lead' => t('Lead text'),
     ],
-    '#ai_description' => 'Font treatment for main menu links. (empty)=normal text. uppercase=ALL CAPS (strong, authoritative — corporate/tech). bold=heavier weight (prominent nav). lead=larger text (statement navigation). Uppercase + border hover creates a sophisticated nav pattern.',
+    '#ai_description' => 'Font treatment for main menu links. (empty)=normal text. uppercase=ALL CAPS (strong, authoritative, suits corporate/tech). bold=heavier weight (prominent nav). lead=larger text (statement navigation). Uppercase + border hover creates a sophisticated nav pattern.',
   ];
 
   $form['dxpr_theme_settings']['header']['menu']['menu_link_spacing'] = [
@@ -692,7 +692,7 @@ function header_theme_settings(array &$form, $theme) {
       'text' => t('Colored text'),
       'border' => t('Border'),
     ],
-    '#ai_description' => 'Visual feedback style when hovering over menu items. opacity=subtle fade (minimal, modern). background=colored fill behind item (corporate, clear). text=only text color changes (subtle). border=underline/overline effect (modern, editorial). Border hover is most popular in contemporary web design — configure with menu_border_* settings.',
+    '#ai_description' => 'Visual feedback style when hovering over menu items. opacity=subtle fade (minimal, modern). background=colored fill behind item (corporate, clear). text=only text color changes (subtle). border=underline/overline effect (modern, editorial). Border hover is most popular in contemporary web design; configure with menu_border_* settings.',
   ];
 
   $form['dxpr_theme_settings']['header']['menu']['menu_border'] = [

@@ -1,7 +1,7 @@
 {
   "_meta": {
     "description": "DXPR Theme settings schema. Auto-generated from features/*-theme-settings.inc files.",
-    "generated": "2026-04-06T09:11:27.801Z",
+    "generated": "2026-05-18T09:43:18.076Z",
     "sections": [
       "block-design",
       "colors",
@@ -17,7 +17,7 @@
       "type": "Value type: boolean, range, radios, select, textfield, textarea, checkboxes, font, color, theme_color, media, path, serialized_palette",
       "title": "Short human label (shown in GUI)",
       "description": "Terse GUI description",
-      "ai_description": "Design-oriented guidance for AI agents — visual effects, value ranges for different styles, relationships",
+      "ai_description": "Design-oriented guidance for AI agents: visual effects, value ranges for different styles, relationships",
       "options": "Valid values for radios/select/checkboxes (object or _dynamic)",
       "min": "Minimum value for range type",
       "max": "Maximum value for range type",
@@ -383,7 +383,7 @@
     "section": "header",
     "type": "radios",
     "title": "Layout",
-    "ai_description": "Visual arrangement of logo and navigation. 0=logo left, menu right (standard business/corporate — most versatile). centered=logo stacked above centered menu (boutique, restaurant, elegant). centered_inline=logo centered between split menu halves (fashion, luxury). logo_left_menu_left=both left-aligned (editorial, news). logo_center_menu_left=logo centered, menu left (portfolio). logo_center_menu_right=logo centered, menu right (portfolio variant). logo_right_menu_left=logo right, menu left (RTL-friendly, unconventional).",
+    "ai_description": "Visual arrangement of logo and navigation. 0=logo left, menu right (standard business/corporate, most versatile). centered=logo stacked above centered menu (boutique, restaurant, elegant). centered_inline=logo centered between split menu halves (fashion, luxury). logo_left_menu_left=both left-aligned (editorial, news). logo_center_menu_left=logo centered, menu left (portfolio). logo_center_menu_right=logo centered, menu right (portfolio variant). logo_right_menu_left=logo right, menu left (RTL-friendly, unconventional).",
     "options": {
       "0": "Normal (Logo left, Menu Right)",
       "centered": "Centered (stacked)",
@@ -400,7 +400,7 @@
     "type": "radios",
     "title": "Header Style",
     "description": "Overlay mode places the header over page content, allowing transparent backgrounds.",
-    "ai_description": "normal=standard header with its own background band above page content. overlay=header floats transparently over page content (hero images show through). Overlay is dramatic for landing pages with hero images — pair with reduced header_top_bg_opacity for glass effect.",
+    "ai_description": "normal=standard header with its own background band above page content. overlay=header floats transparently over page content (hero images show through). Overlay is dramatic for landing pages with hero images; pair with reduced header_top_bg_opacity for glass effect.",
     "options": {
       "normal": "Normal",
       "overlay": "Overlay"
@@ -453,7 +453,7 @@
     "type": "boolean",
     "title": "Sticky Header",
     "description": "Header appears after scrolling past a specified offset.",
-    "ai_description": "Requires header_top_fixed=true. When enabled, header shrinks/transforms after scrolling past header_top_height_sticky_offset. Creates a compact navigation that appears on scroll — common modern UX pattern. Configure the smaller size with header_top_height_scroll.",
+    "ai_description": "Requires header_top_fixed=true. When enabled, header shrinks/transforms after scrolling past header_top_height_sticky_offset. Creates a compact navigation that appears on scroll, a common modern UX pattern. Configure the smaller size with header_top_height_scroll.",
     "default": false
   },
   "second_header_sticky": {
@@ -762,7 +762,7 @@
     "section": "header",
     "type": "radios",
     "title": "Font Style",
-    "ai_description": "Font treatment for main menu links. (empty)=normal text. uppercase=ALL CAPS (strong, authoritative — corporate/tech). bold=heavier weight (prominent nav). lead=larger text (statement navigation). Uppercase + border hover creates a sophisticated nav pattern.",
+    "ai_description": "Font treatment for main menu links. (empty)=normal text. uppercase=ALL CAPS (strong, authoritative, suits corporate/tech). bold=heavier weight (prominent nav). lead=larger text (statement navigation). Uppercase + border hover creates a sophisticated nav pattern.",
     "options": {
       "": "Normal",
       "uppercase": "Uppercase",
@@ -787,7 +787,7 @@
     "section": "header",
     "type": "radios",
     "title": "Hover Style",
-    "ai_description": "Visual feedback style when hovering over menu items. opacity=subtle fade (minimal, modern). background=colored fill behind item (corporate, clear). text=only text color changes (subtle). border=underline/overline effect (modern, editorial). Border hover is most popular in contemporary web design — configure with menu_border_* settings.",
+    "ai_description": "Visual feedback style when hovering over menu items. opacity=subtle fade (minimal, modern). background=colored fill behind item (corporate, clear). text=only text color changes (subtle). border=underline/overline effect (modern, editorial). Border hover is most popular in contemporary web design; configure with menu_border_* settings.",
     "options": {
       "opacity": "Opacity",
       "background": "Colored Background",
@@ -903,7 +903,7 @@
     "type": "boolean",
     "title": "Boxed Layout",
     "description": "When enabled, all container backgrounds are constrained to a centered column instead of spanning full width.",
-    "ai_description": "Controls whether page backgrounds span full viewport or are contained in a centered column. 0 (off)=full-bleed backgrounds spanning entire browser width — modern, immersive, preferred for contemporary SaaS/portfolio/agency sites. 1 (on)=backgrounds constrained to centered box with visible page margins — traditional corporate/blog feel. Most modern designs use 0.",
+    "ai_description": "Controls whether page backgrounds span full viewport or are contained in a centered column. 0 (off)=full-bleed backgrounds spanning entire browser width, modern and immersive, preferred for contemporary SaaS/portfolio/agency sites. 1 (on)=backgrounds constrained to centered box with visible page margins, traditional corporate/blog feel. Most modern designs use 0.",
     "default": 1
   },
   "sticky_footer": {
@@ -975,7 +975,7 @@
     "type": "range",
     "title": "Container Padding",
     "description": "Horizontal padding inside the container. Default is 30px.",
-    "ai_description": "Horizontal padding inside the main container — the breathing room between content and viewport edge. 15-20px=compact. 30px=standard. 50+px=generous whitespace for luxury/editorial feel.",
+    "ai_description": "Horizontal padding inside the main container, i.e. the breathing room between content and viewport edge. 15-20px=compact. 30px=standard. 50+px=generous whitespace for luxury/editorial feel.",
     "min": 0,
     "max": 500,
     "step": 1,
@@ -1116,7 +1116,7 @@
     "type": "checkboxes",
     "title": "Hidden Regions",
     "description": "Selected regions will be hidden site-wide.",
-    "ai_description": "Permanently hide theme regions site-wide. Useful for simplifying layouts — e.g., hide sidebar_first and sidebar_second for a single-column design, hide page_title for a minimal look, hide secondary_header if not using a top bar.",
+    "ai_description": "Permanently hide theme regions site-wide. Useful for simplifying layouts, e.g. hide sidebar_first and sidebar_second for a single-column design, hide page_title for a minimal look, hide secondary_header if not using a top bar.",
     "options": {
       "navigation": "Navigation (branding)",
       "navigation_collapsible": "Navigation Collapsible (menu)",
@@ -1163,7 +1163,7 @@
     "section": "page-title",
     "type": "boolean",
     "title": "Hide on Homepage",
-    "ai_description": "Hide the page title region on the homepage. Enable (1) when your homepage has its own hero/banner — avoids redundant Home title. Disable (0) if homepage needs the title region for branding.",
+    "ai_description": "Hide the page title region on the homepage. Enable (1) when your homepage has its own hero/banner to avoid a redundant Home title. Disable (0) if homepage needs the title region for branding.",
     "default": 1
   },
   "page_title_align": {
@@ -1206,7 +1206,7 @@
     "section": "page-title",
     "type": "radios",
     "title": "Animation",
-    "ai_description": "Entrance animation when the page title appears on load. 0=no animation (clean, professional). fade-in-dxpr=gentle fade (subtle). bounce-in-down-dxpr=bounces into view (playful). fade-in-up-dxpr=slides up and fades in (modern). Use sparingly — no animation is often most professional.",
+    "ai_description": "Entrance animation when the page title appears on load. 0=no animation (clean, professional). fade-in-dxpr=gentle fade (subtle). bounce-in-down-dxpr=bounces into view (playful). fade-in-up-dxpr=slides up and fades in (modern). Use sparingly; no animation is often most professional.",
     "options": {
       "0": "No Animation",
       "bounce-dxpr": "Bounce",
@@ -1273,7 +1273,7 @@
     "section": "page-title",
     "type": "radios",
     "title": "Background Position",
-    "ai_description": "Anchor point for the page title background image. center_center=safe default. Adjust based on the image focal point — e.g., left_top if the subject is in the top-left corner.",
+    "ai_description": "Anchor point for the page title background image. center_center=safe default. Adjust based on the image focal point, e.g. left_top if the subject is in the top-left corner.",
     "options": {
       "center_center": "Center",
       "left_top": "Top left",
@@ -1333,7 +1333,7 @@
     "type": "range",
     "title": "Typography Scale Factor",
     "description": "This overrides advanced type controls.",
-    "ai_description": "Typographic scale ratio multiplied across heading sizes. 1.0=manual control (use individual h1-h4 sizes). 1.125=major second (subtle). 1.25=major third (balanced — most popular). 1.333=perfect fourth. 1.5=perfect fifth (dramatic). 1.618=golden ratio. When >1, overrides individual h1-h4 font sizes.",
+    "ai_description": "Typographic scale ratio multiplied across heading sizes. 1.0=manual control (use individual h1-h4 sizes). 1.125=major second (subtle). 1.25=major third (balanced, most popular). 1.333=perfect fourth. 1.5=perfect fifth (dramatic). 1.618=golden ratio. When >1, overrides individual h1-h4 font sizes.",
     "min": 1,
     "max": 2,
     "step": 0.01,
