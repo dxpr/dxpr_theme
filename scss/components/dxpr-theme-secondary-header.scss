@@ -23,6 +23,24 @@
     margin-bottom: 0;
   }
 
+  .btn,
+  button {
+    color: dxpr-color('secheadertext');
+  }
+
+  .btn-group .dropdown-menu {
+    color: initial;
+
+    a {
+      color: initial;
+
+      &:hover,
+      &:focus {
+        color: initial;
+      }
+    }
+  }
+
   .secondary-header-container {
     margin-bottom: 0;
   }
