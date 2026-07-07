@@ -30,6 +30,8 @@
 
   .btn-group .dropdown-menu {
     color: initial;
+    max-height: 80vh;
+    overflow-y: auto;
 
     a {
       color: initial;
