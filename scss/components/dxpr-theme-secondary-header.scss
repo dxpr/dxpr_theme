@@ -23,6 +23,20 @@
     margin-bottom: 0;
   }
 
+  h2, h3, label, .btn, button, select {
+    color: inherit;
+  }
+
+  .dropdown-menu {
+    color: initial;
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+
+  .dropbutton-wrapper {
+    display: inline-flex;
+  }
+
   .secondary-header-container {
     margin-bottom: 0;
   }
