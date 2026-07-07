@@ -23,24 +23,18 @@
     margin-bottom: 0;
   }
 
-  .btn,
-  button {
-    color: dxpr-color('secheadertext');
+  h2, h3, label, .btn, button, select {
+    color: inherit;
   }
 
-  .btn-group .dropdown-menu {
+  .dropdown-menu {
     color: initial;
     max-height: 80vh;
     overflow-y: auto;
+  }
 
-    a {
-      color: initial;
-
-      &:hover,
-      &:focus {
-        color: initial;
-      }
-    }
+  .dropbutton-wrapper {
+    display: inline-flex;
   }
 
   .secondary-header-container {
