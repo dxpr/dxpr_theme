@@ -26,13 +26,27 @@ function fonts_theme_settings_controller(array &$variables) {
   $dxpr_theme_fonts = array_unique($dxpr_theme_fonts);
   $requested_google_fonts = [];
 
+  // Map bundled font families to their library definitions. These use the
+  // Drupal 11.4 'fonts' key for correct browser preloading.
+  $bundled_font_libraries = [
+    'LeagueGothicRegular' => 'dxpr_theme/font.league-gothic',
+    'ChunkFiveRegular' => 'dxpr_theme/font.chunk-five',
+  ];
+
   foreach ($dxpr_theme_fonts as $dxpr_theme_font) {
     if (isset($dxpr_theme_font[0]) && $dxpr_theme_font[0] === '0') {
       $dxpr_theme_font = trim(substr($dxpr_theme_font, 1), ':');
       $requested_google_fonts[] = $dxpr_theme_font;
     }
     elseif (isset($dxpr_theme_font[0]) && $dxpr_theme_font[0] === '1') {
-      _dxpr_theme_add_local_font($dxpr_theme_font, $variables);
+      $font_parts = explode('|', substr($dxpr_theme_font, 1));
+      $font_family = $font_parts[2] ?? '';
+      if (isset($bundled_font_libraries[$font_family])) {
+        $variables['#attached']['library'][] = $bundled_font_libraries[$font_family];
+      }
+      else {
+        _dxpr_theme_add_local_font($dxpr_theme_font, $variables);
+      }
     }
   }
 
@@ -247,6 +261,7 @@ function _dxpr_theme_add_local_font_preload_link($path, $font_family, array &$va
         'href' => '/' . dirname($path) . '/' . $font_families[$font_family]['url'],
         'as' => 'font',
         'type' => 'font/' . $font_families[$font_family]['format'],
+        'crossorigin' => 'anonymous',
       ],
     ];
     $variables['#attached']['html_head'][] = [

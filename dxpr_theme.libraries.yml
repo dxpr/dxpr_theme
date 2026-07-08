@@ -204,6 +204,20 @@ custom_animations:
     theme:
       css/animations-dxpr.css: {}
 
+font.league-gothic:
+  css:
+    theme:
+      fonts/leaguegothic/stylesheet.css: { minified: true }
+  fonts:
+    - fonts/leaguegothic/league_gothic-webfont.woff
+
+font.chunk-five:
+  css:
+    theme:
+      fonts/ChunkFive-fontfacekit/stylesheet.css: { minified: true }
+  fonts:
+    - fonts/ChunkFive-fontfacekit/Chunkfive-webfont.woff
+
 enhanced-dropdowns:
   version: 1.x
   js:
