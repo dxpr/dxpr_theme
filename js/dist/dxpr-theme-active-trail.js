@@ -18,6 +18,10 @@
       const currentOrigin = window.location.origin;
       const menuLinks = document.querySelectorAll(".menu--main a[href]");
       menuLinks.forEach((link) => {
+        const rawHref = link.getAttribute("href");
+        if (!rawHref || rawHref.startsWith("#")) {
+          return;
+        }
         const linkUrl = new URL(link.href, currentOrigin);
         if (linkUrl.origin !== currentOrigin) {
           return;
