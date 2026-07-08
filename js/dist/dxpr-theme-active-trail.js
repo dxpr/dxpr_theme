@@ -15,10 +15,14 @@
         return;
       }
       const currentPath = window.location.pathname;
+      const currentOrigin = window.location.origin;
       const menuLinks = document.querySelectorAll(".menu--main a[href]");
       menuLinks.forEach((link) => {
-        const linkPath = link.pathname;
-        if (linkPath === currentPath) {
+        const linkUrl = new URL(link.href, currentOrigin);
+        if (linkUrl.origin !== currentOrigin) {
+          return;
+        }
+        if (linkUrl.pathname === currentPath) {
           link.classList.add("is-active");
           let li = link.closest("li");
           while (li) {

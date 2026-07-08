@@ -277,9 +277,9 @@ function dxpr_theme_preprocess_page(&$variables) {
  * Implements hook_preprocess_menu().
  *
  * Attaches client-side active trail detection for Views-generated menu links
- * that core does not mark as active (core issue #3359511). This replaces
- * the previous server-side workaround that added a url.path cache context,
- * which caused the menu render cache to vary per URL path.
+ * that core does not mark as active (core issue #3359511). This removes the
+ * extra url.path cache context that the previous server-side workaround added;
+ * the core route.menu_active_trails cache context remains on menu blocks.
  *
  * @see https://www.drupal.org/project/dxpr_theme/issues/3553914
  * @see https://www.drupal.org/project/drupal/issues/3359511
@@ -307,7 +307,7 @@ function dxpr_theme_preprocess_menu(&$variables) {
  * @return bool
  *   TRUE if any item in this level or below is active.
  *
- * @deprecated in dxpr_theme:2.1.0 and is removed from dxpr_theme:3.0.0.
+ * @deprecated in dxpr_theme:8.2.0 and is removed from dxpr_theme:9.0.0.
  *   Active trail detection is now handled client-side via the active-trail
  *   library. This function is retained for backward compatibility but is no
  *   longer called by dxpr_theme_preprocess_menu().
