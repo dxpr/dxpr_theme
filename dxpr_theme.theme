@@ -12,6 +12,7 @@ use Drupal\image\Entity\ImageStyle;
 use Drupal\media\Entity\Media;
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Entity\ContentEntityInterface;
+use Drupal\Core\File\FileSystemInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Markup;
 use Drupal\Core\Template\Attribute;
@@ -160,31 +161,52 @@ function dxpr_theme_preprocess_html(&$variables) {
     $variables['#attached']['drupalSettings']['dxpr_themeSettings']['hamburgerAnimation'] = $header_hamburger_animation;
   }
 
-  // Add Apple Touch Icon URL if configured.
+  // Add Apple Touch Icon URL and web manifest URL if configured.
   $web_icons_media_id = theme_get_setting('web_icons_upload');
   if ($web_icons_media_id) {
-    $media = Media::load($web_icons_media_id);
-    if ($media && $media->field_media_image->entity) {
-      $image_style = ImageStyle::load('apple_touch_icon');
-      if ($image_style) {
-        $variables['apple_touch_icon_url'] = $image_style->buildUrl($media->field_media_image->entity->getFileUri());
-      }
-    }
-  }
-
-  // Add web manifest URL if icons are configured.
-  if ($web_icons_media_id) {
-    // Create a simple manifest JSON file in the public files directory.
     $file_system = \Drupal::service('file_system');
     $public_path = $file_system->realpath('public://');
     $manifest_path = $public_path . '/manifest.webmanifest';
+    $icons_cache_path = $public_path . '/dxpr_theme/web_icons_cache.json';
 
-    _dxpr_theme_generate_manifest($web_icons_media_id, $manifest_path);
+    // Read cached icon URLs or compute and cache them. This avoids
+    // Media::load() and ImageStyle::load() calls on every page request.
+    if (file_exists($icons_cache_path)) {
+      $icons_cache = json_decode(file_get_contents($icons_cache_path), TRUE);
+      if (!empty($icons_cache['apple_touch_icon_url'])) {
+        $variables['apple_touch_icon_url'] = $icons_cache['apple_touch_icon_url'];
+      }
+    }
+    else {
+      $media = Media::load($web_icons_media_id);
+      if ($media && $media->hasField('field_media_image') && $media->field_media_image->entity) {
+        $image_style = ImageStyle::load('apple_touch_icon');
+        if ($image_style) {
+          $variables['apple_touch_icon_url'] = $image_style->buildUrl($media->field_media_image->entity->getFileUri());
+        }
+      }
+      // Cache the computed URL so subsequent requests skip entity loading.
+      $cache_dir = 'public://dxpr_theme';
+      $file_system->prepareDirectory($cache_dir, FileSystemInterface::CREATE_DIRECTORY);
+      file_put_contents($icons_cache_path, json_encode([
+        'apple_touch_icon_url' => $variables['apple_touch_icon_url'] ?? NULL,
+      ]));
+    }
+
+    // Regenerate manifest when missing or when inputs (site name) changed.
+    $regenerate_manifest = !file_exists($manifest_path);
+    if (!$regenerate_manifest) {
+      $site_name = \Drupal::config('system.site')->get('name') ?: 'Drupal Site';
+      $existing = json_decode(file_get_contents($manifest_path), TRUE);
+      $regenerate_manifest = ($existing['name'] ?? '') !== $site_name;
+    }
+    if ($regenerate_manifest) {
+      _dxpr_theme_generate_manifest($web_icons_media_id, $manifest_path);
+    }
 
     // Absolute URL for the manifest.
     $variables['manifest_url'] = \Drupal::service('file_url_generator')
       ->generateAbsoluteString('public://manifest.webmanifest');
-
   }
 }
 
