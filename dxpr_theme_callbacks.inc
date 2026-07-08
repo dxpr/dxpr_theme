@@ -92,10 +92,35 @@ function dxpr_theme_css_cache_build(string $theme) {
     \Drupal::logger('dxpr_theme')->error($message);
   }
 
-  // If the CSS & JS aggregation are enabled we need to clear the caches.
-  drupal_flush_all_caches();
+  // Clear CSS/JS aggregated files.
   \Drupal::service('asset.css.collection_optimizer')->deleteAll();
   \Drupal::service('asset.js.collection_optimizer')->deleteAll();
+  // Reset the asset query string so browsers fetch fresh CSS/JS.
+  if (\Drupal::hasService('asset.query_string')) {
+    \Drupal::service('asset.query_string')->reset();
+  }
+  elseif (function_exists('_drupal_flush_css_js')) {
+    _drupal_flush_css_js();
+  }
+  // Clear the render cache so pages pick up the new CSS.
+  \Drupal::cache('render')->invalidateAll();
+  // Clear page-level caches so anonymous visitors get fresh responses.
+  if (\Drupal::hasService('cache.page')) {
+    \Drupal::cache('page')->invalidateAll();
+  }
+  if (\Drupal::hasService('cache.dynamic_page_cache')) {
+    \Drupal::cache('dynamic_page_cache')->invalidateAll();
+  }
+  // Clear the discovery cache for library definitions.
+  \Drupal::cache('discovery')->invalidateAll();
+  // Invalidate the library info cache.
+  $library_discovery = \Drupal::service('library.discovery');
+  if (method_exists($library_discovery, 'clear')) {
+    $library_discovery->clear();
+  }
+  else {
+    $library_discovery->clearCachedDefinitions();
+  }
 }
 
 /**
