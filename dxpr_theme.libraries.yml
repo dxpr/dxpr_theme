@@ -209,14 +209,16 @@ font.league-gothic:
     theme:
       fonts/leaguegothic/stylesheet.css: { minified: true }
   fonts:
-    - fonts/leaguegothic/league_gothic-webfont.woff
+    fonts/leaguegothic/league_gothic-webfont.woff:
+      preload: true
 
 font.chunk-five:
   css:
     theme:
       fonts/ChunkFive-fontfacekit/stylesheet.css: { minified: true }
   fonts:
-    - fonts/ChunkFive-fontfacekit/Chunkfive-webfont.woff
+    fonts/ChunkFive-fontfacekit/Chunkfive-webfont.woff:
+      preload: true
 
 enhanced-dropdowns:
   version: 1.x

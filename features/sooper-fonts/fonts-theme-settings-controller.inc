@@ -41,7 +41,7 @@ function fonts_theme_settings_controller(array &$variables) {
     elseif (isset($dxpr_theme_font[0]) && $dxpr_theme_font[0] === '1') {
       $font_parts = explode('|', substr($dxpr_theme_font, 1));
       $font_family = $font_parts[2] ?? '';
-      if (isset($bundled_font_libraries[$font_family])) {
+      if (isset($bundled_font_libraries[$font_family]) && version_compare(\Drupal::VERSION, '11.4', '>=')) {
         $variables['#attached']['library'][] = $bundled_font_libraries[$font_family];
       }
       else {
