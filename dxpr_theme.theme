@@ -311,6 +311,7 @@ function dxpr_theme_preprocess_menu(&$variables) {
  *   Active trail detection is now handled client-side via the active-trail
  *   library. This function is retained for backward compatibility but is no
  *   longer called by dxpr_theme_preprocess_menu().
+ * @see https://www.drupal.org/project/dxpr_theme/issues/3509999
  */
 function dxpr_theme_menu_set_active_trail(array &$items, $current_path, $is_front) {
   $has_active = FALSE;
