@@ -214,3 +214,9 @@ enhanced-dropdowns:
       vendor/enhanced-dropdowns/dist/css/main.min.css: { minified: true }
   dependencies:
     - core/drupal
+
+active-trail:
+  js:
+    js/dist/dxpr-theme-active-trail.js: {}
+  dependencies:
+    - core/drupal
