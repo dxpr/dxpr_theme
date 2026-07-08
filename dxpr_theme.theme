@@ -12,6 +12,7 @@ use Drupal\image\Entity\ImageStyle;
 use Drupal\media\Entity\Media;
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Entity\ContentEntityInterface;
+use Drupal\Core\File\FileSystemInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Markup;
 use Drupal\Core\Template\Attribute;
@@ -185,7 +186,7 @@ function dxpr_theme_preprocess_html(&$variables) {
       }
       // Cache the computed URL so subsequent requests skip entity loading.
       $cache_dir = 'public://dxpr_theme';
-      $file_system->prepareDirectory($cache_dir, \Drupal\Core\File\FileSystemInterface::CREATE_DIRECTORY);
+      $file_system->prepareDirectory($cache_dir, FileSystemInterface::CREATE_DIRECTORY);
       file_put_contents($icons_cache_path, json_encode([
         'apple_touch_icon_url' => $variables['apple_touch_icon_url'] ?? NULL,
       ]));
