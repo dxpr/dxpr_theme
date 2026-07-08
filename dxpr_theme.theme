@@ -16,6 +16,7 @@ use Drupal\Core\File\FileSystemInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Markup;
 use Drupal\Core\Template\Attribute;
+use Drupal\block\Entity\Block;
 use Drupal\media\MediaInterface;
 use Drupal\node\NodeInterface;
 
@@ -192,8 +193,14 @@ function dxpr_theme_preprocess_html(&$variables) {
       ]));
     }
 
-    // Generate manifest only when the file does not already exist.
-    if (!file_exists($manifest_path)) {
+    // Regenerate manifest when missing or when inputs (site name) changed.
+    $regenerate_manifest = !file_exists($manifest_path);
+    if (!$regenerate_manifest) {
+      $site_name = \Drupal::config('system.site')->get('name') ?: 'Drupal Site';
+      $existing = json_decode(file_get_contents($manifest_path), TRUE);
+      $regenerate_manifest = ($existing['name'] ?? '') !== $site_name;
+    }
+    if ($regenerate_manifest) {
       _dxpr_theme_generate_manifest($web_icons_media_id, $manifest_path);
     }
 
@@ -399,7 +406,7 @@ function dxpr_theme_preprocess_menu_local_tasks(&$variables) {
  */
 function dxpr_theme_preprocess_block(&$variables) {
   if (isset($variables['elements']['#id'])) {
-    $block = $variables['elements']['#block'] ?? NULL;
+    $block = Block::load($variables['elements']['#id']);
     if ($block) {
       $variables['region'] = $block->getRegion();
 
