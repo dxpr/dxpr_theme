@@ -114,7 +114,13 @@ function dxpr_theme_css_cache_build(string $theme) {
   // Clear the discovery cache for library definitions.
   \Drupal::cache('discovery')->invalidateAll();
   // Invalidate the library info cache.
-  \Drupal::service('library.discovery')->clearCachedDefinitions();
+  $library_discovery = \Drupal::service('library.discovery');
+  if (method_exists($library_discovery, 'clear')) {
+    $library_discovery->clear();
+  }
+  else {
+    $library_discovery->clearCachedDefinitions();
+  }
 }
 
 /**
