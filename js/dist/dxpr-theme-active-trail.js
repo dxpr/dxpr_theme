@@ -9,33 +9,30 @@
  */
 
 (function (Drupal) {
-  'use strict';
-
   Drupal.behaviors.dxprThemeActiveTrail = {
-    attach: function (context) {
+    attach(context) {
       if (context !== document) {
         return;
       }
-      var currentPath = window.location.pathname;
-      var menuLinks = document.querySelectorAll('.menu--main a[href]');
-      menuLinks.forEach(function (link) {
-        var linkPath = link.pathname;
+      const currentPath = window.location.pathname;
+      const menuLinks = document.querySelectorAll(".menu--main a[href]");
+      menuLinks.forEach((link) => {
+        const linkPath = link.pathname;
         if (linkPath === currentPath) {
-          link.classList.add('is-active');
-          var li = link.closest('li');
+          link.classList.add("is-active");
+          let li = link.closest("li");
           while (li) {
-            li.classList.add('menu-item--active-trail');
-            li.classList.add('active');
-            var parentUl = li.parentElement;
+            li.classList.add("menu-item--active-trail");
+            li.classList.add("active");
+            const parentUl = li.parentElement;
             if (parentUl) {
-              li = parentUl.closest('li');
+              li = parentUl.closest("li");
             } else {
               break;
             }
           }
         }
       });
-    }
+    },
   };
-
 })(Drupal);

@@ -297,12 +297,6 @@ function dxpr_theme_preprocess_menu(&$variables) {
 /**
  * Recursively sets active trail on menu items by comparing URL paths.
  *
- * @deprecated in dxpr_theme:8.x-2.1.0 and is removed from dxpr_theme:9.x-1.0.0.
- *   Active trail detection is now handled client-side via the active-trail
- *   library. This function is retained for backward compatibility but is no
- *   longer called by dxpr_theme_preprocess_menu().
- * @see https://github.com/dxpr/dxpr_theme/issues/827
- *
  * @param array $items
  *   Menu items array (passed by reference).
  * @param string $current_path
@@ -312,6 +306,11 @@ function dxpr_theme_preprocess_menu(&$variables) {
  *
  * @return bool
  *   TRUE if any item in this level or below is active.
+ *
+ * @deprecated in dxpr_theme:2.1.0 and is removed from dxpr_theme:3.0.0.
+ *   Active trail detection is now handled client-side via the active-trail
+ *   library. This function is retained for backward compatibility but is no
+ *   longer called by dxpr_theme_preprocess_menu().
  */
 function dxpr_theme_menu_set_active_trail(array &$items, $current_path, $is_front) {
   $has_active = FALSE;
