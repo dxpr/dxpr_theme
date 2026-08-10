@@ -8,13 +8,15 @@
 // Default font stack fallback.
 $default-font-stack: -apple-system, blinkmacsystemfont, "Segoe UI", roboto, helvetica, arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 
-body, .toooltip {
+body, .tooltip {
   font-family: var(--dxt-setting-body-font-face, #{$default-font-stack});
   font-style: var(--dxt-setting-body-font-style, normal);
   font-weight: var(--dxt-setting-body-font-weight, 400);
 }
 
-h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, label, .field--label {
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6,
+.display-1, .display-2, .display-3, .display-4, .display-5, .display-6,
+label, .field--label {
   font-family: var(--dxt-setting-headings-font-face, #{$default-font-stack});
   font-style: var(--dxt-setting-headings-font-style, normal);
   font-weight: var(--dxt-setting-headings-font-weight, 700);
@@ -51,9 +53,9 @@ body, p, .lead {
   line-height:  var(--dxt-setting-body-line-height);
 }
 
-h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
-  // Use !important to override default font-family weight.
-  font-weight: var(--dxt-setting-headings-bold) !important;
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6,
+.display-1, .display-2, .display-3, .display-4, .display-5, .display-6 {
+  font-weight: var(--dxt-setting-headings-bold);
   letter-spacing: var(--dxt-setting-headings-letter-spacing);
   line-height: var(--dxt-setting-headings-line-height);
   margin-bottom: 10px;
@@ -144,7 +146,9 @@ a:hover, a:focus,
   }
 }
 
-h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, .navbar-brand, th, .nav-tabs > li > a {
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6,
+.display-1, .display-2, .display-3, .display-4, .display-5, .display-6,
+.navbar-brand, th, .nav-tabs > li > a {
   color: dxpr-color('headings');
 
   a {
@@ -162,7 +166,9 @@ h2 a, .h2 a,
 h3 a, .h3 a,
 h4 a, .h4 a,
 h5 a, .h5 a,
-h6 a, .h6 a {
+h6 a, .h6 a,
+.display-1 a, .display-2 a, .display-3 a,
+.display-4 a, .display-5 a, .display-6 a {
   color: dxpr-color('base');
 
   &:hover,

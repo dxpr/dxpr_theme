@@ -160,3 +160,31 @@ function dxpr_theme_post_update_n4_migrate_default_scheme() {
 
   return t('Sites using the old default color scheme have been migrated to "dxpr-theme-2025".');
 }
+
+/**
+ * Rebuild theme CSS to pick up font-weight/style cascade changes.
+ *
+ * The generated CSS no longer emits hardcoded font-weight and font-style
+ * with !important. Existing sites keep a stale file until this runs.
+ */
+function dxpr_theme_post_update_n5_rebuild_font_css() {
+  /** @var \Drupal\Core\Extension\ThemeHandler $theme_handler */
+  $theme_handler = \Drupal::service('theme_handler');
+  $theme_list = $theme_handler->listInfo();
+
+  require_once $theme_handler
+    ->getTheme('dxpr_theme')
+    ->getPath() . '/dxpr_theme_callbacks.inc';
+
+  /** @var \Drupal\Core\Extension\Extension $theme */
+  foreach ($theme_list as $theme) {
+    $theme_name = $theme->getName();
+    if ('dxpr_theme' === ($theme->info['base theme'] ?? '') || 'dxpr_theme' === $theme_name) {
+      if (function_exists('dxpr_theme_css_cache_build')) {
+        dxpr_theme_css_cache_build($theme_name);
+      }
+    }
+  }
+
+  return t('Theme CSS rebuilt to apply font-weight and font-style cascade changes.');
+}
