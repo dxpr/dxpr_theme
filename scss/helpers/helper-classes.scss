@@ -152,6 +152,12 @@
   .dxpr-theme-util-overlay-white::after,.dxpr-theme-util-overlay-white .YTPOverlay { background-color: white; }
   .dxpr-theme-util-overlay-gray::after,.dxpr-theme-util-overlay-gray .YTPOverlay { background-color: dxpr-color('text'); }
 
+  // Overlay opacity modifiers
+  .dxpr-theme-util-overlay-20::after, .dxpr-theme-util-overlay-20 .YTPOverlay { opacity: 0.2; }
+  .dxpr-theme-util-overlay-40::after, .dxpr-theme-util-overlay-40 .YTPOverlay { opacity: 0.4; }
+  .dxpr-theme-util-overlay-60::after, .dxpr-theme-util-overlay-60 .YTPOverlay { opacity: 0.6; }
+  .dxpr-theme-util-overlay-80::after, .dxpr-theme-util-overlay-80 .YTPOverlay { opacity: 0.8; }
+
   // Color helper classes
   .dxpr-theme-util-background-body { background-color: dxpr-color('body'); }
   .dxpr-theme-util-background-gray { background-color: dxpr-color('text'); }
