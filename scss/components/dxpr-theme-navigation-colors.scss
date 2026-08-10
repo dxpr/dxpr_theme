@@ -19,6 +19,12 @@
     color: var(--dxt-setting-header-block-text-color, inherit);
   }
 
+  // Prevent header block text colour from leaking into contextual links UI
+  .block .contextual,
+  .block .contextual a {
+    color: initial;
+  }
+
   .nav {
     background-color: var(--dxt-setting-menu-background, transparent);
 
