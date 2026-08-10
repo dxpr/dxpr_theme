@@ -12,7 +12,7 @@
 //
 @media (width > 768px) {
   // Center aligned for full-width content.
-  .main-container.container .block-local-tasks-block {
+  .main-container.container .block-local-tasks-block:has(.dxpr-theme-mini-tabs-wrapper) {
     left: 50%;
     padding-right: 32px; // Make room for contextual links.
     position: absolute;

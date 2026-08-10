@@ -75,6 +75,28 @@ function colors_theme_settings_css($theme, &$css, array $palette) {
     $css .= "  --bs-tertiary-color: var(--dxt-color-text);\n";
     $css .= "  --bs-tertiary-bg: var(--dxt-color-silver);\n";
 
+    // Bootstrap 5.3 utility classes (.text-primary, .bg-primary, .border-primary,
+    // etc.) use the -rgb triplet form via rgba(), not the hex custom properties.
+    $rgb_map = [
+      '--bs-primary-rgb' => 'base',
+      '--bs-secondary-rgb' => 'accent1',
+      '--bs-body-color-rgb' => 'text',
+      '--bs-body-bg-rgb' => 'body',
+      '--bs-emphasis-color-rgb' => 'headings',
+      '--bs-link-color-rgb' => 'link',
+      '--bs-link-hover-color-rgb' => 'accent1',
+      '--bs-light-rgb' => 'silver',
+      '--bs-dark-rgb' => 'headings',
+      '--bs-secondary-bg-rgb' => 'card',
+      '--bs-tertiary-bg-rgb' => 'silver',
+    ];
+    foreach ($rgb_map as $css_var => $palette_key) {
+      if (!empty($palette[$palette_key])) {
+        $rgb = Color::hexToRgb($palette[$palette_key]);
+        $css .= "  $css_var: {$rgb['red']}, {$rgb['green']}, {$rgb['blue']};\n";
+      }
+    }
+
     $css .= "}\n\n";
   }
 }

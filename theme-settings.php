@@ -304,4 +304,16 @@ function dxpr_theme_form_system_theme_settings_after_submit(&$form, &$form_state
   $theme_cache =&drupal_static('theme_get_setting', []);
   $theme_cache = [];
   dxpr_theme_css_cache_build($subject_theme);
+
+  // Delete cached web icon files so they regenerate with updated settings.
+  $file_system = \Drupal::service('file_system');
+  $public_path = $file_system->realpath('public://');
+  $manifest_path = $public_path . '/manifest.webmanifest';
+  $icons_cache_path = $public_path . '/dxpr_theme/web_icons_cache.json';
+  if (file_exists($manifest_path)) {
+    $file_system->delete($manifest_path);
+  }
+  if (file_exists($icons_cache_path)) {
+    $file_system->delete($icons_cache_path);
+  }
 }

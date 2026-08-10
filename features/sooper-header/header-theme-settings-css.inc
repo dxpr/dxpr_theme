@@ -128,7 +128,7 @@ function header_theme_settings_css(string $theme, string &$css, array $palette) 
         break;
     }
 
-    $css .= ".dxpr-theme-header .nav a,\n.dxpr-theme-header .nav span,\n.dxpr-theme-header .nav button {\n  ";
+    $css .= "#navbar.dxpr-theme-header .nav a,\n#navbar.dxpr-theme-header .nav span,\n#navbar.dxpr-theme-header .nav button {\n  ";
     $css .= "$menu_type_value\n";
     $css .= "}\n\n";
   }
