@@ -13,10 +13,16 @@
     background-color: var(--dxt-setting-header-block-background, inherit);
   }
 
-  .block:not(.contextual-region),
-  .block:not(.contextual-region) a,
+  .block,
+  .block a,
   .block .btn-link {
     color: var(--dxt-setting-header-block-text-color, inherit);
+  }
+
+  // Prevent header block text colour from leaking into contextual links UI
+  .block .contextual,
+  .block .contextual a {
+    color: initial;
   }
 
   .nav {
