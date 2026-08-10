@@ -99,6 +99,7 @@ html.html--dxpr-theme-nav-mobile--open {
         .dropdown-item,
         .bs-dropdown-item-wrapper > .dropdown-item {
           font-size: var(--dxt-setting-nav-mobile-font-size);
+          font-weight: inherit;
           white-space: normal;
           word-wrap: break-word;
 

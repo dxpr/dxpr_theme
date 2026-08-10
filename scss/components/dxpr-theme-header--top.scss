@@ -266,6 +266,7 @@
 
       .dropdown-item,
       .bs-dropdown-item-wrapper > .dropdown-item {
+        font-weight: inherit;
         white-space: normal;
         word-wrap: break-word;
       }
