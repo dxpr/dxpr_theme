@@ -52,7 +52,7 @@ body, p, .lead {
 }
 
 h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
-  font-weight: var(--dxt-setting-headings-bold);
+  font-weight: var(--dxt-setting-headings-bold, var(--dxt-setting-headings-font-weight, normal));
   letter-spacing: var(--dxt-setting-headings-letter-spacing);
   line-height: var(--dxt-setting-headings-line-height);
   margin-bottom: 10px;

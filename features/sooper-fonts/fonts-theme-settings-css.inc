@@ -45,7 +45,9 @@ function fonts_theme_settings_css(string $theme, &$css, array $palette) {
       $css .= $selector . " {\n";
       $css .= _dxpr_theme_settings_add_css($font_key, 'font-family');
       $css .= "  font-style: var({$prefix}{$base_var}-style);\n";
-      $css .= "  font-weight: var({$prefix}{$base_var}-weight);\n";
+      if ($font_key !== 'headings_font_face') {
+        $css .= "  font-weight: var({$prefix}{$base_var}-weight);\n";
+      }
       $css .= "}\n\n";
     }
   }
