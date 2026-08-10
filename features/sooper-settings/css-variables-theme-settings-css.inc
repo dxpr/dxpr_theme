@@ -106,7 +106,7 @@ function _dxpr_theme_massage_values(string $key, $value, string $theme, array $s
 
     // Generic: Bold.
     case 'headings_bold':
-      $value = !empty($value) ? 'bold' : '';
+      $value = !empty($value) ? 'bold' : 'normal';
       break;
 
     // Generic: Uppercase.

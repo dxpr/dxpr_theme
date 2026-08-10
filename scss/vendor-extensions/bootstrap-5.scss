@@ -269,7 +269,7 @@ html body {
       color: dxpr-color('cardtext');
     }
 
-    h1, h2, h3, h4, h5, h6 {
+    h1, h2, h3, h4, h5, h6, .display-1, .display-2, .display-3, .display-4, .display-5, .display-6 {
       color: dxpr-color('cardtext');
     }
 
@@ -297,7 +297,7 @@ html body {
     background-color: dxpr-color('base') !important;
     color: dxpr-color('basetext') !important;
 
-    h1, h2, h3, h4, h5, h6 {
+    h1, h2, h3, h4, h5, h6, .display-1, .display-2, .display-3, .display-4, .display-5, .display-6 {
       color: dxpr-color('basetext');
     }
 
@@ -347,7 +347,7 @@ html body {
     background-color: dxpr-color('accent1') !important;
     color: dxpr-color('accent1text');
 
-    h1, h2, h3, h4, h5, h6 {
+    h1, h2, h3, h4, h5, h6, .display-1, .display-2, .display-3, .display-4, .display-5, .display-6 {
       color: dxpr-color('accent1text');
     }
 
@@ -396,7 +396,7 @@ html body {
     background-color: #212529 !important;
     color: #fff;
 
-    h1, h2, h3, h4, h5, h6 {
+    h1, h2, h3, h4, h5, h6, .display-1, .display-2, .display-3, .display-4, .display-5, .display-6 {
       color: #fff;
     }
   }
@@ -406,7 +406,7 @@ html body {
     background-color: var(--dxt-color-basesubtle) !important;
     color: var(--dxt-color-basesubtletext);
 
-    h1, h2, h3, h4, h5, h6 {
+    h1, h2, h3, h4, h5, h6, .display-1, .display-2, .display-3, .display-4, .display-5, .display-6 {
       color: var(--dxt-color-basesubtletext);
     }
   }
@@ -415,7 +415,7 @@ html body {
     background-color: var(--dxt-color-accent1subtle) !important;
     color: var(--dxt-color-accent1subtletext);
 
-    h1, h2, h3, h4, h5, h6 {
+    h1, h2, h3, h4, h5, h6, .display-1, .display-2, .display-3, .display-4, .display-5, .display-6 {
       color: var(--dxt-color-accent1subtletext);
     }
   }
@@ -424,7 +424,7 @@ html body {
     background-color: var(--dxt-color-headingssubtle) !important;
     color: var(--dxt-color-headingssubtletext);
 
-    h1, h2, h3, h4, h5, h6 {
+    h1, h2, h3, h4, h5, h6, .display-1, .display-2, .display-3, .display-4, .display-5, .display-6 {
       color: var(--dxt-color-headingssubtletext);
     }
   }
@@ -433,7 +433,7 @@ html body {
     background-color: #fcfcfd !important;
     color: #212529;
 
-    h1, h2, h3, h4, h5, h6 {
+    h1, h2, h3, h4, h5, h6, .display-1, .display-2, .display-3, .display-4, .display-5, .display-6 {
       color: #212529;
     }
   }
@@ -441,25 +441,25 @@ html body {
   .text-body {
     color: dxpr-color('text');
 
-    h1, h2, h3, h4, h5, h6, th {
+    h1, h2, h3, h4, h5, h6, .display-1, .display-2, .display-3, .display-4, .display-5, .display-6, th {
       color: dxpr-color('text');
     }
   }
 
   .text-white {
-    h1, h2, h3, h4, h5, h6, th {
+    h1, h2, h3, h4, h5, h6, .display-1, .display-2, .display-3, .display-4, .display-5, .display-6, th {
       color: #fff;
     }
   }
 
   .text-primary {
-    h1, h2, h3, h4, h5, h6, th {
+    h1, h2, h3, h4, h5, h6, .display-1, .display-2, .display-3, .display-4, .display-5, .display-6, th {
       color: dxpr-color('accent1');
     }
   }
 
   .text-secondary {
-    h1, h2, h3, h4, h5, h6, th {
+    h1, h2, h3, h4, h5, h6, .display-1, .display-2, .display-3, .display-4, .display-5, .display-6, th {
       color: dxpr-color('accent2');
     }
   }
@@ -467,7 +467,7 @@ html body {
   .text-dark {
     color: #212529;
 
-    h1, h2, h3, h4, h5, h6, th {
+    h1, h2, h3, h4, h5, h6, .display-1, .display-2, .display-3, .display-4, .display-5, .display-6, th {
       color: #212529;
     }
   }
@@ -475,7 +475,7 @@ html body {
   .text-light {
     color: #f8f9fa;
 
-    h1, h2, h3, h4, h5, h6, th {
+    h1, h2, h3, h4, h5, h6, .display-1, .display-2, .display-3, .display-4, .display-5, .display-6, th {
       color: #f8f9fa;
     }
   }
@@ -741,7 +741,7 @@ html body {
     background-color: #f8f9fa !important;
     color: #212529;
 
-    h1, h2, h3, h4, h5, h6 {
+    h1, h2, h3, h4, h5, h6, .display-1, .display-2, .display-3, .display-4, .display-5, .display-6 {
       color: #212529;
     }
   }
@@ -762,7 +762,7 @@ html body {
     background-color: #000 !important;
     color: #fff;
 
-    h1, h2, h3, h4, h5, h6 {
+    h1, h2, h3, h4, h5, h6, .display-1, .display-2, .display-3, .display-4, .display-5, .display-6 {
       color: #fff;
     }
   }
@@ -771,7 +771,7 @@ html body {
     background-color: #fff !important;
     color: dxpr-color('text');
 
-    h1, h2, h3, h4, h5, h6 {
+    h1, h2, h3, h4, h5, h6, .display-1, .display-2, .display-3, .display-4, .display-5, .display-6 {
       color: dxpr-color('headings');
     }
   }
