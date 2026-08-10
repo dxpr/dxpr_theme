@@ -1,7 +1,7 @@
 {
   "_meta": {
     "description": "DXPR Theme settings schema. Auto-generated from features/*-theme-settings.inc files.",
-    "generated": "2026-05-18T09:43:18.076Z",
+    "generated": "2026-05-18T10:34:45.799Z",
     "sections": [
       "block-design",
       "colors",
@@ -211,6 +211,13 @@
     "title": "Title Sticker Mode",
     "ai_description": "When enabled, title element shrinks to fit its text content instead of spanning full block width. Creates compact modern title label. Works well with title_background. Overrides title_align.",
     "default": 0
+  },
+  "button_bold": {
+    "section": "block-design",
+    "type": "boolean",
+    "title": "Button Bold",
+    "ai_description": "Apply bold font weight to all buttons. When enabled, sets font-weight: bold on .btn elements. When disabled, buttons keep their default or subtheme-defined font weight.",
+    "default": false
   },
   "block_divider": {
     "section": "block-design",
