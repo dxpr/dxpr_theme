@@ -13,8 +13,8 @@
     background-color: var(--dxt-setting-header-block-background, inherit);
   }
 
-  .block:not(.contextual-region),
-  .block:not(.contextual-region) a,
+  .block,
+  .block a,
   .block .btn-link {
     color: var(--dxt-setting-header-block-text-color, inherit);
   }
