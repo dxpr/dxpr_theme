@@ -398,6 +398,14 @@ function _dxpr_theme_parse_font_for_css_vars(string $font_key, string $theme): a
     if (count($font_parts) >= 3) {
       $family = '"' . $font_parts[2] . '", -apple-system, BlinkMacSystemFont, sans-serif';
     }
+    // Parse weight/style from the stored key (theme|css_path|family).
+    $local_key = substr($font_key, 1);
+    if (preg_match('/(\d{3})/', $local_key, $matches)) {
+      $weight = $matches[1];
+    }
+    if (stripos($local_key, 'italic') !== FALSE) {
+      $style = 'italic';
+    }
   }
   // Web-safe font (no prefix).
   else {

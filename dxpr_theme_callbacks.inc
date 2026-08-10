@@ -310,32 +310,6 @@ function _dxpr_theme_format_local_font_name($key) {
 }
 
 /**
- * Helper function for getting font style from font theme setting.
- *
- * @param string $font
- *   Theme setting font value.
- *
- * @return string
- *   Font style value.
- */
-function _dxpr_theme_font_get_style($font): string {
-  return (strpos($font, 'italic')) ? 'italic' : 'normal';
-}
-
-/**
- * Helper function for getting font weight form font theme setting.
- *
- * @param string $font
- *   Theme setting font value.
- *
- * @return string
- *   Font weight value.
- */
-function _dxpr_theme_font_get_weight($font): string {
-  return (preg_match('/[0-9]{3}/', $font, $matches)) ? $matches[0] : '400';
-}
-
-/**
  * Provides Font Stack values for theme settings.
  *
  * @param string $font

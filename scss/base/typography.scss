@@ -8,7 +8,7 @@
 // Default font stack fallback.
 $default-font-stack: -apple-system, blinkmacsystemfont, "Segoe UI", roboto, helvetica, arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 
-body, .toooltip {
+body, .tooltip {
   font-family: var(--dxt-setting-body-font-face, #{$default-font-stack});
   font-style: var(--dxt-setting-body-font-style, normal);
   font-weight: var(--dxt-setting-body-font-weight, 400);
@@ -52,8 +52,7 @@ body, p, .lead {
 }
 
 h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
-  // Use !important to override default font-family weight.
-  font-weight: var(--dxt-setting-headings-bold) !important;
+  font-weight: var(--dxt-setting-headings-bold);
   letter-spacing: var(--dxt-setting-headings-letter-spacing);
   line-height: var(--dxt-setting-headings-line-height);
   margin-bottom: 10px;
