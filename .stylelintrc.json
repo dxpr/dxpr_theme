@@ -4,7 +4,8 @@
   ],
   "plugins": [
     "stylelint-scss",
-    "stylelint-order"
+    "stylelint-order",
+    "stylelint-use-logical-spec"
   ],
   "rules": {
     "unit-disallowed-list": ["rem"],
@@ -15,6 +16,7 @@
     "scss/comment-no-empty": null,
     "scss/double-slash-comment-whitespace-inside": null,
     "property-no-vendor-prefix": true,
-    "value-no-vendor-prefix": true
+    "value-no-vendor-prefix": true,
+    "liberty/use-logical-spec": [true, { "severity": "warning" }]
   }
 }
