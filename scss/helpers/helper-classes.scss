@@ -5,15 +5,13 @@
 @import "../includes/variables";
 
 .dxpr-theme-util-full-width-content .main-container {
-  margin-left: 0;
-  margin-right: 0;
+  margin-inline: 0;
   max-width: none;
   width: auto;
 }
 
 .dxpr-theme-util-full-width-content .col-sm-12 {
-  padding-left: 0;
-  padding-right: 0;
+  padding-inline: 0;
 }
 
 .dxpr-theme-util-full-height {
@@ -45,7 +43,8 @@
     float: left;
 
     img {
-      margin: 0 20px 15px 0;
+      margin-block: 0 15px;
+      margin-inline: 0 20px;
     }
   }
 
@@ -53,7 +52,8 @@
     float: right;
 
     img {
-      margin: 0 0 15px 20px;
+      margin-block: 0 15px;
+      margin-inline: 20px 0;
     }
   }
 
@@ -97,9 +97,8 @@
     .dxpr-theme-util-columns-5 .col-sm-2,
     .dxpr-theme-util-columns-5 .col-xs-2 {
       clear:none;
+      margin-inline: 0;
       margin-bottom: 10px;
-      margin-left: 0;
-      margin-right: 0;
       width: 100%;
     }
   }
@@ -135,7 +134,7 @@
       content: ' ';
       display: block;
       height: 100%;
-      left:0;
+      inset-inline-start:0;
       opacity: 0.90;
       position: absolute;
       top:0;
@@ -219,7 +218,7 @@
       clear: none;
       display: block;
       float:left;
-      margin-right: 20px;
+      margin-inline-end: 20px;
     }
 
     .btn {

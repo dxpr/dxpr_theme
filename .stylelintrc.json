@@ -17,6 +17,43 @@
     "scss/double-slash-comment-whitespace-inside": null,
     "property-no-vendor-prefix": true,
     "value-no-vendor-prefix": true,
-    "liberty/use-logical-spec": [true, { "severity": "warning" }]
+    "liberty/use-logical-spec": [true, {
+      "except": [
+        "float",
+        "clear",
+        "top",
+        "bottom",
+        "width",
+        "height",
+        "min-width",
+        "max-width",
+        "min-height",
+        "max-height",
+        "margin",
+        "margin-top",
+        "margin-bottom",
+        "padding",
+        "padding-top",
+        "padding-bottom",
+        "border",
+        "border-top",
+        "border-bottom",
+        "border-top-width",
+        "border-top-style",
+        "border-top-color",
+        "border-bottom-width",
+        "border-bottom-style",
+        "border-bottom-color",
+        "border-top-left-radius",
+        "border-top-right-radius",
+        "border-bottom-left-radius",
+        "border-bottom-right-radius",
+        "border-radius",
+        "border-width",
+        "border-style",
+        "border-color",
+        "inset"
+      ]
+    }]
   }
 }

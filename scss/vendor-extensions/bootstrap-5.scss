@@ -25,28 +25,24 @@ html body {
     width: 100%;
 
     .container {
-      padding-left: 0;
-      padding-right: 0;
+      padding-inline: 0;
     }
   }
 
   // This will all users to create multiple full width backgrounds per container
   .container-fluid {
-    padding-left :0;
-    padding-right: 0;
+    padding-inline :0;
 
     .navbar-right,
     .navbar-left {
-      margin-left: 0; //remove negative margins
-      margin-right: 0;
+      margin-inline: 0; //remove negative margins
     }
   }
 
   .dxpr-theme-fluid {
     .navbar-right,
     .navbar-left {
-      margin-left: 0; //remove negative margins
-      margin-right: 0;
+      margin-inline: 0; //remove negative margins
     }
   }
 
@@ -552,8 +548,8 @@ html body {
   .block .nav > li > a .glyphicon {
     display: inline-block;
     font-size: $font-size-small;
-    margin-left: -13px;
-    padding-right: 4px;
+    margin-inline-start: -13px;
+    padding-inline-end: 4px;
   }
 
   .list-inline {
@@ -561,7 +557,7 @@ html body {
     padding: 0;
 
     > li {
-      padding-left: 0;
+      padding-inline-start: 0;
     }
 
     a {
@@ -789,13 +785,13 @@ html body {
 .body--primary-tabs-float .dxpr-theme-mini-tabs-wrapper {
   display:inline-block;
   float: none;
-  left: 50%;
+  inset-inline-start: 50%;
   margin-top: 2px;
   position: absolute;
   z-index: 401;
 
   .tabs--primary {
-    left: -50%;
+    inset-inline-start: -50%;
     position: relative;
   }
 }
