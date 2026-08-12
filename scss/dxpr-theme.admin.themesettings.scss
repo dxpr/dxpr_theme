@@ -18,13 +18,13 @@ html:has(#system-theme-settings) {
 // Apply margin to body content when settings sidebar is present (CSS-only, no JS wrapper needed)
 // Exclude fixed-position elements like the header which need special handling
 body:has(#system-theme-settings) > *:not(#system-theme-settings, #navbar, script, style, .visually-hidden) {
-  margin-inline-end: var(--dxt-admin-sidebar-width) !important;
+  margin-right: var(--dxt-admin-sidebar-width) !important; // stylelint-disable-line liberty/use-logical-spec -- physical: Drupal displacement system uses physical right
 }
 
 // Fixed header should not extend under the settings sidebar
 body:has(#system-theme-settings) #navbar.dxpr-theme-header--fixed,
 body:has(#system-theme-settings) #navbar.affix {
-  inset-inline-end: var(--dxt-admin-sidebar-width) !important;
+  right: var(--dxt-admin-sidebar-width) !important; // stylelint-disable-line liberty/use-logical-spec -- physical: Drupal displacement system
   width: calc(100% - var(--dxt-admin-sidebar-width)) !important;
 }
 
@@ -88,7 +88,7 @@ html:has(#system-theme-settings) body.body--dxpr-theme-header-fixed.body--dxpr-t
   --dxt-radius-full: 9999px;
 
   background: var(--dxt-admin-bg);
-  border-inline-start: 1px solid var(--dxt-admin-color-shadow-8);
+  border-left: 1px solid var(--dxt-admin-color-shadow-8); // stylelint-disable-line liberty/use-logical-spec -- physical: sidebar separator on the physical-right sidebar
   bottom: 0;
   margin: 0;
   max-width: var(--dxt-admin-sidebar-max-width);
@@ -1600,7 +1600,7 @@ html:has(#system-theme-settings) body.body--dxpr-theme-header-fixed.body--dxpr-t
 }
 
 .dxpr-body-wrapper {
-  margin-inline-end: var(--dxt-admin-sidebar-width) !important;
+  margin-right: var(--dxt-admin-sidebar-width) !important; // stylelint-disable-line liberty/use-logical-spec -- physical: Drupal displacement system uses physical right
 }
 
 .type-preview {
