@@ -51,8 +51,7 @@
         "border-radius",
         "border-width",
         "border-style",
-        "border-color",
-        "inset"
+        "border-color"
       ]
     }]
   }

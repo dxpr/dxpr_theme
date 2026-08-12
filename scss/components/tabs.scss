@@ -13,7 +13,7 @@
 @media (width > 768px) {
   // Center aligned for full-width content.
   .main-container.container .block-local-tasks-block:has(.dxpr-theme-mini-tabs-wrapper) {
-    inset-inline-start: 50%;
+    left: 50%; // stylelint-disable-line liberty/use-logical-spec -- physical: paired with physical transform translate()
     padding-inline-end: 32px; // Make room for contextual links.
     position: absolute;
     transform: translate(-50%,-100%);
@@ -121,7 +121,7 @@
 
           &::before {
             border-inline-start: 3px solid var(--dxt-color-link);
-            border-top-left-radius: 2px;
+            border-start-start-radius: 2px;
             content: '';
             display: block;
             height: calc(100% + 2px);
@@ -172,7 +172,6 @@
       justify-content: center;
       margin-block: 0;
       margin-inline: 1px 0;
-      margin-inline-start: 1px;
       pointer-events: auto;
       transition: all 0.15s ease-in-out;
       width: var(--tab-height);

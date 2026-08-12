@@ -43,8 +43,7 @@
     float: left;
 
     img {
-      margin-block: 0 15px;
-      margin-inline: 0 20px;
+      margin: 0 20px 15px 0;
     }
   }
 
@@ -52,8 +51,7 @@
     float: right;
 
     img {
-      margin-block: 0 15px;
-      margin-inline: 20px 0;
+      margin: 0 0 15px 20px;
     }
   }
 
@@ -218,7 +216,7 @@
       clear: none;
       display: block;
       float:left;
-      margin-inline-end: 20px;
+      margin-right: 20px; // stylelint-disable-line liberty/use-logical-spec -- physical: paired with physical float
     }
 
     .btn {

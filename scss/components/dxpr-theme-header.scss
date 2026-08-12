@@ -199,7 +199,7 @@
 
   // Default settings
   height: 2px;
-  inset-inline-start: 0;
+  left: 0; // stylelint-disable-line liberty/use-logical-spec -- physical: paired with physical transform translate()
   position: absolute;
   transform: scale(0, 1) translate(10px, 0);
   width: calc(100% - 20px);

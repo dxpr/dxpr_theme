@@ -89,7 +89,6 @@ html:has(#system-theme-settings) body.body--dxpr-theme-header-fixed.body--dxpr-t
 
   background: var(--dxt-admin-bg);
   border-inline-start: 1px solid var(--dxt-admin-color-shadow-8);
-  inset-inline-end: calc(var(--drupal-displace-offset-right, 0) - var(--dxt-admin-sidebar-width));
   bottom: 0;
   margin: 0;
   max-width: var(--dxt-admin-sidebar-max-width);
@@ -98,6 +97,7 @@ html:has(#system-theme-settings) body.body--dxpr-theme-header-fixed.body--dxpr-t
   // Padding for fixed search header (~70px) and save button (~100px)
   padding: 70px 0 100px;
   position: fixed;
+  right: calc(var(--drupal-displace-offset-right, 0) - var(--dxt-admin-sidebar-width)); // stylelint-disable-line liberty/use-logical-spec -- physical: Drupal displacement system uses physical offsets
   top: var(--drupal-displace-offset-top, 0);
   width: var(--dxt-admin-sidebar-width);
   z-index: 9999;
@@ -146,11 +146,11 @@ html:has(#system-theme-settings) body.body--dxpr-theme-header-fixed.body--dxpr-t
   .dxpr-search-container {
     background: var(--dxt-admin-bg);
     box-shadow: 0 4px 16px var(--dxt-admin-color-shadow-10);
-    inset-inline-end: calc(var(--drupal-displace-offset-right, 0) - var(--dxt-admin-sidebar-width));
     margin: 0;
     max-width: var(--dxt-admin-sidebar-max-width);
     padding: 8px 16px 12px;
     position: fixed;
+    right: calc(var(--drupal-displace-offset-right, 0) - var(--dxt-admin-sidebar-width)); // stylelint-disable-line liberty/use-logical-spec -- physical: Drupal displacement system
     top: var(--drupal-displace-offset-top, 0);
     width: var(--dxt-admin-sidebar-width);
     z-index: 10001;
@@ -210,13 +210,13 @@ html:has(#system-theme-settings) body.body--dxpr-theme-header-fixed.body--dxpr-t
   #edit-actions.form-actions {
     background: var(--dxt-admin-bg) !important;
     border: none !important;
-    inset-inline-end: calc(var(--drupal-displace-offset-right, 0) - var(--dxt-admin-sidebar-width));
     bottom: var(--drupal-displace-offset-bottom, 0);
     box-shadow: 0 -4px 16px var(--dxt-admin-color-shadow-10);
     margin: 0 !important;
     max-width: var(--dxt-admin-sidebar-max-width);
     padding: 12px 16px !important;
     position: fixed;
+    right: calc(var(--drupal-displace-offset-right, 0) - var(--dxt-admin-sidebar-width)); // stylelint-disable-line liberty/use-logical-spec -- physical: Drupal displacement system
     width: var(--dxt-admin-sidebar-width);
     z-index: 10000;
   }
@@ -469,7 +469,7 @@ html:has(#system-theme-settings) body.body--dxpr-theme-header-fixed.body--dxpr-t
   .form-item-field-settings-granularity {
     .option.checkbox.control-label {
       float: left;
-      margin-inline-end: 2em;
+      margin-right: 2em; // stylelint-disable-line liberty/use-logical-spec -- physical: paired with physical float
     }
 
     .help-block {
@@ -666,10 +666,14 @@ html:has(#system-theme-settings) body.body--dxpr-theme-header-fixed.body--dxpr-t
     border: none;
     cursor: pointer;
     max-width: 100%;
-    padding-block: 14px;
-    padding-inline: 16px 44px;
+    padding: 14px 44px 14px 16px;
     transition: box-shadow 0.2s ease;
     width: auto;
+
+    [dir="rtl"] & {
+      background-position: left 14px center;
+      padding: 14px 16px 14px 44px;
+    }
 
     &:focus {
       box-shadow: 0 0 0 2px var(--dxt-admin-accent);
