@@ -72,20 +72,20 @@ body.user-logged-in:not([data-gin-accent]) {
 }
 
 .row {
-  margin-left: calc(-1 * var(--dxt-setting-gutter-horizontal) / 2);
-  margin-right: calc(-1 * var(--dxt-setting-gutter-horizontal) / 2);
+  margin-inline-start: calc(-1 * var(--dxt-setting-gutter-horizontal) / 2);
+  margin-inline-end: calc(-1 * var(--dxt-setting-gutter-horizontal) / 2);
 }
 
 .row > * {
   margin-bottom: var(--dxt-setting-gutter-vertical);
-  padding-left: calc(var(--dxt-setting-gutter-horizontal) / 2);
-  padding-right: calc(var(--dxt-setting-gutter-horizontal) / 2);
+  padding-inline-start: calc(var(--dxt-setting-gutter-horizontal) / 2);
+  padding-inline-end: calc(var(--dxt-setting-gutter-horizontal) / 2);
 }
 
 .container {
   max-width: var(--dxt-setting-layout-max-width);
-  padding-left: var(--dxt-setting-gutter-container);
-  padding-right: var(--dxt-setting-gutter-container);
+  padding-inline-start: var(--dxt-setting-gutter-container);
+  padding-inline-end: var(--dxt-setting-gutter-container);
 }
 
 // navbar and page-title padding is not user-controlled and should be kept
@@ -93,33 +93,33 @@ body.user-logged-in:not([data-gin-accent]) {
 .navbar-container.dxpr-theme-fluid,
 .page-title-container.dxpr-theme-fluid,
 .container-fluid {
-  padding-left: calc(var(--dxt-setting-gutter-horizontal) / 2);
-  padding-right: calc(var(--dxt-setting-gutter-horizontal) / 2);
+  padding-inline-start: calc(var(--dxt-setting-gutter-horizontal) / 2);
+  padding-inline-end: calc(var(--dxt-setting-gutter-horizontal) / 2);
 }
 
 
 .body--dxpr-theme-nav-mobile {
   .container {
-    padding-left: calc(var(--dxt-setting-gutter-container-mobile) / 2);
-    padding-right: calc(var(--dxt-setting-gutter-container-mobile) / 2);
+    padding-inline-start: calc(var(--dxt-setting-gutter-container-mobile) / 2);
+    padding-inline-end: calc(var(--dxt-setting-gutter-container-mobile) / 2);
   }
 
   .navbar-container.dxpr-theme-fluid,
   .page-title-container.dxpr-theme-fluid,
   .container-fluid {
-    padding-left: calc(var(--dxt-setting-gutter-horizontal-mobile) / 2);
-    padding-right: calc(var(--dxt-setting-gutter-horizontal-mobile) / 2);
+    padding-inline-start: calc(var(--dxt-setting-gutter-horizontal-mobile) / 2);
+    padding-inline-end: calc(var(--dxt-setting-gutter-horizontal-mobile) / 2);
   }
 
   .row {
-    margin-left: calc(-1 * var(--dxt-setting-gutter-horizontal-mobile) / 2);
-    margin-right: calc(-1 * var(--dxt-setting-gutter-horizontal-mobile) / 2);
+    margin-inline-start: calc(-1 * var(--dxt-setting-gutter-horizontal-mobile) / 2);
+    margin-inline-end: calc(-1 * var(--dxt-setting-gutter-horizontal-mobile) / 2);
   }
 
   .row > * {
     margin-bottom: var(--dxt-setting-gutter-vertical-mobile);
-    padding-left: calc(var(--dxt-setting-gutter-horizontal-mobile) / 2);
-    padding-right: calc(var(--dxt-setting-gutter-horizontal-mobile) / 2);
+    padding-inline-start: calc(var(--dxt-setting-gutter-horizontal-mobile) / 2);
+    padding-inline-end: calc(var(--dxt-setting-gutter-horizontal-mobile) / 2);
   }
 }
 
