@@ -222,8 +222,9 @@ function dxpr_theme_preprocess_page(&$variables) {
   $variables['navbar_attributes'] = new Attribute($variables['navbar_attributes']);
 
   $hide_regions = $local_hide = [];
-  if (theme_get_setting('hidden_regions') && !empty(array_keys(array_filter(theme_get_setting('hidden_regions'))))) {
-    $hide_regions = array_keys(array_filter(theme_get_setting('hidden_regions')));
+  $hidden_regions = theme_get_setting('hidden_regions');
+  if (is_array($hidden_regions) && !empty(array_keys(array_filter($hidden_regions)))) {
+    $hide_regions = array_keys(array_filter($hidden_regions));
   }
   if (!empty($variables['node'])
     && $variables['node'] instanceof NodeInterface
@@ -461,7 +462,8 @@ function dxpr_theme_preprocess_region(&$variables) {
   }
 
   // Apply class to block design regions.
-  if ($block_design_regions = array_keys(array_filter(theme_get_setting('block_design_regions')))) {
+  $block_design_regions_setting = theme_get_setting('block_design_regions');
+  if (is_array($block_design_regions_setting) && ($block_design_regions = array_keys(array_filter($block_design_regions_setting)))) {
     if (in_array($variables['region'], $block_design_regions)) {
       $variables['attributes']['class'][] = 'region-block-design';
     }
