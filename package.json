@@ -15,7 +15,7 @@
     "babel-eslint": "^10",
     "babel-loader": "^10.0.0",
     "browserslist": "^4",
-    "eslint": "^8.57.0",
+    "eslint": "^9.39.2",
     "eslint-config-airbnb": "^19",
     "eslint-config-prettier": "^10",
     "eslint-detailed-reporter": "^0",
