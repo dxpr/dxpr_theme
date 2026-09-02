@@ -81,7 +81,7 @@
   }
 
   .form-actions .form-submit {
-    margin-right: 1em;
+    margin-inline-end: 1em;
   }
 
   button,
@@ -100,7 +100,7 @@
   background-image: none;
   content: '*';
   display: inline-block;
-  padding-left: 3px;
+  padding-inline-start: 3px;
 }
 
 .has-glyphicons .select-wrapper,

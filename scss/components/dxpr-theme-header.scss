@@ -54,14 +54,12 @@
   }
 
   .navbar-collapse {
-    padding-left: 0;
-    padding-right: 0;
+    padding-inline: 0;
   }
 
   .nav {
     display: block;
-    margin-left: 0;
-    margin-right: 0;
+    margin-inline: 0;
 
     h1, h2, h3, h4, h5, h6 {
       opacity: 0.75;
@@ -92,7 +90,7 @@
 
   .navbar-header {
     .logo {
-      padding-left: 0;
+      padding-inline-start: 0;
     }
 
     .navbar-brand {
@@ -100,7 +98,7 @@
       font-size: $font-size-h3;
       height: auto;
       letter-spacing: 1px;
-      margin-left: 0;
+      margin-inline-start: 0;
       padding: 0;
     }
   }
@@ -115,7 +113,7 @@
     padding: 5px 0;
 
     ul {
-      padding-left: 0;
+      padding-inline-start: 0;
     }
 
     li {
@@ -149,13 +147,11 @@
     padding-top: 15px;
 
     .block {
-      padding-left: 20px;
-      padding-right: 0;
+      padding-inline: 20px 0;
     }
 
     .row {
-      margin-left: 0;
-      margin-right: 0;
+      margin-inline: 0;
     }
   }
 
@@ -187,7 +183,7 @@
 #dxpr-theme-main-menu, /* N/A */
 #dxpr-theme-main-menu .menu__breadcrumbs,
 #dxpr-theme-main-menu .menu__level {
-  text-align: left;
+  text-align: start;
 }
 
 .dxpr-theme-header--top.dxpr-theme-header--hover-border .nav > li {
@@ -203,7 +199,7 @@
 
   // Default settings
   height: 2px;
-  left: 0;
+  left: 0; // stylelint-disable-line liberty/use-logical-spec -- physical: paired with physical transform translate()
   position: absolute;
   transform: scale(0, 1) translate(10px, 0);
   width: calc(100% - 20px);

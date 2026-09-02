@@ -5,15 +5,13 @@
 @import "../includes/variables";
 
 .dxpr-theme-util-full-width-content .main-container {
-  margin-left: 0;
-  margin-right: 0;
+  margin-inline: 0;
   max-width: none;
   width: auto;
 }
 
 .dxpr-theme-util-full-width-content .col-sm-12 {
-  padding-left: 0;
-  padding-right: 0;
+  padding-inline: 0;
 }
 
 .dxpr-theme-util-full-height {
@@ -97,9 +95,8 @@
     .dxpr-theme-util-columns-5 .col-sm-2,
     .dxpr-theme-util-columns-5 .col-xs-2 {
       clear:none;
+      margin-inline: 0;
       margin-bottom: 10px;
-      margin-left: 0;
-      margin-right: 0;
       width: 100%;
     }
   }
@@ -135,7 +132,7 @@
       content: ' ';
       display: block;
       height: 100%;
-      left:0;
+      inset-inline-start:0;
       opacity: 0.90;
       position: absolute;
       top:0;
@@ -219,7 +216,7 @@
       clear: none;
       display: block;
       float:left;
-      margin-right: 20px;
+      margin-right: 20px; // stylelint-disable-line liberty/use-logical-spec -- physical: paired with physical float
     }
 
     .btn {

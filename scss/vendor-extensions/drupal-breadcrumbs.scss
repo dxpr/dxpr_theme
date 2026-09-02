@@ -14,12 +14,11 @@
     bottom: 0;
     display: block;
     font-style: italic;
-    left: 0;
+    inset-inline: 0;
     margin: 0;
     opacity: 0.85;
     padding: 10px var(--dxt-setting-gutter-container);
     position: absolute;
-    right: 0;
     text-align: var(--dxt-setting-page-title-breadcrumbs-align);
 
     a {

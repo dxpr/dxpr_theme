@@ -24,7 +24,7 @@
   }
 
   a {
-    border-left: 3px solid transparent;
+    border-inline-start: 3px solid transparent;
     color: dxpr-color('text');
     display: block;
     padding: 0.5em 0.75em;
@@ -34,25 +34,25 @@
     &:hover,
     &:focus {
       background-color: dxpr-color('silver');
-      border-left-color: dxpr-color('base');
+      border-inline-start-color: dxpr-color('base');
       color: dxpr-color('base');
     }
 
     &.is-active {
       background-color: dxpr-color('base');
-      border-left-color: dxpr-color('headings');
+      border-inline-start-color: dxpr-color('headings');
       color: dxpr-color('basetext');
     }
   }
 
   // Nested book pages
   ul ul {
-    border-left: 1px solid dxpr-color('graylight');
-    margin-left: 1em;
+    border-inline-start: 1px solid dxpr-color('graylight');
+    margin-inline-start: 1em;
 
     a {
       font-size: 0.9em;
-      padding-left: 1em;
+      padding-inline-start: 1em;
     }
   }
 }

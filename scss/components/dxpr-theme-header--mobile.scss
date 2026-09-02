@@ -73,9 +73,8 @@ html.html--dxpr-theme-nav-mobile--open {
 
     .dxpr-theme-main-menu {
       box-shadow: 0 5px 5px rgb(0 0 0 / 2%);
-      left: 0;
-      padding-left: calc(var(--dxt-setting-gutter-vertical-mobile, 0) / 2);
-      padding-right: calc(var(--dxt-setting-gutter-vertical-mobile, 0) / 2);
+      inset-inline-start: 0;
+      padding-inline: calc(var(--dxt-setting-gutter-vertical-mobile, 0) / 2);
       position: absolute;
       width: 100%;
       z-index: 100;
@@ -132,7 +131,8 @@ html.html--dxpr-theme-nav-mobile--open {
       float: right;
       margin: 3px 0 0;
       outline: none;
-      padding: 10px 32px 16px 0;
+      padding-block: 10px 16px;
+      padding-inline: 0 32px;
       position: relative;
       z-index: 410;
 
@@ -264,10 +264,9 @@ html.html--dxpr-theme-nav-mobile--open {
   // Mobile fixed header positioning using displacement API.
   #navbar.header-mobile-fixed {
     box-sizing: border-box;
-    left: 0;
+    inset-inline: 0;
     margin: 0;
     position: fixed;
-    right: 0;
     top: var(--drupal-displace-offset-top, 0);
     z-index: 405;
   }

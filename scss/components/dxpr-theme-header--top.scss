@@ -26,8 +26,7 @@
         display: flex;
         height: var(--dxt-setting-header-top-height);
         line-height: var(--dxt-setting-header-top-height);
-        padding-left: var(--dxt-setting-menu-link-spacing, 10px);
-        padding-right: var(--dxt-setting-menu-link-spacing, 10px);
+        padding-inline: var(--dxt-setting-menu-link-spacing, 10px);
       }
 
       .nav > li > .bs-dropdown-wrapper {
@@ -39,8 +38,7 @@
         display: flex;
         height: var(--dxt-setting-header-top-height);
         line-height: var(--dxt-setting-header-top-height);
-        padding-left: var(--dxt-setting-menu-link-spacing, 10px);
-        padding-right: var(--dxt-setting-menu-link-spacing, 10px);
+        padding-inline: var(--dxt-setting-menu-link-spacing, 10px);
       }
     }
 
@@ -51,10 +49,9 @@
     }
 
     &.dxpr-theme-header--fixed {
-      left: 0;
+      inset-inline: 0;
       margin: 0;
       position: fixed;
-      right: 0;
       top: var(--drupal-displace-offset-top, 0);
     }
 
@@ -64,9 +61,8 @@
     }
 
     &.dxpr-theme-header--overlay {
-      left: 0;
+      inset-inline: 0;
       position: absolute;
-      right: 0;
 
       // Anonymous users: displacement is "" so avoid calc(); use 30px only.
       top: 30px;
@@ -85,7 +81,7 @@
     }
 
     &.affix {
-      left: 0;
+      inset-inline-start: 0;
       margin: 0;
       opacity: 1;
       position: fixed;
@@ -142,7 +138,7 @@
         display: flex;
         flex-shrink: 0;
         height: 100%;
-        padding-right: 15px;
+        padding-inline-end: 15px;
       }
     }
 
@@ -153,16 +149,15 @@
     &.dxpr-theme-header--logo-center-menu-left,
     &.dxpr-theme-header--logo-center-menu-right {
       .navbar-header {
-        left: 50%;
+        inset-inline-start: 50%;
         position: absolute;
       }
 
       .wrap-branding {
-        margin-left: -50%;
+        margin-inline-start: -50%;
 
         .logo {
-          padding-left: 10px;
-          padding-right: 10px;
+          padding-inline: 10px;
         }
       }
     }
@@ -315,9 +310,8 @@
 
     // TB Mega Menu
     .nav-child-fixed-width {
-      left: 0;
+      inset-inline: 0;
       position: absolute;
-      right: 0;
       top: 100px;
     }
 
@@ -339,8 +333,8 @@
 
 .body--dxpr-theme-header-overlay {
   .wrap-messages {
+    inset-inline-end: 30px;
     position: fixed;
-    right: 30px;
     top: 30px;
     z-index: 9999;
   }
@@ -350,7 +344,7 @@
 html.js .gin--vertical-toolbar {
   .dxpr-theme-header--fixed,
   .dxpr-theme-header--top.affix {
-    left: var(--gin-toolbar-x-offset, 256px);
+    inset-inline-start: var(--gin-toolbar-x-offset, 256px);
 
     // Gin toolbar has 1px bottom border that creates visual gap - overlap it.
     top: calc(var(--drupal-displace-offset-top, 0) - 1px);
