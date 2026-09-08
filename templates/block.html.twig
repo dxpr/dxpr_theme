@@ -77,7 +77,9 @@
   {% if theme.settings.title_sticker and region in designRegions %}
     </div>
   {% endif %}
-  <hr class="block-hr">
+  {% if theme.settings.block_divider %}
+    <hr class="block-hr">
+  {% endif %}
   {{ title_suffix }}
 
   {% block content %}
