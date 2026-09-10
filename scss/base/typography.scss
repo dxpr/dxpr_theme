@@ -194,6 +194,9 @@ hr, .card hr {
   border-top-width: var(--dxt-setting-divider-thickness);
   height: 0;
   margin: 20px auto 20px var(--dxt-setting-divider-position);
+
+  // Bootstrap's reboot dims hr to 25%; render the configured colour as is.
+  opacity: 1;
   width: var(--dxt-setting-divider-length);
 }
 

@@ -195,6 +195,9 @@ body.full-width-content {
     auto
     var(--dxt-setting-block-divider-spacing)
     var(--dxt-setting-divider-position-block);
+
+  // Bootstrap's reboot dims hr to 25%; render the configured colour as is.
+  opacity: 1;
   width: var(--dxt-setting-block-divider-length);
 }
 
