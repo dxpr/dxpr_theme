@@ -5,40 +5,42 @@
 // Fonts
 @import "../includes/variables";
 
-// Default font stack fallback.
+// Default font stack. The chosen fonts are applied by the generated theme
+// settings CSS to the selectors configured in Typography > Fonts, so these
+// compiled rules must stay font-neutral (see #908).
 $default-font-stack: -apple-system, blinkmacsystemfont, "Segoe UI", roboto, helvetica, arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 
 body, .tooltip {
-  font-family: var(--dxt-setting-body-font-face, #{$default-font-stack});
-  font-style: var(--dxt-setting-body-font-style, normal);
-  font-weight: var(--dxt-setting-body-font-weight, 400);
+  font-family: $default-font-stack;
+  font-style: normal;
+  font-weight: 400;
 }
 
 h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6,
 .display-1, .display-2, .display-3, .display-4, .display-5, .display-6,
 label, .field--label {
-  font-family: var(--dxt-setting-headings-font-face, #{$default-font-stack});
-  font-style: var(--dxt-setting-headings-font-style, normal);
-  font-weight: var(--dxt-setting-headings-font-weight, 700);
+  font-family: $default-font-stack;
+  font-style: normal;
+  font-weight: 700;
 }
 
 .dxpr-theme-header .nav {
-  font-family: var(--dxt-setting-nav-font-face, #{$default-font-stack});
-  font-style: var(--dxt-setting-nav-font-style, normal);
-  font-weight: var(--dxt-setting-nav-font-weight, 400);
+  font-family: $default-font-stack;
+  font-style: normal;
+  font-weight: 400;
 }
 
 .site-name, .navbar-brand {
-  font-family: var(--dxt-setting-sitename-font-face, #{$default-font-stack});
-  font-style: var(--dxt-setting-sitename-font-style, normal);
-  font-weight: var(--dxt-setting-sitename-font-weight, 400);
+  font-family: $default-font-stack;
+  font-style: normal;
+  font-weight: 400;
 }
 
 blockquote, blockquote p {
-  font-family: var(--dxt-setting-blockquote-font-face, #{$default-font-stack});
+  font-family: $default-font-stack;
   font-size: var(--dxt-setting-blockquote-font-size);
-  font-style: var(--dxt-setting-blockquote-font-style, italic);
-  font-weight: var(--dxt-setting-blockquote-font-weight, 400);
+  font-style: italic;
+  font-weight: 400;
   line-height: var(--dxt-setting-blockquote-line-height);
 }
 
