@@ -77,8 +77,15 @@ function dxpr_theme_preprocess_html(&$variables) {
 
   // Include CSS variables and set color scheme class.
   $variables['#attached']['library'][] = 'dxpr_theme/variables';
+  require_once \Drupal::service('extension.list.theme')->getPath('dxpr_theme') . '/dxpr_theme_callbacks.inc';
+  $color_scheme = theme_get_setting('color_scheme') ?? 'default';
+  // Only compiled schemes have CSS; any other value (including the transient
+  // "current" option of the settings form) uses the saved custom palette.
+  if ($color_scheme !== 'custom' && !array_key_exists($color_scheme, _dxpr_theme_get_color_schemes())) {
+    $color_scheme = 'custom';
+  }
   $variables['html_attributes']
-    ->setAttribute('class', 'dxpr-scheme-' . (theme_get_setting('color_scheme') ?? 'default'));
+    ->setAttribute('class', 'dxpr-scheme-' . $color_scheme);
 
   // Body background image.
   if (array_key_exists('node', $variables)) {
