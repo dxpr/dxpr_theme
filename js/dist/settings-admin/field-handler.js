@@ -114,6 +114,43 @@ function massageFieldValue(setting, value, cssVarColorsPrefix) {
 }
 
 /**
+ * Previews a font on the selector configured next to the font picker.
+ *
+ * Mirrors the rule fonts-theme-settings-css.inc writes on save, so the
+ * preview follows the CSS Selector field instead of the compiled defaults.
+ *
+ * @param {string} setting - The font field name, e.g. "body_font_face".
+ * @param {string} familyValue - CSS font-family value.
+ * @param {string} weightValue - CSS font-weight value.
+ * @param {string} styleValue - CSS font-style value.
+ */
+function applyFontPreviewRule(setting, familyValue, weightValue, styleValue) {
+  const selectorField = document.querySelector(`[name="${setting}_selector"]`);
+  let selector = selectorField ? selectorField.value.trim() : "";
+  const styleId = `dxpr-font-preview-${setting.replace(/_/g, "-")}`;
+  let styleElement = document.getElementById(styleId);
+
+  if (!selector) {
+    if (styleElement) {
+      styleElement.remove();
+    }
+    return;
+  }
+  if (setting === "body_font_face") {
+    selector += ", .tooltip";
+  }
+  if (!styleElement) {
+    styleElement = document.createElement("style");
+    styleElement.id = styleId;
+    document.head.appendChild(styleElement);
+  }
+  // The generated rule leaves the headings weight to the Headings Bold setting.
+  const weight =
+    setting === "headings_font_face" ? "" : `font-weight: ${weightValue};`;
+  styleElement.textContent = `${selector} { font-family: ${familyValue}; font-style: ${styleValue}; ${weight} }`;
+}
+
+/**
  * Handles font face field changes with dynamic loading.
  *
  * @param {string} setting - The field name.
@@ -147,6 +184,8 @@ function handleFontFaceField(setting, fontKey, root, cssVarSettingsPrefix) {
       `${cssVarSettingsPrefix}${cssVarBaseNoFace}-style`,
       styleValue,
     );
+
+    applyFontPreviewRule(setting, familyValue, weightValue, styleValue);
   });
 }
 
