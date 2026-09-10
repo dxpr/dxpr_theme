@@ -165,13 +165,13 @@ body.full-width-content {
   padding: var(--dxt-setting-block-padding);
 }
 
-// Apply title background only when block and title don't have preset classes
-.region-block-design .block:not(.card, [class*="bg-"], [class*="dxpr-theme-util-background"]) .block-title:not(.card, [class*="bg-"], [class*="dxpr-theme-util-background"]) {
+// Apply title background only when the title has no preset background class
+.region-block-design .block-title:not(.card, [class*="bg-"], [class*="dxpr-theme-util-background"]) {
   background-color: var(--dxt-setting-title-background);
 }
 
-// Apply other title styles only when parent block is not using card classes
-.region-block-design .block:not(.card) .block-title:not(.card) {
+// Apply other title styles only when the title is not using card classes
+.region-block-design .block-title:not(.card) {
   border-color: var(--dxt-setting-title-border-color);
   border-radius: var(--dxt-setting-title-border-radius);
   border-style: solid;
