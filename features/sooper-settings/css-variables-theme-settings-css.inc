@@ -109,9 +109,16 @@ function _dxpr_theme_massage_values(string $key, $value, string $theme, array $s
       $value = str_replace('_', ' ', $value);
       break;
 
-    // Generic: Bold.
+    // Generic: Bold. A Google headings font without a bold face cannot render
+    // real bold, so do not force a synthesised one.
     case 'headings_bold':
       $value = !empty($value) ? 'bold' : 'normal';
+      if ($value === 'bold') {
+        $bold_font = _dxpr_theme_headings_bold_font($theme);
+        if ($bold_font && !$bold_font['available'] && !$bold_font['already_bold']) {
+          $value = 'normal';
+        }
+      }
       break;
 
     // Generic: Uppercase.

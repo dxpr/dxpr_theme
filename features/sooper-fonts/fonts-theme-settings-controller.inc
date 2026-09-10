@@ -50,8 +50,18 @@ function fonts_theme_settings_controller(array &$variables) {
     }
   }
 
+  // Bold headings need the bold face of the headings font, otherwise the
+  // browser synthesises a faux bold from the picked weight.
+  if (theme_get_setting('headings_bold')) {
+    require_once \Drupal::service('extension.list.theme')->getPath('dxpr_theme') . '/dxpr_theme_callbacks.inc';
+    $bold_font = _dxpr_theme_headings_bold_font();
+    if ($bold_font && $bold_font['available'] && !$bold_font['already_bold']) {
+      $requested_google_fonts[] = $bold_font['family'] . ':' . $bold_font['variant'];
+    }
+  }
+
   if (!empty($requested_google_fonts)) {
-    _dxpr_theme_add_google_fonts($requested_google_fonts, $variables);
+    _dxpr_theme_add_google_fonts(array_unique($requested_google_fonts), $variables);
   }
 }
 
