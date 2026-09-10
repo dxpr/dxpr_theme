@@ -23,7 +23,7 @@ function massageFieldValue(setting, value, cssVarColorsPrefix) {
     // Generic: Uppercase
     case "headings_uppercase":
     case "title_type[uppercase]":
-      value = value ? "uppercase" : "normal";
+      value = value ? "uppercase" : "none";
       break;
     // Generic: Bold
     case "headings_bold":

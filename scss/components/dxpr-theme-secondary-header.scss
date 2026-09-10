@@ -62,3 +62,23 @@
     }
   }
 }
+
+// Layout > Secondary Header > "Hide on": the template prints the option value
+// as a class; hide the header below the breakpoint named in the option.
+@media screen and (width <= 767.98px) {
+  #secondary-header.hidden-xs {
+    display: none;
+  }
+}
+
+@media screen and (width <= 991.98px) {
+  #secondary-header.hidden-sm {
+    display: none;
+  }
+}
+
+@media screen and (width <= 1199.98px) {
+  #secondary-header.hidden-md {
+    display: none;
+  }
+}
