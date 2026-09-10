@@ -338,7 +338,7 @@ function typography_theme_settings(array &$form, $theme) {
     '#title' => t('Divider Thickness'),
     '#ai_description' => 'Height/thickness of horizontal rule dividers. 1-2px=hairline (subtle, elegant). 3-4px=standard (default 4). 6-8px=bold accent bar. 10+px=thick decorative band.',
     '#default_value' => ((theme_get_setting('divider_thickness') !== NULL)) ? theme_get_setting('divider_thickness') : 4,
-    '#min' => 8,
+    '#min' => 1,
     '#max' => 20,
     '#step' => 1,
     '#attributes' => [
