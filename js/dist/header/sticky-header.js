@@ -24,6 +24,11 @@ function setupStickyHeader() {
     const wrapContainer = document.getElementsByClassName("wrap-containers")[0];
 
     if (elHeader && wrapContainer) {
+      // An overlay header does not occupy space in the flow, so the wrapper
+      // must not be pushed down when it becomes sticky.
+      const isOverlay = elHeader.classList.contains(
+        "dxpr-theme-header--overlay",
+      );
       let isScrolling = false;
       let lastScrollPosition = -1;
       let rafId = null;
@@ -44,7 +49,9 @@ function setupStickyHeader() {
             if (!elHeader.classList.contains("affix")) {
               elHeader.classList.add("affix");
               elHeader.classList.remove("affix-top");
-              wrapContainer.style.marginTop = `${headerHeight}px`;
+              if (!isOverlay) {
+                wrapContainer.style.marginTop = `${headerHeight}px`;
+              }
             }
           } else if (!elHeader.classList.contains("affix-top")) {
             elHeader.classList.add("affix-top");
