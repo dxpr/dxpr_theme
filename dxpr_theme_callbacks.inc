@@ -178,7 +178,9 @@ function _dxpr_theme_settings_add_css(string $setting, string $property): string
  *   CSS variable, e.g. "var(--prefix-name)".
  */
 function _dxpr_theme_setting_get_css_var(string $setting): string {
-  if (theme_get_setting($setting)) {
+  $value = theme_get_setting($setting);
+  // A saved value of 0 (for example opacity 0) is a valid value.
+  if ($value !== NULL && $value !== '' && $value !== FALSE) {
     $css_var = str_replace('_', '-', $setting);
     $prefix = _dxpr_theme_get_const('cssSettingPrefix');
     return sprintf("var(%s%s)", $prefix, $css_var);
