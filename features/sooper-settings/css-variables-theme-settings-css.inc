@@ -184,6 +184,15 @@ function _dxpr_theme_massage_values(string $key, $value, string $theme, array $s
       ];
       break;
 
+    // Page title font style checkboxes: map each option to a CSS keyword.
+    case 'title_type':
+      $value = [
+        'uppercase' => !empty($value['uppercase']) ? 'uppercase' : 'none',
+        'bold' => !empty($value['bold']) ? 'bold' : 'normal',
+        'italic' => !empty($value['italic']) ? 'italic' : 'normal',
+      ];
+      break;
+
     case 'title_font_size':
       $value = [
         '' => 'var(' . _dxpr_theme_get_const('cssSettingPrefix') . $value . '-font-size)',
