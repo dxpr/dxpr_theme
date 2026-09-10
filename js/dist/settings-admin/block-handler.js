@@ -341,7 +341,9 @@ function handleDocumentEvents(event, updateFieldValue) {
         "block_divider_spacing",
       ].forEach((key) => {
         const cssVarName = key.replace(/[_]/g, "-");
-        document.documentElement.style.removeProperty(`--${cssVarName}`);
+        document.documentElement.style.removeProperty(
+          `--dxt-setting-${cssVarName}`,
+        );
       });
     }
 
