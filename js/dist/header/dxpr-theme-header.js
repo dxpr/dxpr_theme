@@ -22,9 +22,10 @@ const { dxpr_themeMenuGovernorBodyClass } = require("./menu-governor-body");
     drupalSettings?.dxpr_themeSettings?.headerMobileBreakpoint ??
     1200;
 
+  // Sticky applies to overlay headers too: the settings form recommends
+  // Overlay for "hide initially, show after scroll".
   if (
     document.querySelectorAll(".dxpr-theme-header--sticky").length > 0 &&
-    !document.querySelectorAll(".dxpr-theme-header--overlay").length &&
     window.innerWidth > navBreak
   ) {
     // Injecting function setupStickyHeader() from sticky-header.js

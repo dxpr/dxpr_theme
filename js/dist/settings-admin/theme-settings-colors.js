@@ -291,6 +291,29 @@ const dxprThemeSettingsColors = {
           );
         }
       });
+
+      // Mirror the Bootstrap RGB triplets the generated CSS writes, so
+      // utilities such as .bg-primary and .text-body preview as well.
+      const bsRgbMap = {
+        "--bs-primary-rgb": "base",
+        "--bs-secondary-rgb": "accent1",
+        "--bs-body-color-rgb": "text",
+        "--bs-body-bg-rgb": "body",
+        "--bs-emphasis-color-rgb": "headings",
+        "--bs-link-color-rgb": "link",
+        "--bs-link-hover-color-rgb": "accent1",
+        "--bs-light-rgb": "silver",
+        "--bs-dark-rgb": "headings",
+        "--bs-secondary-bg-rgb": "card",
+        "--bs-tertiary-bg-rgb": "silver",
+      };
+      Object.keys(bsRgbMap).forEach((cssVar) => {
+        const hex = palette[bsRgbMap[cssVar]];
+        if (hex) {
+          const [r, g, b] = this.getHexToRgb(hex);
+          root.style.setProperty(cssVar, `${r}, ${g}, ${b}`);
+        }
+      });
     }
 
     if (palette === null) {
