@@ -30,27 +30,32 @@ function css_variables_theme_settings_css(string $theme, string &$css) {
 
   $css_variables = [];
   foreach ($theme_settings as $k => $v) {
-    if (_dxpr_theme_is_css_variable($k)) {
-      if ($value = _dxpr_theme_massage_values($k, $v, $theme, $theme_settings)) {
+    if (!_dxpr_theme_is_css_variable($k)) {
+      continue;
+    }
+    $value = _dxpr_theme_massage_values($k, $v, $theme, $theme_settings);
+    // Only skip settings without a value. A value of "0" is valid CSS
+    // (opacity 0, zero spacing) and must not be treated as empty.
+    if ($value === '' || $value === NULL || $value === []) {
+      continue;
+    }
 
-        if (is_array($value)) {
-          foreach ($value as $name => $val) {
-            // Handle font special keys that provide custom variable names.
-            if (str_starts_with($name, '__') && is_array($val)) {
-              $var_name = str_replace('_', '-', $val[0]);
-              $css_variables[] = '  ' . $prefix . $var_name . ': ' . $val[1];
-            }
-            else {
-              $var_name = trim(str_replace('_', '-', $k . '_' . $name), '-');
-              $css_variables[] = '  ' . $prefix . $var_name . ': ' . $val;
-            }
-          }
+    if (is_array($value)) {
+      foreach ($value as $name => $val) {
+        // Handle font special keys that provide custom variable names.
+        if (str_starts_with($name, '__') && is_array($val)) {
+          $var_name = str_replace('_', '-', $val[0]);
+          $css_variables[] = '  ' . $prefix . $var_name . ': ' . $val[1];
         }
         else {
-          $var_name = str_replace('_', '-', $k);
-          $css_variables[] = '  ' . $prefix . $var_name . ': ' . $value;
+          $var_name = trim(str_replace('_', '-', $k . '_' . $name), '-');
+          $css_variables[] = '  ' . $prefix . $var_name . ': ' . $val;
         }
       }
+    }
+    else {
+      $var_name = str_replace('_', '-', $k);
+      $css_variables[] = '  ' . $prefix . $var_name . ': ' . $value;
     }
   }
 
@@ -126,10 +131,11 @@ function _dxpr_theme_massage_values(string $key, $value, string $theme, array $s
       $value = !empty($value) ? 'inline-block' : 'block';
       break;
 
-    // Divider; 0 = full width.
+    // Dividers; 0 = full width.
     case 'divider_length':
+    case 'block_divider_length':
       if (empty($value)) {
-        $value = 100;
+        $value = '100';
         $s = '%';
       }
       break;
@@ -185,6 +191,15 @@ function _dxpr_theme_massage_values(string $key, $value, string $theme, array $s
       ];
       break;
 
+    // Page title font style checkboxes: map each option to a CSS keyword.
+    case 'title_type':
+      $value = [
+        'uppercase' => !empty($value['uppercase']) ? 'uppercase' : 'none',
+        'bold' => !empty($value['bold']) ? 'bold' : 'normal',
+        'italic' => !empty($value['italic']) ? 'italic' : 'normal',
+      ];
+      break;
+
     case 'title_font_size':
       $value = [
         '' => 'var(' . _dxpr_theme_get_const('cssSettingPrefix') . $value . '-font-size)',
@@ -192,9 +207,12 @@ function _dxpr_theme_massage_values(string $key, $value, string $theme, array $s
       ];
       break;
 
+    // The separator is used inside a quoted CSS string, so escape backslashes
+    // and double quotes and strip line breaks. Do not HTML-encode: CSS strings
+    // do not decode entities, so ">" would render literally as "&gt;".
     case 'page_title_breadcrumbs_separator':
-      $str = str_replace(['\\', '"'], ['\\\\', '\\"'], $value);
-      $value = htmlspecialchars($str, ENT_QUOTES, 'UTF-8');
+      $value = str_replace(["\r", "\n"], '', (string) $value);
+      $value = str_replace(['\\', '"'], ['\\\\', '\\"'], $value);
       break;
 
     case 'dropdown_width':
@@ -229,9 +247,11 @@ function _dxpr_theme_massage_values(string $key, $value, string $theme, array $s
     }
   }
 
-  // Add prefixes/suffixes for non-empty string values.
-  if (!empty($value) && is_string($value)) {
-    if ($s === 'rem') {
+  // Add prefixes/suffixes for scalar values. Numeric values may be stored as
+  // integers when written through config (drush, recipes, AI settings) and a
+  // value of 0 is valid, so do not rely on empty() or is_string().
+  if (is_scalar($value) && !is_bool($value) && $value !== '') {
+    if ($s === 'rem' && is_numeric($value)) {
       // Match decimal count of postcss-pxtorem.
       $value = round($value / 16, 5);
     }
@@ -405,12 +425,13 @@ function _dxpr_theme_parse_font_for_css_vars(string $font_key, string $theme): a
     if (count($font_parts) >= 3) {
       $family = '"' . $font_parts[2] . '", -apple-system, BlinkMacSystemFont, sans-serif';
     }
-    // Parse weight/style from the stored key (theme|css_path|family).
-    $local_key = substr($font_key, 1);
-    if (preg_match('/(\d{3})/', $local_key, $matches)) {
+    // Derive weight/style from the family segment only. The theme machine
+    // name and the stylesheet path may contain digits or "italic" too.
+    $family_name = $font_parts[2] ?? '';
+    if (preg_match('/\b([1-9]00)\b/', $family_name, $matches)) {
       $weight = $matches[1];
     }
-    if (stripos($local_key, 'italic') !== FALSE) {
+    if (stripos($family_name, 'italic') !== FALSE) {
       $style = 'italic';
     }
   }

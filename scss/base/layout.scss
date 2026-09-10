@@ -100,8 +100,8 @@ body.user-logged-in:not([data-gin-accent]) {
 
 .body--dxpr-theme-nav-mobile {
   .container {
-    padding-left: calc(var(--dxt-setting-gutter-container-mobile) / 2);
-    padding-right: calc(var(--dxt-setting-gutter-container-mobile) / 2);
+    padding-left: var(--dxt-setting-gutter-container-mobile);
+    padding-right: var(--dxt-setting-gutter-container-mobile);
   }
 
   .navbar-container.dxpr-theme-fluid,
@@ -165,13 +165,19 @@ body.full-width-content {
   padding: var(--dxt-setting-block-padding);
 }
 
+// Title sticker: shrink the title to its content width (inline-block) or
+// keep it full width (block), driven by the Block Title Element setting.
+.region-block-design .block-title {
+  display: var(--dxt-setting-title-sticker);
+}
+
 // Apply title background only when block and title don't have preset classes
 .region-block-design .block:not(.card, [class*="bg-"], [class*="dxpr-theme-util-background"]) .block-title:not(.card, [class*="bg-"], [class*="dxpr-theme-util-background"]) {
   background-color: var(--dxt-setting-title-background);
 }
 
-// Apply other title styles only when parent block is not using card classes
-.region-block-design .block:not(.card) .block-title:not(.card) {
+// Apply other title styles only when the title is not using card classes
+.region-block-design .block-title:not(.card) {
   border-color: var(--dxt-setting-title-border-color);
   border-radius: var(--dxt-setting-title-border-radius);
   border-style: solid;
@@ -189,6 +195,9 @@ body.full-width-content {
     auto
     var(--dxt-setting-block-divider-spacing)
     var(--dxt-setting-divider-position-block);
+
+  // Bootstrap's reboot dims hr to 25%; render the configured colour as is.
+  opacity: 1;
   width: var(--dxt-setting-block-divider-length);
 }
 

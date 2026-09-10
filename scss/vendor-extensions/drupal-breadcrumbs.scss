@@ -53,3 +53,9 @@
     }
   }
 }
+
+// Line the breadcrumb up with the mobile container padding.
+.body--dxpr-theme-nav-mobile .page-title-full-width-container .breadcrumb {
+  padding-left: var(--dxt-setting-gutter-container-mobile);
+  padding-right: var(--dxt-setting-gutter-container-mobile);
+}
