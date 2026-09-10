@@ -426,3 +426,60 @@ function _dxpr_theme_color_options($theme) {
   $colors = array_merge($colors, $theme_colors);
   return $colors;
 }
+
+/**
+ * Returns the variants Google Fonts provides for a family.
+ *
+ * @param string $family
+ *   Font family name as listed in google-webfonts.json (spaces, not plus).
+ *
+ * @return string[]
+ *   Variant keys such as "regular", "700" or "700italic"; empty if unknown.
+ */
+function _dxpr_theme_google_font_variants(string $family): array {
+  $fonts = &drupal_static(__FUNCTION__);
+  if ($fonts === NULL) {
+    $fonts = [];
+    $path = \Drupal::service('extension.list.theme')->getPath('dxpr_theme');
+    $filepath = sprintf('%s/%s/features/sooper-fonts/google-webfonts.json', DRUPAL_ROOT, $path);
+    if (file_exists($filepath)) {
+      foreach (Json::decode(file_get_contents($filepath)) ?: [] as $font) {
+        if (!empty($font['family'])) {
+          $fonts[$font['family']] = $font['variants'] ?? [];
+        }
+      }
+    }
+  }
+  return $fonts[$family] ?? [];
+}
+
+/**
+ * Describes the bold face that bold headings need for a Google headings font.
+ *
+ * @param string|null $theme
+ *   Theme machine name, or NULL for the active theme.
+ *
+ * @return array|null
+ *   NULL when the headings font is not a Google font. Otherwise an array with
+ *   "family" (as used in font keys, plus-separated), "variant" ("700" or
+ *   "700italic"), "available" (the family provides that variant) and
+ *   "already_bold" (the picked variant is a bold face already).
+ */
+function _dxpr_theme_headings_bold_font(?string $theme = NULL): ?array {
+  $font_key = theme_get_setting('headings_font_face', $theme);
+  if (!is_string($font_key) || substr($font_key, 0, 1) !== '0') {
+    return NULL;
+  }
+  $font_parts = explode(':', substr($font_key, 1));
+  $variant = $font_parts[1] ?? '';
+  $italic = stripos($variant, 'italic') !== FALSE;
+  $bold_variant = $italic ? '700italic' : '700';
+  $variants = _dxpr_theme_google_font_variants(str_replace('+', ' ', $font_parts[0]));
+
+  return [
+    'family' => $font_parts[0],
+    'variant' => $bold_variant,
+    'available' => in_array($bold_variant, $variants, TRUE),
+    'already_bold' => str_starts_with($variant, '700') || str_starts_with($variant, 'bold'),
+  ];
+}
