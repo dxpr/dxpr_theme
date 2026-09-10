@@ -38,6 +38,11 @@ function massageFieldValue(setting, value, cssVarColorsPrefix) {
     case "logo_height":
       value = `${value}%`;
       break;
+    // Position radios: option keys use underscores, CSS uses spaces.
+    case "background_image_position":
+    case "page_title_image_position":
+      value = value.replace(/_/g, " ");
+      break;
     // Breadcrumb separator
     case "page_title_breadcrumbs_separator":
       value = `"${value.replace(/\\/g, "\\\\").replace(/"/g, '\\"')}"`;
@@ -87,6 +92,9 @@ function massageFieldValue(setting, value, cssVarColorsPrefix) {
     case "dropdown_hover_text_color":
     case "mobile_menu_background":
     case "mobile_menu_text_color":
+    case "mobile_menu_hover_background":
+    case "mobile_menu_hover_text_color":
+    case "navbar_text_color":
       if (
         Object.prototype.hasOwnProperty.call(
           drupalSettings.dxpr_themeSettings.colors.palette,
@@ -219,13 +227,9 @@ function fieldHandler(event, root, cssVarSettingsPrefix, massageValue) {
     "block_divider_spacing",
   ];
 
-  // Define variables that expect "em".
-  const emRequiredVars = [
-    "body_line_height",
-    "headings_line_height",
-    "blockquote_line_height",
-    "headings_letter_spacing",
-  ];
+  // Define variables that expect "em". Line heights stay without a unit, matching
+  // the saved CSS.
+  const emRequiredVars = ["headings_letter_spacing"];
 
   // If the value has no unit and the variable expects 'px', add 'px'.
   if (
