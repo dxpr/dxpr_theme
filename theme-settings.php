@@ -226,6 +226,11 @@ function dxpr_theme_form_system_theme_settings_submit(&$form, &$form_state) {
     $form_state->setValue('background_image_path', $path);
   }
 
+  // The AI prompt textareas are transient input for the generators and must
+  // not be stored in the theme configuration.
+  $form_state->unsetValue('ai_prompt');
+  $form_state->unsetValue('ai_font_prompt');
+
   // Handle color palette values.
   $color_palette = [];
   foreach ($form_state->getValues() as $key => $value) {
