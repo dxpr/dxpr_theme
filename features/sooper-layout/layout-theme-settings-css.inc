@@ -53,7 +53,7 @@ function layout_theme_settings_css($theme, &$css, array $palette) {
   }
 
   if ($background_image_path = theme_get_setting('background_image_path', $theme)) {
-    $css_body .= "  background-image: url('" . \Drupal::service('file_url_generator')->generateString($background_image_path) . "'); }\n";
+    $css_body .= "  background-image: url('" . \Drupal::service('file_url_generator')->generateString($background_image_path) . "');\n";
   }
 
   if ($css_body) {

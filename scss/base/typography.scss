@@ -243,7 +243,7 @@ hr, .card hr {
   h4, .h4 { font-size: var(--dxt-setting-h4-mobile-font-size) }
   .block-title { font-size: var(--dxt-setting-title-font-size-mobile) }
 
-  blockquote, .blockquote p {
+  blockquote, blockquote p, .blockquote p {
     font-size: var(--dxt-setting-blockquote-mobile-font-size);
   }
 }

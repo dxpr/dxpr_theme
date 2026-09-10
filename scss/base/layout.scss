@@ -165,6 +165,12 @@ body.full-width-content {
   padding: var(--dxt-setting-block-padding);
 }
 
+// Title sticker: shrink the title to its content width (inline-block) or
+// keep it full width (block), driven by the Block Title Element setting.
+.region-block-design .block-title {
+  display: var(--dxt-setting-title-sticker);
+}
+
 // Apply title background only when block and title don't have preset classes
 .region-block-design .block:not(.card, [class*="bg-"], [class*="dxpr-theme-util-background"]) .block-title:not(.card, [class*="bg-"], [class*="dxpr-theme-util-background"]) {
   background-color: var(--dxt-setting-title-background);
