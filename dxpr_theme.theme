@@ -123,9 +123,13 @@ function dxpr_theme_preprocess_html(&$variables) {
   }
 
   if ($custom_js = theme_get_setting('custom_javascript_site')) {
-    $custom_js = Markup::create($custom_js);
+    // The field takes raw JavaScript; wrap it in a script element unless the
+    // value already contains its own script tags.
+    if (stripos($custom_js, '<script') === FALSE) {
+      $custom_js = "<script>\n" . $custom_js . "\n</script>";
+    }
     $variables['page_bottom']['custom_javascript_site'] = [
-      '#markup' => $custom_js,
+      '#markup' => Markup::create($custom_js),
     ];
   }
   $variables['page_bottom']['custom_javascript'] = [
