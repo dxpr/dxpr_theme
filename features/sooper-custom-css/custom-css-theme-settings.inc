@@ -35,7 +35,7 @@ function custom_css_theme_settings(array &$form, $theme) {
   $form['dxpr_theme_settings']['custom_css']['custom_javascript_site'] = [
     '#type' => 'textarea',
     '#title' => t('Sitewide JavaScript'),
-    '#ai_description' => 'Raw JavaScript code injected on every page. Use for tracking snippets, custom interactions, or third-party widget initialization. Runs after DOM ready.',
+    '#ai_description' => 'Raw JavaScript code injected at the end of every page body; script tags are added automatically unless the value already contains them. Use for tracking snippets, custom interactions, or third-party widget initialization.',
     '#default_value' => theme_get_setting('custom_javascript_site'),
     '#rows' => 15,
   ];

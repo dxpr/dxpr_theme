@@ -1,7 +1,7 @@
 {
   "_meta": {
     "description": "DXPR Theme settings schema. Auto-generated from features/*-theme-settings.inc files.",
-    "generated": "2026-05-18T09:43:18.076Z",
+    "generated": "2026-09-10T10:34:52.602Z",
     "sections": [
       "block-design",
       "colors",
@@ -312,7 +312,7 @@
     "section": "custom-css",
     "type": "textarea",
     "title": "Sitewide JavaScript",
-    "ai_description": "Raw JavaScript code injected on every page. Use for tracking snippets, custom interactions, or third-party widget initialization. Runs after DOM ready."
+    "ai_description": "Raw JavaScript code injected at the end of every page body; script tags are added automatically unless the value already contains them. Use for tracking snippets, custom interactions, or third-party widget initialization."
   },
   "body_font_face": {
     "section": "fonts",
