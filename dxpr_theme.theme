@@ -129,7 +129,9 @@ function dxpr_theme_preprocess_html(&$variables) {
     $variables['#attached']['drupalSettings']['dxpr_themeSettings']['headerHeight'] = $header_height;
   }
 
-  if ($header_scroll_offset = theme_get_setting('header_top_height_sticky_offset')) {
+  // A scroll offset of 0 is valid (header becomes sticky immediately).
+  $header_scroll_offset = theme_get_setting('header_top_height_sticky_offset');
+  if ($header_scroll_offset !== NULL && $header_scroll_offset !== '') {
     $variables['#attached']['drupalSettings']['dxpr_themeSettings']['headerOffset'] = $header_scroll_offset;
   }
 
