@@ -32,6 +32,9 @@ html.html--dxpr-theme-nav-mobile--open {
   }
 
   .dxpr-theme-header {
+    // Header > Mobile > Header Height; the container and navbar-header
+    // below use height: 100%, so the logo percentage resolves against it.
+    height: var(--dxt-setting-header-mobile-height);
     position: static;
 
     li {
@@ -108,7 +111,7 @@ html.html--dxpr-theme-nav-mobile--open {
       }
     }
 
-    .navbar-toggle {
+    .navbar-toggler {
       height: var(--dxt-setting-header-mobile-height);
     }
 
