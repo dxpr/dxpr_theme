@@ -739,9 +739,9 @@ $schemes: (
   --dxt-setting-title-font-size-mobile: var(--dxt-setting-h3-mobile-font-size);
   --dxt-setting-title-padding: 0px;
   --dxt-setting-title-sticker: block;
-  --dxt-setting-title-type-uppercase: uppercase;
-  --dxt-setting-title-type-bold: bold;
-  --dxt-setting-title-type-italic: italic;
+  --dxt-setting-title-type-uppercase: none;
+  --dxt-setting-title-type-bold: normal;
+  --dxt-setting-title-type-italic: normal;
 
   // Iterate schemes and create color variables.
   @each $name, $scheme in $schemes {

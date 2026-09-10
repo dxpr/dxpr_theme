@@ -226,6 +226,11 @@ function dxpr_theme_form_system_theme_settings_submit(&$form, &$form_state) {
     $form_state->setValue('background_image_path', $path);
   }
 
+  // "Revert to saved" is a client-side helper option; never store it.
+  if ($form_state->getValue('color_scheme') === 'current') {
+    $form_state->setValue('color_scheme', 'custom');
+  }
+
   // Handle color palette values.
   $color_palette = [];
   foreach ($form_state->getValues() as $key => $value) {

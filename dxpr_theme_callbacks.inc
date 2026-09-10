@@ -71,14 +71,25 @@ function dxpr_theme_css_cache_build(string $theme) {
 
   // Construct CSS file:
   $css = '';
-  // Load Sooper Features CSS.
+  // Load Sooper Features CSS. scanDirectory() returns files in filesystem
+  // order, so sort the callbacks by name for a deterministic stylesheet and
+  // run the custom CSS callback last so site-specific CSS wins the cascade.
+  $callbacks = [];
   foreach (\Drupal::service('file_system')->scanDirectory(\Drupal::service('extension.list.theme')->getPath('dxpr_theme') . '/features', '/css.inc/i') as $file) {
     require_once $file->uri;
     $function_name = basename($file->filename, '.inc');
     $function_name = str_replace('-', '_', $function_name);
     if (function_exists($function_name)) {
-      $function_name($theme, $css, $palette);
+      $callbacks[$function_name] = $function_name;
     }
+  }
+  ksort($callbacks);
+  if (isset($callbacks['custom_css_theme_settings_css'])) {
+    unset($callbacks['custom_css_theme_settings_css']);
+    $callbacks['custom_css_theme_settings_css'] = 'custom_css_theme_settings_css';
+  }
+  foreach ($callbacks as $function_name) {
+    $function_name($theme, $css, $palette);
   }
   $file_object = \Drupal::service('file.repository')->writeData($css, $dxpr_theme_css_file, FileSystemInterface::EXISTS_REPLACE);
   if ($dir_writable && $file_object) {
@@ -178,7 +189,9 @@ function _dxpr_theme_settings_add_css(string $setting, string $property): string
  *   CSS variable, e.g. "var(--prefix-name)".
  */
 function _dxpr_theme_setting_get_css_var(string $setting): string {
-  if (theme_get_setting($setting)) {
+  $value = theme_get_setting($setting);
+  // A saved value of 0 (for example opacity 0) is a valid value.
+  if ($value !== NULL && $value !== '' && $value !== FALSE) {
     $css_var = str_replace('_', '-', $setting);
     $prefix = _dxpr_theme_get_const('cssSettingPrefix');
     return sprintf("var(%s%s)", $prefix, $css_var);

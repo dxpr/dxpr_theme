@@ -19,7 +19,8 @@ function setupStickyHeader() {
     drupalSettings.dxpr_themeSettings.headerOffset,
   );
 
-  if (headerHeight && headerScroll) {
+  // A scroll offset of 0 is valid: the header becomes sticky immediately.
+  if (headerHeight && !Number.isNaN(headerScroll)) {
     const elHeader = document.querySelector(".dxpr-theme-header--sticky");
     const wrapContainer = document.getElementsByClassName("wrap-containers")[0];
 
