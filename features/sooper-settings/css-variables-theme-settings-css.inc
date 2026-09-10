@@ -124,10 +124,11 @@ function _dxpr_theme_massage_values(string $key, $value, string $theme, array $s
       $value = !empty($value) ? 'inline-block' : 'block';
       break;
 
-    // Divider; 0 = full width.
+    // Dividers; 0 = full width.
     case 'divider_length':
+    case 'block_divider_length':
       if (empty($value)) {
-        $value = 100;
+        $value = '100';
         $s = '%';
       }
       break;
