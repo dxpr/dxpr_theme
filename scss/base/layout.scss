@@ -176,7 +176,6 @@ body.full-width-content {
   border-radius: var(--dxt-setting-title-border-radius);
   border-style: solid;
   border-width: var(--dxt-setting-title-border);
-  font-size: var(--dxt-setting-title-font-size);
   padding: var(--dxt-setting-title-padding);
   text-align: var(--dxt-setting-title-align);
 }
@@ -191,12 +190,6 @@ body.full-width-content {
     var(--dxt-setting-block-divider-spacing)
     var(--dxt-setting-divider-position-block);
   width: var(--dxt-setting-block-divider-length);
-}
-
-@media screen and (width <= 768px) {
-  .region-block-design .block-title {
-    font-size: var(--dxt-setting-title-font-size-mobile);
-  }
 }
 
 #block-system-help {
