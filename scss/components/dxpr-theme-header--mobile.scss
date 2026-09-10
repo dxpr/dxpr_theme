@@ -74,8 +74,8 @@ html.html--dxpr-theme-nav-mobile--open {
     .dxpr-theme-main-menu {
       box-shadow: 0 5px 5px rgb(0 0 0 / 2%);
       left: 0;
-      padding-left: calc(var(--dxt-setting-gutter-vertical-mobile, 0) / 2);
-      padding-right: calc(var(--dxt-setting-gutter-vertical-mobile, 0) / 2);
+      padding-left: calc(var(--dxt-setting-gutter-horizontal-mobile, 0) / 2);
+      padding-right: calc(var(--dxt-setting-gutter-horizontal-mobile, 0) / 2);
       position: absolute;
       width: 100%;
       z-index: 100;
