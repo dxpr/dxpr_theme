@@ -100,8 +100,8 @@ body.user-logged-in:not([data-gin-accent]) {
 
 .body--dxpr-theme-nav-mobile {
   .container {
-    padding-left: calc(var(--dxt-setting-gutter-container-mobile) / 2);
-    padding-right: calc(var(--dxt-setting-gutter-container-mobile) / 2);
+    padding-left: var(--dxt-setting-gutter-container-mobile);
+    padding-right: var(--dxt-setting-gutter-container-mobile);
   }
 
   .navbar-container.dxpr-theme-fluid,
