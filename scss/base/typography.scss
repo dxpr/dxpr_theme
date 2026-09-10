@@ -71,8 +71,15 @@ h2, .h2 {
   font-size: var(--dxt-setting-h2-font-size)
 }
 
-h3, .h3, .block-title {
+h3, .h3 {
   font-size: var(--dxt-setting-h3-font-size)
+}
+
+// Block titles follow the Block Design "Title Font Size" setting, which
+// defaults to the h3 size. This applies to every block title, not only to
+// block design regions, so Layout Builder and content blocks respect it.
+.block-title {
+  font-size: var(--dxt-setting-title-font-size);
 }
 
 h4, .h4 {
@@ -231,6 +238,7 @@ hr, .card hr {
   h2, .h2 { font-size: var(--dxt-setting-h2-mobile-font-size) }
   h3, .h3 { font-size: var(--dxt-setting-h3-mobile-font-size) }
   h4, .h4 { font-size: var(--dxt-setting-h4-mobile-font-size) }
+  .block-title { font-size: var(--dxt-setting-title-font-size-mobile) }
 
   blockquote, .blockquote p {
     font-size: var(--dxt-setting-blockquote-mobile-font-size);
