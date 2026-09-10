@@ -194,7 +194,8 @@
   position: relative;
 }
 
-.dxpr-theme-header--top.dxpr-theme-header--hover-border .nav > li > a::before {
+.dxpr-theme-header--top.dxpr-theme-header--hover-border .nav > li > a::before,
+.dxpr-theme-header--top.dxpr-theme-header--hover-border .nav > li > .bs-dropdown-wrapper > a::before {
   background: #eee;
   background: dxpr-color('headertext');
   bottom: 0;
