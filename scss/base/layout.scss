@@ -176,8 +176,8 @@ body.full-width-content {
   background-color: var(--dxt-setting-title-background);
 }
 
-// Apply other title styles only when parent block is not using card classes
-.region-block-design .block:not(.card) .block-title:not(.card) {
+// Apply other title styles only when the title is not using card classes
+.region-block-design .block-title:not(.card) {
   border-color: var(--dxt-setting-title-border-color);
   border-radius: var(--dxt-setting-title-border-radius);
   border-style: solid;
