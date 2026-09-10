@@ -171,6 +171,10 @@ function header_theme_settings_css(string $theme, string &$css, array $palette) 
           $transform_origin = '100% 50%';
           break;
 
+        case 'middle':
+          $transform_origin = '50% 50%';
+          break;
+
         case 'drop':
           $css .= "transform: scale(0, 0) translate(10px, -10px);\n  ";
           $transform_origin = '50% 0';
