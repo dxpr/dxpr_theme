@@ -200,9 +200,12 @@ function _dxpr_theme_massage_values(string $key, $value, string $theme, array $s
       ];
       break;
 
+    // The separator is used inside a quoted CSS string, so escape backslashes
+    // and double quotes and strip line breaks. Do not HTML-encode: CSS strings
+    // do not decode entities, so ">" would render literally as "&gt;".
     case 'page_title_breadcrumbs_separator':
-      $str = str_replace(['\\', '"'], ['\\\\', '\\"'], $value);
-      $value = htmlspecialchars($str, ENT_QUOTES, 'UTF-8');
+      $value = str_replace(["\r", "\n"], '', (string) $value);
+      $value = str_replace(['\\', '"'], ['\\\\', '\\"'], $value);
       break;
 
     case 'dropdown_width':
