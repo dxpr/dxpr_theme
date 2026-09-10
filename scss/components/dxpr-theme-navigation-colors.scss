@@ -39,14 +39,6 @@
       background-color: var(--dxt-setting-menu-hover-background);
       color: var(--dxt-setting-menu-hover-text-color);
     }
-
-    a.dropdown-item {
-      &:hover,
-      &:focus {
-        background-color: var(--dxt-setting-menu-hover-background);
-        color: var(--dxt-setting-menu-hover-text-color);
-      }
-    }
   }
 
   .nav,
@@ -58,12 +50,14 @@
   .dropdown-menu {
     background-color: var(--dxt-setting-dropdown-background, var(--dxt-color-header));
 
+    // Dropdown links fall back to the menu hover colours when no dropdown
+    // hover colour is configured.
     a,
     button {
       &:hover,
       &:focus {
-        background-color: var(--dxt-setting-dropdown-hover-background);
-        color: var(--dxt-setting-dropdown-hover-text-color);
+        background-color: var(--dxt-setting-dropdown-hover-background, var(--dxt-setting-menu-hover-background));
+        color: var(--dxt-setting-dropdown-hover-text-color, var(--dxt-setting-menu-hover-text-color));
       }
     }
   }

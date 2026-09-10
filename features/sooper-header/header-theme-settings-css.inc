@@ -139,7 +139,8 @@ function header_theme_settings_css(string $theme, string &$css, array $palette) 
   $menu_border_position = theme_get_setting('menu_border_position', $theme);
 
   if (theme_get_setting('menu_hover', $theme) == 'border') {
-    $css .= ".dxpr-theme-header--top.dxpr-theme-header--hover-border .nav > li > a::before {\n";
+    $css .= ".dxpr-theme-header--top.dxpr-theme-header--hover-border .nav > li > a::before,\n";
+    $css .= ".dxpr-theme-header--top.dxpr-theme-header--hover-border .nav > li > .bs-dropdown-wrapper > a::before {\n";
 
     if ($menu_border_size = _dxpr_theme_settings_add_css('menu_border_size', 'height')) {
       $css .= $menu_border_size;
@@ -170,6 +171,10 @@ function header_theme_settings_css(string $theme, string &$css, array $palette) 
           $transform_origin = '100% 50%';
           break;
 
+        case 'middle':
+          $transform_origin = '50% 50%';
+          break;
+
         case 'drop':
           $css .= "transform: scale(0, 0) translate(10px, -10px);\n  ";
           $transform_origin = '50% 0';
@@ -184,7 +189,8 @@ function header_theme_settings_css(string $theme, string &$css, array $palette) 
   if ($menu_border_position &&
     $menu_border_pos_sticky = _dxpr_theme_settings_add_css('menu_border_position_offset_sticky', "margin-$menu_border_position")
   ) {
-    $css .= ".dxpr-theme-header--top.dxpr-theme-header--hover-border.affix .nav > li > a::before {\n";
+    $css .= ".dxpr-theme-header--top.dxpr-theme-header--hover-border.affix .nav > li > a::before,\n";
+    $css .= ".dxpr-theme-header--top.dxpr-theme-header--hover-border.affix .nav > li > .bs-dropdown-wrapper > a::before {\n";
     $css .= $menu_border_pos_sticky;
     $css .= "}\n\n";
   }
