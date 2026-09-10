@@ -188,3 +188,53 @@ function dxpr_theme_post_update_n5_rebuild_font_css() {
 
   return t('Theme CSS rebuilt to apply font-weight and font-style cascade changes.');
 }
+
+/**
+ * Strip script tags from the Custom JavaScript setting.
+ *
+ * The theme now wraps the value of Advanced > Custom JavaScript in a script
+ * element itself. Values saved before that had to carry their own script tags,
+ * so remove those to store the raw JavaScript the field now expects. Values
+ * that load external scripts (script tags with a src attribute) are left
+ * untouched because they are still rendered as they are.
+ */
+function dxpr_theme_post_update_n6_strip_custom_javascript_script_tags() {
+  /** @var \Drupal\Core\Extension\ThemeHandler $theme_handler */
+  $theme_handler = \Drupal::service('theme_handler');
+  $theme_list = $theme_handler->listInfo();
+  $updated = [];
+
+  /** @var \Drupal\Core\Extension\Extension $theme */
+  foreach ($theme_list as $theme) {
+    $theme_name = $theme->getName();
+    if ('dxpr_theme' !== ($theme->info['base theme'] ?? '') && 'dxpr_theme' !== $theme_name) {
+      continue;
+    }
+
+    $config = \Drupal::configFactory()->getEditable($theme_name . '.settings');
+    $custom_js = $config->get('custom_javascript_site');
+    if (!is_string($custom_js) || stripos($custom_js, '<script') === FALSE) {
+      continue;
+    }
+
+    // Keep values that include external scripts; they still render verbatim.
+    if (preg_match('/<script\b[^>]*\bsrc\s*=/i', $custom_js)) {
+      continue;
+    }
+
+    $stripped = preg_replace('/<\/?script\b[^>]*>/i', '', $custom_js);
+    $stripped = trim($stripped);
+    if ($stripped !== $custom_js) {
+      $config->set('custom_javascript_site', $stripped)->save();
+      $updated[] = $theme_name;
+    }
+  }
+
+  if (!$updated) {
+    return t('No Custom JavaScript settings needed updating.');
+  }
+
+  return t('Removed script tags from the Custom JavaScript setting of: @themes.', [
+    '@themes' => implode(', ', $updated),
+  ]);
+}
