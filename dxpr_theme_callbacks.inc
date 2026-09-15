@@ -53,16 +53,11 @@ function dxpr_theme_css_cache_build(string $theme) {
     'allowed_classes' => FALSE,
   ]) ?: NULL;
 
-  // Fetch default palette.
+  // Fetch default palette using the merged scheme loader so sub-theme
+  // overrides of 'default' are respected.
   if (empty($palette)) {
-    $path = \Drupal::service('extension.list.theme')->getPath('dxpr_theme');
-    $filepath = sprintf('%s/%s/features/sooper-colors/color-settings.json', DRUPAL_ROOT, $path);
-
-    if ($path && file_exists($filepath)) {
-      $json = file_get_contents($filepath);
-      $settings = Json::decode($json);
-      $palette = $settings['schemes']['default']['colors'] ?? [];
-    }
+    $schemes = _dxpr_theme_get_color_schemes($theme);
+    $palette = $schemes['default']['colors'] ?? [];
 
     if (empty($palette)) {
       \Drupal::messenger()->addWarning(t('Could not create theme styles; please resave theme settings.'));
@@ -364,23 +359,66 @@ function _dxpr_theme_font_stack($font = NULL) {
 /**
  * Returns data from the color-settings.json file.
  *
+ * Loads the base theme's color-settings.json and, when the active or
+ * specified theme is a sub-theme, merges in any color-settings.json found
+ * in the sub-theme's root directory. Sub-theme entries override base theme
+ * entries with the same key.
+ *
  * @param string|null $key
  *   Key index in color.inc $info array.
+ * @param string|null $theme
+ *   Theme machine name. When NULL the active theme is used.
  *
  * @return array
  *   Array containing requested data.
  */
-function _dxpr_theme_get_color_inc(?string $key = NULL): array {
-  $path = \Drupal::service('extension.list.theme')->getPath('dxpr_theme');
-  $filepath = sprintf('%s/%s/features/sooper-colors/color-settings.json', DRUPAL_ROOT, $path);
+function _dxpr_theme_get_color_inc(?string $key = NULL, ?string $theme = NULL): array {
+  $theme_list = \Drupal::service('extension.list.theme');
 
-  if ($path && file_exists($filepath)) {
-    $json = file_get_contents($filepath);
-    $settings = Json::decode($json);
+  // Load base theme settings.
+  $base_path = $theme_list->getPath('dxpr_theme');
+  $base_file = sprintf('%s/%s/features/sooper-colors/color-settings.json', DRUPAL_ROOT, $base_path);
+  $settings = [];
+  if ($base_path && file_exists($base_file)) {
+    $settings = Json::decode(file_get_contents($base_file)) ?: [];
+  }
 
-    if ($settings) {
-      $data = $key ? ($settings[$key] ?? []) : $settings;
+  // Determine the active theme when none was specified.
+  if ($theme === NULL) {
+    try {
+      $theme = \Drupal::theme()->getActiveTheme()->getName();
     }
+    catch (\Exception $e) {
+      $theme = 'dxpr_theme';
+    }
+  }
+
+  // Merge sub-theme overrides when the theme is not the base theme itself.
+  if ($theme !== 'dxpr_theme') {
+    try {
+      $sub_path = $theme_list->getPath($theme);
+    }
+    catch (\Exception $e) {
+      $sub_path = NULL;
+    }
+    if ($sub_path) {
+      $sub_file = sprintf('%s/%s/color-settings.json', DRUPAL_ROOT, $sub_path);
+      if (file_exists($sub_file)) {
+        $sub_settings = Json::decode(file_get_contents($sub_file)) ?: [];
+        foreach ($sub_settings as $section => $values) {
+          if (is_array($values) && isset($settings[$section]) && is_array($settings[$section])) {
+            $settings[$section] = array_merge($settings[$section], $values);
+          }
+          else {
+            $settings[$section] = $values;
+          }
+        }
+      }
+    }
+  }
+
+  if ($settings) {
+    $data = $key ? ($settings[$key] ?? []) : $settings;
   }
 
   return $data ?? [];
@@ -389,35 +427,43 @@ function _dxpr_theme_get_color_inc(?string $key = NULL): array {
 /**
  * Returns the color field keys.
  *
+ * @param string|null $theme
+ *   Theme machine name. When NULL the active theme is used.
+ *
  * @return array
  *   The 'fields' sub-array.
  */
-function _dxpr_theme_get_color_names(): array {
-  return _dxpr_theme_get_color_inc('fields');
+function _dxpr_theme_get_color_names(?string $theme = NULL): array {
+  return _dxpr_theme_get_color_inc('fields', $theme);
 }
 
 /**
  * Returns the color schemes.
  *
+ * @param string|null $theme
+ *   Theme machine name. When NULL the active theme is used.
+ *
  * @return array
  *   The 'schemes' sub-array.
  */
-function _dxpr_theme_get_color_schemes(): array {
-  return _dxpr_theme_get_color_inc('schemes');
+function _dxpr_theme_get_color_schemes(?string $theme = NULL): array {
+  return _dxpr_theme_get_color_inc('schemes', $theme);
 }
 
 /**
- * Returns the specified color scheme, defaults to 'default'.
+ * Returns the specified color scheme.
  *
  * @param string $scheme
  *   The color scheme machine name.
+ * @param string|null $theme
+ *   Theme machine name. When NULL the active theme is used.
  *
  * @return array
  *   The specified color scheme indexed by color machine names.
  */
-function _dxpr_theme_get_color_scheme(string $scheme = 'default'): array {
-  $schemes = _dxpr_theme_get_color_schemes();
-  return $schemes['default'] ?? [];
+function _dxpr_theme_get_color_scheme(string $scheme = 'default', ?string $theme = NULL): array {
+  $schemes = _dxpr_theme_get_color_schemes($theme);
+  return $schemes[$scheme]['colors'] ?? ($schemes['default']['colors'] ?? []);
 }
 
 /**
