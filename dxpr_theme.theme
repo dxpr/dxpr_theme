@@ -85,7 +85,7 @@ function dxpr_theme_preprocess_html(&$variables) {
     $color_scheme = 'custom';
   }
   $variables['html_attributes']
-    ->setAttribute('class', 'dxpr-scheme-' . $color_scheme);
+    ->setAttribute('class', 'dxpr-scheme-' . Html::cleanCssIdentifier($color_scheme));
 
   // Body background image.
   if (array_key_exists('node', $variables)) {

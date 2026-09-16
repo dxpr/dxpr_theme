@@ -373,15 +373,7 @@ function _dxpr_theme_font_stack($font = NULL) {
  *   Array containing requested data.
  */
 function _dxpr_theme_get_color_inc(?string $key = NULL, ?string $theme = NULL): array {
-  $theme_list = \Drupal::service('extension.list.theme');
-
-  // Load base theme settings.
-  $base_path = $theme_list->getPath('dxpr_theme');
-  $base_file = sprintf('%s/%s/features/sooper-colors/color-settings.json', DRUPAL_ROOT, $base_path);
-  $settings = [];
-  if ($base_path && file_exists($base_file)) {
-    $settings = Json::decode(file_get_contents($base_file)) ?: [];
-  }
+  static $cache = [];
 
   // Determine the active theme when none was specified.
   if ($theme === NULL) {
@@ -393,35 +385,50 @@ function _dxpr_theme_get_color_inc(?string $key = NULL, ?string $theme = NULL): 
     }
   }
 
-  // Merge sub-theme overrides when the theme is not the base theme itself.
-  if ($theme !== 'dxpr_theme') {
-    try {
-      $sub_path = $theme_list->getPath($theme);
+  if (!isset($cache[$theme])) {
+    $theme_list = \Drupal::service('extension.list.theme');
+
+    // Load base theme settings.
+    $base_path = $theme_list->getPath('dxpr_theme');
+    $base_file = sprintf('%s/%s/features/sooper-colors/color-settings.json', DRUPAL_ROOT, $base_path);
+    $settings = [];
+    if ($base_path && file_exists($base_file)) {
+      $settings = Json::decode(file_get_contents($base_file)) ?: [];
     }
-    catch (\Exception $e) {
-      $sub_path = NULL;
-    }
-    if ($sub_path) {
-      $sub_file = sprintf('%s/%s/color-settings.json', DRUPAL_ROOT, $sub_path);
-      if (file_exists($sub_file)) {
-        $sub_settings = Json::decode(file_get_contents($sub_file)) ?: [];
-        foreach ($sub_settings as $section => $values) {
-          if (is_array($values) && isset($settings[$section]) && is_array($settings[$section])) {
-            $settings[$section] = array_merge($settings[$section], $values);
-          }
-          else {
-            $settings[$section] = $values;
+
+    // Merge sub-theme overrides when the theme is not the base theme itself.
+    if ($theme !== 'dxpr_theme') {
+      try {
+        $sub_path = $theme_list->getPath($theme);
+      }
+      catch (\Exception $e) {
+        $sub_path = NULL;
+      }
+      if ($sub_path) {
+        $sub_file = sprintf('%s/%s/color-settings.json', DRUPAL_ROOT, $sub_path);
+        if (file_exists($sub_file)) {
+          $sub_settings = Json::decode(file_get_contents($sub_file)) ?: [];
+          foreach ($sub_settings as $section => $values) {
+            if (is_array($values) && isset($settings[$section]) && is_array($settings[$section])) {
+              $settings[$section] = array_merge($settings[$section], $values);
+            }
+            else {
+              $settings[$section] = $values;
+            }
           }
         }
       }
     }
+
+    $cache[$theme] = $settings;
   }
 
+  $settings = $cache[$theme];
   if ($settings) {
-    $data = $key ? ($settings[$key] ?? []) : $settings;
+    return $key ? ($settings[$key] ?? []) : $settings;
   }
 
-  return $data ?? [];
+  return [];
 }
 
 /**

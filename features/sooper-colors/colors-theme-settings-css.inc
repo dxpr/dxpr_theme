@@ -6,6 +6,7 @@
  */
 
 use Drupal\Component\Utility\Color;
+use Drupal\Component\Utility\Html;
 
 /**
  * Generate css color variables css styles.
@@ -25,6 +26,7 @@ function colors_theme_settings_css($theme, &$css, array $palette) {
   if ($scheme === 'current') {
     $scheme = 'custom';
   }
+  $scheme = Html::cleanCssIdentifier($scheme);
 
   // Add RGB CSS variable.
   $palette['header-rgb'] = implode(',', Color::hexToRgb($palette['header']));
