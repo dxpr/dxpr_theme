@@ -6,6 +6,7 @@
  */
 
 use Drupal\Component\Utility\Color;
+use Drupal\Component\Utility\Html;
 
 /**
  * Generate css color variables css styles.
@@ -20,6 +21,13 @@ use Drupal\Component\Utility\Color;
 function colors_theme_settings_css($theme, &$css, array $palette) {
   $color_prefix = _dxpr_theme_get_const('cssColorPrefix');
 
+  // Use the actual scheme name so sub-theme presets get their own CSS rule.
+  $scheme = theme_get_setting('color_scheme', $theme) ?? 'custom';
+  if ($scheme === 'current') {
+    $scheme = 'custom';
+  }
+  $scheme = Html::cleanCssIdentifier($scheme);
+
   // Add RGB CSS variable.
   $palette['header-rgb'] = implode(',', Color::hexToRgb($palette['header']));
 
@@ -32,7 +40,7 @@ function colors_theme_settings_css($theme, &$css, array $palette) {
   ));
 
   if ($css_variables) {
-    $css .= ":root.dxpr-scheme-custom {\n" . $css_variables . ";\n";
+    $css .= ":root.dxpr-scheme-" . $scheme . " {\n" . $css_variables . ";\n";
 
     // Add algorithmic subtle color generation.
     $css .= "  --dxt-color-basesubtle: color-mix(in srgb, white 80%, var(--dxt-color-base));\n";

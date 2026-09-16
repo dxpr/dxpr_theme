@@ -1,20 +1,7 @@
-For documentation on using this subtheme please see:
-https://dxpr.com/documentation/creating-dxpr-theme-drupal-9-subtheme
-
-## Custom colour palette presets
-
-Sub-themes can ship their own named colour palette presets by placing a
-`color-settings.json` file in the sub-theme root directory. These presets
-appear alongside the built-in ones in the theme settings colour scheme dropdown.
-
-The file uses the same format as the base theme's colour settings. A minimal
-example that adds one preset:
-
-```json
 {
   "schemes": {
-    "mybrand": {
-      "title": "My Brand",
+    "starter-brand": {
+      "title": "Starter Brand",
       "colors": {
         "base": "#2b6cb0",
         "basetext": "#ffffff",
@@ -45,8 +32,3 @@ example that adds one preset:
     }
   }
 }
-```
-
-You can define multiple presets in the same file. To override a built-in preset,
-use its machine name as the key (e.g. `"default"`). Sub-theme presets take
-precedence over base theme presets with the same key.
