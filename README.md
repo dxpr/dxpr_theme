@@ -177,6 +177,11 @@ softwarm, powerfulenergetic, brighthealthy,
 calmapproachable, neon, earthy, minimalistmonochrome,
 darkmode, aivibe, oceanblue, highcontrast).
 
+Sub-themes can define their own named colour palette presets by placing a
+`color-settings.json` in the sub-theme root directory. These presets are merged
+with the built-in ones and appear in the theme settings colour scheme dropdown.
+See `dxpr_theme_STARTERKIT/color-settings.json` for an example.
+
 | Variable | Description | Bootstrap Mapping |
 |----------|-------------|-------------------|
 | `--dxt-color-base` | Primary base color | `--bs-primary` |
