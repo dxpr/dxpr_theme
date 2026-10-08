@@ -18,7 +18,7 @@
   {% import _self as menus %}
   {% if items %}
     {% if menu_level == 0 %}
-<ul{{ attributes.addClass('menu', 'nav', 'navbar-nav', 'enhanced-dropdowns', 'level-1') }} role="menubar">
+<ul{{ attributes.addClass('menu', 'nav', 'navbar-nav', 'enhanced-dropdowns', 'level-1') }}>
   {% elseif menu_level == 1 %}
   {% set attributes = create_attribute() %}
   <ul{{ attributes.addClass('dropdown-menu', 'level-2') }}>
@@ -53,14 +53,13 @@
             {% if has_navigable_href %}
               {# Split Dropdown #}
               {% set item_classes = ['nav-item', 'dropdown', item.in_active_trail ? 'active'] %}
-              <li{{ item.attributes.addClass(item_classes) }} role="none">
+              <li{{ item.attributes.addClass(item_classes) }}>
                 <div class="bs-dropdown-wrapper">
                   <{{ item_link_tag }}
                   class="nav-link"
                   {% if item_href %}href="{{ item_href }}"{% endif %}
                   id="{{ item.title|clean_id }}Link"
-                  {% if item_link_tag == 'button' %}type="button"{% endif %}
-                  role="menuitem">{{ item.title }}</{{ item_link_tag }}>
+                  {% if item_link_tag == 'button' %}type="button"{% endif %}>{{ item.title }}</{{ item_link_tag }}>
                 <button class="bs-dropdown-caret"
                   type="button" aria-expanded="false"
                   data-bs-boundary="viewport"
@@ -81,7 +80,7 @@
             {% else %}
               {# Standard Full Toggle Dropdown #}
               {% set item_classes = ['nav-item', 'dropdown', item.in_active_trail ? 'active'] %}
-            <li{{ item.attributes.addClass(item_classes) }} role="none">
+            <li{{ item.attributes.addClass(item_classes) }}>
               <{{ item_link_tag }}
               class="nav-link dropdown-toggle"
               {% if item_href %}href="{{ item_href }}"{% endif %}
@@ -105,12 +104,11 @@
           {% else %}
             {# Simple top-level item #}
             {% set item_classes = ['nav-item', item.in_active_trail ? 'active'] %}
-          <li{{ item.attributes.addClass(item_classes) }} role="none">
+          <li{{ item.attributes.addClass(item_classes) }}>
             <{{ item_link_tag }}
             class="nav-link"
             {% if item_href %}href="{{ item_href }}"{% endif %}
-            {% if item_link_tag == 'button' %}type="button"{% endif %}
-            role="menuitem">{{ item.title }}</{{ item_link_tag }}>
+            {% if item_link_tag == 'button' %}type="button"{% endif %}>{{ item.title }}</{{ item_link_tag }}>
             </li>
           {% endif %}
 
@@ -121,14 +119,13 @@
 
             {% if has_navigable_href %}
               {# Nested Split Submenu Item #}
-              <li{{ item.attributes.addClass(item_classes) }} role="none">
+              <li{{ item.attributes.addClass(item_classes) }}>
                 <div class="bs-dropdown-item-wrapper">
                   <{{ item_link_tag }}
                   class="dropdown-item"
                   {% if item_href %}href="{{ item_href }}"{% endif %}
                   id="{{ item.title|clean_id }}Link"
-                  {% if item_link_tag == 'button' %}type="button"{% endif %}
-                  role="menuitem">{{ item.title }}</{{ item_link_tag }}>
+                  {% if item_link_tag == 'button' %}type="button"{% endif %}>{{ item.title }}</{{ item_link_tag }}>
                 <button class="bs-dropdown-caret"
                   type="button"
                   aria-expanded="false"
@@ -149,7 +146,7 @@
               </li>
             {% else %}
               {# Nested Full Toggle Submenu Item #}
-            <li{{ item.attributes.addClass(item_classes) }} role="none">
+            <li{{ item.attributes.addClass(item_classes) }}>
               <{{ item_link_tag }}
               class="dropdown-item dropdown-toggle"
               {% if item_href %}href="{{ item_href }}"{% endif %}
@@ -173,12 +170,11 @@
           {% else %}
             {# Simple dropdown item #}
             {% set item_classes = [item.in_active_trail ? 'active'] %}
-          <li{{ item.attributes.addClass(item_classes) }} role="none">
+          <li{{ item.attributes.addClass(item_classes) }}>
             <{{ item_link_tag }}
             class="dropdown-item"
             {% if item_href %}href="{{ item_href }}"{% endif %}
-            {% if item_link_tag == 'button' %}type="button"{% endif %}
-            role="menuitem">{{ item.title }}</{{ item_link_tag }}>
+            {% if item_link_tag == 'button' %}type="button"{% endif %}>{{ item.title }}</{{ item_link_tag }}>
             </li>
           {% endif %}
         {% endif %}
