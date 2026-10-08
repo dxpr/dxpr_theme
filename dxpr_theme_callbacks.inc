@@ -53,15 +53,13 @@ function dxpr_theme_css_cache_build(string $theme) {
     'allowed_classes' => FALSE,
   ]) ?: NULL;
 
-  // Fetch default palette using the merged scheme loader so sub-theme
-  // overrides of 'default' are respected.
-  if (empty($palette)) {
-    $schemes = _dxpr_theme_get_color_schemes($theme);
-    $palette = $schemes['default']['colors'] ?? [];
+  // Colors missing from the saved palette, or all of them, come from the
+  // default scheme; the merged loader respects sub-theme 'default' overrides.
+  $palette = array_filter(is_array($palette) ? $palette : [], fn($color) => is_string($color) && $color !== '');
+  $palette += _dxpr_theme_get_color_schemes($theme)['default']['colors'] ?? [];
 
-    if (empty($palette)) {
-      \Drupal::messenger()->addWarning(t('Could not create theme styles; please resave theme settings.'));
-    }
+  if (empty($palette)) {
+    \Drupal::messenger()->addWarning(t('Could not create theme styles; please resave theme settings.'));
   }
 
   // Construct CSS file:
