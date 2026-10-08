@@ -262,12 +262,17 @@ function _dxpr_theme_add_local_font($font, array &$variables) {
 function _dxpr_theme_add_local_font_preload_link($path, $font_family, array &$variables) {
   $font_families = _dxpr_theme_add_local_font_parse_font_families($path);
   if (!empty($font_families[$font_family])) {
+    // Relative font URLs resolve against the stylesheet, under base_path().
+    $url = $font_families[$font_family]['url'];
+    if (!preg_match('@^([a-z][a-z0-9+.-]*:|/)@i', $url)) {
+      $url = base_path() . dirname($path) . '/' . $url;
+    }
     $element = [
       '#type' => 'html_tag',
       '#tag' => 'link',
       '#attributes' => [
         'rel' => 'preload',
-        'href' => '/' . dirname($path) . '/' . $font_families[$font_family]['url'],
+        'href' => $url,
         'as' => 'font',
         'type' => 'font/' . $font_families[$font_family]['format'],
         'crossorigin' => 'anonymous',
