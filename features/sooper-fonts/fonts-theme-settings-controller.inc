@@ -227,8 +227,6 @@ function _dxpr_theme_remove_google_fonts() {
  *   Variables array.
  */
 function _dxpr_theme_add_local_font($font, array &$variables) {
-  global $base_url;
-
   $added_stylesheets = &drupal_static(__FUNCTION__);
   $added_stylesheets = $added_stylesheets ?? [];
 
@@ -238,7 +236,8 @@ function _dxpr_theme_add_local_font($font, array &$variables) {
     $element = [
       '#tag' => 'link',
       '#attributes' => [
-        'href' => $base_url . '/' . $path,
+        // Root-relative: an absolute $base_url is http:// behind TLS proxies.
+        'href' => base_path() . $path,
         'rel' => 'stylesheet',
         'preload' => 'preload',
       ],
