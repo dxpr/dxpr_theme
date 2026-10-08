@@ -57,7 +57,7 @@
   <div{{ attributes.setAttribute('class', classes).addClass(message_classes).setAttribute('role', 'alert') }}>
     <button type="button" role="button" class="btn-close" data-bs-dismiss="alert" aria-label="{{ 'Close'|t }}"></button>
     {% if status_headings[type] %}
-      <h4 class="sr-only">{{ status_headings[type] }}</h4>
+      <h4 class="visually-hidden">{{ status_headings[type] }}</h4>
     {% endif %}
     {% if messages|length > 1 %}
       <ul class="item-list item-list--messages">
