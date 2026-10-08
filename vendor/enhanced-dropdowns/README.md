@@ -115,7 +115,7 @@ See `index.html` for complete examples.
 | `Tab` | Move between top-level items |
 | `↓` / `↑` | Navigate within dropdown |
 | `Enter` / `Space` | Activate item |
-| `Escape` | Close dropdown |
+| `Escape` | Close the dropdown or submenu, return focus to its toggle |
 | `←` | Close submenu, return to parent |
 
 Toggles that are not natively focusable, such as a `<span>` for a menu
