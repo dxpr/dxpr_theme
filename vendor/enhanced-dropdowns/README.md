@@ -58,20 +58,24 @@
 
 ## HTML Patterns
 
-Wrap navigation in `<ul class="navbar-nav" role="menubar">`.
+Wrap navigation in `<ul class="navbar-nav">`. The markup follows the WAI
+[disclosure navigation pattern](https://www.w3.org/WAI/ARIA/apg/patterns/disclosure/examples/disclosure-navigation/):
+links stay links and toggles are buttons that expose `aria-expanded`. Do not
+add `menubar`, `menu`, `menuitem` or `none` roles; they promise application
+menu behavior and fail `aria-required-children` next to button toggles.
 
 ### Split Dropdown (Top-Level)
 
 ```html
-<li class="nav-item dropdown" role="none">
+<li class="nav-item dropdown">
   <div class="bs-dropdown-wrapper">
-    <a class="nav-link" href="/features" role="menuitem">Features</a>
+    <a class="nav-link" href="/features">Features</a>
     <button class="bs-dropdown-caret" type="button" aria-expanded="false">
       <span class="visually-hidden">Toggle submenu</span>
     </button>
   </div>
   <ul class="dropdown-menu">
-    <li><a class="dropdown-item" href="/overview" role="menuitem">Overview</a></li>
+    <li><a class="dropdown-item" href="/overview">Overview</a></li>
   </ul>
 </li>
 ```
@@ -79,12 +83,12 @@ Wrap navigation in `<ul class="navbar-nav" role="menubar">`.
 ### Standard Bootstrap Dropdown
 
 ```html
-<li class="nav-item dropdown" role="none">
-  <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+<li class="nav-item dropdown">
+  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     About
   </a>
   <ul class="dropdown-menu">
-    <li><a class="dropdown-item" href="/team" role="menuitem">Team</a></li>
+    <li><a class="dropdown-item" href="/team">Team</a></li>
   </ul>
 </li>
 ```
@@ -98,7 +102,7 @@ Wrap navigation in `<ul class="navbar-nav" role="menubar">`.
 | `.bs-dropdown-caret` | Clickable caret button |
 | `.bs-dropdown-submenu` | Container for nested dropdown |
 
-See `index.html` and `demo.html` for complete examples.
+See `index.html` for complete examples.
 
 ---
 
@@ -114,6 +118,10 @@ See `index.html` and `demo.html` for complete examples.
 | `Escape` | Close dropdown |
 | `←` | Close submenu, return to parent |
 
+Toggles that are not natively focusable, such as a `<span>` for a menu
+parent without a link, get `tabindex="0"` and `role="button"`
+automatically.
+
 ### WCAG Compliance
 
 | Criterion | Level | Description |
@@ -122,7 +130,7 @@ See `index.html` and `demo.html` for complete examples.
 | 2.1.2 No Keyboard Trap | A | Tab and Escape always allow exiting menus |
 | 2.4.7 Focus Visible | AA | Clear focus indicators on all interactive elements |
 | 1.4.13 Content on Hover or Focus | AA | Hover menus persist, dismissible via Escape |
-| 4.1.2 Name, Role, Value | A | ARIA roles and states (`aria-expanded`, `aria-controls`) |
+| 4.1.2 Name, Role, Value | A | Disclosure buttons with `aria-expanded` and `aria-controls`; no menu roles |
 | 2.5.5 Target Size | AAA | Caret toggles meet 44×44px minimum |
 
 ---

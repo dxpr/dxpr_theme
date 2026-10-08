@@ -99,7 +99,16 @@ class BootstrapEnhancedDropdowns {
     return dropdownInstance;
   }
 
+  _ensureFocusable(toggleElement) {
+    // Toggles without href, such as Drupal <nolink> spans, must be reachable
+    // by keyboard and announced as buttons (WCAG 2.1.1, 4.1.2).
+    if (toggleElement.matches('button, input, select, textarea, a[href], [tabindex]')) return;
+    toggleElement.setAttribute('tabindex', '0');
+    if (!toggleElement.hasAttribute('role')) toggleElement.setAttribute('role', 'button');
+  }
+
   _attachKeyboardHandler(toggleElement, dropdownInstance) {
+    this._ensureFocusable(toggleElement);
     // Shared keyboard handler for Enter/Space keys
     toggleElement.addEventListener('keydown', (event) => {
       if (event.key === 'Enter' || event.key === ' ') {
