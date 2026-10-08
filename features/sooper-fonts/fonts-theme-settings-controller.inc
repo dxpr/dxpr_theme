@@ -294,17 +294,24 @@ function _dxpr_theme_add_local_font_parse_font_families($path) {
   $font_families = $font_families ?? [];
   if (!isset($font_families[$path])) {
     $font_families[$path] = [];
-    if ($wrapper = \Drupal::service('stream_wrapper_manager')->getViaUri($path)) {
-      $local_path = $wrapper->realpath();
+    // Theme font paths have no stream wrapper: read them from the Drupal root.
+    $wrapper = \Drupal::service('stream_wrapper_manager')->getViaUri($path);
+    $local_path = $wrapper ? $wrapper->realpath() : \Drupal::root() . '/' . $path;
+    if ($local_path && is_file($local_path)) {
       $content = file_get_contents($local_path);
       preg_match_all('/@font-face\s*{([\s\S]*?)}/i', $content, $font_faces);
       foreach ($font_faces[1] as $font_face) {
-        if (preg_match('/font-family: [\'"](.*?)[\'"]/i', $font_face, $font_family)) {
-          $font_families[$path][$font_family[1]] = [];
-          if (preg_match('/src[\s]*:[\s]*url\([\'"]*(.+?)[\'"]*\)[\s]*format\([\'"]*(.+?)[\'"]*\)/i', $font_face, $matches)) {
+        if (preg_match('/font-family: [\'"](.*?)[\'"]/i', $font_face, $font_family)
+          && preg_match('/src[\s]*:[\s]*url\([\'"]*(.+?)[\'"]*\)[\s]*format\([\'"]*(.+?)[\'"]*\)/i', $font_face, $matches)) {
+          // Preload one face per family: the regular one, else the first.
+          $regular = !preg_match('/font-weight\s*:\s*+(?!400\b|normal\b)/i', $font_face)
+            && !preg_match('/font-style\s*:\s*(italic|oblique)/i', $font_face);
+          $current = $font_families[$path][$font_family[1]] ?? NULL;
+          if (!$current || ($regular && !$current['regular'])) {
             $font_families[$path][$font_family[1]] = [
               'url' => $matches[1],
               'format' => $matches[2],
+              'regular' => $regular,
             ];
           }
         }
