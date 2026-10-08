@@ -77,7 +77,8 @@
   margin-inline-start: 0.255em;
 }
 
-/* Focus visible - same styling as hover for consistent appearance */
+/* Focus visible - hover colors plus an outline in the text color, which stays
+   visible when a theme overrides the colors (WCAG 2.4.7) */
 .bs-dropdown-wrapper > .nav-link:focus-visible,
 .bs-dropdown-item-wrapper > .dropdown-item:focus-visible,
 .bs-dropdown-wrapper > .bs-dropdown-caret:focus-visible,
@@ -86,7 +87,8 @@
 .dropdown-menu .dropdown-item.dropdown-toggle:focus-visible {
   color: var(--bs-primary-text-emphasis);
   background-color: var(--bs-primary-bg-subtle);
-  outline: none;
+  outline: 2px solid currentcolor;
+  outline-offset: -2px;
   box-shadow: none;
 }
 
@@ -105,7 +107,6 @@
 .bs-dropdown-item-wrapper > .bs-dropdown-caret:focus {
   color: var(--bs-primary-text-emphasis);
   background-color: var(--bs-primary-bg-subtle);
-  outline: none;
 }
 
 /* Dropdown Menu Base */
