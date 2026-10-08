@@ -568,7 +568,7 @@ function dxpr_theme_form_search_form_alter(&$form, FormStateInterface $form_stat
  */
 function dxpr_theme_form_search_block_form_alter(&$form, FormStateInterface $form_state, $form_id) {
   $form['actions']['#type'] = 'submit';
-  $form['keys']['#placeholder'] = 'Search';
+  $form['keys']['#placeholder'] = t('Search');
   $form['actions']['#icon'] = TRUE;
   unset($form['actions']['submit']);
 }
@@ -585,6 +585,10 @@ function dxpr_theme_preprocess_input(&$variables) {
     if ($element['#id'] === 'full_screen_search') {
       $variables['icon'] = TRUE;
     }
+  }
+  // Icon-only buttons need a text alternative.
+  if (!empty($variables['icon'])) {
+    $variables['label'] = (string) ($element['#value'] ?? '') ?: t('Search');
   }
   $variables['#attached']['library'][] = 'dxpr_theme/drupal-search';
 }
