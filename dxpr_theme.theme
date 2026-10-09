@@ -586,8 +586,8 @@ function dxpr_theme_preprocess_input(&$variables) {
       $variables['icon'] = TRUE;
     }
   }
-  // Icon-only buttons need a text alternative.
-  if (!empty($variables['icon'])) {
+  // Icon-only buttons need a text alternative when aria-label is absent.
+  if (!empty($variables['icon']) && empty($element['#attributes']['aria-label'])) {
     $variables['label'] = (string) ($element['#value'] ?? '') ?: t('Search');
   }
   $variables['#attached']['library'][] = 'dxpr_theme/drupal-search';
