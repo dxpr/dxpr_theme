@@ -234,10 +234,8 @@ function dxpr_theme_preprocess_page(&$variables) {
   ];
   $variables['navbar_attributes'] = new Attribute($variables['navbar_attributes']);
 
-  $hide_regions = $local_hide = [];
-  if (theme_get_setting('hidden_regions') && !empty(array_keys(array_filter(theme_get_setting('hidden_regions'))))) {
-    $hide_regions = array_keys(array_filter(theme_get_setting('hidden_regions')));
-  }
+  $local_hide = [];
+  $hide_regions = dxpr_theme_get_enabled_regions('hidden_regions');
   if (!empty($variables['node'])
     && $variables['node'] instanceof NodeInterface
     && $variables['node']->hasField('field_dth_hide_regions')) {
@@ -453,6 +451,29 @@ function dxpr_theme_preprocess_links__language_block(&$variables) {
 }
 
 /**
+ * Gets the regions that are enabled in a checkbox list theme setting.
+ *
+ * Theme settings are not guaranteed to be present: a sub-theme may never have
+ * saved the setting, and theme_get_setting() only returns the global theme
+ * settings when Drupal's cached theme list is stale, for example right after
+ * a core update until the caches are rebuilt. Callers must not rely on the
+ * setting being an array.
+ *
+ * @param string $setting_name
+ *   The name of the theme setting that stores regions as checkbox values.
+ *
+ * @return string[]
+ *   The machine names of the enabled regions.
+ */
+function dxpr_theme_get_enabled_regions(string $setting_name): array {
+  $regions = theme_get_setting($setting_name);
+  if (!is_array($regions)) {
+    return [];
+  }
+  return array_keys(array_filter($regions));
+}
+
+/**
  * Implements template_preprocess_region()
  */
 function dxpr_theme_preprocess_region(&$variables) {
@@ -474,10 +495,8 @@ function dxpr_theme_preprocess_region(&$variables) {
   }
 
   // Apply class to block design regions.
-  if ($block_design_regions = array_keys(array_filter(theme_get_setting('block_design_regions')))) {
-    if (in_array($variables['region'], $block_design_regions)) {
-      $variables['attributes']['class'][] = 'region-block-design';
-    }
+  if (in_array($variables['region'], dxpr_theme_get_enabled_regions('block_design_regions'), TRUE)) {
+    $variables['attributes']['class'][] = 'region-block-design';
   }
 }
 
