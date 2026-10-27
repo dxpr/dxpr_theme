@@ -215,8 +215,9 @@ function dxpr_theme_post_update_n6_strip_custom_javascript_script_tags() {
     $config = \Drupal::configFactory()->getEditable($theme_name . '.settings');
     $custom_js = $config->get('custom_javascript_site');
     // One or more script elements without attributes (or with the JavaScript
-    // type) and nothing else.
-    $bare_script_blocks = '~^\s*(?:<script(?:\s+type\s*=\s*(["\']?)text/javascript\1)?\s*>.*?</script>\s*)+$~is';
+    // type) and nothing else. The body of a block ends at its own closing
+    // tag, so that a later script element cannot be taken as part of it.
+    $bare_script_blocks = '~^\s*(?:<script(?:\s+type\s*=\s*(["\']?)text/javascript\1)?\s*>(?:(?!</script).)*</script>\s*)+$~is';
     if (!is_string($custom_js) || !preg_match($bare_script_blocks, $custom_js)) {
       continue;
     }
