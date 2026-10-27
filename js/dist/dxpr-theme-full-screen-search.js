@@ -13,6 +13,17 @@
         searchForm.dataset.movedToBody = "true";
       }
 
+      // Announce the state change to screen readers, in the page language.
+      // The build shortens the Drupal parameter, and Drupal only collects
+      // strings from literal Drupal.t() calls, hence window.Drupal.
+      function announce(isVisible) {
+        if (searchStatus) {
+          searchStatus.textContent = isVisible
+            ? window.Drupal.t("Search opened")
+            : window.Drupal.t("Search closed");
+        }
+      }
+
       function clearSearchForm() {
         searchForm.classList.toggle("invisible");
         document.body.classList.toggle("body--full-screen-search");
@@ -21,13 +32,7 @@
         const isVisible = !searchForm.classList.contains("invisible");
         searchButton.setAttribute("aria-expanded", isVisible.toString());
         searchForm.setAttribute("aria-hidden", (!isVisible).toString());
-
-        // Announce state change to screen readers
-        if (searchStatus) {
-          searchStatus.textContent = isVisible
-            ? "Search opened"
-            : "Search closed";
-        }
+        announce(isVisible);
 
         setTimeout(() => {
           searchFormInput.value = "";
@@ -43,13 +48,7 @@
         const isVisible = !searchForm.classList.contains("invisible");
         searchButton.setAttribute("aria-expanded", isVisible.toString());
         searchForm.setAttribute("aria-hidden", (!isVisible).toString());
-
-        // Announce state change to screen readers
-        if (searchStatus) {
-          searchStatus.textContent = isVisible
-            ? "Search opened"
-            : "Search closed";
-        }
+        announce(isVisible);
 
         searchFormInput.focus();
       }
