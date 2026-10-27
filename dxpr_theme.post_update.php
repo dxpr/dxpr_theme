@@ -194,9 +194,10 @@ function dxpr_theme_post_update_n5_rebuild_font_css() {
  *
  * The theme now wraps the value of Advanced > Custom JavaScript in a script
  * element itself. Values saved before that had to carry their own script tags,
- * so remove those to store the raw JavaScript the field now expects. Values
- * that load external scripts (script tags with a src attribute) are left
- * untouched because they are still rendered as they are.
+ * so remove those to store the raw JavaScript the field now expects. Only a
+ * value that consists of nothing but bare script blocks is changed. Anything
+ * else, such as scripts with attributes or a src, noscript fallbacks, JSON-LD
+ * or styles, is still rendered as it is and is left untouched.
  */
 function dxpr_theme_post_update_n6_strip_custom_javascript_script_tags() {
   /** @var \Drupal\Core\Extension\ThemeHandler $theme_handler */
@@ -213,12 +214,10 @@ function dxpr_theme_post_update_n6_strip_custom_javascript_script_tags() {
 
     $config = \Drupal::configFactory()->getEditable($theme_name . '.settings');
     $custom_js = $config->get('custom_javascript_site');
-    if (!is_string($custom_js) || stripos($custom_js, '<script') === FALSE) {
-      continue;
-    }
-
-    // Keep values that include external scripts; they still render verbatim.
-    if (preg_match('/<script\b[^>]*\bsrc\s*=/i', $custom_js)) {
+    // One or more script elements without attributes (or with the JavaScript
+    // type) and nothing else.
+    $bare_script_blocks = '~^\s*(?:<script(?:\s+type\s*=\s*(["\']?)text/javascript\1)?\s*>.*?</script>\s*)+$~is';
+    if (!is_string($custom_js) || !preg_match($bare_script_blocks, $custom_js)) {
       continue;
     }
 

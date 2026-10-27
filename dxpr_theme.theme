@@ -123,9 +123,10 @@ function dxpr_theme_preprocess_html(&$variables) {
   }
 
   if ($custom_js = theme_get_setting('custom_javascript_site')) {
-    // The field takes raw JavaScript; wrap it in a script element unless the
-    // value already contains its own script tags.
-    if (stripos($custom_js, '<script') === FALSE) {
+    // The field takes raw JavaScript; wrap it in a script element. A value
+    // that starts with a tag is markup (a script with attributes, a noscript
+    // fallback, JSON-LD, styles) and is printed as it is.
+    if (!str_starts_with(ltrim($custom_js), '<')) {
       $custom_js = "<script>\n" . $custom_js . "\n</script>";
     }
     $variables['page_bottom']['custom_javascript_site'] = [
