@@ -37,16 +37,11 @@ const { dxpr_themeMenuGovernorBodyClass } = require("./menu-governor-body");
   // the menu the state it would have had on that side of it.
   let isMobileLayout = window.innerWidth <= navBreak;
 
-  function dxpr_themeMenuSyncLayout() {
-    const isMobile = window.innerWidth <= navBreak;
-    if (isMobile === isMobileLayout) {
-      return;
-    }
-    isMobileLayout = isMobile;
-
+  function dxpr_themeMenuApplyLayout(isMobile) {
     const menu = document.getElementById("dxpr-theme-main-menu");
     menu.classList.toggle("collapse", isMobile);
-    menu.classList.remove("show", "menu--open");
+    menu.classList.remove("collapsing", "show", "menu--open");
+    menu.style.removeProperty("height");
     document.documentElement.classList.remove(
       "html--dxpr-theme-nav-mobile--open",
     );
@@ -55,6 +50,30 @@ const { dxpr_themeMenuGovernorBodyClass } = require("./menu-governor-body");
       toggle.classList.add("collapsed");
       toggle.classList.remove("navbar-toggle--active");
       toggle.setAttribute("aria-expanded", "false");
+    }
+  }
+
+  function dxpr_themeMenuSyncLayout() {
+    const isMobile = window.innerWidth <= navBreak;
+    if (isMobile === isMobileLayout) {
+      return;
+    }
+    isMobileLayout = isMobile;
+
+    const menu = document.getElementById("dxpr-theme-main-menu");
+    const transitioning = menu.classList.contains("collapsing");
+    dxpr_themeMenuApplyLayout(isMobile);
+
+    // Bootstrap ends a running collapse transition with its own classes, so
+    // the layout is applied again when it does.
+    if (transitioning) {
+      const reapply = () => {
+        menu.removeEventListener("hidden.bs.collapse", reapply);
+        menu.removeEventListener("shown.bs.collapse", reapply);
+        dxpr_themeMenuApplyLayout(window.innerWidth <= navBreak);
+      };
+      menu.addEventListener("hidden.bs.collapse", reapply);
+      menu.addEventListener("shown.bs.collapse", reapply);
     }
   }
 
