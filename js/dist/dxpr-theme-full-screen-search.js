@@ -54,9 +54,11 @@
       }
 
       function handleSearchFormClick(ele) {
-        if (!ele.target.classList.contains("search-query")) {
-          clearSearchForm();
+        // Taps on the input, the submit button and labels belong to the form.
+        if (ele.target.closest("input, button, label, a")) {
+          return;
         }
+        clearSearchForm();
       }
 
       // Handle the search button click or touchstart
@@ -65,22 +67,25 @@
         searchButton.addEventListener("click", handleSearchButtonClick);
       }
 
-      // Handle the search form click or touchstart
+      // Handle the search form click. A click covers touch screens too, and a
+      // touchstart handler would hide the form before the click, so that the
+      // tap fell through to the page behind it.
       if (searchForm && once("search-form", searchForm).length) {
-        searchForm.addEventListener("touchstart", handleSearchFormClick);
         searchForm.addEventListener("click", handleSearchFormClick);
       }
 
-      // Handle the escape key to close the search form
-      document.addEventListener("keydown", (event) => {
-        if (
-          event.key === "Escape" && // Check if Escape key is pressed
-          !searchForm.classList.contains("invisible") // Ensure the form is visible
-        ) {
-          clearSearchForm(); // Call the function to clear the form
-          searchButton.focus(); // Return focus to the search button
-        }
-      });
+      // Handle the escape key to close the search form, once per page.
+      if (once("search-escape", "html").length) {
+        document.addEventListener("keydown", (event) => {
+          if (
+            event.key === "Escape" && // Check if Escape key is pressed
+            !searchForm.classList.contains("invisible") // Ensure the form is visible
+          ) {
+            clearSearchForm(); // Call the function to clear the form
+            searchButton.focus(); // Return focus to the search button
+          }
+        });
+      }
     },
   };
 })(Drupal, once);
