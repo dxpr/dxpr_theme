@@ -14,7 +14,7 @@
       }
 
       // Announce the state change to screen readers, in the page language.
-      // The minifier shortens the Drupal parameter, and Drupal only collects
+      // The build shortens the Drupal parameter, and Drupal only collects
       // strings from literal Drupal.t() calls, hence window.Drupal.
       function announce(isVisible) {
         if (searchStatus) {
