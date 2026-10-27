@@ -16,7 +16,11 @@
       }
       const currentPath = window.location.pathname;
       const currentOrigin = window.location.origin;
-      const menuLinks = document.querySelectorAll(".menu--main a[href]");
+      // The links of the main menu list. The language switcher and other
+      // blocks in the same navigation element are not part of the menu.
+      const menuLinks = document.querySelectorAll(
+        "#dxpr-theme-main-menu .navbar-nav a[href]",
+      );
       menuLinks.forEach((link) => {
         const rawHref = link.getAttribute("href");
         if (!rawHref || rawHref.startsWith("#")) {
