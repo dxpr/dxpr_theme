@@ -32,6 +32,32 @@ const { dxpr_themeMenuGovernorBodyClass } = require("./menu-governor-body");
     setupStickyHeader();
   }
 
+  // The inline script of html.html.twig sets the collapse class of the main
+  // menu once, when the page loads. Crossing the breakpoint later has to give
+  // the menu the state it would have had on that side of it.
+  let isMobileLayout = window.innerWidth <= navBreak;
+
+  function dxpr_themeMenuSyncLayout() {
+    const isMobile = window.innerWidth <= navBreak;
+    if (isMobile === isMobileLayout) {
+      return;
+    }
+    isMobileLayout = isMobile;
+
+    const menu = document.getElementById("dxpr-theme-main-menu");
+    menu.classList.toggle("collapse", isMobile);
+    menu.classList.remove("show", "menu--open");
+    document.documentElement.classList.remove(
+      "html--dxpr-theme-nav-mobile--open",
+    );
+    const toggle = document.getElementById("dxpr-theme-menu-toggle");
+    if (toggle) {
+      toggle.classList.add("collapsed");
+      toggle.classList.remove("navbar-toggle--active");
+      toggle.setAttribute("aria-expanded", "false");
+    }
+  }
+
   function dxpr_themeMenuGovernor(context) {
     if (window.innerWidth > navBreak) {
       setupDesktopMenu();
@@ -85,6 +111,7 @@ const { dxpr_themeMenuGovernorBodyClass } = require("./menu-governor-body");
     "resize",
     debounce(() => {
       if (document.querySelectorAll("#dxpr-theme-main-menu .nav").length > 0) {
+        dxpr_themeMenuSyncLayout();
         dxpr_themeMenuGovernorBodyClass();
         dxpr_themeMenuGovernor(document);
 
