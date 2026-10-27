@@ -17,9 +17,9 @@ function setupMobileMenu() {
       .classList.toggle("html--dxpr-theme-nav-mobile--open");
   };
 
-  // The header calls this function on every resize at mobile widths, and
-  // phones fire resize whenever the address bar slides away. Without once()
-  // each call would add another listener that toggles the menu again.
+  // The header calls this function whenever the window changes size at mobile
+  // widths, and phones change it each time the address bar slides away.
+  // Without once() every call would add a listener that toggles the menu again.
 
   // Mobile menu toggle
   once("dxpr-theme-menu-toggle", "#dxpr-theme-menu-toggle").forEach(
