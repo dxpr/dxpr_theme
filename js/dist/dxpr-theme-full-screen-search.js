@@ -1,4 +1,9 @@
 (function (Drupal, once) {
+  // The elements of the latest attachment. The Escape listener is bound once
+  // and reads them when the key is pressed, so that it also works after an
+  // AJAX update has replaced the search form and button.
+  let current = null;
+
   Drupal.behaviors.fullScreenSearch = {
     attach(context, settings) {
       const searchButton = document.querySelector(".full-screen-search-button");
@@ -74,15 +79,18 @@
         searchForm.addEventListener("click", handleSearchFormClick);
       }
 
+      current = { searchForm, searchButton, clearSearchForm };
+
       // Handle the escape key to close the search form, once per page.
       if (once("search-escape", "html").length) {
         document.addEventListener("keydown", (event) => {
           if (
             event.key === "Escape" && // Check if Escape key is pressed
-            !searchForm.classList.contains("invisible") // Ensure the form is visible
+            current &&
+            !current.searchForm.classList.contains("invisible") // Ensure the form is visible
           ) {
-            clearSearchForm(); // Call the function to clear the form
-            searchButton.focus(); // Return focus to the search button
+            current.clearSearchForm(); // Call the function to clear the form
+            current.searchButton.focus(); // Return focus to the search button
           }
         });
       }
