@@ -102,7 +102,9 @@ function _dxpr_theme_add_google_fonts(array $google_fonts, array &$variables) {
   if ($wrapper = \Drupal::service('stream_wrapper_manager')->getViaUri($fonts_folder_uri . '/font-face.css')) {
     $local_path = $wrapper->realpath();
 
-    if (!empty($local_path)) {
+    // A failed download leaves no file, and realpath() still returns the path
+    // where it would be.
+    if (!empty($local_path) && is_file($local_path)) {
       $file_content = file_get_contents($local_path);
       $file_content = str_replace(["\r", "\n"], '', $file_content);
 
@@ -161,7 +163,7 @@ function _dxpr_theme_cache_google_fonts(array $google_fonts, string $fonts_folde
 
   // Store font-face css file.
   try {
-    $response = $http_client->request('GET', '//fonts.googleapis.com/css2?' . $fonts_url . 'display=swap', [
+    $response = $http_client->request('GET', 'https://fonts.googleapis.com/css2?' . $fonts_url . 'display=swap', [
       'headers' => [
         'User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.82 Safari/537.36',
       ],
