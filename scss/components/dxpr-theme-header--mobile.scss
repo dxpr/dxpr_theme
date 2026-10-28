@@ -291,9 +291,10 @@ html.html--dxpr-theme-nav-mobile--open {
 
   // Body padding for mobile fixed header - content needs space for the fixed header.
   // For anonymous/regular users: Drupal sets --drupal-displace-offset-top to empty string "",
-  // so calc() with it becomes invalid. Use only header height for these users.
+  // so calc() with it becomes invalid. Use the header height plus 16px of
+  // breathing room above the page title for these users.
   &:has(#navbar.header-mobile-fixed):not(.toolbar-horizontal, .toolbar-vertical, .toolbar-fixed) {
-    padding-top: var(--dxt-setting-header-mobile-height) !important;
+    padding-top: calc(var(--dxt-setting-header-mobile-height) + 16px) !important;
   }
 
   // For administrators with toolbar: use calc() with displacement offset.
