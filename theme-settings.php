@@ -5,7 +5,6 @@
  * DXPR Theme settings.
  */
 
-use Drupal\Core\File\Exception\FileException;
 use Drupal\media\Entity\Media;
 use Drupal\node\Entity\NodeType;
 
@@ -189,29 +188,20 @@ function dxpr_theme_form_system_theme_settings_validate(&$form, &$form_state) {
  * @see \Drupal\system\Form\ThemeSettingsForm::submitForm()
  */
 function dxpr_theme_form_system_theme_settings_submit(&$form, &$form_state) {
-  $value = $form_state->getValue('page_title_image');
-  if (!empty($value)) {
-    $media = Media::load(($value));
-    try {
-      $media_url = $media->field_media_image->entity->getFileUri();
-      $form_state->setValue('page_title_image_path', $media_url);
+  // Store the file URI of the media item selected for each image. A media item
+  // that was deleted, or that has no image field, leaves the path as it is.
+  foreach (['page_title_image', 'background_image'] as $name) {
+    $value = $form_state->getValue($name);
+    if (empty($value)) {
+      continue;
     }
-    catch (FileException $e) {
-      \Drupal::messenger()->addMessage($e->getMessage(), 'error');
-      \Drupal::logger('dxpr_theme')->error($e->getMessage());
+    $media = Media::load($value);
+    $file = $media && $media->hasField('field_media_image') ? $media->get('field_media_image')->entity : NULL;
+    if ($file) {
+      $form_state->setValue($name . '_path', $file->getFileUri());
     }
-  }
-
-  $value = $form_state->getValue('background_image');
-  if (!empty($value)) {
-    $media = Media::load(($value));
-    try {
-      $media_url = $media->field_media_image->entity->getFileUri();
-      $form_state->setValue('background_image_path', $media_url);
-    }
-    catch (FileException $e) {
-      \Drupal::messenger()->addMessage($e->getMessage(), 'error');
-      \Drupal::logger('dxpr_theme')->error($e->getMessage());
+    else {
+      \Drupal::messenger()->addWarning(t('The selected media item is no longer available or has no image, so its image path was not changed.'));
     }
   }
 
