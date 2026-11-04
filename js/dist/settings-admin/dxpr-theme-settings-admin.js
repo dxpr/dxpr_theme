@@ -62,6 +62,20 @@ const { handleDocumentEvents, setFieldValue } = require("./block-handler");
               massageFieldValue(setting, value, cssVarColorsPrefix),
           ),
       );
+
+      // Re-apply the font preview when its CSS Selector field changes.
+      document
+        .querySelectorAll('[name$="_font_face_selector"]')
+        .forEach((selectorField) => {
+          selectorField.addEventListener("input", () => {
+            const fontField = document.querySelector(
+              `[name="${selectorField.name.replace(/_selector$/, "")}"]`,
+            );
+            if (fontField) {
+              fontField.dispatchEvent(new Event("change", { bubbles: true }));
+            }
+          });
+        });
     },
 
     getInputName(setting) {

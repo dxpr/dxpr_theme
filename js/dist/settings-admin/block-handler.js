@@ -341,11 +341,20 @@ function handleDocumentEvents(event, updateFieldValue) {
         "block_divider_spacing",
       ].forEach((key) => {
         const cssVarName = key.replace(/[_]/g, "-");
-        document.documentElement.style.removeProperty(`--${cssVarName}`);
+        document.documentElement.style.removeProperty(
+          `--dxt-setting-${cssVarName}`,
+        );
       });
     }
 
-    if (id === "edit-block-divider" && targetElement.checked) {
+    // Apply divider defaults only when the user enables the checkbox.
+    // Programmatic change events (page load / preview init) must not
+    // overwrite saved length, thickness, or spacing.
+    if (
+      id === "edit-block-divider" &&
+      targetElement.checked &&
+      event.isTrusted
+    ) {
       const set = {
         block_divider_length: 0,
         block_divider_thickness: 4,
@@ -387,17 +396,6 @@ function initializeBlockPreview() {
 
     if (titleCardField) {
       titleCardField.dispatchEvent(
-        new Event("change", {
-          bubbles: true,
-          cancelable: true,
-        }),
-      );
-    }
-
-    // Also check if block divider is enabled
-    const blockDivider = document.getElementById("edit-block-divider");
-    if (blockDivider && blockDivider.checked) {
-      blockDivider.dispatchEvent(
         new Event("change", {
           bubbles: true,
           cancelable: true,

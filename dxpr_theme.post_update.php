@@ -123,3 +123,118 @@ function dxpr_theme_post_update_n3_settings_update() {
 
   return t('Theme settings CSS file has been updated.');
 }
+
+/**
+ * Migrate existing sites from "default" to "dxpr-theme-2025" color scheme.
+ *
+ * The default scheme changed from blue/green to monochrome. Existing sites
+ * that use the old default are migrated to "dxpr-theme-2025" to preserve their look.
+ */
+function dxpr_theme_post_update_n4_migrate_default_scheme() {
+  /** @var \Drupal\Core\Extension\ThemeHandler $theme_handler */
+  $theme_handler = \Drupal::service('theme_handler');
+  $theme_list = $theme_handler->listInfo();
+
+  require_once $theme_handler
+    ->getTheme('dxpr_theme')
+    ->getPath() . '/dxpr_theme_callbacks.inc';
+
+  /** @var \Drupal\Core\Extension\Extension $theme */
+  foreach ($theme_list as $theme) {
+    $theme_name = $theme->getName();
+    if ('dxpr_theme' === ($theme->info['base theme'] ?? '') || 'dxpr_theme' === $theme_name) {
+      $config = \Drupal::configFactory()
+        ->getEditable($theme_name . '.settings');
+      $scheme = $config->get('color_scheme');
+
+      if ($scheme === 'default' || $scheme === NULL) {
+        $config->set('color_scheme', 'dxpr-theme-2025');
+        $config->save();
+      }
+
+      if (function_exists('dxpr_theme_css_cache_build')) {
+        dxpr_theme_css_cache_build($theme_name);
+      }
+    }
+  }
+
+  return t('Sites using the old default color scheme have been migrated to "dxpr-theme-2025".');
+}
+
+/**
+ * Rebuild theme CSS to pick up font-weight/style cascade changes.
+ *
+ * The generated CSS no longer emits hardcoded font-weight and font-style
+ * with !important. Existing sites keep a stale file until this runs.
+ */
+function dxpr_theme_post_update_n5_rebuild_font_css() {
+  /** @var \Drupal\Core\Extension\ThemeHandler $theme_handler */
+  $theme_handler = \Drupal::service('theme_handler');
+  $theme_list = $theme_handler->listInfo();
+
+  require_once $theme_handler
+    ->getTheme('dxpr_theme')
+    ->getPath() . '/dxpr_theme_callbacks.inc';
+
+  /** @var \Drupal\Core\Extension\Extension $theme */
+  foreach ($theme_list as $theme) {
+    $theme_name = $theme->getName();
+    if ('dxpr_theme' === ($theme->info['base theme'] ?? '') || 'dxpr_theme' === $theme_name) {
+      if (function_exists('dxpr_theme_css_cache_build')) {
+        dxpr_theme_css_cache_build($theme_name);
+      }
+    }
+  }
+
+  return t('Theme CSS rebuilt to apply font-weight and font-style cascade changes.');
+}
+
+/**
+ * Strip script tags from the Custom JavaScript setting.
+ *
+ * The theme now wraps the value of Advanced > Custom JavaScript in a script
+ * element itself. Values saved before that had to carry their own script tags,
+ * so remove those to store the raw JavaScript the field now expects. Only a
+ * value that consists of nothing but bare script blocks is changed. Anything
+ * else, such as scripts with attributes or a src, noscript fallbacks, JSON-LD
+ * or styles, is still rendered as it is and is left untouched.
+ */
+function dxpr_theme_post_update_n6_strip_custom_javascript_script_tags() {
+  /** @var \Drupal\Core\Extension\ThemeHandler $theme_handler */
+  $theme_handler = \Drupal::service('theme_handler');
+  $theme_list = $theme_handler->listInfo();
+  $updated = [];
+
+  /** @var \Drupal\Core\Extension\Extension $theme */
+  foreach ($theme_list as $theme) {
+    $theme_name = $theme->getName();
+    if ('dxpr_theme' !== ($theme->info['base theme'] ?? '') && 'dxpr_theme' !== $theme_name) {
+      continue;
+    }
+
+    $config = \Drupal::configFactory()->getEditable($theme_name . '.settings');
+    $custom_js = $config->get('custom_javascript_site');
+    // One or more script elements without attributes (or with the JavaScript
+    // type) and nothing else. The body of a block ends at its own closing
+    // tag, so that a later script element cannot be taken as part of it.
+    $bare_script_blocks = '~^\s*(?:<script(?:\s+type\s*=\s*(["\']?)text/javascript\1)?\s*>(?:(?!</script).)*</script>\s*)+$~is';
+    if (!is_string($custom_js) || !preg_match($bare_script_blocks, $custom_js)) {
+      continue;
+    }
+
+    $stripped = preg_replace('/<\/?script\b[^>]*>/i', '', $custom_js);
+    $stripped = trim($stripped);
+    if ($stripped !== $custom_js) {
+      $config->set('custom_javascript_site', $stripped)->save();
+      $updated[] = $theme_name;
+    }
+  }
+
+  if (!$updated) {
+    return t('No Custom JavaScript settings needed updating.');
+  }
+
+  return t('Removed script tags from the Custom JavaScript setting of: @themes.', [
+    '@themes' => implode(', ', $updated),
+  ]);
+}

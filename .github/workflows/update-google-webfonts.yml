@@ -32,26 +32,39 @@ jobs:
         run: |
           # Create backup of current file
           cp features/sooper-fonts/google-webfonts.json features/sooper-fonts/google-webfonts.json.backup
-          
+
           # Fetch new data from Google Webfonts API
-          curl -s "https://www.googleapis.com/webfonts/v1/webfonts?key=${GOOGLE_WEBFONTS_API_KEY}" \
+          HTTP_CODE=$(curl -s -w '%{http_code}' \
+            "https://www.googleapis.com/webfonts/v1/webfonts?key=${GOOGLE_WEBFONTS_API_KEY}" \
             -H "Accept: application/json" \
-            -o features/sooper-fonts/google-webfonts.json.new
-          
+            -o features/sooper-fonts/google-webfonts.json.new)
+
+          echo "HTTP status: ${HTTP_CODE}"
+
+          if [ "$HTTP_CODE" -ne 200 ]; then
+            echo "Error: API returned HTTP ${HTTP_CODE}"
+            echo "Response body:"
+            cat features/sooper-fonts/google-webfonts.json.new
+            rm features/sooper-fonts/google-webfonts.json.new
+            exit 1
+          fi
+
           # Validate the downloaded JSON
           if ! jq empty features/sooper-fonts/google-webfonts.json.new > /dev/null 2>&1; then
             echo "Error: Downloaded JSON is invalid"
             rm features/sooper-fonts/google-webfonts.json.new
             exit 1
           fi
-          
+
           # Check if the new file has meaningful content (should have 'items' array)
           if ! grep -q '"items"' features/sooper-fonts/google-webfonts.json.new; then
             echo "Error: Downloaded JSON doesn't contain expected 'items' array"
+            echo "Response structure:"
+            jq 'keys' features/sooper-fonts/google-webfonts.json.new 2>/dev/null || cat features/sooper-fonts/google-webfonts.json.new
             rm features/sooper-fonts/google-webfonts.json.new
             exit 1
           fi
-          
+
           # Extract just the items array to match existing file format
           jq '.items' features/sooper-fonts/google-webfonts.json.new > features/sooper-fonts/google-webfonts.json.extracted
           mv features/sooper-fonts/google-webfonts.json.extracted features/sooper-fonts/google-webfonts.json

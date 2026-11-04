@@ -1,4 +1,4 @@
-const { dxprThemeHit } = require("./collision-detection");
+const { dxprThemeCollisionCheck } = require("./collision-detection");
 
 /**
  * Adjusts the position of the overlay header based on overlap with the secondary header.
@@ -19,7 +19,7 @@ function handleOverlayPosition(drupalSettings) {
       .getBoundingClientRect();
 
     // If elements overlap, adjust the overlay header position
-    if (dxprThemeHit(navbarOverlayRect, secHeaderRect)) {
+    if (dxprThemeCollisionCheck(navbarOverlayRect, secHeaderRect)) {
       const navbarOverlay = document.querySelector(
         "#navbar.dxpr-theme-header--overlay",
       );

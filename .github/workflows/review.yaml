@@ -50,6 +50,29 @@ jobs:
           name: stylelint-report
           path: out/stylelint-report.html
 
+  schema-check:
+    runs-on: ubicloud-standard-4
+    timeout-minutes: 5
+    steps:
+    - uses: actions/checkout@v6
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20
+
+    - name: Generate settings schema
+      run: node scripts/generate-settings-schema.js
+
+    - name: Verify schema is up-to-date
+      run: |
+        if ! git diff -I '"generated":' --quiet data/settings-schema.json; then
+          echo "ERROR: data/settings-schema.json is out of date."
+          echo "Run 'node scripts/generate-settings-schema.js' and commit the result."
+          git diff -I '"generated":' data/settings-schema.json
+          exit 1
+        fi
+
   # review by commenting on code (experimental)
   # eslint-review:
   #   runs-on: ubicloud-standard-4

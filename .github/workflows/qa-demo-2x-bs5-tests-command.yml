@@ -26,7 +26,7 @@ env:
   DXPR_NOTIFICATIONS: false
 
   ### DXPR THEME SETUP
-  ### DXPR Theme image tage to use— i.e. production.
+  ### DXPR Theme image tag to use, i.e. production.
   DXPR_THEME_TAG: 5.x
   ### This is where to mount the DXPR Theme volume inside the container.
   DXPR_THEME_CONTAINER: /usr/src/dxpr_theme

@@ -12,6 +12,7 @@ use Drupal\image\Entity\ImageStyle;
 use Drupal\media\Entity\Media;
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Entity\ContentEntityInterface;
+use Drupal\Core\File\FileSystemInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Markup;
 use Drupal\Core\Template\Attribute;
@@ -76,8 +77,15 @@ function dxpr_theme_preprocess_html(&$variables) {
 
   // Include CSS variables and set color scheme class.
   $variables['#attached']['library'][] = 'dxpr_theme/variables';
+  require_once \Drupal::service('extension.list.theme')->getPath('dxpr_theme') . '/dxpr_theme_callbacks.inc';
+  $color_scheme = theme_get_setting('color_scheme') ?? 'default';
+  // Only compiled schemes have CSS; any other value (including the transient
+  // "current" option of the settings form) uses the saved custom palette.
+  if ($color_scheme !== 'custom' && !array_key_exists($color_scheme, _dxpr_theme_get_color_schemes())) {
+    $color_scheme = 'custom';
+  }
   $variables['html_attributes']
-    ->setAttribute('class', 'dxpr-scheme-' . (theme_get_setting('color_scheme') ?? 'default'));
+    ->setAttribute('class', 'dxpr-scheme-' . Html::cleanCssIdentifier($color_scheme));
 
   // Body background image.
   if (array_key_exists('node', $variables)) {
@@ -115,9 +123,14 @@ function dxpr_theme_preprocess_html(&$variables) {
   }
 
   if ($custom_js = theme_get_setting('custom_javascript_site')) {
-    $custom_js = Markup::create($custom_js);
+    // The field takes raw JavaScript; wrap it in a script element. A value
+    // that starts with a tag is markup (a script with attributes, a noscript
+    // fallback, JSON-LD, styles) and is printed as it is.
+    if (!str_starts_with(ltrim($custom_js), '<')) {
+      $custom_js = "<script>\n" . $custom_js . "\n</script>";
+    }
     $variables['page_bottom']['custom_javascript_site'] = [
-      '#markup' => $custom_js,
+      '#markup' => Markup::create($custom_js),
     ];
   }
   $variables['page_bottom']['custom_javascript'] = [
@@ -128,7 +141,9 @@ function dxpr_theme_preprocess_html(&$variables) {
     $variables['#attached']['drupalSettings']['dxpr_themeSettings']['headerHeight'] = $header_height;
   }
 
-  if ($header_scroll_offset = theme_get_setting('header_top_height_sticky_offset')) {
+  // A scroll offset of 0 is valid (header becomes sticky immediately).
+  $header_scroll_offset = theme_get_setting('header_top_height_sticky_offset');
+  if ($header_scroll_offset !== NULL && $header_scroll_offset !== '') {
     $variables['#attached']['drupalSettings']['dxpr_themeSettings']['headerOffset'] = $header_scroll_offset;
   }
 
@@ -160,31 +175,52 @@ function dxpr_theme_preprocess_html(&$variables) {
     $variables['#attached']['drupalSettings']['dxpr_themeSettings']['hamburgerAnimation'] = $header_hamburger_animation;
   }
 
-  // Add Apple Touch Icon URL if configured.
+  // Add Apple Touch Icon URL and web manifest URL if configured.
   $web_icons_media_id = theme_get_setting('web_icons_upload');
   if ($web_icons_media_id) {
-    $media = Media::load($web_icons_media_id);
-    if ($media && $media->field_media_image->entity) {
-      $image_style = ImageStyle::load('apple_touch_icon');
-      if ($image_style) {
-        $variables['apple_touch_icon_url'] = $image_style->buildUrl($media->field_media_image->entity->getFileUri());
-      }
-    }
-  }
-
-  // Add web manifest URL if icons are configured.
-  if ($web_icons_media_id) {
-    // Create a simple manifest JSON file in the public files directory.
     $file_system = \Drupal::service('file_system');
     $public_path = $file_system->realpath('public://');
     $manifest_path = $public_path . '/manifest.webmanifest';
+    $icons_cache_path = $public_path . '/dxpr_theme/web_icons_cache.json';
 
-    _dxpr_theme_generate_manifest($web_icons_media_id, $manifest_path);
+    // Read cached icon URLs or compute and cache them. This avoids
+    // Media::load() and ImageStyle::load() calls on every page request.
+    if (file_exists($icons_cache_path)) {
+      $icons_cache = json_decode(file_get_contents($icons_cache_path), TRUE);
+      if (!empty($icons_cache['apple_touch_icon_url'])) {
+        $variables['apple_touch_icon_url'] = $icons_cache['apple_touch_icon_url'];
+      }
+    }
+    else {
+      $media = Media::load($web_icons_media_id);
+      if ($media && $media->hasField('field_media_image') && $media->field_media_image->entity) {
+        $image_style = ImageStyle::load('apple_touch_icon');
+        if ($image_style) {
+          $variables['apple_touch_icon_url'] = $image_style->buildUrl($media->field_media_image->entity->getFileUri());
+        }
+      }
+      // Cache the computed URL so subsequent requests skip entity loading.
+      $cache_dir = 'public://dxpr_theme';
+      $file_system->prepareDirectory($cache_dir, FileSystemInterface::CREATE_DIRECTORY);
+      file_put_contents($icons_cache_path, json_encode([
+        'apple_touch_icon_url' => $variables['apple_touch_icon_url'] ?? NULL,
+      ]));
+    }
+
+    // Regenerate manifest when missing or when inputs (site name) changed.
+    $regenerate_manifest = !file_exists($manifest_path);
+    if (!$regenerate_manifest) {
+      $site_name = \Drupal::config('system.site')->get('name') ?: 'Drupal Site';
+      $existing = json_decode(file_get_contents($manifest_path), TRUE);
+      $regenerate_manifest = ($existing['name'] ?? '') !== $site_name;
+    }
+    if ($regenerate_manifest) {
+      _dxpr_theme_generate_manifest($web_icons_media_id, $manifest_path);
+    }
 
     // Absolute URL for the manifest.
     $variables['manifest_url'] = \Drupal::service('file_url_generator')
       ->generateAbsoluteString('public://manifest.webmanifest');
-
   }
 }
 
@@ -199,10 +235,8 @@ function dxpr_theme_preprocess_page(&$variables) {
   ];
   $variables['navbar_attributes'] = new Attribute($variables['navbar_attributes']);
 
-  $hide_regions = $local_hide = [];
-  if (theme_get_setting('hidden_regions') && !empty(array_keys(array_filter(theme_get_setting('hidden_regions'))))) {
-    $hide_regions = array_keys(array_filter(theme_get_setting('hidden_regions')));
-  }
+  $local_hide = [];
+  $hide_regions = dxpr_theme_get_enabled_regions('hidden_regions');
   if (!empty($variables['node'])
     && $variables['node'] instanceof NodeInterface
     && $variables['node']->hasField('field_dth_hide_regions')) {
@@ -276,26 +310,22 @@ function dxpr_theme_preprocess_page(&$variables) {
 /**
  * Implements hook_preprocess_menu().
  *
- * Workaround for Drupal core regression where Views-generated menu links don't
- * receive proper active trail detection. Compares menu item URLs against the
- * current page path to set active states and propagates to parent items.
+ * Attaches client-side active trail detection for Views-generated menu links
+ * that core does not mark as active (core issue #3359511). This removes the
+ * extra url.path cache context that the previous server-side workaround added;
+ * the core route.menu_active_trails cache context remains on menu blocks.
  *
  * @see https://www.drupal.org/project/dxpr_theme/issues/3553914
  * @see https://www.drupal.org/project/drupal/issues/3359511
- *
- * @todo Remove when core issue #3359511 is resolved.
  */
 function dxpr_theme_preprocess_menu(&$variables) {
   if (empty($variables['items'])) {
     return;
   }
 
-  $current_path = \Drupal::service('path.current')->getPath();
-  $is_front = \Drupal::service('path.matcher')->isFrontPage();
-  dxpr_theme_menu_set_active_trail($variables['items'], $current_path, $is_front);
-
-  // Ensure menu is cached per URL to prevent wrong active states.
-  $variables['#cache']['contexts'][] = 'url.path';
+  // Attach client-side active trail detection for edge cases (e.g.
+  // Views-generated menu links) not covered by core's built-in active trail.
+  $variables['#attached']['library'][] = 'dxpr_theme/active-trail';
 }
 
 /**
@@ -310,6 +340,12 @@ function dxpr_theme_preprocess_menu(&$variables) {
  *
  * @return bool
  *   TRUE if any item in this level or below is active.
+ *
+ * @deprecated in dxpr_theme:8.2.0 and is removed from dxpr_theme:9.0.0.
+ *   Active trail detection is now handled client-side via the active-trail
+ *   library. This function is retained for backward compatibility but is no
+ *   longer called by dxpr_theme_preprocess_menu().
+ * @see https://www.drupal.org/project/dxpr_theme/issues/3509999
  */
 function dxpr_theme_menu_set_active_trail(array &$items, $current_path, $is_front) {
   $has_active = FALSE;
@@ -416,6 +452,29 @@ function dxpr_theme_preprocess_links__language_block(&$variables) {
 }
 
 /**
+ * Gets the regions that are enabled in a checkbox list theme setting.
+ *
+ * Theme settings are not guaranteed to be present: a sub-theme may never have
+ * saved the setting, and theme_get_setting() only returns the global theme
+ * settings when Drupal's cached theme list is stale, for example right after
+ * a core update until the caches are rebuilt. Callers must not rely on the
+ * setting being an array.
+ *
+ * @param string $setting_name
+ *   The name of the theme setting that stores regions as checkbox values.
+ *
+ * @return string[]
+ *   The machine names of the enabled regions.
+ */
+function dxpr_theme_get_enabled_regions(string $setting_name): array {
+  $regions = theme_get_setting($setting_name);
+  if (!is_array($regions)) {
+    return [];
+  }
+  return array_keys(array_filter($regions));
+}
+
+/**
  * Implements template_preprocess_region()
  */
 function dxpr_theme_preprocess_region(&$variables) {
@@ -437,10 +496,8 @@ function dxpr_theme_preprocess_region(&$variables) {
   }
 
   // Apply class to block design regions.
-  if ($block_design_regions = array_keys(array_filter(theme_get_setting('block_design_regions')))) {
-    if (in_array($variables['region'], $block_design_regions)) {
-      $variables['attributes']['class'][] = 'region-block-design';
-    }
+  if (in_array($variables['region'], dxpr_theme_get_enabled_regions('block_design_regions'), TRUE)) {
+    $variables['attributes']['class'][] = 'region-block-design';
   }
 }
 
@@ -531,7 +588,7 @@ function dxpr_theme_form_search_form_alter(&$form, FormStateInterface $form_stat
  */
 function dxpr_theme_form_search_block_form_alter(&$form, FormStateInterface $form_state, $form_id) {
   $form['actions']['#type'] = 'submit';
-  $form['keys']['#placeholder'] = 'Search';
+  $form['keys']['#placeholder'] = t('Search');
   $form['actions']['#icon'] = TRUE;
   unset($form['actions']['submit']);
 }
@@ -548,6 +605,10 @@ function dxpr_theme_preprocess_input(&$variables) {
     if ($element['#id'] === 'full_screen_search') {
       $variables['icon'] = TRUE;
     }
+  }
+  // Icon-only buttons need a text alternative when aria-label is absent.
+  if (!empty($variables['icon']) && empty($element['#attributes']['aria-label'])) {
+    $variables['label'] = (string) ($element['#value'] ?? '') ?: t('Search');
   }
   $variables['#attached']['library'][] = 'dxpr_theme/drupal-search';
 }

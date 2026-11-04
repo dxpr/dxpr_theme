@@ -23,7 +23,7 @@ function massageFieldValue(setting, value, cssVarColorsPrefix) {
     // Generic: Uppercase
     case "headings_uppercase":
     case "title_type[uppercase]":
-      value = value ? "uppercase" : "normal";
+      value = value ? "uppercase" : "none";
       break;
     // Generic: Bold
     case "headings_bold":
@@ -37,6 +37,11 @@ function massageFieldValue(setting, value, cssVarColorsPrefix) {
     // Generic: Percentage
     case "logo_height":
       value = `${value}%`;
+      break;
+    // Position radios: option keys use underscores, CSS uses spaces.
+    case "background_image_position":
+    case "page_title_image_position":
+      value = value.replace(/_/g, " ");
       break;
     // Breadcrumb separator
     case "page_title_breadcrumbs_separator":
@@ -87,6 +92,9 @@ function massageFieldValue(setting, value, cssVarColorsPrefix) {
     case "dropdown_hover_text_color":
     case "mobile_menu_background":
     case "mobile_menu_text_color":
+    case "mobile_menu_hover_background":
+    case "mobile_menu_hover_text_color":
+    case "navbar_text_color":
       if (
         Object.prototype.hasOwnProperty.call(
           drupalSettings.dxpr_themeSettings.colors.palette,
@@ -111,6 +119,43 @@ function massageFieldValue(setting, value, cssVarColorsPrefix) {
       break;
   }
   return value;
+}
+
+/**
+ * Previews a font on the selector configured next to the font picker.
+ *
+ * Mirrors the rule fonts-theme-settings-css.inc writes on save, so the
+ * preview follows the CSS Selector field instead of the compiled defaults.
+ *
+ * @param {string} setting - The font field name, e.g. "body_font_face".
+ * @param {string} familyValue - CSS font-family value.
+ * @param {string} weightValue - CSS font-weight value.
+ * @param {string} styleValue - CSS font-style value.
+ */
+function applyFontPreviewRule(setting, familyValue, weightValue, styleValue) {
+  const selectorField = document.querySelector(`[name="${setting}_selector"]`);
+  let selector = selectorField ? selectorField.value.trim() : "";
+  const styleId = `dxpr-font-preview-${setting.replace(/_/g, "-")}`;
+  let styleElement = document.getElementById(styleId);
+
+  if (!selector) {
+    if (styleElement) {
+      styleElement.remove();
+    }
+    return;
+  }
+  if (setting === "body_font_face") {
+    selector += ", .tooltip";
+  }
+  if (!styleElement) {
+    styleElement = document.createElement("style");
+    styleElement.id = styleId;
+    document.head.appendChild(styleElement);
+  }
+  // The generated rule leaves the headings weight to the Headings Bold setting.
+  const weight =
+    setting === "headings_font_face" ? "" : `font-weight: ${weightValue};`;
+  styleElement.textContent = `${selector} { font-family: ${familyValue}; font-style: ${styleValue}; ${weight} }`;
 }
 
 /**
@@ -147,6 +192,8 @@ function handleFontFaceField(setting, fontKey, root, cssVarSettingsPrefix) {
       `${cssVarSettingsPrefix}${cssVarBaseNoFace}-style`,
       styleValue,
     );
+
+    applyFontPreviewRule(setting, familyValue, weightValue, styleValue);
   });
 }
 
@@ -219,13 +266,9 @@ function fieldHandler(event, root, cssVarSettingsPrefix, massageValue) {
     "block_divider_spacing",
   ];
 
-  // Define variables that expect "em".
-  const emRequiredVars = [
-    "body_line_height",
-    "headings_line_height",
-    "blockquote_line_height",
-    "headings_letter_spacing",
-  ];
+  // Define variables that expect "em". Line heights stay without a unit, matching
+  // the saved CSS.
+  const emRequiredVars = ["headings_letter_spacing"];
 
   // If the value has no unit and the variable expects 'px', add 'px'.
   if (

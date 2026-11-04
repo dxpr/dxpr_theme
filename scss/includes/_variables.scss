@@ -9,9 +9,9 @@
 
 // Main colors
 // -------------------------
-$primary: #284ed9; // Google Material Design Green 300
-$accent1: #05e993; // Google Material Design Green 600
-$accent2: #284fd8; // Google Material Design Green 900
+$primary: #000;
+$accent1: #353740;
+$accent2: #F7F7F8;
 
 // Material Design Layer Drop Shadows
 $dxpr-theme-shadow-1: 0 1px 3px rgb(0 0 0 / 12%), 0 1px 2px rgb(0 0 0 / 24%);
@@ -28,27 +28,27 @@ $dxpr-theme-shadow-5: 0 19px 38px rgb(0 0 0 / 30%), 0 15px 12px rgb(0 0 0 / 22%)
 
 // using string literals for colors because color module doesn't handle short colors properly
 // http: //stackoverflow.com/questions/9611571/can-i-turn-off-sass-rgb-color-name
-$body-background: #{'#efefef'};
+$body-background: #{'#ffffff'};
 $header-color: #{'#ffffff'};
-$header-text-color: #{'#696969'};
-$header-side-color: #{'#20252a'};
-$header-side-text-color: #{'#737a85'};
-$page-title-color: #{'#284fdb'};
-$page-title-text-color: #{'#fffeff'};
+$header-text-color: #{'#171717'};
+$header-side-color: #{'#ffffff'};
+$header-side-text-color: #{'#171717'};
+$page-title-color: #{'#ffffff'};
+$page-title-text-color: #{'#171717'};
 $gray-darker: #{'#222222'};
 $gray-dark: #{'#303030'};
-$text: #{'#555555'};
-$text-headings: #{'#333333'};
-$footer: #{'#21252a'};
-$footer-text: #{'#747a85'};
-$secondary-header: #{'#284fd9'};
-$secondary-header-text: #{'#fffffe'};
-$gray-light: #{'#cccccc'};
-$gray-lighter: #{'#dddddd'};
-$card: #{'#eeeeee'};
-$card-text: #{'#444444'};
+$text: #{'#353740'};
+$text-headings: #{'#171717'};
+$footer: #{'#ffffff'};
+$footer-text: #{'#353740'};
+$secondary-header: #{'#000000'};
+$secondary-header-text: #{'#ffffff'};
+$gray-light: #{'#6E6E80'};
+$gray-lighter: #{'#E5E5E5'};
+$card: #{'#F7F7F8'};
+$card-text: #{'#171717'};
 $black: #{'#111111'};
-$silver: #{'#f1f1f1'};
+$silver: #{'#F7F7F8'};
 
 // Default color scheme map.
 $default-color-map: (

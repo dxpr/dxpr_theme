@@ -53,32 +53,36 @@ function dxpr_theme_css_cache_build(string $theme) {
     'allowed_classes' => FALSE,
   ]) ?: NULL;
 
-  // Fetch default palette.
+  // Colors missing from the saved palette, or all of them, come from the
+  // default scheme; the merged loader respects sub-theme 'default' overrides.
+  $palette = array_filter(is_array($palette) ? $palette : [], fn($color) => is_string($color) && $color !== '');
+  $palette += _dxpr_theme_get_color_schemes($theme)['default']['colors'] ?? [];
+
   if (empty($palette)) {
-    $path = \Drupal::service('extension.list.theme')->getPath('dxpr_theme');
-    $filepath = sprintf('%s/%s/features/sooper-colors/color-settings.json', DRUPAL_ROOT, $path);
-
-    if ($path && file_exists($filepath)) {
-      $json = file_get_contents($filepath);
-      $settings = Json::decode($json);
-      $palette = $settings['schemes']['default']['colors'] ?? [];
-    }
-
-    if (empty($palette)) {
-      \Drupal::messenger()->addWarning(t('Could not create theme styles; please resave theme settings.'));
-    }
+    \Drupal::messenger()->addWarning(t('Could not create theme styles; please resave theme settings.'));
   }
 
   // Construct CSS file:
   $css = '';
-  // Load Sooper Features CSS.
+  // Load Sooper Features CSS. scanDirectory() returns files in filesystem
+  // order, so sort the callbacks by name for a deterministic stylesheet and
+  // run the custom CSS callback last so site-specific CSS wins the cascade.
+  $callbacks = [];
   foreach (\Drupal::service('file_system')->scanDirectory(\Drupal::service('extension.list.theme')->getPath('dxpr_theme') . '/features', '/css.inc/i') as $file) {
     require_once $file->uri;
     $function_name = basename($file->filename, '.inc');
     $function_name = str_replace('-', '_', $function_name);
     if (function_exists($function_name)) {
-      $function_name($theme, $css, $palette);
+      $callbacks[$function_name] = $function_name;
     }
+  }
+  ksort($callbacks);
+  if (isset($callbacks['custom_css_theme_settings_css'])) {
+    unset($callbacks['custom_css_theme_settings_css']);
+    $callbacks['custom_css_theme_settings_css'] = 'custom_css_theme_settings_css';
+  }
+  foreach ($callbacks as $function_name) {
+    $function_name($theme, $css, $palette);
   }
   $file_object = \Drupal::service('file.repository')->writeData($css, $dxpr_theme_css_file, FileSystemInterface::EXISTS_REPLACE);
   if ($dir_writable && $file_object) {
@@ -92,10 +96,35 @@ function dxpr_theme_css_cache_build(string $theme) {
     \Drupal::logger('dxpr_theme')->error($message);
   }
 
-  // If the CSS & JS aggregation are enabled we need to clear the caches.
-  drupal_flush_all_caches();
+  // Clear CSS/JS aggregated files.
   \Drupal::service('asset.css.collection_optimizer')->deleteAll();
   \Drupal::service('asset.js.collection_optimizer')->deleteAll();
+  // Reset the asset query string so browsers fetch fresh CSS/JS.
+  if (\Drupal::hasService('asset.query_string')) {
+    \Drupal::service('asset.query_string')->reset();
+  }
+  elseif (function_exists('_drupal_flush_css_js')) {
+    _drupal_flush_css_js();
+  }
+  // Clear the render cache so pages pick up the new CSS.
+  \Drupal::cache('render')->invalidateAll();
+  // Clear page-level caches so anonymous visitors get fresh responses.
+  if (\Drupal::hasService('cache.page')) {
+    \Drupal::cache('page')->invalidateAll();
+  }
+  if (\Drupal::hasService('cache.dynamic_page_cache')) {
+    \Drupal::cache('dynamic_page_cache')->invalidateAll();
+  }
+  // Clear the discovery cache for library definitions.
+  \Drupal::cache('discovery')->invalidateAll();
+  // Invalidate the library info cache.
+  $library_discovery = \Drupal::service('library.discovery');
+  if (method_exists($library_discovery, 'clear')) {
+    $library_discovery->clear();
+  }
+  else {
+    $library_discovery->clearCachedDefinitions();
+  }
 }
 
 /**
@@ -153,7 +182,9 @@ function _dxpr_theme_settings_add_css(string $setting, string $property): string
  *   CSS variable, e.g. "var(--prefix-name)".
  */
 function _dxpr_theme_setting_get_css_var(string $setting): string {
-  if (theme_get_setting($setting)) {
+  $value = theme_get_setting($setting);
+  // A saved value of 0 (for example opacity 0) is a valid value.
+  if ($value !== NULL && $value !== '' && $value !== FALSE) {
     $css_var = str_replace('_', '-', $setting);
     $prefix = _dxpr_theme_get_const('cssSettingPrefix');
     return sprintf("var(%s%s)", $prefix, $css_var);
@@ -285,32 +316,6 @@ function _dxpr_theme_format_local_font_name($key) {
 }
 
 /**
- * Helper function for getting font style from font theme setting.
- *
- * @param string $font
- *   Theme setting font value.
- *
- * @return string
- *   Font style value.
- */
-function _dxpr_theme_font_get_style($font): string {
-  return (strpos($font, 'italic')) ? 'italic' : 'normal';
-}
-
-/**
- * Helper function for getting font weight form font theme setting.
- *
- * @param string $font
- *   Theme setting font value.
- *
- * @return string
- *   Font weight value.
- */
-function _dxpr_theme_font_get_weight($font): string {
-  return (preg_match('/[0-9]{3}/', $font, $matches)) ? $matches[0] : '400';
-}
-
-/**
  * Provides Font Stack values for theme settings.
  *
  * @param string $font
@@ -352,60 +357,118 @@ function _dxpr_theme_font_stack($font = NULL) {
 /**
  * Returns data from the color-settings.json file.
  *
+ * Loads the base theme's color-settings.json and, when the active or
+ * specified theme is a sub-theme, merges in any color-settings.json found
+ * in the sub-theme's root directory. Sub-theme entries override base theme
+ * entries with the same key.
+ *
  * @param string|null $key
  *   Key index in color.inc $info array.
+ * @param string|null $theme
+ *   Theme machine name. When NULL the active theme is used.
  *
  * @return array
  *   Array containing requested data.
  */
-function _dxpr_theme_get_color_inc(?string $key = NULL): array {
-  $path = \Drupal::service('extension.list.theme')->getPath('dxpr_theme');
-  $filepath = sprintf('%s/%s/features/sooper-colors/color-settings.json', DRUPAL_ROOT, $path);
+function _dxpr_theme_get_color_inc(?string $key = NULL, ?string $theme = NULL): array {
+  static $cache = [];
 
-  if ($path && file_exists($filepath)) {
-    $json = file_get_contents($filepath);
-    $settings = Json::decode($json);
-
-    if ($settings) {
-      $data = $key ? ($settings[$key] ?? []) : $settings;
+  // Determine the active theme when none was specified.
+  if ($theme === NULL) {
+    try {
+      $theme = \Drupal::theme()->getActiveTheme()->getName();
+    }
+    catch (\Exception $e) {
+      $theme = 'dxpr_theme';
     }
   }
 
-  return $data ?? [];
+  if (!isset($cache[$theme])) {
+    $theme_list = \Drupal::service('extension.list.theme');
+
+    // Load base theme settings.
+    $base_path = $theme_list->getPath('dxpr_theme');
+    $base_file = sprintf('%s/%s/features/sooper-colors/color-settings.json', DRUPAL_ROOT, $base_path);
+    $settings = [];
+    if ($base_path && file_exists($base_file)) {
+      $settings = Json::decode(file_get_contents($base_file)) ?: [];
+    }
+
+    // Merge sub-theme overrides when the theme is not the base theme itself.
+    if ($theme !== 'dxpr_theme') {
+      try {
+        $sub_path = $theme_list->getPath($theme);
+      }
+      catch (\Exception $e) {
+        $sub_path = NULL;
+      }
+      if ($sub_path) {
+        $sub_file = sprintf('%s/%s/color-settings.json', DRUPAL_ROOT, $sub_path);
+        if (file_exists($sub_file)) {
+          $sub_settings = Json::decode(file_get_contents($sub_file)) ?: [];
+          foreach ($sub_settings as $section => $values) {
+            if (is_array($values) && isset($settings[$section]) && is_array($settings[$section])) {
+              $settings[$section] = array_merge($settings[$section], $values);
+            }
+            else {
+              $settings[$section] = $values;
+            }
+          }
+        }
+      }
+    }
+
+    $cache[$theme] = $settings;
+  }
+
+  $settings = $cache[$theme];
+  if ($settings) {
+    return $key ? ($settings[$key] ?? []) : $settings;
+  }
+
+  return [];
 }
 
 /**
  * Returns the color field keys.
  *
+ * @param string|null $theme
+ *   Theme machine name. When NULL the active theme is used.
+ *
  * @return array
  *   The 'fields' sub-array.
  */
-function _dxpr_theme_get_color_names(): array {
-  return _dxpr_theme_get_color_inc('fields');
+function _dxpr_theme_get_color_names(?string $theme = NULL): array {
+  return _dxpr_theme_get_color_inc('fields', $theme);
 }
 
 /**
  * Returns the color schemes.
  *
+ * @param string|null $theme
+ *   Theme machine name. When NULL the active theme is used.
+ *
  * @return array
  *   The 'schemes' sub-array.
  */
-function _dxpr_theme_get_color_schemes(): array {
-  return _dxpr_theme_get_color_inc('schemes');
+function _dxpr_theme_get_color_schemes(?string $theme = NULL): array {
+  return _dxpr_theme_get_color_inc('schemes', $theme);
 }
 
 /**
- * Returns the specified color scheme, defaults to 'default'.
+ * Returns the specified color scheme.
  *
  * @param string $scheme
  *   The color scheme machine name.
+ * @param string|null $theme
+ *   Theme machine name. When NULL the active theme is used.
  *
  * @return array
  *   The specified color scheme indexed by color machine names.
  */
-function _dxpr_theme_get_color_scheme(string $scheme = 'default'): array {
-  $schemes = _dxpr_theme_get_color_schemes();
-  return $schemes['default'] ?? [];
+function _dxpr_theme_get_color_scheme(string $scheme = 'default', ?string $theme = NULL): array {
+  $schemes = _dxpr_theme_get_color_schemes($theme);
+  return $schemes[$scheme]['colors'] ?? ($schemes['default']['colors'] ?? []);
 }
 
 /**
@@ -426,4 +489,61 @@ function _dxpr_theme_color_options($theme) {
   $theme_colors = _dxpr_theme_get_color_names($theme);
   $colors = array_merge($colors, $theme_colors);
   return $colors;
+}
+
+/**
+ * Returns the variants Google Fonts provides for a family.
+ *
+ * @param string $family
+ *   Font family name as listed in google-webfonts.json (spaces, not plus).
+ *
+ * @return string[]
+ *   Variant keys such as "regular", "700" or "700italic"; empty if unknown.
+ */
+function _dxpr_theme_google_font_variants(string $family): array {
+  $fonts = &drupal_static(__FUNCTION__);
+  if ($fonts === NULL) {
+    $fonts = [];
+    $path = \Drupal::service('extension.list.theme')->getPath('dxpr_theme');
+    $filepath = sprintf('%s/%s/features/sooper-fonts/google-webfonts.json', DRUPAL_ROOT, $path);
+    if (file_exists($filepath)) {
+      foreach (Json::decode(file_get_contents($filepath)) ?: [] as $font) {
+        if (!empty($font['family'])) {
+          $fonts[$font['family']] = $font['variants'] ?? [];
+        }
+      }
+    }
+  }
+  return $fonts[$family] ?? [];
+}
+
+/**
+ * Describes the bold face that bold headings need for a Google headings font.
+ *
+ * @param string|null $theme
+ *   Theme machine name, or NULL for the active theme.
+ *
+ * @return array|null
+ *   NULL when the headings font is not a Google font. Otherwise an array with
+ *   "family" (as used in font keys, plus-separated), "variant" ("700" or
+ *   "700italic"), "available" (the family provides that variant) and
+ *   "already_bold" (the picked variant is a bold face already).
+ */
+function _dxpr_theme_headings_bold_font(?string $theme = NULL): ?array {
+  $font_key = theme_get_setting('headings_font_face', $theme);
+  if (!is_string($font_key) || substr($font_key, 0, 1) !== '0') {
+    return NULL;
+  }
+  $font_parts = explode(':', substr($font_key, 1));
+  $variant = $font_parts[1] ?? '';
+  $italic = stripos($variant, 'italic') !== FALSE;
+  $bold_variant = $italic ? '700italic' : '700';
+  $variants = _dxpr_theme_google_font_variants(str_replace('+', ' ', $font_parts[0]));
+
+  return [
+    'family' => $font_parts[0],
+    'variant' => $bold_variant,
+    'available' => in_array($bold_variant, $variants, TRUE),
+    'already_bold' => str_starts_with($variant, '700') || str_starts_with($variant, 'bold'),
+  ];
 }

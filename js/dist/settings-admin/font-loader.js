@@ -228,7 +228,18 @@ function handleFontChange(fieldName, fontKey, callback) {
 
     // For Google fonts, load first then callback.
     if (parsed.type === "google") {
-      loadGoogleFont(parsed.family, parsed.variant)
+      const loads = [loadGoogleFont(parsed.family, parsed.variant)];
+      // Bold headings need the bold face as well.
+      const headingsBold = document.querySelector('[name="headings_bold"]');
+      if (fieldName === "headings_font_face" && headingsBold?.checked) {
+        const italic = (parsed.variant || "").includes("italic");
+        loads.push(
+          loadGoogleFont(parsed.family, italic ? "700italic" : "700").catch(
+            () => {},
+          ),
+        );
+      }
+      Promise.all(loads)
         .then(() => callback(fontKey))
         .catch(() => callback(fontKey)); // Still apply even if load fails.
     } else {

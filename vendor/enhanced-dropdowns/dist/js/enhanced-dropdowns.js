@@ -16,6 +16,7 @@ class BootstrapEnhancedDropdowns {
     };
 
     this._hoverState = new WeakMap();
+    this._submenus = new WeakMap();
     this.init();
   }
     
@@ -34,6 +35,7 @@ class BootstrapEnhancedDropdowns {
     this.initSplitButtonDropdowns();
     this.initSubmenuDropdowns();
     this.initHoverBehavior();
+    this._initSubmenuKeyGuard();
   }
 
   _isFullWidthDropdown(toggleElement) {
@@ -99,7 +101,16 @@ class BootstrapEnhancedDropdowns {
     return dropdownInstance;
   }
 
+  _ensureFocusable(toggleElement) {
+    // Toggles without href, such as Drupal <nolink> spans, must be reachable
+    // by keyboard and announced as buttons (WCAG 2.1.1, 4.1.2).
+    if (toggleElement.matches('button, input, select, textarea, a[href], [tabindex]')) return;
+    toggleElement.setAttribute('tabindex', '0');
+    if (!toggleElement.hasAttribute('role')) toggleElement.setAttribute('role', 'button');
+  }
+
   _attachKeyboardHandler(toggleElement, dropdownInstance) {
+    this._ensureFocusable(toggleElement);
     // Shared keyboard handler for Enter/Space keys
     toggleElement.addEventListener('keydown', (event) => {
       if (event.key === 'Enter' || event.key === ' ') {
@@ -180,6 +191,7 @@ class BootstrapEnhancedDropdowns {
     this._attachToggleHandlers(toggleElement, dropdownInstance, isSubmenu);
     this._attachAriaSyncHandlers(toggleElement, ariaTarget, submenuParent, isSubmenu ? menuElement : null);
     this.setupMenuKeyboardNavigation(menuElement, toggleElement, submenuParent !== null);
+    if (isSubmenu) this._submenus.set(menuElement, toggleElement);
     return dropdownInstance;
   }
 
@@ -262,6 +274,37 @@ class BootstrapEnhancedDropdowns {
     }
   }
     
+  _moveFocus(menu, step) {
+    // Move focus to the next (step 1) or previous (step -1) visible item, wrapping around
+    const items = Array.from(menu.querySelectorAll('.dropdown-item:not(.disabled)'))
+      .filter((item) => item.getClientRects().length > 0);
+    if (items.length === 0) return false;
+    const currentIndex = items.indexOf(document.activeElement);
+    const start = currentIndex >= 0 ? currentIndex : (step > 0 ? -1 : 0);
+    items[(start + step + items.length) % items.length].focus();
+    return true;
+  }
+
+  _initSubmenuKeyGuard() {
+    // Bootstrap's dropdown key handler runs first (document, capture phase) and throws
+    // in submenus, whose toggles have no data-bs-toggle, so handle those keys before it.
+    window.addEventListener('keydown', (event) => {
+      if (!['ArrowDown', 'ArrowUp', 'Escape'].includes(event.key)) return;
+      const menu = event.target instanceof Element ? event.target.closest('.dropdown-menu') : null;
+      const toggleElement = menu && this._submenus.get(menu);
+      if (!toggleElement) return;
+
+      event.preventDefault();
+      event.stopPropagation();
+      if (event.key === 'Escape') {
+        this._closeDropdown(toggleElement);
+        toggleElement.focus();
+      } else {
+        this._moveFocus(menu, event.key === 'ArrowDown' ? 1 : -1);
+      }
+    }, true);
+  }
+
   setupMenuKeyboardNavigation(menu, toggleElement, isSplitButton) {
     menu.addEventListener('keydown', (event) => {
       const items = Array.from(menu.querySelectorAll('.dropdown-item:not(.disabled)'));
@@ -270,15 +313,8 @@ class BootstrapEnhancedDropdowns {
       const currentIndex = items.indexOf(document.activeElement);
       let handled = false;
 
-      if (event.key === 'ArrowDown') {
-        const nextIndex = currentIndex >= 0 ? (currentIndex + 1) % items.length : 0;
-        items[nextIndex].focus();
-        handled = true;
-      } else if (event.key === 'ArrowUp') {
-        const prevIndex = currentIndex >= 0 ?
-          (currentIndex - 1 + items.length) % items.length : items.length - 1;
-        items[prevIndex].focus();
-        handled = true;
+      if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+        handled = this._moveFocus(menu, event.key === 'ArrowDown' ? 1 : -1);
       } else if (
         (!isSplitButton && event.key === 'ArrowLeft') ||
         (isSplitButton && event.key === 'ArrowLeft' && document.activeElement === items[0])
@@ -297,7 +333,7 @@ class BootstrapEnhancedDropdowns {
           // Not setting handled = true, as Tab should proceed
         }
       }
-      // Note: Removed manual Escape handling - Bootstrap will handle this automatically
+      // Escape: Bootstrap closes top-level menus, _initSubmenuKeyGuard() closes submenus
 
       if (handled) {
         event.preventDefault();

@@ -32,6 +32,9 @@ html.html--dxpr-theme-nav-mobile--open {
   }
 
   .dxpr-theme-header {
+    // Header > Mobile > Header Height; the container and navbar-header
+    // below use height: 100%, so the logo percentage resolves against it.
+    height: var(--dxt-setting-header-mobile-height);
     position: static;
 
     li {
@@ -74,8 +77,8 @@ html.html--dxpr-theme-nav-mobile--open {
     .dxpr-theme-main-menu {
       box-shadow: 0 5px 5px rgb(0 0 0 / 2%);
       left: 0;
-      padding-left: calc(var(--dxt-setting-gutter-vertical-mobile, 0) / 2);
-      padding-right: calc(var(--dxt-setting-gutter-vertical-mobile, 0) / 2);
+      padding-left: calc(var(--dxt-setting-gutter-horizontal-mobile, 0) / 2);
+      padding-right: calc(var(--dxt-setting-gutter-horizontal-mobile, 0) / 2);
       position: absolute;
       width: 100%;
       z-index: 100;
@@ -99,6 +102,7 @@ html.html--dxpr-theme-nav-mobile--open {
         .dropdown-item,
         .bs-dropdown-item-wrapper > .dropdown-item {
           font-size: var(--dxt-setting-nav-mobile-font-size);
+          font-weight: inherit;
           white-space: normal;
           word-wrap: break-word;
 
@@ -107,7 +111,7 @@ html.html--dxpr-theme-nav-mobile--open {
       }
     }
 
-    .navbar-toggle {
+    .navbar-toggler {
       height: var(--dxt-setting-header-mobile-height);
     }
 
@@ -287,9 +291,10 @@ html.html--dxpr-theme-nav-mobile--open {
 
   // Body padding for mobile fixed header - content needs space for the fixed header.
   // For anonymous/regular users: Drupal sets --drupal-displace-offset-top to empty string "",
-  // so calc() with it becomes invalid. Use only header height for these users.
+  // so calc() with it becomes invalid. Use the header height plus 16px of
+  // breathing room above the page title for these users.
   &:has(#navbar.header-mobile-fixed):not(.toolbar-horizontal, .toolbar-vertical, .toolbar-fixed) {
-    padding-top: var(--dxt-setting-header-mobile-height) !important;
+    padding-top: calc(var(--dxt-setting-header-mobile-height) + 16px) !important;
   }
 
   // For administrators with toolbar: use calc() with displacement offset.

@@ -6,6 +6,7 @@
  */
 
 use Drupal\Component\Utility\Color;
+use Drupal\Component\Utility\Html;
 
 /**
  * Generate css color variables css styles.
@@ -20,6 +21,13 @@ use Drupal\Component\Utility\Color;
 function colors_theme_settings_css($theme, &$css, array $palette) {
   $color_prefix = _dxpr_theme_get_const('cssColorPrefix');
 
+  // Use the actual scheme name so sub-theme presets get their own CSS rule.
+  $scheme = theme_get_setting('color_scheme', $theme) ?? 'custom';
+  if ($scheme === 'current') {
+    $scheme = 'custom';
+  }
+  $scheme = Html::cleanCssIdentifier($scheme);
+
   // Add RGB CSS variable.
   $palette['header-rgb'] = implode(',', Color::hexToRgb($palette['header']));
 
@@ -32,7 +40,7 @@ function colors_theme_settings_css($theme, &$css, array $palette) {
   ));
 
   if ($css_variables) {
-    $css .= ":root.dxpr-scheme-custom {\n" . $css_variables . ";\n";
+    $css .= ":root.dxpr-scheme-" . $scheme . " {\n" . $css_variables . ";\n";
 
     // Add algorithmic subtle color generation.
     $css .= "  --dxt-color-basesubtle: color-mix(in srgb, white 80%, var(--dxt-color-base));\n";
@@ -74,6 +82,28 @@ function colors_theme_settings_css($theme, &$css, array $palette) {
     $css .= "  --bs-secondary-bg: var(--dxt-color-card);\n";
     $css .= "  --bs-tertiary-color: var(--dxt-color-text);\n";
     $css .= "  --bs-tertiary-bg: var(--dxt-color-silver);\n";
+
+    // Bootstrap 5.3 utility classes (.text-primary, .bg-primary, .border-primary,
+    // etc.) use the -rgb triplet form via rgba(), not the hex custom properties.
+    $rgb_map = [
+      '--bs-primary-rgb' => 'base',
+      '--bs-secondary-rgb' => 'accent1',
+      '--bs-body-color-rgb' => 'text',
+      '--bs-body-bg-rgb' => 'body',
+      '--bs-emphasis-color-rgb' => 'headings',
+      '--bs-link-color-rgb' => 'link',
+      '--bs-link-hover-color-rgb' => 'accent1',
+      '--bs-light-rgb' => 'silver',
+      '--bs-dark-rgb' => 'headings',
+      '--bs-secondary-bg-rgb' => 'card',
+      '--bs-tertiary-bg-rgb' => 'silver',
+    ];
+    foreach ($rgb_map as $css_var => $palette_key) {
+      if (!empty($palette[$palette_key])) {
+        $rgb = Color::hexToRgb($palette[$palette_key]);
+        $css .= "  $css_var: {$rgb['red']}, {$rgb['green']}, {$rgb['blue']};\n";
+      }
+    }
 
     $css .= "}\n\n";
   }

@@ -26,18 +26,42 @@ function fonts_theme_settings_controller(array &$variables) {
   $dxpr_theme_fonts = array_unique($dxpr_theme_fonts);
   $requested_google_fonts = [];
 
+  // Map bundled font families to their library definitions. These use the
+  // Drupal 11.4 'fonts' key for correct browser preloading.
+  $bundled_font_libraries = [
+    'LeagueGothicRegular' => 'dxpr_theme/font.league-gothic',
+    'ChunkFiveRegular' => 'dxpr_theme/font.chunk-five',
+  ];
+
   foreach ($dxpr_theme_fonts as $dxpr_theme_font) {
     if (isset($dxpr_theme_font[0]) && $dxpr_theme_font[0] === '0') {
       $dxpr_theme_font = trim(substr($dxpr_theme_font, 1), ':');
       $requested_google_fonts[] = $dxpr_theme_font;
     }
     elseif (isset($dxpr_theme_font[0]) && $dxpr_theme_font[0] === '1') {
-      _dxpr_theme_add_local_font($dxpr_theme_font, $variables);
+      $font_parts = explode('|', substr($dxpr_theme_font, 1));
+      $font_family = $font_parts[2] ?? '';
+      if (isset($bundled_font_libraries[$font_family]) && version_compare(\Drupal::VERSION, '11.4', '>=')) {
+        $variables['#attached']['library'][] = $bundled_font_libraries[$font_family];
+      }
+      else {
+        _dxpr_theme_add_local_font($dxpr_theme_font, $variables);
+      }
+    }
+  }
+
+  // Bold headings need the bold face of the headings font, otherwise the
+  // browser synthesises a faux bold from the picked weight.
+  if (theme_get_setting('headings_bold')) {
+    require_once \Drupal::service('extension.list.theme')->getPath('dxpr_theme') . '/dxpr_theme_callbacks.inc';
+    $bold_font = _dxpr_theme_headings_bold_font();
+    if ($bold_font && $bold_font['available'] && !$bold_font['already_bold']) {
+      $requested_google_fonts[] = $bold_font['family'] . ':' . $bold_font['variant'];
     }
   }
 
   if (!empty($requested_google_fonts)) {
-    _dxpr_theme_add_google_fonts($requested_google_fonts, $variables);
+    _dxpr_theme_add_google_fonts(array_unique($requested_google_fonts), $variables);
   }
 }
 
@@ -78,7 +102,9 @@ function _dxpr_theme_add_google_fonts(array $google_fonts, array &$variables) {
   if ($wrapper = \Drupal::service('stream_wrapper_manager')->getViaUri($fonts_folder_uri . '/font-face.css')) {
     $local_path = $wrapper->realpath();
 
-    if (!empty($local_path)) {
+    // A failed download leaves no file, and realpath() still returns the path
+    // where it would be.
+    if (!empty($local_path) && is_file($local_path)) {
       $file_content = file_get_contents($local_path);
       $file_content = str_replace(["\r", "\n"], '', $file_content);
 
@@ -137,7 +163,7 @@ function _dxpr_theme_cache_google_fonts(array $google_fonts, string $fonts_folde
 
   // Store font-face css file.
   try {
-    $response = $http_client->request('GET', '//fonts.googleapis.com/css2?' . $fonts_url . 'display=swap', [
+    $response = $http_client->request('GET', 'https://fonts.googleapis.com/css2?' . $fonts_url . 'display=swap', [
       'headers' => [
         'User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.82 Safari/537.36',
       ],
@@ -203,8 +229,6 @@ function _dxpr_theme_remove_google_fonts() {
  *   Variables array.
  */
 function _dxpr_theme_add_local_font($font, array &$variables) {
-  global $base_url;
-
   $added_stylesheets = &drupal_static(__FUNCTION__);
   $added_stylesheets = $added_stylesheets ?? [];
 
@@ -214,7 +238,8 @@ function _dxpr_theme_add_local_font($font, array &$variables) {
     $element = [
       '#tag' => 'link',
       '#attributes' => [
-        'href' => $base_url . '/' . $path,
+        // Root-relative: an absolute $base_url is http:// behind TLS proxies.
+        'href' => base_path() . $path,
         'rel' => 'stylesheet',
         'preload' => 'preload',
       ],
@@ -239,14 +264,20 @@ function _dxpr_theme_add_local_font($font, array &$variables) {
 function _dxpr_theme_add_local_font_preload_link($path, $font_family, array &$variables) {
   $font_families = _dxpr_theme_add_local_font_parse_font_families($path);
   if (!empty($font_families[$font_family])) {
+    // Relative font URLs resolve against the stylesheet, under base_path().
+    $url = $font_families[$font_family]['url'];
+    if (!preg_match('@^([a-z][a-z0-9+.-]*:|/)@i', $url)) {
+      $url = base_path() . dirname($path) . '/' . $url;
+    }
     $element = [
       '#type' => 'html_tag',
       '#tag' => 'link',
       '#attributes' => [
         'rel' => 'preload',
-        'href' => '/' . dirname($path) . '/' . $font_families[$font_family]['url'],
+        'href' => $url,
         'as' => 'font',
         'type' => 'font/' . $font_families[$font_family]['format'],
+        'crossorigin' => 'anonymous',
       ],
     ];
     $variables['#attached']['html_head'][] = [
@@ -270,17 +301,24 @@ function _dxpr_theme_add_local_font_parse_font_families($path) {
   $font_families = $font_families ?? [];
   if (!isset($font_families[$path])) {
     $font_families[$path] = [];
-    if ($wrapper = \Drupal::service('stream_wrapper_manager')->getViaUri($path)) {
-      $local_path = $wrapper->realpath();
+    // Theme font paths have no stream wrapper: read them from the Drupal root.
+    $wrapper = \Drupal::service('stream_wrapper_manager')->getViaUri($path);
+    $local_path = $wrapper ? $wrapper->realpath() : \Drupal::root() . '/' . $path;
+    if ($local_path && is_file($local_path)) {
       $content = file_get_contents($local_path);
       preg_match_all('/@font-face\s*{([\s\S]*?)}/i', $content, $font_faces);
       foreach ($font_faces[1] as $font_face) {
-        if (preg_match('/font-family: [\'"](.*?)[\'"]/i', $font_face, $font_family)) {
-          $font_families[$path][$font_family[1]] = [];
-          if (preg_match('/src[\s]*:[\s]*url\([\'"]*(.+?)[\'"]*\)[\s]*format\([\'"]*(.+?)[\'"]*\)/i', $font_face, $matches)) {
+        if (preg_match('/font-family: [\'"](.*?)[\'"]/i', $font_face, $font_family)
+          && preg_match('/src[\s]*:[\s]*url\([\'"]*(.+?)[\'"]*\)[\s]*format\([\'"]*(.+?)[\'"]*\)/i', $font_face, $matches)) {
+          // Preload one face per family: the regular one, else the first.
+          $regular = !preg_match('/font-weight\s*:\s*+(?!400\b|normal\b)/i', $font_face)
+            && !preg_match('/font-style\s*:\s*(italic|oblique)/i', $font_face);
+          $current = $font_families[$path][$font_family[1]] ?? NULL;
+          if (!$current || ($regular && !$current['regular'])) {
             $font_families[$path][$font_family[1]] = [
               'url' => $matches[1],
               'format' => $matches[2],
+              'regular' => $regular,
             ];
           }
         }

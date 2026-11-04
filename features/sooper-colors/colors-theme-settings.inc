@@ -58,6 +58,7 @@ function colors_theme_settings(array &$form, $theme) {
   $form['dxpr_theme_settings']['colors']['wrapper']['color_scheme'] = [
     '#type' => 'select',
     '#title' => t('Color Set'),
+    '#ai_description' => 'Select a predefined color scheme or custom to define individual palette colors. Available schemes are defined in the theme\'s color-settings.json. Use dxt:generate:palette to create a scheme from a natural language description.',
     '#default_value' => theme_get_setting('color_scheme') ?? 'default',
     '#options' => $scheme_options,
     '#attributes' => [

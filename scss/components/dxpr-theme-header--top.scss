@@ -22,6 +22,23 @@
 
       .nav > li > a,
       .nav > li > span.nav-link {
+        align-items: center;
+        display: flex;
+        height: var(--dxt-setting-header-top-height);
+        line-height: var(--dxt-setting-header-top-height);
+        padding-left: var(--dxt-setting-menu-link-spacing, 10px);
+        padding-right: var(--dxt-setting-menu-link-spacing, 10px);
+      }
+
+      .nav > li > .bs-dropdown-wrapper {
+        height: var(--dxt-setting-header-top-height);
+      }
+
+      .nav > li > .bs-dropdown-wrapper > a {
+        align-items: center;
+        display: flex;
+        height: var(--dxt-setting-header-top-height);
+        line-height: var(--dxt-setting-header-top-height);
         padding-left: var(--dxt-setting-menu-link-spacing, 10px);
         padding-right: var(--dxt-setting-menu-link-spacing, 10px);
       }
@@ -249,6 +266,7 @@
 
       .dropdown-item,
       .bs-dropdown-item-wrapper > .dropdown-item {
+        font-weight: inherit;
         white-space: normal;
         word-wrap: break-word;
       }

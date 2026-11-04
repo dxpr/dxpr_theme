@@ -5,38 +5,42 @@
 // Fonts
 @import "../includes/variables";
 
-// Default font stack fallback.
+// Default font stack. The chosen fonts are applied by the generated theme
+// settings CSS to the selectors configured in Typography > Fonts, so these
+// compiled rules must stay font-neutral (see #908).
 $default-font-stack: -apple-system, blinkmacsystemfont, "Segoe UI", roboto, helvetica, arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 
-body, .toooltip {
-  font-family: var(--dxt-setting-body-font-face, #{$default-font-stack});
-  font-style: var(--dxt-setting-body-font-style, normal);
-  font-weight: var(--dxt-setting-body-font-weight, 400);
+body, .tooltip {
+  font-family: $default-font-stack;
+  font-style: normal;
+  font-weight: 400;
 }
 
-h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, label, .field--label {
-  font-family: var(--dxt-setting-headings-font-face, #{$default-font-stack});
-  font-style: var(--dxt-setting-headings-font-style, normal);
-  font-weight: var(--dxt-setting-headings-font-weight, 700);
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6,
+.display-1, .display-2, .display-3, .display-4, .display-5, .display-6,
+label, .field--label {
+  font-family: $default-font-stack;
+  font-style: normal;
+  font-weight: 700;
 }
 
 .dxpr-theme-header .nav {
-  font-family: var(--dxt-setting-nav-font-face, #{$default-font-stack});
-  font-style: var(--dxt-setting-nav-font-style, normal);
-  font-weight: var(--dxt-setting-nav-font-weight, 400);
+  font-family: $default-font-stack;
+  font-style: normal;
+  font-weight: 400;
 }
 
 .site-name, .navbar-brand {
-  font-family: var(--dxt-setting-sitename-font-face, #{$default-font-stack});
-  font-style: var(--dxt-setting-sitename-font-style, normal);
-  font-weight: var(--dxt-setting-sitename-font-weight, 400);
+  font-family: $default-font-stack;
+  font-style: normal;
+  font-weight: 400;
 }
 
 blockquote, blockquote p {
-  font-family: var(--dxt-setting-blockquote-font-face, #{$default-font-stack});
+  font-family: $default-font-stack;
   font-size: var(--dxt-setting-blockquote-font-size);
-  font-style: var(--dxt-setting-blockquote-font-style, italic);
-  font-weight: var(--dxt-setting-blockquote-font-weight, 400);
+  font-style: italic;
+  font-weight: 400;
   line-height: var(--dxt-setting-blockquote-line-height);
 }
 
@@ -51,9 +55,9 @@ body, p, .lead {
   line-height:  var(--dxt-setting-body-line-height);
 }
 
-h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
-  // Use !important to override default font-family weight.
-  font-weight: var(--dxt-setting-headings-bold) !important;
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6,
+.display-1, .display-2, .display-3, .display-4, .display-5, .display-6 {
+  font-weight: var(--dxt-setting-headings-bold);
   letter-spacing: var(--dxt-setting-headings-letter-spacing);
   line-height: var(--dxt-setting-headings-line-height);
   margin-bottom: 10px;
@@ -69,8 +73,15 @@ h2, .h2 {
   font-size: var(--dxt-setting-h2-font-size)
 }
 
-h3, .h3, .block-title {
+h3, .h3 {
   font-size: var(--dxt-setting-h3-font-size)
+}
+
+// Block titles follow the Block Design "Title Font Size" setting, which
+// defaults to the h3 size. This applies to every block title, not only to
+// block design regions, so Layout Builder and content blocks respect it.
+.block-title {
+  font-size: var(--dxt-setting-title-font-size);
 }
 
 h4, .h4 {
@@ -144,7 +155,9 @@ a:hover, a:focus,
   }
 }
 
-h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, .navbar-brand, th, .nav-tabs > li > a {
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6,
+.display-1, .display-2, .display-3, .display-4, .display-5, .display-6,
+.navbar-brand, th, .nav-tabs > li > a {
   color: dxpr-color('headings');
 
   a {
@@ -162,7 +175,9 @@ h2 a, .h2 a,
 h3 a, .h3 a,
 h4 a, .h4 a,
 h5 a, .h5 a,
-h6 a, .h6 a {
+h6 a, .h6 a,
+.display-1 a, .display-2 a, .display-3 a,
+.display-4 a, .display-5 a, .display-6 a {
   color: dxpr-color('base');
 
   &:hover,
@@ -181,6 +196,9 @@ hr, .card hr {
   border-top-width: var(--dxt-setting-divider-thickness);
   height: 0;
   margin: 20px auto 20px var(--dxt-setting-divider-position);
+
+  // Bootstrap's reboot dims hr to 25%; render the configured colour as is.
+  opacity: 1;
   width: var(--dxt-setting-divider-length);
 }
 
@@ -225,8 +243,9 @@ hr, .card hr {
   h2, .h2 { font-size: var(--dxt-setting-h2-mobile-font-size) }
   h3, .h3 { font-size: var(--dxt-setting-h3-mobile-font-size) }
   h4, .h4 { font-size: var(--dxt-setting-h4-mobile-font-size) }
+  .block-title { font-size: var(--dxt-setting-title-font-size-mobile) }
 
-  blockquote, .blockquote p {
+  blockquote, blockquote p, .blockquote p {
     font-size: var(--dxt-setting-blockquote-mobile-font-size);
   }
 }

@@ -23,6 +23,20 @@
     margin-bottom: 0;
   }
 
+  h2, h3, label, .btn, button, select {
+    color: inherit;
+  }
+
+  .dropdown-menu {
+    color: initial;
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+
+  .dropbutton-wrapper {
+    display: inline-flex;
+  }
+
   .secondary-header-container {
     margin-bottom: 0;
   }
@@ -46,5 +60,25 @@
     li {
       float:left;
     }
+  }
+}
+
+// Layout > Secondary Header > "Hide on": the template prints the option value
+// as a class; hide the header below the breakpoint named in the option.
+@media screen and (width <= 767.98px) {
+  #secondary-header.hidden-xs {
+    display: none;
+  }
+}
+
+@media screen and (width <= 991.98px) {
+  #secondary-header.hidden-sm {
+    display: none;
+  }
+}
+
+@media screen and (width <= 1199.98px) {
+  #secondary-header.hidden-md {
+    display: none;
   }
 }

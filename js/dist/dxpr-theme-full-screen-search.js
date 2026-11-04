@@ -1,4 +1,9 @@
 (function (Drupal, once) {
+  // The elements of the latest attachment. The Escape listener is bound once
+  // and reads them when the key is pressed, so that it also works after an
+  // AJAX update has replaced the search form and button.
+  let current = null;
+
   Drupal.behaviors.fullScreenSearch = {
     attach(context, settings) {
       const searchButton = document.querySelector(".full-screen-search-button");
@@ -13,6 +18,17 @@
         searchForm.dataset.movedToBody = "true";
       }
 
+      // Announce the state change to screen readers, in the page language.
+      // The build shortens the Drupal parameter, and Drupal only collects
+      // strings from literal Drupal.t() calls, hence window.Drupal.
+      function announce(isVisible) {
+        if (searchStatus) {
+          searchStatus.textContent = isVisible
+            ? window.Drupal.t("Search opened")
+            : window.Drupal.t("Search closed");
+        }
+      }
+
       function clearSearchForm() {
         searchForm.classList.toggle("invisible");
         document.body.classList.toggle("body--full-screen-search");
@@ -21,13 +37,7 @@
         const isVisible = !searchForm.classList.contains("invisible");
         searchButton.setAttribute("aria-expanded", isVisible.toString());
         searchForm.setAttribute("aria-hidden", (!isVisible).toString());
-
-        // Announce state change to screen readers
-        if (searchStatus) {
-          searchStatus.textContent = isVisible
-            ? "Search opened"
-            : "Search closed";
-        }
+        announce(isVisible);
 
         setTimeout(() => {
           searchFormInput.value = "";
@@ -43,21 +53,17 @@
         const isVisible = !searchForm.classList.contains("invisible");
         searchButton.setAttribute("aria-expanded", isVisible.toString());
         searchForm.setAttribute("aria-hidden", (!isVisible).toString());
-
-        // Announce state change to screen readers
-        if (searchStatus) {
-          searchStatus.textContent = isVisible
-            ? "Search opened"
-            : "Search closed";
-        }
+        announce(isVisible);
 
         searchFormInput.focus();
       }
 
       function handleSearchFormClick(ele) {
-        if (!ele.target.classList.contains("search-query")) {
-          clearSearchForm();
+        // Taps on the input, the submit button and labels belong to the form.
+        if (ele.target.closest("input, button, label, a")) {
+          return;
         }
+        clearSearchForm();
       }
 
       // Handle the search button click or touchstart
@@ -66,22 +72,28 @@
         searchButton.addEventListener("click", handleSearchButtonClick);
       }
 
-      // Handle the search form click or touchstart
+      // Handle the search form click. A click covers touch screens too, and a
+      // touchstart handler would hide the form before the click, so that the
+      // tap fell through to the page behind it.
       if (searchForm && once("search-form", searchForm).length) {
-        searchForm.addEventListener("touchstart", handleSearchFormClick);
         searchForm.addEventListener("click", handleSearchFormClick);
       }
 
-      // Handle the escape key to close the search form
-      document.addEventListener("keydown", (event) => {
-        if (
-          event.key === "Escape" && // Check if Escape key is pressed
-          !searchForm.classList.contains("invisible") // Ensure the form is visible
-        ) {
-          clearSearchForm(); // Call the function to clear the form
-          searchButton.focus(); // Return focus to the search button
-        }
-      });
+      current = { searchForm, searchButton, clearSearchForm };
+
+      // Handle the escape key to close the search form, once per page.
+      if (once("search-escape", "html").length) {
+        document.addEventListener("keydown", (event) => {
+          if (
+            event.key === "Escape" && // Check if Escape key is pressed
+            current &&
+            !current.searchForm.classList.contains("invisible") // Ensure the form is visible
+          ) {
+            current.clearSearchForm(); // Call the function to clear the form
+            current.searchButton.focus(); // Return focus to the search button
+          }
+        });
+      }
     },
   };
 })(Drupal, once);

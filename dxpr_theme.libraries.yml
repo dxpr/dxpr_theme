@@ -55,6 +55,7 @@ dxpr-theme-full-screen-search-js:
   js:
     js/minified/dxpr-theme-full-screen-search.min.js: { minified: true }
   dependencies:
+    - core/drupal
     - core/once
 
 dxpr-theme-header:
@@ -204,6 +205,22 @@ custom_animations:
     theme:
       css/animations-dxpr.css: {}
 
+font.league-gothic:
+  css:
+    theme:
+      fonts/leaguegothic/stylesheet.css: { minified: true }
+  fonts:
+    fonts/leaguegothic/league_gothic-webfont.woff:
+      preload: true
+
+font.chunk-five:
+  css:
+    theme:
+      fonts/ChunkFive-fontfacekit/stylesheet.css: { minified: true }
+  fonts:
+    fonts/ChunkFive-fontfacekit/Chunkfive-webfont.woff:
+      preload: true
+
 enhanced-dropdowns:
   version: 1.x
   js:
@@ -212,5 +229,11 @@ enhanced-dropdowns:
   css:
     theme:
       vendor/enhanced-dropdowns/dist/css/main.min.css: { minified: true }
+  dependencies:
+    - core/drupal
+
+active-trail:
+  js:
+    js/dist/dxpr-theme-active-trail.js: {}
   dependencies:
     - core/drupal

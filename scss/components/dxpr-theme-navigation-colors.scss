@@ -13,10 +13,16 @@
     background-color: var(--dxt-setting-header-block-background, inherit);
   }
 
-  .block:not(.contextual-region),
-  .block:not(.contextual-region) a,
+  .block,
+  .block a,
   .block .btn-link {
     color: var(--dxt-setting-header-block-text-color, inherit);
+  }
+
+  // Prevent header block text colour from leaking into contextual links UI
+  .block .contextual,
+  .block .contextual a {
+    color: initial;
   }
 
   .nav {
@@ -33,14 +39,6 @@
       background-color: var(--dxt-setting-menu-hover-background);
       color: var(--dxt-setting-menu-hover-text-color);
     }
-
-    a.dropdown-item {
-      &:hover,
-      &:focus {
-        background-color: var(--dxt-setting-menu-hover-background);
-        color: var(--dxt-setting-menu-hover-text-color);
-      }
-    }
   }
 
   .nav,
@@ -52,12 +50,14 @@
   .dropdown-menu {
     background-color: var(--dxt-setting-dropdown-background, var(--dxt-color-header));
 
+    // Dropdown links fall back to the menu hover colours when no dropdown
+    // hover colour is configured.
     a,
     button {
       &:hover,
       &:focus {
-        background-color: var(--dxt-setting-dropdown-hover-background);
-        color: var(--dxt-setting-dropdown-hover-text-color);
+        background-color: var(--dxt-setting-dropdown-hover-background, var(--dxt-setting-menu-hover-background));
+        color: var(--dxt-setting-dropdown-hover-text-color, var(--dxt-setting-menu-hover-text-color));
       }
     }
   }
