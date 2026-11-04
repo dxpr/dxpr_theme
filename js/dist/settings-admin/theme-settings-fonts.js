@@ -75,15 +75,22 @@ const dxprThemeSettingsFonts = {
     );
     fontSelects.forEach((field) => field.classList.add("dxt-admin-ai-updated"));
 
-    fetch(`${drupalSettings.path.baseUrl}admin/dxpr-theme/generate-fonts`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-        "X-Requested-With": "XMLHttpRequest",
-      },
+    fetch(`${drupalSettings.path.baseUrl}session/token`, {
       credentials: "same-origin",
-      body: `prompt=${encodeURIComponent(prompt)}`,
     })
+      .then((response) => response.text())
+      .then((token) =>
+        fetch(`${drupalSettings.path.baseUrl}admin/dxpr-theme/generate-fonts`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+            "X-Requested-With": "XMLHttpRequest",
+            "X-CSRF-Token": token,
+          },
+          credentials: "same-origin",
+          body: `prompt=${encodeURIComponent(prompt)}`,
+        }),
+      )
       .then((response) => response.json())
       .then((data) => {
         if (data.error) {
