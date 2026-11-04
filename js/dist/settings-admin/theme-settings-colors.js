@@ -137,19 +137,24 @@ const dxprThemeSettingsColors = {
     const colorFields = this.elColorPalette.querySelectorAll(".form-text");
     colorFields.forEach((field) => field.classList.add("dxt-admin-ai-updated"));
 
-    fetch(`${drupalSettings.path.baseUrl}session/token`, { credentials: "same-origin" })
+    fetch(`${drupalSettings.path.baseUrl}session/token`, {
+      credentials: "same-origin",
+    })
       .then((response) => response.text())
       .then((token) =>
-        fetch(`${drupalSettings.path.baseUrl}admin/dxpr-theme/generate-palette`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-            "X-Requested-With": "XMLHttpRequest",
-            "X-CSRF-Token": token,
+        fetch(
+          `${drupalSettings.path.baseUrl}admin/dxpr-theme/generate-palette`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded",
+              "X-Requested-With": "XMLHttpRequest",
+              "X-CSRF-Token": token,
+            },
+            credentials: "same-origin",
+            body: `prompt=${encodeURIComponent(prompt)}`,
           },
-          credentials: "same-origin",
-          body: `prompt=${encodeURIComponent(prompt)}`,
-        }),
+        ),
       )
       .then((response) => response.json())
       .then((data) => {

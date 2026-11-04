@@ -75,7 +75,9 @@ const dxprThemeSettingsFonts = {
     );
     fontSelects.forEach((field) => field.classList.add("dxt-admin-ai-updated"));
 
-    fetch(`${drupalSettings.path.baseUrl}session/token`, { credentials: "same-origin" })
+    fetch(`${drupalSettings.path.baseUrl}session/token`, {
+      credentials: "same-origin",
+    })
       .then((response) => response.text())
       .then((token) =>
         fetch(`${drupalSettings.path.baseUrl}admin/dxpr-theme/generate-fonts`, {
