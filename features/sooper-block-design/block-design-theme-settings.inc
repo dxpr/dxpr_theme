@@ -5,6 +5,8 @@
  * Block design theme settings.
  */
 
+use Drupal\dxpr_theme\ThemeSettings;
+
 /**
  * Add block design options to the theme settings form.
  *
@@ -25,7 +27,7 @@ function block_design_theme_settings(array &$form, $theme) {
     '#type' => 'select',
     '#title' => t('Block Design Preset'),
     '#ai_description' => 'Quick-apply design preset for sidebar blocks and widget areas. (empty)=theme defaults. block_boxed=white boxes with shadow. block_outline=bordered blocks. block_card=Bootstrap card style. title_inverted=dark title bar. title_sticker=compact title. default_divider=title with divider. custom=full manual control.',
-    '#default_value' => ((\Drupal\dxpr_theme\ThemeSettings::get('block_preset') !== NULL)) ? \Drupal\dxpr_theme\ThemeSettings::get('block_preset') : 'none',
+    '#default_value' => ((ThemeSettings::get('block_preset') !== NULL)) ? ThemeSettings::get('block_preset') : 'none',
     '#options' => [
       '' => t('None (Theme Defaults)'),
       'block_boxed' => t('Block Boxed'),
@@ -73,7 +75,7 @@ function block_design_theme_settings(array &$form, $theme) {
     '#type' => 'select',
     '#title' => t('Block Card Style'),
     '#ai_description' => 'Bootstrap card class applied to blocks. (empty)=no card. card card-body=default white card. bg-primary=primary color card. Use accent variants for colored sidebar sections. Overrides block_padding, block_border when set.',
-    '#default_value' => \Drupal\dxpr_theme\ThemeSettings::get('block_card'),
+    '#default_value' => ThemeSettings::get('block_card'),
     '#options' => $card_options,
   ];
 
@@ -81,7 +83,7 @@ function block_design_theme_settings(array &$form, $theme) {
     '#type' => 'select',
     '#title' => t('Block Background'),
     '#ai_description' => 'Background color for blocks (when not using block_card). Creates colored block containers. Use a theme palette color or custom.',
-    '#default_value' => \Drupal\dxpr_theme\ThemeSettings::get('block_background'),
+    '#default_value' => ThemeSettings::get('block_background'),
     '#options' => _dxpr_theme_color_options($theme),
   ];
 
@@ -89,7 +91,7 @@ function block_design_theme_settings(array &$form, $theme) {
     '#type' => 'textfield',
     '#title' => t('Custom Value'),
     '#ai_description' => 'Custom hex for block background. Only used when block_background=custom. Light grays (#f5f5f5, #f8f9fa) create subtle card-like blocks.',
-    '#default_value' => ((\Drupal\dxpr_theme\ThemeSettings::get('block_background_custom') !== NULL)) ? \Drupal\dxpr_theme\ThemeSettings::get('block_background_custom') : '#eeeeee',
+    '#default_value' => ((ThemeSettings::get('block_background_custom') !== NULL)) ? ThemeSettings::get('block_background_custom') : '#eeeeee',
     '#states' => [
       'visible' => [
         'select[name="block_background"]' => ['value' => 'custom'],
@@ -101,7 +103,7 @@ function block_design_theme_settings(array &$form, $theme) {
     '#type' => 'range',
     '#title' => t('Block Padding'),
     '#ai_description' => 'Internal padding inside blocks. 0=no padding. 10-15px=compact. 20-30px=comfortable. Disabled when block_card is set.',
-    '#default_value' => ((\Drupal\dxpr_theme\ThemeSettings::get('block_padding') !== NULL)) ? \Drupal\dxpr_theme\ThemeSettings::get('block_padding') : 0,
+    '#default_value' => ((ThemeSettings::get('block_padding') !== NULL)) ? ThemeSettings::get('block_padding') : 0,
     '#min' => 0,
     '#max' => 30,
     '#step' => 1,
@@ -120,7 +122,7 @@ function block_design_theme_settings(array &$form, $theme) {
     '#type' => 'range',
     '#title' => t('Block Border Radius'),
     '#ai_description' => 'Rounded corners on blocks. 0=sharp corners (corporate). 4-8px=subtle rounding (modern standard). 12-20px=noticeably rounded (friendly). Disabled when block_card is set.',
-    '#default_value' => ((\Drupal\dxpr_theme\ThemeSettings::get('block_border_radius') !== NULL)) ? \Drupal\dxpr_theme\ThemeSettings::get('block_border_radius') : 0,
+    '#default_value' => ((ThemeSettings::get('block_border_radius') !== NULL)) ? ThemeSettings::get('block_border_radius') : 0,
     '#min' => 0,
     '#max' => 100,
     '#step' => 1,
@@ -139,7 +141,7 @@ function block_design_theme_settings(array &$form, $theme) {
     '#type' => 'range',
     '#title' => t('Block Border'),
     '#ai_description' => 'Border width around blocks. 0=no border. 1px=subtle outline. 2-3px=visible frame. Disabled when block_card is set.',
-    '#default_value' => ((\Drupal\dxpr_theme\ThemeSettings::get('block_border') !== NULL)) ? \Drupal\dxpr_theme\ThemeSettings::get('block_border') : 0,
+    '#default_value' => ((ThemeSettings::get('block_border') !== NULL)) ? ThemeSettings::get('block_border') : 0,
     '#min' => 0,
     '#max' => 30,
     '#step' => 1,
@@ -158,7 +160,7 @@ function block_design_theme_settings(array &$form, $theme) {
     '#type' => 'select',
     '#title' => t('Block Border Color'),
     '#ai_description' => 'Color of the block border. Often a light gray (#dee2e6) for subtle definition. Only visible when block_border>0.',
-    '#default_value' => \Drupal\dxpr_theme\ThemeSettings::get('block_border_color'),
+    '#default_value' => ThemeSettings::get('block_border_color'),
     '#options' => _dxpr_theme_color_options($theme),
     '#states' => [
       'visible' => [
@@ -171,7 +173,7 @@ function block_design_theme_settings(array &$form, $theme) {
     '#type' => 'textfield',
     '#title' => t('Custom Value'),
     '#ai_description' => 'Custom hex for block border. Only used when block_border_color=custom.',
-    '#default_value' => ((\Drupal\dxpr_theme\ThemeSettings::get('block_border_color_custom') !== NULL)) ? \Drupal\dxpr_theme\ThemeSettings::get('block_border_color_custom') : '#eeeeee',
+    '#default_value' => ((ThemeSettings::get('block_border_color_custom') !== NULL)) ? ThemeSettings::get('block_border_color_custom') : '#eeeeee',
     '#states' => [
       'visible' => [
         'input[name="block_border"]' => ['!value' => '0'],
@@ -191,7 +193,7 @@ function block_design_theme_settings(array &$form, $theme) {
     '#type' => 'radios',
     '#title' => t('Title Font Size'),
     '#ai_description' => 'Heading level for block titles. h2=large section heading. h3=standard block title (default). h4=smaller heading. body=paragraph-sized (subtle).',
-    '#default_value' => ((\Drupal\dxpr_theme\ThemeSettings::get('title_font_size') !== NULL)) ? \Drupal\dxpr_theme\ThemeSettings::get('title_font_size') : 'h3',
+    '#default_value' => ((ThemeSettings::get('title_font_size') !== NULL)) ? ThemeSettings::get('title_font_size') : 'h3',
     '#options' => [
       'h1' => t('h1'),
       'h2' => t('h2'),
@@ -205,7 +207,7 @@ function block_design_theme_settings(array &$form, $theme) {
     '#type' => 'radios',
     '#title' => t('Title Align'),
     '#ai_description' => 'Block title text alignment. left=standard (default). center=formal/symmetrical. right=unconventional.',
-    '#default_value' => ((\Drupal\dxpr_theme\ThemeSettings::get('title_align') !== NULL)) ? \Drupal\dxpr_theme\ThemeSettings::get('title_align') : 'left',
+    '#default_value' => ((ThemeSettings::get('title_align') !== NULL)) ? ThemeSettings::get('title_align') : 'left',
     '#options' => [
       'left' => t('Left'),
       'center' => t('Center'),
@@ -217,7 +219,7 @@ function block_design_theme_settings(array &$form, $theme) {
     '#type' => 'select',
     '#title' => t('Title Card Style'),
     '#ai_description' => 'Bootstrap card styling on the title element separately from the block body. Creates a highlighted title bar.',
-    '#default_value' => \Drupal\dxpr_theme\ThemeSettings::get('title_card'),
+    '#default_value' => ThemeSettings::get('title_card'),
     '#options' => $card_options,
   ];
 
@@ -225,7 +227,7 @@ function block_design_theme_settings(array &$form, $theme) {
     '#type' => 'select',
     '#title' => t('Title Background'),
     '#ai_description' => 'Background color for block titles. Creates colored title bars. Combined with contrasting text creates the inverted title look.',
-    '#default_value' => \Drupal\dxpr_theme\ThemeSettings::get('title_background'),
+    '#default_value' => ThemeSettings::get('title_background'),
     '#options' => _dxpr_theme_color_options($theme),
   ];
 
@@ -233,7 +235,7 @@ function block_design_theme_settings(array &$form, $theme) {
     '#type' => 'textfield',
     '#title' => t('Custom Value'),
     '#ai_description' => 'Custom hex for title background. Only used when title_background=custom.',
-    '#default_value' => ((\Drupal\dxpr_theme\ThemeSettings::get('title_background_custom') !== NULL)) ? \Drupal\dxpr_theme\ThemeSettings::get('title_background_custom') : '#eeeeee',
+    '#default_value' => ((ThemeSettings::get('title_background_custom') !== NULL)) ? ThemeSettings::get('title_background_custom') : '#eeeeee',
     '#states' => [
       'visible' => [
         'select[name="title_background"]' => ['value' => 'custom'],
@@ -245,7 +247,7 @@ function block_design_theme_settings(array &$form, $theme) {
     '#type' => 'range',
     '#title' => t('Title Padding'),
     '#ai_description' => 'Padding inside the title element. 5-10px=compact. 15-20px=comfortable. 25-30px=spacious title bar. Disabled when title_card is set.',
-    '#default_value' => ((\Drupal\dxpr_theme\ThemeSettings::get('title_padding') !== NULL)) ? \Drupal\dxpr_theme\ThemeSettings::get('title_padding') : 10,
+    '#default_value' => ((ThemeSettings::get('title_padding') !== NULL)) ? ThemeSettings::get('title_padding') : 10,
     '#min' => 0,
     '#max' => 30,
     '#step' => 1,
@@ -264,7 +266,7 @@ function block_design_theme_settings(array &$form, $theme) {
     '#type' => 'range',
     '#title' => t('Title Border'),
     '#ai_description' => 'Border width on block titles. 0=no border. 1-2px=subtle underline/frame. 3+px=bold accent.',
-    '#default_value' => ((\Drupal\dxpr_theme\ThemeSettings::get('title_border') !== NULL)) ? \Drupal\dxpr_theme\ThemeSettings::get('title_border') : 0,
+    '#default_value' => ((ThemeSettings::get('title_border') !== NULL)) ? ThemeSettings::get('title_border') : 0,
     '#min' => 0,
     '#max' => 30,
     '#step' => 1,
@@ -283,7 +285,7 @@ function block_design_theme_settings(array &$form, $theme) {
     '#type' => 'range',
     '#title' => t('Title Border Radius'),
     '#ai_description' => 'Rounded corners on the title element. 0=sharp. 4-8px=subtle.',
-    '#default_value' => ((\Drupal\dxpr_theme\ThemeSettings::get('title_border_radius') !== NULL)) ? \Drupal\dxpr_theme\ThemeSettings::get('title_border_radius') : 0,
+    '#default_value' => ((ThemeSettings::get('title_border_radius') !== NULL)) ? ThemeSettings::get('title_border_radius') : 0,
     '#min' => 0,
     '#max' => 30,
     '#step' => 1,
@@ -302,7 +304,7 @@ function block_design_theme_settings(array &$form, $theme) {
     '#type' => 'select',
     '#title' => t('Title Border Color'),
     '#ai_description' => 'Color of the title border. Often an accent color for decorative emphasis.',
-    '#default_value' => \Drupal\dxpr_theme\ThemeSettings::get('title_border_color'),
+    '#default_value' => ThemeSettings::get('title_border_color'),
     '#options' => _dxpr_theme_color_options($theme),
     '#states' => [
       'visible' => [
@@ -315,7 +317,7 @@ function block_design_theme_settings(array &$form, $theme) {
     '#type' => 'textfield',
     '#title' => t('Custom Value'),
     '#ai_description' => 'Custom hex for title border. Only used when title_border_color=custom.',
-    '#default_value' => ((\Drupal\dxpr_theme\ThemeSettings::get('title_border_color_custom') !== NULL)) ? \Drupal\dxpr_theme\ThemeSettings::get('title_border_color_custom') : '#eeeeee',
+    '#default_value' => ((ThemeSettings::get('title_border_color_custom') !== NULL)) ? ThemeSettings::get('title_border_color_custom') : '#eeeeee',
     '#states' => [
       'visible' => [
         'input[name="title_border"]' => ['!value' => '0'],
@@ -328,7 +330,7 @@ function block_design_theme_settings(array &$form, $theme) {
     '#type' => 'radios',
     '#title' => t('Title Align'),
     '#ai_description' => 'Block title text alignment. left=standard (default). center=formal/symmetrical. right=unconventional.',
-    '#default_value' => ((\Drupal\dxpr_theme\ThemeSettings::get('title_align') !== NULL)) ? \Drupal\dxpr_theme\ThemeSettings::get('title_align') : 'left',
+    '#default_value' => ((ThemeSettings::get('title_align') !== NULL)) ? ThemeSettings::get('title_align') : 'left',
     '#options' => [
       'left' => t('Left'),
       'center' => t('Center'),
@@ -344,7 +346,7 @@ function block_design_theme_settings(array &$form, $theme) {
   $form['dxpr_theme_settings']['block']['block_advanced']['title_el']['title_sticker'] = [
     '#type' => 'checkbox',
     '#title' => t('Title Sticker Mode'),
-    '#default_value' => ((\Drupal\dxpr_theme\ThemeSettings::get('title_sticker') !== NULL)) ? \Drupal\dxpr_theme\ThemeSettings::get('title_sticker') : 0,
+    '#default_value' => ((ThemeSettings::get('title_sticker') !== NULL)) ? ThemeSettings::get('title_sticker') : 0,
     '#description' => t("When enabled, the title width adjusts to fit its content instead of spanning the full block width."),
     '#ai_description' => 'When enabled, title element shrinks to fit its text content instead of spanning full block width. Creates compact modern title label. Works well with title_background. Overrides title_align.',
     '#prefix' => '<br>',
@@ -361,7 +363,7 @@ function block_design_theme_settings(array &$form, $theme) {
     '#type' => 'checkbox',
     '#title' => t('Add Divider to Block'),
     '#ai_description' => 'Add a horizontal divider line between block title and content. Creates clean visual separation. Popular in minimal/editorial designs.',
-    '#default_value' => ((\Drupal\dxpr_theme\ThemeSettings::get('block_divider') !== NULL)) ? \Drupal\dxpr_theme\ThemeSettings::get('block_divider') : 0,
+    '#default_value' => ((ThemeSettings::get('block_divider') !== NULL)) ? ThemeSettings::get('block_divider') : 0,
   ];
 
   $form['dxpr_theme_settings']['block']['block_advanced']['divider_el']['block_divider_custom'] = [
@@ -369,7 +371,7 @@ function block_design_theme_settings(array &$form, $theme) {
     '#title' => t('Customize Divider'),
     '#description' => t('Override the global divider styles from the Typography tab for this block only.'),
     '#ai_description' => 'Enable to override global divider settings with block-specific divider styling. Disable to inherit global divider_thickness/length/color.',
-    '#default_value' => ((\Drupal\dxpr_theme\ThemeSettings::get('block_divider_custom') !== NULL)) ? \Drupal\dxpr_theme\ThemeSettings::get('block_divider_custom') : 0,
+    '#default_value' => ((ThemeSettings::get('block_divider_custom') !== NULL)) ? ThemeSettings::get('block_divider_custom') : 0,
     '#states' => [
       'visible' => [
         ':input[name="block_divider"]' => ['checked' => TRUE],
@@ -381,7 +383,7 @@ function block_design_theme_settings(array &$form, $theme) {
     '#type' => 'select',
     '#title' => t('Divider Color'),
     '#ai_description' => 'Color for block-specific divider. Only active when block_divider=true and block_divider_custom=true.',
-    '#default_value' => \Drupal\dxpr_theme\ThemeSettings::get('block_divider_color'),
+    '#default_value' => ThemeSettings::get('block_divider_color'),
     '#options' => _dxpr_theme_color_options($theme),
     '#states' => [
       'visible' => [
@@ -395,7 +397,7 @@ function block_design_theme_settings(array &$form, $theme) {
     '#type' => 'textfield',
     '#title' => t('Custom Value'),
     '#ai_description' => 'Custom hex for block divider. Only used when block_divider_color=custom.',
-    '#default_value' => ((\Drupal\dxpr_theme\ThemeSettings::get('block_divider_color_custom') !== NULL)) ? \Drupal\dxpr_theme\ThemeSettings::get('block_divider_color_custom') : '#eeeeee',
+    '#default_value' => ((ThemeSettings::get('block_divider_color_custom') !== NULL)) ? ThemeSettings::get('block_divider_color_custom') : '#eeeeee',
     '#states' => [
       'visible' => [
         'select[name="block_divider_color"]' => ['value' => 'custom'],
@@ -418,7 +420,7 @@ function block_design_theme_settings(array &$form, $theme) {
       '#type' => 'range',
       '#title' => t('Divider Thickness'),
       '#ai_description' => 'Thickness of block dividers. 1-2px=hairline. 3-4px=standard. Only active when block_divider=true and block_divider_custom=true.',
-      '#default_value' => ((\Drupal\dxpr_theme\ThemeSettings::get('block_divider_thickness') !== NULL)) ? \Drupal\dxpr_theme\ThemeSettings::get('block_divider_thickness') : 4,
+      '#default_value' => ((ThemeSettings::get('block_divider_thickness') !== NULL)) ? ThemeSettings::get('block_divider_thickness') : 4,
       '#min' => 0,
       '#max' => 20,
       '#step' => 1,
@@ -442,7 +444,7 @@ function block_design_theme_settings(array &$form, $theme) {
       '#type' => 'range',
       '#title' => t('Divider Length'),
       '#ai_description' => 'Width of block dividers. 0=full width. Short lengths (30-80px) create accent marks. Only active when block_divider=true and block_divider_custom=true.',
-      '#default_value' => ((\Drupal\dxpr_theme\ThemeSettings::get('block_divider_length') !== NULL)) ? \Drupal\dxpr_theme\ThemeSettings::get('block_divider_length') : 10,
+      '#default_value' => ((ThemeSettings::get('block_divider_length') !== NULL)) ? ThemeSettings::get('block_divider_length') : 10,
       '#min' => 0,
       '#max' => 500,
       '#step' => 1,
@@ -466,7 +468,7 @@ function block_design_theme_settings(array &$form, $theme) {
       '#type' => 'range',
       '#title' => t('Divider Spacing'),
       '#ai_description' => 'Vertical space above and below the block divider. 10-15px=tight. 20px=standard. 30+px=generous. Only active when block_divider=true and block_divider_custom=true.',
-      '#default_value' => ((\Drupal\dxpr_theme\ThemeSettings::get('block_divider_spacing') !== NULL)) ? \Drupal\dxpr_theme\ThemeSettings::get('block_divider_spacing') : 20,
+      '#default_value' => ((ThemeSettings::get('block_divider_spacing') !== NULL)) ? ThemeSettings::get('block_divider_spacing') : 20,
       '#min' => 0,
       '#max' => 100,
       '#step' => 1,
@@ -491,7 +493,7 @@ function block_design_theme_settings(array &$form, $theme) {
     '#multiple' => TRUE,
     '#title' => t('Regions'),
     '#ai_description' => 'Select which theme regions these block design settings apply to. Common choices: sidebar_first, sidebar_second (sidebar widgets), footer (footer blocks), content (main content blocks).',
-    '#default_value' => ((\Drupal\dxpr_theme\ThemeSettings::get('block_design_regions') !== NULL)) ? \Drupal\dxpr_theme\ThemeSettings::get('block_design_regions') : [],
+    '#default_value' => ((ThemeSettings::get('block_design_regions') !== NULL)) ? ThemeSettings::get('block_design_regions') : [],
     '#options' => [
       'secondary_header' => t('Secondary Header'),
       'navigation' => t('Navigation'),

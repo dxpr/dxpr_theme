@@ -5,6 +5,8 @@
  * Header settings css styles.
  */
 
+use Drupal\dxpr_theme\ThemeSettings;
+
 /**
  * Generate header theme css styles.
  *
@@ -24,10 +26,10 @@ function header_theme_settings_css(string $theme, string &$css, array $palette) 
 
   // Check if menu should be initially hidden and shown after scroll.
   $show_after_scroll =
-    \Drupal\dxpr_theme\ThemeSettings::get('header_top_sticky', $theme) &&
-    \Drupal\dxpr_theme\ThemeSettings::get('header_top_sticky_show', $theme) == 'after_scroll';
+    ThemeSettings::get('header_top_sticky', $theme) &&
+    ThemeSettings::get('header_top_sticky_show', $theme) == 'after_scroll';
 
-  if (in_array(\Drupal\dxpr_theme\ThemeSettings::get('header_style', $theme), [
+  if (in_array(ThemeSettings::get('header_style', $theme), [
     'normal',
     'overlay',
   ])) {
@@ -57,13 +59,13 @@ function header_theme_settings_css(string $theme, string &$css, array $palette) 
   }
   $css .= "}\n\n";
 
-  if (\Drupal\dxpr_theme\ThemeSettings::get('header_style', $theme) == 'overlay') {
+  if (ThemeSettings::get('header_style', $theme) == 'overlay') {
     // Overlay header: add gap in page title for header.
     $css .= ".body--dxpr-theme-nav-desktop.body--dxpr-theme-header-overlay .page-title-full-width-container {\n";
     $css .= "  padding-top: calc($header_top_height_var + 30px);\n";
     $css .= "}\n\n";
   }
-  elseif (\Drupal\dxpr_theme\ThemeSettings::get('header_top_fixed', $theme)) {
+  elseif (ThemeSettings::get('header_top_fixed', $theme)) {
     // Fixed header: body padding for header height.
     // Anonymous users: displacement is "" so avoid calc();
     // use header height only.
@@ -79,10 +81,10 @@ function header_theme_settings_css(string $theme, string &$css, array $palette) 
   }
 
   // Sticky footer settings.
-  if (\Drupal\dxpr_theme\ThemeSettings::get('sticky_footer', $theme)) {
+  if (ThemeSettings::get('sticky_footer', $theme)) {
     $header_top_height = $header_top_height_var;
 
-    if (\Drupal\dxpr_theme\ThemeSettings::get('header_top_layout', $theme) == 'centered') {
+    if (ThemeSettings::get('header_top_layout', $theme) == 'centered') {
       $header_top_height = "calc($header_top_height_var * 2)";
     }
 
@@ -111,7 +113,7 @@ function header_theme_settings_css(string $theme, string &$css, array $palette) 
    */
   $css .= "/* Menu Options */\n";
 
-  if ($menu_type = \Drupal\dxpr_theme\ThemeSettings::get('menu_type', $theme)) {
+  if ($menu_type = ThemeSettings::get('menu_type', $theme)) {
     $menu_type_value = "";
 
     switch ($menu_type) {
@@ -136,9 +138,9 @@ function header_theme_settings_css(string $theme, string &$css, array $palette) 
   // We only add border on header if this is the desktop view too
   // To prevent header-top configuration and spacing
   // to look broken in mobile menus.
-  $menu_border_position = \Drupal\dxpr_theme\ThemeSettings::get('menu_border_position', $theme);
+  $menu_border_position = ThemeSettings::get('menu_border_position', $theme);
 
-  if (\Drupal\dxpr_theme\ThemeSettings::get('menu_hover', $theme) == 'border') {
+  if (ThemeSettings::get('menu_hover', $theme) == 'border') {
     $css .= ".dxpr-theme-header--top.dxpr-theme-header--hover-border .nav > li > a::before,\n";
     $css .= ".dxpr-theme-header--top.dxpr-theme-header--hover-border .nav > li > .bs-dropdown-wrapper > a::before {\n";
 
@@ -158,7 +160,7 @@ function header_theme_settings_css(string $theme, string &$css, array $palette) 
       $css .= $menu_border_color;
     }
 
-    if ($animation = \Drupal\dxpr_theme\ThemeSettings::get('menu_border_animate', $theme)) {
+    if ($animation = ThemeSettings::get('menu_border_animate', $theme)) {
       $css .= "  transition: transform 300ms;\n  ";
       $transform_origin = '0';
 
@@ -196,13 +198,13 @@ function header_theme_settings_css(string $theme, string &$css, array $palette) 
   }
 
   // Handle dropdown text and menu text color.
-  $dropdown_text_color = \Drupal\dxpr_theme\ThemeSettings::get('dropdown_text_color');
-  $dropdown_custom_color = \Drupal\dxpr_theme\ThemeSettings::get('dropdown_text_color_custom');
-  $menu_text_color = \Drupal\dxpr_theme\ThemeSettings::get('menu_text_color');
-  $menu_text_color_custom = \Drupal\dxpr_theme\ThemeSettings::get('menu_text_color_custom');
+  $dropdown_text_color = ThemeSettings::get('dropdown_text_color');
+  $dropdown_custom_color = ThemeSettings::get('dropdown_text_color_custom');
+  $menu_text_color = ThemeSettings::get('menu_text_color');
+  $menu_text_color_custom = ThemeSettings::get('menu_text_color_custom');
 
   // Add null check and provide default empty array.
-  $color_palette_setting = \Drupal\dxpr_theme\ThemeSettings::get('color_palette') ?? '';
+  $color_palette_setting = ThemeSettings::get('color_palette') ?? '';
   $color_palette = !empty($color_palette_setting) ? unserialize($color_palette_setting, ['allowed_classes' => FALSE]) : [];
 
   // Safely access headertext with null coalescing operator.

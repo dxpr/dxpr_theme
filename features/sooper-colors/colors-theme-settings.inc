@@ -5,6 +5,8 @@
  * Theme color settings.
  */
 
+use Drupal\dxpr_theme\ThemeSettings;
+
 /**
  * Add color options to the theme settings form.
  *
@@ -23,7 +25,7 @@ function colors_theme_settings(array &$form, $theme) {
     'current' => t('Revert to saved'),
   ]);
 
-  $palette = unserialize(\Drupal\dxpr_theme\ThemeSettings::get('color_palette') ?? '', ['allowed_classes' => FALSE]);
+  $palette = unserialize(ThemeSettings::get('color_palette') ?? '', ['allowed_classes' => FALSE]);
   $palette = $palette ?: ($schemes['default']['colors'] ?? []);
 
   // Check if DXPR Theme Helper and AI module are available.
@@ -59,7 +61,7 @@ function colors_theme_settings(array &$form, $theme) {
     '#type' => 'select',
     '#title' => t('Color Set'),
     '#ai_description' => 'Select a predefined color scheme or custom to define individual palette colors. Available schemes are defined in the theme\'s color-settings.json. Use dxt:generate:palette to create a scheme from a natural language description.',
-    '#default_value' => \Drupal\dxpr_theme\ThemeSettings::get('color_scheme') ?? 'default',
+    '#default_value' => ThemeSettings::get('color_scheme') ?? 'default',
     '#options' => $scheme_options,
     '#attributes' => [
       'id' => 'edit-color-scheme',

@@ -7,6 +7,7 @@
  * Place your custom PHP code in this file.
  */
 
+use Drupal\dxpr_theme\ThemeSettings;
 use Drupal\Core\Url;
 use Drupal\image\Entity\ImageStyle;
 use Drupal\media\Entity\Media;
@@ -78,7 +79,7 @@ function dxpr_theme_preprocess_html(&$variables) {
   // Include CSS variables and set color scheme class.
   $variables['#attached']['library'][] = 'dxpr_theme/variables';
   require_once \Drupal::service('extension.list.theme')->getPath('dxpr_theme') . '/dxpr_theme_callbacks.inc';
-  $color_scheme = \Drupal\dxpr_theme\ThemeSettings::get('color_scheme') ?? 'default';
+  $color_scheme = ThemeSettings::get('color_scheme') ?? 'default';
   // Only compiled schemes have CSS; any other value (including the transient
   // "current" option of the settings form) uses the saved custom palette.
   if ($color_scheme !== 'custom' && !array_key_exists($color_scheme, _dxpr_theme_get_color_schemes())) {
@@ -122,7 +123,7 @@ function dxpr_theme_preprocess_html(&$variables) {
     }
   }
 
-  if ($custom_js = \Drupal\dxpr_theme\ThemeSettings::get('custom_javascript_site')) {
+  if ($custom_js = ThemeSettings::get('custom_javascript_site')) {
     // The field takes raw JavaScript; wrap it in a script element. A value
     // that starts with a tag is markup (a script with attributes, a noscript
     // fallback, JSON-LD, styles) and is printed as it is.
@@ -137,46 +138,46 @@ function dxpr_theme_preprocess_html(&$variables) {
     '#markup' => '<div class="hidden" id="dxpr-theme-js-seed">sfy39587stp18</div>',
   ];
 
-  if ($header_height = \Drupal\dxpr_theme\ThemeSettings::get('header_top_height')) {
+  if ($header_height = ThemeSettings::get('header_top_height')) {
     $variables['#attached']['drupalSettings']['dxpr_themeSettings']['headerHeight'] = $header_height;
   }
 
   // A scroll offset of 0 is valid (header becomes sticky immediately).
-  $header_scroll_offset = \Drupal\dxpr_theme\ThemeSettings::get('header_top_height_sticky_offset');
+  $header_scroll_offset = ThemeSettings::get('header_top_height_sticky_offset');
   if ($header_scroll_offset !== NULL && $header_scroll_offset !== '') {
     $variables['#attached']['drupalSettings']['dxpr_themeSettings']['headerOffset'] = $header_scroll_offset;
   }
 
   // Mobile header breakpoint.
-  if ($header_mobile_breakpoint = \Drupal\dxpr_theme\ThemeSettings::get('header_mobile_breakpoint')) {
+  if ($header_mobile_breakpoint = ThemeSettings::get('header_mobile_breakpoint')) {
     $variables['#attached']['drupalSettings']['dxpr_themeSettings']['headerMobileBreakpoint'] = $header_mobile_breakpoint;
   }
 
   // Fixed mobile header.
-  if ($header_mobile_fixed = \Drupal\dxpr_theme\ThemeSettings::get('header_mobile_fixed')) {
+  if ($header_mobile_fixed = ThemeSettings::get('header_mobile_fixed')) {
     $variables['#attached']['drupalSettings']['dxpr_themeSettings']['headerMobileFixed'] = $header_mobile_fixed;
   }
   // Mobile header height.
-  if ($header_mobile_height = \Drupal\dxpr_theme\ThemeSettings::get('header_mobile_height')) {
+  if ($header_mobile_height = ThemeSettings::get('header_mobile_height')) {
     $variables['#attached']['drupalSettings']['dxpr_themeSettings']['headerMobileHeight'] = $header_mobile_height;
   }
 
-  if ($header_menu_direction = ((\Drupal\dxpr_theme\ThemeSettings::get('header_side_direction') !== NULL)) ? \Drupal\dxpr_theme\ThemeSettings::get('header_side_direction') : 'left') {
+  if ($header_menu_direction = ((ThemeSettings::get('header_side_direction') !== NULL)) ? ThemeSettings::get('header_side_direction') : 'left') {
     $variables['#attached']['drupalSettings']['dxpr_themeSettings']['headerSideDirection'] = $header_menu_direction;
   }
 
   // Second header sticky.
-  if ($second_header_sticky = \Drupal\dxpr_theme\ThemeSettings::get('second_header_sticky')) {
+  if ($second_header_sticky = ThemeSettings::get('second_header_sticky')) {
     $variables['#attached']['drupalSettings']['dxpr_themeSettings']['secondHeaderSticky'] = $second_header_sticky;
   }
 
   // Menu hamburger animation.
-  if ($header_hamburger_animation = \Drupal\dxpr_theme\ThemeSettings::get('hamburger_animation')) {
+  if ($header_hamburger_animation = ThemeSettings::get('hamburger_animation')) {
     $variables['#attached']['drupalSettings']['dxpr_themeSettings']['hamburgerAnimation'] = $header_hamburger_animation;
   }
 
   // Add Apple Touch Icon URL and web manifest URL if configured.
-  $web_icons_media_id = \Drupal\dxpr_theme\ThemeSettings::get('web_icons_upload');
+  $web_icons_media_id = ThemeSettings::get('web_icons_upload');
   if ($web_icons_media_id) {
     $file_system = \Drupal::service('file_system');
     $public_path = $file_system->realpath('public://');
@@ -467,7 +468,7 @@ function dxpr_theme_preprocess_links__language_block(&$variables) {
  *   The machine names of the enabled regions.
  */
 function dxpr_theme_get_enabled_regions(string $setting_name): array {
-  $regions = \Drupal\dxpr_theme\ThemeSettings::get($setting_name);
+  $regions = ThemeSettings::get($setting_name);
   if (!is_array($regions)) {
     return [];
   }

@@ -5,6 +5,8 @@
  * Custom css settings css styles.
  */
 
+use Drupal\dxpr_theme\ThemeSettings;
+
 /**
  * Generate custom css theme css styles.
  *
@@ -16,9 +18,9 @@
  *   Theme palette array.
  */
 function custom_css_theme_settings_css($theme, &$css, array $palette) {
-  if (\Drupal\dxpr_theme\ThemeSettings::get('custom_css_site', $theme)) {
+  if (ThemeSettings::get('custom_css_site', $theme)) {
     $css .= "/* Custom CSS */\n";
-    $css .= trim(\Drupal\dxpr_theme\ThemeSettings::get('custom_css_site', $theme));
+    $css .= trim(ThemeSettings::get('custom_css_site', $theme));
     $css .= "\n\n";
   }
 }

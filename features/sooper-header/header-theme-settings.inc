@@ -5,6 +5,8 @@
  * Theme header settings.
  */
 
+use Drupal\dxpr_theme\ThemeSettings;
+
 /**
  * Add header options to the theme settings form.
  *
@@ -16,7 +18,7 @@
 function header_theme_settings(array &$form, $theme) {
   // Attach color palette for live preview of navigation color settings.
   $schemes = _dxpr_theme_get_color_schemes($theme);
-  $palette = unserialize(\Drupal\dxpr_theme\ThemeSettings::get('color_palette') ?? '', ['allowed_classes' => FALSE]);
+  $palette = unserialize(ThemeSettings::get('color_palette') ?? '', ['allowed_classes' => FALSE]);
   $palette = $palette ?: ($schemes['default']['colors'] ?? []);
 
   $form['#attached']['drupalSettings']['dxpr_themeSettings']['colors'] = [
@@ -41,7 +43,7 @@ function header_theme_settings(array &$form, $theme) {
   $form['dxpr_theme_settings']['header']['header_top']['header_top_layout'] = [
     '#type' => 'radios',
     '#title' => t('Layout'),
-    '#default_value' => ((\Drupal\dxpr_theme\ThemeSettings::get('header_top_layout') !== NULL)) ? \Drupal\dxpr_theme\ThemeSettings::get('header_top_layout') : '0',
+    '#default_value' => ((ThemeSettings::get('header_top_layout') !== NULL)) ? ThemeSettings::get('header_top_layout') : '0',
     '#options' => [
       '0' => t('Normal (Logo left, Menu Right)'),
       'centered' => t('Centered (stacked)'),
@@ -55,7 +57,7 @@ function header_theme_settings(array &$form, $theme) {
   ];
 
   // Normalize header_style value - treat deprecated values as 'normal'.
-  $header_style = \Drupal\dxpr_theme\ThemeSettings::get('header_style');
+  $header_style = ThemeSettings::get('header_style');
   $valid_header_styles = ['normal', 'overlay'];
   if (!in_array($header_style, $valid_header_styles, TRUE)) {
     $header_style = 'normal';
@@ -76,7 +78,7 @@ function header_theme_settings(array &$form, $theme) {
   $form['dxpr_theme_settings']['header']['header_top']['header_top_bg_opacity'] = [
     '#type' => 'range',
     '#title' => t('Header Opacity'),
-    '#default_value' => ((\Drupal\dxpr_theme\ThemeSettings::get('header_top_bg_opacity') !== NULL)) ? \Drupal\dxpr_theme\ThemeSettings::get('header_top_bg_opacity') : 1,
+    '#default_value' => ((ThemeSettings::get('header_top_bg_opacity') !== NULL)) ? ThemeSettings::get('header_top_bg_opacity') : 1,
     '#min' => 0,
     '#max' => 1,
     '#step' => 0.01,
@@ -91,7 +93,7 @@ function header_theme_settings(array &$form, $theme) {
   $form['dxpr_theme_settings']['header']['header_top']['header_top_height'] = [
     '#type' => 'range',
     '#title' => t('Height'),
-    '#default_value' => ((\Drupal\dxpr_theme\ThemeSettings::get('header_top_height') !== NULL)) ? \Drupal\dxpr_theme\ThemeSettings::get('header_top_height') : 100,
+    '#default_value' => ((ThemeSettings::get('header_top_height') !== NULL)) ? ThemeSettings::get('header_top_height') : 100,
     '#min' => 10,
     '#max' => 200,
     '#step' => 1,
@@ -106,7 +108,7 @@ function header_theme_settings(array &$form, $theme) {
   $form['dxpr_theme_settings']['header']['header_top']['logo_height'] = [
     '#type' => 'range',
     '#title' => t('Logo Height'),
-    '#default_value' => \Drupal\dxpr_theme\ThemeSettings::get('logo_height') ?: 50,
+    '#default_value' => ThemeSettings::get('logo_height') ?: 50,
     '#min' => 10,
     '#max' => 100,
     '#step' => 1,
@@ -121,7 +123,7 @@ function header_theme_settings(array &$form, $theme) {
   $form['dxpr_theme_settings']['header']['header_top']['header_top_fixed'] = [
     '#type' => 'checkbox',
     '#title' => t('Fixed Position'),
-    '#default_value' => ((\Drupal\dxpr_theme\ThemeSettings::get('header_top_fixed') !== NULL)) ? \Drupal\dxpr_theme\ThemeSettings::get('header_top_fixed') : FALSE,
+    '#default_value' => ((ThemeSettings::get('header_top_fixed') !== NULL)) ? ThemeSettings::get('header_top_fixed') : FALSE,
     '#description' => t('Header stays visible at the top when scrolling.'),
     '#ai_description' => 'Enable to keep header always visible at top of viewport while scrolling. Essential for sites with important navigation. Disable for content-focused reading experiences (blogs, articles) where you want maximum content space.',
   ];
@@ -129,7 +131,7 @@ function header_theme_settings(array &$form, $theme) {
   $form['dxpr_theme_settings']['header']['header_top']['header_top_sticky'] = [
     '#type' => 'checkbox',
     '#title' => t('Sticky Header'),
-    '#default_value' => ((\Drupal\dxpr_theme\ThemeSettings::get('header_top_sticky') !== NULL)) ? \Drupal\dxpr_theme\ThemeSettings::get('header_top_sticky') : FALSE,
+    '#default_value' => ((ThemeSettings::get('header_top_sticky') !== NULL)) ? ThemeSettings::get('header_top_sticky') : FALSE,
     '#description' => t('Header appears after scrolling past a specified offset.'),
     '#ai_description' => 'Requires header_top_fixed=true. When enabled, header shrinks/transforms after scrolling past header_top_height_sticky_offset. Creates a compact navigation that appears on scroll, a common modern UX pattern. Configure the smaller size with header_top_height_scroll.',
     '#states' => [
@@ -143,7 +145,7 @@ function header_theme_settings(array &$form, $theme) {
     '#type' => 'checkbox',
     '#title' => t('Sticky Second Header'),
     '#ai_description' => 'Makes the secondary header bar also stick when scrolling. Only relevant when header_style=overlay and header_top_sticky=true. Usually disabled to keep sticky header compact.',
-    '#default_value' => ((\Drupal\dxpr_theme\ThemeSettings::get('second_header_sticky') !== NULL)) ? \Drupal\dxpr_theme\ThemeSettings::get('second_header_sticky') : FALSE,
+    '#default_value' => ((ThemeSettings::get('second_header_sticky') !== NULL)) ? ThemeSettings::get('second_header_sticky') : FALSE,
     '#states' => [
       'visible' => [
         ':input[name="header_style"]' => ['value' => 'overlay'],
@@ -168,7 +170,7 @@ function header_theme_settings(array &$form, $theme) {
   $form['dxpr_theme_settings']['header']['header_top']['sticky']['header_top_sticky_show'] = [
     '#type' => 'radios',
     '#title' => t('Hide before Scrolling'),
-    '#default_value' => ((\Drupal\dxpr_theme\ThemeSettings::get('header_top_sticky_show') !== NULL)) ? \Drupal\dxpr_theme\ThemeSettings::get('header_top_sticky_show') : 'always',
+    '#default_value' => ((ThemeSettings::get('header_top_sticky_show') !== NULL)) ? ThemeSettings::get('header_top_sticky_show') : 'always',
     '#options' => [
       'always' => t('Always Show'),
       'after_scroll' => t('Hide initially. Show after scroll offset'),
@@ -186,7 +188,7 @@ function header_theme_settings(array &$form, $theme) {
   $form['dxpr_theme_settings']['header']['header_top']['sticky']['header_top_height_sticky_offset'] = [
     '#type' => 'range',
     '#title' => t('Scroll offset'),
-    '#default_value' => ((\Drupal\dxpr_theme\ThemeSettings::get('header_top_height_sticky_offset') !== NULL)) ? \Drupal\dxpr_theme\ThemeSettings::get('header_top_height_sticky_offset') : 60,
+    '#default_value' => ((ThemeSettings::get('header_top_height_sticky_offset') !== NULL)) ? ThemeSettings::get('header_top_height_sticky_offset') : 60,
     '#min' => 0,
     '#max' => 2096,
     '#step' => 10,
@@ -207,7 +209,7 @@ function header_theme_settings(array &$form, $theme) {
   $form['dxpr_theme_settings']['header']['header_top']['sticky']['header_top_height_scroll'] = [
     '#type' => 'range',
     '#title' => t('Height'),
-    '#default_value' => ((\Drupal\dxpr_theme\ThemeSettings::get('header_top_height_scroll') !== NULL)) ? \Drupal\dxpr_theme\ThemeSettings::get('header_top_height_scroll') : 50,
+    '#default_value' => ((ThemeSettings::get('header_top_height_scroll') !== NULL)) ? ThemeSettings::get('header_top_height_scroll') : 50,
     '#min' => 10,
     '#max' => 200,
     '#step' => 1,
@@ -228,7 +230,7 @@ function header_theme_settings(array &$form, $theme) {
   $form['dxpr_theme_settings']['header']['header_top']['sticky']['header_top_bg_opacity_scroll'] = [
     '#type' => 'range',
     '#title' => t('Background Opacity'),
-    '#default_value' => ((\Drupal\dxpr_theme\ThemeSettings::get('header_top_bg_opacity_scroll') !== NULL)) ? \Drupal\dxpr_theme\ThemeSettings::get('header_top_bg_opacity_scroll') : 1,
+    '#default_value' => ((ThemeSettings::get('header_top_bg_opacity_scroll') !== NULL)) ? ThemeSettings::get('header_top_bg_opacity_scroll') : 1,
     '#min' => 0,
     '#max' => 1,
     '#step' => 0.01,
@@ -257,7 +259,7 @@ function header_theme_settings(array &$form, $theme) {
     '#type' => 'select',
     '#title' => t('Navbar Background'),
     '#ai_description' => 'Background color for the entire navbar area. Use a theme palette color name or custom with navbar_background_custom. Leave empty for transparent. Dark backgrounds create dramatic headers; light/white creates clean modern feel.',
-    '#default_value' => \Drupal\dxpr_theme\ThemeSettings::get('navbar_background'),
+    '#default_value' => ThemeSettings::get('navbar_background'),
     '#options' => _dxpr_theme_color_options($theme),
   ];
 
@@ -265,7 +267,7 @@ function header_theme_settings(array &$form, $theme) {
     '#type' => 'textfield',
     '#title' => t('Custom Navbar Background'),
     '#ai_description' => 'Custom hex color for navbar background. Only used when navbar_background=custom. Set to match your brand color for branded headers.',
-    '#default_value' => ((\Drupal\dxpr_theme\ThemeSettings::get('navbar_background_custom') !== NULL)) ? \Drupal\dxpr_theme\ThemeSettings::get('navbar_background_custom') : \Drupal\dxpr_theme\ThemeSettings::get('navbar_background_custom'),
+    '#default_value' => ((ThemeSettings::get('navbar_background_custom') !== NULL)) ? ThemeSettings::get('navbar_background_custom') : ThemeSettings::get('navbar_background_custom'),
     '#states' => [
       'visible' => [
         ':input[name="navbar_background"]' => ['value' => 'custom'],
@@ -277,7 +279,7 @@ function header_theme_settings(array &$form, $theme) {
     '#type' => 'select',
     '#title' => t('Navbar Text'),
     '#ai_description' => 'Text/link color in the navbar. Must contrast with navbar_background for readability. Light text on dark backgrounds, dark text on light backgrounds.',
-    '#default_value' => \Drupal\dxpr_theme\ThemeSettings::get('navbar_text_color'),
+    '#default_value' => ThemeSettings::get('navbar_text_color'),
     '#options' => _dxpr_theme_color_options($theme),
   ];
 
@@ -285,7 +287,7 @@ function header_theme_settings(array &$form, $theme) {
     '#type' => 'textfield',
     '#title' => t('Custom Navbar Text Color'),
     '#ai_description' => 'Custom hex color for navbar text. Only used when navbar_text_color=custom.',
-    '#default_value' => \Drupal\dxpr_theme\ThemeSettings::get('navbar_text_color_custom'),
+    '#default_value' => ThemeSettings::get('navbar_text_color_custom'),
     '#states' => [
       'visible' => [
         ':input[name="navbar_text_color"]' => ['value' => 'custom'],
@@ -297,7 +299,7 @@ function header_theme_settings(array &$form, $theme) {
     '#type' => 'select',
     '#title' => t('Block Background'),
     '#ai_description' => 'Background color for blocks placed in the header region (search, contact info, etc.). Often matches navbar_background or uses a complementary color.',
-    '#default_value' => \Drupal\dxpr_theme\ThemeSettings::get('header_block_background'),
+    '#default_value' => ThemeSettings::get('header_block_background'),
     '#options' => _dxpr_theme_color_options($theme),
   ];
 
@@ -305,7 +307,7 @@ function header_theme_settings(array &$form, $theme) {
     '#type' => 'textfield',
     '#title' => t('Custom Block Background'),
     '#ai_description' => 'Custom hex color for header block background. Only used when header_block_background=custom.',
-    '#default_value' => ((\Drupal\dxpr_theme\ThemeSettings::get('header_block_background_custom') !== NULL)) ? \Drupal\dxpr_theme\ThemeSettings::get('header_block_background_custom') : \Drupal\dxpr_theme\ThemeSettings::get('header_block_background_custom'),
+    '#default_value' => ((ThemeSettings::get('header_block_background_custom') !== NULL)) ? ThemeSettings::get('header_block_background_custom') : ThemeSettings::get('header_block_background_custom'),
     '#states' => [
       'visible' => [
         ':input[name="header_block_background"]' => ['value' => 'custom'],
@@ -317,7 +319,7 @@ function header_theme_settings(array &$form, $theme) {
     '#type' => 'select',
     '#title' => t('Block Text'),
     '#ai_description' => 'Text color in header blocks. Must contrast with header_block_background.',
-    '#default_value' => \Drupal\dxpr_theme\ThemeSettings::get('header_block_text_color'),
+    '#default_value' => ThemeSettings::get('header_block_text_color'),
     '#options' => _dxpr_theme_color_options($theme),
   ];
 
@@ -325,7 +327,7 @@ function header_theme_settings(array &$form, $theme) {
     '#type' => 'textfield',
     '#title' => t('Custom Block Text Color'),
     '#ai_description' => 'Custom hex color for header block text. Only used when header_block_text_color=custom.',
-    '#default_value' => ((\Drupal\dxpr_theme\ThemeSettings::get('header_block_text_color_custom') !== NULL)) ? \Drupal\dxpr_theme\ThemeSettings::get('header_block_text_color_custom') : \Drupal\dxpr_theme\ThemeSettings::get('header_block_text_color_custom'),
+    '#default_value' => ((ThemeSettings::get('header_block_text_color_custom') !== NULL)) ? ThemeSettings::get('header_block_text_color_custom') : ThemeSettings::get('header_block_text_color_custom'),
     '#states' => [
       'visible' => [
         ':input[name="header_block_text_color"]' => ['value' => 'custom'],
@@ -337,7 +339,7 @@ function header_theme_settings(array &$form, $theme) {
     '#type' => 'select',
     '#title' => t('Menu Background'),
     '#ai_description' => 'Background color specifically for the main navigation menu area. Often transparent (empty) to inherit from navbar, or a distinct color to visually separate menu from rest of header.',
-    '#default_value' => \Drupal\dxpr_theme\ThemeSettings::get('menu_background'),
+    '#default_value' => ThemeSettings::get('menu_background'),
     '#options' => _dxpr_theme_color_options($theme),
   ];
 
@@ -345,7 +347,7 @@ function header_theme_settings(array &$form, $theme) {
     '#type' => 'textfield',
     '#title' => t('Custom Menu Background'),
     '#ai_description' => 'Custom hex for menu background. Only used when menu_background=custom.',
-    '#default_value' => ((\Drupal\dxpr_theme\ThemeSettings::get('menu_background_custom') !== NULL)) ? \Drupal\dxpr_theme\ThemeSettings::get('menu_background_custom') : \Drupal\dxpr_theme\ThemeSettings::get('menu_background_custom'),
+    '#default_value' => ((ThemeSettings::get('menu_background_custom') !== NULL)) ? ThemeSettings::get('menu_background_custom') : ThemeSettings::get('menu_background_custom'),
     '#states' => [
       'visible' => [
         ':input[name="menu_background"]' => ['value' => 'custom'],
@@ -357,7 +359,7 @@ function header_theme_settings(array &$form, $theme) {
     '#type' => 'select',
     '#title' => t('Menu Text'),
     '#ai_description' => 'Color of main menu link text. Should contrast with menu_background (or navbar_background if menu_background is empty).',
-    '#default_value' => \Drupal\dxpr_theme\ThemeSettings::get('menu_text_color'),
+    '#default_value' => ThemeSettings::get('menu_text_color'),
     '#options' => _dxpr_theme_color_options($theme),
   ];
 
@@ -365,7 +367,7 @@ function header_theme_settings(array &$form, $theme) {
     '#type' => 'textfield',
     '#title' => t('Custom Menu Text Color'),
     '#ai_description' => 'Custom hex for menu text. Only used when menu_text_color=custom.',
-    '#default_value' => ((\Drupal\dxpr_theme\ThemeSettings::get('menu_text_color_custom') !== NULL)) ? \Drupal\dxpr_theme\ThemeSettings::get('menu_text_color_custom') : \Drupal\dxpr_theme\ThemeSettings::get('menu_text_color_custom'),
+    '#default_value' => ((ThemeSettings::get('menu_text_color_custom') !== NULL)) ? ThemeSettings::get('menu_text_color_custom') : ThemeSettings::get('menu_text_color_custom'),
     '#states' => [
       'visible' => [
         ':input[name="menu_text_color"]' => ['value' => 'custom'],
@@ -377,7 +379,7 @@ function header_theme_settings(array &$form, $theme) {
     '#type' => 'select',
     '#title' => t('Menu Hover Background'),
     '#ai_description' => 'Background color that appears when hovering over a menu item. Creates visual feedback. Use a slightly lighter/darker shade of menu_background, or an accent color for emphasis.',
-    '#default_value' => \Drupal\dxpr_theme\ThemeSettings::get('menu_hover_background'),
+    '#default_value' => ThemeSettings::get('menu_hover_background'),
     '#options' => _dxpr_theme_color_options($theme),
   ];
 
@@ -385,7 +387,7 @@ function header_theme_settings(array &$form, $theme) {
     '#type' => 'textfield',
     '#title' => t('Custom Menu Hover Background'),
     '#ai_description' => 'Custom hex for menu hover background. Only used when menu_hover_background=custom.',
-    '#default_value' => ((\Drupal\dxpr_theme\ThemeSettings::get('menu_hover_background_custom') !== NULL)) ? \Drupal\dxpr_theme\ThemeSettings::get('menu_hover_background_custom') : \Drupal\dxpr_theme\ThemeSettings::get('menu_hover_background_custom'),
+    '#default_value' => ((ThemeSettings::get('menu_hover_background_custom') !== NULL)) ? ThemeSettings::get('menu_hover_background_custom') : ThemeSettings::get('menu_hover_background_custom'),
     '#states' => [
       'visible' => [
         ':input[name="menu_hover_background"]' => ['value' => 'custom'],
@@ -397,7 +399,7 @@ function header_theme_settings(array &$form, $theme) {
     '#type' => 'select',
     '#title' => t('Menu Hover Text'),
     '#ai_description' => 'Text color of menu items on hover. Often an accent/brand color to highlight the active item.',
-    '#default_value' => \Drupal\dxpr_theme\ThemeSettings::get('menu_hover_text_color'),
+    '#default_value' => ThemeSettings::get('menu_hover_text_color'),
     '#options' => _dxpr_theme_color_options($theme),
   ];
 
@@ -405,7 +407,7 @@ function header_theme_settings(array &$form, $theme) {
     '#type' => 'textfield',
     '#title' => t('Custom Menu Hover Text Color'),
     '#ai_description' => 'Custom hex for menu hover text. Only used when menu_hover_text_color=custom.',
-    '#default_value' => ((\Drupal\dxpr_theme\ThemeSettings::get('menu_hover_text_color_custom') !== NULL)) ? \Drupal\dxpr_theme\ThemeSettings::get('menu_hover_text_color_custom') : \Drupal\dxpr_theme\ThemeSettings::get('menu_hover_text_color_custom'),
+    '#default_value' => ((ThemeSettings::get('menu_hover_text_color_custom') !== NULL)) ? ThemeSettings::get('menu_hover_text_color_custom') : ThemeSettings::get('menu_hover_text_color_custom'),
     '#states' => [
       'visible' => [
         ':input[name="menu_hover_text_color"]' => ['value' => 'custom'],
@@ -417,7 +419,7 @@ function header_theme_settings(array &$form, $theme) {
     '#type' => 'select',
     '#title' => t('Dropdown Background'),
     '#ai_description' => 'Background color of dropdown/submenu panels. Usually white or light gray for readability. Dark dropdowns work on dark-themed sites.',
-    '#default_value' => \Drupal\dxpr_theme\ThemeSettings::get('dropdown_background'),
+    '#default_value' => ThemeSettings::get('dropdown_background'),
     '#options' => _dxpr_theme_color_options($theme),
   ];
 
@@ -425,7 +427,7 @@ function header_theme_settings(array &$form, $theme) {
     '#type' => 'textfield',
     '#title' => t('Custom Dropdown Background'),
     '#ai_description' => 'Custom hex for dropdown background. Only used when dropdown_background=custom.',
-    '#default_value' => ((\Drupal\dxpr_theme\ThemeSettings::get('dropdown_background_custom') !== NULL)) ? \Drupal\dxpr_theme\ThemeSettings::get('dropdown_background_custom') : \Drupal\dxpr_theme\ThemeSettings::get('dropdown_background_custom'),
+    '#default_value' => ((ThemeSettings::get('dropdown_background_custom') !== NULL)) ? ThemeSettings::get('dropdown_background_custom') : ThemeSettings::get('dropdown_background_custom'),
     '#states' => [
       'visible' => [
         ':input[name="dropdown_background"]' => ['value' => 'custom'],
@@ -437,7 +439,7 @@ function header_theme_settings(array &$form, $theme) {
     '#type' => 'select',
     '#title' => t('Dropdown Text'),
     '#ai_description' => 'Text color inside dropdown menus. Must contrast with dropdown_background.',
-    '#default_value' => \Drupal\dxpr_theme\ThemeSettings::get('dropdown_text_color'),
+    '#default_value' => ThemeSettings::get('dropdown_text_color'),
     '#options' => _dxpr_theme_color_options($theme),
   ];
 
@@ -445,7 +447,7 @@ function header_theme_settings(array &$form, $theme) {
     '#type' => 'textfield',
     '#title' => t('Custom Dropdown Text Color'),
     '#ai_description' => 'Custom hex for dropdown text. Only used when dropdown_text_color=custom.',
-    '#default_value' => ((\Drupal\dxpr_theme\ThemeSettings::get('dropdown_text_color_custom') !== NULL)) ? \Drupal\dxpr_theme\ThemeSettings::get('dropdown_text_color_custom') : \Drupal\dxpr_theme\ThemeSettings::get('dropdown_text_color_custom'),
+    '#default_value' => ((ThemeSettings::get('dropdown_text_color_custom') !== NULL)) ? ThemeSettings::get('dropdown_text_color_custom') : ThemeSettings::get('dropdown_text_color_custom'),
     '#states' => [
       'visible' => [
         ':input[name="dropdown_text_color"]' => ['value' => 'custom'],
@@ -457,7 +459,7 @@ function header_theme_settings(array &$form, $theme) {
     '#type' => 'select',
     '#title' => t('Dropdown Hover Background'),
     '#ai_description' => 'Background color when hovering over dropdown items. Subtle shade change (e.g., #f5f5f5 on white) provides feedback.',
-    '#default_value' => \Drupal\dxpr_theme\ThemeSettings::get('dropdown_hover_background'),
+    '#default_value' => ThemeSettings::get('dropdown_hover_background'),
     '#options' => _dxpr_theme_color_options($theme),
   ];
 
@@ -465,7 +467,7 @@ function header_theme_settings(array &$form, $theme) {
     '#type' => 'textfield',
     '#title' => t('Custom Dropdown Hover Background'),
     '#ai_description' => 'Custom hex for dropdown hover background. Only used when dropdown_hover_background=custom.',
-    '#default_value' => ((\Drupal\dxpr_theme\ThemeSettings::get('dropdown_hover_background_custom') !== NULL)) ? \Drupal\dxpr_theme\ThemeSettings::get('dropdown_hover_background_custom') : \Drupal\dxpr_theme\ThemeSettings::get('dropdown_hover_background_custom'),
+    '#default_value' => ((ThemeSettings::get('dropdown_hover_background_custom') !== NULL)) ? ThemeSettings::get('dropdown_hover_background_custom') : ThemeSettings::get('dropdown_hover_background_custom'),
     '#states' => [
       'visible' => [
         ':input[name="dropdown_hover_background"]' => ['value' => 'custom'],
@@ -477,7 +479,7 @@ function header_theme_settings(array &$form, $theme) {
     '#type' => 'select',
     '#title' => t('Dropdown Hover Text'),
     '#ai_description' => 'Text color of dropdown items on hover. Often matches brand/accent color.',
-    '#default_value' => \Drupal\dxpr_theme\ThemeSettings::get('dropdown_hover_text_color'),
+    '#default_value' => ThemeSettings::get('dropdown_hover_text_color'),
     '#options' => _dxpr_theme_color_options($theme),
   ];
 
@@ -485,7 +487,7 @@ function header_theme_settings(array &$form, $theme) {
     '#type' => 'textfield',
     '#title' => t('Custom Dropdown Hover Text Color'),
     '#ai_description' => 'Custom hex for dropdown hover text. Only used when dropdown_hover_text_color=custom.',
-    '#default_value' => ((\Drupal\dxpr_theme\ThemeSettings::get('dropdown_hover_text_color_custom') !== NULL)) ? \Drupal\dxpr_theme\ThemeSettings::get('dropdown_hover_text_color_custom') : \Drupal\dxpr_theme\ThemeSettings::get('dropdown_hover_text_color_custom'),
+    '#default_value' => ((ThemeSettings::get('dropdown_hover_text_color_custom') !== NULL)) ? ThemeSettings::get('dropdown_hover_text_color_custom') : ThemeSettings::get('dropdown_hover_text_color_custom'),
     '#states' => [
       'visible' => [
         ':input[name="dropdown_hover_text_color"]' => ['value' => 'custom'],
@@ -497,7 +499,7 @@ function header_theme_settings(array &$form, $theme) {
     '#type' => 'select',
     '#title' => t('Mobile Menu Background'),
     '#ai_description' => 'Background color of the mobile hamburger menu panel. Usually matches the site header color or uses a dark overlay. Ensure good contrast with mobile_menu_text_color.',
-    '#default_value' => \Drupal\dxpr_theme\ThemeSettings::get('mobile_menu_background'),
+    '#default_value' => ThemeSettings::get('mobile_menu_background'),
     '#options' => _dxpr_theme_color_options($theme),
   ];
 
@@ -505,7 +507,7 @@ function header_theme_settings(array &$form, $theme) {
     '#type' => 'textfield',
     '#title' => t('Custom Mobile Menu Background'),
     '#ai_description' => 'Custom hex for mobile menu background. Only used when mobile_menu_background=custom.',
-    '#default_value' => ((\Drupal\dxpr_theme\ThemeSettings::get('mobile_menu_background_custom') !== NULL)) ? \Drupal\dxpr_theme\ThemeSettings::get('mobile_menu_background_custom') : \Drupal\dxpr_theme\ThemeSettings::get('mobile_menu_background_custom'),
+    '#default_value' => ((ThemeSettings::get('mobile_menu_background_custom') !== NULL)) ? ThemeSettings::get('mobile_menu_background_custom') : ThemeSettings::get('mobile_menu_background_custom'),
     '#states' => [
       'visible' => [
         ':input[name="mobile_menu_background"]' => ['value' => 'custom'],
@@ -517,7 +519,7 @@ function header_theme_settings(array &$form, $theme) {
     '#type' => 'select',
     '#title' => t('Mobile Menu Text'),
     '#ai_description' => 'Text color of links in the mobile menu. Must be clearly readable against mobile_menu_background.',
-    '#default_value' => \Drupal\dxpr_theme\ThemeSettings::get('mobile_menu_text_color'),
+    '#default_value' => ThemeSettings::get('mobile_menu_text_color'),
     '#options' => _dxpr_theme_color_options($theme),
   ];
 
@@ -525,7 +527,7 @@ function header_theme_settings(array &$form, $theme) {
     '#type' => 'textfield',
     '#title' => t('Custom Mobile Menu Text Color'),
     '#ai_description' => 'Custom hex for mobile menu text. Only used when mobile_menu_text_color=custom.',
-    '#default_value' => ((\Drupal\dxpr_theme\ThemeSettings::get('mobile_menu_text_color_custom') !== NULL)) ? \Drupal\dxpr_theme\ThemeSettings::get('mobile_menu_text_color_custom') : \Drupal\dxpr_theme\ThemeSettings::get('mobile_menu_text_color_custom'),
+    '#default_value' => ((ThemeSettings::get('mobile_menu_text_color_custom') !== NULL)) ? ThemeSettings::get('mobile_menu_text_color_custom') : ThemeSettings::get('mobile_menu_text_color_custom'),
     '#states' => [
       'visible' => [
         ':input[name="mobile_menu_text_color"]' => ['value' => 'custom'],
@@ -537,7 +539,7 @@ function header_theme_settings(array &$form, $theme) {
     '#type' => 'select',
     '#title' => t('Mobile Menu Hover Background'),
     '#ai_description' => 'Background color when tapping/hovering mobile menu items. Provides touch feedback.',
-    '#default_value' => \Drupal\dxpr_theme\ThemeSettings::get('mobile_menu_hover_background'),
+    '#default_value' => ThemeSettings::get('mobile_menu_hover_background'),
     '#options' => _dxpr_theme_color_options($theme),
   ];
 
@@ -545,7 +547,7 @@ function header_theme_settings(array &$form, $theme) {
     '#type' => 'textfield',
     '#title' => t('Custom Mobile Menu Hover Background'),
     '#ai_description' => 'Custom hex for mobile menu hover background. Only used when mobile_menu_hover_background=custom.',
-    '#default_value' => \Drupal\dxpr_theme\ThemeSettings::get('mobile_menu_hover_background_custom'),
+    '#default_value' => ThemeSettings::get('mobile_menu_hover_background_custom'),
     '#states' => [
       'visible' => [
         ':input[name="mobile_menu_hover_background"]' => ['value' => 'custom'],
@@ -557,7 +559,7 @@ function header_theme_settings(array &$form, $theme) {
     '#type' => 'select',
     '#title' => t('Mobile Menu Hover Text'),
     '#ai_description' => 'Text color of mobile menu items on hover/tap.',
-    '#default_value' => \Drupal\dxpr_theme\ThemeSettings::get('mobile_menu_hover_text_color'),
+    '#default_value' => ThemeSettings::get('mobile_menu_hover_text_color'),
     '#options' => _dxpr_theme_color_options($theme),
   ];
 
@@ -565,7 +567,7 @@ function header_theme_settings(array &$form, $theme) {
     '#type' => 'textfield',
     '#title' => t('Custom Mobile Menu Hover Text Color'),
     '#ai_description' => 'Custom hex for mobile menu hover text. Only used when mobile_menu_hover_text_color=custom.',
-    '#default_value' => \Drupal\dxpr_theme\ThemeSettings::get('mobile_menu_hover_text_color_custom'),
+    '#default_value' => ThemeSettings::get('mobile_menu_hover_text_color_custom'),
     '#states' => [
       'visible' => [
         ':input[name="mobile_menu_hover_text_color"]' => ['value' => 'custom'],
@@ -583,7 +585,7 @@ function header_theme_settings(array &$form, $theme) {
   $form['dxpr_theme_settings']['header']['header_side']['hamburger_menu'] = [
     '#type' => 'radios',
     '#title' => t('Hamburger Icon Style'),
-    '#default_value' => ((\Drupal\dxpr_theme\ThemeSettings::get('hamburger_menu') !== NULL)) ? \Drupal\dxpr_theme\ThemeSettings::get('hamburger_menu') : 'three-dash',
+    '#default_value' => ((ThemeSettings::get('hamburger_menu') !== NULL)) ? ThemeSettings::get('hamburger_menu') : 'three-dash',
     '#options' => [
       'three-dash' => t('Three lines'),
       'two-dash' => t('Two lines'),
@@ -594,7 +596,7 @@ function header_theme_settings(array &$form, $theme) {
   $form['dxpr_theme_settings']['header']['header_side']['hamburger_animation'] = [
     '#type' => 'radios',
     '#title' => t('Hamburger Animation'),
-    '#default_value' => ((\Drupal\dxpr_theme\ThemeSettings::get('hamburger_animation') !== NULL)) ? \Drupal\dxpr_theme\ThemeSettings::get('hamburger_animation') : 'cross',
+    '#default_value' => ((ThemeSettings::get('hamburger_animation') !== NULL)) ? ThemeSettings::get('hamburger_animation') : 'cross',
     '#options' => [
       'none' => t('None'),
       'cross' => t('Cross'),
@@ -605,7 +607,7 @@ function header_theme_settings(array &$form, $theme) {
   $form['dxpr_theme_settings']['header']['header_side']['header_side_align'] = [
     '#type' => 'radios',
     '#title' => t('Mobile Menu Alignment'),
-    '#default_value' => ((\Drupal\dxpr_theme\ThemeSettings::get('header_side_align') !== NULL)) ? \Drupal\dxpr_theme\ThemeSettings::get('header_side_align') : 'left',
+    '#default_value' => ((ThemeSettings::get('header_side_align') !== NULL)) ? ThemeSettings::get('header_side_align') : 'left',
     '#options' => [
       'left' => t('Left'),
       'center' => t('Center'),
@@ -626,7 +628,7 @@ function header_theme_settings(array &$form, $theme) {
   $form['dxpr_theme_settings']['header']['menu']['dropdown_width_auto'] = [
     '#type' => 'radios',
     '#title' => t('Dropdown Width'),
-    '#default_value' => ((\Drupal\dxpr_theme\ThemeSettings::get('dropdown_width_auto') !== NULL)) ? \Drupal\dxpr_theme\ThemeSettings::get('dropdown_width_auto') : '1',
+    '#default_value' => ((ThemeSettings::get('dropdown_width_auto') !== NULL)) ? ThemeSettings::get('dropdown_width_auto') : '1',
     '#options' => [
       '1' => t('Automatic (fits content)'),
       '0' => t('Fixed width'),
@@ -639,7 +641,7 @@ function header_theme_settings(array &$form, $theme) {
     '#title' => t('Fixed Dropdown Width'),
     '#title_display' => 'invisible',
     '#ai_description' => 'Fixed pixel width for dropdown menus when dropdown_width_auto=0. 200px=compact. 250-300px=standard. 400+px=wide mega-menu style. Only applies when dropdown_width_auto=0.',
-    '#default_value' => ((\Drupal\dxpr_theme\ThemeSettings::get('dropdown_width') !== NULL)) ? \Drupal\dxpr_theme\ThemeSettings::get('dropdown_width') : '200',
+    '#default_value' => ((ThemeSettings::get('dropdown_width') !== NULL)) ? ThemeSettings::get('dropdown_width') : '200',
     '#min' => 100,
     '#max' => 500,
     '#step' => 5,
@@ -657,7 +659,7 @@ function header_theme_settings(array &$form, $theme) {
   $form['dxpr_theme_settings']['header']['menu']['menu_type'] = [
     '#type' => 'radios',
     '#title' => t('Font Style'),
-    '#default_value' => ((\Drupal\dxpr_theme\ThemeSettings::get('menu_type') !== NULL)) ? \Drupal\dxpr_theme\ThemeSettings::get('menu_type') : '',
+    '#default_value' => ((ThemeSettings::get('menu_type') !== NULL)) ? ThemeSettings::get('menu_type') : '',
     '#options' => [
       '' => t('Normal'),
       'uppercase' => t('Uppercase'),
@@ -672,7 +674,7 @@ function header_theme_settings(array &$form, $theme) {
     '#title' => t('Link Spacing'),
     '#description' => t('Horizontal padding between menu links (in pixels).'),
     '#ai_description' => 'Horizontal padding between menu items. 5-10px=compact/dense navigation (many items). 15-20px=balanced spacing. 25-40px=airy spacing (few menu items, luxury feel). 50px=very spread out.',
-    '#default_value' => ((\Drupal\dxpr_theme\ThemeSettings::get('menu_link_spacing') !== NULL)) ? \Drupal\dxpr_theme\ThemeSettings::get('menu_link_spacing') : '10',
+    '#default_value' => ((ThemeSettings::get('menu_link_spacing') !== NULL)) ? ThemeSettings::get('menu_link_spacing') : '10',
     '#min' => 0,
     '#max' => 50,
     '#step' => 1,
@@ -685,7 +687,7 @@ function header_theme_settings(array &$form, $theme) {
   $form['dxpr_theme_settings']['header']['menu']['menu_hover'] = [
     '#type' => 'radios',
     '#title' => t('Hover Style'),
-    '#default_value' => ((\Drupal\dxpr_theme\ThemeSettings::get('menu_hover') !== NULL)) ? \Drupal\dxpr_theme\ThemeSettings::get('menu_hover') : 'opacity',
+    '#default_value' => ((ThemeSettings::get('menu_hover') !== NULL)) ? ThemeSettings::get('menu_hover') : 'opacity',
     '#options' => [
       'opacity' => t('Opacity'),
       'background' => t('Colored Background'),
@@ -710,7 +712,7 @@ function header_theme_settings(array &$form, $theme) {
   $form['dxpr_theme_settings']['header']['menu']['menu_border']['menu_border_position'] = [
     '#type' => 'radios',
     '#title' => t('Hover Style'),
-    '#default_value' => ((\Drupal\dxpr_theme\ThemeSettings::get('menu_border_position') !== NULL)) ? \Drupal\dxpr_theme\ThemeSettings::get('menu_border_position') : 'bottom',
+    '#default_value' => ((ThemeSettings::get('menu_border_position') !== NULL)) ? ThemeSettings::get('menu_border_position') : 'bottom',
     '#options' => [
       'top' => t('Top'),
       'bottom' => t('Bottom'),
@@ -721,7 +723,7 @@ function header_theme_settings(array &$form, $theme) {
   $form['dxpr_theme_settings']['header']['menu']['menu_border']['menu_border_animate'] = [
     '#type' => 'radios',
     '#title' => t('Animation'),
-    '#default_value' => ((\Drupal\dxpr_theme\ThemeSettings::get('menu_border_animate') !== NULL)) ? \Drupal\dxpr_theme\ThemeSettings::get('menu_border_animate') : 0,
+    '#default_value' => ((ThemeSettings::get('menu_border_animate') !== NULL)) ? ThemeSettings::get('menu_border_animate') : 0,
     '#options' => [
       '' => t('No Animation'),
       'ltr' => t('Left to Right'),
@@ -736,7 +738,7 @@ function header_theme_settings(array &$form, $theme) {
     '#type' => 'range',
     '#title' => t('Position Offset'),
     '#ai_description' => 'Distance in px between the border and the menu item edge. 0=border touches the item. 5-15px=slight gap for floating effect. Adjust to align with header design.',
-    '#default_value' => ((\Drupal\dxpr_theme\ThemeSettings::get('menu_border_position_offset') !== NULL)) ? \Drupal\dxpr_theme\ThemeSettings::get('menu_border_position_offset') : '0',
+    '#default_value' => ((ThemeSettings::get('menu_border_position_offset') !== NULL)) ? ThemeSettings::get('menu_border_position_offset') : '0',
     '#min' => 0,
     '#max' => 100,
     '#step' => 1,
@@ -750,7 +752,7 @@ function header_theme_settings(array &$form, $theme) {
     '#type' => 'range',
     '#title' => t('Position Offset for Sticky Header'),
     '#ai_description' => 'Border offset specifically for sticky header state. Often different from normal offset because sticky header has different height. Only visible when header_top_fixed and header_top_sticky are enabled.',
-    '#default_value' => ((\Drupal\dxpr_theme\ThemeSettings::get('menu_border_position_offset_sticky') !== NULL)) ? \Drupal\dxpr_theme\ThemeSettings::get('menu_border_position_offset_sticky') : '0',
+    '#default_value' => ((ThemeSettings::get('menu_border_position_offset_sticky') !== NULL)) ? ThemeSettings::get('menu_border_position_offset_sticky') : '0',
     '#min' => 0,
     '#max' => 100,
     '#step' => 1,
@@ -770,7 +772,7 @@ function header_theme_settings(array &$form, $theme) {
     '#type' => 'range',
     '#title' => t('Border Thickness'),
     '#ai_description' => 'Thickness of the hover border in pixels. 1-2px=subtle hairline (elegant). 3-4px=visible accent line (balanced). 5+px=bold statement border. 2-3px is most common.',
-    '#default_value' => ((\Drupal\dxpr_theme\ThemeSettings::get('menu_border_size') !== NULL)) ? \Drupal\dxpr_theme\ThemeSettings::get('menu_border_size') : 2,
+    '#default_value' => ((ThemeSettings::get('menu_border_size') !== NULL)) ? ThemeSettings::get('menu_border_size') : 2,
     '#min' => 1,
     '#max' => 20,
     '#step' => 1,
@@ -784,7 +786,7 @@ function header_theme_settings(array &$form, $theme) {
     '#type' => 'select',
     '#title' => t('Border Color'),
     '#ai_description' => 'Color of the menu hover border. Usually matches the primary/accent color from the color palette. Use a theme palette color name or custom with menu_border_color_custom.',
-    '#default_value' => \Drupal\dxpr_theme\ThemeSettings::get('menu_border_color'),
+    '#default_value' => ThemeSettings::get('menu_border_color'),
     '#options' => _dxpr_theme_color_options($theme),
   ];
 
@@ -792,7 +794,7 @@ function header_theme_settings(array &$form, $theme) {
     '#type' => 'textfield',
     '#title' => t('Custom Value'),
     '#ai_description' => 'Custom hex for menu border color. Only used when menu_border_color=custom.',
-    '#default_value' => ((\Drupal\dxpr_theme\ThemeSettings::get('menu_border_color_custom') !== NULL)) ? \Drupal\dxpr_theme\ThemeSettings::get('menu_border_color_custom') : \Drupal\dxpr_theme\ThemeSettings::get('menu_border_color_custom'),
+    '#default_value' => ((ThemeSettings::get('menu_border_color_custom') !== NULL)) ? ThemeSettings::get('menu_border_color_custom') : ThemeSettings::get('menu_border_color_custom'),
     '#states' => [
       'visible' => [
         'select[name="menu_border_color"]' => ['value' => 'custom'],
@@ -811,7 +813,7 @@ function header_theme_settings(array &$form, $theme) {
   $form['dxpr_theme_settings']['header']['header_mobile']['header_mobile_breakpoint'] = [
     '#type' => 'range',
     '#title' => t('Mobile Breakpoint'),
-    '#default_value' => ((\Drupal\dxpr_theme\ThemeSettings::get('header_mobile_breakpoint') !== NULL)) ? \Drupal\dxpr_theme\ThemeSettings::get('header_mobile_breakpoint') : 1200,
+    '#default_value' => ((ThemeSettings::get('header_mobile_breakpoint') !== NULL)) ? ThemeSettings::get('header_mobile_breakpoint') : 1200,
     '#min' => 480,
     '#max' => 4100,
     '#step' => 10,
@@ -826,7 +828,7 @@ function header_theme_settings(array &$form, $theme) {
   $form['dxpr_theme_settings']['header']['header_mobile']['header_mobile_height'] = [
     '#type' => 'range',
     '#title' => t('Height'),
-    '#default_value' => ((\Drupal\dxpr_theme\ThemeSettings::get('header_mobile_height') !== NULL)) ? \Drupal\dxpr_theme\ThemeSettings::get('header_mobile_height') : 60,
+    '#default_value' => ((ThemeSettings::get('header_mobile_height') !== NULL)) ? ThemeSettings::get('header_mobile_height') : 60,
     '#min' => 10,
     '#max' => 200,
     '#step' => 1,
@@ -841,7 +843,7 @@ function header_theme_settings(array &$form, $theme) {
   $form['dxpr_theme_settings']['header']['header_mobile']['header_mobile_fixed'] = [
     '#type' => 'checkbox',
     '#title' => t('Fixed Position'),
-    '#default_value' => ((\Drupal\dxpr_theme\ThemeSettings::get('header_mobile_fixed') !== NULL)) ? \Drupal\dxpr_theme\ThemeSettings::get('header_mobile_fixed') : FALSE,
+    '#default_value' => ((ThemeSettings::get('header_mobile_fixed') !== NULL)) ? ThemeSettings::get('header_mobile_fixed') : FALSE,
     '#description' => t('Header stays visible at the top when scrolling.'),
     '#ai_description' => 'Fix mobile header to top of screen while scrolling. Enable for important navigation on mobile. Disable for content-reading experiences where screen real estate matters.',
   ];

@@ -5,6 +5,7 @@
  * DXPR Theme helper functions.
  */
 
+use Drupal\dxpr_theme\ThemeSettings;
 use Drupal\Component\Serialization\Json;
 use Drupal\Core\File\FileSystemInterface;
 
@@ -49,7 +50,7 @@ function dxpr_theme_css_cache_build(string $theme) {
   $dir_writable = \Drupal::service('file_system')
     ->prepareDirectory($dir, FileSystemInterface::CREATE_DIRECTORY);
 
-  $palette = unserialize((\Drupal\dxpr_theme\ThemeSettings::get('color_palette', $theme) ?? ''), [
+  $palette = unserialize((ThemeSettings::get('color_palette', $theme) ?? ''), [
     'allowed_classes' => FALSE,
   ]) ?: NULL;
 
@@ -182,7 +183,7 @@ function _dxpr_theme_settings_add_css(string $setting, string $property): string
  *   CSS variable, e.g. "var(--prefix-name)".
  */
 function _dxpr_theme_setting_get_css_var(string $setting): string {
-  $value = \Drupal\dxpr_theme\ThemeSettings::get($setting);
+  $value = ThemeSettings::get($setting);
   // A saved value of 0 (for example opacity 0) is a valid value.
   if ($value !== NULL && $value !== '' && $value !== FALSE) {
     $css_var = str_replace('_', '-', $setting);
@@ -530,7 +531,7 @@ function _dxpr_theme_google_font_variants(string $family): array {
  *   "already_bold" (the picked variant is a bold face already).
  */
 function _dxpr_theme_headings_bold_font(?string $theme = NULL): ?array {
-  $font_key = \Drupal\dxpr_theme\ThemeSettings::get('headings_font_face', $theme);
+  $font_key = ThemeSettings::get('headings_font_face', $theme);
   if (!is_string($font_key) || substr($font_key, 0, 1) !== '0') {
     return NULL;
   }

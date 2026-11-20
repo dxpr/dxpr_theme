@@ -258,9 +258,9 @@ function extractDefault(block, key) {
   // Or: theme_get_setting('key') ?? DEFAULT
   const patterns = [
     // Ternary: ... ? theme_get_setting('key') : DEFAULT
-    new RegExp(`theme_get_setting\\('${key}'\\)\\s*:\\s*(-?[\\d.]+|'[^']*'|TRUE|FALSE|NULL|\\[\\])`, 'i'),
+    new RegExp(`(?:theme_get_setting|ThemeSettings::get)\\('${key}'\\)\\s*:\\s*(-?[\\d.]+|'[^']*'|TRUE|FALSE|NULL|\\[\\])`, 'i'),
     // Null coalescing: theme_get_setting('key') ?? DEFAULT
-    new RegExp(`theme_get_setting\\('${key}'\\)\\s*\\?\\?\\s*(-?[\\d.]+|'[^']*'|TRUE|FALSE|NULL|\\[\\])`, 'i'),
+    new RegExp(`(?:theme_get_setting|ThemeSettings::get)\\('${key}'\\)\\s*\\?\\?\\s*(-?[\\d.]+|'[^']*'|TRUE|FALSE|NULL|\\[\\])`, 'i'),
     // Direct #default_value => VALUE
     new RegExp(`'#default_value'\\s*=>\\s*(-?[\\d.]+|'[^']*'|TRUE|FALSE|NULL|\\[\\])`, 'i'),
   ];
