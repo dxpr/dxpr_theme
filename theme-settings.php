@@ -95,7 +95,7 @@ function dxpr_theme_form_system_theme_settings_alter(&$form, &$form_state, $form
     '#title' => t('Web Icons'),
     '#description' => t('Upload an icon that will be automatically resized for iOS, Android, and PWA use. Recommended minimum size: 512x512 pixels.'),
     '#allowed_bundles' => ['image'],
-    '#default_value' => theme_get_setting('web_icons_upload'),
+    '#default_value' => \Drupal\dxpr_theme\ThemeSettings::get('web_icons_upload'),
     '#cardinality' => 1,
     '#group' => 'web_icons',
   ];

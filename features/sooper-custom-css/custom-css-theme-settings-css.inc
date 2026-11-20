@@ -16,9 +16,9 @@
  *   Theme palette array.
  */
 function custom_css_theme_settings_css($theme, &$css, array $palette) {
-  if (theme_get_setting('custom_css_site', $theme)) {
+  if (\Drupal\dxpr_theme\ThemeSettings::get('custom_css_site', $theme)) {
     $css .= "/* Custom CSS */\n";
-    $css .= trim(theme_get_setting('custom_css_site', $theme));
+    $css .= trim(\Drupal\dxpr_theme\ThemeSettings::get('custom_css_site', $theme));
     $css .= "\n\n";
   }
 }

@@ -17,11 +17,11 @@ use Drupal\Core\File\FileSystemInterface;
  */
 function fonts_theme_settings_controller(array &$variables) {
   $dxpr_theme_fonts = [];
-  $dxpr_theme_fonts[] = theme_get_setting('body_font_face');
-  $dxpr_theme_fonts[] = theme_get_setting('headings_font_face');
-  $dxpr_theme_fonts[] = theme_get_setting('nav_font_face');
-  $dxpr_theme_fonts[] = theme_get_setting('sitename_font_face');
-  $dxpr_theme_fonts[] = theme_get_setting('blockquote_font_face');
+  $dxpr_theme_fonts[] = \Drupal\dxpr_theme\ThemeSettings::get('body_font_face');
+  $dxpr_theme_fonts[] = \Drupal\dxpr_theme\ThemeSettings::get('headings_font_face');
+  $dxpr_theme_fonts[] = \Drupal\dxpr_theme\ThemeSettings::get('nav_font_face');
+  $dxpr_theme_fonts[] = \Drupal\dxpr_theme\ThemeSettings::get('sitename_font_face');
+  $dxpr_theme_fonts[] = \Drupal\dxpr_theme\ThemeSettings::get('blockquote_font_face');
 
   $dxpr_theme_fonts = array_unique($dxpr_theme_fonts);
   $requested_google_fonts = [];
@@ -52,7 +52,7 @@ function fonts_theme_settings_controller(array &$variables) {
 
   // Bold headings need the bold face of the headings font, otherwise the
   // browser synthesises a faux bold from the picked weight.
-  if (theme_get_setting('headings_bold')) {
+  if (\Drupal\dxpr_theme\ThemeSettings::get('headings_bold')) {
     require_once \Drupal::service('extension.list.theme')->getPath('dxpr_theme') . '/dxpr_theme_callbacks.inc';
     $bold_font = _dxpr_theme_headings_bold_font();
     if ($bold_font && $bold_font['available'] && !$bold_font['already_bold']) {

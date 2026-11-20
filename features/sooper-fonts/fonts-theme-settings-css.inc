@@ -29,8 +29,8 @@ function fonts_theme_settings_css(string $theme, &$css, array $palette) {
   $prefix = _dxpr_theme_get_const('cssSettingPrefix');
 
   foreach ($fonts as $font_key) {
-    if (theme_get_setting($font_key, $theme)) {
-      $selector = theme_get_setting($font_key . '_selector', $theme);
+    if (\Drupal\dxpr_theme\ThemeSettings::get($font_key, $theme)) {
+      $selector = \Drupal\dxpr_theme\ThemeSettings::get($font_key . '_selector', $theme);
 
       // Add additional selector for the body font.
       if ($font_key === 'body_font_face') {

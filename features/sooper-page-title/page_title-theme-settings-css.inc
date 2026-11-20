@@ -26,11 +26,11 @@ function page_title_theme_settings_css($theme, &$css, array $palette) {
     $css .= $page_title_img_pos;
   }
 
-  if (theme_get_setting('page_title_image_mode') == 'fixed') {
+  if (\Drupal\dxpr_theme\ThemeSettings::get('page_title_image_mode') == 'fixed') {
     $css .= "  background-attachment: fixed;\n";
   }
 
-  if ($page_title_image_style = theme_get_setting('page_title_image_style')) {
+  if ($page_title_image_style = \Drupal\dxpr_theme\ThemeSettings::get('page_title_image_style')) {
     switch ($page_title_image_style) {
       case 'no_repeat':
         $css .= "  background-size: auto; background-repeat: no-repeat;\n";
@@ -46,7 +46,7 @@ function page_title_theme_settings_css($theme, &$css, array $palette) {
     }
   }
 
-  if ($page_title_image_path = theme_get_setting('page_title_image_path', $theme)) {
+  if ($page_title_image_path = \Drupal\dxpr_theme\ThemeSettings::get('page_title_image_path', $theme)) {
     $css .= "  background-image: url('" . \Drupal::service('file_url_generator')->generateString($page_title_image_path) . "');\n";
   }
 

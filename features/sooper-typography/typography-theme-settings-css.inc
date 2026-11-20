@@ -18,7 +18,7 @@
 function typography_theme_settings_css($theme, &$css, array $palette) {
   $css .= "/* Typography Styles */\n";
 
-  if (theme_get_setting('menu_type', $theme) != 'lead') {
+  if (\Drupal\dxpr_theme\ThemeSettings::get('menu_type', $theme) != 'lead') {
     // Scope both rules to the header mode classes set by the mobile
     // breakpoint script instead of a hard-coded media query, so the mobile
     // size applies whenever the mobile menu is active.

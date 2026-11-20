@@ -18,7 +18,7 @@
 function layout_theme_settings_css($theme, &$css, array $palette) {
   $css .= "/* Layout Styles */\n";
 
-  if (theme_get_setting('boxed_layout', $theme) && theme_get_setting('boxed_layout_boxbg', $theme)) {
+  if (\Drupal\dxpr_theme\ThemeSettings::get('boxed_layout', $theme) && \Drupal\dxpr_theme\ThemeSettings::get('boxed_layout_boxbg', $theme)) {
     $cnt_bg = _dxpr_theme_setting_get_css_var('boxed_layout_boxbg');
     $css .= ".dxpr-theme-boxed-container { background: $cnt_bg; }\n";
     $css .= ".dxpr-theme-boxed-container .nav-tabs >li.active a { border-bottom-color: $cnt_bg; }\n";
@@ -36,7 +36,7 @@ function layout_theme_settings_css($theme, &$css, array $palette) {
     $css_body .= $background_image_attachment;
   }
 
-  if ($background_image_style = theme_get_setting('background_image_style')) {
+  if ($background_image_style = \Drupal\dxpr_theme\ThemeSettings::get('background_image_style')) {
     switch ($background_image_style) {
       case 'no_repeat':
         $css_body .= "  background-size: auto;\nbackground-repeat: no-repeat;\n";
@@ -52,7 +52,7 @@ function layout_theme_settings_css($theme, &$css, array $palette) {
     }
   }
 
-  if ($background_image_path = theme_get_setting('background_image_path', $theme)) {
+  if ($background_image_path = \Drupal\dxpr_theme\ThemeSettings::get('background_image_path', $theme)) {
     $css_body .= "  background-image: url('" . \Drupal::service('file_url_generator')->generateString($background_image_path) . "');\n";
   }
 
