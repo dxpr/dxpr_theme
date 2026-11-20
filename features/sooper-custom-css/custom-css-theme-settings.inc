@@ -5,6 +5,8 @@
  * Theme custom css settings.
  */
 
+use Drupal\dxpr_theme\ThemeSettings;
+
 /**
  * Add custom css options to the theme settings form.
  *
@@ -28,7 +30,7 @@ function custom_css_theme_settings(array &$form, $theme) {
     '#type' => 'textarea',
     '#title' => t('Sitewide CSS'),
     '#ai_description' => 'Raw CSS code injected on every page. Use for quick overrides without creating a subtheme. Avoid duplicating what theme settings already control.',
-    '#default_value' => theme_get_setting('custom_css_site'),
+    '#default_value' => ThemeSettings::get('custom_css_site'),
     '#rows' => 15,
   ];
 
@@ -36,7 +38,7 @@ function custom_css_theme_settings(array &$form, $theme) {
     '#type' => 'textarea',
     '#title' => t('Sitewide JavaScript'),
     '#ai_description' => 'Raw JavaScript code injected at the end of every page body; script tags are added automatically unless the value already contains them. Use for tracking snippets, custom interactions, or third-party widget initialization.',
-    '#default_value' => theme_get_setting('custom_javascript_site'),
+    '#default_value' => ThemeSettings::get('custom_javascript_site'),
     '#rows' => 15,
   ];
 
